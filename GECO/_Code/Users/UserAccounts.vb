@@ -1,0 +1,305 @@
+Imports System.Data
+Imports System.Data.SqlClient
+Imports EpdIt.DBUtilities
+Imports GECO.GecoModels
+
+Public Module UserAccounts
+
+    Public Function LogInUser(email As String, password As String, remember As Boolean, ByRef user As GecoUser, ByRef userSession As UserSession) As LoginResult
+        Dim params As SqlParameter() = {
+            New SqlParameter("@Email", Trim(email)),
+            New SqlParameter("@Password", GetMd5Hash(password)),
+            New SqlParameter("@CreateSession", remember)
+        }
+        Dim result As Integer
+        Dim ds As DataSet = DB.SPGetDataSet("geco.LogInUser", params, result)
+
+        Select Case result
+            Case 0
+                If ds IsNot Nothing And ds.Tables.Count > 1 Then
+                    user = ParseUserFromDataRow(ds.Tables(0).Rows(0))
+
+                    ds.Tables(1).PrimaryKey = {ds.Tables(1).Columns(0)}
+                    user.FacilityAccessTable = ds.Tables(1)
+
+                    If remember AndAlso ds.Tables.Count = 3 Then
+                        Dim dr As DataRow = ds.Tables(2).Rows(0)
+                        userSession = New UserSession(dr(0).ToString(), dr(1).ToString())
+                    End If
+                End If
+
+                Return LoginResult.Success
+            Case 1
+                Return LoginResult.Invalid
+            Case 2
+                Return LoginResult.AccountUnconfirmed
+            Case Else
+                Return LoginResult.DbError
+        End Select
+    End Function
+
+    Public Enum LoginResult
+        Success
+        Invalid
+        AccountUnconfirmed
+        DbError
+    End Enum
+
+    Public Function GetCurrentUser() As GecoUser
+        Return GetSessionItem(GecoSession.CurrentUser)
+    End Function
+
+    Private Function ParseUserFromDataRow(dr As DataRow) As GecoUser
+        Dim userId As Integer = GetNullable(Of Integer)(dr("UserId"))
+
+        If userId = 0 Then
+            Return Nothing
+        End If
+
+        Dim user As New GecoUser(userId) With {
+            .Email = GetNullableString(dr("Email")).ToLower,
+            .Salutation = GetNullableString(dr("Salutation")),
+            .FirstName = GetNullableString(dr("FirstName")),
+            .LastName = GetNullableString(dr("LastName")),
+            .Title = GetNullableString(dr("Title")),
+            .Company = GetNullableString(dr("Company")),
+            .PhoneNumber = GetNullableString(dr("Phone")),
+            .FaxNumber = GetNullableString(dr("Fax")),
+            .GecoUserTypeString = GetNullableString(dr("UserType")),
+            .Address = New Address() With {
+                .Street = GetNullableString(dr("Street")),
+                .City = GetNullableString(dr("City")),
+                .State = GetNullableString(dr("State")),
+                .PostalCode = GetNullableString(dr("PostalCode"))
+            }
+        }
+
+        Return user
+    End Function
+
+    'Public Function GetUserProfile(userId As Integer) As GecoUser
+    '    Dim query = " select " &
+    '    "     convert(int, p.NUMUSERID) as UserId, " &
+    '    "     STRUSEREMAIL   as Email, " &
+    '    "     STRSALUTATION  as Salutation, " &
+    '    "     STRFIRSTNAME   as FirstName, " &
+    '    "     STRLASTNAME    as LastName, " &
+    '    "     STRTITLE       as Title, " &
+    '    "     STRCOMPANYNAME as Company, " &
+    '    "     STRADDRESS     as Street, " &
+    '    "     STRCITY        as City, " &
+    '    "     STRSTATE       as State, " &
+    '    "     STRZIP         as PostalCode, " &
+    '    "     STRPHONENUMBER as Phone, " &
+    '    "     STRFAXNUMBER   as Fax, " &
+    '    "     STRUSERTYPE    as UserType " &
+    '    " from OLAPUSERPROFILE p " &
+    '    "     inner join OLAPUSERLOGIN l " &
+    '    "         on p.NUMUSERID = l.NUMUSERID " &
+    '    " where convert(int, p.NUMUSERID) = @userId "
+
+    '    Dim param As New SqlParameter("@userId", userId)
+
+    '    Return ParseUserFromDataRow(DB.GetDataRow(query, param))
+    'End Function
+
+    Public Function GecoUserExists(email As String) As Boolean
+        Dim query = "select geco.UserExists(@email)"
+
+        Dim param As New SqlParameter("@email", Trim(email))
+
+        Return DB.GetBoolean(query, param)
+    End Function
+
+    Public Function CreateGecoAccount(newUser As GecoUser, password As String, ByRef token As String) As DbResult
+        Dim params As SqlParameter() = {
+                New SqlParameter("@UserEmail", newUser.Email),
+                New SqlParameter("@Password", GetMd5Hash(password)),
+                New SqlParameter("@Salutation", newUser.Salutation),
+                New SqlParameter("@FName", newUser.FirstName),
+                New SqlParameter("@LName", newUser.LastName),
+                New SqlParameter("@Title", newUser.Title),
+                New SqlParameter("@CoName", newUser.Company),
+                New SqlParameter("@Street", newUser.Address.Street),
+                New SqlParameter("@City", newUser.Address.City),
+                New SqlParameter("@State", newUser.Address.State.ToUpper),
+                New SqlParameter("@Zip", newUser.Address.PostalCode),
+                New SqlParameter("@Phone", newUser.PhoneNumber),
+                New SqlParameter("@Fax", newUser.FaxNumber),
+                New SqlParameter("@UserType", newUser.GecoUserTypeString)
+            }
+
+        Dim result As Integer
+        token = DB.SPGetString("geco.CreateUser", params, result)
+
+        Select Case result
+            Case 0
+                Return DbResult.Success
+            Case 1
+                Return DbResult.Failure
+        End Select
+
+        Return DbResult.DbError
+    End Function
+
+    Public Function RenewAccountToken(email As String, ByRef token As String) As DbResult
+        Dim param As New SqlParameter("@Email", email)
+
+        Dim returnValue As Integer
+        token = DB.SPGetString("geco.RenewAccountToken", param, returnValue)
+
+        Select Case returnValue
+            Case 0
+                Return DbResult.Success
+            Case 1
+                Return DbResult.Failure
+        End Select
+
+        Return DbResult.DbError
+    End Function
+
+    Public Function ConfirmAccount(email As String, token As String) As DbResult
+        Dim params As SqlParameter() = {
+            New SqlParameter("@Email", Trim(email)),
+            New SqlParameter("@Token", token)
+        }
+
+        Dim result As Integer = DB.SPReturnValue("geco.ConfirmAccount", params)
+
+        Select Case result
+            Case 0
+                Return DbResult.Success
+            Case 1
+                Return DbResult.Failure
+        End Select
+
+        Return DbResult.DbError
+    End Function
+
+    Public Function ConfirmEmailChange(email As String, token As String, ByRef oldEmail As String) As DbResult
+        Dim params As SqlParameter() = {
+            New SqlParameter("@NewEmail", Trim(email)),
+            New SqlParameter("@Token", token)
+        }
+
+        Dim returnValue As Integer
+        oldEmail = DB.SPGetString("geco.ConfirmEmailChange", params, returnValue)
+
+        Select Case returnValue
+            Case 0
+                Return DbResult.Success
+            Case 1
+                Return DbResult.Failure
+        End Select
+
+        Return DbResult.DbError
+    End Function
+
+    Public Function SetAccountPassword(email As String, password As String) As DbResult
+        Dim params As SqlParameter() = {
+            New SqlParameter("@Email", Trim(email)),
+            New SqlParameter("@Password", GetMd5Hash(password))
+        }
+
+        Dim result As Integer = DB.SPReturnValue("geco.SetAccountPassword", params)
+
+        Select Case result
+            Case 0
+                Return DbResult.Success
+            Case 1
+                Return DbResult.Failure
+        End Select
+
+        Return DbResult.DbError
+    End Function
+
+    Public Function UpdatePassword(email As String, oldPassword As String, newPassword As String) As UpdatePasswordResult
+        Dim params As SqlParameter() = {
+            New SqlParameter("@Email", Trim(email)),
+            New SqlParameter("@OldPassword", GetMd5Hash(oldPassword)),
+            New SqlParameter("@NewPassword", GetMd5Hash(newPassword))
+        }
+
+        Dim result As Integer = DB.SPReturnValue("geco.UpdatePassword", params)
+
+        Select Case result
+            Case 0
+                Return UpdatePasswordResult.Success
+            Case 1
+                Return UpdatePasswordResult.InvalidEmail
+            Case 2
+                Return UpdatePasswordResult.InvalidPassword
+            Case Else
+                Return UpdatePasswordResult.DbError
+        End Select
+    End Function
+
+    '  0 - Successfully reset user password
+    '  1 - Account does Not exist
+    '  2 - Old password Is invalid
+    ' -1 - Error
+    Public Enum UpdatePasswordResult
+        Success
+        InvalidEmail
+        InvalidPassword
+        DbError
+    End Enum
+
+    Public Function UpdateUserEmail(email As String, newEmail As String, ByRef token As String) As UpdateUserEmailResult
+        Dim params As SqlParameter() = {
+            New SqlParameter("@OldEmail", Trim(email)),
+            New SqlParameter("@NewEmail", Trim(newEmail))
+        }
+
+        Dim result As Integer
+        token = DB.SPGetString("geco.UpdateUserEmail", params, result)
+
+        Select Case result
+            Case 0
+                Return UpdateUserEmailResult.Success
+            Case 1
+                Return UpdateUserEmailResult.InvalidEmail
+            Case 2
+                Return UpdateUserEmailResult.NewEmailExists
+        End Select
+
+        Return UpdateUserEmailResult.DbError
+    End Function
+
+    '  0 - Successfully added new email
+    '  1 - Account does not exist
+    '  2 - New email address already registered
+    ' -1 - Error
+    Public Enum UpdateUserEmailResult
+        Success
+        InvalidEmail
+        NewEmailExists
+        DbError
+    End Enum
+
+    Public Function GetSavedUserSession(ByRef userSession As UserSession, ByRef user As GecoUser) As Boolean
+        Dim params As SqlParameter() = {
+            New SqlParameter("@Series", userSession.Series),
+            New SqlParameter("@Token", userSession.Token)
+        }
+
+        Dim result As Integer
+        Dim ds As DataSet = DB.SPGetDataSet("geco.LogInViaSession", params, result)
+
+        ' Future enhancement: If result = 2, token theft assumed. Inform user?
+        If result = 0 AndAlso ds IsNot Nothing AndAlso ds.Tables.Count = 3 Then
+            user = ParseUserFromDataRow(ds.Tables(0).Rows(0))
+
+            ds.Tables(1).PrimaryKey = {ds.Tables(1).Columns(0)}
+            user.FacilityAccessTable = ds.Tables(1)
+
+            Dim dr As DataRow = ds.Tables(2).Rows(0)
+            userSession = New UserSession(dr(0).ToString(), dr(1).ToString())
+
+            Return True
+        End If
+
+        Return False
+    End Function
+
+End Module

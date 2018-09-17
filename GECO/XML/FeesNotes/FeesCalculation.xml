@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Bullets>
+  <bullet text="Source Classification Change - Please indicate the facility source classification as follows: A - Major Source;
+          SM - Synthetic Minor Source; B - Minor Source; PR - Permit-by-Rule Source. For definitions of each source please
+          see the Fee Manual.  Please Section 2.3 or 2.4 of the Fee Manual for further clarification." />
+  <bullet text="The Part 70 Emissions Fee and the Part 70 Fee are not cumulative, if the total of your fees do not
+          exceed the Part 70 Fee, then you only pay the Part 70 Fee.  If the Part 70 Emissions Fee exceeds the Part 70
+          Fee, then you only have to pay the Part 70 Emission Fee." />
+  <bullet text="For the Exempt NSPS cases, please be sure to check all the NSPS exemptions that apply to your facility." />
+</Bullets>

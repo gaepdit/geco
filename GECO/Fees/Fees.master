@@ -1,0 +1,97 @@
+﻿<%@ Master Language="VB" Inherits="GECO.Fees_Fees" Codebehind="Fees.master.vb" %>
+<%@ Register Assembly="EasyMenu" Namespace="Sequentum" TagPrefix="easymenu" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-us" xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>GECO - Fees</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="~/assets/epd-favicons/apple-touch-icon.png?v=69kRrvbXdL" />
+    <link rel="icon" type="image/png" href="~/assets/epd-favicons/favicon-32x32.png?v=69kRrvbXdL" sizes="32x32" />
+    <link rel="icon" type="image/png" href="~/assets/epd-favicons/favicon-16x16.png?v=69kRrvbXdL" sizes="16x16" />
+    <link rel="manifest" href="~/assets/epd-favicons/manifest.json?v=69kRrvbXdL" />
+    <link rel="mask-icon" href="~/assets/epd-favicons/safari-pinned-tab.svg?v=69kRrvbXdL" color="#5bbad5" />
+    <link rel="shortcut icon" href="~/favicon.ico?v=69kRrvbXdL" />
+    <meta name="theme-color" content="#e5f6fa" />
+    <link href="~/assets/css/fees.css?v=20180913" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <form id="form1" runat="server">
+        <asp:ScriptManager ID="ScriptManager1" runat="Server" EnablePartialRendering="true" ScriptMode="Release">
+        </asp:ScriptManager>
+
+        <div id="header">
+            <div id="epdlogo">
+                <a href="https://epd.georgia.gov/" target="_blank" style="color: #01009A;">
+                    <img src='<%= Page.ResolveUrl("~/assets/images/epd_logo.jpg") %>' alt="GA EPD logo" /></a>
+            </div>
+            <div id="apptitle">
+                <img src='<%= Page.ResolveUrl("~/assets/images/airbranch_header_bg.jpg") %>' alt="GA AIR" />
+            </div>
+        </div>
+        <div id="usermenu">
+            <table width="100%">
+                <tr>
+                    <td width="140px"></td>
+                    <td>
+                        <asp:Label ID="lblUserName" runat="server" Text=""></asp:Label>
+                        <asp:Label ID="lblFacilityName" runat="server" Text=""></asp:Label>
+                        <asp:Label ID="lblAirsNo" runat="server" Text=""></asp:Label>
+                    </td>
+                    <td align="right">
+                        <easymenu:EasyMenu ID="EasyMenu1" runat="server" />
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- end header -->
+        <div class="outer-container">
+            <!-- container for all 3 columns -->
+            <div class="inner-container">
+                <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
+                    <ContentTemplate>
+                        <!-- container for only left and center columns -->
+                        <div class="content">
+                            <asp:ContentPlaceHolder ID="MainContent" runat="server">
+                            </asp:ContentPlaceHolder>
+                        </div>
+                        <!-- end content -->
+                        <div class="nav">
+                            <asp:ContentPlaceHolder ID="LeftMenuContent" runat="server">
+                            </asp:ContentPlaceHolder>
+                        </div>
+                        <div class="clear">
+                        </div>
+                    </ContentTemplate>
+                </asp:UpdatePanel>
+                <!-- sets inner-container height, needed for background color -->
+            </div>
+            <!-- end inner left/center container -->
+            <%--<div class="sidebar">
+                <h2>
+                    Quick Links</h2>
+                <br />
+                <asp:Menu ID="Rightmenu" runat="server" ForeColor="#284E98" Width="99%">
+                <DataBindings>
+                <asp:MenuItemBinding DataMember="MenuItem" TargetField="target"
+                  NavigateUrlField="url" TextField="title" ToolTipField="description"
+                  ValueField="title" />
+              </DataBindings>
+                    <StaticMenuItemStyle HorizontalPadding="15px" />
+                    <DynamicHoverStyle BackColor="#FFFFC0" ForeColor="#0000C0" />
+                    <StaticSelectedStyle BackColor="#C0FFC0" ForeColor="LimeGreen" />
+
+                    <StaticHoverStyle BackColor="#FFFFC0" Font-Bold="True" ForeColor="#0000C0" />
+                </asp:Menu>
+            </div>--%>
+            <div class="clear">
+            </div>
+            <!-- sets outer-container height, needed for background color -->
+        </div>
+        <!-- end outer 3-column container -->
+        <div class="footer">
+            ©2006 • Georgia Environmental Protection Division, Air Protection Branch • All rights reserved
+        </div>
+        <!-- end footer -->
+    </form>
+</body>
+</html>

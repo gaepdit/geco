@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  For more information on how to configure your ASP.NET application, please visit
+  https://go.microsoft.com/fwlink/?LinkId=169433
+  -->
+<configuration>
+  <configSections>
+    <sectionGroup name="businessObjects">
+      <sectionGroup name="crystalReports">
+        <section name="rptBuildProvider" type="CrystalDecisions.Shared.RptBuildProviderHandler, CrystalDecisions.Shared, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, Custom=null" />
+      </sectionGroup>
+    </sectionGroup>
+  </configSections>
+
+  <appSettings>
+    <add key="GECO_VERSION" value="2018.9.0" />
+    <add key="GECO_ENVIRONMENT" value="Development" />
+    <add key="UndeliverableEmailFolder" value="..\_DeadLetterOffice" />
+    <add key="database_uid" value="" />
+    <add key="database_service" value="" />
+    <add key="database_pwd" value="" />
+    <add key="GecoEmailSender" value="GeorgiaAirProtectionBranch@dnr.ga.gov" />
+    <add key="GecoContactEmail" value="GeorgiaAirProtectionBranch@dnr.ga.gov" />
+    <add key="GecoContactName" value="GECO" />
+    <add key="SaveAllEmails" value="false" />
+    <add key="GoogleMapsAPIKey" value="" />
+    <add key="SENTRY_DSN" value="" />
+    <add key="CrystalImageCleaner-AutoStart" value="true" />
+    <add key="CrystalImageCleaner-Sleep" value="60000" />
+    <add key="CrystalImageCleaner-Age" value="120000" />
+    <add key="ValidationSettings:UnobtrusiveValidationMode" value="None" />
+  </appSettings>
+
+  <connectionStrings>
+    <add name="SqlConnectionString" connectionString="" />
+  </connectionStrings>
+
+  <system.web>
+    <!--
+          Set compilation debug="true" to insert debugging
+          symbols into the compiled page. Because this
+          affects performance, set this value to true only
+          during development.
+    -->
+    <compilation debug="true" strict="false" explicit="true" targetFramework="4.6.2">
+      <buildProviders>
+        <add extension=".rpt" type="CrystalDecisions.Web.Compilation.RptBuildProvider, CrystalDecisions.Web, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+      </buildProviders>
+    </compilation>
+    <httpRuntime targetFramework="4.6.2" />
+    <pages controlRenderingCompatibilityVersion="3.5" clientIDMode="AutoID">
+      <controls>
+        <add tagPrefix="ajax" assembly="GridViewResizeExtender" namespace="LavaBlast.AJAX.GridViewResizeExtender" />
+        <add tagPrefix="act" namespace="AjaxControlToolkit" assembly="AjaxControlToolkit" />
+        <add tagPrefix="acs" namespace="AjaxControls" assembly="AjaxControls" />
+        <add tagPrefix="seq" namespace="Sequentum" assembly="EasyMenu" />
+        <add tagPrefix="ajaxToolkit" assembly="AjaxControlToolkit" namespace="AjaxControlToolkit" />
+      </controls>
+    </pages>
+    <httpHandlers>
+      <add verb="GET" path="CaptchaImage.axd" type="MSCaptcha.CaptchaImageHandler, MSCaptcha" />
+      <add verb="GET" path="CrystalImageHandler.aspx" type="CrystalDecisions.Web.CrystalImageHandler, CrystalDecisions.Web, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    </httpHandlers>
+    <customErrors mode="RemoteOnly" defaultRedirect="~/ErrorPage.aspx" />
+    <httpCookies requireSSL="true" httpOnlyCookies="true" />
+  </system.web>
+
+  <system.codedom>
+    <compilers>
+      <compiler language="c#;cs;csharp" extension=".cs" type="Microsoft.CodeDom.Providers.DotNetCompilerPlatform.CSharpCodeProvider, Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=2.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" warningLevel="4" compilerOptions="/langversion:default /nowarn:1659;1699;1701" />
+      <compiler language="vb;vbs;visualbasic;vbscript" extension=".vb" type="Microsoft.CodeDom.Providers.DotNetCompilerPlatform.VBCodeProvider, Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=2.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" warningLevel="4" compilerOptions="/langversion:default /nowarn:41008 /define:_MYTYPE=\&quot;Web\&quot; /optionInfer+" />
+    </compilers>
+  </system.codedom>
+
+  <system.webServer>
+    <validation validateIntegratedModeConfiguration="false" />
+    <handlers>
+      <add name="MSCaptcha" verb="GET" path="CaptchaImage.axd" type="MSCaptcha.CaptchaImageHandler, MSCaptcha" />
+      <add name="CrystalImageHandler.aspx_GET" verb="GET" path="CrystalImageHandler.aspx" type="CrystalDecisions.Web.CrystalImageHandler, CrystalDecisions.Web, Version=10.5.3700.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" preCondition="integratedMode" />
+    </handlers>
+    <rewrite>
+      <rules>
+        <!-- Redirect HTTP to HTTPS. This requires the URL Rewrite module to be installed in IIS. -->
+        <rule name="HTTP to HTTPS redirect" stopProcessing="true">
+          <match url="(.*)" />
+          <conditions>
+            <add input="{SERVER_PORT_SECURE}" pattern="^0$" />
+          </conditions>
+          <action type="Redirect" redirectType="Permanent" url="https://{HTTP_HOST}/{R:1}" />
+        </rule>
+      </rules>
+    </rewrite>
+    <httpErrors errorMode="Custom">
+      <clear />
+      <error statusCode="404" path="/404.aspx" responseMode="ExecuteURL" />
+    </httpErrors>
+  </system.webServer>
+
+  <runtime>
+    <assemblyBinding xmlns="urn:schemas-microsoft-com:asm.v1">
+      <dependentAssembly>
+        <assemblyIdentity name="DocumentFormat.OpenXml" publicKeyToken="8fb06cb64d019a17" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-2.8.1.0" newVersion="2.8.1.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="FastMember.Signed" publicKeyToken="9e8f22703bef9a29" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-1.4.1.0" newVersion="1.4.1.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="Newtonsoft.Json" publicKeyToken="30ad4fe6b2a6aeed" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-11.0.0.0" newVersion="11.0.0.0" />
+      </dependentAssembly>
+    </assemblyBinding>
+  </runtime>
+
+  <businessObjects>
+    <crystalReports>
+      <rptBuildProvider>
+        <add embedRptInResource="true" />
+      </rptBuildProvider>
+    </crystalReports>
+  </businessObjects>
+
+</configuration>

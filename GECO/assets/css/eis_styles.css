@@ -1,0 +1,456 @@
+﻿#container {
+    width: 100%;
+    margin: 3px auto;
+    background-color: #fff;
+    color: #333;
+    border: 1px solid gray;
+    line-height: 130%;
+    font-family: Verdana;
+    font-size: small;
+}
+
+#header {
+    padding: 0.10em;
+    border-bottom: 1px solid gray;
+    background-color: #000084;
+    font-family: Verdana;
+    color: #E7ECFF;
+    padding-left: 10px;
+}
+
+#userinfo {
+    font-size: small;
+    float: left;
+    width: 429px;
+}
+
+/* Menu */
+
+#menu {
+    float: right;
+    margin: 15px 5px 0px 0px;
+    font-family: Verdana;
+    font-size: small;
+}
+
+    #menu ul {
+        margin: 0 0 0 0;
+        padding: 9px 0px 9px 0px;
+        list-style: none;
+        line-height: normal;
+        /* height: 30px; */
+    }
+
+    #menu li {
+        float: left;
+        margin: 0px 0px 0px 1px;
+    }
+
+    #menu a {
+        display: block;
+        width: auto;
+        height: 16px;
+        padding: 7px 15px 0px 15px;
+        background: #9BD7FF;
+        color: #0000ff;
+        text-decoration: none;
+    }
+
+        #menu a:hover {
+            text-decoration: none;
+            background: #ffffff;
+        }
+
+        #menu a:visited {
+            display: block;
+            width: auto;
+            height: 16px;
+            padding: 7px 15px 0px 15px;
+            color: #0000ff;
+            text-decoration: none;
+        }
+
+    #menu .first {
+        background: none;
+    }
+
+    #menu .active a {
+    }
+/* End Menu */
+
+#top h1 {
+    padding: 0;
+    margin: 0;
+}
+
+#leftnav {
+    float: left;
+    width: 180px;
+    margin: 0;
+    padding: 0 0.5em 0.5em 0.5em;
+}
+
+.leftNavMenu a {
+    color: blue;
+}
+
+#leftnav a:hover, #leftnav a:focus {
+    background: #CAEAFF;
+}
+
+#leftnav span {
+    padding: 3px 0px;
+}
+
+#leftnav table a {
+    display: block;
+    padding: 3px;
+}
+
+    #leftnav table a:hover, #leftnav table a:focus {
+        background: white;
+    }
+
+#leftnav a.navButton {
+    display: block;
+    color: blue;
+    font-size: medium;
+    font-weight: bold;
+    text-decoration: none;
+    padding: .5em 0;
+}
+
+#content {
+    margin-left: 200px;
+    border-left: 1px solid gray;
+    padding: .25em;
+}
+
+.label {
+    font-family: Verdana;
+    font-size: small;
+}
+
+.labelMessage {
+    float: right;
+    margin-right: 10px;
+}
+
+.comment {
+    width: 400px;
+}
+
+#footer {
+    clear: both;
+    margin: 0;
+    padding: .10em;
+    color: #fff;
+    background-color: #000084;
+    border-top: 1px solid gray;
+    font-family: Verdana;
+    font-size: smaller;
+    text-align: center;
+}
+
+/* CSS for content area begins here */
+
+.pageheader {
+    text-align: left;
+    font-family: Verdana;
+    font-size: x-large;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.pagesubheader {
+    text-align: left;
+    font-family: Verdana;
+    font-size: large;
+}
+
+.form {
+    padding: 5px;
+}
+
+div.fieldwrapper { /*field row DIV (includes two columns- Styled label column and '' column)*/
+    width: 100%; /*width of form rows*/
+    overflow: hidden;
+    padding: 5px 0;
+}
+
+div.fieldwrapperseparator { /*field row DIV (includes two columns- Styled label column and '' column)*/
+    width: 100%; /*width of form rows*/
+    overflow: hidden;
+    padding: 15px 0;
+    margin-bottom: 5px;
+    font-family: Verdana;
+    font-size: medium;
+}
+
+div.fieldwrapper .styled { /* label elements that should be styled (left column within fieldwrapper DIV) */
+    font-family: Verdana;
+    font-size: small;
+    float: left;
+    width: 320px; /*width of label (left column)*/
+    text-transform: none;
+    border-bottom: 1px solid blue;
+    margin-right: 15px; /*spacing with right column*/
+    text-align: right;
+    font-weight: 700;
+}
+
+div.fieldwrapper .stylednoline { /* label elements that should be styled (left column within fieldwrapper DIV) */
+    font-family: Verdana;
+    font-size: small;
+    float: left;
+    width: 320px; /*width of label (left column)*/
+    text-transform: none;
+    margin-right: 15px; /*spacing with right column*/
+    text-align: right;
+}
+
+div.fieldwrapper .styled_noline { /* label elements that should be styled (left column within fieldwrapper DIV) */
+    font-family: Verdana;
+    font-size: small;
+    float: left;
+    width: 320px; /*width of label (left column)*/
+    text-transform: none;
+    border-bottom: 1px solid white;
+    margin-right: 15px; /*spacing with right column*/
+    text-align: right;
+}
+
+div.fieldguideseparator {
+    width: 100%; /*width of form rows*/
+    overflow: hidden;
+    font-family: Verdana;
+    font-weight: bold;
+    font-size: medium;
+    color: #0477BA;
+    padding-top: 5px;
+    padding-bottom: 1px;
+}
+
+div.fieldguidewrapper {
+    width: 100%; /*width of form rows*/
+    overflow: hidden;
+    padding-bottom: 15px;
+}
+
+div.fieldcpewrapper {
+    width: 100%; /*width of form rows*/
+    overflow: hidden;
+    padding-bottom: 5px;
+}
+
+/* ReadOnly fields */
+div.fieldwrapper .readonly { /* style for INPUT type="text" fields. Has no effect in IE7 or below! */
+    float: left;
+    width: 400px;
+    border: none;
+    margin-bottom: 3px; /* space following the field */
+}
+
+/* End of ReadOnly fields */
+
+/* Editable fields */
+div.fieldwrapper .editable { /* DIV that wraps around the actual form fields (right column within fieldwrapper DIV) */
+    float: left;
+    width: 400px;
+    margin-bottom: 3px; /* space following the field */
+}
+
+div.fieldwrapper .watermarked { /* DIV that defines the color of the watermark font*/
+    float: left;
+    width: 400px;
+    margin-bottom: 3px; /* space following the field */
+    color: GrayText;
+}
+
+.buttondiv { /*div that wraps around the submit/reset buttons*/
+    margin-top: 10px; /*space above buttonsdiv*/
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+
+.buttonwrapper { /* div around buttons */
+    text-align: center;
+}
+
+.gridview { /* div around gridview controls */
+    text-align: center;
+    font-family: Arial;
+    font-size: small;
+}
+
+.gridview_wide { /* div around gridview controls */
+    text-align: center;
+    font-family: Arial;
+    font-size: small;
+}
+
+.gridview_errorlist { /* adds space below gridview */
+    margin-bottom: 20px;
+}
+
+div.fieldwrapper .separator { /* label elements that should be styled (left column within fieldwrapper DIV) */
+    float: left;
+    width: 90%; /*width of separator*/
+    text-transform: none;
+    border-bottom: 1px solid blue;
+}
+
+div.fieldwrapperseparator .styledseparator { /* label elements that should be styled (left column within fieldwrapper DIV) */
+    float: left;
+    width: 100%; /*width of label (left column)*/
+    text-transform: none;
+    border-bottom: 2px solid blue;
+    margin-right: 15px; /*spacing with right column*/
+}
+
+div.fieldwrapperseparator .sepbuttons {
+    float: right;
+    margin-right: 15px;
+}
+
+.watermarked { /* DIV that defines the color of the watermark font*/
+    color: GrayText;
+}
+
+/* Modal popup styles */
+
+.modalProgressGreyBackground {
+    background: #CCCCCC;
+    filter: alpha(opacity=60);
+    opacity: 0.6;
+}
+
+div.modalpopup .editable { /* DIV that wraps around the form fields for modal popups */
+    float: left;
+    margin-bottom: 3px; /* space following the field */
+}
+
+.PopUpTextbox {
+    border-width: thin;
+}
+
+div.pageheader .summarybutton {
+    float: right;
+    height: 26px;
+}
+
+div.fieldseparator .summarybutton {
+    float: right;
+}
+
+div.fieldwrapperseparator .labelwarningleft {
+    float: left;
+}
+
+.validator {
+    font-size: small;
+    font-family: Arial;
+    color: #ff0000;
+}
+
+.confirmdelete {
+    text-align: center;
+}
+
+.PanelCenter {
+    text-align: center;
+}
+
+.modalPopup {
+    text-align: center;
+    padding-top: 30px;
+    border-style: solid;
+    border-width: 1px;
+    background-color: White;
+    width: 300px;
+    height: 100px;
+}
+
+.WideTextBox {
+    width: 400px;
+    text-align: center;
+}
+
+/* Collapsible Panel */
+.collapsePanel {
+    height: 0px;
+    background-color: white;
+    overflow: hidden;
+}
+
+.collapsePanelHeader {
+    height: 20px;
+    color: white;
+    background-color: #000084;
+    font-weight: bold;
+    padding: 5px;
+    cursor: pointer;
+    vertical-align: middle;
+}
+
+.grvTextBox {
+    text-align: right;
+}
+
+.reportview {
+    font-size: smaller;
+}
+
+    .reportview caption {
+        font-size: large;
+    }
+
+/* Bulk entry tables */
+.bulk-table {
+    border-collapse: collapse;
+}
+
+    .bulk-table thead th {
+        background: #2C54A5;
+        color: #fff;
+    }
+
+    .bulk-table .bulk-table-controls {
+        background: #CAEAFF;
+    }
+
+    .bulk-table thead td,
+    .bulk-table tfoot td {
+        text-align: center;
+    }
+
+    .bulk-table td,
+    .bulk-table th {
+        padding: 6px 4px;
+    }
+
+    .bulk-table tbody tr:nth-child(odd) {
+        background-color: #EFF3FB;
+    }
+
+    .bulk-table a {
+        text-decoration: none;
+        padding: 6px 4px;
+    }
+
+        .bulk-table a:hover, .bulk-table a:focus {
+            text-decoration: underline;
+            background: rgba(202,234,255,.5);
+        }
+
+/* highlighting */
+.highlight-normal {
+    background-color: #FFFF75;
+    color: #000;
+    padding-left: 2px;
+    padding-right: 2px;
+}
+
+.asBlock {
+    display: block;
+}

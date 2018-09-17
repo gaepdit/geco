@@ -1,0 +1,129 @@
+﻿<%@ Master Language="VB" Inherits="GECO.APB_eismaster" Codebehind="eismaster.master.vb" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-us" xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>GECO Emission Inventory System</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="~/assets/epd-favicons/apple-touch-icon.png?v=69kRrvbXdL" />
+    <link rel="icon" type="image/png" href="~/assets/epd-favicons/favicon-32x32.png?v=69kRrvbXdL" sizes="32x32" />
+    <link rel="icon" type="image/png" href="~/assets/epd-favicons/favicon-16x16.png?v=69kRrvbXdL" sizes="16x16" />
+    <link rel="manifest" href="~/assets/epd-favicons/manifest.json?v=69kRrvbXdL" />
+    <link rel="mask-icon" href="~/assets/epd-favicons/safari-pinned-tab.svg?v=69kRrvbXdL" color="#5bbad5" />
+    <link rel="shortcut icon" href="~/favicon.ico?v=69kRrvbXdL" />
+    <meta name="theme-color" content="#e5f6fa" />
+    <link href="~/assets/css/eis_styles.css?v=20180724" rel="stylesheet" type="text/css" />
+    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+    </asp:ContentPlaceHolder>
+    <style type="text/css">
+        .style1 {
+            width: 452px;
+        }
+    </style>
+</head>
+<body>
+    <form id="form1" class="form" runat="server">
+        <div id="container">
+            <div id="header">
+                <h1>Air Protection Branch</h1>
+                <table align="center" cellspacing="0" style="width: 100%; height: 15px;">
+                    <tr>
+                        <td align="left" valign="bottom" height="12px" class="style1">
+                            <div id="userinfo">
+                                Welcome,
+                            <asp:Label ID="lblUserName" runat="server"></asp:Label>
+                                &nbsp;| Airs No.:<asp:Label ID="lblEISAirsNumber" runat="server" Text=""></asp:Label><br />
+                                Facility:
+                                <asp:Label ID="lblFacilityName" runat="server" Text=""></asp:Label>
+                            </div>
+                        </td>
+                        <td align="right">
+                            <seq:EasyMenu ID="EasyMenu1" runat="server" />
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div id="leftnav">
+                <div class="homeButton">
+                    <asp:HyperLink ID="lbtnHome" runat="server" CssClass="navButton" NavigateUrl="~/EIS/Default.aspx">EIS Home</asp:HyperLink>
+                </div>
+                <asp:Panel ID="pnlFacilityInventory" runat="server" CssClass="leftNavMenu">
+                    <asp:Label ID="lblFacilityInventory" runat="server" Text="Facility Inventory" BackColor="#000084"
+                        Font-Names="Verdana" Font-Size="Small" ForeColor="#E7ECFF" Width="100%" Font-Bold="True"></asp:Label>
+                    <asp:Menu ID="mnuFacilityInventory" runat="server" Width="100%" BackColor="#CAEAFF"
+                        Font-Names="Verdana" Font-Size="Small">
+                        <Items>
+                            <asp:MenuItem Text="Facility &amp; Contact Info"
+                                Value="Facility &amp; Contact Info" NavigateUrl="~/eis/facility_details.aspx"></asp:MenuItem>
+                            <asp:MenuItem Text="Release Points" Value="Release Points"
+                                NavigateUrl="~/eis/releasepoint_summary.aspx"></asp:MenuItem>
+                            <asp:MenuItem Text="Emission Units" Value="Emission Units"
+                                NavigateUrl="~/EIS/emissionunit_summary.aspx"></asp:MenuItem>
+                            <asp:MenuItem Text="Processes" Value="Processes"
+                                NavigateUrl="~/eis/process_summary.aspx"></asp:MenuItem>
+                        </Items>
+                    </asp:Menu>
+                </asp:Panel>
+                <asp:Panel ID="pnlEmissionInventory" runat="server" CssClass="leftNavMenu">
+                    <asp:Label ID="lblEmissionInventory" runat="server" Text="Emission Inventory" BackColor="#000084"
+                        Font-Names="Verdana" Font-Size="Small" ForeColor="#E7ECFF" Width="100%" Font-Bold="True"></asp:Label>
+                    <asp:Menu ID="mnuEmissionInventroy" runat="server" BackColor="#CAEAFF" Font-Names="Verdana"
+                        Font-Size="Small" Width="100%">
+                        <Items>
+                            <asp:MenuItem Text="Emissions Reporting" Value="Emissions Reporting"
+                                NavigateUrl="~/EIS/rp_summary.aspx"></asp:MenuItem>
+                            <asp:MenuItem Text="Process Bulk Entry" Value="Process Bulk Entry"
+                                NavigateUrl="~/EIS/rp_process_bulk.aspx"></asp:MenuItem>
+                            <asp:MenuItem NavigateUrl="~/EIS/rp_pollutant_bulk.aspx"
+                                Text="Pollutant Bulk Entry" Value="Pollutant Bulk Entry"></asp:MenuItem>
+                        </Items>
+                    </asp:Menu>
+                </asp:Panel>
+                <asp:Panel ID="pnlSubmit" runat="server" CssClass="leftNavMenu">
+                    <asp:Label ID="lblSubmit" runat="server" Text="Submit" BackColor="#000084"
+                        Font-Names="Verdana" Font-Size="Small" ForeColor="#E7ECFF" Width="100%" Font-Bold="True"></asp:Label>
+                    <asp:Menu ID="mnuSubmit" runat="server" BackColor="#CAEAFF" Font-Names="Verdana"
+                        Font-Size="Small" Width="100%">
+                        <Items>
+                            <asp:MenuItem NavigateUrl="~/EIS/rp_submit.aspx" Text="Submit EI"
+                                ToolTip="Submit Emissions Inventory data" Value="Submit EI"></asp:MenuItem>
+                        </Items>
+                    </asp:Menu>
+                </asp:Panel>
+                <asp:Panel ID="pnlReset" runat="server">
+                    <asp:Menu ID="mnuReset" runat="server" Font-Bold="True" Font-Size="Small"
+                        ForeColor="#AA0000" BackColor="#CAEAFF" Width="100%">
+                        <Items>
+                            <asp:MenuItem NavigateUrl="~/EIS/rp_reset.aspx" Text="Reset EI Data"
+                                ToolTip="Reset Emission Inventory Data" Value="Reset EI Data"></asp:MenuItem>
+                        </Items>
+                    </asp:Menu>
+                </asp:Panel>
+                <asp:Panel ID="pnlEISHelp" runat="server" CssClass="leftNavMenu">
+                    <asp:Label ID="lblEISHelp" runat="server" Text="Help &amp; Reports"
+                        BackColor="#000084" Font-Names="Verdana"
+                        Font-Size="Small" ForeColor="#E7ECFF" Width="100%" Font-Bold="True"></asp:Label>
+                    <asp:Menu ID="mnuEISHelp" runat="server" BackColor="#CAEAFF" Font-Names="Verdana"
+                        Font-Size="Small" Width="100%">
+                        <Items>
+                            <asp:MenuItem Text="Facility Inventory Help" Value="Facility Inventory "
+                                NavigateUrl="~/EIS/help_fi.aspx"></asp:MenuItem>
+                            <asp:MenuItem Text="Emission Inventory Help" Value="Emission Inventory"
+                                NavigateUrl="~/EIS/help_ei.aspx"></asp:MenuItem>
+                            <asp:MenuItem Text="Reports" Value="Reports" NavigateUrl="~/EIS/reports.aspx"></asp:MenuItem>
+                        </Items>
+                    </asp:Menu>
+                </asp:Panel>
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder2" runat="server">
+                </asp:ContentPlaceHolder>
+            </div>
+            <div id="content">
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder3" runat="server">
+                </asp:ContentPlaceHolder>
+            </div>
+            <div id="footer">
+                ©2009 • Georgia Environmental Protection Division, Air Protection Branch • All rights
+            reserved
+            </div>
+        </div>
+    </form>
+</body>
+</html>

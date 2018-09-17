@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+  Create copies of this sample config file to store the connection string and 
+  settings for each deployment server. E.g., Web.configBuilder.Debug.xml,
+  Web.configBuilder.Staging.xml, & Web.configBuilder.Release.xml
+  
+  Do NOT add these config files to the source code repository! They will contain
+  secrets.
+ -->
+ 
+ <!-- For more information on using web.config transformation visit https://go.microsoft.com/fwlink/?LinkId=125889 -->
+
+<configuration xmlns:xdt="http://schemas.microsoft.com/XML-Document-Transform">
+  <connectionStrings>
+    <add name="SqlConnectionString" connectionString="" xdt:Transform="SetAttributes" xdt:Locator="Match(name)"/>
+  </connectionStrings>
+
+  <appSettings>
+    <add key="GECO_ENVIRONMENT" value="" xdt:Transform="SetAttributes" xdt:Locator="Match(key)"/>
+    <add key="database_service" value="" xdt:Transform="SetAttributes" xdt:Locator="Match(key)"/>
+    <add key="database_pwd" value="" xdt:Transform="SetAttributes" xdt:Locator="Match(key)"/>
+    <add key="GecoContactEmail" value="" xdt:Transform="SetAttributes" xdt:Locator="Match(key)"/>
+    <add key="GecoContactName" value="" xdt:Transform="SetAttributes" xdt:Locator="Match(key)"/>
+    <add key="GoogleMapsAPIKey" value="" xdt:Transform="SetAttributes" xdt:Locator="Match(key)"/>
+    <add key="SENTRY_DSN" value="" xdt:Transform="SetAttributes" xdt:Locator="Match(key)"/>
+  </appSettings>
+
+  <!--
+    In the example below, the "SetAttributes" transform will change the value of 
+    "connectionString" to use "ReleaseSQLServer" only when the "Match" locator 
+    finds an attribute "name" that has a value of "MyDB".
+    
+    <connectionStrings>
+      <add name="MyDB" 
+        connectionString="Data Source=ReleaseSQLServer;Initial Catalog=MyReleaseDB;Integrated Security=True" 
+        xdt:Transform="SetAttributes" xdt:Locator="Match(name)"/>
+    </connectionStrings>
+  -->
+  <system.web>
+    <!--
+      In the example below, the "Replace" transform will replace the entire 
+      <customErrors> section of your web.config file.
+      Note that because there is only one customErrors section under the 
+      <system.web> node, there is no need to use the "xdt:Locator" attribute.
+      
+      <customErrors defaultRedirect="GenericError.htm"
+        mode="RemoteOnly" xdt:Transform="Replace">
+        <error statusCode="500" redirect="InternalError.htm"/>
+      </customErrors>
+    -->
+  </system.web>
+</configuration>

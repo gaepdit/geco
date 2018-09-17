@@ -1,0 +1,74 @@
+﻿<%@ Master Language="VB" Inherits="GECO.APB_tn" Codebehind="tn.master.vb" %>
+<%@ Register Assembly="EasyMenu" Namespace="Sequentum" TagPrefix="easymenu" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-us" xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>GECO - Performance Test Notifications</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="~/assets/epd-favicons/apple-touch-icon.png?v=69kRrvbXdL" />
+    <link rel="icon" type="image/png" href="~/assets/epd-favicons/favicon-32x32.png?v=69kRrvbXdL" sizes="32x32" />
+    <link rel="icon" type="image/png" href="~/assets/epd-favicons/favicon-16x16.png?v=69kRrvbXdL" sizes="16x16" />
+    <link rel="manifest" href="~/assets/epd-favicons/manifest.json?v=69kRrvbXdL" />
+    <link rel="mask-icon" href="~/assets/epd-favicons/safari-pinned-tab.svg?v=69kRrvbXdL" color="#5bbad5" />
+    <link rel="shortcut icon" href="~/favicon.ico?v=69kRrvbXdL" />
+    <meta name="theme-color" content="#e5f6fa" />
+    <link href="~/assets/css/printstyle.css?v=20180724" media="print" rel="stylesheet" type="text/css" />
+    <link href="~/assets/css/fees.css?v=20180913" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <form id="form1" runat="server">
+        <asp:ScriptManager ID="ScriptManager1" runat="Server" EnablePartialRendering="true" ScriptMode="Release">
+        </asp:ScriptManager>
+
+        <div id="header">
+            <div id="epdlogo">
+                <img src='<%= Page.ResolveUrl("~/assets/images/epd_logo.jpg") %>' alt="Georgia EPD" />
+            </div>
+            <div id="apptitle">
+                <img src='<%= Page.ResolveUrl("~/assets/images/airbranch_header_bg.jpg") %>' alt="Georgia Air Protection Branch" />
+            </div>
+        </div>
+        <div id="usermenu">
+            <table width="100%">
+                <tr>
+                    <td width="140px"></td>
+                    <td>
+                        <asp:Label ID="lblUserName" runat="server" Text=""></asp:Label>
+                        <asp:Label ID="lblFacilityName" runat="server" Text=""></asp:Label>
+                        <asp:Label ID="lblAirsNo" runat="server" Text=""></asp:Label>
+                    </td>
+                    <td align="right">
+                        <seq:EasyMenu ID="EasyMenu1" runat="server" />
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <!-- end header -->
+
+        <div class="outer-container">
+            <!-- container for all 3 columns -->
+            <div class="inner-container">
+                <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
+                    <ContentTemplate>
+                        <!-- container for full-width content -->
+                        <div class="content-full">
+                            <asp:ContentPlaceHolder ID="FullContent" runat="server">
+                            </asp:ContentPlaceHolder>
+                        </div>
+                        <div class="clear"></div>
+                    </ContentTemplate>
+                </asp:UpdatePanel>
+                <!-- sets inner-container height, needed for background color -->
+                <br />
+            </div>
+            <div class="clear">
+            </div>
+            <!-- sets outer-container height, needed for background color -->
+        </div>
+        <!-- end outer 3-column container -->
+        <div class="footer">
+            ©2006—<%= Now.Year %>, <a href="https://epd.georgia.gov/">Georgia Environmental Protection Division</a>, <a href="https://epd.georgia.gov/air">Air Protection Branch</a> • All rights reserved
+        </div>
+    </form>
+</body>
+</html>

@@ -1,0 +1,288 @@
+﻿/* first comes html and body */
+html, body
+{
+	height: 100%;
+}
+
+body
+{
+	background: #ffffff;
+	margin: 0px; padding: 0px;
+	font-family: 'Verdana', 'Arial', 'Helvetica';
+	font-size: 75%;
+	_font-size: 100%;/* using underscore hack for MSIE here */
+}
+
+/* all the divs */
+div
+{
+    margin: 0px;
+}
+
+div.navei {
+  width: 14%;              /* % of inner-container width is ~same width as right column */
+  float: left;             /* left side of inner-container */
+  margin: 0;               /* keep flush with adjacent containers */
+  padding: .1em 0 0 1%;    /* space from window edge (IE messes up with margin, so use padding) */
+  font-size: 80%;
+  /*border: solid 1px black;*/
+  background-color: #ffffff;
+  font-family:Verdana,sans-serif;
+}
+
+div#header
+{
+    clear: both;
+    height: 120px;
+    background: #01009A;
+}
+
+div#epdlogo
+{
+    position: absolute;
+    top: 10px;
+    left: 20px;
+    width: 95px;
+    height: 101px;
+}
+
+div#apptitle
+{
+    position: absolute;
+    top: 15px;
+    left: 140px;
+}
+
+div#userinfo
+{
+    position: absolute;
+    top: 100px;
+    left: 140px;
+    color: #ffffff;
+    font-size: x-small;
+}
+
+div#logout
+{
+    position: absolute;
+    top: 100px;
+    right: 10px;
+}
+
+div#maincol
+{
+	display: table;/* <- using display: table hack here for Gecko browsers */
+	float: left;
+	/* min-height: 100%;
+	/* _height: 100%;/* <- using underscore hack for MSIE here */
+	width: 100%;
+}
+
+div#wrapper
+{
+    display: table-row;
+    vertical-align: top;
+}
+/* Above is needed by Opera */
+
+div#main
+{
+    border: solid 1px #000000;
+	/* min-height: 100%;/*
+	/* _height: 100%;/* <- using underscore hack for MSIE here */
+	margin-left: 170px;
+	margin-right: 163px;
+	margin-top: 3px;
+	margin-bottom: 3px;
+	background: #ffffff;
+	font-family: 'Verdana', 'Arial', 'Helvetica';
+	font-size: small;
+	color: #000000;
+}
+
+div#leftmenu_login
+{
+    border: none;
+    float: left;
+    margin-left: -100%;
+    margin-top: 3px;
+    width: 165px;
+    background-color: #C0C0FF;
+}
+
+div#leftmenu
+{
+    border: none;
+    float: left;
+    margin-left: -100%;
+    margin-top: 3px;
+    width: 165px;
+    background-color: #ffffff;
+}
+
+div#rightmenu
+{
+    float: left;
+    margin-left: -160px;
+    margin-top: 3px;
+    width: 160px;
+    background-color: #C0C0FF;
+}
+
+div.colwrapper
+{
+    margin: 2px;
+}
+
+.contentei {
+  width: 82%;              /* % of inner-container width */
+  float: right;            /* right side of inner-container */
+  padding: .2em 1.5%;      /* some padding for readability */
+  margin: 0;               /* keep flush with adjacent containers */
+  background-color: #FFFFFF;  /* light blue color will show behind the center column */
+  color: #000;
+  font-family:Verdana,sans-serif;
+  /*border-color: #999;      /* W3C CSS validation service get an erroneous */
+  /*border-style: solid;     /*   parse error on border-right shorthand, */
+  /*border-width: 0 1px;     /*   but not on individual properties */
+  font-size: 85%;
+}
+
+div.content
+{
+    padding: 1px;
+}
+
+div.content div, pre
+{
+    overflow: auto;
+}
+
+div#footer
+{
+    background: #01009A;
+    clear: both;
+    text-align: center;
+    font-family: 'Verdana', 'Arial', 'Helvetica';
+	font-size: small;
+	color: #ffffff;
+}
+
+div.footerbgtrap
+{
+    background: #01009a;
+    font-family: 'Verdana', 'Arial', 'Helvetica';
+	font-size: small;
+	color: #ffffff;
+}
+
+.tnCalendar .ajax__calendar_header
+{
+    height:12px;width:100%;
+}
+
+.tnCalendar .ajax__calendar_header
+{
+    height:15px;width:100%;
+}
+
+.validator
+{
+    color: Red;
+    font-family: Arial;
+    font-size: Small;
+}
+
+/* Progress Indicator Formatting */
+
+ProgressIndicator
+{
+	background-color: #EFEFEF;
+	color:Black;
+	font-weight:bold;
+	font-style:oblique;
+	border:2px solid #0099FF;
+	padding:10px;
+	height:auto;
+	width:auto;
+}
+
+.modalProgressGreyBackground
+{
+    background:#CCCCCC;
+	filter:alpha(opacity=60);
+	opacity:0.6;
+}
+
+.modalProgressRedBackground
+{
+    background:Red;
+	filter:alpha(opacity=60);
+	opacity:0.6;
+}
+
+.modalPopup
+{
+    text-align:center;
+    padding-top: 30px;
+    border-style:solid;
+    border-width:1px;
+    background-color:White;
+    width:300px;
+    height:100px;
+}
+
+.modalProgressGreyBackground
+{
+    background:#CCCCCC;
+	filter:alpha(opacity=60);
+	opacity:0.6;
+}
+
+.tablestyle{
+   font-family:arial;
+   margin:10px 0pt 15px;
+   font-size: 8pt;
+   border-color: #CDCDCD;
+   color: #3D3D3D;
+   text-align: left;
+}
+.tablestyle td, .tablestyle th{
+   border-color: #CDCDCD;
+}
+.alternatingrowstyle{
+    background-color:#F0F0F6;
+}
+.headerstyle {
+    background-color:#F0F0F6;
+    background-image: url(../images/sort_none.gif);
+    background-repeat: no-repeat;
+    background-position: center left;
+    padding-left: 20px;
+}
+.headerstyle a{
+   text-decoration:none;
+   font-size: small;
+   color:black;
+   display:block;
+}
+.rowstyle{
+   background-color: #FFF;
+}
+.rowstyle td, .alternatingrowstyle td {
+   padding: 4px;
+}
+.sortascheaderstyle{
+    background-image: url(../images/sort_asc.gif);
+    background-color: #8dbdd8;
+    background-repeat: no-repeat;
+    background-position: left;
+    padding-left: 20px;
+}
+.sortdescheaderstyle{
+    background-image: url(../images/sort_desc.gif);
+    background-color: #8dbdd8;
+    background-repeat: no-repeat;
+    background-position: left;
+    padding-left: 20px;
+} 
