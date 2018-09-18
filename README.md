@@ -2,9 +2,9 @@
 
 ## Application
 
-GECO is a Web Forms Application targeting .NET Framework version 4.6.1.
+GECO is a Web Forms Application targeting .NET Framework version 4.6.2.
 
-The main components are the Emission Inventory System (EIS), Emission Fees, Emission Statement, and Event Registration.
+The main components are the Emission Inventory System (EIS), Emission Fees, Emission Statement,  Event Registration, and Test Notifications.
 
 ## Prerequisites for developing
 
@@ -12,10 +12,6 @@ The main components are the Emission Inventory System (EIS), Emission Fees, Emis
 
 + SAP Crystal Reports, developer version for Microsoft Visual Studio is required if one of the Crystal Reports documents needs to be edited.
 
-How to enable HTTPS debugging mode in Visual Studio:
+## History
 
-* Select the PRD_GECO project in the Solution Explorer and select View → Properties Window (F4). <br>![Solution explorer screenshot](docs/images/solution-explorer-project.png)
-* Set "SSL Enabled" to True. <br>![Project properties window screenshot](docs/images/project-properties-window.png)
-* Copy the SSL URL (port numbers may differ).
-* Select View → Property Pages (Shift+F4).
-* Under Start Options, choose "Start URL" and paste the SSL URL. <br>![Project property pages screenshot](docs/images/project-property-pages.png)
+In September 2018, this repository was created by converting the previous GECO "Web Site" to a "Web Application" Project. For various reasons, the original git repository was abandoned but is still available for reference elsewhere.
