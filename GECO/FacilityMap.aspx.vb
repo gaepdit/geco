@@ -13,25 +13,33 @@ Partial Class FacilityMap
         Dim longitude = CDbl(Request.QueryString("lon"))
 
         If Not Page.IsPostBack Then
+            If String.IsNullOrWhiteSpace(address) And latitude = 0 And longitude = 0 Then
+                HttpContext.Current.Response.Redirect("~/Default.aspx", True)
+            End If
+
             If latitude <> 0 And longitude <> 0 Then
                 GMap.Center = LatLng.Create(latitude, longitude)
             Else
                 Dim geocoder = New Geocoding.GoogleGeocoder()
-                Dim georesult = geocoder.Geocode(address & ", " & citystatezip)
+                Dim georesult = geocoder.Geocode(ConcatNonEmptyStrings(", ", {address, citystatezip}))
+
                 If georesult.Status = GeocodeStatus.OK Then
                     GMap.Center = georesult.Locations.FirstOrDefault.Point.ToLatLng()
                     latitude = GMap.Center.Latitude
                     longitude = GMap.Center.Longitude
                 End If
             End If
+
             GMap.MapControls.Add(New Controls.ScaleControl())
             GMap.MapControls.Add(New Controls.ZoomControl())
             GMap.MapControls.Add(New Controls.MapTypeControl())
             GMap.Zoom = 15
+
             Dim infoWindow As New InfoWindow() With {
                 .Content = facilityname,
                 .Position = LatLng.Create(latitude, longitude)
             }
+
             GMap.Overlays.Add(infoWindow)
 
             ' Sample map:
