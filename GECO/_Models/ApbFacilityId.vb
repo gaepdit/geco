@@ -1,5 +1,3 @@
-Imports System.Diagnostics
-
 Namespace GecoModels
     Public Class ApbFacilityId
         Implements IEquatable(Of ApbFacilityId)
@@ -13,54 +11,57 @@ Namespace GecoModels
 
 #End Region
 
-#Region " Constructor "
+        ''' <summary>
+        ''' APB facility ID as an eight-character string in the form "00000000"
+        ''' </summary>
+        Public ReadOnly Property ShortString() As String
 
-        Private ReadOnly airsNumber As String
-
-        <DebuggerStepThrough>
         Public Sub New(airsNumber As String)
             If Not IsValidAirsNumberFormat(airsNumber) Then
                 Throw New ArgumentException(String.Format("{0} is not a valid AIRS number.", airsNumber))
             End If
 
-            Me.airsNumber = GetNormalizedAirsNumber(airsNumber)
+            ShortString = GetNormalizedAirsNumber(airsNumber)
         End Sub
-
-#End Region
-
-#Region " Read-only properties "
 
         ''' <summary>
         ''' Returns APB facility ID as an eight-character string in the form "00000000"
         ''' </summary>
         Public Overrides Function ToString() As String
-            Return airsNumber
+            Return ShortString
         End Function
-
-        ''' <summary>
-        ''' APB facility ID as an eight-character string in the form "00000000"
-        ''' </summary>
-        Public ReadOnly Property ShortString() As String
-            Get
-                Return airsNumber
-            End Get
-        End Property
 
         ''' <summary>
         ''' Returns APB facility ID as a nine-character string in the form "000-00000"
         ''' </summary>
         Public ReadOnly Property FormattedString() As String
             Get
-                Return Mid(airsNumber, 1, 3) & "-" & Mid(airsNumber, 4, 5)
+                Return CountySubstring & "-" & Mid(ShortString, 4, 5)
             End Get
         End Property
 
         ''' <summary>
-        ''' Displays APB facility ID as a 12-character string in the form "041300000000"
+        ''' Returns APB facility ID as an eight-character string in the form "000-0000"
+        ''' </summary>
+        Public ReadOnly Property PermitFormattedString() As String
+            Get
+                Return CountySubstring & "-" & Mid(ShortString, 5, 4)
+            End Get
+        End Property
+
+        ''' <summary>
+        ''' Returns APB facility ID as an integer
+        ''' </summary>
+        Public Function ToInt() As Integer
+            Return Convert.ToInt32(ShortString)
+        End Function
+
+        ''' <summary>
+        ''' Returns APB facility ID as a 12-character string in the form "041300000000"
         ''' </summary>
         Public ReadOnly Property DbFormattedString() As String
             Get
-                Return GA_EPA_REGION_CODE & GA_STATE_NUMERIC_CODE & airsNumber
+                Return GA_EPA_REGION_CODE & GA_STATE_NUMERIC_CODE & ShortString
             End Get
         End Property
 
@@ -69,7 +70,7 @@ Namespace GecoModels
         ''' </summary>
         Public ReadOnly Property CountySubstring() As String
             Get
-                Return Mid(airsNumber, 1, 3)
+                Return Mid(ShortString, 1, 3)
             End Get
         End Property
 
@@ -78,11 +79,9 @@ Namespace GecoModels
         ''' </summary>
         Public ReadOnly Property EpaFacilityIdentifier() As String
             Get
-                Return GA_STATE_CODE & "000000" & GA_STATE_NUMERIC_CODE & airsNumber
+                Return GA_STATE_CODE & "000000" & GA_STATE_NUMERIC_CODE & ShortString
             End Get
         End Property
-
-#End Region
 
 #Region " Operators "
 
@@ -138,8 +137,12 @@ Namespace GecoModels
         ''' <returns>A string representation of an AIRS number in the form "00000000".</returns>
         <DebuggerStepThrough()>
         Private Shared Function GetNormalizedAirsNumber(airsNumber As String) As String
-            ' Remove dashes and leading '0413'
-            airsNumber = airsNumber.Replace("-", "")
+            ' Converts a string representation of an AIRS number to the "00000000" form 
+            ' (eight numerals, no dashes).
+
+            ' Remove spaces, dashes, and leading '0413'
+            airsNumber = airsNumber.Replace("-", "").Replace(" ", "")
+
             If airsNumber.Length = 12 Then airsNumber = airsNumber.Remove(0, 4)
 
             Return airsNumber
