@@ -30,8 +30,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <asp:ScriptManager EnablePartialRendering="true" runat="server" ID="ScriptManager1">
-        </asp:ScriptManager>
+        <act:ToolkitScriptManager ID="ToolkitScriptManager1" EnablePartialRendering="true" runat="server"></act:ToolkitScriptManager>
         <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
             <ContentTemplate>
                 <div>

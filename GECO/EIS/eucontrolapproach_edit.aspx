@@ -23,8 +23,7 @@
         }
     </script>
     <div class="pageheader">
-        <asp:ScriptManager ID="ToolkitScriptManager1" runat="server">
-        </asp:ScriptManager>
+        <act:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server"></act:ToolkitScriptManager>
         Edit Emission Unit Control Approach<asp:Button ID="btnSummary" runat="server" Text="Summary"
             CausesValidation="False" CssClass="summarybutton" UseSubmitBehavior="False" PostBackUrl="~/eis/emissionunit_summary.aspx" />
     </div>

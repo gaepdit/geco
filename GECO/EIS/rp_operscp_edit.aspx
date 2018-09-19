@@ -21,8 +21,7 @@
             return true;
         }
     </script>
-    <asp:ScriptManager ID="ToolkitScriptManager1" runat="server">
-    </asp:ScriptManager>
+    <act:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server"></act:ToolkitScriptManager>
     <div class="pageheader">
         Edit Process Operating Details
     </div>

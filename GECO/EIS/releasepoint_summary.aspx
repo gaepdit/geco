@@ -6,8 +6,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder3" runat="Server">
-    <asp:ScriptManager ID="ToolkitScriptManager1" runat="server">
-    </asp:ScriptManager>
+    <act:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server"></act:ToolkitScriptManager>
     <div class="fieldwrapperseparator">
         <asp:Label ID="Label4" class="styledseparator" runat="server" Text="Active Fugitive Release Points"></asp:Label>
         <div class="sepbuttons">

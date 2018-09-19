@@ -23,8 +23,7 @@
         }
     </script>
     <div class="pageheader">
-        <asp:ScriptManager ID="ToolkitScriptManager1" runat="server">
-        </asp:ScriptManager>
+        <act:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server"></act:ToolkitScriptManager>
         Edit Process Control Approach
     </div>
     <div class="fieldwrapperseparator">

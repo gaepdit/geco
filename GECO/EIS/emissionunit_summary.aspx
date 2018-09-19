@@ -7,8 +7,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder3" runat="Server">
-    <asp:ScriptManager ID="ToolkitScriptManager1" runat="server">
-    </asp:ScriptManager>
+    <act:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server"></act:ToolkitScriptManager>
     <div class="fieldwrapperseparator">
         <asp:Label ID="lblAdd" class="styledseparator" runat="server" Text="Emission Unit Summary"></asp:Label>
         <div class="sepbuttons">

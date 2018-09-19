@@ -21,8 +21,7 @@
             return true;
         }
     </script>
-    <asp:ScriptManager ID="ToolkitScriptManager1" runat="server">
-    </asp:ScriptManager>
+    <act:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server"></act:ToolkitScriptManager>
     <asp:UpdatePanel ID="UpdatePanel3" runat="server">
         <ContentTemplate>
             <div class="pageheader">
@@ -146,7 +145,7 @@
             <div class="fieldwrapper">
                 <asp:Label ID="lblUnitComment" runat="server" CssClass="styled" Text="Comment:"></asp:Label>
                 <div style="display: inline-block">
-                    <asp:TextBox ID="txtUnitComment" runat="server" class="editable" TextMode="MultiLine" onKeyUp="javascript:Count(this);" 
+                    <asp:TextBox ID="txtUnitComment" runat="server" class="editable" TextMode="MultiLine" onKeyUp="javascript:Count(this);"
                         Text="" Width="400px" MaxLength="400" Rows="4"></asp:TextBox>
                     <div id="dvComment" style="font: bold"></div>
                     <act:TextBoxWatermarkExtender ID="txtUnitComment_TextBoxWatermarkExtender" runat="server"

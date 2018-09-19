@@ -6,8 +6,7 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder3" runat="Server">
     <div class="pageheader">
-        <asp:ScriptManager ID="ToolkitScriptManager1" runat="server">
-        </asp:ScriptManager>
+        <act:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server"></act:ToolkitScriptManager>
         Facility Details
     <asp:Button ID="btnEditAllInfo"
         runat="server" Text="Edit All Info" CausesValidation="False" CssClass="summarybutton" />

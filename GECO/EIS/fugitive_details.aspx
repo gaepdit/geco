@@ -5,8 +5,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder3" runat="Server">
-    <asp:ScriptManager ID="ToolkitScriptManager1" runat="server">
-    </asp:ScriptManager>
+    <act:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server"></act:ToolkitScriptManager>
     <div class="pageheader">
         Fugitive Release Point Details
         <asp:Button ID="btnReturntoSummary" runat="server" Text="Summary" CausesValidation="False"

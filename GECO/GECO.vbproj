@@ -53,8 +53,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>assets\DLLs\AjaxControls.dll</HintPath>
     </Reference>
-    <Reference Include="AjaxControlToolkit, Version=18.1.0.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
-      <HintPath>..\packages\AjaxControlToolkit.18.1.0\lib\net40\AjaxControlToolkit.dll</HintPath>
+    <Reference Include="AjaxControlToolkit, Version=3.0.30930.28736, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>assets\DLLs\AjaxControlToolkit.dll</HintPath>
     </Reference>
     <Reference Include="ClosedXML, Version=0.93.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\ClosedXML.0.93.1\lib\net46\ClosedXML.dll</HintPath>
@@ -1295,6 +1296,7 @@
     <Content Include="assets\css\fees.css" />
     <Content Include="assets\css\printstyle.css" />
     <Content Include="assets\DLLs\AjaxControls.dll" />
+    <Content Include="assets\DLLs\AjaxControlToolkit.dll" />
     <Content Include="assets\DLLs\EasyMenu.dll" />
     <Content Include="assets\epd-favicons\android-chrome-192x192.png" />
     <Content Include="assets\epd-favicons\android-chrome-512x512.png" />

@@ -39,8 +39,7 @@
             return true;
         }
     </script>
-    <asp:ScriptManager ID="ToolkitScriptManager1" runat="server">
-    </asp:ScriptManager>
+    <act:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server"></act:ToolkitScriptManager>
     <acs:ModalUpdateProgress ID="ModalUpdateProgress1" runat="server" DisplayAfter="0"
         BackgroundCssClass="modalProgressGreyBackground">
         <ProgressTemplate>

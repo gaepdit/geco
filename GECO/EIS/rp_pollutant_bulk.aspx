@@ -18,8 +18,7 @@
         <asp:Label ID="lblSeparator" class="styledseparator" runat="server" Text="Pollutant Bulk Entry"
             Font-Bold="True" Font-Size="Large"></asp:Label>
     </div>
-    <asp:ScriptManager ID="ToolkitScriptManager1" runat="server">
-    </asp:ScriptManager>
+    <act:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server"></act:ToolkitScriptManager>
     <asp:UpdatePanel ID="upnlPollutant" runat="server">
         <ContentTemplate>
             <div align="center">
