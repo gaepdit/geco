@@ -110,7 +110,7 @@ Partial Class EIS_rp_process_bulk
         If NumBlank > 1 Then
             lblUpdateStatusTop.Text = "Update completed. There are " & NumBlank & " blank values in the table."
             lblUpdateStatusBottom.Text = "Update completed. There are " & NumBlank & " blank values in the table."
-        ElseIf NumBlank = 0 Then
+        ElseIf NumBlank = 1 Then
             lblUpdateStatusTop.Text = "Update completed. There is 1 blank value in the table."
             lblUpdateStatusBottom.Text = "Update completed. There is 1 blank value in the table."
         Else
