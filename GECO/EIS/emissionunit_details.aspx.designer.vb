@@ -14,13 +14,13 @@ Option Explicit On
 Partial Public Class eis_emissionunit_details
     
     '''<summary>
-    '''ToolkitScriptManager1 control.
+    '''ScriptManager1 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents ToolkitScriptManager1 As Global.AjaxControlToolkit.ToolkitScriptManager
+    Protected WithEvents ScriptManager1 As Global.System.Web.UI.ScriptManager
     
     '''<summary>
     '''btnSummary1 control.
