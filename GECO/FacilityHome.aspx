@@ -1,4 +1,4 @@
-<%@ Page Language="VB" MasterPageFile="~/MainMaster.master" AutoEventWireup="false" Inherits="GECO.FacilityHome" Title="GECO Facility Home" Codebehind="FacilityHome.aspx.vb" %>
+<%@ Page Language="VB" MasterPageFile="~/MainMaster.master" AutoEventWireup="false" Inherits="GECO.FacilityHome" Title="GECO Facility Home" CodeBehind="FacilityHome.aspx.vb" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="FullContent" runat="Server">
     <h1>Facility Home</h1>
@@ -13,8 +13,8 @@
 
                 <act:TabPanel runat="server" ID="AppStatus" HeaderText="GECO Applications">
                     <ContentTemplate>
-                        <asp:Table ID="AppTable" runat="server" CssClass="table-simple extra-room">
-                            <asp:TableHeaderRow ID="AppsHeader" runat="server" BackColor="#F0F0F6">
+                        <asp:Table ID="AppTable" runat="server" CssClass="table-simple table-menu table-bordered">
+                            <asp:TableHeaderRow ID="AppsHeader" runat="server" BackColor="#F0F0F6" CssClass="table-head">
                                 <asp:TableHeaderCell Font-Bold="True" Text="Application" runat="server"></asp:TableHeaderCell>
                                 <asp:TableHeaderCell Font-Bold="True" Text="Current Status" runat="server"></asp:TableHeaderCell>
                                 <asp:TableHeaderCell Font-Bold="True" Text="Deadline" runat="server"></asp:TableHeaderCell>
@@ -22,7 +22,7 @@
                             </asp:TableHeaderRow>
 
                             <asp:TableRow ID="AppsEmissionFees" runat="server">
-                                <asp:TableHeaderCell runat="server">
+                                <asp:TableHeaderCell runat="server" CssClass="table-cell-link">
                                     <asp:HyperLink ID="EFLink" runat="server" Text="Emissions Fees" NavigateUrl="~/Fees/Default.aspx"></asp:HyperLink>
                                 </asp:TableHeaderCell>
                                 <asp:TableCell runat="server">
@@ -31,13 +31,13 @@
                                 <asp:TableCell runat="server">
                                     <asp:Label ID="lblEFDate" runat="server"></asp:Label>
                                 </asp:TableCell>
-                                <asp:TableCell runat="server">
+                                <asp:TableCell runat="server" CssClass="table-cell-link">
                                     <asp:LinkButton ID="lbtnEFContact" runat="server" CausesValidation="False"></asp:LinkButton>
                                 </asp:TableCell>
                             </asp:TableRow>
 
                             <asp:TableRow ID="AppsEmissionInventory" runat="server">
-                                <asp:TableHeaderCell runat="server">
+                                <asp:TableHeaderCell runat="server" CssClass="table-cell-link">
                                     <asp:HyperLink ID="EisLink" runat="server" Text="Emissions Inventory" NavigateUrl="~/EIS/Default.aspx"></asp:HyperLink>
                                 </asp:TableHeaderCell>
                                 <asp:TableCell runat="server">
@@ -46,13 +46,13 @@
                                 <asp:TableCell runat="server">
                                     <asp:Label ID="lblEIDate" runat="server"></asp:Label>
                                 </asp:TableCell>
-                                <asp:TableCell runat="server">
+                                <asp:TableCell runat="server" CssClass="table-cell-link">
                                     <asp:LinkButton ID="lbtnEIContact" runat="server" CausesValidation="False"></asp:LinkButton>
                                 </asp:TableCell>
                             </asp:TableRow>
 
                             <asp:TableRow ID="AppsEmissionsStatement" runat="server">
-                                <asp:TableHeaderCell runat="server">
+                                <asp:TableHeaderCell runat="server" CssClass="table-cell-link">
                                     <asp:HyperLink ID="ESLink" runat="server" Text="Emissions Statement" NavigateUrl="~/ES/Default.aspx"></asp:HyperLink>
                                 </asp:TableHeaderCell>
                                 <asp:TableCell runat="server">
@@ -61,13 +61,13 @@
                                 <asp:TableCell runat="server">
                                     <asp:Label ID="lblESDate" runat="server"></asp:Label>
                                 </asp:TableCell>
-                                <asp:TableCell runat="server">
+                                <asp:TableCell runat="server" CssClass="table-cell-link">
                                     <asp:LinkButton ID="lbtnESContact" runat="server" CausesValidation="False"></asp:LinkButton>
                                 </asp:TableCell>
                             </asp:TableRow>
 
                             <asp:TableRow ID="AppsTestNotifications" runat="server">
-                                <asp:TableHeaderCell runat="server">
+                                <asp:TableHeaderCell runat="server" CssClass="table-cell-link">
                                     <asp:HyperLink ID="TNLink" runat="server" Text="Test Notifications" NavigateUrl="~/TN/Default.aspx"></asp:HyperLink>
                                 </asp:TableHeaderCell>
                                 <asp:TableCell runat="server">
@@ -76,7 +76,7 @@
                                 <asp:TableCell runat="server">
                                     <asp:Label ID="TNDate" runat="server" Text="N/A"></asp:Label>
                                 </asp:TableCell>
-                                <asp:TableCell runat="server">
+                                <asp:TableCell runat="server" CssClass="table-cell-link">
                                     <asp:LinkButton ID="TNContact" runat="server" CausesValidation="False"></asp:LinkButton>
                                 </asp:TableCell>
                             </asp:TableRow>
@@ -478,7 +478,7 @@
                         <p>
                             Users with access rights to this facility in GECO:
                         </p>
-                        <asp:GridView ID="grdUsers" DataKeyNames="NUMUSERID,STRAIRSNUMBER"
+                        <asp:GridView ID="grdUsers" DataKeyNames="NUMUSERID,STRAIRSNUMBER" CssClass="table-simple"
                             AutoGenerateColumns="false" AutoGenerateEditButton="true" AutoGenerateDeleteButton="false"
                             runat="Server" CellPadding="5">
                             <Columns>
@@ -493,24 +493,23 @@
                                 <asp:BoundField DataField="STRAIRSNUMBER" Visible="False" />
                                 <asp:BoundField DataField="strUserEmail" HeaderText="User ID" ReadOnly="True" />
                                 <asp:CheckBoxField HeaderText="Admin Rights" DataField="intAdminAccess">
-                                    <ItemStyle HorizontalAlign="Center" />
+                                    <ItemStyle HorizontalAlign="Center" CssClass="table-cell-checkbox" />
                                 </asp:CheckBoxField>
                                 <asp:CheckBoxField HeaderText="Emissions Fees" DataField="intFeeAccess">
-                                    <ItemStyle HorizontalAlign="Center" />
+                                    <ItemStyle HorizontalAlign="Center" CssClass="table-cell-checkbox" />
                                 </asp:CheckBoxField>
                                 <asp:CheckBoxField HeaderText="Emissions Inventory System" DataField="intEIAccess">
-                                    <ItemStyle HorizontalAlign="Center" />
+                                    <ItemStyle HorizontalAlign="Center" CssClass="table-cell-checkbox" />
                                 </asp:CheckBoxField>
                                 <asp:CheckBoxField HeaderText="Emissions Statement" DataField="intESAccess">
-                                    <ItemStyle HorizontalAlign="Center" />
+                                    <ItemStyle HorizontalAlign="Center" CssClass="table-cell-checkbox" />
                                 </asp:CheckBoxField>
                             </Columns>
                             <EditRowStyle BackColor="#C0FFC0" BorderColor="Green" BorderStyle="Ridge" />
-                            <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
-                            <RowStyle BackColor="#ffffff" ForeColor="Black" BorderColor="Silver" />
+                            <RowStyle BackColor="#ffffff" ForeColor="#333333" />
                             <SelectedRowStyle BackColor="#008A8C" BorderColor="Red" Font-Bold="True" ForeColor="White" />
-                            <HeaderStyle BackColor="#F0F0F6" Font-Bold="True" ForeColor="#333333" BorderColor="Silver" />
-                            <AlternatingRowStyle BackColor="#F0F0F6" />
+                            <HeaderStyle CssClass="table-head" />
+                            <AlternatingRowStyle BackColor="#f3f3f7" />
                         </asp:GridView>
                         <br />
                         <asp:Panel runat="server" ID="pnlAddNewUser">

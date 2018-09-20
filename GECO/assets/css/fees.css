@@ -1,4 +1,4 @@
-﻿@media screen, projection {
+@media screen, projection {
     /* left column */
     .nav {
         width: 28%; /* % of inner-container width is ~same width as right column */
@@ -58,13 +58,21 @@ h2 {
 }
 
 a:link {
-    color: #00f;
+    color: #0000EE;
     background-color: transparent;
 }
 
 a:visited {
-    color: #909;
+    color: #551A8B;
     background-color: transparent;
+}
+
+a:hover, a:focus {
+    color: #0066ee;
+}
+
+a:active {
+    color: #EE0000;
 }
 
 /* page header, uses body colors */
@@ -754,6 +762,8 @@ a.tableCellLink {
 .table-simple {
     border-collapse: collapse;
     border-color: #CDCDCD;
+    margin-bottom: 1em;
+    margin-top: 1em;
 }
 
     .table-simple th,
@@ -763,9 +773,16 @@ a.tableCellLink {
         text-align: left;
     }
 
-    .table-simple th {
-        vertical-align: middle;
+    .table-simple thead,
+    .table-simple .table-head {
+        background: #e6e6f0;
     }
+
+        .table-simple thead th,
+        .table-simple .table-head th {
+            vertical-align: middle;
+            text-align: center;
+        }
 
 .table-list tbody th {
     text-align: right;
@@ -777,7 +794,45 @@ a.tableCellLink {
     padding-left: 20px;
 }
 
-.extra-room th,
-.extra-room td {
-    padding: 10px;
+.table-bordered td,
+.table-bordered th {
+    border: 1px solid #CDCDCD;
+}
+
+.table-menu th,
+.table-menu td {
+    padding: 8px 10px;
+}
+
+.table-menu .table-cell-link {
+    padding: 0;
+}
+
+.table-cell-link a {
+    padding: 8px 10px;
+    display: block;
+    text-decoration: none;
+    color: #00f;
+}
+
+    .table-cell-link a:hover,
+    .table-cell-link a:focus {
+        color: #00f;
+        background: #fdf2fd;
+        text-decoration: underline;
+    }
+
+.table-simple .table-cell-checkbox {
+    text-align: center;
+    vertical-align: middle;
+}
+
+.table-cell-checkbox input[type=checkbox] {
+    /* larger checkboxes */
+    -ms-transform: scale(1.3); /* IE */
+    -moz-transform: scale(1.3); /* FF */
+    -webkit-transform: scale(1.3); /* Safari and Chrome */
+    -o-transform: scale(1.3); /* Opera */
+    transform: scale(1.3);
+    padding: 8px;
 }

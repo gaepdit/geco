@@ -10,7 +10,7 @@
     <link rel="mask-icon" href="~/assets/epd-favicons/safari-pinned-tab.svg?v=69kRrvbXdL" color="#5bbad5" />
     <link rel="shortcut icon" href="~/favicon.ico?v=69kRrvbXdL" />
     <meta name="theme-color" content="#e5f6fa" />
-    <link href="~/assets/css/fees.css?v=20180913" rel="stylesheet" type="text/css" />
+    <link href="~/assets/css/fees.css?v=20180920" rel="stylesheet" type="text/css" />
     <%-- <script language="javascript" type="text/javascript">
 
     function AirsNoSelected (source, eventArgs) {

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="VB" MasterPageFile="~/MainMaster.master" AutoEventWireup="false" Inherits="GECO.UserHome" Codebehind="UserHome.aspx.vb" %>
+﻿<%@ Page Title="" Language="VB" MasterPageFile="~/MainMaster.master" AutoEventWireup="false" Inherits="GECO.UserHome" CodeBehind="UserHome.aspx.vb" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="FullContent" runat="Server">
     <asp:UpdatePanel ID="UpdatePanel_top" runat="server">
@@ -12,35 +12,35 @@
                         <asp:Label ID="lblAccess" runat="server" Visible="false">
                             You have access to work on the following facilities:<br /><br />
                         </asp:Label>
-                        <asp:GridView ID="grdAccess" runat="server" AutoGenerateColumns="False"
+
+                        <asp:GridView ID="grdAccess" runat="server" AutoGenerateColumns="False" CssClass="table-simple table-bordered table-menu"
                             BackColor="White" BorderStyle="None" CellPadding="3" Visible="False">
                             <Columns>
-                                <asp:TemplateField HeaderText="Facility Name">
+                                <asp:TemplateField HeaderText="Facility Name" ItemStyle-CssClass="table-cell-link">
                                     <ItemTemplate>
-                                        <asp:HyperLink ID="hlFacility" runat="server" CssClass="tableCellLink"></asp:HyperLink>
+                                        <asp:HyperLink ID="hlFacility" runat="server"></asp:HyperLink>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="AIRS Number">
+                                <asp:TemplateField HeaderText="AIRS Number" ItemStyle-CssClass="table-cell-link">
                                     <ItemTemplate>
-                                        <asp:HyperLink ID="hlAirs" runat="server" CssClass="tableCellLink"></asp:HyperLink>
+                                        <asp:HyperLink ID="hlAirs" runat="server"></asp:HyperLink>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:CheckBoxField DataField="AdminAccess" HeaderText="Admin Access">
-                                    <ItemStyle HorizontalAlign="Center" />
+                                    <ItemStyle HorizontalAlign="Center" CssClass="table-cell-checkbox" />
                                 </asp:CheckBoxField>
                                 <asp:CheckBoxField DataField="FeeAccess" HeaderText="Emission Fees">
-                                    <ItemStyle HorizontalAlign="Center" />
+                                    <ItemStyle HorizontalAlign="Center" CssClass="table-cell-checkbox" />
                                 </asp:CheckBoxField>
                                 <asp:CheckBoxField DataField="EIAccess" HeaderText="Emission Inventory">
-                                    <ItemStyle HorizontalAlign="Center" />
+                                    <ItemStyle HorizontalAlign="Center" CssClass="table-cell-checkbox" />
                                 </asp:CheckBoxField>
                                 <asp:CheckBoxField DataField="ESAccess" HeaderText="Emission Statement">
-                                    <ItemStyle HorizontalAlign="Center" />
+                                    <ItemStyle HorizontalAlign="Center" CssClass="table-cell-checkbox" />
                                 </asp:CheckBoxField>
                             </Columns>
-                            <AlternatingRowStyle BackColor="#eeeeee" />
-                            <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
-                            <HeaderStyle BackColor="#000084" Font-Bold="True" ForeColor="White" />
+                            <AlternatingRowStyle BackColor="#f3f3f7" />
+                            <HeaderStyle CssClass="table-head" />
                             <RowStyle BackColor="#ffffff" ForeColor="#333333" />
                         </asp:GridView>
                         <br />
@@ -49,6 +49,7 @@
                             Text="Request access to a facility" />
                     </ContentTemplate>
                 </act:TabPanel>
+
                 <act:TabPanel runat="Server" ID="tpAccount" HeaderText="My Account">
                     <ContentTemplate>
                         <asp:Label ID="lblPwdMsg" runat="server" ForeColor="White" BackColor="red" Visible="False"></asp:Label>
@@ -125,6 +126,7 @@
                         </asp:Panel>
                     </ContentTemplate>
                 </act:TabPanel>
+
                 <act:TabPanel runat="Server" ID="MyProfile" HeaderText="My Profile">
                     <ContentTemplate>
                         <asp:UpdatePanel ID="UpdatePanel2" runat="server">
@@ -264,6 +266,7 @@
                     </ContentTemplate>
                 </act:TabPanel>
             </act:TabContainer>
+
             <asp:UpdateProgress ID="UpdateProgress1" runat="server" DisplayAfter="0">
                 <ProgressTemplate>
                     <div id="progressBackgroundFilter">
