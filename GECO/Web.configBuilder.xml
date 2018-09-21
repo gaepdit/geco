@@ -18,6 +18,7 @@
     <add key="GECO_ENVIRONMENT" value="Development" />
     <add key="UndeliverableEmailFolder" value="..\_DeadLetterOffice" />
     <add key="LoggingFolder" value="..\_DeadLetterOffice" />
+    <add key="LogExceptionsToFile" value="false" />
     <add key="database_uid" value="" />
     <add key="database_service" value="" />
     <add key="database_pwd" value="" />

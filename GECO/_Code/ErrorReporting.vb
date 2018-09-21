@@ -4,7 +4,13 @@ Imports SharpRaven.Data
 
 Public Module ErrorReporting
 
+    Public LogExceptionsToFile As Boolean = ConfigurationManager.AppSettings("LogExceptionsToFile")
+
     Public Sub ErrorReport(exc As Exception, Optional redirectToErrorPage As Boolean = True)
+        If LogExceptionsToFile Then
+            LogExceptionToTextFile(exc)
+        End If
+
         Try
             Dim context = HttpContext.Current
             context.Server.ClearError()
@@ -51,7 +57,9 @@ Public Module ErrorReporting
                 }
                 ExceptionLogger.Capture(New SentryEvent(exc))
             Catch ex As Exception
-                ' Do nothing if error logging fails
+                ' If Sentry logging fails, log to text file
+                LogToTextFile("Sentry exception:")
+                LogExceptionToTextFile(ex)
             End Try
 
         Catch ex As Exception
@@ -61,6 +69,31 @@ Public Module ErrorReporting
                 HttpContext.Current.Response.Redirect("~/ErrorPage.aspx", False)
             End If
         End Try
+    End Sub
+
+    Private Sub LogExceptionToTextFile(exc As Exception)
+        Dim sb As New StringBuilder("--- Begin Exception ---")
+        sb.AppendLine()
+        Dim inner As Boolean = False
+
+        While exc IsNot Nothing
+            If inner Then
+                sb.AppendLine("--- Inner Exception: ---")
+            End If
+            sb.Append("Message: ")
+            sb.AppendLine(exc.Message)
+            sb.AppendLine()
+            sb.AppendLine("Stack Trace:")
+            sb.AppendLine(exc.StackTrace)
+            sb.AppendLine()
+            sb.Append("Source: ")
+            sb.AppendLine(exc.Source)
+            sb.AppendLine()
+            exc = exc.InnerException
+            inner = True
+        End While
+
+        LogToTextFile(sb.ToString)
     End Sub
 
 End Module
