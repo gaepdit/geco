@@ -1719,6 +1719,7 @@
     <Compile Include="_Code\EmailSender.vb" />
     <Compile Include="_Code\EncryptDecrypt.vb" />
     <Compile Include="_Code\EnumHelpers.vb" />
+    <Compile Include="_Code\LogToTextFile.vb" />
     <Compile Include="_Code\ErrorReporting.vb" />
     <Compile Include="_Code\ES\ES_County.vb" />
     <Compile Include="_Code\ES\ES_MiscCode.vb" />

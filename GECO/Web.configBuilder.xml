@@ -17,6 +17,7 @@
     <add key="GECO_VERSION" value="2018.9.0" />
     <add key="GECO_ENVIRONMENT" value="Development" />
     <add key="UndeliverableEmailFolder" value="..\_DeadLetterOffice" />
+    <add key="LoggingFolder" value="..\_DeadLetterOffice" />
     <add key="database_uid" value="" />
     <add key="database_service" value="" />
     <add key="database_pwd" value="" />
