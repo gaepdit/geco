@@ -14,7 +14,7 @@
   </configSections>
 
   <appSettings>
-    <add key="GECO_VERSION" value="2018.9.0" />
+    <add key="GECO_VERSION" value="2018.9.21" />
     <add key="GECO_ENVIRONMENT" value="Development" />
     <add key="UndeliverableEmailFolder" value="..\_DeadLetterOffice" />
     <add key="LoggingFolder" value="..\_DeadLetterOffice" />
