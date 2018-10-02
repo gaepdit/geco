@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 
 <!--
   For more information on how to configure your ASP.NET application, please visit
@@ -14,7 +14,7 @@
   </configSections>
 
   <appSettings>
-    <add key="GECO_VERSION" value="2018.9.21" />
+    <add key="GECO_VERSION" value="2018.10.2" />
     <add key="GECO_ENVIRONMENT" value="Development" />
     <add key="UndeliverableEmailFolder" value="..\_DeadLetterOffice" />
     <add key="LoggingFolder" value="..\_DeadLetterOffice" />
