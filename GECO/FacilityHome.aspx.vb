@@ -892,7 +892,7 @@ Partial Class FacilityHome
                     "strcontactdescription = @strcontactdescription, " &
                     "datmodifingdate = getdate(), " &
                     "strmodifingperson = @strmodifingperson " &
-                    "where STRKEY = convert(varchar(2), @strkey)"
+                    "where strcontactkey = @strcontactkey "
             Else
                 query = " insert into APBCONTACTINFORMATION ( " &
                     "     STRCONTACTKEY, " &
