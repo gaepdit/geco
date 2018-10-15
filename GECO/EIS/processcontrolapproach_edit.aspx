@@ -251,8 +251,8 @@
         <asp:RangeValidator ID="rngvCMReductionEff" runat="server" ControlToValidate="txtCMReductionEff"
             ValidationGroup="vgPollutantDetails" Display="Dynamic"
             MaximumValue="100.0" MinimumValue="1.0"
-            ErrorMessage="The reduction efficiency must be between 5.0 and 99.99 percent"
-            Type="Double">Must be between 1.0 and 100 percent</asp:RangeValidator>
+            ErrorMessage="The reduction efficiency must be between 1.0 and 100.0 percent"
+            Type="Double">Must be between 1.0 and 100.0 percent</asp:RangeValidator>
         <asp:Button ID="btnAddControlPollutant" runat="server" Text="Add" ToolTip=""
             Font-Size="Small" ValidationGroup="vgPollutantDetails" />
     </div>

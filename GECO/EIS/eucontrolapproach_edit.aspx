@@ -199,6 +199,9 @@
                             <act:FilteredTextBoxExtender ID="filtxtMeasureEfficiency" runat="server" Enabled="True"
                                 TargetControlID="txtMeasureEfficiency" FilterType="Numbers,Custom" ValidChars=".">
                             </act:FilteredTextBoxExtender>
+                            <asp:RegularExpressionValidator ID="RegexCMReductionEff" runat="server" ControlToValidate="txtMeasureEfficiency"
+                                ErrorMessage="Efficiency can have at most one decimal place. " ValidationExpression="\d*\.?\d?"
+                                ValidationGroup="vgPollutantDGV">At most one decimal place allowed.</asp:RegularExpressionValidator>
                             <asp:RangeValidator ID="rngvMeasureEfficiency" runat="server" ValidationGroup="vgPollutantDGV"
                                 ControlToValidate="txtMeasureEfficiency" Display="Dynamic" MaximumValue="100"
                                 MinimumValue="1" ErrorMessage="The reduction efficiency must be between 1.0 and 100.0 percent."
@@ -241,6 +244,9 @@
             <act:FilteredTextBoxExtender ID="filtxtCMReductionEff" runat="server" Enabled="True"
                 TargetControlID="txtCMReductionEff" FilterType="Numbers,Custom" ValidChars=".">
             </act:FilteredTextBoxExtender>
+            <asp:RegularExpressionValidator ID="RegexCMReductionEff" runat="server" ControlToValidate="txtCMReductionEff"
+                ErrorMessage="Control Measure Reduction Efficiency can have at most one decimal place. " ValidationExpression="\d*\.?\d?"
+                ValidationGroup="vgCMReductionEff">At most one decimal place allowed.</asp:RegularExpressionValidator>
             <asp:RangeValidator ID="rngvCMReductionEff" runat="server" ControlToValidate="txtCMReductionEff"
                 ValidationGroup="vgCMReductionEff" ErrorMessage="The reduction efficiency must be between 1.0 and 100.0 percent."
                 Display="Dynamic" MaximumValue="100" MinimumValue="1" Type="Double"

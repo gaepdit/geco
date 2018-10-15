@@ -446,6 +446,15 @@ Partial Public Class eis_eucontrolapproach_edit
     Protected WithEvents filtxtCMReductionEff As Global.AjaxControlToolkit.FilteredTextBoxExtender
     
     '''<summary>
+    '''RegexCMReductionEff control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RegexCMReductionEff As Global.System.Web.UI.WebControls.RegularExpressionValidator
+    
+    '''<summary>
     '''rngvCMReductionEff control.
     '''</summary>
     '''<remarks>
