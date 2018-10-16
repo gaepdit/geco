@@ -65,15 +65,11 @@ Partial Class EIS_report_fw_emsummary
         gvwEmissionsSummarySize = gvwEmissionsSummary.Rows.Count
 
         If gvwEmissionsSummarySize <= 0 Or ddlInventoryYear_fwemSummary.SelectedValue = "No Data" Then
-            lblEmptygvwEmissionsSummary.Text = "No data exists for the year selected or the facility has no data in the EI"
             lblEmptygvwEmissionsSummary.Visible = True
-            lblFWSummary.Text = ""
             lblFWSummary.Visible = False
             btnExport_fwemSummary.Visible = False
         Else
-            lblEmptygvwEmissionsSummary.Text = ""
             lblEmptygvwEmissionsSummary.Visible = False
-            lblFWSummary.Text = "Emissions shown are ANNUAL emissions quantities."
             lblFWSummary.Visible = True
             btnExport_fwemSummary.Visible = True
         End If

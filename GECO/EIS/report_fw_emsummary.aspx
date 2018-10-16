@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Report - Facility Wide Emission Summary" Language="VB" MasterPageFile="eismaster.master" AutoEventWireup="false" Inherits="GECO.EIS_report_fw_emsummary" Codebehind="report_fw_emsummary.aspx.vb" %>
+﻿<%@ Page Title="Report - Facility Wide Emission Summary" Language="VB" MasterPageFile="eismaster.master" AutoEventWireup="false" Inherits="GECO.EIS_report_fw_emsummary" CodeBehind="report_fw_emsummary.aspx.vb" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 </asp:Content>
@@ -39,43 +39,45 @@
         </div>
         <br />
         <div style="text-align: center;">
-            <asp:Button ID="btnExport_fwemSummary" runat="server" Text="Download as Excel" CausesValidation="False"
-                CssClass="summarybutton" UseSubmitBehavior="False"
-                Visible="False" /><br />
-            <div style="text-align: center;">
-                <asp:Label ID="lblEmptygvwEmissionsSummary" runat="server" Visible="False"
-                    ForeColor="#CC0000" Font-Bold="True" Font-Size="Medium"></asp:Label>
-            </div>
-            <asp:GridView ID="gvwEmissionsSummary"
-                runat="server"
-                AutoGenerateColumns="False"
-                HorizontalAlign="Center"
-                ForeColor="#333333"
-                Caption="Facility Wide Emissions Summary"
-                CssClass="reportview">
-                <RowStyle BackColor="#EFF3FB" />
-                <Columns>
-                    <asp:BoundField DataField="STRPOLLUTANT"
-                        HeaderText="Pollutant Description"
-                        SortExpression="STRPOLLUTANT">
-                        <HeaderStyle HorizontalAlign="Left" VerticalAlign="Middle" />
-                        <ItemStyle HorizontalAlign="Left" Width="250px" VerticalAlign="Top" />
-                    </asp:BoundField>
-                    <asp:BoundField DataField="FLTTOTALEMISSIONS"
-                        HeaderText="Total Emissions"
-                        SortExpression="FLTTOTALEMISSIONS">
-                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
-                        <ItemStyle HorizontalAlign="Right" VerticalAlign="Top" Width="100px" />
-                    </asp:BoundField>
-                </Columns>
-                <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
-                <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
-                <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
-                <HeaderStyle HorizontalAlign="Left" BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
-                <EditRowStyle BackColor="#2461BF" />
-                <AlternatingRowStyle BackColor="White" />
-            </asp:GridView>
-            <asp:Label ID="lblFWSummary" runat="server"></asp:Label>
-            <br />
-            <br />
+            <p>
+                <asp:Button ID="btnExport_fwemSummary" runat="server" Text="Download as Excel" CausesValidation="False"
+                    CssClass="summarybutton" UseSubmitBehavior="False"
+                    Visible="False" />
+            </p>
+            <p style="color: #c00; font-weight: bold;" id="lblEmptygvwEmissionsSummary" runat="server" visible="False">
+                No data exists for the year selected or the facility has no data in the EI.
+            </p>
+        </div>
+        <asp:GridView ID="gvwEmissionsSummary"
+            runat="server"
+            AutoGenerateColumns="False"
+            HorizontalAlign="Center"
+            ForeColor="#333333"
+            Caption="Facility Wide Emissions Summary"
+            CssClass="reportview">
+            <RowStyle BackColor="#EFF3FB" />
+            <Columns>
+                <asp:BoundField DataField="STRPOLLUTANT"
+                    HeaderText="Pollutant Description"
+                    SortExpression="STRPOLLUTANT">
+                    <HeaderStyle HorizontalAlign="Left" VerticalAlign="Middle" />
+                    <ItemStyle HorizontalAlign="Left" Width="250px" VerticalAlign="Top" />
+                </asp:BoundField>
+                <asp:BoundField DataField="FLTTOTALEMISSIONS"
+                    HeaderText="Total Emissions"
+                    SortExpression="FLTTOTALEMISSIONS">
+                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                    <ItemStyle HorizontalAlign="Right" VerticalAlign="Top" Width="100px" />
+                </asp:BoundField>
+            </Columns>
+            <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+            <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
+            <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
+            <HeaderStyle HorizontalAlign="Left" BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+            <EditRowStyle BackColor="#2461BF" />
+            <AlternatingRowStyle BackColor="White" />
+        </asp:GridView>
+        <p id="lblFWSummary" runat="server" visible="false">Emissions shown are ANNUAL emissions quantities.</p>
+        <br />
+        <br />
 </asp:Content>

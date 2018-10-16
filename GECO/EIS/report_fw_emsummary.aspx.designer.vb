@@ -110,7 +110,7 @@ Partial Public Class EIS_report_fw_emsummary
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lblEmptygvwEmissionsSummary As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lblEmptygvwEmissionsSummary As Global.System.Web.UI.HtmlControls.HtmlGenericControl
     
     '''<summary>
     '''gvwEmissionsSummary control.
@@ -128,5 +128,5 @@ Partial Public Class EIS_report_fw_emsummary
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lblFWSummary As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lblFWSummary As Global.System.Web.UI.HtmlControls.HtmlGenericControl
 End Class

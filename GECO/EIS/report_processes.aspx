@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Report - Facility Processes" Language="VB" MasterPageFile="eismaster.master" AutoEventWireup="false" Inherits="GECO.EIS_report_processes" Codebehind="report_processes.aspx.vb" %>
+﻿<%@ Page Title="Report - Facility Processes" Language="VB" MasterPageFile="eismaster.master" AutoEventWireup="false" Inherits="GECO.EIS_report_processes" CodeBehind="report_processes.aspx.vb" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 </asp:Content>
@@ -26,11 +26,11 @@
     </div>
     <br />
     <div style="text-align: center;">
-        <asp:Button ID="btnExport_Processes" runat="server" Text="Download as Excel" CausesValidation="False"
-            CssClass="summarybutton" UseSubmitBehavior="False"
-            Visible="False" /><br />
-    </div>
-    <div style="text-align: center;">
+        <p>
+            <asp:Button ID="btnExport_Processes" runat="server" Text="Download as Excel" CausesValidation="False"
+                CssClass="summarybutton" UseSubmitBehavior="False"
+                Visible="False" />
+        </p>
         <asp:Label ID="lblEmptygvwProcesses" runat="server" Visible="False"
             ForeColor="#CC0000" Font-Bold="True" Font-Size="Medium"></asp:Label>
     </div>

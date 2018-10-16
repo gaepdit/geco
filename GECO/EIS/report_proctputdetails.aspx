@@ -1,4 +1,4 @@
-<%@ Page Title="Report - Process Throughput Details" Language="VB" MasterPageFile="eismaster.master" AutoEventWireup="false" Inherits="GECO.EIS_report_proctputdetails" Codebehind="report_proctputdetails.aspx.vb" %>
+<%@ Page Title="Report - Process Throughput Details" Language="VB" MasterPageFile="eismaster.master" AutoEventWireup="false" Inherits="GECO.EIS_report_proctputdetails" CodeBehind="report_proctputdetails.aspx.vb" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 </asp:Content>
@@ -38,10 +38,11 @@
         </div>
         <br />
         <div style="text-align: center;">
-            <asp:Button ID="btnExportProcess" runat="server" Text="Download as Excel" CausesValidation="False"
-                CssClass="summarybutton" UseSubmitBehavior="False"
-                Visible="False" /><br />
-            <br />
+            <p>
+                <asp:Button ID="btnExportProcess" runat="server" Text="Download as Excel" CausesValidation="False"
+                    CssClass="summarybutton" UseSubmitBehavior="False"
+                    Visible="False" />
+            </p>
             <asp:Label ID="lblEmptygvwReportDetails" runat="server" Visible="False"
                 Font-Bold="True" Font-Size="Medium" ForeColor="#CC0000"></asp:Label>
         </div>
@@ -180,7 +181,5 @@
             </asp:GridView>
         </div>
         <br />
-    </div>
-    <div>
     </div>
 </asp:Content>
