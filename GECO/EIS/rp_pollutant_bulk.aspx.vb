@@ -31,7 +31,7 @@ Partial Class EIS_rp_pollutant_bulk
         "     STRPROCESSDESCRIPTION, " &
         "     STRPOLLUTANTDESCRIPTION, " &
         "     Case When RPTPERIODTYPECODE = 'O3D' " &
-        "         Then 'Summer Day*' " &
+        "         Then 'Summer Day' " &
         "     Else 'Annual' END RptPeriodType, " &
         "     Case When RPTPERIODTYPECODE = 'O3D' " &
         "         Then 'TPD' " &
@@ -242,7 +242,7 @@ Partial Class EIS_rp_pollutant_bulk
 
         If lvEmissionsBulk.DataSource IsNot Nothing Then
             For Each item As ListViewDataItem In lvEmissionsBulk.Items
-                If CType(item.FindControl("lblRptPeriodType"), Label).Text = "Summer Day*" Then
+                If CType(item.FindControl("lblRptPeriodType"), Label).Text = "Summer Day" Then
                     summerDay = True
                 End If
                 If CType(item.FindControl("lbl20Percent"), Label).Visible Then

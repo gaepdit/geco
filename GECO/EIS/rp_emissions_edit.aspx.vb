@@ -65,7 +65,7 @@ Partial Class EIS_rp_emissions_edit
             "     POLLUTANTCODE, " &
             "     STRPOLLUTANTDESCRIPTION, " &
             "     CASE WHEN RPTPERIODTYPECODE = 'O3D' " &
-            "         THEN 'Summer Day*' " &
+            "         THEN 'Summer Day' " &
             "     ELSE 'Annual' " &
             "     END RPTPeriodType, " &
             "     CASE WHEN RPTPERIODTYPECODE = 'O3D' " &
@@ -1014,7 +1014,7 @@ Partial Class EIS_rp_emissions_edit
 
         If gvwPollutants.DataSource IsNot Nothing Then
             For Each row As DataRow In gvwPollutants.DataSource.Rows
-                If row.Item(4) = "Summer Day*" Then
+                If row.Item(4) = "Summer Day" Then
                     summerDay = True
                 End If
                 If row.Item(10) Then
