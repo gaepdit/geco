@@ -153,8 +153,6 @@
             <p>
                 New Password:
                 <br />
-                New password must contain at least 8 characters with at least 1 uppercase letter, 1 lowercase letter and 1 number.
-                <br />
                 <asp:TextBox ID="txtPwd" runat="server" TextMode="Password"></asp:TextBox>
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator15" runat="server" ControlToValidate="txtPwd" ValidationGroup="NewPassword"
                     Display="Dynamic" ErrorMessage="Password is required." Font-Size="Small"></asp:RequiredFieldValidator>
@@ -163,6 +161,7 @@
                     ErrorMessage="Password does not meet complexity requirements."
                     ForeColor="Red" />
             </p>
+            <p>New password must contain at least 8 characters with at least 1 uppercase letter, 1 lowercase letter and 1 number.</p>
             <p>
                 Confirm Password:
                 <br />

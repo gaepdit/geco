@@ -8,6 +8,7 @@ Public Module EmailSender
     Public GecoContactEmail As String = ConfigurationManager.AppSettings("GecoContactEmail")
     Public GecoContactName As String = ConfigurationManager.AppSettings("GecoContactName")
     Public SaveAllEmails As Boolean = ConfigurationManager.AppSettings("SaveAllEmails")
+    Public EnableSendingEmail As Boolean = ConfigurationManager.AppSettings("EnableSendingEmail")
 
     ''' <summary>
     ''' Sends an email and returns true if successful; otherwise false.
@@ -64,7 +65,7 @@ Public Module EmailSender
 
         Dim environment As String = ConfigurationManager.AppSettings("GECO_ENVIRONMENT")
 
-        If HttpContext.Current.Request.IsLocal Then
+        If HttpContext.Current.Request.IsLocal OrElse Not EnableSendingEmail Then
             ' If running locally, just save file (there is probably no SMTP server)
             SaveLocalEmail(msg)
         Else
@@ -83,6 +84,7 @@ Public Module EmailSender
                 Using smtpClient As New SmtpClient("smtp.gets.ga.gov")
                     smtpClient.Send(msg)
                 End Using
+
                 If SaveAllEmails Then
                     SaveLocalEmail(msg)
                 End If
