@@ -279,10 +279,10 @@ Partial Class eis_emissionunit_edit
         Else
             'Operating or already shutdown >> Save emission unit
             ShutDownStatus = "O"
+            SaveEmissionUnit(FacilitySiteID, UpdateUser, ShutDownStatus)
+            txtUnitStatusCodeOnLoad.Text = ddlUnitStatusCode.SelectedValue
+            txtUnitStatusCodeChanged.Text = ""
         End If
-        SaveEmissionUnit(FacilitySiteID, UpdateUser, ShutDownStatus)
-        txtUnitStatusCodeOnLoad.Text = ddlUnitStatusCode.SelectedValue
-        txtUnitStatusCodeChanged.Text = ""
 
     End Sub
 
