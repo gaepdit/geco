@@ -1380,12 +1380,14 @@ Partial Class FacilityHome
             "     CASE " &
             "     WHEN datPermitIssued IS NOT NULL " &
             "         THEN CONVERT(VARCHAR(10), datPermitIssued, 120) " &
+            "     WHEN convert(date, DATFINALIZEDDATE) = '1776-07-04' " &
+            "         THEN null " &
             "     WHEN datFinalizedDate IS NOT NULL " &
             "         THEN CONVERT(VARCHAR(10), datFinalizedDate, 120) " &
-            "     WHEN datToDirector IS NOT NULL AND datFinalizedDate IS NULL " &
+            "     WHEN datToDirector IS NOT NULL " &
             "          AND (datDraftIssued IS NULL OR datDraftIssued < datToDirector) " &
             "         THEN CONVERT(VARCHAR(10), datToDirector, 120) " &
-            "     WHEN datToBranchCheif IS NOT NULL AND datFinalizedDate IS NULL AND datToDirector IS NULL " &
+            "     WHEN datToBranchCheif IS NOT NULL AND datToDirector IS NULL " &
             "          AND (datDraftIssued IS NULL OR datDraftIssued < datToBranchCheif) " &
             "         THEN CONVERT(VARCHAR(10), DatTOBranchCheif, 120) " &
             "     WHEN datEPAEnds IS NOT NULL " &

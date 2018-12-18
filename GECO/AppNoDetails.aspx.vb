@@ -26,9 +26,9 @@ Partial Class AppNoDetails
         Try
             Dim sb As New System.Text.StringBuilder(1299)
             sb.AppendLine("Select strAIRSNumber, strStaffResponsible, struserfirstname, struserlastname, strphonenumber, struseremail, strApplicationType, ")
-            sb.AppendLine("strPermitType, APBUnit, datFinalizedDate, strFacilityName, strFacilityStreet1, strFacilityCity, strFacilityState, ")
+            sb.AppendLine("strPermitType, APBUnit, strFacilityName, strFacilityStreet1, strFacilityCity, strFacilityState, ")
             sb.AppendLine("strFacilityZipCode, strOperationalStatus, strClass, strAirProgramCodes, strSICCode, strPermitNumber, strPlantDescription, ")
-            sb.AppendLine("strApplicationNotes, datFinalizedDate, strStateProgramCodes, datReceivedDate, datSentByFacility, datAssignedToEngineer, ")
+            sb.AppendLine("strApplicationNotes, strStateProgramCodes, datReceivedDate, datSentByFacility, datAssignedToEngineer, ")
             sb.AppendLine("datReassignedToEngineer, datAcknowledgementLetterSent, strPublicInvolvement, datToPMI, datToPMII, datReturnedToEngineer, ")
             sb.AppendLine("datPermitIssued, datApplicationDeadline, datDraftIssued, strPAReady, strPNReady, datEPAWaived, datEPAEnds, ")
             sb.AppendLine("datToBranchCheif, datToDirector, datPAExpires, datPNExpires, strStateprogramcodes, strTrackedRules, STRSIGNIFICANTCOMMENTS, ")
