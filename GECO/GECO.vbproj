@@ -104,6 +104,9 @@
     <Reference Include="Reimers.Google.Map, Version=5.3.95.699, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Reimers.Google.Map.5.3.95.699\lib\Net40\Reimers.Google.Map.dll</HintPath>
     </Reference>
+    <Reference Include="Select.HtmlToPdf, Version=18.4.0.0, Culture=neutral, PublicKeyToken=e0ae9f6e27a97018, processorArchitecture=MSIL">
+      <HintPath>..\packages\Select.HtmlToPdf.18.4.0\lib\net40\Select.HtmlToPdf.dll</HintPath>
+    </Reference>
     <Reference Include="SharpRaven, Version=2.4.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\SharpRaven.2.4.0\lib\net45\SharpRaven.dll</HintPath>
     </Reference>
@@ -128,6 +131,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
@@ -161,6 +165,7 @@
   <ItemGroup>
     <Content Include="404.aspx" />
     <Content Include="Account.aspx" />
+    <Content Include="Account\Default.aspx" />
     <Content Include="AirsRequestAccess.aspx" />
     <Content Include="AppNoDetails.aspx" />
     <Content Include="aspnet_client\system_web\2_0_50727\crystalreportviewers13\ActiveXControls\PrintControl.cab" />
@@ -1293,7 +1298,9 @@
     <Content Include="aspnet_client\system_web\4_0_30319\crystalreportviewers13\urlreporting\appletviewer.js" />
     <Content Include="assets\css\apbstyles.css" />
     <Content Include="assets\css\eis_styles.css" />
-    <Content Include="assets\css\fees.css" />
+    <Content Include="assets\css\memo.css" />
+    <Content Include="assets\images\epd-logo.png" />
+    <Content Include="assets\css\site.css" />
     <Content Include="assets\css\printstyle.css" />
     <Content Include="assets\DLLs\AjaxControls.dll" />
     <Content Include="assets\DLLs\AjaxControlToolkit.dll" />
@@ -1388,7 +1395,9 @@
     <Content Include="EventRegistration\Default.aspx" />
     <Content Include="EventRegistration\Details.aspx" />
     <Content Include="EventRegistration\EventList.aspx" />
-    <Content Include="FacilityHome.aspx" />
+    <Content Include="Facility\Admin.aspx" />
+    <Content Include="Facility\Summary.aspx" />
+    <Content Include="Facility\Default.aspx" />
     <Content Include="FacilityMap.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="Fees\Default.aspx" />
@@ -1396,8 +1405,11 @@
     <Content Include="GetAirsNo.asmx" />
     <Content Include="Global.asax" />
     <Content Include="NoAccess.aspx" />
+    <Content Include="Permits\Application.aspx" />
+    <Content Include="Permits\Default.aspx" />
+    <Content Include="Invoice\Default.aspx" />
     <Content Include="TN\Default.aspx" />
-    <Content Include="UserHome.aspx" />
+    <Content Include="Home\Default.aspx" />
     <Content Include="UserRegistration.aspx" />
     <Content Include="Web.configBuilder.xml">
       <SubType>Designer</SubType>
@@ -1423,6 +1435,13 @@
     </Compile>
     <Compile Include="Account.aspx.vb">
       <DependentUpon>Account.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\Default.aspx.designer.vb">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\Default.aspx.vb">
+      <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="AirsRequestAccess.aspx.designer.vb">
@@ -1623,11 +1642,25 @@
     <Compile Include="EventRegistration\EventList.aspx.designer.vb">
       <DependentUpon>EventList.aspx</DependentUpon>
     </Compile>
-    <Compile Include="FacilityHome.aspx.designer.vb">
-      <DependentUpon>FacilityHome.aspx</DependentUpon>
+    <Compile Include="Facility\Admin.aspx.designer.vb">
+      <DependentUpon>Admin.aspx</DependentUpon>
     </Compile>
-    <Compile Include="FacilityHome.aspx.vb">
-      <DependentUpon>FacilityHome.aspx</DependentUpon>
+    <Compile Include="Facility\Admin.aspx.vb">
+      <DependentUpon>Admin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Facility\Summary.aspx.designer.vb">
+      <DependentUpon>Summary.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Facility\Summary.aspx.vb">
+      <DependentUpon>Summary.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Facility\Default.aspx.designer.vb">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Facility\Default.aspx.vb">
+      <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="FacilityMap.aspx.designer.vb">
@@ -1667,6 +1700,34 @@
       <DependentUpon>NoAccess.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="Permits\Application.aspx.designer.vb">
+      <DependentUpon>Application.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Permits\Application.aspx.vb">
+      <DependentUpon>Application.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Permits\Default.aspx.designer.vb">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Permits\Default.aspx.vb">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Invoice\Default.aspx.designer.vb">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Invoice\Default.aspx.vb">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Memo.Master.designer.vb">
+      <DependentUpon>Memo.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Memo.Master.vb">
+      <DependentUpon>Memo.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="TN\Default.aspx.designer.vb">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
@@ -1681,11 +1742,11 @@
       <DependentUpon>tn.master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="UserHome.aspx.designer.vb">
-      <DependentUpon>UserHome.aspx</DependentUpon>
+    <Compile Include="Home\Default.aspx.designer.vb">
+      <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
-    <Compile Include="UserHome.aspx.vb">
-      <DependentUpon>UserHome.aspx</DependentUpon>
+    <Compile Include="Home\Default.aspx.vb">
+      <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="UserRegistration.aspx.designer.vb">
@@ -1697,7 +1758,8 @@
     </Compile>
     <Compile Include="_Code\Colors.vb" />
     <Compile Include="_Code\CookieHelper.vb" />
-    <Compile Include="_Code\DataBaseConnection.vb" />
+    <Compile Include="_Code\HtmlTableFunctions.vb" />
+    <Compile Include="_DAL\DataBaseConnection.vb" />
     <Compile Include="_Code\DbStringUtils.vb" />
     <Compile Include="_Code\EIS\eis_accesschecks.vb" />
     <Compile Include="_Code\EIS\eis_calculationmethod.vb" />
@@ -1723,30 +1785,44 @@
     <Compile Include="_Code\ErrorReporting.vb" />
     <Compile Include="_Code\ES\ES_County.vb" />
     <Compile Include="_Code\ES\ES_MiscCode.vb" />
-    <Compile Include="_Code\Events\Events.vb" />
-    <Compile Include="_Code\FacilityInfo.vb" />
-    <Compile Include="_Code\FeeBusinessEntity.vb" />
+    <Compile Include="_DAL\Events\Events.vb" />
+    <Compile Include="_DAL\Facility\FacilityInfo.vb" />
+    <Compile Include="_DAL\EmissionFees\FeeBusinessEntity.vb" />
     <Compile Include="_Code\Geocode.vb" />
     <Compile Include="_Code\Globals.vb" />
     <Compile Include="_Code\GridviewExportUtil.vb" />
     <Compile Include="_Code\LoginCheck.vb" />
     <Compile Include="_Code\MapHelper.vb" />
     <Compile Include="_Code\Md5Hashing.vb" />
+    <Compile Include="_DAL\Organization\Organization.vb" />
+    <Compile Include="_Models\Finance\DepositApplied.vb" />
+    <Compile Include="_DAL\Finance\Invoices.vb" />
+    <Compile Include="_DAL\Finance\ApplicationFees.vb" />
+    <Compile Include="_DAL\Permits\PermitApplications.vb" />
+    <Compile Include="_DAL\Permits\IssuedAirPermits.vb" />
+    <Compile Include="_DAL\Users\UserAccess.vb" />
+    <Compile Include="_DAL\Users\UserAccounts.vb" />
     <Compile Include="_Models\Address.vb" />
-    <Compile Include="_Models\ApbFacilityId.vb" />
-    <Compile Include="_Models\GecoUser.vb" />
+    <Compile Include="_Models\Facility\ApbFacilityId.vb" />
+    <Compile Include="_Models\Finance\InvoiceItem.vb" />
+    <Compile Include="_Models\Finance\Invoice.vb" />
+    <Compile Include="_Models\Finance\InvoiceType.vb" />
+    <Compile Include="_Models\People\FacilityAccess.vb" />
+    <Compile Include="_Models\People\Person.vb" />
+    <Compile Include="_Models\People\ApbStaff.vb" />
+    <Compile Include="_Models\People\GecoUser.vb" />
+    <Compile Include="_Models\Permit\ApplicationFeeInfo.vb" />
+    <Compile Include="_Models\Permit\PermitApplication.vb" />
     <Compile Include="_Models\UserSession.vb" />
-    <Compile Include="_Code\NAICS.vb" />
+    <Compile Include="_DAL\Facility\NAICS.vb" />
     <Compile Include="_Code\ParseNullables.vb" />
     <Compile Include="_Code\RandomStrings.vb" />
-    <Compile Include="_Code\SCC.vb" />
+    <Compile Include="_DAL\Facility\SCC.vb" />
     <Compile Include="_Code\SessionHelper.vb" />
     <Compile Include="_Code\StringFunctions.vb" />
     <Compile Include="_Code\UrlHelper.vb" />
-    <Compile Include="_Code\Users\UserAccess.vb" />
-    <Compile Include="_Code\Users\UserAccountEmails.vb" />
-    <Compile Include="_Code\Users\UserAccounts.vb" />
-    <Compile Include="_Code\ZipCode.vb" />
+    <Compile Include="_Code\UserAccountEmails.vb" />
+    <Compile Include="_DAL\EmissionFees\ZipCode.vb" />
     <Compile Include="Controls\PreventRePost.ascx.vb">
       <DependentUpon>PreventRePost.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2025,6 +2101,7 @@
     <Content Include="TN\tn.master" />
     <Content Include="vwd.webinfo" />
     <Content Include="Web.config" />
+    <Content Include="Memo.Master" />
     <None Include="Web.configBuilder.Debug.xml">
       <DependentUpon>Web.configBuilder.xml</DependentUpon>
       <IsTransformFile>true</IsTransformFile>

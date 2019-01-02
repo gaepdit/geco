@@ -1,4 +1,3 @@
-Imports System.Data
 Imports System.Data.SqlClient
 Imports GECO.GecoModels
 
@@ -9,14 +8,14 @@ Public Module UserAccess
         "    a.NUMUSERID, " &
         "    STRUSEREMAIL, " &
         "    STRAIRSNUMBER, " &
-        "    convert(bit, INTADMINACCESS) as INTADMINACCESS, " &
-        "    convert(bit, INTFEEACCESS) as INTFEEACCESS, " &
-        "    convert(bit, INTEIACCESS) as INTEIACCESS, " &
-        "    convert(bit, INTESACCESS) as INTESACCESS " &
-        "FROM OLAPUSERACCESS a " &
+        "    INTADMINACCESS, " &
+        "    INTFEEACCESS, " &
+        "    INTEIACCESS, " &
+        "    INTESACCESS " &
+        " FROM OLAPUSERACCESS a " &
         "    inner join OLAPUSERLOGIN l " &
         "        on a.NUMUSERID = l.NUMUSERID " &
-        "where a.STRAIRSNUMBER = @airs "
+        " where a.STRAIRSNUMBER = @airs "
 
         Dim param As New SqlParameter("@airs", "0413" & GetCookie(Cookie.AirsNumber))
 
@@ -24,8 +23,7 @@ Public Module UserAccess
     End Function
 
     Public Function UpdateUserAccess(adminAccess As Boolean, feeAccess As Boolean, eiAccess As Boolean, esAccess As Boolean, userID As Decimal, airs As String) As Boolean
-        Dim query As String = "UPDATE OlapUserAccess " &
-        " SET " &
+        Dim query As String = "UPDATE OlapUserAccess SET " &
         " INTADMINACCESS = @admin, " &
         " intFeeAccess = @fee, " &
         " intEIAccess = @ei, " &

@@ -1,4 +1,3 @@
-Imports System.Data
 Imports System.Data.SqlClient
 Imports EpdIt.DBUtilities
 Imports GECO.GecoModels
@@ -57,7 +56,7 @@ Public Module UserAccounts
         End If
 
         Dim user As New GecoUser(userId) With {
-            .Email = GetNullableString(dr("Email")).ToLower,
+            .Email = Trim(GetNullableString(dr("Email"))),
             .Salutation = GetNullableString(dr("Salutation")),
             .FirstName = GetNullableString(dr("FirstName")),
             .LastName = GetNullableString(dr("LastName")),
@@ -76,32 +75,6 @@ Public Module UserAccounts
 
         Return user
     End Function
-
-    'Public Function GetUserProfile(userId As Integer) As GecoUser
-    '    Dim query = " select " &
-    '    "     convert(int, p.NUMUSERID) as UserId, " &
-    '    "     STRUSEREMAIL   as Email, " &
-    '    "     STRSALUTATION  as Salutation, " &
-    '    "     STRFIRSTNAME   as FirstName, " &
-    '    "     STRLASTNAME    as LastName, " &
-    '    "     STRTITLE       as Title, " &
-    '    "     STRCOMPANYNAME as Company, " &
-    '    "     STRADDRESS     as Street, " &
-    '    "     STRCITY        as City, " &
-    '    "     STRSTATE       as State, " &
-    '    "     STRZIP         as PostalCode, " &
-    '    "     STRPHONENUMBER as Phone, " &
-    '    "     STRFAXNUMBER   as Fax, " &
-    '    "     STRUSERTYPE    as UserType " &
-    '    " from OLAPUSERPROFILE p " &
-    '    "     inner join OLAPUSERLOGIN l " &
-    '    "         on p.NUMUSERID = l.NUMUSERID " &
-    '    " where convert(int, p.NUMUSERID) = @userId "
-
-    '    Dim param As New SqlParameter("@userId", userId)
-
-    '    Return ParseUserFromDataRow(DB.GetDataRow(query, param))
-    'End Function
 
     Public Function GecoUserExists(email As String) As Boolean
         Dim query = "select geco.UserExists(@email)"

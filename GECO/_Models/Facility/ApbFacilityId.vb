@@ -2,14 +2,11 @@ Namespace GecoModels
     Public Class ApbFacilityId
         Implements IEquatable(Of ApbFacilityId)
 
-#Region " Constants "
-
+        ' Constants
         Private Const GA_STATE_CODE As String = "GA"
         Private Const GA_STATE_NUMERIC_CODE As String = "13"
         Private Const GA_EPA_REGION_CODE As String = "04"
         Private Const AirsNumberPattern As String = "^(04-?13-?)?\d{3}-?\d{5}$"
-
-#End Region
 
         ''' <summary>
         ''' APB facility ID as an eight-character string in the form "00000000"
@@ -146,6 +143,14 @@ Namespace GecoModels
             If airsNumber.Length = 12 Then airsNumber = airsNumber.Remove(0, 4)
 
             Return airsNumber
+        End Function
+
+        Public Shared Function IfValid(s As String) As ApbFacilityId
+            If IsValidAirsNumberFormat(s) Then
+                Return New ApbFacilityId(s)
+            Else
+                Return Nothing
+            End If
         End Function
 
 #End Region

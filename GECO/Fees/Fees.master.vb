@@ -29,10 +29,10 @@ Partial Class Fees_Fees
             EasyMenu1.MenuStyle.BackgroundColor = "#9bd7ff;"
 
             Dim menu As Sequentum.EasyMenuItem
-            menu = EasyMenu1.MenuRoot.AddSubMenuItem("Facility Home", "../FacilityHome.aspx")
-            menu = EasyMenu1.MenuRoot.AddSubMenuItem("My Home", "../UserHome.aspx")
+            menu = EasyMenu1.MenuRoot.AddSubMenuItem("Facility Home", "../Facility/")
+            menu = EasyMenu1.MenuRoot.AddSubMenuItem("Home", "../Home/")
             menu = EasyMenu1.MenuRoot.AddSubMenuItem("Contact Us", "javascript:var w=window.open('../ContactUs.aspx','', 'width=600,height=600,scrollbars=yes,resizeable=yes');")
-            menu = EasyMenu1.MenuRoot.AddSubMenuItem("Sign Out", "../Default.aspx?do=SignOut")
+            menu = EasyMenu1.MenuRoot.AddSubMenuItem("Account", "../Account/")
         End If
     End Sub
 End Class

@@ -32,13 +32,13 @@ Partial Class EventRegistration_EventDetails
             DisplayEventDetails()
 
             If UserIsLoggedIn() Then
-                pnlNotLoggedIn.Visible = False
+                lblLoginWarning.Visible = False
                 pnlLoggedIn.Visible = True
                 lblEmail.Text = currentUser.Email
 
                 CheckRegistration()
             Else
-                pnlNotLoggedIn.Visible = True
+                lblLoginWarning.Visible = True
                 pnlLoggedIn.Visible = False
                 lblEmail.Text = ""
             End If
@@ -62,8 +62,6 @@ Partial Class EventRegistration_EventDetails
                 }
 
         lblTitle.Text = dr.Item("StrTitle").ToString
-
-        hlLogin.NavigateUrl = "~/?ReturnUrl=" & Page.ResolveUrl("~/EventRegistration/Details.aspx?eventid=") & eventId.ToString
 
         litEventDetails.Text &= dr.Item("strDescription").ToString
 
@@ -154,7 +152,7 @@ Partial Class EventRegistration_EventDetails
 
             DisplayRegistration()
         Else
-            litConfirmation.Text = "<b>Register for this event here.</b>"
+            litConfirmation.Visible = False
             pnlPasscode.Visible = passcodeRequired
             pnlRegister.Visible = Not passcodeRequired
             btnRegister.Visible = True
@@ -178,6 +176,8 @@ Partial Class EventRegistration_EventDetails
             litConfirmation.Text &= "<br /><br /><b>Confirmation code:</b> " & dr.Item("ConfirmationCode").ToString
 
             litConfirmation.Text &= "<br /><br /><b>You may cancel your registration here.</b>"
+
+            litConfirmation.Visible = True
 
             txtComments.Text = dr.Item("Comments").ToString
         End If

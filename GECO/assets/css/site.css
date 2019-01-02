@@ -18,7 +18,7 @@
         padding: .2em 1%; /* some padding for readability */
         margin: 0; /* keep flush with adjacent containers */
         background-color: #ffffff; /* light blue color will show behind the center column */
-        color: #000;
+        color: #222;
         font-family: Verdana,sans-serif;
         /*border-color: #999;      /* W3C CSS validation service get an erroneous */
         /*border-style: solid;     /*   parse error on border-right shorthand, */
@@ -32,7 +32,7 @@
         padding: 1em 2%; /* some padding for readability */
         margin: 0; /* keep flush with adjacent containers */
         background-color: #ffffff; /* light blue color will show behind the center column */
-        color: #333;
+        color: #222;
         font-family: Verdana,sans-serif;
         font-size: 85%;
     }
@@ -48,13 +48,15 @@ html, body {
 
 h1 {
     font-size: 175%;
-    margin: .3em 0;
+    margin: .6em 0 .3em;
 }
 
 h2 {
     font-size: 125%;
-    margin: .2em 0;
-    color: Navy;
+    margin: 1.5em 0 .2em;
+    padding-top: .5em;
+    color: #000080;
+    border-top: 1px solid #d9d9f2;
 }
 
 a:link {
@@ -203,78 +205,6 @@ div#userinfo {
 }
 /* end print only rules */
 
-.Menu {
-    text-align: center;
-}
-
-/* Left Menu Buttons */
-
-.MenuButton {
-    font-size: 11px;
-    font-family: Verdana,sans-serif;
-    font-weight: bold;
-    color: #EEFFFF;
-    width: auto;
-    background-color: #0088DD;
-    border-style: solid;
-    border-color: #003377;
-    border-width: 2px;
-}
-
-.DisabledMenuButton {
-    font-size: 11px;
-    font-family: Verdana,sans-serif;
-    color: #EEFFFF;
-    width: 150px;
-    background-color: Gray;
-    border-style: solid;
-    border-color: #003377;
-    border-width: 2px;
-}
-
-/*Labels for displaying non-editable information*/
-
-.DisplayLabels {
-    background-color: gainsboro;
-    font-weight: bold;
-    color: WindowText;
-    font-family: Verdana,sans-serif;
-}
-
-/* Accordion */
-.accordionHeader {
-    border: 1px solid #2F4F4F;
-    color: white;
-    background-color: #2E4d7B;
-    font-family: Arial, Sans-Serif;
-    font-size: 12px;
-    font-weight: bold;
-    padding: 5px;
-    margin-top: 5px;
-    cursor: pointer;
-    font-family: Verdana,sans-serif;
-}
-
-    .accordionHeader a {
-        color: #FFFFFF;
-        background: none;
-        text-decoration: none;
-    }
-
-        .accordionHeader a:hover {
-            background: none;
-            text-decoration: underline;
-        }
-
-.accordionContent {
-    background-color: #D3DEEF;
-    border: 1px dashed #2F4F4F;
-    border-top: none;
-    padding: 5px;
-    padding-top: 10px;
-    font-family: Verdana,sans-serif;
-}
-
 /*CollapsiblePanel*/
 .collapsePanel {
     background-color: white;
@@ -297,33 +227,6 @@ div#userinfo {
     font-family: Verdana,sans-serif;
 }
 
-/*Hover Menu*/
-.popupMenu {
-    position: absolute;
-    visibility: hidden;
-    background-color: #F5F7F8;
-    opacity: .9;
-    filter: alpha(opacity=90);
-}
-
-.popupHover {
-    background-image: url(../images/header-opened.png);
-    background-repeat: repeat-x;
-    background-position: left top;
-    background-color: #F5F7F8;
-}
-
-/* PagingBulletedList */
-.selectIndex {
-    font-weight: bold;
-    text-decoration: none;
-}
-
-.unselectIndex {
-    font-weight: normal;
-    text-decoration: underline;
-}
-
 /*Modal Popup*/
 .modalBackground {
     background-color: Gray;
@@ -341,145 +244,6 @@ div#userinfo {
     font-size: large;
     border-style: solid;
     border-width: 1px;
-}
-
-.sampleStyleA {
-    background-color: #FFF;
-}
-
-.sampleStyleB {
-    background-color: #FFF;
-    font-family: monospace;
-    font-size: 10pt;
-    font-weight: bold;
-}
-
-.sampleStyleC {
-    background-color: #ddffdd;
-    font-family: sans-serif;
-    font-size: 10pt;
-    font-style: italic;
-}
-
-.sampleStyleD {
-    background-color: Blue;
-    color: White;
-    font-family: Arial;
-    font-size: 10pt;
-}
-
-/*Popup Control*/
-.popupControl {
-    background-color: White;
-    position: absolute;
-    visibility: hidden;
-}
-
-/*Reorder List*/
-.dragHandle {
-    width: 10px;
-    height: 15px;
-    background-color: Blue;
-    background-image: url(../images/bg-menu-main.png);
-    cursor: move;
-    border: outset thin white;
-}
-
-.callbackStyle {
-    border: thin blue inset;
-}
-
-    .callbackStyle table {
-        background-color: #5377A9;
-        color: Black;
-    }
-
-.reorderListDemo li {
-    list-style: none;
-    margin: 2px;
-    background-image: url(../images/bg_nav.gif);
-    background-repeat: repeat-x;
-    color: #FFF;
-}
-
-    .reorderListDemo li a {
-        color: #FFF !important;
-        font-weight: bold;
-    }
-
-.reorderCue {
-    border: dashed thin black;
-    width: 100%;
-    height: 25px;
-}
-
-.itemArea {
-    margin-left: 15px;
-    font-family: Arial, Verdana, sans-serif;
-    font-size: 1em;
-    text-align: left;
-}
-
-/* Rounded Corners*/
-
-.roundedPanel {
-    width: 300px;
-    background-color: #5377A9;
-    color: white;
-    font-weight: bold;
-}
-
-/* ResizableControl */
-
-.frameImage {
-    width: 130px;
-    height: 65px;
-    overflow: hidden;
-    float: left;
-    padding: 3px;
-}
-
-.frameText {
-    width: 100px;
-    height: 100px;
-    overflow: auto;
-    float: left;
-    background-color: #ffffff;
-    border-style: solid;
-    border-width: 2px;
-    border-color: Gray;
-    font-family: Helvetica;
-    line-height: normal;
-}
-
-.handleImage {
-    width: 15px;
-    height: 16px;
-    background-image: url(../images/HandleHand.png);
-    overflow: hidden;
-    cursor: se-resize;
-}
-
-.handleText {
-    width: 16px;
-    height: 16px;
-    background-image: url(../images/HandleGrip.png);
-    overflow: hidden;
-    cursor: se-resize;
-}
-
-.resizingImage {
-    padding: 0px;
-    border-style: solid;
-    border-width: 3px;
-    border-color: #B4D35D;
-}
-
-.resizingText {
-    padding: 0px;
-    border-style: solid;
-    border-width: 2px;
-    border-color: #7391BA;
 }
 
 /*Textbox Watermark*/
@@ -505,35 +269,6 @@ div#userinfo {
     width: 250px;
 }
 
-/* Table Formatting */
-table.sample {
-    /*border-width: 1px 1px 1px 1px;
-	border-spacing: 0px;
-	border-style: solid solid solid solid;
-	border-color: Black Black Black Black;
-	border-collapse: separate;*/
-    background-color: white;
-    width: 100%;
-}
-
-    table.sample th {
-        border-width: 1px 1px 1px 1px;
-        padding: 1px 1px 1px 1px;
-        border-style: inset inset inset inset;
-        border-color: white white white white;
-        background-color: white;
-        -moz-border-radius: 0px 0px 0px 0px;
-    }
-
-    table.sample td {
-        border-width: 1px 1px 1px 1px;
-        padding: 1px 1px 1px 1px;
-        border-style: inset inset inset inset;
-        border-color: white white white white;
-        background-color: white;
-        -moz-border-radius: 0px 0px 0px 0px;
-    }
-
 /* Progress Indicator Formatting */
 
 .ProgressIndicator {
@@ -549,12 +284,6 @@ table.sample {
 
 .modalProgressGreyBackground {
     background: #CCCCCC;
-    filter: alpha(opacity=60);
-    opacity: 0.6;
-}
-
-.modalProgressRedBackground {
-    background: Red;
     filter: alpha(opacity=60);
     opacity: 0.6;
 }
@@ -626,9 +355,6 @@ table.sample {
     background-color: #fff;
     border: solid 1px #000;
 }
-/* TAB Control Style STARTS HERE */
-
-/* TAB Control Style ENDS HERE */
 
 /* AutoComplete Extender */
 
@@ -642,7 +368,7 @@ table.sample {
     border: buttonshadow;
     border-width: 1px;
     border-style: solid;
-    cursor: 'default';
+    cursor: default;
     overflow: auto;
     height: 200px;
     text-align: left;
@@ -667,10 +393,6 @@ table.sample {
     padding: 1px;
     font-size: 75%;
     font-family: Verdana,sans-serif;
-}
-
-.RequestAccess {
-    display: none;
 }
 
 .dynamicPopulate_Normal {
@@ -759,6 +481,11 @@ a.tableCellLink {
 }
 
 /* Simple tables */
+
+.table-full-width {
+    width: 100%;
+}
+
 .table-simple {
     border-collapse: collapse;
     border-color: #CDCDCD;
@@ -771,6 +498,7 @@ a.tableCellLink {
         padding: 5px;
         vertical-align: baseline;
         text-align: left;
+        border-color: #CDCDCD;
     }
 
     .table-simple thead,
@@ -782,6 +510,17 @@ a.tableCellLink {
         .table-simple .table-head th {
             vertical-align: middle;
             text-align: center;
+        }
+
+    .table-simple tfoot,
+    .table-simple .table-foot {
+        background: #e6e6f0;
+    }
+
+        .table-simple tfoot th,
+        .table-simple .table-foot th {
+            vertical-align: middle;
+            text-align: right;
         }
 
 .table-list tbody th {
@@ -804,23 +543,27 @@ a.tableCellLink {
     padding: 8px 10px;
 }
 
-.table-menu .table-cell-link {
-    padding: 0;
-}
-
-.table-cell-link a {
-    padding: 8px 10px;
-    display: block;
-    text-decoration: none;
-    color: #00f;
-}
-
-    .table-cell-link a:hover,
-    .table-cell-link a:focus {
-        color: #00f;
-        background: #fdf2fd;
-        text-decoration: underline;
+    .table-menu .table-cell-link,
+    .table-menu td:first-child {
+        padding: 0;
     }
+
+        .table-menu td:first-child a,
+        .table-cell-link a {
+            padding: 8px 10px;
+            display: block;
+            text-decoration: none;
+            color: #00f;
+        }
+
+            .table-menu td:first-child a:hover,
+            .table-menu td:first-child a:focus,
+            .table-cell-link a:hover,
+            .table-cell-link a:focus {
+                color: #00f;
+                background: #fdf2fd;
+                text-decoration: underline;
+            }
 
 .table-simple .table-cell-checkbox {
     text-align: center;
@@ -835,4 +578,81 @@ a.tableCellLink {
     -o-transform: scale(1.3); /* Opera */
     transform: scale(1.3);
     padding: 8px;
+}
+
+.table-cell-subhead {
+    font-weight: normal;
+}
+
+.table-cell-alignright,
+.table-simple .table-cell-alignright {
+    text-align: right;
+}
+
+.table-cell-aligncenter,
+.table-simple .table-cell-aligncenter {
+    text-align: center;
+}
+
+.table-accounting tbody th {
+    font-weight: normal;
+    text-align: left;
+}
+
+.table-accounting thead th {
+    text-align: left;
+}
+
+    .table-accounting thead th + th {
+        font-weight: bold;
+        text-align: right;
+    }
+
+.table-accounting tfoot th {
+    text-transform: uppercase;
+}
+
+.table-accounting td,
+.table-accounting th {
+    padding: .5em 1em;
+}
+
+/* Update messages */
+.message-update {
+    color: #80005e;
+}
+
+.message-highlight {
+    background-color: #ffffcc;
+    padding: .5em;
+}
+
+/* Submenu */
+
+ul.menu-list-horizontal {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+    ul.menu-list-horizontal li {
+        display: inline-block;
+    }
+
+    ul.menu-list-horizontal a {
+        color: #4545a1;
+        background: #f0f9ff;
+        padding: .3em .6em;
+        margin-right: .3em;
+        text-decoration: none;
+    }
+
+        ul.menu-list-horizontal a:hover,
+        ul.menu-list-horizontal a:focus {
+            background: #fdf2fd;
+        }
+
+/* typography */
+.preserve-linebreaks {
+    white-space: pre-line;
 }

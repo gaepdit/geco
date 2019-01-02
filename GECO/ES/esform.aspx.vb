@@ -166,15 +166,15 @@ Partial Class es_esform
     End Sub
 
     Protected Sub btnCancelLocation_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnCancelLocation.Click
-        Response.Redirect("~/FacilityHome.aspx")
+        Response.Redirect("~/Facility/")
     End Sub
 
     Protected Sub btnCancelContact_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnCancelContact.Click
-        Response.Redirect("~/FacilityHome.aspx")
+        Response.Redirect("~/Facility/")
     End Sub
 
     Protected Sub btnCancelEmission_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnCancelEmission.Click
-        Response.Redirect("~/FacilityHome.aspx")
+        Response.Redirect("~/Facility/")
     End Sub
 
     Protected Sub btnbackToLocation_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnbackToLocation.Click
