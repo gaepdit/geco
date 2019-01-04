@@ -318,4 +318,16 @@ Partial Public Class _Default
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lnkResend As Global.System.Web.UI.WebControls.HyperLink
+    
+    '''<summary>
+    '''Master property.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated property.
+    '''</remarks>
+    Public Shadows ReadOnly Property Master() As GECO.MainMaster
+        Get
+            Return CType(MyBase.Master,GECO.MainMaster)
+        End Get
+    End Property
 End Class

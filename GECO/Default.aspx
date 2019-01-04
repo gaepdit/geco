@@ -1,4 +1,6 @@
-﻿<%@ Page Language="VB" MasterPageFile="~/MainMaster.master" AutoEventWireup="false" Inherits="GECO._Default" Title="Georgia Environmental Connections Online" Codebehind="Default.aspx.vb" %>
+﻿<%@ Page Language="VB" MasterPageFile="~/MainMaster.master" AutoEventWireup="false" Inherits="GECO._Default" Title="Georgia Environmental Connections Online" CodeBehind="Default.aspx.vb" %>
+
+<%@ MasterType VirtualPath="~/MainMaster.master" %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="Server">
     <h1>Georgia Environmental Connections Online</h1>

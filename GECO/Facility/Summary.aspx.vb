@@ -59,9 +59,7 @@ Partial Class FacilitySummary
             Title = "GECO Facility Summary - " & lblFacilityDisplay.Text
             lblAIRS.Text = currentAirs.FormattedString
 
-            Dim menu As Sequentum.EasyMenu
-            menu = CType(Master.FindControl("EasyMenu1"), Sequentum.EasyMenu)
-            menu.MenuRoot.AddSubMenuItem("Facility Home", "../Facility/")
+            Master.IsFacilitySubpage = True
         End If
     End Sub
 

@@ -102,4 +102,16 @@ Partial Public Class FacilityAdmin
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents UpdateProgress1 As Global.System.Web.UI.UpdateProgress
+    
+    '''<summary>
+    '''Master property.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated property.
+    '''</remarks>
+    Public Shadows ReadOnly Property Master() As GECO.MainMaster
+        Get
+            Return CType(MyBase.Master,GECO.MainMaster)
+        End Get
+    End Property
 End Class

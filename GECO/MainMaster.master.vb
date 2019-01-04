@@ -2,6 +2,7 @@ Partial Class MainMaster
     Inherits MasterPage
 
     Public Property IncludeSignInLink As Boolean = True
+    Public Property IsFacilitySubpage As Boolean = False
 
     Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
 
@@ -16,6 +17,11 @@ Partial Class MainMaster
 
             If UserIsLoggedIn() Then
                 ' Logged in
+
+                If IsFacilitySubpage Then
+                    EasyMenu1.MenuRoot.AddSubMenuItem("Facility Home", "/Facility/")
+                End If
+
                 EasyMenu1.MenuRoot.AddSubMenuItem("Home", "/Home/")
                 EasyMenu1.MenuRoot.AddSubMenuItem("Contact Us", contactLink)
                 EasyMenu1.MenuRoot.AddSubMenuItem("Account", "/Account/")

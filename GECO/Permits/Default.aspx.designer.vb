@@ -102,4 +102,16 @@ Partial Public Class PermitDefault
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents grdClosedApps As Global.System.Web.UI.WebControls.GridView
+    
+    '''<summary>
+    '''Master property.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated property.
+    '''</remarks>
+    Public Shadows ReadOnly Property Master() As GECO.MainMaster
+        Get
+            Return CType(MyBase.Master,GECO.MainMaster)
+        End Get
+    End Property
 End Class

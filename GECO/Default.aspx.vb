@@ -17,8 +17,7 @@ Partial Class _Default
                 GetUserFromSession()
             End If
 
-            Dim m As MainMaster = Master
-            m.IncludeSignInLink = False
+            Master.IncludeSignInLink = False
 
             ClearCurrentLogin()
         End If

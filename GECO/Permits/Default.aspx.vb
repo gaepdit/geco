@@ -23,6 +23,7 @@ Public Class PermitDefault
 
             currentAirs = New ApbFacilityId(airsString)
             SetCookie(Cookie.AirsNumber, currentAirs.ShortString())
+            Master.IsFacilitySubpage = True
         End If
 
         LoadFacilityInfo()

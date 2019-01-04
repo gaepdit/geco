@@ -1,5 +1,7 @@
 ﻿<%@ Page Language="vb" MasterPageFile="~/MainMaster.master" AutoEventWireup="false" CodeBehind="Application.aspx.vb" Inherits="GECO.Permit_Application" %>
 
+<%@ MasterType VirtualPath="~/MainMaster.master" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="FullContent" runat="Server">
     <h1>Permit Application #<asp:Label ID="lblAppNum" runat="server" Text=""></asp:Label></h1>
 
@@ -36,7 +38,7 @@
 
             <asp:Panel ID="pnlInvoices" runat="server" Visible="false">
                 <h3>Invoices</h3>
-                <asp:GridView ID="grdInvoices" runat="server" CssClass="table-simple table-menu" 
+                <asp:GridView ID="grdInvoices" runat="server" CssClass="table-simple table-menu"
                     AutoGenerateColumns="False" RowHeaderColumn="Invoice #" UseAccessibleHeader="true">
                     <Columns>
                         <asp:HyperLinkField DataTextField="Invoice #" HeaderText="Invoice #" ItemStyle-CssClass="table-cell-alignright"
@@ -51,7 +53,7 @@
 
             <asp:Panel ID="pnlPayments" runat="server" Visible="false">
                 <h3>Payments</h3>
-                <asp:GridView ID="grdPayments" runat="server" CssClass="table-simple table-menu" 
+                <asp:GridView ID="grdPayments" runat="server" CssClass="table-simple table-menu"
                     AutoGenerateColumns="False" RowHeaderColumn="Date" UseAccessibleHeader="true">
                     <Columns>
                         <asp:BoundField DataField="Date" HeaderText="Deposit Date" DataFormatString="{0:dd-MMM-yyyy}" ItemStyle-CssClass="table-cell-alignright" />
