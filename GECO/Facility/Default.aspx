@@ -34,12 +34,11 @@
                     <asp:TableHeaderCell runat="server" CssClass="table-cell-link">
                         <asp:HyperLink ID="PALink" runat="server" Text="Air Quality Permits" NavigateUrl="~/Permits/"></asp:HyperLink>
                     </asp:TableHeaderCell>
-                    <asp:TableCell runat="server">
-                        <span style="background-color: greenyellow">COMING SOON</span>
+                    <asp:TableCell runat="server">                        
                         <asp:Label ID="PAText" runat="server"></asp:Label>
                     </asp:TableCell>
                     <asp:TableCell runat="server">
-                        <asp:Label ID="PADate" runat="server"></asp:Label>
+                        N/A
                     </asp:TableCell>
                     <asp:TableCell runat="server" CssClass="table-cell-link">
                         <asp:LinkButton ID="PAContact" runat="server" CausesValidation="False"></asp:LinkButton>

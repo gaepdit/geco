@@ -205,7 +205,7 @@ Public Class Permit_Application
     End Sub
 
     Private Sub DisplayInvoices()
-        Dim dt As DataTable = GetApplicationInvoices(AppNumber)
+        Dim dt As DataTable = PermitApplication.ApplicationInvoices
 
         If dt IsNot Nothing AndAlso dt.Rows.Count > 0 Then
             grdInvoices.DataSource = dt
@@ -215,7 +215,7 @@ Public Class Permit_Application
     End Sub
 
     Private Sub DisplayPayments()
-        Dim dt As DataTable = GetApplicationPayments(AppNumber)
+        Dim dt As DataTable = PermitApplication.ApplicationPayments
 
         If dt IsNot Nothing AndAlso dt.Rows.Count > 0 Then
             grdPayments.DataSource = dt

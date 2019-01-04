@@ -2,6 +2,7 @@ Imports System.Data.SqlClient
 Imports EpdIt.DBUtilities
 Imports GECO.FeeBusinessEntity
 Imports GECO.GecoModels
+Imports GECO.DAL
 
 Partial Class FacilityHome
     Inherits Page
@@ -57,7 +58,7 @@ Partial Class FacilityHome
             mpAirsLabel.Text = "AIRS No: " & currentAirs.FormattedString()
 
             Title = "GECO Facility Summary - " & lblFacilityDisplay.Text
-            lblAirs.Text = currentAirs.FormattedString
+            lblAIRS.Text = currentAirs.FormattedString
         End If
     End Sub
 
@@ -374,7 +375,13 @@ Partial Class FacilityHome
 
     Private Sub GetPermitAppStatus()
         PALink.NavigateUrl = "~/Permits/?airs=" & currentAirs.ShortString
-        'Throw New NotImplementedException()
+
+        Dim dr As DataRow = GetPermitApplicationCounts(currentAirs)
+
+        If dr IsNot Nothing Then
+            Dim openCount As Integer = CInt(dr.Item("OpenApplications"))
+            PAText.Text = openCount & " open permit application" & If(openCount = 1, "", "s") & "."
+        End If
     End Sub
 
     Protected Sub GetCurrentContacts()
