@@ -257,6 +257,12 @@ Public Class Permit_Application
 
         End Select
 
+        PermitApplication = GetPermitApplication(AppNumber)
+
+        If PermitApplication Is Nothing Then
+            Throw New HttpException(404, "Permit application not found.")
+        End If
+
         DisplayInvoices()
         DisplayPayments()
     End Sub
