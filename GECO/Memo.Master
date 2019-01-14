@@ -19,7 +19,8 @@
     <form id="form1" runat="server">
         <asp:Panel ID="pnlToolbar" runat="server">
             <div class="toolbar">
-                <asp:Button ID="btnPrint" runat="server" Text="Print" visible="true" OnClientClick="javascript:window.print();" />
+                <input type="submit" value="Back" onclick="window.go(-1); return false;" id="btnBack" />
+                <input type="submit" value="Print" onclick="window.print(); return false;" id="btnPrint" />
                 <asp:Button ID="btnPdf" runat="server" Text="Print/PDF" visible="false" />
             </div>
         </asp:Panel>
