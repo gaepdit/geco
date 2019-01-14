@@ -1794,6 +1794,7 @@
     <Compile Include="_Code\LoginCheck.vb" />
     <Compile Include="_Code\MapHelper.vb" />
     <Compile Include="_Code\Md5Hashing.vb" />
+    <Compile Include="_DAL\Finance\FacilityFinances.vb" />
     <Compile Include="_DAL\Organization\Organization.vb" />
     <Compile Include="_Models\Finance\DepositApplied.vb" />
     <Compile Include="_DAL\Finance\Invoices.vb" />

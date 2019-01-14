@@ -23,13 +23,13 @@
         <ContentTemplate>
             <asp:HiddenField ID="hAppNumber" runat="server" />
 
-            <p id="pGenerateInvoice" runat="server" visible="false">
+            <p id="pGenerateInvoice" runat="server" visible="false" class="message-highlight">
                 <asp:Button ID="btnGenerateInvoice" runat="server" Text="Generate New Invoice" />
+                <asp:Label ID="lblCredits" runat="server" Visible="false" Font-Italic="True"></asp:Label>
             </p>
 
             <p id="pGenerateDbError" runat="server" class="message-highlight" visible="false">An error occurred while trying to generate the invoice. Please contact the Air Protection Branch for assistance.</p>
             <p id="pGenerateExists" runat="server" class="message-highlight" visible="false">Error: An active invoice already exists for this permit application.</p>
-            <p id="pGenerateNoItems" runat="server" class="message-highlight" visible="false">Error: There are no fees to generate an invoice for.</p>
             <p id="pGenerateSuccess" runat="server" class="message-highlight" visible="false">
                 Invoice
                 <asp:Label ID="lblNewInvoiceNumber" runat="server"></asp:Label>

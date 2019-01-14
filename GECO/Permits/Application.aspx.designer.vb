@@ -95,6 +95,15 @@ Partial Public Class Permit_Application
     Protected WithEvents btnGenerateInvoice As Global.System.Web.UI.WebControls.Button
     
     '''<summary>
+    '''lblCredits control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblCredits As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
     '''pGenerateDbError control.
     '''</summary>
     '''<remarks>
@@ -111,15 +120,6 @@ Partial Public Class Permit_Application
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents pGenerateExists As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
-    '''<summary>
-    '''pGenerateNoItems control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents pGenerateNoItems As Global.System.Web.UI.HtmlControls.HtmlGenericControl
     
     '''<summary>
     '''pGenerateSuccess control.

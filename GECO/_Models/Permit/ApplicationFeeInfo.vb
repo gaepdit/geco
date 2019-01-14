@@ -20,5 +20,11 @@
         Public Property DateFeeDataFinalized As Date?
         Public Property DateFacilityNotifiedOfFees As Date?
 
+        Public ReadOnly Property TotalFeeAmount As Decimal
+            Get
+                Return ApplicationFeeAmount + ExpeditedFeeAmount
+            End Get
+        End Property
+
     End Class
 End Namespace

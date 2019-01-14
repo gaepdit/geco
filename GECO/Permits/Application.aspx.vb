@@ -199,9 +199,23 @@ Public Class Permit_Application
             ' Invoicing
             If Not PermitApplication.IsInvoiceGenerated And FacilityAccess.FeeAccess Then
                 pGenerateInvoice.Visible = True
+
+                CheckForCredits()
             End If
 
         End With
+    End Sub
+
+    Private Sub CheckForCredits()
+        If PermitApplication.FacilityID IsNot Nothing Then
+            Dim credits As Decimal = FacilityCredits(PermitApplication.FacilityID)
+
+            If credits > 0 Then
+                Dim txt As String = "Facility credits of {0:c} will be immediately applied to invoice when generated."
+                lblCredits.Text = String.Format(txt, Math.Min(credits, PermitApplication.ApplicationFeeInfo.TotalFeeAmount))
+                lblCredits.Visible = True
+            End If
+        End If
     End Sub
 
     Private Sub DisplayInvoices()
@@ -240,20 +254,17 @@ Public Class Permit_Application
         Dim result As GenerateInvoiceResult = GenerateInvoice(AppNumber, CurrentUser.UserId, newInvoiceID)
 
         Select Case result
-            Case GenerateInvoiceResult.DbError
-                pGenerateDbError.Visible = True
+            Case GenerateInvoiceResult.NoApplication
+                Throw New HttpException(400, "Permit application number invalid.")
+
+            Case GenerateInvoiceResult.Success
+                pGenerateSuccess.Visible = True
 
             Case GenerateInvoiceResult.InvoiceExists
                 pGenerateExists.Visible = True
 
-            Case GenerateInvoiceResult.NoApplication
-                Throw New HttpException(400, "Permit application number invalid.")
-
-            Case GenerateInvoiceResult.NoLineItems
-                pGenerateNoItems.Visible = True
-
-            Case GenerateInvoiceResult.Success
-                pGenerateSuccess.Visible = True
+            Case Else
+                pGenerateDbError.Visible = True
 
         End Select
 

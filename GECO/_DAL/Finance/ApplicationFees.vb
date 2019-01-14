@@ -34,7 +34,7 @@ Namespace DAL
 
             Dim params As SqlParameter() = {
                 New SqlParameter("@AppNumber", appNumber),
-                New SqlParameter("@CurrentUserID", userId)
+                New SqlParameter("@UserID", userId)
             }
 
             Dim returnValue As Integer = -1
@@ -52,6 +52,8 @@ Namespace DAL
         NoApplication = 1
         InvoiceExists = 2
         NoLineItems = 3
+        InvalidInvoiceTotal = 4
+        InvalidFacilityId = 5
     End Enum
 
 End Namespace
