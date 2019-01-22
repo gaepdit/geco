@@ -23,6 +23,15 @@ Partial Public Class EventRegistration_EventDetails
     Protected WithEvents lblTitle As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
+    '''lblLoginWarning control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblLoginWarning As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
     '''litEventDetails control.
     '''</summary>
     '''<remarks>
@@ -39,33 +48,6 @@ Partial Public Class EventRegistration_EventDetails
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents litCapacity As Global.System.Web.UI.WebControls.Literal
-    
-    '''<summary>
-    '''pnlNotLoggedIn control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents pnlNotLoggedIn As Global.System.Web.UI.WebControls.Panel
-    
-    '''<summary>
-    '''hlLogin control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents hlLogin As Global.System.Web.UI.WebControls.HyperLink
-    
-    '''<summary>
-    '''hlRegister control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents hlRegister As Global.System.Web.UI.WebControls.HyperLink
     
     '''<summary>
     '''pnlLoggedIn control.

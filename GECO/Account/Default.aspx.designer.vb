@@ -11,79 +11,43 @@ Option Strict On
 Option Explicit On
 
 
-Partial Public Class UserHome
+Partial Public Class Account_Default
     
     '''<summary>
-    '''UpdatePanel_top control.
+    '''lblDisplayName control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents UpdatePanel_top As Global.System.Web.UI.UpdatePanel
+    Protected WithEvents lblDisplayName As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
-    '''UserTabs control.
+    '''hlSignOut control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents UserTabs As Global.AjaxControlToolkit.TabContainer
+    Protected WithEvents hlSignOut As Global.System.Web.UI.WebControls.Button
     
     '''<summary>
-    '''FacilityAccess control.
+    '''UpdatePanel_email control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents FacilityAccess As Global.AjaxControlToolkit.TabPanel
+    Protected WithEvents UpdatePanel_email As Global.System.Web.UI.UpdatePanel
     
     '''<summary>
-    '''lblNone control.
+    '''lblEmailMessage control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lblNone As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''lblAccess control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblAccess As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''grdAccess control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents grdAccess As Global.System.Web.UI.WebControls.GridView
-    
-    '''<summary>
-    '''tpAccount control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents tpAccount As Global.AjaxControlToolkit.TabPanel
-    
-    '''<summary>
-    '''lblPwdMsg control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblPwdMsg As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lblEmailMessage As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
     '''txtEmail control.
@@ -113,24 +77,6 @@ Partial Public Class UserHome
     Protected WithEvents RegularExpressionValidator2 As Global.System.Web.UI.WebControls.RegularExpressionValidator
     
     '''<summary>
-    '''btnEditEmail control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnEditEmail As Global.System.Web.UI.WebControls.Button
-    
-    '''<summary>
-    '''btnEditPwd control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnEditPwd As Global.System.Web.UI.WebControls.Button
-    
-    '''<summary>
     '''btnSaveEmail control.
     '''</summary>
     '''<remarks>
@@ -140,31 +86,22 @@ Partial Public Class UserHome
     Protected WithEvents btnSaveEmail As Global.System.Web.UI.WebControls.Button
     
     '''<summary>
-    '''btnCancelEmail control.
+    '''UpdatePanel_password control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents btnCancelEmail As Global.System.Web.UI.WebControls.LinkButton
+    Protected WithEvents UpdatePanel_password As Global.System.Web.UI.UpdatePanel
     
     '''<summary>
-    '''lblEmailWarning control.
+    '''lblPasswordMessage control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lblEmailWarning As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''tblChangePwd control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents tblChangePwd As Global.System.Web.UI.WebControls.Panel
+    Protected WithEvents lblPasswordMessage As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
     '''txtOldPassword control.
@@ -248,31 +185,22 @@ Partial Public Class UserHome
     Protected WithEvents btnPwdUpdate As Global.System.Web.UI.WebControls.Button
     
     '''<summary>
-    '''btnPwdCancel control.
+    '''UpdatePanel_profile control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents btnPwdCancel As Global.System.Web.UI.WebControls.LinkButton
+    Protected WithEvents UpdatePanel_profile As Global.System.Web.UI.UpdatePanel
     
     '''<summary>
-    '''MyProfile control.
+    '''lblProfileMessage control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents MyProfile As Global.AjaxControlToolkit.TabPanel
-    
-    '''<summary>
-    '''UpdatePanel2 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents UpdatePanel2 As Global.System.Web.UI.UpdatePanel
+    Protected WithEvents lblProfileMessage As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
     '''txtSalutation control.
@@ -518,15 +446,6 @@ Partial Public Class UserHome
     Protected WithEvents RequiredFieldValidator13 As Global.System.Web.UI.WebControls.RequiredFieldValidator
     
     '''<summary>
-    '''btnEditProfile control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnEditProfile As Global.System.Web.UI.WebControls.Button
-    
-    '''<summary>
     '''btnUpdateProfile control.
     '''</summary>
     '''<remarks>
@@ -536,24 +455,6 @@ Partial Public Class UserHome
     Protected WithEvents btnUpdateProfile As Global.System.Web.UI.WebControls.Button
     
     '''<summary>
-    '''btnCancelProfile control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnCancelProfile As Global.System.Web.UI.WebControls.LinkButton
-    
-    '''<summary>
-    '''lblProfileMsg control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblProfileMsg As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
     '''UpdateProgress1 control.
     '''</summary>
     '''<remarks>
@@ -561,139 +462,4 @@ Partial Public Class UserHome
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents UpdateProgress1 As Global.System.Web.UI.UpdateProgress
-    
-    '''<summary>
-    '''lblEIyear1 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblEIyear1 As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''lblEIYear2 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblEIYear2 As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''lblAnnualEIText control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblAnnualEIText As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''lblEIYear5 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblEIYear5 As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''lblTriennialEIText control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblTriennialEIText As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''lblEIYear6 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblEIYear6 As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''lblEIYear3 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblEIYear3 As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''lblEIYear4 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblEIYear4 As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''lblFeeYear1 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblFeeYear1 As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''lblFeeYear2 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblFeeYear2 As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''lblFeeYear3 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblFeeYear3 As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''lblFeeYear4 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblFeeYear4 As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''lblESYear1 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblESYear1 As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''lblESYear2 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblESYear2 As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''lblESYear3 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblESYear3 As Global.System.Web.UI.WebControls.Label
 End Class

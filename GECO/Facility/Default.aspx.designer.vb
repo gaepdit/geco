@@ -14,13 +14,13 @@ Option Explicit On
 Partial Public Class FacilityHome
     
     '''<summary>
-    '''lblFacilityName control.
+    '''lblFacilityDisplay control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lblFacilityName As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lblFacilityDisplay As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
     '''lblAIRS control.
@@ -41,24 +41,6 @@ Partial Public Class FacilityHome
     Protected WithEvents UpdatePanel1 As Global.System.Web.UI.UpdatePanel
     
     '''<summary>
-    '''FacilityTabs control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents FacilityTabs As Global.AjaxControlToolkit.TabContainer
-    
-    '''<summary>
-    '''AppStatus control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents AppStatus As Global.AjaxControlToolkit.TabPanel
-    
-    '''<summary>
     '''AppTable control.
     '''</summary>
     '''<remarks>
@@ -75,6 +57,42 @@ Partial Public Class FacilityHome
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents AppsHeader As Global.System.Web.UI.WebControls.TableHeaderRow
+    
+    '''<summary>
+    '''AppsPermitApps control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents AppsPermitApps As Global.System.Web.UI.WebControls.TableRow
+    
+    '''<summary>
+    '''PALink control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents PALink As Global.System.Web.UI.WebControls.HyperLink
+    
+    '''<summary>
+    '''PAText control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents PAText As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
+    '''PAContact control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents PAContact As Global.System.Web.UI.WebControls.LinkButton
     
     '''<summary>
     '''AppsEmissionFees control.
@@ -561,393 +579,6 @@ Partial Public Class FacilityHome
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblContactMsg As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''FacilitySummary control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents FacilitySummary As Global.AjaxControlToolkit.TabPanel
-    
-    '''<summary>
-    '''lblAddress control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblAddress As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''lblCityStateZip control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblCityStateZip As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''lblCounty control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblCounty As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''lblDistrict control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblDistrict As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''hlDistrict control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents hlDistrict As Global.System.Web.UI.WebControls.HyperLink
-    
-    '''<summary>
-    '''lblOffice control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblOffice As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''lblLongitude control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblLongitude As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''lblLatitude control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblLatitude As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''lblClassification control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblClassification As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''lblOpStatus control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblOpStatus As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''lblSICCode control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblSICCode As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''lblStartUp control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblStartUp As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''lblClosed control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblClosed As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''lblCMSStatus control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblCMSStatus As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''lblAirProgramCodes control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblAirProgramCodes As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''lblPermitContactName control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblPermitContactName As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''lblPermitContactPhone control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblPermitContactPhone As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''hlPermitContactEmail control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents hlPermitContactEmail As Global.System.Web.UI.WebControls.HyperLink
-    
-    '''<summary>
-    '''lblComplianceContactName control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblComplianceContactName As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''lblComplianceContactPhone control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblComplianceContactPhone As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''hlComplianceContactEmail control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents hlComplianceContactEmail As Global.System.Web.UI.WebControls.HyperLink
-    
-    '''<summary>
-    '''lblMonitoringContactName control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblMonitoringContactName As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''lblMonitoringContactPhone control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblMonitoringContactPhone As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''hlMonitoringContactEmail control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents hlMonitoringContactEmail As Global.System.Web.UI.WebControls.HyperLink
-    
-    '''<summary>
-    '''AirProgram control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents AirProgram As Global.AjaxControlToolkit.TabPanel
-    
-    '''<summary>
-    '''AirProgramDetails control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents AirProgramDetails As Global.AjaxControlToolkit.TabContainer
-    
-    '''<summary>
-    '''Permit control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents Permit As Global.AjaxControlToolkit.TabPanel
-    
-    '''<summary>
-    '''lblGridView1 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblGridView1 As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''GridView1 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents GridView1 As Global.System.Web.UI.WebControls.GridView
-    
-    '''<summary>
-    '''FeeHistory control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents FeeHistory As Global.AjaxControlToolkit.TabPanel
-    
-    '''<summary>
-    '''FeesData control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents FeesData As Global.AjaxControlToolkit.TabContainer
-    
-    '''<summary>
-    '''Deposits control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents Deposits As Global.AjaxControlToolkit.TabPanel
-    
-    '''<summary>
-    '''grdDeposits control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents grdDeposits As Global.System.Web.UI.WebControls.GridView
-    
-    '''<summary>
-    '''Invoices control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents Invoices As Global.AjaxControlToolkit.TabPanel
-    
-    '''<summary>
-    '''grdInvoices control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents grdInvoices As Global.System.Web.UI.WebControls.GridView
-    
-    '''<summary>
-    '''AdminTools control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents AdminTools As Global.AjaxControlToolkit.TabPanel
-    
-    '''<summary>
-    '''grdUsers control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents grdUsers As Global.System.Web.UI.WebControls.GridView
-    
-    '''<summary>
-    '''pnlAddNewUser control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents pnlAddNewUser As Global.System.Web.UI.WebControls.Panel
-    
-    '''<summary>
-    '''txtEmail control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtEmail As Global.System.Web.UI.WebControls.TextBox
-    
-    '''<summary>
-    '''btnAddUser control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnAddUser As Global.System.Web.UI.WebControls.Button
-    
-    '''<summary>
-    '''rfvEmail control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents rfvEmail As Global.System.Web.UI.WebControls.RequiredFieldValidator
-    
-    '''<summary>
-    '''lblMessage control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblMessage As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
     '''UpdateProgress1 control.

@@ -14,6 +14,15 @@ Option Explicit On
 Partial Public Class EventRegistration_Default
     
     '''<summary>
+    '''lblLoginWarning control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblLoginWarning As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
     '''gvwEventList control.
     '''</summary>
     '''<remarks>
@@ -21,31 +30,4 @@ Partial Public Class EventRegistration_Default
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents gvwEventList As Global.System.Web.UI.WebControls.GridView
-    
-    '''<summary>
-    '''pnlLoginLinks control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents pnlLoginLinks As Global.System.Web.UI.WebControls.Panel
-    
-    '''<summary>
-    '''hlLogin control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents hlLogin As Global.System.Web.UI.WebControls.HyperLink
-    
-    '''<summary>
-    '''hlRegister control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents hlRegister As Global.System.Web.UI.WebControls.HyperLink
 End Class

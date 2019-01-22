@@ -31,10 +31,10 @@ Partial Class APB_eismaster
             EasyMenu1.MenuStyle.BackgroundActiveColor = "#ffffff"
             EasyMenu1.MenuStyle.BackgroundColor = "#9bd7ff;"
 
-            EasyMenu1.MenuRoot.AddSubMenuItem("Facility Home", "../FacilityHome.aspx")
-            EasyMenu1.MenuRoot.AddSubMenuItem("My Home", "../UserHome.aspx")
+            EasyMenu1.MenuRoot.AddSubMenuItem("Facility Home", "../Facility/")
+            EasyMenu1.MenuRoot.AddSubMenuItem("Home", "../Home/")
             EasyMenu1.MenuRoot.AddSubMenuItem("Contact Us", "javascript:var w=window.open('../ContactUs.aspx','', 'width=600,height=600,scrollbars=yes,resizeable=yes');")
-            EasyMenu1.MenuRoot.AddSubMenuItem("Sign Out", "../Default.aspx?do=SignOut")
+            EasyMenu1.MenuRoot.AddSubMenuItem("Account", "../Account/")
         End If
     End Sub
 

@@ -21,7 +21,7 @@ Public Module LoginCheck
 
     Public Sub AirsSelectedCheck()
         If GetCookie(Cookie.AirsNumber) Is Nothing Then
-            HttpContext.Current.Response.Redirect("~/UserHome.aspx")
+            HttpContext.Current.Response.Redirect("~/Home/")
         End If
     End Sub
 
@@ -29,7 +29,7 @@ Public Module LoginCheck
         AirsSelectedCheck()
 
         If GetCookie(EisCookie.EISAccess) Is Nothing Then
-            HttpContext.Current.Response.Redirect("~/FacilityHome.aspx")
+            HttpContext.Current.Response.Redirect("~/Facility/")
         End If
     End Sub
 

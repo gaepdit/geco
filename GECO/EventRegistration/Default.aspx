@@ -1,8 +1,12 @@
 ﻿<%@ Page Title="Georgia EPD Upcoming Events" Language="VB" MasterPageFile="~/MainMaster.master"
-    AutoEventWireup="false" Inherits="GECO.EventRegistration_Default" Codebehind="Default.aspx.vb" %>
+    AutoEventWireup="false" Inherits="GECO.EventRegistration_Default" CodeBehind="Default.aspx.vb" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="Server">
+<asp:Content ID="Content1" ContentPlaceHolderID="FullContent" runat="Server">
     <h1>Upcoming classes and workshops offered by Georgia EPD</h1>
+
+    <asp:Label ID="lblLoginWarning" runat="server">
+        <p class="message-update"><strong>A GECO account is required to register for any event.</strong></p>
+    </asp:Label>
 
     <asp:GridView ID="gvwEventList" runat="server" AutoGenerateColumns="False" DataKeyNames="numres_eventid"
         ShowHeader="false" ShowFooter="false" EmptyDataText="There are no classes or workshops scheduled at this time."
@@ -53,16 +57,4 @@
         <HeaderStyle BackColor="#000084" Font-Bold="True" ForeColor="White" />
         <AlternatingRowStyle BackColor="#DCDCDC" />
     </asp:GridView>
-</asp:Content>
-
-<asp:Content ID="Content2" ContentPlaceHolderID="LeftMenuContent" runat="Server">
-    <p><strong>A GECO account is required to register for any event.</strong></p>
-
-    <asp:Panel ID="pnlLoginLinks" runat="server">
-        <p>
-            <asp:HyperLink ID="hlLogin" runat="server" NavigateUrl="~/Default.aspx?ReturnUrl=/EventRegistration" Text="Sign in"></asp:HyperLink>
-            or 
-            <asp:HyperLink ID="hlRegister" runat="server" NavigateUrl="~/UserRegistration.aspx" Text="create an account"></asp:HyperLink>
-        </p>
-    </asp:Panel>
 </asp:Content>

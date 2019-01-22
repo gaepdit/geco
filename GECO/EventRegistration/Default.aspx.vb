@@ -7,7 +7,7 @@
             gvwEventList.DataBind()
 
             If UserIsLoggedIn() Then
-                pnlLoginLinks.Visible = False
+                lblLoginWarning.Visible = False
             End If
         End If
     End Sub
