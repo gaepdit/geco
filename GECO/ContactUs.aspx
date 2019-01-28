@@ -45,7 +45,7 @@
                         <asp:ListItem>-- Select One --</asp:ListItem>
                         <asp:ListItem>Emission Inventory</asp:ListItem>
                         <asp:ListItem>Emission Statement</asp:ListItem>
-                        <asp:ListItem>Emission Fees</asp:ListItem>
+                        <asp:ListItem>Permit Fees</asp:ListItem>
                         <asp:ListItem>Event Registration</asp:ListItem>
                         <asp:ListItem>Permitting</asp:ListItem>
                         <asp:ListItem>Compliance</asp:ListItem>

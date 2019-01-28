@@ -1,9 +1,8 @@
-Imports System.Data
 Imports System.Data.SqlClient
 Imports GECO.FeeBusinessEntity
 Imports GECO.GecoModels
 
-Partial Class Fees_Default
+Partial Class AnnualFees_Default
     Inherits Page
 
 #Region "Global Variables"
@@ -222,7 +221,7 @@ Partial Class Fees_Default
                 SaveConfirmation()
                 Page.Dispose()
                 Response.BufferOutput = True
-                Response.Redirect("~/Fees/FeesReport.aspx?Report=Invoice&FeeYear=" & feeyear.Text)
+                Response.Redirect("~/AnnualFees/FeesReport.aspx?Report=Invoice&FeeYear=" & feeyear.Text)
             Else
                 pnlSignandPay.Visible = True
                 pnlSubmit.Visible = False
@@ -261,7 +260,7 @@ Partial Class Fees_Default
 
     Protected Sub lbtInvoice_Click(ByVal sender As Object, ByVal e As System.EventArgs)
         Try
-            Response.Redirect("~/Fees/FeesReport.aspx?Report=Invoice&FeeYear=" & feeyear.Text)
+            Response.Redirect("~/AnnualFees/FeesReport.aspx?Report=Invoice&FeeYear=" & feeyear.Text)
         Catch exThreadAbort As System.Threading.ThreadAbortException
         Catch ex As Exception
             ErrorReport(ex)
@@ -270,7 +269,7 @@ Partial Class Fees_Default
 
     Protected Sub lbtReports_Click(ByVal sender As Object, ByVal e As System.EventArgs)
         Try
-            Response.Redirect("~/Fees/FeesReport.aspx?Report=FeeReport")
+            Response.Redirect("~/AnnualFees/FeesReport.aspx?Report=FeeReport")
         Catch exThreadAbort As System.Threading.ThreadAbortException
         Catch ex As Exception
             ErrorReport(ex)

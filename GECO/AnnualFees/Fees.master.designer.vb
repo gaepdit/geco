@@ -11,7 +11,7 @@ Option Strict On
 Option Explicit On
 
 
-Partial Public Class Fees_Fees
+Partial Public Class AnnualFees_Fees
     
     '''<summary>
     '''form1 control.

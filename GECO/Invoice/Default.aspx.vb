@@ -37,7 +37,7 @@ Public Class InvoiceDefault
 
         Select Case thisInvoice.InvoiceCategory
             Case InvoiceCategory.EmissionsFees
-                lblWhatFor.Text = thisInvoice.FeeYear.Value.ToString & " Emissions Fees"
+                lblWhatFor.Text = thisInvoice.FeeYear.Value.ToString & " Annual Permit Fees"
                 lblInvoiceType.Text = thisInvoice.InvoiceType.Description
 
             Case InvoiceCategory.PermitApplicationFees

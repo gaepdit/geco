@@ -28,7 +28,7 @@
                     <asp:CheckBoxField DataField="AdminAccess" HeaderText="Admin Access">
                         <ItemStyle HorizontalAlign="Center" CssClass="table-cell-checkbox" />
                     </asp:CheckBoxField>
-                    <asp:CheckBoxField DataField="FeeAccess" HeaderText="Emission Fees">
+                    <asp:CheckBoxField DataField="FeeAccess" HeaderText="Permit Fees">
                         <ItemStyle HorizontalAlign="Center" CssClass="table-cell-checkbox" />
                     </asp:CheckBoxField>
                     <asp:CheckBoxField DataField="EIAccess" HeaderText="Emission Inventory">
@@ -126,21 +126,21 @@
     </ul>
     <h2>
         <asp:Label ID="lblFeeYear1" runat="server" Text=""></asp:Label>
-        Emissions Fees
+        Annual Permit Fees
     </h2>
     <p>
         The
         <asp:Label ID="lblFeeYear2" runat="server" Text=""></asp:Label>
-        Emissions Fee process begins 
+        Annual Permit Fee process begins 
         July&nbsp;1,&nbsp;<asp:Label ID="lblFeeYear3" runat="server" Text=""></asp:Label>. 
         The deadline for fee submittal is 
         <strong>September&nbsp;1,&nbsp;<asp:Label ID="lblFeeYear4" runat="server" Text=""></asp:Label></strong>. 
     </p>
     <p>
         If you need to make an amendment to any past fee submittal, please select the appropriate
-            facility above, navigate to the Emissions Fees application, and select the
-            Supporting Documents tab. The Fee Admentment form is available for download as a
-            Microsoft Excel file. The Fee Calculation worksheets are there also.
+        facility above, navigate to the Annual Permit Fees application, and select the
+        Supporting Documents tab. The Fee Admentment form is available for download as a
+        Microsoft Excel file. The Fee Calculation worksheets are there also.
     </p>
 
     <h2>

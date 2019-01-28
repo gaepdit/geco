@@ -1,4 +1,4 @@
-<%@ Page Language="VB" MasterPageFile="~/Fees/Fees.master" AutoEventWireup="false" Inherits="GECO.Fees_Default" Title="GECO Emissions Fees" Codebehind="Default.aspx.vb" %>
+<%@ Page Language="VB" MasterPageFile="~/AnnualFees/Fees.master" AutoEventWireup="false" Inherits="GECO.AnnualFees_Default" Title="GECO Emissions Fees" Codebehind="Default.aspx.vb" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="Server">
     <acs:ModalUpdateProgress ID="ModalUpdateProgress1" runat="server" DisplayAfter="1500"
@@ -58,7 +58,7 @@
                     <asp:Button ID="btnProceed" runat="server" BackColor="#80FF80" Font-Bold="True" ForeColor="#004040"
                         Text="Proceed ->" CausesValidation="False" Visible="false" />
                 </div>
-                Welcome to the Georgia Air Protection Branch's online Emissions Fee Reporting Form.<br />
+                Welcome to the Georgia Air Protection Branch's online Annual Permit/Emissions Fees Reporting Form.<br />
                 <br />
                 <strong>IMPORTANT INFORMATION</strong>
                 <br />
@@ -160,8 +160,8 @@
                 <div align="right">
                 </div>
                 <asp:RadioButtonList ID="rblFeeContact" runat="server" AutoPostBack="True">
-                    <asp:ListItem Value="1">Use the Fee Contact information for the Emission Fees Contact</asp:ListItem>
-                    <asp:ListItem Value="2">Use My GECO Contact information for the Emission Fees Contact</asp:ListItem>
+                    <asp:ListItem Value="1">Use the Fee Contact information for the Permit Fees Contact</asp:ListItem>
+                    <asp:ListItem Value="2">Use My GECO Contact information for the Permit Fees Contact</asp:ListItem>
                 </asp:RadioButtonList>
                 <br />
                 <asp:ValidationSummary ID="ValidationSummary3" runat="server" ValidationGroup="Contact"
@@ -635,7 +635,7 @@
                     <p align="left">
                         <font>The undersigned certifies that the permit fees have been calculated in accordance
                             with Georgia Air Quality Control <strong>Rule 391-3-1-.03(9)</strong> and the Division's
-                            "Procedures for Calculating Air Permit Fees" and that this form is complete and
+                            "Procedures for Calculating Air Permit Application & Annual Permit Fees" and that this form is complete and
                             correct to the best of their knowledge.</font>
                     </p>
                     <p align="left">
@@ -715,9 +715,7 @@
                     <strong>Procedures For Calculating Air Permit Fees</strong>
                 </p>
                 <p align="left">
-                    The "Procedures For Calculating Air Permit Fees" for Calendar Year
-                    <% =feeyear.Text%>
-                    (permit fee manual) specifies the methods used to calculate the permit fees required
+                    The Permit Fee Manual specifies the methods used to calculate the permit fees required
                     under Georgia Air Quality Control Rule 391-3-1-.03(9), “Permit Fees.” These procedures
                     are to be used for calculating fees due for the calendar year ending December&nbsp;31,
                     <% =feeyear.Text%>
@@ -738,7 +736,7 @@
                 </p>
                 <p align="center">
                     <a href="https://epd.georgia.gov/air/procedures-calculating-air-permit-fees" target="_blank">List
-                        of past Air Permit Fees Manuals</a>
+                        of past Air Permit Fee Manuals</a>
                     <br />
                     <br />
                     <a href="https://epd.georgia.gov/air/documents/air-permit-fee-calculation-forms"

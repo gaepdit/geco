@@ -34,7 +34,7 @@
                     <asp:CheckBoxField HeaderText="Admin Rights" DataField="intAdminAccess">
                         <ItemStyle HorizontalAlign="Center" CssClass="table-cell-checkbox" />
                     </asp:CheckBoxField>
-                    <asp:CheckBoxField HeaderText="Emissions Fees" DataField="intFeeAccess">
+                    <asp:CheckBoxField HeaderText="Permit Fees" DataField="intFeeAccess">
                         <ItemStyle HorizontalAlign="Center" CssClass="table-cell-checkbox" />
                     </asp:CheckBoxField>
                     <asp:CheckBoxField HeaderText="Emissions Inventory System" DataField="intEIAccess">

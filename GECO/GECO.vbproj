@@ -1400,8 +1400,8 @@
     <Content Include="Facility\Default.aspx" />
     <Content Include="FacilityMap.aspx" />
     <Content Include="favicon.ico" />
-    <Content Include="Fees\Default.aspx" />
-    <Content Include="Fees\FeesReport.aspx" />
+    <Content Include="AnnualFees\Default.aspx" />
+    <Content Include="AnnualFees\FeesReport.aspx" />
     <Content Include="GetAirsNo.asmx" />
     <Content Include="Global.asax" />
     <Content Include="NoAccess.aspx" />
@@ -1670,13 +1670,13 @@
       <DependentUpon>FacilityMap.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Fees\Default.aspx.designer.vb">
+    <Compile Include="AnnualFees\Default.aspx.designer.vb">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Fees\Fees.master.designer.vb">
+    <Compile Include="AnnualFees\Fees.master.designer.vb">
       <DependentUpon>Fees.master</DependentUpon>
     </Compile>
-    <Compile Include="Fees\FeesReport.aspx.designer.vb">
+    <Compile Include="AnnualFees\FeesReport.aspx.designer.vb">
       <DependentUpon>FeesReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="GetAirsNo.vb">
@@ -2036,15 +2036,15 @@
       <DependentUpon>EventList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Fees\Default.aspx.vb">
+    <Compile Include="AnnualFees\Default.aspx.vb">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Fees\Fees.master.vb">
+    <Compile Include="AnnualFees\Fees.master.vb">
       <DependentUpon>Fees.master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Fees\FeesReport.aspx.vb">
+    <Compile Include="AnnualFees\FeesReport.aspx.vb">
       <DependentUpon>FeesReport.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
@@ -2080,10 +2080,10 @@
     <Content Include="EIS\eismaster.master" />
     <Content Include="EIS\files\epa_qa_checks.xlsx" />
     <Content Include="ES\es.master" />
-    <Content Include="Fees\FeeAmendment.xls" />
-    <Content Include="Fees\FeeInvoice.rpt" />
-    <Content Include="Fees\FeeReport.rpt" />
-    <Content Include="Fees\Fees.master" />
+    <Content Include="AnnualFees\FeeAmendment.xls" />
+    <Content Include="AnnualFees\FeeInvoice.rpt" />
+    <Content Include="AnnualFees\FeeReport.rpt" />
+    <Content Include="AnnualFees\Fees.master" />
     <Content Include="MainMaster.master" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>

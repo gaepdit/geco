@@ -596,9 +596,9 @@ Partial Class FacilityHome
     Protected Sub lbtnEFContact_Click(sender As Object, e As EventArgs) Handles lbtnEFContact.Click
         Try
             rblContact.SelectedIndex = 0
-            rblContact.Items(0).Text = "Use the current information for the Emission Fees Contact"
-            rblContact.Items(1).Text = "Use my GECO contact information for the Emission Fees Contact"
-            lblContactHeader.Text = "Update Emission Fees Contact"
+            rblContact.Items(0).Text = "Use the current information for the Permit Fees Contact"
+            rblContact.Items(1).Text = "Use my GECO contact information for the Permit Fees Contact"
+            lblContactHeader.Text = "Update Permit Fees Contact"
 
             lblContactMsg.Visible = False
             hidContactKey.Value = 40

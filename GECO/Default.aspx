@@ -45,11 +45,21 @@
         The Emissions Statement is due on or about June&nbsp;15 each year.
     </p>
 
-    <h2>Permit Fees</h2>
+    <h2>Permit Application Fees</h2>
     <p>
-        Annual permit fees are required for Synthetic Minor and Part 70 sources, as well as certain NSPS sources. The 
-        <a href="https://epd.georgia.gov/air/procedures-calculating-air-permit-fees" target="_blank">Procedures For Calculating Air Permit Fees</a>
-        should be used to determine whether fees are required and to calculate fee amounts.
+        Permit application fees are required when applying for certain permit actions. Refer to the
+        <a href="https://epd.georgia.gov/air/air-permit-fees" target="_blank">Air Permit Fee Manual</a> 
+        to determine what type of permit application fee is due when submitting a permit application.
+    </p>
+    <p>
+        Permit application fees are owed in addition to any annual fees described below.
+    </p>
+
+    <h2>Annual Permit Fees</h2>
+    <p>
+        Annual permit fees are required for Synthetic Minor and Part 70 sources, and certain NSPS sources. The 
+        <a href="https://epd.georgia.gov/air/air-permit-fees" target="_blank">Air Permit Fee Manual</a> provides
+        instructions and should be used to calculate fee amounts.
     </p>
     <p>
         The emission fee process begins July&nbsp;1 each year, and the deadline for fee submittal is on or about September&nbsp;1.

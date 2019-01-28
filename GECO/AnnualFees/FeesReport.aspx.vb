@@ -1,7 +1,7 @@
 Imports CrystalDecisions.Shared
 Imports CrystalDecisions.CrystalReports.Engine
 
-Partial Class Fees_FeesReport
+Partial Class AnnualFees_FeesReport
     Inherits Page
     Dim CrReportDocument As New ReportDocument()
 
@@ -24,7 +24,7 @@ Partial Class Fees_FeesReport
         Dim year As String = Request.QueryString("FeeYear")
         Try
             If report = "Invoice" Then
-                reportPath = Server.MapPath("~/Fees/FeeInvoice.rpt")
+                reportPath = Server.MapPath("~/AnnualFees/FeeInvoice.rpt")
                 p1.ParameterFieldName = "AirsNumber"
                 p3.Value = "0413" & GetCookie(Cookie.AirsNumber)
                 p1.CurrentValues.Add(p3)
@@ -37,7 +37,7 @@ Partial Class Fees_FeesReport
                 p.Add(p2)
                 myCrystalReportViewer.ParameterFieldInfo = p
             Else
-                reportPath = Server.MapPath("~/Fees/FeeReport.rpt")
+                reportPath = Server.MapPath("~/AnnualFees/FeeReport.rpt")
                 p1.ParameterFieldName = "AirsNumber"
                 p3.Value = "0413" & GetCookie(Cookie.AirsNumber)
                 p1.CurrentValues.Add(p3)
@@ -85,7 +85,7 @@ Partial Class Fees_FeesReport
         'sm.RegisterAsyncPostBackControl(myCrystalReportViewer)
         If Not IsPostBack Then
             Dim easymenu = CType(Master.FindControl("EasyMenu1"), Sequentum.EasyMenu)
-            easymenu.MenuRoot.AddSubMenuItem("Back to Emission Fees", "Default.aspx")
+            easymenu.MenuRoot.AddSubMenuItem("Back to Fees Form", "Default.aspx")
         End If
 
     End Sub

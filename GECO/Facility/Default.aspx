@@ -32,7 +32,7 @@
 
                 <asp:TableRow ID="AppsPermitApps" runat="server">
                     <asp:TableHeaderCell runat="server" CssClass="table-cell-link">
-                        <asp:HyperLink ID="PALink" runat="server" Text="Air Quality Permits" NavigateUrl="~/Permits/"></asp:HyperLink>
+                        <asp:HyperLink ID="PALink" runat="server" NavigateUrl="~/Permits/">Air Quality Permits & <br />Permit Application Fees</asp:HyperLink>
                     </asp:TableHeaderCell>
                     <asp:TableCell runat="server">                        
                         <asp:Label ID="PAText" runat="server"></asp:Label>
@@ -47,7 +47,7 @@
 
                 <asp:TableRow ID="AppsEmissionFees" runat="server">
                     <asp:TableHeaderCell runat="server" CssClass="table-cell-link">
-                        <asp:HyperLink ID="EFLink" runat="server" Text="Emissions Fees" NavigateUrl="~/Fees/Default.aspx"></asp:HyperLink>
+                        <asp:HyperLink ID="EFLink" runat="server" NavigateUrl="~/AnnualFees/Default.aspx">Annual Permit Fees</asp:HyperLink>
                     </asp:TableHeaderCell>
                     <asp:TableCell runat="server">
                         <asp:Literal ID="litEFText" runat="server"></asp:Literal>

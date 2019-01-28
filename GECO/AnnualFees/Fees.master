@@ -1,9 +1,9 @@
-﻿<%@ Master Language="VB" Inherits="GECO.Fees_Fees" Codebehind="Fees.master.vb" %>
+﻿<%@ Master Language="VB" Inherits="GECO.AnnualFees_Fees" Codebehind="Fees.master.vb" %>
 <%@ Register Assembly="EasyMenu" Namespace="Sequentum" TagPrefix="easymenu" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang="en-us" xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title>GECO - Fees</title>
+    <title>GECO Annual Permit Fees</title>
     <link rel="apple-touch-icon" sizes="180x180" href="~/assets/epd-favicons/apple-touch-icon.png?v=69kRrvbXdL" />
     <link rel="icon" type="image/png" href="~/assets/epd-favicons/favicon-32x32.png?v=69kRrvbXdL" sizes="32x32" />
     <link rel="icon" type="image/png" href="~/assets/epd-favicons/favicon-16x16.png?v=69kRrvbXdL" sizes="16x16" />

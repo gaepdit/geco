@@ -95,9 +95,9 @@ Namespace GecoModels
     End Class
 
     Public Enum InvoiceCategory
-        <Description("Emissions Fees")>
+        <Description("Annual Fees")>
         EmissionsFees
-        <Description("Permit Application Fees")>
+        <Description("Application Fees")>
         PermitApplicationFees
     End Enum
 
