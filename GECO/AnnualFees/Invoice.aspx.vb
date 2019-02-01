@@ -1,7 +1,7 @@
 Imports CrystalDecisions.Shared
 Imports CrystalDecisions.CrystalReports.Engine
 
-Partial Class AnnualFees_FeesReport
+Partial Class AnnualFees_Invoice
     Inherits Page
     Dim CrReportDocument As New ReportDocument()
 
@@ -20,38 +20,40 @@ Partial Class AnnualFees_FeesReport
         Dim p3 As New ParameterDiscreteValue
         Dim p4 As New ParameterDiscreteValue
 
-        Dim report As String = Request.QueryString("Report")
         Dim year As String = Request.QueryString("FeeYear")
-        Try
-            If report = "Invoice" Then
-                reportPath = Server.MapPath("~/AnnualFees/FeeInvoice.rpt")
-                p1.ParameterFieldName = "AirsNumber"
-                p3.Value = "0413" & GetCookie(Cookie.AirsNumber)
-                p1.CurrentValues.Add(p3)
-                p.Add(p1)
-                myCrystalReportViewer.ParameterFieldInfo = p
 
-                p2.ParameterFieldName = "Year"
-                p4.Value = CInt(year)
-                p2.CurrentValues.Add(p4)
-                p.Add(p2)
-                myCrystalReportViewer.ParameterFieldInfo = p
-            Else
-                reportPath = Server.MapPath("~/AnnualFees/FeeReport.rpt")
-                p1.ParameterFieldName = "AirsNumber"
-                p3.Value = "0413" & GetCookie(Cookie.AirsNumber)
-                p1.CurrentValues.Add(p3)
-                p.Add(p1)
-                myCrystalReportViewer.ParameterFieldInfo = p
-            End If
+        Dim yearInt As Integer
+
+        If String.IsNullOrEmpty(year) OrElse Not Integer.TryParse(year, yearInt) Then
+            Throw New HttpException(404, "Invoice fee year is not valid.")
+        End If
+
+        If yearInt < 1992 Or yearInt >= Today.Year Then
+            Throw New HttpException(404, "Invoice fee year is not valid.")
+        End If
+
+        Try
+            reportPath = Server.MapPath("~/AnnualFees/FeeInvoice.rpt")
+            p1.ParameterFieldName = "AirsNumber"
+            p3.Value = "0413" & GetCookie(Cookie.AirsNumber)
+            p1.CurrentValues.Add(p3)
+            p.Add(p1)
+            myCrystalReportViewer.ParameterFieldInfo = p
+
+            p2.ParameterFieldName = "Year"
+            p4.Value = yearInt
+            p2.CurrentValues.Add(p4)
+            p.Add(p2)
+            myCrystalReportViewer.ParameterFieldInfo = p
+
             'Create an instance of the strongly-typed report object
             CrReportDocument.Load(reportPath)
 
             'Create the Conection Info object to hold the logon information for the report
             crConnectionInfo = New ConnectionInfo()
-            Dim database_service As String = System.Configuration.ConfigurationManager.AppSettings("database_service")
-            Dim database_uid As String = System.Configuration.ConfigurationManager.AppSettings("database_uid")
-            Dim database_pwd As String = System.Configuration.ConfigurationManager.AppSettings("database_pwd")
+            Dim database_service As String = ConfigurationManager.AppSettings("database_service")
+            Dim database_uid As String = ConfigurationManager.AppSettings("database_uid")
+            Dim database_pwd As String = ConfigurationManager.AppSettings("database_pwd")
 
             ' setup the connection
             With crConnectionInfo

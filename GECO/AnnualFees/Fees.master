@@ -19,11 +19,10 @@
 
         <div id="header">
             <div id="epdlogo">
-                <a href="https://epd.georgia.gov/" target="_blank" style="color: #01009A;">
-                    <img src='<%= Page.ResolveUrl("~/assets/images/epd_logo.jpg") %>' alt="GA EPD logo" /></a>
+                <img src='<%= Page.ResolveUrl("~/assets/images/epd_logo.jpg") %>' alt="Georgia EPD" />
             </div>
             <div id="apptitle">
-                <img src='<%= Page.ResolveUrl("~/assets/images/airbranch_header_bg.jpg") %>' alt="GA AIR" />
+                <img src='<%= Page.ResolveUrl("~/assets/images/airbranch_header_bg.jpg") %>' alt="Georgia Air Protection Branch" />
             </div>
         </div>
         <div id="usermenu">
@@ -58,37 +57,25 @@
                             <asp:ContentPlaceHolder ID="LeftMenuContent" runat="server">
                             </asp:ContentPlaceHolder>
                         </div>
-                        <div class="clear">
+                        <div class="clear"></div>
+                        <!-- container for full-width content -->
+                        <div class="content-full">
+                            <asp:ContentPlaceHolder ID="FullContent" runat="server">
+                            </asp:ContentPlaceHolder>
                         </div>
+                        <div class="clear"></div>
                     </ContentTemplate>
                 </asp:UpdatePanel>
                 <!-- sets inner-container height, needed for background color -->
             </div>
             <!-- end inner left/center container -->
-            <%--<div class="sidebar">
-                <h2>
-                    Quick Links</h2>
-                <br />
-                <asp:Menu ID="Rightmenu" runat="server" ForeColor="#284E98" Width="99%">
-                <DataBindings>
-                <asp:MenuItemBinding DataMember="MenuItem" TargetField="target"
-                  NavigateUrlField="url" TextField="title" ToolTipField="description"
-                  ValueField="title" />
-              </DataBindings>
-                    <StaticMenuItemStyle HorizontalPadding="15px" />
-                    <DynamicHoverStyle BackColor="#FFFFC0" ForeColor="#0000C0" />
-                    <StaticSelectedStyle BackColor="#C0FFC0" ForeColor="LimeGreen" />
-
-                    <StaticHoverStyle BackColor="#FFFFC0" Font-Bold="True" ForeColor="#0000C0" />
-                </asp:Menu>
-            </div>--%>
             <div class="clear">
             </div>
             <!-- sets outer-container height, needed for background color -->
         </div>
         <!-- end outer 3-column container -->
         <div class="footer">
-            ©2006 • Georgia Environmental Protection Division, Air Protection Branch • All rights reserved
+            ©2006—<%= Now.Year %>, <a href="https://epd.georgia.gov/">Georgia Environmental Protection Division</a>, <a href="https://epd.georgia.gov/air">Air Protection Branch</a> • All rights reserved
         </div>
         <!-- end footer -->
     </form>

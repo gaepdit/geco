@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
@@ -1401,7 +1401,7 @@
     <Content Include="FacilityMap.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="AnnualFees\Default.aspx" />
-    <Content Include="AnnualFees\FeesReport.aspx" />
+    <Content Include="AnnualFees\Invoice.aspx" />
     <Content Include="GetAirsNo.asmx" />
     <Content Include="Global.asax" />
     <Content Include="NoAccess.aspx" />
@@ -1417,10 +1417,7 @@
     </Content>
     <Content Include="XML\FeesNotes\FeesCalculation.xml" />
     <Content Include="XML\FeesNotes\FeesContact.xml" />
-    <Content Include="XML\FeesNotes\FeesDocuments.xml" />
-    <Content Include="XML\FeesNotes\FeesPastReports.xml" />
     <Content Include="XML\FeesNotes\FeesSignature.xml" />
-    <Content Include="XML\FeesNotes\FeesWelcome.xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="404.aspx.designer.vb">
@@ -1676,8 +1673,8 @@
     <Compile Include="AnnualFees\Fees.master.designer.vb">
       <DependentUpon>Fees.master</DependentUpon>
     </Compile>
-    <Compile Include="AnnualFees\FeesReport.aspx.designer.vb">
-      <DependentUpon>FeesReport.aspx</DependentUpon>
+    <Compile Include="AnnualFees\Invoice.aspx.designer.vb">
+      <DependentUpon>Invoice.aspx</DependentUpon>
     </Compile>
     <Compile Include="GetAirsNo.vb">
       <DependentUpon>GetAirsNo.asmx</DependentUpon>
@@ -2044,8 +2041,8 @@
       <DependentUpon>Fees.master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AnnualFees\FeesReport.aspx.vb">
-      <DependentUpon>FeesReport.aspx</DependentUpon>
+    <Compile Include="AnnualFees\Invoice.aspx.vb">
+      <DependentUpon>Invoice.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
@@ -2082,7 +2079,6 @@
     <Content Include="ES\es.master" />
     <Content Include="AnnualFees\FeeAmendment.xls" />
     <Content Include="AnnualFees\FeeInvoice.rpt" />
-    <Content Include="AnnualFees\FeeReport.rpt" />
     <Content Include="AnnualFees\Fees.master" />
     <Content Include="MainMaster.master" />
     <None Include="My Project\Application.myapp">

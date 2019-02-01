@@ -47,7 +47,7 @@
 
                 <asp:TableRow ID="AppsEmissionFees" runat="server">
                     <asp:TableHeaderCell runat="server" CssClass="table-cell-link">
-                        <asp:HyperLink ID="EFLink" runat="server" NavigateUrl="~/AnnualFees/Default.aspx">Annual Permit Fees</asp:HyperLink>
+                        <asp:HyperLink ID="EFLink" runat="server" NavigateUrl="~/AnnualFees/">Annual Permit Fees</asp:HyperLink>
                     </asp:TableHeaderCell>
                     <asp:TableCell runat="server">
                         <asp:Literal ID="litEFText" runat="server"></asp:Literal>

@@ -1,6 +1,6 @@
-<%@ Page Language="VB" MasterPageFile="~/AnnualFees/Fees.master" AutoEventWireup="false" Inherits="GECO.AnnualFees_Default" Title="GECO Emissions Fees" Codebehind="Default.aspx.vb" %>
+<%@ Page Language="VB" MasterPageFile="~/AnnualFees/Fees.master" AutoEventWireup="false" Inherits="GECO.AnnualFees_Default" Title="GECO Emissions Fees" CodeBehind="Default.aspx.vb" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="Server">
+<asp:Content ID="Content1" ContentPlaceHolderID="FullContent" runat="Server">
     <acs:ModalUpdateProgress ID="ModalUpdateProgress1" runat="server" DisplayAfter="1500"
         BackgroundCssClass="modalProgressGreyBackground">
         <ProgressTemplate>
@@ -12,14 +12,13 @@
     </acs:ModalUpdateProgress>
 
     <script type="text/javascript">
-    function ActiveTabChanged(sender, e)
-    {
-      // use the client side active tab changed
-      // event to trigger a callback thereby
-      // triggering the server side event.
-      __doPostBack('<%= UserTabs.ClientID %>',
-      sender.get_activeTab().get_headerText());
-    }
+        function ActiveTabChanged(sender, e) {
+            // use the client side active tab changed
+            // event to trigger a callback thereby
+            // triggering the server side event.
+            __doPostBack('<%= UserTabs.ClientID %>',
+                sender.get_activeTab().get_headerText());
+        }
     </script>
 
     <div visible="false" style="display: none;">
@@ -50,6 +49,10 @@
     <p align="left">
         <asp:Label ID="lblMessage" runat="server" ForeColor="#C00000" Visible="False"></asp:Label>
     </p>
+
+    <asp:Label ID="lblBulletHeading" runat="server" Font-Bold="true" Font-Size="Large" Text="Options:" Visible="true"></asp:Label>
+    <asp:BulletedList ID="blNotes" runat="server" BulletImageUrl="~/assets/images/b-069.gif" BulletStyle="CustomImage"></asp:BulletedList>
+
     <act:TabContainer runat="server" ID="UserTabs" OnClientActiveTabChanged="ActiveTabChanged" OnActiveTabChanged="DoServerSideCode">
 
         <act:TabPanel runat="Server" ID="Welcome" HeaderText="Welcome">
@@ -66,12 +69,26 @@
                     <% =feeyear.Text%>
                     Fees<br />
                     <br />
-                </strong>- The Georgia Air Protection Branch’s Emission Fee Reports are now on-line.
+                </strong>
+                <p>
+                    - The Georgia Air Protection Branch’s Emission Fee Reports are now on-line.
                 Therefore, your facility is required to complete the on-line fee form and submit
                 your fee data electronically no matter the amount of fees the facility may owe.
                 If your facility does not owe a fee, you are still required to complete the on-line
                 fee form and submit the Georgia Air Emissions data electronically. However, you
                 will not be required to mail in any forms or coupons if you do not owe a fee.
+                </p>
+
+                <strong>Options:</strong>
+                <ul>
+                    <li>Fee Contact - Allows the user to update the Fee Contact at any time, not just during the fee submission.</li>
+                    <li>Fee Calculations - Available only when fees have not yet been submitted for the selected year.</li>
+                    <li>Sign & Pay - Available only when fees have not yet been submitted for the selected year.</li>
+                    <li>Supporting Documents - Provides access to the most recent fee manual.</li>
+                    <li>Annual Fee History - Provides historical permit fee information.</li>
+                    <li>Print Invoice - Available for completed fee years only. Prints the fee invoice for the selected fee year.</li>
+                </ul>
+
                 <p>
                     <strong>- Calendar Year
                         <% =feeyear.Text%>
@@ -750,81 +767,68 @@
             </ContentTemplate>
         </act:TabPanel>
 
-        <act:TabPanel runat="server" ID="Reports" HeaderText="Invoice/Deposits">
+        <act:TabPanel runat="server" ID="Reports" HeaderText="History">
             <ContentTemplate>
-                <%-- Please select a year for which you want to print a report:
-            <asp:DropDownList ID="ddlReportYear" runat="server" AutoPostBack="False">
-            </asp:DropDownList>--%>
                 <p align="left">
-                    <strong>Report Summaries</strong>
+                    Following is annual permit fee information from the current year back to 2004. (Past invoice and deposit information is now located
+                    in the separate
+                    <asp:HyperLink ID="hlPermitFees" runat="server" NavigateUrl="~/Fees/">Permit Fees</asp:HyperLink>
+                    section.)
                 </p>
-                <p align="left">
-                    The print report has fee information from the current year back to 2004. The report
-                    is created using a Crystal Reports designed print out, please pay attention to the
-                    instructions in the left-hand menu as you examine the report. There are several
-                    options for printing and exporting the reports.
-                </p>
-                <p align="center">
-                    <asp:LinkButton ID="lbtReports" runat="Server" OnClick="lbtReports_Click">Open Fee Reports</asp:LinkButton>
-                </p>
-                <act:TabContainer runat="server" ID="FeesData" ActiveTabIndex="0">
-                    <act:TabPanel ID="Deposits" runat="server" HeaderText="Deposits">
-                        <ContentTemplate>
 
-                            <asp:GridView ID="grdDeposits" DataKeyNames="STRAIRSNUMBER" OnRowDataBound="GridView_RowDataBound"
-                                AutoGenerateColumns="false" runat="Server" AllowSorting="true"
-                                CssClass="tablestyle" PageSize="20" AllowPaging="true" OnSorting="grdDeposits_Sorting"
-                                OnPageIndexChanging="grdDeposits_PageIndexChanging">
-                                <AlternatingRowStyle CssClass="alternatingrowstyle" />
-                                <HeaderStyle CssClass="headerstyle" />
-                                <PagerSettings Position="TopAndBottom" />
-                                <RowStyle CssClass="rowstyle" />
-                                <Columns>
-                                    <asp:BoundField DataField="intYear" HeaderText="Fee Year" SortExpression="intYear" />
-                                    <asp:BoundField DataField="numpayment" HeaderText="Amount Deposited" HtmlEncode="false"
-                                        DataFormatString="{0:C}" SortExpression="numpayment" />
-                                    <asp:BoundField DataField="strcheckno" HeaderText="Check No." SortExpression="strcheckno" />
-                                    <asp:BoundField DataField="datpaydate" HeaderText="Date Deposited" HtmlEncode="false"
-                                        DataFormatString="{0:d}" SortExpression="datpaydate" />
-                                    <%-- <asp:BoundField DataField="strpaytype" HeaderText="Pay Type" SortExpression="strpaytype" />--%>
-                                </Columns>
-                            </asp:GridView>
-                        </ContentTemplate>
-                    </act:TabPanel>
-                    <act:TabPanel ID="Invoices" runat="server" HeaderText="Invoices">
-                        <ContentTemplate>
-                            <asp:GridView ID="grdInvoices" DataKeyNames="STRAIRSNUMBER" OnRowDataBound="GridView_RowDataBound"
-                                AutoGenerateColumns="false" runat="Server" AllowSorting="true"
-                                CssClass="tablestyle" PageSize="20" AllowPaging="true" OnSorting="grdInvoices_Sorting"
-                                OnPageIndexChanging="grdInvoices_PageIndexChanging">
-                                <AlternatingRowStyle CssClass="alternatingrowstyle" />
-                                <HeaderStyle CssClass="headerstyle" />
-                                <PagerSettings Position="TopAndBottom" />
-                                <RowStyle CssClass="rowstyle" />
+                <asp:GridView ID="grdFeeHistory" runat="server" CssClass="table-simple" Visible="true" AutoGenerateColumns="False"
+                    UseAccessibleHeader="true" RowHeaderColumn="NUMFEEYEAR">
+                    <Columns>
+                        <asp:BoundField DataField="NUMFEEYEAR" HeaderText="Fee Year" />
+                        <asp:TemplateField HeaderText="Fee Contact">
+                            <ItemTemplate>
+                                <%# String.Format("{0} {1}", Eval("STRCONTACTFIRSTNAME"), Eval("STRCONTACTLASTNAME")) %><br />
+                                <%# Eval("STRCONTACTCOMPANYNAME") %><br />
+                                <%# Eval("STRCONTACTADDRESS") %><br />
+                                <%# String.Format("{0}, {1} {2}", Eval("STRCONTACTCITY"), Eval("STRCONTACTSTATE"), Eval("STRCONTACTZIPCODE")) %>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Facility Status">
+                            <ItemTemplate>
+                                Classification:&nbsp;<b><%# Eval("STRCLASS") %></b><br />
+                                Subject&nbsp;to&nbsp;NSPS:&nbsp;<b><%# Eval("STRNSPS") %></b><br />
+                                NSPS&nbsp;Exempt:&nbsp;<b><%# Eval("STRNSPSEXEMPT") %></b><br />
+                                <br />
+                                Payment&nbsp;Type&nbsp;Selected:<br />
+                                <b><%# Eval("STRPAYMENTPLAN") %></b>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Reported Annual Emissions (tons)">
+                            <ItemTemplate>
+                                VOC:&nbsp;<b><%# Eval("INTVOCTONS") %></b><br />
+                                NO<sub>x</sub>:&nbsp;<b><%# Eval("INTNOXTONS") %></b><br />
+                                PM:&nbsp;<b><%# Eval("INTPMTONS") %></b><br />
+                                SO<sub>2</sub>:&nbsp;<b><%# Eval("INTSO2TONS") %></b><br />
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Annual Emissions Fees">
+                            <ItemTemplate>
+                                Fee&nbsp;Rate:&nbsp;<b><%# String.Format("{0:c}", Eval("NUMPERTONRATE")) %></b>
+                                Fee&nbsp;for&nbsp;VOC:&nbsp;<b><%# String.Format("{0:c}", Eval("INTVOCTONS") * Eval("NUMPERTONRATE")) %></b><br />
+                                Fee&nbsp;for&nbsp;NO<sub>x</sub>:&nbsp;<b><%# String.Format("{0:c}", Eval("INTNOXTONS") * Eval("NUMPERTONRATE")) %></b><br />
+                                Fee&nbsp;for&nbsp;PM:&nbsp;<b><%# String.Format("{0:c}", Eval("INTPMTONS") * Eval("NUMPERTONRATE")) %></b><br />
+                                Fee&nbsp;for&nbsp;SO<sub>2</sub>:&nbsp;<b><%# String.Format("{0:c}", Eval("INTSO2TONS") * Eval("NUMPERTONRATE")) %></b><br />
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Total Fees">
+                            <ItemTemplate>
+                                Total&nbsp;Part&nbsp;70&nbsp;Fee:&nbsp;<b><%# String.Format("{0:c}", Eval("NUMPART70FEE")) %></b><br />
+                                Part&nbsp;70/SM&nbsp;Fee:&nbsp;<b><%# String.Format("{0:c}", Eval("NUMSMFEE")) %></b><br />
+                                NSPS&nbsp;Fee:&nbsp;<b><%# String.Format("{0:c}", Eval("NUMNSPSFEE")) %></b><br />
+                                Admin&nbsp;Fee:&nbsp;<b><%# String.Format("{0:c}", Eval("NUMADMINFEE")) %></b><br />
+                                <br />
+                                Total&nbsp;Fee&nbsp;Due:&nbsp;<b><%# String.Format("{0:c}", Eval("NUMTOTALFEE")) %></b>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                    </Columns>
+                </asp:GridView>
 
-                                <Columns>
-                                    <asp:HyperLinkField HeaderText="Fee Year" DataTextField="intYear" SortExpression="intYear" DataNavigateUrlFields="intYear"
-                                        DataNavigateUrlFormatString="FeesReport.aspx?Report=Invoice&FeeYear={0}" />
-                                    <asp:BoundField DataField="numTotalfee" HeaderText="Invoice Amount" HtmlEncode="false"
-                                        DataFormatString="{0:C}" SortExpression="numTotalfee" />
-                                    <asp:BoundField DataField="datesubmit" HeaderText="Date Submitted" HtmlEncode="false"
-                                        DataFormatString="{0:d}" SortExpression="datesubmit" />
-                                    <asp:BoundField DataField="strpaymentType" HeaderText="Payment Type" SortExpression="strpaymentType" />
-                                    <asp:BoundField DataField="strofficialname" HeaderText="Submitted by" />
-                                </Columns>
-                            </asp:GridView>
-                        </ContentTemplate>
-                    </act:TabPanel>
-                </act:TabContainer>
             </ContentTemplate>
         </act:TabPanel>
     </act:TabContainer>
-</asp:Content>
-
-<asp:Content ID="Content2" ContentPlaceHolderID="LeftMenuContent" runat="Server">
-    <asp:Label ID="lblBulletHeading" runat="server" Font-Bold="true" Font-Size="Large"
-        Text="Options:" Visible="true"></asp:Label>
-    <asp:BulletedList ID="blNotes" runat="server" BulletImageUrl="~/assets/images/b-069.gif"
-        BulletStyle="CustomImage">
-    </asp:BulletedList>
 </asp:Content>

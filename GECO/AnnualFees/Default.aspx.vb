@@ -31,11 +31,8 @@ Partial Class AnnualFees_Default
             lblMessage.Visible = True
 
             Try
-                'Attach the right hand menu
-                xmldatasource.DataFile = "~/XML/FeesNotes/FeesWelcome.xml"
-                blNotes.DataSource = xmldatasource
-                blNotes.DataTextField = "text"
-                blNotes.DataBind()
+                lblBulletHeading.Visible = False
+                blNotes.Visible = False
 
                 'Use FindControl to get the controls from the master page
                 'Add the User data in the Top Header
@@ -221,7 +218,7 @@ Partial Class AnnualFees_Default
                 SaveConfirmation()
                 Page.Dispose()
                 Response.BufferOutput = True
-                Response.Redirect("~/AnnualFees/FeesReport.aspx?Report=Invoice&FeeYear=" & feeyear.Text)
+                Response.Redirect("~/AnnualFees/Invoice.aspx?FeeYear=" & feeyear.Text)
             Else
                 pnlSignandPay.Visible = True
                 pnlSubmit.Visible = False
@@ -260,16 +257,7 @@ Partial Class AnnualFees_Default
 
     Protected Sub lbtInvoice_Click(ByVal sender As Object, ByVal e As System.EventArgs)
         Try
-            Response.Redirect("~/AnnualFees/FeesReport.aspx?Report=Invoice&FeeYear=" & feeyear.Text)
-        Catch exThreadAbort As System.Threading.ThreadAbortException
-        Catch ex As Exception
-            ErrorReport(ex)
-        End Try
-    End Sub
-
-    Protected Sub lbtReports_Click(ByVal sender As Object, ByVal e As System.EventArgs)
-        Try
-            Response.Redirect("~/AnnualFees/FeesReport.aspx?Report=FeeReport")
+            Response.Redirect("~/AnnualFees/Invoice.aspx?FeeYear=" & feeyear.Text)
         Catch exThreadAbort As System.Threading.ThreadAbortException
         Catch ex As Exception
             ErrorReport(ex)
@@ -1193,17 +1181,9 @@ Partial Class AnnualFees_Default
         End If
     End Sub
 
-    Protected Sub LoadFeesData()
-        Try
-            grdInvoices.DataSource = GetInvoices()
-            grdInvoices.DataBind()
-            grdDeposits.DataSource = GetDeposits()
-            grdDeposits.DataBind()
-
-        Catch exThreadAbort As System.Threading.ThreadAbortException
-        Catch ex As Exception
-            ErrorReport(ex)
-        End Try
+    Protected Sub LoadAnnualFeesHistory()
+        grdFeeHistory.DataSource = GetAnnualFeeHistory(currentAirs)
+        grdFeeHistory.DataBind()
     End Sub
 
 #End Region
@@ -2559,8 +2539,7 @@ Partial Class AnnualFees_Default
 
     Sub ErrorMessage()
 
-        lblMessage.Text = "There are errors in the form. <br> " _
-                        + "Please check each section and submit again."
+        lblMessage.Text = "There are errors in the form. <br> Please check each section and submit again."
         lblMessage.Visible = True
 
     End Sub
@@ -2573,13 +2552,10 @@ Partial Class AnnualFees_Default
 
         Try
             'Based on which tab is clicked the following will be executed
-            Select Case UserTabs.ActiveTab.ID.ToString
+            Select Case UserTabs.ActiveTab.ID
                 Case "Welcome" 'Facility Access
-                    xmldatasource.DataFile = "~/XML/FeesNotes/FeesWelcome.xml"
-                    blNotes.DataSource = xmldatasource
-                    blNotes.DataTextField = "text"
-                    blNotes.DataBind()
-                    lblBulletHeading.Text = "Options:"
+                    lblBulletHeading.Visible = False
+                    blNotes.Visible = False
 
                 Case "Contact"
                     'If Facility Contact is already loaded, then do not re-load
@@ -2596,6 +2572,8 @@ Partial Class AnnualFees_Default
                         btnUpdateContact.Enabled = True
                     End If
 
+                    lblBulletHeading.Visible = True
+                    blNotes.Visible = True
                     xmldatasource.DataFile = "~/XML/FeesNotes/FeesContact.xml"
                     blNotes.DataSource = xmldatasource
                     blNotes.DataTextField = "text"
@@ -2607,8 +2585,10 @@ Partial Class AnnualFees_Default
                         'Load Data from database
                         LoadFeeCalculations()
                         ClassCalculate()
-                    Else
                     End If
+
+                    lblBulletHeading.Visible = True
+                    blNotes.Visible = True
                     xmldatasource.DataFile = "~/XML/FeesNotes/FeesCalculation.xml"
                     blNotes.DataSource = xmldatasource
                     blNotes.DataTextField = "text"
@@ -2625,175 +2605,29 @@ Partial Class AnnualFees_Default
                         Else
                             rblPaymentType.SelectedIndex = 0
                         End If
-                    Else
                     End If
+
+                    lblBulletHeading.Visible = True
+                    blNotes.Visible = True
                     xmldatasource.DataFile = "~/XML/FeesNotes/FeesSignature.xml"
                     blNotes.DataSource = xmldatasource
                     blNotes.DataTextField = "text"
                     blNotes.DataBind()
 
                 Case "SupDoc"
-                    xmldatasource.DataFile = "~/XML/FeesNotes/FeesDocuments.xml"
-                    blNotes.DataSource = xmldatasource
-                    blNotes.DataTextField = "text"
-                    blNotes.DataBind()
+                    lblBulletHeading.Visible = False
+                    blNotes.Visible = False
 
                 Case "Reports"
-                    xmldatasource.DataFile = "~/XML/FeesNotes/FeesPastReports.xml"
-                    blNotes.DataSource = xmldatasource
-                    blNotes.DataTextField = "text"
-                    blNotes.DataBind()
-
-                    LoadFeesData()
+                    lblBulletHeading.Visible = False
+                    blNotes.Visible = False
+                    LoadAnnualFeesHistory()
 
             End Select
         Catch exThreadAbort As System.Threading.ThreadAbortException
         Catch ex As Exception
             ErrorReport(ex)
         End Try
-    End Sub
-
-    Private Property GridViewSortDirection() As String
-
-        Get
-            Return IIf(ViewState("SortDirection") = Nothing, "ASC", ViewState("SortDirection"))
-        End Get
-        Set(ByVal value As String)
-            ViewState("SortDirection") = value
-        End Set
-
-    End Property
-
-    Private Property GridViewSortExpression() As String
-
-        Get
-            Return IIf(ViewState("SortExpression") = Nothing, String.Empty, ViewState("SortExpression"))
-        End Get
-        Set(ByVal value As String)
-            ViewState("SortExpression") = value
-        End Set
-
-    End Property
-
-    Private Function GetSortDirection() As String
-
-        Select Case GridViewSortDirection
-            Case "ASC"
-                GridViewSortDirection = "DESC"
-            Case "DESC"
-                GridViewSortDirection = "ASC"
-        End Select
-
-        Return GridViewSortDirection
-
-    End Function
-
-    Protected Function SortDataTable(ByVal pdataTable As DataTable, ByVal isPageIndexChanging As Boolean) As DataView
-
-        If Not pdataTable Is Nothing Then
-            Dim pdataView As New DataView(pdataTable)
-            If GridViewSortExpression <> String.Empty Then
-                If isPageIndexChanging Then
-                    pdataView.Sort = String.Format("{0} {1}", GridViewSortExpression, GridViewSortDirection)
-                Else
-                    pdataView.Sort = String.Format("{0} {1}", GridViewSortExpression, GetSortDirection())
-                End If
-            End If
-            Return pdataView
-        Else
-            Return New DataView()
-        End If
-
-    End Function
-
-    Protected Sub grdInvoices_Sorting(ByVal sender As Object, ByVal e As GridViewSortEventArgs)
-        Try
-            GridViewSortExpression = e.SortExpression
-            'GridViewSortDirection = e.SortDirection
-
-            Dim pageIndex As Integer = grdInvoices.PageIndex
-            grdInvoices.DataSource = SortDataTable(Session("grdInvoices"), False)
-
-            Dim gridView As GridView = DirectCast(sender, GridView)
-            grdInvoices.DataBind()
-            grdInvoices.PageIndex = pageIndex
-
-        Catch exThreadAbort As System.Threading.ThreadAbortException
-        Catch ex As Exception
-            ErrorReport(ex)
-        End Try
-
-    End Sub
-
-    Protected Sub grdInvoices_PageIndexChanging(ByVal sender As Object, ByVal e As GridViewPageEventArgs)
-        Try
-            grdInvoices.DataSource = SortDataTable(Session("grdInvoices"), True)
-            grdInvoices.PageIndex = e.NewPageIndex
-            grdInvoices.DataBind()
-        Catch exThreadAbort As System.Threading.ThreadAbortException
-        Catch ex As Exception
-            ErrorReport(ex)
-        End Try
-
-    End Sub
-
-    Protected Sub grdDeposits_Sorting(ByVal sender As Object, ByVal e As GridViewSortEventArgs)
-        Try
-            GridViewSortExpression = e.SortExpression
-            'GridViewSortDirection = e.SortDirection
-
-            Dim pageIndex As Integer = grdDeposits.PageIndex
-            grdDeposits.DataSource = SortDataTable(Session("grdDeposits"), False)
-
-            Dim gridView As GridView = DirectCast(sender, GridView)
-            grdDeposits.DataBind()
-            grdDeposits.PageIndex = pageIndex
-
-        Catch exThreadAbort As System.Threading.ThreadAbortException
-        Catch ex As Exception
-            ErrorReport(ex)
-        End Try
-
-    End Sub
-
-    Protected Sub grdDeposits_PageIndexChanging(ByVal sender As Object, ByVal e As GridViewPageEventArgs)
-        Try
-            grdDeposits.DataSource = SortDataTable(Session("grdDeposits"), True)
-            grdDeposits.PageIndex = e.NewPageIndex
-            grdDeposits.DataBind()
-        Catch exThreadAbort As System.Threading.ThreadAbortException
-        Catch ex As Exception
-            ErrorReport(ex)
-        End Try
-
-    End Sub
-
-    Protected Sub GridView_RowDataBound(ByVal sender As Object, ByVal e As GridViewRowEventArgs)
-        Try
-            Dim gridView As GridView = DirectCast(sender, GridView)
-
-            If e.Row.RowType = DataControlRowType.Header Then
-                Dim cellIndex As Integer = -1
-                For Each field As DataControlField In gridView.Columns
-                    e.Row.Cells(gridView.Columns.IndexOf(field)).CssClass = "headerstyle"
-
-                    If field.SortExpression = GridViewSortExpression Then
-                        cellIndex = gridView.Columns.IndexOf(field)
-                    End If
-                Next
-
-                If cellIndex > -1 Then
-                    ' this is a header row,
-                    ' set the sort style
-                    e.Row.Cells(cellIndex).CssClass = IIf(GridViewSortDirection = "DESC", "sortascheaderstyle", "sortdescheaderstyle")
-                End If
-            End If
-
-        Catch exThreadAbort As System.Threading.ThreadAbortException
-        Catch ex As Exception
-            ErrorReport(ex)
-        End Try
-
     End Sub
 
 #End Region

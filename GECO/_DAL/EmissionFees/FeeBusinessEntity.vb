@@ -163,54 +163,6 @@ Public Class FeeBusinessEntity
         Return DB.GetDataRow(SQL, params)
     End Function
 
-    Public Shared Function GetInvoices() As DataTable
-        Try
-            If HttpContext.Current.Session("grdInvoices") Is Nothing Then
-                Dim SQL = "SELECT * " &
-                        " FROM VW_Fee_Invoices " &
-                        " WHERE strairsnumber = @airs " &
-                        " order by strairsnumber, intyear desc"
-
-                Dim param As New SqlParameter("@airs", "0413" & GetCookie(Cookie.AirsNumber))
-
-                Dim dt As DataTable = DB.GetDataTable(SQL, param)
-
-                HttpContext.Current.Session.Add("grdInvoices", dt)
-                Return dt
-            Else
-                Return HttpContext.Current.Session("grdInvoices")
-            End If
-
-        Catch ex As Exception
-            ErrorReport(ex)
-            Return Nothing
-        End Try
-    End Function
-
-    Public Shared Function GetDeposits() As DataTable
-        Try
-            If HttpContext.Current.Session("grdDeposits") Is Nothing Then
-                Dim SQL = "SELECT * " &
-                    " FROM VW_Fee_Transactions " &
-                    " WHERE strairsnumber = @airs " &
-                    " order by strairsnumber, intyear desc"
-
-                Dim param As New SqlParameter("@airs", "0413" & GetCookie(Cookie.AirsNumber))
-
-                Dim dt As DataTable = DB.GetDataTable(SQL, param)
-
-                HttpContext.Current.Session.Add("grdDeposits", dt)
-                Return dt
-            Else
-                Return HttpContext.Current.Session("grdDeposits")
-            End If
-
-        Catch ex As Exception
-            ErrorReport(ex)
-            Return Nothing
-        End Try
-    End Function
-
     Public Shared Function GetFeeStatus(airs As ApbFacilityId) As DataRow
         Dim query As String = " select " &
         "     a.STRAIRSNUMBER, " &
@@ -233,6 +185,12 @@ Public Class FeeBusinessEntity
         Dim param As New SqlParameter("@airs", airs.DbFormattedString)
 
         Return DB.GetDataRow(query, param)
+    End Function
+
+    Public Shared Function GetAnnualFeeHistory(airs As ApbFacilityId) As DataTable
+        Dim spName As String = "iaip_facility.GetAnnualFeesHistory"
+
+        Return DB.SPGetDataTable(spName, New SqlParameter("@FacilityID", airs.DbFormattedString))
     End Function
 
 End Class

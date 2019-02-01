@@ -11,7 +11,7 @@ Option Strict On
 Option Explicit On
 
 
-Partial Public Class AnnualFees_FeesReport
+Partial Public Class AnnualFees_Invoice
 
     '''<summary>
     '''myCrystalReportViewer control.

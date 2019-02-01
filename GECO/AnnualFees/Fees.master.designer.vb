@@ -93,4 +93,13 @@ Partial Public Class AnnualFees_Fees
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents LeftMenuContent As Global.System.Web.UI.WebControls.ContentPlaceHolder
+    
+    '''<summary>
+    '''FullContent control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents FullContent As Global.System.Web.UI.WebControls.ContentPlaceHolder
 End Class
