@@ -59,13 +59,13 @@ Partial Public Class FacilityHome
     Protected WithEvents AppsHeader As Global.System.Web.UI.WebControls.TableHeaderRow
     
     '''<summary>
-    '''AppsPermitApps control.
+    '''AppsPermits control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents AppsPermitApps As Global.System.Web.UI.WebControls.TableRow
+    Protected WithEvents AppsPermits As Global.System.Web.UI.WebControls.TableRow
     
     '''<summary>
     '''PALink control.
@@ -138,6 +138,33 @@ Partial Public Class FacilityHome
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lbtnEFContact As Global.System.Web.UI.WebControls.LinkButton
+    
+    '''<summary>
+    '''AppsPermitFees control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents AppsPermitFees As Global.System.Web.UI.WebControls.TableRow
+    
+    '''<summary>
+    '''PFLink control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents PFLink As Global.System.Web.UI.WebControls.HyperLink
+    
+    '''<summary>
+    '''lbtnPFContact control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbtnPFContact As Global.System.Web.UI.WebControls.LinkButton
     
     '''<summary>
     '''AppsEmissionInventory control.
@@ -255,15 +282,6 @@ Partial Public Class FacilityHome
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents TNText As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''TNDate control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents TNDate As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
     '''TNContact control.

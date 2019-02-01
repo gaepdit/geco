@@ -30,16 +30,14 @@
                     <asp:TableHeaderCell Text="Current Contact<br><span class='table-cell-subhead'>(click to edit)</span>" runat="server"></asp:TableHeaderCell>
                 </asp:TableHeaderRow>
 
-                <asp:TableRow ID="AppsPermitApps" runat="server">
+                <asp:TableRow ID="AppsPermits" runat="server">
                     <asp:TableHeaderCell runat="server" CssClass="table-cell-link">
                         <asp:HyperLink ID="PALink" runat="server" NavigateUrl="~/Permits/">Air Quality Permits & <br />Permit Application Fees</asp:HyperLink>
                     </asp:TableHeaderCell>
-                    <asp:TableCell runat="server">                        
+                    <asp:TableCell runat="server">
                         <asp:Label ID="PAText" runat="server"></asp:Label>
                     </asp:TableCell>
-                    <asp:TableCell runat="server">
-                        N/A
-                    </asp:TableCell>
+                    <asp:TableCell runat="server"></asp:TableCell>
                     <asp:TableCell runat="server" CssClass="table-cell-link">
                         <asp:LinkButton ID="PAContact" runat="server" CausesValidation="False"></asp:LinkButton>
                     </asp:TableCell>
@@ -60,9 +58,20 @@
                     </asp:TableCell>
                 </asp:TableRow>
 
+                <asp:TableRow ID="AppsPermitFees" runat="server">
+                    <asp:TableHeaderCell runat="server" CssClass="table-cell-link">
+                        <asp:HyperLink ID="PFLink" runat="server" NavigateUrl="~/Fees/">Permit Fees Summary</asp:HyperLink>
+                    </asp:TableHeaderCell>
+                    <asp:TableCell runat="server"></asp:TableCell>
+                    <asp:TableCell runat="server"></asp:TableCell>
+                    <asp:TableCell runat="server" CssClass="table-cell-link">
+                        <asp:LinkButton ID="lbtnPFContact" runat="server" CausesValidation="False"></asp:LinkButton>
+                    </asp:TableCell>
+                </asp:TableRow>
+
                 <asp:TableRow ID="AppsEmissionInventory" runat="server">
                     <asp:TableHeaderCell runat="server" CssClass="table-cell-link">
-                        <asp:HyperLink ID="EisLink" runat="server" Text="Emissions Inventory" NavigateUrl="~/EIS/Default.aspx"></asp:HyperLink>
+                        <asp:HyperLink ID="EisLink" runat="server" Text="Emissions Inventory" NavigateUrl="~/EIS/"></asp:HyperLink>
                     </asp:TableHeaderCell>
                     <asp:TableCell runat="server">
                         <asp:Label ID="lblEIText" runat="server"></asp:Label>
@@ -77,7 +86,7 @@
 
                 <asp:TableRow ID="AppsEmissionsStatement" runat="server">
                     <asp:TableHeaderCell runat="server" CssClass="table-cell-link">
-                        <asp:HyperLink ID="ESLink" runat="server" Text="Emissions Statement" NavigateUrl="~/ES/Default.aspx"></asp:HyperLink>
+                        <asp:HyperLink ID="ESLink" runat="server" Text="Emissions Statement" NavigateUrl="~/ES/"></asp:HyperLink>
                     </asp:TableHeaderCell>
                     <asp:TableCell runat="server">
                         <asp:Label ID="lblESText" runat="server"></asp:Label>
@@ -92,14 +101,12 @@
 
                 <asp:TableRow ID="AppsTestNotifications" runat="server">
                     <asp:TableHeaderCell runat="server" CssClass="table-cell-link">
-                        <asp:HyperLink ID="TNLink" runat="server" Text="Test Notifications" NavigateUrl="~/TN/Default.aspx"></asp:HyperLink>
+                        <asp:HyperLink ID="TNLink" runat="server" Text="Test Notifications" NavigateUrl="~/TN/"></asp:HyperLink>
                     </asp:TableHeaderCell>
                     <asp:TableCell runat="server">
                         <asp:Label ID="TNText" runat="server"></asp:Label>
                     </asp:TableCell>
-                    <asp:TableCell runat="server">
-                        <asp:Label ID="TNDate" runat="server" Text="N/A"></asp:Label>
-                    </asp:TableCell>
+                    <asp:TableCell runat="server"></asp:TableCell>
                     <asp:TableCell runat="server" CssClass="table-cell-link">
                         <asp:LinkButton ID="TNContact" runat="server" CausesValidation="False"></asp:LinkButton>
                     </asp:TableCell>

@@ -543,6 +543,7 @@ a.tableCellLink {
     padding: 8px 10px;
 }
 
+    .table-simple .table-cell-link,
     .table-menu .table-cell-link,
     .table-menu td:first-child {
         padding: 0;
@@ -639,7 +640,8 @@ ul.menu-list-horizontal {
         display: inline-block;
     }
 
-    ul.menu-list-horizontal a {
+    ul.menu-list-horizontal a,
+    ul.menu-list-horizontal .selected-menu-item {
         color: #4545a1;
         background: #f0f9ff;
         padding: .3em .6em;
@@ -651,6 +653,16 @@ ul.menu-list-horizontal {
         ul.menu-list-horizontal a:focus {
             background: #fdf2fd;
         }
+
+    ul.menu-list-horizontal .selected-menu-item {
+        color: #313175;
+        background: #c3e7ff;
+    }
+
+    ul.menu-list-horizontal a,
+    ul.menu-list-horizontal .selected-menu-item {
+        border-radius: 6px 6px 0 0;
+    }
 
 /* typography */
 .preserve-linebreaks {

@@ -282,8 +282,11 @@ Partial Class FacilityHome
     Protected Sub GetFeesStatus()
         If Not facilityAccess.FeeAccess Then
             AppsEmissionFees.Visible = False
+            AppsPermitFees.Visible = False
             Exit Sub
         End If
+
+        PFLink.NavigateUrl = "~/Fees/?airs=" & currentAirs.ShortString
 
         Dim dr As DataRow = GetFeeStatus(currentAirs)
 
@@ -411,6 +414,10 @@ Partial Class FacilityHome
                             lbtnEFContact.Text = name
                         End If
 
+                        If AppsPermitFees.Visible Then
+                            lbtnPFContact.Text = name
+                        End If
+
                     Case 41 'EIS Contact
                         If AppsEmissionInventory.Visible Then
                             lbtnEIContact.Text = name
@@ -429,7 +436,7 @@ Partial Class FacilityHome
                         End If
 
                     Case 30 'Permitting Contact
-                        If AppsPermitApps.Visible Then
+                        If AppsPermits.Visible Then
                             PAContact.Text = name
                         End If
 
@@ -438,6 +445,10 @@ Partial Class FacilityHome
 
             If String.IsNullOrWhiteSpace(lbtnEFContact.Text) Then
                 lbtnEFContact.Text = "None"
+            End If
+
+            If String.IsNullOrWhiteSpace(lbtnPFContact.Text) Then
+                lbtnPFContact.Text = "None"
             End If
 
             If String.IsNullOrWhiteSpace(lbtnEIContact.Text) Then
@@ -567,6 +578,7 @@ Partial Class FacilityHome
                 Select Case hidContactKey.Value
                     Case 40  ' emission fees
                         lbtnEFContact.Text = txtFName.Text & " " & txtLName.Text
+                        lbtnPFContact.Text = txtFName.Text & " " & txtLName.Text
 
                     Case 41 ' emission inventory
                         lbtnEIContact.Text = txtFName.Text & " " & txtLName.Text
@@ -604,6 +616,29 @@ Partial Class FacilityHome
             hidContactKey.Value = 40
 
             If lbtnEFContact.Text = "None" Then
+                ClearContact()
+            Else
+                LoadCurrentContact()
+            End If
+
+            pnlContact.Visible = True
+        Catch exThreadAbort As Threading.ThreadAbortException
+        Catch ex As Exception
+            ErrorReport(ex)
+        End Try
+    End Sub
+
+    Protected Sub lbtnPFContact_Click(sender As Object, e As EventArgs) Handles lbtnPFContact.Click
+        Try
+            rblContact.SelectedIndex = 0
+            rblContact.Items(0).Text = "Use the current information for the Permit Fees Contact"
+            rblContact.Items(1).Text = "Use my GECO contact information for the Permit Fees Contact"
+            lblContactHeader.Text = "Update Permit Fees Contact"
+
+            lblContactMsg.Visible = False
+            hidContactKey.Value = 40
+
+            If lbtnPFContact.Text = "None" Then
                 ClearContact()
             Else
                 LoadCurrentContact()
