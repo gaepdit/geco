@@ -15,7 +15,7 @@
     </p>
 
     <ul class="menu-list-horizontal">
-        <li><a href="Default.aspx">Permit Fees Summary</a></li>
+        <li><a href="Default.aspx">Summary</a></li>
         <li><span class="selected-menu-item">Invoices</span></li>
         <li><a href="Deposits.aspx">Deposits</a></li>
     </ul>
@@ -36,7 +36,7 @@
         </Columns>
     </asp:GridView>
 
-    <h2>Permit Application Fees</h2>
+    <h2>Application Fees</h2>
 
     <p id="pApplicationInvoices" runat="server" visible="false">None.</p>
 

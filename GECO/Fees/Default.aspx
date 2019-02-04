@@ -15,12 +15,13 @@
     </p>
 
     <ul class="menu-list-horizontal">
-        <li><span class="selected-menu-item">Permit Fees Summary</span></li>
+        <li><span class="selected-menu-item">Summary</span></li>
         <li><a href="Invoices.aspx">Invoices</a></li>
         <li><a href="Deposits.aspx">Deposits</a></li>
     </ul>
 
-    <h2>Annual/Emissions Fees Out of Balance Report</h2>
+    <h2>Out of Balance Reports</h2>
+    <h3>Annual/Emissions Fees</h3>
     <p><em>Note: Only includes data for annual fees starting from calendar year 2010.</em></p>
 
     <p id="pAnnualFees" runat="server" visible="false">None.</p>
@@ -34,8 +35,8 @@
         </Columns>
     </asp:GridView>
 
-    <h2>Permit Application Fees Out of Balance Report</h2>
-    <p><em>Note: Only includes data for permit application fees starting from 2019.</em></p>
+    <h3>Application Fees</h3>
+    <p><em>Note: Only includes data for application fees starting from March 1, 2019.</em></p>
 
     <p id="pApplicationDeposits" runat="server" visible="false">None.</p>
 

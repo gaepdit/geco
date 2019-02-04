@@ -32,7 +32,7 @@
 
                 <asp:TableRow ID="AppsPermits" runat="server">
                     <asp:TableHeaderCell runat="server" CssClass="table-cell-link">
-                        <asp:HyperLink ID="PALink" runat="server" NavigateUrl="~/Permits/">Air Quality Permits & <br />Permit Application Fees</asp:HyperLink>
+                        <asp:HyperLink ID="PALink" runat="server" NavigateUrl="~/Permits/">Permits & Application Fees</asp:HyperLink>
                     </asp:TableHeaderCell>
                     <asp:TableCell runat="server">
                         <asp:Label ID="PAText" runat="server"></asp:Label>
@@ -45,7 +45,7 @@
 
                 <asp:TableRow ID="AppsEmissionFees" runat="server">
                     <asp:TableHeaderCell runat="server" CssClass="table-cell-link">
-                        <asp:HyperLink ID="EFLink" runat="server" NavigateUrl="~/AnnualFees/">Annual Permit Fees</asp:HyperLink>
+                        <asp:HyperLink ID="EFLink" runat="server" NavigateUrl="~/AnnualFees/">Annual/Emissions Fees</asp:HyperLink>
                     </asp:TableHeaderCell>
                     <asp:TableCell runat="server">
                         <asp:Literal ID="litEFText" runat="server"></asp:Literal>
@@ -60,7 +60,7 @@
 
                 <asp:TableRow ID="AppsPermitFees" runat="server">
                     <asp:TableHeaderCell runat="server" CssClass="table-cell-link">
-                        <asp:HyperLink ID="PFLink" runat="server" NavigateUrl="~/Fees/">Permit Fees Summary</asp:HyperLink>
+                        <asp:HyperLink ID="PFLink" runat="server" NavigateUrl="~/Fees/">Fees Summary</asp:HyperLink>
                     </asp:TableHeaderCell>
                     <asp:TableCell runat="server"></asp:TableCell>
                     <asp:TableCell runat="server"></asp:TableCell>

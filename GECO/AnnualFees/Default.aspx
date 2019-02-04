@@ -772,7 +772,7 @@
                 <p align="left">
                     Following is annual permit fee information from the current year back to 2004. (Past invoice and deposit information is now located
                     in the separate
-                    <asp:HyperLink ID="hlPermitFees" runat="server" NavigateUrl="~/Fees/">Permit Fees</asp:HyperLink>
+                    <asp:HyperLink ID="hlPermitFees" runat="server" NavigateUrl="~/Fees/">Permit Fees Summary</asp:HyperLink>
                     section.)
                 </p>
 

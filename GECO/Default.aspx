@@ -49,13 +49,13 @@
     <p>
         Permit application fees are required when applying for certain permit actions. Refer to the
         <a href="https://epd.georgia.gov/air/air-permit-fees" target="_blank">Air Permit Fee Manual</a> 
-        to determine what type of permit application fee is due when submitting a permit application.
+        to determine what type of fee is due when submitting a permit application.
     </p>
     <p>
         Permit application fees are owed in addition to any annual fees described below.
     </p>
 
-    <h2>Annual Permit Fees</h2>
+    <h2>Annual (Emissions) Fees</h2>
     <p>
         Annual permit fees are required for Synthetic Minor and Part 70 sources, and certain NSPS sources. The 
         <a href="https://epd.georgia.gov/air/air-permit-fees" target="_blank">Air Permit Fee Manual</a> provides

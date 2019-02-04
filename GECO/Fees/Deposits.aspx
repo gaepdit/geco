@@ -15,7 +15,7 @@
     </p>
 
     <ul class="menu-list-horizontal">
-        <li><a href="Default.aspx">Permit Fees Summary</a></li>
+        <li><a href="Default.aspx">Summary</a></li>
         <li><a href="Invoices.aspx">Invoices</a></li>
         <li><span class="selected-menu-item">Deposits</span></li>
     </ul>
@@ -38,7 +38,7 @@
         </Columns>
     </asp:GridView>
 
-    <h2>Deposits for Permit Application Fees</h2>
+    <h2>Application Fee Deposits</h2>
 
     <p id="pApplicationDeposits" runat="server" visible="false">None.</p>
 
@@ -54,7 +54,7 @@
         </Columns>
     </asp:GridView>
 
-    <h2>Refunds for Permit Application Fees</h2>
+    <h2>Application Fee Refunds</h2>
 
     <p id="pApplicationRefunds" runat="server" visible="false">None.</p>
 
