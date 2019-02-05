@@ -48,7 +48,7 @@ Public Module HtmlTableFunctions
     <Extension()>
     Public Sub AddTableRow(table As Table, label As String, value As Decimal, Optional asCurrency As Boolean = False, Optional labelIsHeader As Boolean = True)
         If asCurrency Then
-            table.AddTableRow(label, String.Format(Globalization.CultureInfo.CurrentCulture, "{0:C0}", value), labelIsHeader, {"table-cell-alignright"})
+            table.AddTableRow(label, String.Format(Globalization.CultureInfo.CurrentCulture, "{0:C}", value), labelIsHeader, {"table-cell-alignright"})
         Else
             table.AddTableRow(label, value, labelIsHeader, {"table-cell-alignright"})
         End If
@@ -109,7 +109,7 @@ Public Module HtmlTableFunctions
         }
 
         If asCurrency Then
-            td.Text = String.Format(Globalization.CultureInfo.CurrentCulture, "{0:C0}", value)
+            td.Text = String.Format(Globalization.CultureInfo.CurrentCulture, "{0:C}", value)
         Else
             td.Text = value
         End If
