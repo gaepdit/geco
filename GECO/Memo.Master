@@ -13,13 +13,13 @@
     <meta name="theme-color" content="#e5f6fa" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/8.0.0/sanitize.min.css" integrity="sha256-gk3z+XTkT2rjrvAxcKDA15OH4w1FssyEwnSC3WnKbWU=" crossorigin="anonymous" />
     <link rel="stylesheet" href="assets/css/memo.css" />
+    <link rel="stylesheet" href="assets/css/memo-print.css" media="print" />
     <asp:ContentPlaceHolder ID="head" runat="server"></asp:ContentPlaceHolder>
 </head>
 <body>
     <form id="form1" runat="server">
         <asp:Panel ID="pnlToolbar" runat="server">
             <div class="toolbar">
-                <input type="submit" value="Back" onclick="window.go(-1); return false;" id="btnBack" />
                 <input type="submit" value="Print" onclick="window.print(); return false;" id="btnPrint" />
                 <asp:Button ID="btnPdf" runat="server" Text="Print/PDF" visible="false" />
             </div>

@@ -44,7 +44,8 @@
         <Columns>
             <asp:HyperLinkField DataTextField="Invoice ID" HeaderText="Invoice #" ItemStyle-CssClass="table-cell-alignright table-cell-link"
                 DataNavigateUrlFields="InvoiceGuid" DataNavigateUrlFormatString="~/Invoice/?id={0}" />
-            <asp:BoundField DataField="Date" HeaderText="Date" DataFormatString="{0:dd-MMM-yyyy}" ItemStyle-CssClass="table-cell-alignright" />
+            <asp:BoundField DataField="Invoice Date" HeaderText="Invoice Date" DataFormatString="{0:dd-MMM-yyyy}" ItemStyle-CssClass="table-cell-alignright" />
+            <asp:BoundField DataField="Due Date" HeaderText="Due Date" DataFormatString="{0:dd-MMM-yyyy}" ItemStyle-CssClass="table-cell-alignright" />
             <asp:BoundField DataField="Amount" HeaderText="Amount" DataFormatString="{0:c}" ItemStyle-CssClass="table-cell-alignright" />
             <asp:HyperLinkField DataTextField="Permit Application" HeaderText="Permit Application" ItemStyle-CssClass="table-cell-link"
                 DataNavigateUrlFields="Permit Application" DataNavigateUrlFormatString="~/Permits/Application.aspx?id={0}" />

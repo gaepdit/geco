@@ -183,6 +183,12 @@ Public Class Permit_Application
                 Exit Sub
             End If
 
+            ' Notification date
+            If .DateFacilityNotifiedOfFees.HasValue Then
+                pFeesNotified.Visible = True
+                lblNotifiedDate.Text = .DateFacilityNotifiedOfFees.Value.ToString(ShortishDateFormat)
+            End If
+
             ' Fee amounts table
             tblFeesSummary.Visible = True
 

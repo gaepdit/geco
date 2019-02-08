@@ -29,6 +29,8 @@ Namespace GecoModels
         End Property
         <DisplayName("Invoice Date")>
         Public Property InvoiceDate As Date
+        <DisplayName("Due Date")>
+        Public Property DueDate As Date
         <DisplayName("Comment")>
         Public Property Comment As String
         <DisplayName("Voided")>
@@ -70,20 +72,6 @@ Namespace GecoModels
 
         Public Property InvoiceItems As List(Of InvoiceItem)
         Public Property DepositsApplied As List(Of DepositApplied)
-
-        ' <DisplayName("Invoice ID")>
-        ' Public ReadOnly Property InvoiceIdDisplay As String
-        '     Get
-        '         Select Case InvoiceCategory
-        '             Case InvoiceCategory.EmissionsFees
-        '                 Return String.Concat("E-", InvoiceID)
-        '             Case InvoiceCategory.PermitApplicationFees
-        '                 Return String.Concat("P-", InvoiceID)
-        '             Case Else
-        '                 Return "Error"
-        '         End Select
-        '     End Get
-        ' End Property
 
         <DisplayName("Category")>
         Public ReadOnly Property InvoiceCategoryDisplay As String

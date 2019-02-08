@@ -2,7 +2,7 @@
 
 body {
     margin: 0;
-    font-size: 80%;
+    font-size:85%;
 }
 
 .wrapper {
@@ -14,11 +14,13 @@ body {
 }
 
 h1 {
+    font-size:1.8em;
     line-height: 1.125;
     margin: .5em 0;
 }
 
 h2 {
+    font-size: 1.4em;
     line-height: 1.5;
     margin: .667em 0;
 }
@@ -89,6 +91,7 @@ h2 {
 }
 
 blockquote {
+    font-size:1.5em;
     font-style: italic;
     margin: 0 1em;
 }

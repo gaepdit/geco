@@ -12,6 +12,10 @@
     <p id="pFeesNotApplicable" runat="server" visible="False">No permit application fees applicable.</p>
     <p id="pFeesNotDetermined" runat="server" visible="False">Permit application fees have not yet been reviewed by APB staff.</p>
 
+    <p id="pFeesNotified" runat="server" visible="false">
+        Facility notified of pending fees on
+        <asp:Label ID="lblNotifiedDate" runat="server"></asp:Label>.
+    </p>
     <asp:Table ID="tblFeesSummary" runat="server" CssClass="table-simple table-bordered" Visible="false">
         <asp:TableHeaderRow>
             <asp:TableHeaderCell Scope="Column">Fee Type</asp:TableHeaderCell>
@@ -44,6 +48,7 @@
                         <asp:HyperLinkField DataTextField="Invoice #" HeaderText="Invoice #" ItemStyle-CssClass="table-cell-alignright"
                             DataNavigateUrlFields="InvoiceGuid" DataNavigateUrlFormatString="~/Invoice/?id={0}" />
                         <asp:BoundField DataField="Invoice Date" HeaderText="Invoice Date" DataFormatString="{0:dd-MMM-yyyy}" ItemStyle-CssClass="table-cell-alignright" />
+                        <asp:BoundField DataField="Due Date" HeaderText="Due Date" DataFormatString="{0:dd-MMM-yyyy}" ItemStyle-CssClass="table-cell-alignright" />
                         <asp:BoundField DataField="Amount" HeaderText="Total Amount" DataFormatString="{0:c}" ItemStyle-CssClass="table-cell-alignright" />
                         <asp:BoundField DataField="Balance" HeaderText="Balance" DataFormatString="{0:c}" ItemStyle-CssClass="table-cell-alignright" />
                         <asp:BoundField DataField="Status" HeaderText="Status" />

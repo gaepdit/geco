@@ -31,7 +31,7 @@ Public Class InvoiceDefault
         lblInvoiceId.Text = docName
 
         lblInvoiceDate.Text = thisInvoice.InvoiceDate.ToString(LongishDateFormat)
-        lblDueDate.Text = thisInvoice.InvoiceDate.AddDays(14).ToString(LongishDateFormat)
+        lblDueDate.Text = thisInvoice.DueDate.ToString(LongishDateFormat)
         lblAirsNo.Text = thisInvoice.FacilityID.FormattedString()
         lblCompany.Text = thisInvoice.FacilityName
 

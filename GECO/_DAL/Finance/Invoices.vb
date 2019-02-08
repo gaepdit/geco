@@ -41,6 +41,7 @@ Namespace DAL
                 .FacilityName = GetNullableString(dr("FacilityName")),
                 .InvoiceCategoryID = CChar(dr("InvoiceCategoryID")),
                 .InvoiceDate = CDate(dr("InvoiceDate")),
+                .DueDate = CDate(dr("DueDate")),
                 .InvoiceType = New InvoiceType With {
                     .Active = CBool(dr("InvoiceTypeActive")),
                     .Description = GetNullableString(dr("InvoiceTypeDescription")),

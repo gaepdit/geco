@@ -50,6 +50,24 @@ Partial Public Class Permit_Application
     Protected WithEvents pFeesNotDetermined As Global.System.Web.UI.HtmlControls.HtmlGenericControl
     
     '''<summary>
+    '''pFeesNotified control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents pFeesNotified As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+    
+    '''<summary>
+    '''lblNotifiedDate control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblNotifiedDate As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
     '''tblFeesSummary control.
     '''</summary>
     '''<remarks>
