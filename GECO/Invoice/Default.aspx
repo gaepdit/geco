@@ -42,6 +42,7 @@
         </div>
         <div class="grid__item">
             <h2>Bill To:</h2>
+
             <table class="table-list">
                 <tr>
                     <th scope="row">AIRS #</th>
@@ -87,7 +88,7 @@
     <div>
         <h2>Payment Terms</h2>
         <p>Check # ____________________</p>
-        <p>Pay to the order of:</p>
+        <p>Make checks payable to the order of:</p>
         <blockquote>Georgia Department of Natural Resources</blockquote>
         <p>Remit payment to:</p>
         <blockquote>
@@ -95,6 +96,7 @@
             Post Office Box 101713<br />
             Atlanta, Georgia 30392
         </blockquote>
+        <p>To pay by credit card, please contact Sakina Strozier at (404) 362-2749.</p>
     </div>
 
 </asp:Content>
