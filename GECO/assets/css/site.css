@@ -618,6 +618,11 @@ a.tableCellLink {
     padding: .5em 1em;
 }
 
+    .table-accounting td:last-child,
+    .table-accounting th:last-child {
+        width: 25%
+    }
+
 /* Update messages */
 .message-update {
     color: #80005e;

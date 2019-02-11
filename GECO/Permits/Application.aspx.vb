@@ -200,7 +200,7 @@ Public Class Permit_Application
                 tblFeesSummary.AddTableRow("Expedited Processing Fee: " & .ExpeditedFeeDescription, .ExpeditedFeeAmount, True, False)
             End If
 
-            tblFeesSummary.AddTableFooterRow("TOTAL", .ApplicationFeeAmount + .ExpeditedFeeAmount, True, True)
+            tblFeesSummary.AddTableFooterRow("Total", .ApplicationFeeAmount + .ExpeditedFeeAmount, True, True)
 
             ' Invoicing
             If Not PermitApplication.IsInvoiceGenerated And FacilityAccess.FeeAccess Then

@@ -2,7 +2,7 @@
 
 body {
     margin: 0;
-    font-size:85%;
+    font-size: 85%;
 }
 
 .wrapper {
@@ -14,7 +14,7 @@ body {
 }
 
 h1 {
-    font-size:1.8em;
+    font-size: 1.8em;
     line-height: 1.125;
     margin: .5em 0;
 }
@@ -91,7 +91,7 @@ h2 {
 }
 
 blockquote {
-    font-size:1.5em;
+    font-size: 1.5em;
     font-style: italic;
     margin: 0 1em;
 }
@@ -232,6 +232,12 @@ blockquote {
 .table-accounting th {
     padding: .5em 1em;
 }
+
+    .table-accounting td:last-child,
+    .table-accounting th:last-child {
+        width: 25%
+    }
+
 
 /* Banner message */
 

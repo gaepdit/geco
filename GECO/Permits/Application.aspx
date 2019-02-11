@@ -16,8 +16,8 @@
         Facility notified of pending fees on
         <asp:Label ID="lblNotifiedDate" runat="server"></asp:Label>.
     </p>
-    <asp:Table ID="tblFeesSummary" runat="server" CssClass="table-simple table-bordered" Visible="false">
-        <asp:TableHeaderRow>
+    <asp:Table ID="tblFeesSummary" runat="server" CssClass="table-simple table-bordered table-accounting" Visible="false" UseAccessibleHeader="true">
+        <asp:TableHeaderRow TableSection="TableHeader">
             <asp:TableHeaderCell Scope="Column">Fee Type</asp:TableHeaderCell>
             <asp:TableHeaderCell Scope="Column">Fee Amount</asp:TableHeaderCell>
         </asp:TableHeaderRow>
