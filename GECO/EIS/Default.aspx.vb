@@ -27,7 +27,7 @@ Partial Class eis_Default
 
         Try
             'Reminder: EISAccess = 3 indicates that the facility is not in the EIS_Admin table.
-            ' "3" is never stored in the admin table. It is set in the GetEISStatus routine in facilityHome.aspx.vb
+            ' "3" is never stored in the admin table. It is set in the GetEISStatus routine in Facility/Default.aspx.vb
             If EISAccessCode <> "3" Then
                 EIYear = GetCookie(EisCookie.EISMaxYear)
                 EISStatus = GetCookie(EisCookie.EISStatus)
@@ -342,7 +342,7 @@ Partial Class eis_Default
 
     Protected Sub btnAction2_Click(sender As Object, e As EventArgs) Handles btnAction2.Click
 
-        Response.Redirect("~/FacilityHome.aspx")
+        Response.Redirect("~/Facility/")
 
     End Sub
 
@@ -583,7 +583,7 @@ Partial Class eis_Default
 
     Protected Sub btnFacilityHome_Click(sender As Object, e As EventArgs) Handles btnFacilityHome.Click
 
-        Response.Redirect("~/FacilityHome.aspx")
+        Response.Redirect("~/Facility/")
 
     End Sub
 

@@ -9,7 +9,7 @@
     <link rel="mask-icon" href="~/assets/epd-favicons/safari-pinned-tab.svg?v=69kRrvbXdL" color="#5bbad5" />
     <link rel="shortcut icon" href="~/favicon.ico?v=69kRrvbXdL" />
     <meta name="theme-color" content="#e5f6fa" />
-    <link href="~/assets/css/fees.css?v=20180920" rel="stylesheet" type="text/css" />
+    <link href="~/assets/css/site.css?v=20180920" rel="stylesheet" type="text/css" />
     <%-- <script language="javascript" type="text/javascript">
 
     function AirsNoSelected (source, eventArgs) {
@@ -98,7 +98,7 @@
                                 <td>
                                     <asp:CheckBoxList ID="lstbAccess" runat="server">
                                         <asp:ListItem Text="Facility Access" Value="Facility" Selected="True"></asp:ListItem>
-                                        <asp:ListItem Text="Emission Fees" Value="Fees"></asp:ListItem>
+                                        <asp:ListItem Text="Permit Fees" Value="Fees"></asp:ListItem>
                                         <asp:ListItem Text="Emission Inventory" Value="Inventory"></asp:ListItem>
                                         <asp:ListItem Text="Emission Statement" Value="Statement"></asp:ListItem>
                                     </asp:CheckBoxList>

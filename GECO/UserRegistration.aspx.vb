@@ -7,7 +7,7 @@ Partial Class UserRegistration
     Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
         If Not IsPostBack Then
             If UserIsLoggedIn() Then
-                Response.Redirect("~/UserHome.aspx")
+                Response.Redirect("~/Home/")
             End If
 
             Session.Clear()

@@ -20,7 +20,7 @@ Public Module StringFunctions
         Return ConcatNonEmptyStrings(separator, items.ToArray())
     End Function
 
-    Public Function RealStringOrNothing(s As String) As String
+    Public Function NonEmptyStringOrNothing(s As String) As String
         If String.IsNullOrEmpty(s) Then
             Return Nothing
         Else

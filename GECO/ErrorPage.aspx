@@ -9,7 +9,7 @@
     <link rel="mask-icon" href="~/assets/epd-favicons/safari-pinned-tab.svg?v=69kRrvbXdL" color="#5bbad5" />
     <link rel="shortcut icon" href="~/favicon.ico?v=69kRrvbXdL" />
     <meta name="theme-color" content="#e5f6fa" />
-    <link href="~/assets/css/fees.css?v=20180920" rel="stylesheet" type="text/css" />
+    <link href="~/assets/css/site.css?v=20180920" rel="stylesheet" type="text/css" />
 </head>
 <body>
     <div id="header" style="height: auto;">
@@ -26,7 +26,7 @@
             at 404-363-7000 or email <a href="mailto:epd_it@dnr.ga.gov">epd_it@dnr.ga.gov</a>.
         </p>
         <ul>
-            <li><a href="<%= Page.ResolveUrl("~/UserHome.aspx") %>">Return to the homepage</a></li>
+            <li><a href="<%= Page.ResolveUrl("~/Home/") %>">Return to the homepage</a></li>
         </ul>
     </div>
 

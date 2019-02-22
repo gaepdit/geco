@@ -1,0 +1,82 @@
+﻿Imports GECO.GecoModels
+
+Partial Class Home
+    Inherits Page
+
+    Private Property currentUser As GecoUser
+
+    Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
+        MainLoginCheck()
+
+        currentUser = GetCurrentUser()
+
+        Title = "GECO - " & currentUser.FullName
+
+        If Not IsPostBack Then
+            LoadAccessTable()
+            LoadYearLabels()
+        End If
+    End Sub
+
+    Private Sub LoadYearLabels()
+        lblEIyear1.Text = Now.Year - 1 'This is the EI calendar year
+        lblEIYear2.Text = Now.Year - 1 'This is the EI calendar year
+        lblEIYear3.Text = Now.Year - 1 'This is the EI calendar year
+        lblEIYear4.Text = Now.Year 'This is the EI due date
+        lblEIYear5.Text = Now.Year - 1 'This is the EI calendar year
+        lblEIYear6.Text = Now.Year - 1 'This is the EI calendar year
+
+        lblESYear1.Text = Now.Year - 1 'This is the ES calendar year
+        lblESYear2.Text = Now.Year - 1 'This is the ES calendar year
+        lblESYear3.Text = Now.Year 'This is the ES due date
+
+        lblFeeYear1.Text = Now.Year - 1 ' Fee Calendar year
+        lblFeeYear2.Text = Now.Year - 1 ' Fee Calendar year
+        lblFeeYear3.Text = Now.Year ' Fees dues year
+        lblFeeYear4.Text = Now.Year ' Fees dues year
+
+        If Now.Year Mod 3 = 2 Then
+            lblTriennialEIText.Visible = True
+            lblAnnualEIText.Visible = False
+        End If
+    End Sub
+
+    Private Sub LoadAccessTable()
+        Dim dtAccess As DataTable = currentUser.FacilityAccessTable
+
+        If dtAccess Is Nothing OrElse dtAccess.Rows.Count = 0 Then
+            'This user has NO Facility assigned
+            lblNone.Visible = True
+            lblAccess.Visible = False
+            grdAccess.Visible = False
+        Else
+            lblNone.Visible = False
+            lblAccess.Visible = True
+            grdAccess.Visible = True
+            grdAccess.DataSource = dtAccess
+            grdAccess.DataBind()
+        End If
+    End Sub
+
+    Protected Sub grdAccess_RowDataBound(sender As Object, e As GridViewRowEventArgs) Handles grdAccess.RowDataBound
+        If e.Row.RowType = DataControlRowType.DataRow Then
+            Dim row As DataRowView = e.Row.DataItem
+            Dim facilityName As String = row.Item("Facility").ToString()
+            Dim airsNumber As ApbFacilityId = New ApbFacilityId(row.Item("AirsNumber").ToString)
+            Dim url As String = String.Format("~/Facility/?airs={0}", airsNumber.ShortString())
+
+            Dim hlFacility As HyperLink = e.Row.FindControl("hlFacility")
+            If Not hlFacility Is Nothing Then
+                hlFacility.Text = facilityName
+                hlFacility.NavigateUrl = url
+            End If
+
+            Dim hlAirs As HyperLink = e.Row.FindControl("hlAirs")
+            If Not hlAirs Is Nothing Then
+                hlAirs.Text = airsNumber.FormattedString
+                hlAirs.NavigateUrl = url
+            End If
+        End If
+    End Sub
+
+End Class

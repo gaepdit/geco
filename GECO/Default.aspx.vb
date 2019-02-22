@@ -12,13 +12,12 @@ Partial Class _Default
             If Request.QueryString("do") = "SignOut" Then
                 ClearCurrentLogin()
             ElseIf UserIsLoggedIn() Then
-                Response.Redirect("~/UserHome.aspx")
+                Response.Redirect("~/Home/")
             Else
                 GetUserFromSession()
             End If
 
-            Dim m As MainMaster = Master
-            m.IncludeSignInLink = False
+            Master.IncludeSignInLink = False
 
             ClearCurrentLogin()
         End If
@@ -70,7 +69,7 @@ Partial Class _Default
                 Dim strRedirect As String = Request.QueryString("ReturnUrl")
 
                 If String.IsNullOrEmpty(strRedirect) Then
-                    Response.Redirect("~/UserHome.aspx")
+                    Response.Redirect("~/Home/")
                 Else
                     Response.Redirect(strRedirect)
                 End If
@@ -101,7 +100,7 @@ Partial Class _Default
             Dim strRedirect As String = Request.QueryString("ReturnUrl")
 
             If String.IsNullOrEmpty(strRedirect) Then
-                Response.Redirect("~/UserHome.aspx")
+                Response.Redirect("~/Home/")
             Else
                 Response.Redirect(strRedirect)
             End If
