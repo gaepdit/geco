@@ -1,4 +1,4 @@
-﻿<%@ Page Title="GECO Emission Inventory Reports" Language="VB" MasterPageFile="eismaster.master" AutoEventWireup="false" Inherits="GECO.EIS_reports" Codebehind="reports.aspx.vb" %>
+﻿<%@ Page Title="GECO Emission Inventory Reports" Language="VB" MasterPageFile="eismaster.master" AutoEventWireup="false" Inherits="GECO.EIS_reports" CodeBehind="reports.aspx.vb" %>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder3" runat="Server">
     <style type="text/css">
@@ -20,10 +20,12 @@
                     border: 1px solid #ccc;
                     border-radius: 4px;
                     color: blue;
+                    text-decoration: none;
                 }
 
                     .rpt-buttons li a:hover, .rpt-buttons li a:focus {
                         background: #ddd;
+                        text-decoration: underline;
                     }
     </style>
     <div style="text-align: center">

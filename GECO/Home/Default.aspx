@@ -44,7 +44,7 @@
             </asp:GridView>
 
             <p>
-                <asp:Button runat="server" UseSubmitBehavior="false" CausesValidation="false"
+                <asp:Button runat="server" UseSubmitBehavior="false" CausesValidation="false" CssClass="button-large"
                     OnClientClick="var w=window.open('../AirsRequestAccess.aspx','', 'width=700,height=820,scrollbars=yes,resizeable=yes');"
                     Text="Request access to a facility" />
             </p>
