@@ -203,10 +203,13 @@ Public Class Permit_Application
             tblFeesSummary.AddTableFooterRow("Total", .ApplicationFeeAmount + .ExpeditedFeeAmount, True, True)
 
             ' Invoicing
-            If Not PermitApplication.IsInvoiceGenerated And FacilityAccess.FeeAccess Then
-                pGenerateInvoice.Visible = True
-
-                CheckForCredits()
+            If Not PermitApplication.IsInvoiceGenerated Then
+                If FacilityAccess.FeeAccess Then
+                    pGenerateInvoice.Visible = True
+                    CheckForCredits()
+                Else
+                    pGenerateNoAccess.Visible = True
+                End If
             End If
 
         End With

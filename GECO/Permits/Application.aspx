@@ -32,6 +32,10 @@
                 <asp:Label ID="lblCredits" runat="server" Visible="false" Font-Italic="True"></asp:Label>
             </p>
 
+            <p id="pGenerateNoAccess" runat="server" visible="false" class="message-highlight">
+                You must be logged into GECO and have Fee Access to this facility in order to generate an invoice.
+            </p>
+
             <p id="pGenerateDbError" runat="server" class="message-highlight" visible="false">An error occurred while trying to generate the invoice. Please contact the Air Protection Branch for assistance.</p>
             <p id="pGenerateExists" runat="server" class="message-highlight" visible="false">Error: An active invoice already exists for this permit application.</p>
             <p id="pGenerateSuccess" runat="server" class="message-highlight" visible="false">

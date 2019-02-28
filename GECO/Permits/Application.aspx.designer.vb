@@ -122,6 +122,15 @@ Partial Public Class Permit_Application
     Protected WithEvents lblCredits As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
+    '''pGenerateNoAccess control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents pGenerateNoAccess As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+    
+    '''<summary>
     '''pGenerateDbError control.
     '''</summary>
     '''<remarks>
