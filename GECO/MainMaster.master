@@ -1,4 +1,4 @@
-﻿<%@ Master Language="VB" Inherits="GECO.MainMaster" Codebehind="MainMaster.master.vb" %>
+﻿<%@ Master Language="VB" Inherits="GECO.MainMaster" CodeBehind="MainMaster.master.vb" %>
 
 <%@ Register Assembly="System.Web.Extensions, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35"
     Namespace="System.Web.UI" TagPrefix="asp" %>
@@ -80,7 +80,7 @@
 
         <!-- end outer 3-column container -->
         <div class="footer">
-            ©2006—<%= Now.Year %>, <a href="https://epd.georgia.gov/">Georgia Environmental Protection Division</a>, <a href="https://epd.georgia.gov/air">Air Protection Branch</a> • All rights reserved
+            ©<%= Now.Year %>, <a href="https://epd.georgia.gov/">Georgia Environmental Protection Division</a>, <a href="https://epd.georgia.gov/air">Air Protection Branch</a> • All rights reserved
         </div>
         <!-- end footer -->
     </form>

@@ -31,7 +31,7 @@
     </div>
 
     <div class="footer">
-        ©2018 • Georgia Environmental Protection Division, Air Protection Branch • All rights reserved
+        ©<%= Now.Year %>, <a href="https://epd.georgia.gov/">Georgia Environmental Protection Division</a>, <a href="https://epd.georgia.gov/air">Air Protection Branch</a> • All rights reserved
     </div>
 </body>
 </html>
