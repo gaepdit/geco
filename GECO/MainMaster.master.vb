@@ -1,11 +1,42 @@
+Imports GECO.GecoModels
+
 Partial Class MainMaster
     Inherits MasterPage
 
     Public Property IncludeSignInLink As Boolean = True
+    Public Property IncludeRegisterLink As Boolean = True
     Public Property IsFacilitySubpage As Boolean = False
+    Private Property currentUser As GecoUser
+
+    Public WriteOnly Property UserName As String
+        Set(value As String)
+            If Not String.IsNullOrWhiteSpace(value) Then
+                lblUserName.Text = String.Concat("Welcome: ", value)
+            End If
+        End Set
+    End Property
+
+    Public WriteOnly Property Facility As String
+        Set(value As String)
+            If Not String.IsNullOrWhiteSpace(value) Then
+                lblFacility.Text = String.Concat("Current Facility: ", value)
+            End If
+        End Set
+    End Property
 
     Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
+        SetUpEasyMenu()
 
+        If Not IsPostBack AndAlso UserIsLoggedIn() Then
+            currentUser = GetCurrentUser()
+
+            If currentUser IsNot Nothing Then
+                UserName = If(String.IsNullOrWhiteSpace(currentUser.FullName), currentUser.Email, currentUser.FullName)
+            End If
+        End If
+    End Sub
+
+    Private Sub SetUpEasyMenu()
         If Not IsPostBack Then
             Dim contactLink As String = "javascript:var w=window.open('/ContactUs.aspx','', 'width=600,height=600,scrollbars=yes,resizeable=yes');"
 
@@ -28,19 +59,23 @@ Partial Class MainMaster
             Else
                 ' Not logged in
                 EasyMenu1.MenuRoot.AddSubMenuItem("Contact Us", contactLink)
-                EasyMenu1.MenuRoot.AddSubMenuItem("Register", "/UserRegistration.aspx")
 
-                If IncludeSignInLink Then
-                    Dim path = Replace(Request.Url.PathAndQuery, "default.aspx", "")
+                If IncludeRegisterLink Then
+                    EasyMenu1.MenuRoot.AddSubMenuItem("Register", "/Register.aspx")
+                End If
 
-                    If String.IsNullOrEmpty(path) Then
-                        EasyMenu1.MenuRoot.AddSubMenuItem("Sign In", "/")
-                    Else
-                        EasyMenu1.MenuRoot.AddSubMenuItem("Sign In", "/?ReturnUrl=" & path)
-                    End If
+                Dim path = Replace(Request.Url.PathAndQuery, "default.aspx", "")
+                path = Replace(path, "Default.aspx", "")
+                path = Replace(path, "register.aspx", "")
+                path = Replace(path, "Register.aspx", "")
+                path = Replace(path, "/?do=SignOut", "")
+
+                If String.IsNullOrEmpty(path) OrElse path = "/" Then
+                    EasyMenu1.MenuRoot.AddSubMenuItem("Sign In", "/Login.aspx")
+                Else
+                    EasyMenu1.MenuRoot.AddSubMenuItem("Sign In", "/Login.aspx?ReturnUrl=" & path)
                 End If
             End If
-
         End If
     End Sub
 

@@ -2,7 +2,7 @@
 
 <%@ MasterType VirtualPath="~/MainMaster.master" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="FullContent" runat="Server">
+<asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="Server">
     <h1>Permit Application #<asp:Label ID="lblAppNum" runat="server" Text=""></asp:Label></h1>
 
     <h2>Application Details</h2>
@@ -27,8 +27,8 @@
         <ContentTemplate>
             <asp:HiddenField ID="hAppNumber" runat="server" />
 
-            <p id="pGenerateInvoice" runat="server" visible="false" class="message-highlight">
-                <asp:Button ID="btnGenerateInvoice" runat="server" Text="Generate New Invoice" />
+            <p id="pGenerateInvoice" runat="server" visible="false">
+                <asp:Button ID="btnGenerateInvoice" runat="server" Text="Generate New Invoice" CssClass="button-large" />
                 <asp:Label ID="lblCredits" runat="server" Visible="false" Font-Italic="True"></asp:Label>
             </p>
 
@@ -86,5 +86,4 @@
     <h2>History</h2>
     <p><em>Approximate application processing timeline.</em></p>
     <asp:Table ID="tTracking" runat="server" CssClass="table-simple table-list"></asp:Table>
-
 </asp:Content>

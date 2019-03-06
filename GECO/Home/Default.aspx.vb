@@ -10,11 +10,13 @@ Partial Class Home
 
         currentUser = GetCurrentUser()
 
-        Title = "GECO - " & currentUser.FullName
-
         If Not IsPostBack Then
             LoadAccessTable()
             LoadYearLabels()
+
+            If currentUser.ProfileUpdateRequired Then
+                pUpdateRequired.Visible = True
+            End If
         End If
     End Sub
 

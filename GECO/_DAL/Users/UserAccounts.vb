@@ -57,20 +57,20 @@ Public Module UserAccounts
 
         Dim user As New GecoUser(userId) With {
             .Email = Trim(GetNullableString(dr("Email"))),
-            .Salutation = GetNullableString(dr("Salutation")),
             .FirstName = GetNullableString(dr("FirstName")),
             .LastName = GetNullableString(dr("LastName")),
             .Title = GetNullableString(dr("Title")),
             .Company = GetNullableString(dr("Company")),
             .PhoneNumber = GetNullableString(dr("Phone")),
-            .FaxNumber = GetNullableString(dr("Fax")),
-            .GecoUserTypeString = GetNullableString(dr("UserType")),
+            .UnformattedPhoneNumber = GetNullableString(dr("UnformattedPhone")),
+            .GecoUserType = GetNullableString(dr("UserType")),
             .Address = New Address() With {
                 .Street = GetNullableString(dr("Street")),
                 .City = GetNullableString(dr("City")),
                 .State = GetNullableString(dr("State")),
                 .PostalCode = GetNullableString(dr("PostalCode"))
-            }
+            },
+            .ProfileUpdateRequired = CBool(dr("UpdateRequired"))
         }
 
         Return user
@@ -84,22 +84,10 @@ Public Module UserAccounts
         Return DB.GetBoolean(query, param)
     End Function
 
-    Public Function CreateGecoAccount(newUser As GecoUser, password As String, ByRef token As String) As DbResult
+    Public Function CreateGecoAccount(email As String, password As String, ByRef token As String) As DbResult
         Dim params As SqlParameter() = {
-                New SqlParameter("@UserEmail", newUser.Email),
-                New SqlParameter("@Password", GetMd5Hash(password)),
-                New SqlParameter("@Salutation", newUser.Salutation),
-                New SqlParameter("@FName", newUser.FirstName),
-                New SqlParameter("@LName", newUser.LastName),
-                New SqlParameter("@Title", newUser.Title),
-                New SqlParameter("@CoName", newUser.Company),
-                New SqlParameter("@Street", newUser.Address.Street),
-                New SqlParameter("@City", newUser.Address.City),
-                New SqlParameter("@State", newUser.Address.State.ToUpper),
-                New SqlParameter("@Zip", newUser.Address.PostalCode),
-                New SqlParameter("@Phone", newUser.PhoneNumber),
-                New SqlParameter("@Fax", newUser.FaxNumber),
-                New SqlParameter("@UserType", newUser.GecoUserTypeString)
+                New SqlParameter("@UserEmail", email),
+                New SqlParameter("@Password", GetMd5Hash(password))
             }
 
         Dim result As Integer
@@ -273,6 +261,32 @@ Public Module UserAccounts
         End If
 
         Return False
+    End Function
+
+    Public Function UpdateUserProfile(user As GecoUser) As DbResult
+        Dim params As SqlParameter() = {
+            New SqlParameter("@GecoUserID", user.UserId),
+            New SqlParameter("@FName", user.FirstName),
+            New SqlParameter("@LName", user.LastName),
+            New SqlParameter("@Title", user.Title),
+            New SqlParameter("@CoName", user.Company),
+            New SqlParameter("@Street", user.Address.Street),
+            New SqlParameter("@City", user.Address.City),
+            New SqlParameter("@State", user.Address.State),
+            New SqlParameter("@Zip", user.Address.PostalCode),
+            New SqlParameter("@Phone", user.PhoneNumber),
+            New SqlParameter("@UserType", user.GecoUserType),
+            New SqlParameter("@UserID", user.UserId)
+        }
+
+        Select Case DB.SPReturnValue("geco.UpdateProfile", params)
+            Case 0
+                Return DbResult.Success
+            Case 1
+                Return DbResult.Failure
+            Case Else
+                Return DbResult.DbError
+        End Select
     End Function
 
 End Module

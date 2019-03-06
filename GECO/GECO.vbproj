@@ -166,6 +166,8 @@
     <Content Include="404.aspx" />
     <Content Include="Account.aspx" />
     <Content Include="Account\Default.aspx" />
+    <Content Include="Account\Email.aspx" />
+    <Content Include="Account\Password.aspx" />
     <Content Include="AirsRequestAccess.aspx" />
     <Content Include="aspnet_client\system_web\2_0_50727\crystalreportviewers13\ActiveXControls\PrintControl.cab" />
     <Content Include="aspnet_client\system_web\2_0_50727\crystalreportviewers13\ActiveXControls\PrintControl_res_cs.cab" />
@@ -1342,6 +1344,7 @@
     <Content Include="browserconfig.xml" />
     <Content Include="ContactUs.aspx" />
     <Content Include="Controls\PreventRePost.ascx" />
+    <Content Include="Login.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="EIS\Default.aspx" />
     <Content Include="EIS\eis_changelog.aspx" />
@@ -1413,7 +1416,7 @@
     <Content Include="Invoice\Default.aspx" />
     <Content Include="TN\Default.aspx" />
     <Content Include="Home\Default.aspx" />
-    <Content Include="UserRegistration.aspx" />
+    <Content Include="Register.aspx" />
     <Content Include="Web.configBuilder.xml">
       <SubType>Designer</SubType>
       <TransformOnBuild>true</TransformOnBuild>
@@ -1444,6 +1447,20 @@
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="Account\Email.aspx.designer.vb">
+      <DependentUpon>Email.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\Email.aspx.vb">
+      <DependentUpon>Email.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\Password.aspx.designer.vb">
+      <DependentUpon>Password.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\Password.aspx.vb">
+      <DependentUpon>Password.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="AirsRequestAccess.aspx.designer.vb">
       <DependentUpon>AirsRequestAccess.aspx</DependentUpon>
     </Compile>
@@ -1460,6 +1477,13 @@
     </Compile>
     <Compile Include="Controls\PreventRePost.ascx.designer.vb">
       <DependentUpon>PreventRePost.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Login.aspx.designer.vb">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Login.aspx.vb">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Default.aspx.designer.vb">
       <DependentUpon>Default.aspx</DependentUpon>
@@ -1666,8 +1690,8 @@
     <Compile Include="AnnualFees\Default.aspx.designer.vb">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
-    <Compile Include="AnnualFees\Fees.master.designer.vb">
-      <DependentUpon>Fees.master</DependentUpon>
+    <Compile Include="AnnualFees\AnnualFees.master.designer.vb">
+      <DependentUpon>AnnualFees.master</DependentUpon>
     </Compile>
     <Compile Include="AnnualFees\Invoice.aspx.designer.vb">
       <DependentUpon>Invoice.aspx</DependentUpon>
@@ -1763,11 +1787,11 @@
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="UserRegistration.aspx.designer.vb">
-      <DependentUpon>UserRegistration.aspx</DependentUpon>
+    <Compile Include="Register.aspx.designer.vb">
+      <DependentUpon>Register.aspx</DependentUpon>
     </Compile>
-    <Compile Include="UserRegistration.aspx.vb">
-      <DependentUpon>UserRegistration.aspx</DependentUpon>
+    <Compile Include="Register.aspx.vb">
+      <DependentUpon>Register.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="_Code\Colors.vb" />
@@ -2055,8 +2079,8 @@
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AnnualFees\Fees.master.vb">
-      <DependentUpon>Fees.master</DependentUpon>
+    <Compile Include="AnnualFees\AnnualFees.master.vb">
+      <DependentUpon>AnnualFees.master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="AnnualFees\Invoice.aspx.vb">
@@ -2097,7 +2121,7 @@
     <Content Include="ES\es.master" />
     <Content Include="AnnualFees\FeeAmendment.xls" />
     <Content Include="AnnualFees\FeeInvoice.rpt" />
-    <Content Include="AnnualFees\Fees.master" />
+    <Content Include="AnnualFees\AnnualFees.master" />
     <Content Include="MainMaster.master" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>

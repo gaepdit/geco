@@ -45,7 +45,7 @@ Namespace DAL
                 .FirstName = GetNullableString(dr.Item("FirstName")),
                 .LastName = GetNullableString(dr.Item("LastName")),
                 .Email = GetNullableString(dr.Item("Email")),
-                .PhoneNumber = GetNullableString(dr.Item("Phone")),
+                .UnformattedPhoneNumber = GetNullableString(dr.Item("Phone")),
                 .ActiveEmployee = CBool(dr.Item("ActiveEmployee"))
             }
 

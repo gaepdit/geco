@@ -11,7 +11,7 @@
             </div>
         </ProgressTemplate>
     </acs:ModalUpdateProgress>
-    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+    <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
         <ContentTemplate>
             <h1>Performance Test Notifications</h1>
 
@@ -26,7 +26,7 @@
                 <asp:DataGrid ID="dgrTestNotify" runat="server" Width="100%" CellSpacing="1" CellPadding="3"
                     AutoGenerateColumns="False" Font-Size="Small" AllowPaging="True"
                     OnPageIndexChanged="dgrTestNotify_PageIndexChanged" OnItemCommand="RequestDetails"
-                    BackColor="White" Font-Names="Arial" BorderColor="#999999" BorderWidth="1px" AlternatingItemStyle-BackColor="White">
+                    BackColor="White" Font-Names="Arial" BorderColor="#999999" BorderWidth="1px" AlternatingItemStyle-BackColor="White" CssClass="button-small">
                     <FooterStyle Wrap="False" ForeColor="Black" BackColor="#CCCCCC"></FooterStyle>
                     <SelectedItemStyle Font-Bold="True" Wrap="False" ForeColor="White" BackColor="#008A8C"></SelectedItemStyle>
                     <AlternatingItemStyle Wrap="False" BackColor="White"></AlternatingItemStyle>

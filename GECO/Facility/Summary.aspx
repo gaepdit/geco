@@ -1,16 +1,32 @@
 <%@ Page Language="VB" MasterPageFile="~/MainMaster.master" AutoEventWireup="false" Inherits="GECO.FacilitySummary" Title="GECO Facility Summary" CodeBehind="Summary.aspx.vb" %>
 
 <%@ MasterType VirtualPath="~/MainMaster.master" %>
-
-<asp:Content ID="Content1" ContentPlaceHolderID="FullContent" runat="Server">
+<asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="Server">
     <h1>Facility Summary</h1>
 
     <p>
+        Current Facility: 
         <b>
-            <asp:Label ID="lblFacilityDisplay" runat="server"></asp:Label><br />
-            AIRS No:
-        <asp:Label ID="lblAIRS" runat="server"></asp:Label></b>
+            <asp:Label ID="lblFacilityDisplay" runat="server"></asp:Label>
+        </b>
+        <br />
+        AIRS No:        
+        <b>
+            <asp:Label ID="lblAIRS" runat="server"></asp:Label>
+        </b>
     </p>
+
+    <ul class="menu-list-horizontal">
+        <li>
+            <asp:HyperLink ID="lnkFacilityHome" runat="server" NavigateUrl="~/Facility/">Facility Home</asp:HyperLink>
+        </li>
+        <li>
+            <asp:HyperLink ID="lnkFacilityInfo" runat="server" NavigateUrl="~/Facility/Summary.aspx" Enabled="false" CssClass="selected-menu-item">Facility Info</asp:HyperLink>
+        </li>
+        <li>
+            <asp:HyperLink ID="lnkFacilityAdmin" runat="server" NavigateUrl="~/Facility/Admin.aspx">User Access</asp:HyperLink>
+        </li>
+    </ul>
 
     <h2>Facility Location</h2>
 

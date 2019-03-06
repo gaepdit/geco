@@ -2392,7 +2392,7 @@ Partial Class AnnualFees_Default
                 txtTitle.Text = user.Title
                 txtCoName.Text = user.Company
                 txtEmail.Text = user.Email
-                txtFax.Text = user.FaxNumber
+                txtFax.Text = ""
                 txtAddress.Text = user.Address.Street
                 txtCity.Text = user.Address.City
                 txtState.Text = user.Address.State

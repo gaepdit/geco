@@ -1,14 +1,29 @@
 ﻿<%@ Page Title="Georgia EPD Event Details" Language="VB" MasterPageFile="~/MainMaster.master"
     AutoEventWireup="false" Inherits="GECO.EventRegistration_EventDetails" CodeBehind="Details.aspx.vb" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="FullContent" runat="Server">
+<%@ MasterType VirtualPath="~/MainMaster.master" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="Server">
     <h1>
         <asp:Label ID="lblTitle" runat="server"></asp:Label>
     </h1>
 
-    <asp:Label ID="lblLoginWarning" runat="server">
-        <p class="message-update"><strong>A GECO account is required to register for any event.</strong></p>
-    </asp:Label>
+    <p id="pLoginWarning" runat="server" class="message-highlight">
+        <strong>A GECO account is required to register for any event.</strong>
+        <asp:HyperLink ID="lnkLogin" runat="server" NavigateUrl="~/Login.aspx" CssClass="no-visited">Sign in</asp:HyperLink>
+        or
+        <asp:HyperLink ID="lnkRegister" runat="server" NavigateUrl="~/Register.aspx" CssClass="no-visited">create an account</asp:HyperLink>.
+    </p>
+
+    <p id="pUpdateRequired" runat="server" visible="false" class="message-highlight">
+        Your profile is missing required information. 
+        <asp:HyperLink ID="lnkUpdateProfile" runat="server" NavigateUrl="~/Account/" CssClass="no-visited">Please update</asp:HyperLink>
+        before registering.
+    </p>
+
+    <p id="pUpdateRequiredRegistered" runat="server" visible="false" class="message-highlight">
+        Your profile is missing required information. 
+        <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/Account/" CssClass="no-visited">Please update</asp:HyperLink>.
+    </p>
 
     <div>
         <asp:Literal ID="litEventDetails" runat="server"></asp:Literal>
@@ -58,15 +73,4 @@
             </table>
         </asp:Panel>
     </asp:Panel>
-
-    <asp:UpdateProgress ID="UpdateProgress1" runat="server" DisplayAfter="0" AssociatedUpdatePanelID="UpdatePanel1">
-        <ProgressTemplate>
-            <div id="progressBackgroundFilter"></div>
-            <div id="progressMessage">
-                Please Wait...
-                <br />
-                <img alt="Loading" src="<%= Page.ResolveUrl("~/assets/images/progressbar_green.gif") %>" />
-            </div>
-        </ProgressTemplate>
-    </asp:UpdateProgress>
 </asp:Content>

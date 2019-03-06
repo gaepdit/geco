@@ -15,6 +15,7 @@
     <link href="~/assets/css/site.css?v=20180920" rel="stylesheet" type="text/css" />
 </head>
 <body>
+    <a class="skipnav" href="#main-content">Skip to main content</a>
     <form id="form1" runat="server">
         <asp:ScriptManager ID="ScriptManager1" runat="Server" EnablePartialRendering="true" ScriptMode="Release">
         </asp:ScriptManager>
@@ -44,7 +45,7 @@
         </div>
         <!-- end header -->
 
-        <div class="outer-container">
+        <div class="outer-container" id="main-content">
             <!-- container for all 3 columns -->
             <div class="inner-container">
                 <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
@@ -66,7 +67,7 @@
         </div>
         <!-- end outer 3-column container -->
         <div class="footer">
-            ©<%= Now.Year %>, <a href="https://epd.georgia.gov/">Georgia Environmental Protection Division</a>, <a href="https://epd.georgia.gov/air">Air Protection Branch</a> • All rights reserved
+            ©<%= Now.Year %> <a href="https://epd.georgia.gov/">Georgia Environmental Protection Division</a>, <a href="https://epd.georgia.gov/air">Air Protection Branch</a> • All rights reserved
         </div>
     </form>
 </body>

@@ -6,6 +6,7 @@ Partial Class FacilityAdmin
     Private Property currentUser As GecoUser
     Private Property facilityAccess As FacilityAccess
     Private Property currentAirs As ApbFacilityId
+    Private Property currentFacility As String = Nothing
 
 #Region " Page Load "
 
@@ -45,13 +46,7 @@ Partial Class FacilityAdmin
             LoadFacilityInfo()
             LoadUserGrid()
 
-            Dim mpUserLabel, mpFacilityLabel, mpAirsLabel As Label
-            mpUserLabel = CType(Master.FindControl("lblUserName"), Label)
-            mpUserLabel.Text = "Welcome, " & currentUser.FullName & " | "
-            mpFacilityLabel = CType(Master.FindControl("lblFacilityName"), Label)
-            mpFacilityLabel.Text = "Facility: " & lblFacilityDisplay.Text & " | "
-            mpAirsLabel = CType(Master.FindControl("lblAirsNo"), Label)
-            mpAirsLabel.Text = "AIRS No: " & currentAirs.FormattedString()
+            Master.Facility = ConcatNonEmptyStrings(", ", {currentAirs.FormattedString(), currentFacility})
 
             Title = "GECO Facility Admin - " & lblFacilityDisplay.Text
             lblAIRS.Text = currentAirs.FormattedString
@@ -61,7 +56,8 @@ Partial Class FacilityAdmin
     End Sub
 
     Private Sub LoadFacilityInfo()
-        lblFacilityDisplay.Text = GetFacilityName(currentAirs) & ", " & GetFacilityCity(currentAirs)
+        currentFacility = GetFacilityName(currentAirs) & ", " & GetFacilityCity(currentAirs)
+        lblFacilityDisplay.Text = currentFacility
     End Sub
 
 #End Region

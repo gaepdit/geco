@@ -11,223 +11,205 @@ Option Strict On
 Option Explicit On
 
 
-Partial Public Class Account_Default
+Partial Public Class Register
     
     '''<summary>
-    '''lblDisplayName control.
+    '''UpdatePanel1 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lblDisplayName As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents UpdatePanel1 As Global.System.Web.UI.UpdatePanel
     
     '''<summary>
-    '''hlSignOut control.
+    '''lblEmail control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents hlSignOut As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents lblEmail As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
-    '''lnkEditProfile control.
+    '''txtEmail control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lnkEditProfile As Global.System.Web.UI.WebControls.HyperLink
+    Protected WithEvents txtEmail As Global.System.Web.UI.WebControls.TextBox
     
     '''<summary>
-    '''lnkEditEmail control.
+    '''RequiredFieldValidator6 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lnkEditEmail As Global.System.Web.UI.WebControls.HyperLink
+    Protected WithEvents RequiredFieldValidator6 As Global.System.Web.UI.WebControls.RequiredFieldValidator
     
     '''<summary>
-    '''lnkEditPassword control.
+    '''RegularExpressionValidator1 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lnkEditPassword As Global.System.Web.UI.WebControls.HyperLink
+    Protected WithEvents RegularExpressionValidator1 As Global.System.Web.UI.WebControls.RegularExpressionValidator
     
     '''<summary>
-    '''pUpdateRequired control.
+    '''cvEmailExists control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents pUpdateRequired As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+    Protected WithEvents cvEmailExists As Global.System.Web.UI.WebControls.CustomValidator
     
     '''<summary>
-    '''UpdatePanel_profile control.
+    '''lblPwd control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents UpdatePanel_profile As Global.System.Web.UI.UpdatePanel
+    Protected WithEvents lblPwd As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
-    '''subForm control.
+    '''txtPwd control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents subForm As Global.System.Web.UI.WebControls.Panel
+    Protected WithEvents txtPwd As Global.System.Web.UI.WebControls.TextBox
     
     '''<summary>
-    '''lblProfileMessage control.
+    '''RequiredFieldValidator15 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lblProfileMessage As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents RequiredFieldValidator15 As Global.System.Web.UI.WebControls.RequiredFieldValidator
     
     '''<summary>
-    '''txtFName control.
+    '''Regex3 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtFName As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents Regex3 As Global.System.Web.UI.WebControls.RegularExpressionValidator
     
     '''<summary>
-    '''RequiredFieldValidator3 control.
+    '''lblPwdConfirm control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents RequiredFieldValidator3 As Global.System.Web.UI.WebControls.RequiredFieldValidator
+    Protected WithEvents lblPwdConfirm As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
-    '''txtLName control.
+    '''txtPwdConfirm control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtLName As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents txtPwdConfirm As Global.System.Web.UI.WebControls.TextBox
     
     '''<summary>
-    '''RequiredFieldValidator2 control.
+    '''RequiredFieldValidator16 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents RequiredFieldValidator2 As Global.System.Web.UI.WebControls.RequiredFieldValidator
+    Protected WithEvents RequiredFieldValidator16 As Global.System.Web.UI.WebControls.RequiredFieldValidator
     
     '''<summary>
-    '''txtTitle control.
+    '''CompareValidator1 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtTitle As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents CompareValidator1 As Global.System.Web.UI.WebControls.CompareValidator
     
     '''<summary>
-    '''txtCoName control.
+    '''lblCaptcha control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtCoName As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents lblCaptcha As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
-    '''txtAddress control.
+    '''txtCaptcha control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtAddress As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents txtCaptcha As Global.System.Web.UI.WebControls.TextBox
     
     '''<summary>
-    '''txtCity control.
+    '''RequiredFieldValidator19 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtCity As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents RequiredFieldValidator19 As Global.System.Web.UI.WebControls.RequiredFieldValidator
     
     '''<summary>
-    '''txtState control.
+    '''cvCaptcha control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtState As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents cvCaptcha As Global.System.Web.UI.WebControls.CustomValidator
     
     '''<summary>
-    '''txtZip control.
+    '''captchaControl control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtZip As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents captchaControl As Global.MSCaptcha.CaptchaControl
     
     '''<summary>
-    '''txtPhone control.
+    '''lbtnRefreshCaptcha control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtPhone As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents lbtnRefreshCaptcha As Global.System.Web.UI.WebControls.LinkButton
     
     '''<summary>
-    '''ddlUserType control.
+    '''btnRegister control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents ddlUserType As Global.System.Web.UI.WebControls.DropDownList
+    Protected WithEvents btnRegister As Global.System.Web.UI.WebControls.Button
     
     '''<summary>
-    '''RequiredFieldValidator13 control.
+    '''UpdateProgress1 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents RequiredFieldValidator13 As Global.System.Web.UI.WebControls.RequiredFieldValidator
-    
-    '''<summary>
-    '''btnUpdateProfile control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnUpdateProfile As Global.System.Web.UI.WebControls.Button
-    
-    '''<summary>
-    '''ProfileUpdateProgress control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents ProfileUpdateProgress As Global.System.Web.UI.UpdateProgress
+    Protected WithEvents UpdateProgress1 As Global.System.Web.UI.UpdateProgress
     
     '''<summary>
     '''Master property.

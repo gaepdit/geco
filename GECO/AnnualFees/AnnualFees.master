@@ -1,4 +1,4 @@
-﻿<%@ Master Language="VB" Inherits="GECO.AnnualFees_Fees" Codebehind="Fees.master.vb" %>
+﻿<%@ Master Language="VB" Inherits="GECO.AnnualFees_AnnualFees" Codebehind="AnnualFees.master.vb" %>
 <%@ Register Assembly="EasyMenu" Namespace="Sequentum" TagPrefix="easymenu" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang="en-us" xmlns="http://www.w3.org/1999/xhtml">
@@ -13,6 +13,7 @@
     <link href="~/assets/css/site.css?v=20180920" rel="stylesheet" type="text/css" />
 </head>
 <body>
+    <a class="skipnav" href="#main-content">Skip to main content</a>
     <form id="form1" runat="server">
         <asp:ScriptManager ID="ScriptManager1" runat="Server" EnablePartialRendering="true" ScriptMode="Release">
         </asp:ScriptManager>
@@ -42,13 +43,13 @@
         </div>
 
         <!-- end header -->
-        <div class="outer-container">
+        <div class="outer-container" id="main-content">
             <!-- container for all 3 columns -->
             <div class="inner-container">
                 <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
                     <ContentTemplate>
                         <!-- container for only left and center columns -->
-                        <div class="content">
+                        <div class="content-center">
                             <asp:ContentPlaceHolder ID="MainContent" runat="server">
                             </asp:ContentPlaceHolder>
                         </div>
@@ -75,7 +76,7 @@
         </div>
         <!-- end outer 3-column container -->
         <div class="footer">
-            ©<%= Now.Year %>, <a href="https://epd.georgia.gov/">Georgia Environmental Protection Division</a>, <a href="https://epd.georgia.gov/air">Air Protection Branch</a> • All rights reserved
+            ©<%= Now.Year %> <a href="https://epd.georgia.gov/">Georgia Environmental Protection Division</a>, <a href="https://epd.georgia.gov/air">Air Protection Branch</a> • All rights reserved
         </div>
         <!-- end footer -->
     </form>

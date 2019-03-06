@@ -1,12 +1,22 @@
 ﻿<%@ Page Title="Georgia EPD Upcoming Events" Language="VB" MasterPageFile="~/MainMaster.master"
     AutoEventWireup="false" Inherits="GECO.EventRegistration_Default" CodeBehind="Default.aspx.vb" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="FullContent" runat="Server">
+<%@ MasterType VirtualPath="~/MainMaster.master" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="Server">
     <h1>Upcoming classes and workshops offered by Georgia EPD</h1>
 
-    <asp:Label ID="lblLoginWarning" runat="server">
-        <p class="message-update"><strong>A GECO account is required to register for any event.</strong></p>
-    </asp:Label>
+    <p id="pLoginWarning" runat="server" class="message-highlight">
+        <strong>A GECO account is required to register for any event.</strong>
+        <asp:HyperLink ID="lnkLogin" runat="server" NavigateUrl="~/Login.aspx" CssClass="no-visited">Sign in</asp:HyperLink>
+        or
+        <asp:HyperLink ID="lnkRegister" runat="server" NavigateUrl="~/Register.aspx" CssClass="no-visited">create an account</asp:HyperLink>.
+    </p>
+
+    <p id="pUpdateRequired" runat="server" visible="false" class="message-highlight">
+        Your profile is missing required information. 
+        <asp:HyperLink ID="lnkUpdateProfile" runat="server" NavigateUrl="~/Account/" CssClass="no-visited">Please update</asp:HyperLink>
+        before registering.
+    </p>
 
     <asp:GridView ID="gvwEventList" runat="server" AutoGenerateColumns="False" DataKeyNames="numres_eventid"
         ShowHeader="false" ShowFooter="false" EmptyDataText="There are no classes or workshops scheduled at this time."

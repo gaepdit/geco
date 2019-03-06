@@ -32,6 +32,33 @@ Partial Public Class FacilitySummary
     Protected WithEvents lblAIRS As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
+    '''lnkFacilityHome control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lnkFacilityHome As Global.System.Web.UI.WebControls.HyperLink
+    
+    '''<summary>
+    '''lnkFacilityInfo control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lnkFacilityInfo As Global.System.Web.UI.WebControls.HyperLink
+    
+    '''<summary>
+    '''lnkFacilityAdmin control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lnkFacilityAdmin As Global.System.Web.UI.WebControls.HyperLink
+    
+    '''<summary>
     '''lblAddress control.
     '''</summary>
     '''<remarks>

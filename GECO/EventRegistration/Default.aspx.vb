@@ -1,4 +1,6 @@
-﻿Partial Class EventRegistration_Default
+﻿Imports GECO.GecoModels
+
+Partial Class EventRegistration_Default
     Inherits Page
 
     Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
@@ -7,7 +9,11 @@
             gvwEventList.DataBind()
 
             If UserIsLoggedIn() Then
-                lblLoginWarning.Visible = False
+                pLoginWarning.Visible = False
+
+                If GetCurrentUser().ProfileUpdateRequired Then
+                    pUpdateRequired.Visible = True
+                End If
             End If
         End If
     End Sub

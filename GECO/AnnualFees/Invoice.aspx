@@ -1,4 +1,4 @@
-<%@ Page Language="VB" MasterPageFile="~/AnnualFees/Fees.master" AutoEventWireup="false" Inherits="GECO.AnnualFees_Invoice" Title="GECO - Fees Reports" Codebehind="Invoice.aspx.vb" %>
+<%@ Page Language="VB" MasterPageFile="~/AnnualFees/AnnualFees.master" AutoEventWireup="false" Inherits="GECO.AnnualFees_Invoice" Title="GECO - Fees Reports" Codebehind="Invoice.aspx.vb" %>
 
 <%@ Register Assembly="CrystalDecisions.Web, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304"
     Namespace="CrystalDecisions.Web" TagPrefix="CR" %>

@@ -41,22 +41,13 @@ Partial Public Class MainMaster
     Protected WithEvents lblUserName As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
-    '''lblFacilityName control.
+    '''lblFacility control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lblFacilityName As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''lblAirsNo control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblAirsNo As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lblFacility As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
     '''EasyMenu1 control.
@@ -68,38 +59,11 @@ Partial Public Class MainMaster
     Protected WithEvents EasyMenu1 As Global.Sequentum.EasyMenu
     
     '''<summary>
-    '''UpdatePanel1 control.
+    '''Content control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents UpdatePanel1 As Global.System.Web.UI.UpdatePanel
-    
-    '''<summary>
-    '''MainContent control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents MainContent As Global.System.Web.UI.WebControls.ContentPlaceHolder
-    
-    '''<summary>
-    '''LeftMenuContent control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents LeftMenuContent As Global.System.Web.UI.WebControls.ContentPlaceHolder
-    
-    '''<summary>
-    '''FullContent control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents FullContent As Global.System.Web.UI.WebControls.ContentPlaceHolder
+    Protected WithEvents Content As Global.System.Web.UI.WebControls.ContentPlaceHolder
 End Class

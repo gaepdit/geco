@@ -2,7 +2,7 @@
 
 <%@ MasterType VirtualPath="~/MainMaster.master" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="FullContent" runat="server">
+<asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="server">
     <h1>Permit Fees</h1>
 
     <p>
@@ -50,5 +50,4 @@
             <asp:BoundField DataField="Balance" HeaderText="Balance" DataFormatString="{0:c}" ItemStyle-CssClass="table-cell-alignright" />
         </Columns>
     </asp:GridView>
-
 </asp:Content>
