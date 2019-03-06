@@ -2,7 +2,7 @@
 
 <%@ MasterType VirtualPath="~/MainMaster.master" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="FullContent" runat="Server">
+<asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="Server">
     <h1>Air Quality Permits and Permit Applications</h1>
 
     <p>
@@ -55,5 +55,4 @@
             <asp:BoundField HeaderText="Date Closed Out" DataField="Status Date" DataFormatString="{0:dd-MMM-yyyy}" />
         </Columns>
     </asp:GridView>
-
 </asp:Content>

@@ -1,12 +1,11 @@
 ﻿<%@ Master Language="VB" Inherits="GECO.MainMaster" CodeBehind="MainMaster.master.vb" %>
 
-<%@ Register Assembly="System.Web.Extensions, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35"
-    Namespace="System.Web.UI" TagPrefix="asp" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html lang="en-us" xmlns="http://www.w3.org/1999/xhtml">
+<%@ Register Assembly="System.Web.Extensions, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" Namespace="System.Web.UI" TagPrefix="asp" %>
+<!DOCTYPE html>
+<html lang="en-us">
 <head runat="server">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>GECO</title>
+    <meta charset="utf-8" />
+    <title>Georgia Environmental Connections Online</title>
     <link rel="apple-touch-icon" sizes="180x180" href="~/assets/epd-favicons/apple-touch-icon.png?v=69kRrvbXdL" />
     <link rel="icon" type="image/png" href="~/assets/epd-favicons/favicon-32x32.png?v=69kRrvbXdL" sizes="32x32" />
     <link rel="icon" type="image/png" href="~/assets/epd-favicons/favicon-16x16.png?v=69kRrvbXdL" sizes="16x16" />
@@ -14,75 +13,47 @@
     <link rel="shortcut icon" href="~/favicon.ico?v=69kRrvbXdL" />
     <meta name="theme-color" content="#e5f6fa" />
     <link href="~/assets/css/site.css?v=20180920" rel="stylesheet" type="text/css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Access to various Georgia Air Protection Branch applications">
 </head>
 <body>
+    <a class="skipnav" href="#main-content">Skip to main content</a>
     <form id="form1" runat="server">
         <asp:ScriptManager ID="ScriptManager1" runat="Server" EnablePartialRendering="true" ScriptMode="Release">
         </asp:ScriptManager>
 
         <div id="header">
             <div id="epdlogo">
-                <img src='<%= Page.ResolveUrl("~/assets/images/epd_logo.jpg") %>' alt="Georgia EPD" />
+                <a href="https://epd.georgia.gov/" target="_blank">
+                    <img src='<%= Page.ResolveUrl("~/assets/images/epd_logo.jpg") %>' alt="Georgia EPD" />
+                </a>
             </div>
             <div id="apptitle">
                 <img src='<%= Page.ResolveUrl("~/assets/images/airbranch_header_bg.jpg") %>' alt="Georgia Air Protection Branch" />
             </div>
         </div>
         <div id="usermenu">
-            <table width="100%">
+            <table style="width: 100%;">
                 <tr>
-                    <td width="140px"></td>
-                    <td>
-                        <asp:Label ID="lblUserName" runat="server" Text=""></asp:Label>
-                        <asp:Label ID="lblFacilityName" runat="server" Text=""></asp:Label>
-                        <asp:Label ID="lblAirsNo" runat="server" Text=""></asp:Label>
+                    <td style="padding-left: 140px;">
+                        <asp:Label ID="lblUserName" runat="server" Text=""></asp:Label><br />
+                        <asp:Label ID="lblFacility" runat="server" Text=""></asp:Label>
                     </td>
-                    <td align="right">
-                        <seq:EasyMenu ID="EasyMenu1" runat="server" />
+                    <td style="text-align: right;">
+                        <seq:EasyMenu ID="EasyMenu1" runat="server" HorizontalAlignment="Right" />
                     </td>
                 </tr>
             </table>
         </div>
-        <!-- end header -->
 
-        <div class="outer-container">
-            <!-- container for all 3 columns -->
-            <div class="inner-container">
-                <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
-                    <ContentTemplate>
-                        <!-- container for only left and center columns -->
-                        <div class="content">
-                            <asp:ContentPlaceHolder ID="MainContent" runat="server">
-                            </asp:ContentPlaceHolder>
-                        </div>
-                        <!-- end content -->
-                        <div class="nav">
-                            <asp:ContentPlaceHolder ID="LeftMenuContent" runat="server">
-                            </asp:ContentPlaceHolder>
-                        </div>
-                        <div class="clear"></div>
-                        <!-- container for full-width content -->
-                        <div class="content-full">
-                            <asp:ContentPlaceHolder ID="FullContent" runat="server">
-                            </asp:ContentPlaceHolder>
-                        </div>
-                        <div class="clear"></div>
-                    </ContentTemplate>
-                </asp:UpdatePanel>
-                <!-- sets inner-container height, needed for background color -->
-                <br />
-            </div>
-            <!-- end inner left/center container -->
-            <div class="clear">
-            </div>
-            <!-- sets outer-container height, needed for background color -->
+        <div class="content" id="main-content">
+            <asp:ContentPlaceHolder ID="Content" runat="server"></asp:ContentPlaceHolder>
+            <div class="clear"></div>
         </div>
 
-        <!-- end outer 3-column container -->
         <div class="footer">
-            ©<%= Now.Year %>, <a href="https://epd.georgia.gov/">Georgia Environmental Protection Division</a>, <a href="https://epd.georgia.gov/air">Air Protection Branch</a> • All rights reserved
+            ©<%= Now.Year %> <a href="https://epd.georgia.gov/">Georgia Environmental Protection Division</a>, <a href="https://epd.georgia.gov/air">Air Protection Branch</a> • All rights reserved
         </div>
-        <!-- end footer -->
     </form>
 </body>
 </html>

@@ -10,6 +10,7 @@ Partial Class FacilityHome
     Private Property currentUser As GecoUser
     Private Property facilityAccess As FacilityAccess
     Private Property currentAirs As ApbFacilityId
+    Private Property currentFacility As String = Nothing
 
 #Region " Page Load "
 
@@ -49,15 +50,9 @@ Partial Class FacilityHome
             LoadFacilityInfo()
             GetApplicationStatus()
 
-            Dim mpUserLabel, mpFacilityLabel, mpAirsLabel As Label
-            mpUserLabel = CType(Master.FindControl("lblUserName"), Label)
-            mpUserLabel.Text = "Welcome, " & currentUser.FullName & " | "
-            mpFacilityLabel = CType(Master.FindControl("lblFacilityName"), Label)
-            mpFacilityLabel.Text = "Facility: " & lblFacilityDisplay.Text & " | "
-            mpAirsLabel = CType(Master.FindControl("lblAirsNo"), Label)
-            mpAirsLabel.Text = "AIRS No: " & currentAirs.FormattedString()
+            Master.Facility = ConcatNonEmptyStrings(", ", {currentAirs.FormattedString(), currentFacility})
 
-            Title = "GECO Facility Summary - " & lblFacilityDisplay.Text
+            Title = "GECO Facility Summary - " & currentFacility
             lblAIRS.Text = currentAirs.FormattedString
         End If
     End Sub
@@ -73,7 +68,8 @@ Partial Class FacilityHome
     End Sub
 
     Private Sub LoadFacilityInfo()
-        lblFacilityDisplay.Text = GetFacilityName(currentAirs) & ", " & GetFacilityCity(currentAirs)
+        currentFacility = GetFacilityName(currentAirs) & ", " & GetFacilityCity(currentAirs)
+        lblFacilityDisplay.Text = currentFacility
     End Sub
 
 #End Region
@@ -757,7 +753,7 @@ Partial Class FacilityHome
                 txtTitle.Text = currentUser.Title
                 txtCoName.Text = currentUser.Company
                 txtEmailContact.Text = currentUser.Email
-                txtFax.Text = currentUser.FaxNumber
+                txtFax.Text = ""
                 txtAddress.Text = currentUser.Address.Street
                 txtCity.Text = currentUser.Address.City
                 txtState.Text = currentUser.Address.State

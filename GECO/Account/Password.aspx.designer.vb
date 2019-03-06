@@ -11,7 +11,7 @@ Option Strict On
 Option Explicit On
 
 
-Partial Public Class Account_Default
+Partial Public Class Account_Password
     
     '''<summary>
     '''lblDisplayName control.
@@ -59,22 +59,13 @@ Partial Public Class Account_Default
     Protected WithEvents lnkEditPassword As Global.System.Web.UI.WebControls.HyperLink
     
     '''<summary>
-    '''pUpdateRequired control.
+    '''UpdatePanel_password control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents pUpdateRequired As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
-    '''<summary>
-    '''UpdatePanel_profile control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents UpdatePanel_profile As Global.System.Web.UI.UpdatePanel
+    Protected WithEvents UpdatePanel_password As Global.System.Web.UI.UpdatePanel
     
     '''<summary>
     '''subForm control.
@@ -86,148 +77,103 @@ Partial Public Class Account_Default
     Protected WithEvents subForm As Global.System.Web.UI.WebControls.Panel
     
     '''<summary>
-    '''lblProfileMessage control.
+    '''lblPasswordMessage control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lblProfileMessage As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lblPasswordMessage As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
-    '''txtFName control.
+    '''txtOldPassword control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtFName As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents txtOldPassword As Global.System.Web.UI.WebControls.TextBox
     
     '''<summary>
-    '''RequiredFieldValidator3 control.
+    '''RequiredFieldValidator1 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents RequiredFieldValidator3 As Global.System.Web.UI.WebControls.RequiredFieldValidator
+    Protected WithEvents RequiredFieldValidator1 As Global.System.Web.UI.WebControls.RequiredFieldValidator
     
     '''<summary>
-    '''txtLName control.
+    '''txtNewPassword control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtLName As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents txtNewPassword As Global.System.Web.UI.WebControls.TextBox
     
     '''<summary>
-    '''RequiredFieldValidator2 control.
+    '''RequiredFieldValidator15 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents RequiredFieldValidator2 As Global.System.Web.UI.WebControls.RequiredFieldValidator
+    Protected WithEvents RequiredFieldValidator15 As Global.System.Web.UI.WebControls.RequiredFieldValidator
     
     '''<summary>
-    '''txtTitle control.
+    '''Regex3 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtTitle As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents Regex3 As Global.System.Web.UI.WebControls.RegularExpressionValidator
     
     '''<summary>
-    '''txtCoName control.
+    '''txtPwdConfirm control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtCoName As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents txtPwdConfirm As Global.System.Web.UI.WebControls.TextBox
     
     '''<summary>
-    '''txtAddress control.
+    '''RequiredFieldValidator16 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtAddress As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents RequiredFieldValidator16 As Global.System.Web.UI.WebControls.RequiredFieldValidator
     
     '''<summary>
-    '''txtCity control.
+    '''CompareValidator1 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtCity As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents CompareValidator1 As Global.System.Web.UI.WebControls.CompareValidator
     
     '''<summary>
-    '''txtState control.
+    '''btnPwdUpdate control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtState As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents btnPwdUpdate As Global.System.Web.UI.WebControls.Button
     
     '''<summary>
-    '''txtZip control.
+    '''PasswordUpdateProgress control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtZip As Global.System.Web.UI.WebControls.TextBox
-    
-    '''<summary>
-    '''txtPhone control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtPhone As Global.System.Web.UI.WebControls.TextBox
-    
-    '''<summary>
-    '''ddlUserType control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents ddlUserType As Global.System.Web.UI.WebControls.DropDownList
-    
-    '''<summary>
-    '''RequiredFieldValidator13 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents RequiredFieldValidator13 As Global.System.Web.UI.WebControls.RequiredFieldValidator
-    
-    '''<summary>
-    '''btnUpdateProfile control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnUpdateProfile As Global.System.Web.UI.WebControls.Button
-    
-    '''<summary>
-    '''ProfileUpdateProgress control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents ProfileUpdateProgress As Global.System.Web.UI.UpdateProgress
+    Protected WithEvents PasswordUpdateProgress As Global.System.Web.UI.UpdateProgress
     
     '''<summary>
     '''Master property.

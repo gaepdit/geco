@@ -32,15 +32,20 @@ Partial Class EventRegistration_EventDetails
             DisplayEventDetails()
 
             If UserIsLoggedIn() Then
-                lblLoginWarning.Visible = False
+                pLoginWarning.Visible = False
                 pnlLoggedIn.Visible = True
                 lblEmail.Text = currentUser.Email
 
-                CheckRegistration()
-            Else
-                lblLoginWarning.Visible = True
-                pnlLoggedIn.Visible = False
-                lblEmail.Text = ""
+                If currentUser.ProfileUpdateRequired Then
+                    pUpdateRequired.Visible = True
+                End If
+
+                If CheckRegistration() Then
+                    If currentUser.ProfileUpdateRequired Then
+                        pUpdateRequired.Visible = False
+                        pUpdateRequiredRegistered.Visible = True
+                    End If
+                End If
             End If
         End If
     End Sub
@@ -143,7 +148,7 @@ Partial Class EventRegistration_EventDetails
 
 #Region " Display Registration Status "
 
-    Private Sub CheckRegistration()
+    Private Function CheckRegistration() As Boolean
         If UserIsRegisteredForEvent(eventId, currentUser.UserId) Then
             pnlPasscode.Visible = False
             pnlRegister.Visible = True
@@ -151,14 +156,16 @@ Partial Class EventRegistration_EventDetails
             btnCancelRegistration.Visible = True
 
             DisplayRegistration()
+            Return True
         Else
             litConfirmation.Visible = False
             pnlPasscode.Visible = passcodeRequired
             pnlRegister.Visible = Not passcodeRequired
             btnRegister.Visible = True
             btnCancelRegistration.Visible = False
+            Return False
         End If
-    End Sub
+    End Function
 
     Private Sub DisplayRegistration()
         Dim dr = GetRegistrationStatus(eventId, currentUser.UserId)

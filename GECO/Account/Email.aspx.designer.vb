@@ -11,79 +11,79 @@ Option Strict On
 Option Explicit On
 
 
-Partial Public Class ContactUs
+Partial Public Class Account_Email
     
     '''<summary>
-    '''form1 control.
+    '''lblDisplayName control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents form1 As Global.System.Web.UI.HtmlControls.HtmlForm
+    Protected WithEvents lblDisplayName As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
-    '''ScriptManager1 control.
+    '''hlSignOut control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents ScriptManager1 As Global.System.Web.UI.ScriptManager
+    Protected WithEvents hlSignOut As Global.System.Web.UI.WebControls.Button
     
     '''<summary>
-    '''MessageUpdatePanel control.
+    '''lnkEditProfile control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents MessageUpdatePanel As Global.System.Web.UI.UpdatePanel
+    Protected WithEvents lnkEditProfile As Global.System.Web.UI.WebControls.HyperLink
     
     '''<summary>
-    '''UpdateProgress1 control.
+    '''lnkEditEmail control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents UpdateProgress1 As Global.System.Web.UI.UpdateProgress
+    Protected WithEvents lnkEditEmail As Global.System.Web.UI.WebControls.HyperLink
     
     '''<summary>
-    '''btnClose control.
+    '''lnkEditPassword control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents btnClose As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents lnkEditPassword As Global.System.Web.UI.WebControls.HyperLink
     
     '''<summary>
-    '''lblSuccess control.
+    '''UpdatePanel_email control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lblSuccess As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents UpdatePanel_email As Global.System.Web.UI.UpdatePanel
     
     '''<summary>
-    '''lblError control.
+    '''subForm control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lblError As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents subForm As Global.System.Web.UI.WebControls.Panel
     
     '''<summary>
-    '''txtName control.
+    '''lblEmailMessage control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtName As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents lblEmailMessage As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
     '''txtEmail control.
@@ -95,47 +95,50 @@ Partial Public Class ContactUs
     Protected WithEvents txtEmail As Global.System.Web.UI.WebControls.TextBox
     
     '''<summary>
-    '''ddlSubject control.
+    '''RequiredFieldValidator7 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents ddlSubject As Global.System.Web.UI.WebControls.DropDownList
+    Protected WithEvents RequiredFieldValidator7 As Global.System.Web.UI.WebControls.RequiredFieldValidator
     
     '''<summary>
-    '''RequiredFieldValidator13 control.
+    '''RegularExpressionValidator2 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents RequiredFieldValidator13 As Global.System.Web.UI.WebControls.RequiredFieldValidator
+    Protected WithEvents RegularExpressionValidator2 As Global.System.Web.UI.WebControls.RegularExpressionValidator
     
     '''<summary>
-    '''txtMessage control.
+    '''btnSaveEmail control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtMessage As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents btnSaveEmail As Global.System.Web.UI.WebControls.Button
     
     '''<summary>
-    '''RequiredFieldValidator2 control.
+    '''EmailUpdateProgress control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents RequiredFieldValidator2 As Global.System.Web.UI.WebControls.RequiredFieldValidator
+    Protected WithEvents EmailUpdateProgress As Global.System.Web.UI.UpdateProgress
     
     '''<summary>
-    '''btnSend control.
+    '''Master property.
     '''</summary>
     '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
+    '''Auto-generated property.
     '''</remarks>
-    Protected WithEvents btnSend As Global.System.Web.UI.WebControls.Button
+    Public Shadows ReadOnly Property Master() As GECO.MainMaster
+        Get
+            Return CType(MyBase.Master,GECO.MainMaster)
+        End Get
+    End Property
 End Class

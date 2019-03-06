@@ -2,7 +2,7 @@
 
 <%@ MasterType VirtualPath="~/MainMaster.master" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="FullContent" runat="server">
+<asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="server">
     <h1>Permit Fee Deposits & Refunds</h1>
 
     <p>
@@ -21,7 +21,7 @@
     </ul>
 
     <h2>Annual/Emissions Fees</h2>
-        
+
     <p id="pAnnualTransactions" runat="server" visible="false">None.</p>
 
     <asp:GridView ID="grdAnnualTransactions" runat="server" CssClass="table-simple" Visible="true" AutoGenerateColumns="False">
@@ -65,5 +65,4 @@
             <asp:BoundField DataField="Amount" HeaderText="Amount" DataFormatString="{0:c}" ItemStyle-CssClass="table-cell-alignright" />
         </Columns>
     </asp:GridView>
-
 </asp:Content>

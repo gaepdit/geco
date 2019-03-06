@@ -131,7 +131,7 @@ Public Class Permit_Application
             tContact.AddTableRow("Assigned Staff", .FullName)
 
             If .ActiveEmployee Then
-                tContact.AddTableRow("Phone", .PhoneFormatted)
+                tContact.AddTableRow("Phone", .PhoneNumber)
 
                 If Not String.IsNullOrEmpty(.Email) Then
                     Dim anchor As New HyperLink With {

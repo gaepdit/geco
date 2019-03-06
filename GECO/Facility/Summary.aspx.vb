@@ -8,6 +8,7 @@ Partial Class FacilitySummary
     Private Property currentUser As GecoUser
     Private Property facilityAccess As FacilityAccess
     Private Property currentAirs As ApbFacilityId
+    Private Property currentFacility As String = Nothing
 
 #Region " Page Load "
 
@@ -48,13 +49,7 @@ Partial Class FacilitySummary
             LoadFacilityHeaderData()
             LoadStateContactInformation()
 
-            Dim mpUserLabel, mpFacilityLabel, mpAirsLabel As Label
-            mpUserLabel = CType(Master.FindControl("lblUserName"), Label)
-            mpUserLabel.Text = "Welcome, " & currentUser.FullName & " | "
-            mpFacilityLabel = CType(Master.FindControl("lblFacilityName"), Label)
-            mpFacilityLabel.Text = "Facility: " & lblFacilityDisplay.Text & " | "
-            mpAirsLabel = CType(Master.FindControl("lblAirsNo"), Label)
-            mpAirsLabel.Text = "AIRS No: " & currentAirs.FormattedString()
+            Master.Facility = ConcatNonEmptyStrings(", ", {currentAirs.FormattedString(), currentFacility})
 
             Title = "GECO Facility Summary - " & lblFacilityDisplay.Text
             lblAIRS.Text = currentAirs.FormattedString
@@ -78,7 +73,8 @@ Partial Class FacilitySummary
             Dim dr As DataRow = DB.GetDataRow(query, param)
 
             If dr IsNot Nothing Then
-                lblFacilityDisplay.Text = GetNullableString(dr.Item("STRFACILITYNAME")) & ", " & GetNullableString(dr.Item("STRFACILITYCITY"))
+                currentFacility = GetNullableString(dr.Item("STRFACILITYNAME")) & ", " & GetNullableString(dr.Item("STRFACILITYCITY"))
+                lblFacilityDisplay.Text = currentFacility
 
                 lblAddress.Text = GetNullableString(dr.Item("strFacilityStreet1"))
                 lblCityStateZip.Text = GetNullableString(dr.Item("strFacilityCity")) & ", " &

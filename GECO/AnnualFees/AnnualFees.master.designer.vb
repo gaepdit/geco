@@ -11,8 +11,8 @@ Option Strict On
 Option Explicit On
 
 
-Partial Public Class AnnualFees_Fees
-    
+Partial Public Class AnnualFees_AnnualFees
+
     '''<summary>
     '''form1 control.
     '''</summary>
@@ -21,7 +21,7 @@ Partial Public Class AnnualFees_Fees
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents form1 As Global.System.Web.UI.HtmlControls.HtmlForm
-    
+
     '''<summary>
     '''ScriptManager1 control.
     '''</summary>
@@ -30,7 +30,7 @@ Partial Public Class AnnualFees_Fees
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ScriptManager1 As Global.System.Web.UI.ScriptManager
-    
+
     '''<summary>
     '''lblUserName control.
     '''</summary>
@@ -39,7 +39,7 @@ Partial Public Class AnnualFees_Fees
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblUserName As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''lblFacilityName control.
     '''</summary>
@@ -48,7 +48,7 @@ Partial Public Class AnnualFees_Fees
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblFacilityName As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''lblAirsNo control.
     '''</summary>
@@ -57,7 +57,7 @@ Partial Public Class AnnualFees_Fees
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblAirsNo As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''EasyMenu1 control.
     '''</summary>
@@ -66,7 +66,7 @@ Partial Public Class AnnualFees_Fees
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents EasyMenu1 As Global.Sequentum.EasyMenu
-    
+
     '''<summary>
     '''UpdatePanel1 control.
     '''</summary>
@@ -75,7 +75,7 @@ Partial Public Class AnnualFees_Fees
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents UpdatePanel1 As Global.System.Web.UI.UpdatePanel
-    
+
     '''<summary>
     '''MainContent control.
     '''</summary>
@@ -84,7 +84,7 @@ Partial Public Class AnnualFees_Fees
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents MainContent As Global.System.Web.UI.WebControls.ContentPlaceHolder
-    
+
     '''<summary>
     '''LeftMenuContent control.
     '''</summary>
@@ -93,7 +93,7 @@ Partial Public Class AnnualFees_Fees
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents LeftMenuContent As Global.System.Web.UI.WebControls.ContentPlaceHolder
-    
+
     '''<summary>
     '''FullContent control.
     '''</summary>

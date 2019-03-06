@@ -1,7 +1,7 @@
 Imports System.Reflection
 Imports GECO.GecoModels
 
-Partial Class UserRegistration
+Partial Class Register
     Inherits Page
 
     Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
@@ -12,34 +12,21 @@ Partial Class UserRegistration
 
             Session.Clear()
             ClearAllCookies()
+
+            Master.IncludeRegisterLink = False
         End If
     End Sub
 
     Protected Sub btnRegister_Click(sender As Object, e As EventArgs) Handles btnRegister.Click
         If IsValid Then
-            Dim newUser As New GecoUser With {
-                .Email = Trim(txtEmail.Text),
-                .Salutation = txtSalutation.Text,
-                .FirstName = txtFName.Text,
-                .LastName = txtLName.Text,
-                .Title = txtTitle.Text,
-                .Company = txtCoName.Text,
-                .Address = New Address() With {
-                    .Street = txtAddress.Text,
-                    .City = txtCity.Text,
-                    .State = txtState.Text.ToUpper,
-                    .PostalCode = txtZip.Text
-                },
-                .PhoneNumber = txtPhone.Text & txtPhoneExt.Text,
-                .FaxNumber = txtFax.Text
-            }
+            Dim email As String = Trim(txtEmail.Text)
 
             Dim token As String = Nothing
-            Dim returnvalue As DbResult = CreateGecoAccount(newUser, txtPwd.Text, token)
+            Dim returnvalue As DbResult = CreateGecoAccount(email, txtPwd.Text, token)
 
             Select Case returnvalue
                 Case DbResult.Success
-                    SendConfirmAccountEmail(newUser.Email, token)
+                    SendConfirmAccountEmail(email, token)
                     Response.Redirect("~/Account.aspx?result=Success", False)
 
                 Case DbResult.Failure
@@ -48,7 +35,7 @@ Partial Class UserRegistration
 
                 Case Else
                     Dim ex As New Exception("GECO Registration Error")
-                    ex.Data.Add("Email", txtEmail.Text)
+                    ex.Data.Add("Email", email)
                     ex.Data.Add("Method", MethodBase.GetCurrentMethod.Name)
                     ErrorReport(ex, False)
                     Response.Redirect("~/Account.aspx?result=Error", False)

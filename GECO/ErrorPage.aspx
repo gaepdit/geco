@@ -12,6 +12,7 @@
     <link href="~/assets/css/site.css?v=20180920" rel="stylesheet" type="text/css" />
 </head>
 <body>
+    <a class="skipnav" href="#main-content">Skip to main content</a>
     <div id="header" style="height: auto;">
         <a href="https://epd.georgia.gov/" target="_blank">
             <img src='<%= Page.ResolveUrl("~/assets/images/epd_logo.jpg") %>' alt="GA EPD" style="float: left; margin: 10px 20px;" />
@@ -19,7 +20,7 @@
         <img src='<%= Page.ResolveUrl("~/assets/images/airbranch_header_bg.jpg") %>' alt="Air Protection Branch" style="margin: 15px 20px;" />
     </div>
 
-    <div class="content" style="margin: 0; padding: 100px 25px; width: auto; max-width: 600px;float:none;">
+    <div class="content" id="main-content" style="margin: 0; padding: 100px 25px; width: auto; max-width: 600px;float:none;">
         <h1>An Error Has Occurred</h1>
         <p>
             An unexpected error has occurred on our website. If the problem persists, please contact the Air Protection Branch 
@@ -31,7 +32,7 @@
     </div>
 
     <div class="footer">
-        ©<%= Now.Year %>, <a href="https://epd.georgia.gov/">Georgia Environmental Protection Division</a>, <a href="https://epd.georgia.gov/air">Air Protection Branch</a> • All rights reserved
+        ©<%= Now.Year %> <a href="https://epd.georgia.gov/">Georgia Environmental Protection Division</a>, <a href="https://epd.georgia.gov/air">Air Protection Branch</a> • All rights reserved
     </div>
 </body>
 </html>

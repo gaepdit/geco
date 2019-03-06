@@ -1,6 +1,6 @@
 Imports GECO.GecoModels
 
-Partial Class AnnualFees_Fees
+Partial Class AnnualFees_AnnualFees
     Inherits MasterPage
 
     Private Property currentUser As GecoUser

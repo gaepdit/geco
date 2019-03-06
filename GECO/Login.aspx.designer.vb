@@ -11,97 +11,196 @@ Option Strict On
 Option Explicit On
 
 
-Partial Public Class Account
+Partial Public Class Login
     
     '''<summary>
-    '''AccountUpdatePanel control.
+    '''UpdateProgress1 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents AccountUpdatePanel As Global.System.Web.UI.UpdatePanel
+    Protected WithEvents UpdateProgress1 As Global.System.Web.UI.UpdateProgress
     
     '''<summary>
-    '''MultiView1 control.
+    '''LoginUpdatePanel control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents MultiView1 As Global.System.Web.UI.WebControls.MultiView
+    Protected WithEvents LoginUpdatePanel As Global.System.Web.UI.UpdatePanel
     
     '''<summary>
-    '''ErrorResult control.
+    '''mvLogin control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents ErrorResult As Global.System.Web.UI.WebControls.View
+    Protected WithEvents mvLogin As Global.System.Web.UI.WebControls.MultiView
     
     '''<summary>
-    '''RegisterExists control.
+    '''pnlLogin control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents RegisterExists As Global.System.Web.UI.WebControls.View
+    Protected WithEvents pnlLogin As Global.System.Web.UI.WebControls.View
     
     '''<summary>
-    '''RegisterSuccess control.
+    '''pnlDefault control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents RegisterSuccess As Global.System.Web.UI.WebControls.View
+    Protected WithEvents pnlDefault As Global.System.Web.UI.WebControls.Panel
     
     '''<summary>
-    '''NewEmailSent control.
+    '''lblEmail control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents NewEmailSent As Global.System.Web.UI.WebControls.View
+    Protected WithEvents lblEmail As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
-    '''ConfirmSuccess control.
+    '''txtUserId control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents ConfirmSuccess As Global.System.Web.UI.WebControls.View
+    Protected WithEvents txtUserId As Global.System.Web.UI.WebControls.TextBox
     
     '''<summary>
-    '''ConfirmFailed control.
+    '''reqUserId control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents ConfirmFailed As Global.System.Web.UI.WebControls.View
+    Protected WithEvents reqUserId As Global.System.Web.UI.WebControls.RequiredFieldValidator
     
     '''<summary>
-    '''lbtResend control.
+    '''lblPassword control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lbtResend As Global.System.Web.UI.WebControls.LinkButton
+    Protected WithEvents lblPassword As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
-    '''ResendConfirmation control.
+    '''txtPassword control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents ResendConfirmation As Global.System.Web.UI.WebControls.View
+    Protected WithEvents txtPassword As Global.System.Web.UI.WebControls.TextBox
+    
+    '''<summary>
+    '''reqUserPwd control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents reqUserPwd As Global.System.Web.UI.WebControls.RequiredFieldValidator
+    
+    '''<summary>
+    '''chkRememberMe control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents chkRememberMe As Global.System.Web.UI.WebControls.CheckBox
+    
+    '''<summary>
+    '''btnSignIn control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnSignIn As Global.System.Web.UI.WebControls.Button
+    
+    '''<summary>
+    '''lbtForgotPwd control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbtForgotPwd As Global.System.Web.UI.WebControls.LinkButton
+    
+    '''<summary>
+    '''lblUnconfirmed control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblUnconfirmed As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
+    '''lblMessage control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblMessage As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
+    '''linkRegister control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents linkRegister As Global.System.Web.UI.WebControls.HyperLink
+    
+    '''<summary>
+    '''pnlForgotPwd control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents pnlForgotPwd As Global.System.Web.UI.WebControls.View
+    
+    '''<summary>
+    '''mvResetPassword control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents mvResetPassword As Global.System.Web.UI.WebControls.MultiView
+    
+    '''<summary>
+    '''vResetPassword control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents vResetPassword As Global.System.Web.UI.WebControls.View
+    
+    '''<summary>
+    '''pnlReset control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents pnlReset As Global.System.Web.UI.WebControls.Panel
     
     '''<summary>
     '''lblEmailAddress control.
@@ -140,173 +239,95 @@ Partial Public Class Account
     Protected WithEvents cvEmailExists As Global.System.Web.UI.WebControls.CustomValidator
     
     '''<summary>
-    '''txtCaptcha control.
+    '''btnResetPassword control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtCaptcha As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents btnResetPassword As Global.System.Web.UI.WebControls.Button
     
     '''<summary>
-    '''RequiredFieldValidator19 control.
+    '''lbCancel control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents RequiredFieldValidator19 As Global.System.Web.UI.WebControls.RequiredFieldValidator
+    Protected WithEvents lbCancel As Global.System.Web.UI.WebControls.LinkButton
     
     '''<summary>
-    '''cvCaptcha control.
+    '''vResetResult control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents cvCaptcha As Global.System.Web.UI.WebControls.CustomValidator
+    Protected WithEvents vResetResult As Global.System.Web.UI.WebControls.View
     
     '''<summary>
-    '''captchaControl control.
+    '''Panel1 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents captchaControl As Global.MSCaptcha.CaptchaControl
+    Protected WithEvents Panel1 As Global.System.Web.UI.WebControls.Panel
     
     '''<summary>
-    '''lbtnRefreshCaptcha control.
+    '''lbReturn control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lbtnRefreshCaptcha As Global.System.Web.UI.WebControls.LinkButton
+    Protected WithEvents lbReturn As Global.System.Web.UI.WebControls.LinkButton
     
     '''<summary>
-    '''btnResend control.
+    '''vResetError control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents btnResend As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents vResetError As Global.System.Web.UI.WebControls.View
     
     '''<summary>
-    '''ConfirmEmailSuccess control.
+    '''Panel2 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents ConfirmEmailSuccess As Global.System.Web.UI.WebControls.View
+    Protected WithEvents Panel2 As Global.System.Web.UI.WebControls.Panel
     
     '''<summary>
-    '''ConfirmEmailFailed control.
+    '''LinkButton1 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents ConfirmEmailFailed As Global.System.Web.UI.WebControls.View
+    Protected WithEvents LinkButton1 As Global.System.Web.UI.WebControls.LinkButton
     
     '''<summary>
-    '''ResetAllowed control.
+    '''lnkResend control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents ResetAllowed As Global.System.Web.UI.WebControls.View
+    Protected WithEvents lnkResend As Global.System.Web.UI.WebControls.HyperLink
     
     '''<summary>
-    '''hidEmail control.
+    '''Master property.
     '''</summary>
     '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
+    '''Auto-generated property.
     '''</remarks>
-    Protected WithEvents hidEmail As Global.System.Web.UI.WebControls.HiddenField
-    
-    '''<summary>
-    '''txtPwd control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtPwd As Global.System.Web.UI.WebControls.TextBox
-    
-    '''<summary>
-    '''RequiredFieldValidator15 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents RequiredFieldValidator15 As Global.System.Web.UI.WebControls.RequiredFieldValidator
-    
-    '''<summary>
-    '''Regex3 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents Regex3 As Global.System.Web.UI.WebControls.RegularExpressionValidator
-    
-    '''<summary>
-    '''txtPwdConfirm control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtPwdConfirm As Global.System.Web.UI.WebControls.TextBox
-    
-    '''<summary>
-    '''RequiredFieldValidator16 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents RequiredFieldValidator16 As Global.System.Web.UI.WebControls.RequiredFieldValidator
-    
-    '''<summary>
-    '''CompareValidator1 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents CompareValidator1 As Global.System.Web.UI.WebControls.CompareValidator
-    
-    '''<summary>
-    '''btnSetPassword control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnSetPassword As Global.System.Web.UI.WebControls.Button
-    
-    '''<summary>
-    '''ResetFailed control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents ResetFailed As Global.System.Web.UI.WebControls.View
-    
-    '''<summary>
-    '''ResetSuccess control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents ResetSuccess As Global.System.Web.UI.WebControls.View
+    Public Shadows ReadOnly Property Master() As GECO.MainMaster
+        Get
+            Return CType(MyBase.Master,GECO.MainMaster)
+        End Get
+    End Property
 End Class

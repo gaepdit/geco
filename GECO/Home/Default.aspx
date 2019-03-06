@@ -1,9 +1,15 @@
 ﻿<%@ Page Title="" Language="VB" MasterPageFile="~/MainMaster.master" AutoEventWireup="false" Inherits="GECO.Home" CodeBehind="Default.aspx.vb" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="FullContent" runat="Server">
+<%@ MasterType VirtualPath="~/MainMaster.master" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="Server">
     <asp:UpdatePanel ID="UpdatePanel_top" runat="server">
         <ContentTemplate>
             <h1>GECO Home</h1>
+
+            <p id="pUpdateRequired" runat="server" visible="false" class="message-highlight">
+                Your profile is missing required information. 
+                <asp:HyperLink ID="lnkUpdateProfile" runat="server" NavigateUrl="~/Account/" CssClass="no-visited">Please update before continuing</asp:HyperLink>.
+            </p>
 
             <asp:Label ID="lblNone" runat="server" ForeColor="#C04000" Visible="False">
                 <p>No facilities assigned. If this is incorrect, please sign out and then sign back in. If still incorrect, please contact us.</p>

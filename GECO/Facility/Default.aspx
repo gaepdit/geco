@@ -1,25 +1,36 @@
 <%@ Page Language="VB" MasterPageFile="~/MainMaster.master" AutoEventWireup="false" Inherits="GECO.FacilityHome" Title="GECO Facility Home" CodeBehind="Default.aspx.vb" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="FullContent" runat="Server">
+<%@ MasterType VirtualPath="~/MainMaster.master" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="Server">
     <h1>Facility Home</h1>
 
     <p>
+        Current Facility: 
         <b>
             <asp:Label ID="lblFacilityDisplay" runat="server"></asp:Label>
-            <br />
-            AIRS No:
+        </b>
+        <br />
+        AIRS No:        
+        <b>
             <asp:Label ID="lblAIRS" runat="server"></asp:Label>
         </b>
     </p>
 
     <ul class="menu-list-horizontal">
-        <li><a href="Summary.aspx">Facility Info</a></li>
-        <li><a href="Admin.aspx">User Access</a></li>
+        <li>
+            <asp:HyperLink ID="lnkFacilityHome" runat="server" NavigateUrl="~/Facility/" Enabled="false" CssClass="selected-menu-item">Facility Home</asp:HyperLink>
+        </li>
+        <li>
+            <asp:HyperLink ID="lnkFacilityInfo" runat="server" NavigateUrl="~/Facility/Summary.aspx">Facility Info</asp:HyperLink>
+        </li>
+        <li>
+            <asp:HyperLink ID="lnkFacilityAdmin" runat="server" NavigateUrl="~/Facility/Admin.aspx">User Access</asp:HyperLink>
+        </li>
     </ul>
 
     <h2>Application Menu</h2>
 
-    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+    <asp:UpdatePanel ID="FacilityContactsUpdatePanel" runat="server">
         <ContentTemplate>
 
             <asp:Table ID="AppTable" runat="server" CssClass="table-simple table-menu table-bordered">
@@ -121,76 +132,68 @@
                     <asp:ListItem Value="2"></asp:ListItem>
                 </asp:RadioButtonList>
 
-                <table>
+                <table class="table-simple table-list">
                     <tr>
-                        <td width="25%">First Name:
-                        </td>
+                        <th>First Name</th>
                         <td>
-                            <asp:TextBox ID="txtFName" runat="server" CssClass="unwatermarked" ValidationGroup="Contact"></asp:TextBox>
+                            <asp:TextBox ID="txtFName" runat="server" ValidationGroup="Contact"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtFName"
                                 ErrorMessage="Type First Name" Font-Size="Small" ValidationGroup="Contact"></asp:RequiredFieldValidator>
                         </td>
                     </tr>
                     <tr>
-                        <td>Last Name:
-                        </td>
+                        <th>Last Name</th>
                         <td>
-                            <asp:TextBox ID="txtLName" runat="server" CssClass="unwatermarked" ValidationGroup="Contact"></asp:TextBox>
+                            <asp:TextBox ID="txtLName" runat="server" ValidationGroup="Contact"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtLName"
                                 ErrorMessage="Type Last Name" Font-Size="Small" ValidationGroup="Contact"></asp:RequiredFieldValidator>
                         </td>
                     </tr>
                     <tr>
-                        <td>Title:
-                        </td>
+                        <th>Title</th>
                         <td>
-                            <asp:TextBox ID="txtTitle" runat="server" CssClass="unwatermarked" ValidationGroup="Contact"></asp:TextBox>
+                            <asp:TextBox ID="txtTitle" runat="server" ValidationGroup="Contact"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="txtTitle"
                                 ErrorMessage="Type Title" Font-Size="Small" ValidationGroup="Contact"></asp:RequiredFieldValidator>
                         </td>
                     </tr>
                     <tr>
-                        <td>Company Name:
-                        </td>
+                        <th>Company Name</th>
                         <td>
-                            <asp:TextBox ID="txtCoName" runat="server" CssClass="unwatermarked" ValidationGroup="Contact"></asp:TextBox>
+                            <asp:TextBox ID="txtCoName" runat="server" ValidationGroup="Contact"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ControlToValidate="txtCoName"
                                 ErrorMessage="Type Company Name" Font-Size="Small" ValidationGroup="Contact"></asp:RequiredFieldValidator>
                         </td>
                     </tr>
                     <tr>
-                        <td>Street Address:
-                        </td>
+                        <th>Street Address</th>
                         <td>
-                            <asp:TextBox ID="txtAddress" runat="server" CssClass="unwatermarked" ValidationGroup="Contact"></asp:TextBox>
+                            <asp:TextBox ID="txtAddress" runat="server" ValidationGroup="Contact"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator9" runat="server" ControlToValidate="txtAddress"
                                 ErrorMessage="Type Street Address" Font-Size="Small" ValidationGroup="Contact"></asp:RequiredFieldValidator>
                         </td>
                     </tr>
                     <tr>
-                        <td>City:
-                        </td>
+                        <th>City</th>
                         <td>
-                            <asp:TextBox ID="txtCity" runat="server" CssClass="unwatermarked" ValidationGroup="Contact"></asp:TextBox>
+                            <asp:TextBox ID="txtCity" runat="server" ValidationGroup="Contact"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator11" runat="server" ControlToValidate="txtCity"
                                 ErrorMessage="Type City Name" Font-Size="Small" ValidationGroup="Contact"></asp:RequiredFieldValidator>
                         </td>
                     </tr>
                     <tr>
-                        <td>State:
-                        </td>
+                        <th>State</th>
                         <td>
-                            <asp:TextBox ID="txtState" runat="server" CssClass="unwatermarked" MaxLength="2"
+                            <asp:TextBox ID="txtState" runat="server" MaxLength="2"
                                 ValidationGroup="Contact"></asp:TextBox><asp:RequiredFieldValidator ID="RequiredFieldValidator12"
                                     runat="server" ControlToValidate="txtState" ErrorMessage="State Abbreviation"
                                     Font-Size="Small" ValidationGroup="Contact"></asp:RequiredFieldValidator>
                         </td>
                     </tr>
                     <tr>
-                        <td>Zip Code:
-                        </td>
+                        <th>Zip Code</th>
                         <td>
-                            <asp:TextBox ID="txtZip" runat="server" CssClass="unwatermarked" MaxLength="5" ValidationGroup="Contact" />
+                            <asp:TextBox ID="txtZip" runat="server" MaxLength="5" ValidationGroup="Contact" />
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator10" runat="server" ControlToValidate="txtzip"
                                 ErrorMessage="Type 5-digit Zip Code" Font-Size="Small" ValidationGroup="Contact"></asp:RequiredFieldValidator>
                             <act:FilteredTextBoxExtender ID="FilteredTextBoxExtender1" runat="server" TargetControlID="txtZip"
@@ -199,16 +202,14 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>Telephone Number:
-                        </td>
+                        <th>Telephone Number</th>
                         <td>
-                            <asp:TextBox ID="txtPhone" runat="server" CssClass="unwatermarked" MaxLength="10"
-                                ValidationGroup="Contact"></asp:TextBox>
+                            <asp:TextBox ID="txtPhone" runat="server" MaxLength="10" ValidationGroup="Contact"></asp:TextBox>
                             &nbsp; Ext:
-                                        <asp:TextBox ID="txtPhoneExt" runat="server" CssClass="unwatermarked" MaxLength="5"
-                                            Width="64px" ValidationGroup="Contact"></asp:TextBox><asp:RequiredFieldValidator
-                                                ID="RequiredFieldValidator5" runat="server" ControlToValidate="txtPhone" ErrorMessage="10-digit Phone Number"
-                                                Font-Size="Small" ValidationGroup="Contact"></asp:RequiredFieldValidator>
+                            <asp:TextBox ID="txtPhoneExt" runat="server" MaxLength="5"
+                                Width="64px" ValidationGroup="Contact"></asp:TextBox><asp:RequiredFieldValidator
+                                    ID="RequiredFieldValidator5" runat="server" ControlToValidate="txtPhone" ErrorMessage="10-digit Phone Number"
+                                    Font-Size="Small" ValidationGroup="Contact"></asp:RequiredFieldValidator>
                             <act:FilteredTextBoxExtender ID="FilteredTextBoxExtender2" runat="server" TargetControlID="txtPhone"
                                 FilterType="Numbers" Enabled="True">
                             </act:FilteredTextBoxExtender>
@@ -218,20 +219,18 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>Fax Number:
-                        </td>
+                        <th>Fax Number</th>
                         <td>
-                            <asp:TextBox ID="txtFax" runat="server" CssClass="unwatermarked" MaxLength="10" ValidationGroup="Contact"></asp:TextBox>
+                            <asp:TextBox ID="txtFax" runat="server" MaxLength="10" ValidationGroup="Contact"></asp:TextBox>
                             <act:FilteredTextBoxExtender ID="FilteredTextBoxExtender4" runat="server" TargetControlID="txtFax"
                                 FilterType="Numbers" Enabled="True">
                             </act:FilteredTextBoxExtender>
                         </td>
                     </tr>
                     <tr>
-                        <td>Email Address:
-                        </td>
+                        <th>Email Address</th>
                         <td>
-                            <asp:TextBox ID="txtEmailContact" runat="server" CssClass="unwatermarked" ValidationGroup="Contact"></asp:TextBox><asp:RequiredFieldValidator
+                            <asp:TextBox ID="txtEmailContact" runat="server" ValidationGroup="Contact"></asp:TextBox><asp:RequiredFieldValidator
                                 ID="RequiredFieldValidator13" runat="server" ControlToValidate="txtEmailContact"
                                 ErrorMessage="Type Email Address" Font-Size="Small" ValidationGroup="Contact"></asp:RequiredFieldValidator><asp:RegularExpressionValidator
                                     ID="RegularExpressionValidator1" runat="server" ControlToValidate="txtEmailContact"
@@ -243,7 +242,7 @@
 
                 <asp:Button ID="btnUpdateContact" runat="server" Text="Save Contact" ValidationGroup="Contact" />
                 &nbsp; &nbsp;
-                            <asp:Button ID="btnCloseContact" runat="server" Text="Close" ValidationGroup="Contact" />
+                <asp:Button ID="btnCloseContact" runat="server" Text="Close" ValidationGroup="Contact" />
                 <asp:Label ID="lblContactMsg" runat="server" ForeColor="#C000C0" Visible="False"></asp:Label>
             </asp:Panel>
 

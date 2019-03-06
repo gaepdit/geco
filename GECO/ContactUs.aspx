@@ -15,7 +15,7 @@
         <asp:ScriptManager ID="ScriptManager1" runat="server">
         </asp:ScriptManager>
         <div>
-            <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+            <asp:UpdatePanel ID="MessageUpdatePanel" runat="server">
                 <ContentTemplate>
                     <h1>Georgia Air Protection Branch <br />Contact Form</h1>
                     <asp:UpdateProgress ID="UpdateProgress1" AssociatedUpdatePanelID="UpdatePanel1" runat="server">
