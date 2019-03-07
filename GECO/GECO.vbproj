@@ -168,7 +168,7 @@
     <Content Include="Account\Default.aspx" />
     <Content Include="Account\Email.aspx" />
     <Content Include="Account\Password.aspx" />
-    <Content Include="AirsRequestAccess.aspx" />
+    <Content Include="Home\FacilityRequest.aspx" />
     <Content Include="aspnet_client\system_web\2_0_50727\crystalreportviewers13\ActiveXControls\PrintControl.cab" />
     <Content Include="aspnet_client\system_web\2_0_50727\crystalreportviewers13\ActiveXControls\PrintControl_res_cs.cab" />
     <Content Include="aspnet_client\system_web\2_0_50727\crystalreportviewers13\ActiveXControls\PrintControl_res_da.cab" />
@@ -1461,11 +1461,11 @@
       <DependentUpon>Password.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AirsRequestAccess.aspx.designer.vb">
-      <DependentUpon>AirsRequestAccess.aspx</DependentUpon>
+    <Compile Include="Home\FacilityRequest.aspx.designer.vb">
+      <DependentUpon>FacilityRequest.aspx</DependentUpon>
     </Compile>
-    <Compile Include="AirsRequestAccess.aspx.vb">
-      <DependentUpon>AirsRequestAccess.aspx</DependentUpon>
+    <Compile Include="Home\FacilityRequest.aspx.vb">
+      <DependentUpon>FacilityRequest.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="ContactUs.aspx.designer.vb">

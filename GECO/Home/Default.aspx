@@ -50,9 +50,8 @@
             </asp:GridView>
 
             <p>
-                <asp:Button runat="server" UseSubmitBehavior="false" CausesValidation="false" CssClass="button-large"
-                    OnClientClick="var w=window.open('../AirsRequestAccess.aspx','', 'width=700,height=820,scrollbars=yes,resizeable=yes');"
-                    Text="Request access to a facility" />
+                <asp:HyperLink ID="lnkRequestAccess" runat="server" NavigateUrl="~/Home/FacilityRequest.aspx"
+                    CssClass="button button-large">Request access to a facility</asp:HyperLink>
             </p>
 
             <asp:UpdateProgress ID="UpdateProgress1" runat="server" DisplayAfter="0">

@@ -68,6 +68,15 @@ Partial Public Class Home
     Protected WithEvents grdAccess As Global.System.Web.UI.WebControls.GridView
     
     '''<summary>
+    '''lnkRequestAccess control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lnkRequestAccess As Global.System.Web.UI.WebControls.HyperLink
+    
+    '''<summary>
     '''UpdateProgress1 control.
     '''</summary>
     '''<remarks>

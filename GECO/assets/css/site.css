@@ -443,12 +443,29 @@ a.tableCellLink {
 
 
 /* Form */
-input[type=text], input[type=password], input:not([type]), select {
-    min-width: 250px;
+input[type=text],
+input[type=password],
+input:not([type]),
+select,
+textarea {
+    min-width: 275px;
 }
+
+    input[type=text].input-small,
+    input[type=password].input-small,
+    input:not([type]).input-small,
+    select.input-small,
+    textarea.input-small {
+        min-width: 100px;
+        width: 150px;
+    }
 
 input[type=checkbox] {
     margin-right: 4px;
+}
+
+textarea {
+    height: 80px;
 }
 /* Login page */
 .login-page {
@@ -684,6 +701,14 @@ ul.menu-list-horizontal {
     white-space: pre-line;
 }
 
+/* Blockquote */
+
+blockquote {
+    margin: 1em 0;
+    padding: .5em 1em;
+    background-color: #f3f3f7;
+}
+
 /* Buttons */
 
 /* normalize */
@@ -766,6 +791,16 @@ button,
         box-shadow: 0 1px 3px -2px #2e3646;
     }
 
+    a.button:disabled,
+    button:disabled,
+    [type="button"]:disabled,
+    [type="reset"]:disabled,
+    [type="submit"]:disabled {
+        background: #ddd;
+        color: #777;
+        box-shadow:none;
+    }
+
     a.button.button-large,
     button.button-large,
     [type="button"].button-large,
@@ -785,7 +820,7 @@ button,
     [type="reset"].button-small,
     [type="submit"].button-small {
         margin: 2px;
-        padding:2px 8px;
+        padding: 2px 8px;
         box-shadow: 0 1px 1px -1px #2e3646;
     }
 

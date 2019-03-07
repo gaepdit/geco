@@ -11,34 +11,25 @@ Option Strict On
 Option Explicit On
 
 
-Partial Public Class AirsRequestAccess
+Partial Public Class Home_FacilityRequest
     
     '''<summary>
-    '''form1 control.
+    '''pUpdateRequired control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents form1 As Global.System.Web.UI.HtmlControls.HtmlForm
+    Protected WithEvents pUpdateRequired As Global.System.Web.UI.HtmlControls.HtmlGenericControl
     
     '''<summary>
-    '''ScriptManager1 control.
+    '''lnkUpdateProfile control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents ScriptManager1 As Global.System.Web.UI.ScriptManager
-    
-    '''<summary>
-    '''pnlRequestAccess control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents pnlRequestAccess As Global.System.Web.UI.WebControls.Panel
+    Protected WithEvents lnkUpdateProfile As Global.System.Web.UI.WebControls.HyperLink
     
     '''<summary>
     '''upRequestAccess control.
@@ -50,22 +41,22 @@ Partial Public Class AirsRequestAccess
     Protected WithEvents upRequestAccess As Global.System.Web.UI.UpdatePanel
     
     '''<summary>
-    '''pnlRequestAccessheader control.
+    '''lblAirsNo control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents pnlRequestAccessheader As Global.System.Web.UI.WebControls.Panel
+    Protected WithEvents lblAirsNo As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
-    '''btnClose control.
+    '''lblFacility control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents btnClose As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents lblFacility As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
     '''txtAirsNo control.
@@ -104,6 +95,15 @@ Partial Public Class AirsRequestAccess
     Protected WithEvents aceFacility As Global.AjaxControlToolkit.AutoCompleteExtender
     
     '''<summary>
+    '''lblName control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblName As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
     '''txtName control.
     '''</summary>
     '''<remarks>
@@ -120,6 +120,15 @@ Partial Public Class AirsRequestAccess
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RequiredFieldValidator19 As Global.System.Web.UI.WebControls.RequiredFieldValidator
+    
+    '''<summary>
+    '''lblEmail control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblEmail As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
     '''txtEmail control.
@@ -149,6 +158,15 @@ Partial Public Class AirsRequestAccess
     Protected WithEvents RegularExpressionValidator2 As Global.System.Web.UI.WebControls.RegularExpressionValidator
     
     '''<summary>
+    '''lblAccess control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblAccess As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
     '''lstbAccess control.
     '''</summary>
     '''<remarks>
@@ -158,6 +176,15 @@ Partial Public Class AirsRequestAccess
     Protected WithEvents lstbAccess As Global.System.Web.UI.WebControls.CheckBoxList
     
     '''<summary>
+    '''lblComments control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblComments As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
     '''txtComments control.
     '''</summary>
     '''<remarks>
@@ -165,6 +192,15 @@ Partial Public Class AirsRequestAccess
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtComments As Global.System.Web.UI.WebControls.TextBox
+    
+    '''<summary>
+    '''bqMessage control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents bqMessage As Global.System.Web.UI.HtmlControls.HtmlGenericControl
     
     '''<summary>
     '''ltlMessage control.
@@ -210,4 +246,16 @@ Partial Public Class AirsRequestAccess
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents UpdateProgress3 As Global.System.Web.UI.UpdateProgress
+    
+    '''<summary>
+    '''Master property.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated property.
+    '''</remarks>
+    Public Shadows ReadOnly Property Master() As GECO.MainMaster
+        Get
+            Return CType(MyBase.Master,GECO.MainMaster)
+        End Get
+    End Property
 End Class

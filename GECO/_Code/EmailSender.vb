@@ -34,7 +34,7 @@ Public Module EmailSender
             Throw New ArgumentException("Message body required.")
         End If
 
-        If toAddresses Is Nothing Then
+        If String.IsNullOrEmpty(toAddresses) Then
             Throw New ArgumentNullException("Recipient address required.")
         End If
 
@@ -50,7 +50,7 @@ Public Module EmailSender
 
         msg.To.Add(toAddresses)
 
-        If ccAddresses IsNot Nothing Then
+        If Not String.IsNullOrWhiteSpace(ccAddresses) Then
             msg.CC.Add(ccAddresses)
         End If
 
@@ -70,13 +70,11 @@ Public Module EmailSender
             SaveLocalEmail(msg)
         Else
             If environment <> "Production" Then
-                ' If not production, replace "To" addresses with local contacts
+                ' If not production, replace recipients with local contacts
                 msg.To.Clear()
                 msg.To.Add(GecoContactEmail)
-            End If
-
-            If environment = "Staging" Then
-                ' Save all emails on UAT server for troubleshooting
+                msg.CC.Clear()
+                ' Save all emails on DEV/UAT servers for troubleshooting
                 SaveLocalEmail(msg)
             End If
 
