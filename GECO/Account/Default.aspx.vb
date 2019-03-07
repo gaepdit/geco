@@ -88,6 +88,7 @@ Partial Class Account_Default
             .Address.State = newUser.Address.State
             .PhoneNumber = newUser.PhoneNumber
             .GecoUserType = newUser.GecoUserType
+            .ProfileUpdateRequired = False
         End With
 
         SessionAdd(GecoSession.CurrentUser, currentUser)

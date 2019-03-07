@@ -69,4 +69,36 @@ Public Module FacilityInfo
         Return DB.GetSingleValue(Of Decimal)(query, param)
     End Function
 
+    Public Function GetFacilityAdminUsers(airs As ApbFacilityId) As DataTable
+        Dim query As String = "SELECT l.STRUSEREMAIL as email
+            FROM OLAPUSERACCESS a
+                 INNER JOIN OLAPUSERLOGIN l
+                            ON a.NUMUSERID = l.NUMUSERID
+            WHERE a.STRAIRSNUMBER = @airs
+              AND a.INTADMINACCESS = 1"
+
+        Dim param As New SqlParameter("@airs", airs.DbFormattedString)
+
+        Return DB.GetDataTable(query, param)
+    End Function
+
+    Public Function GetCachedFacilityTable() As DataTable
+        Dim dt As DataTable
+
+        If HttpContext.Current.Cache("RequestAccess") Is Nothing Then
+            Dim query = "Select DISTINCT substring (strairsnumber, 5, LEN(strairsnumber)) as strairsnumber, " &
+                " Upper(strfacilityname) as facilityname " &
+                " FROM  APBFacilityInformation " &
+                " order by strairsnumber"
+
+            dt = DB.GetDataTable(query)
+            dt.TableName = "facilityInfo"
+            HttpContext.Current.Cache.Insert("RequestAccess", dt, Nothing)
+        Else
+            dt = DirectCast(HttpContext.Current.Cache("RequestAccess"), DataTable)
+        End If
+
+        Return dt
+    End Function
+
 End Module
