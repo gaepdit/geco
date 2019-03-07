@@ -38,8 +38,6 @@ Partial Class MainMaster
 
     Private Sub SetUpEasyMenu()
         If Not IsPostBack Then
-            Dim contactLink As String = "javascript:var w=window.open('/ContactUs.aspx','', 'width=600,height=600,scrollbars=yes,resizeable=yes');"
-
             EasyMenu1.MenuStyle.BorderStyle = "0px solid"
             EasyMenu1.MenuStyle.MenuItemStyle = "color:#33d;font-family:Verdana;font-size:small;margin: 0px 0px 0px 1px;"
             EasyMenu1.MenuStyle.MenuItemActiveStyle = "color:#000099;"
@@ -54,11 +52,11 @@ Partial Class MainMaster
                 End If
 
                 EasyMenu1.MenuRoot.AddSubMenuItem("Home", "/Home/")
-                EasyMenu1.MenuRoot.AddSubMenuItem("Contact Us", contactLink)
+                EasyMenu1.MenuRoot.AddSubMenuItem("Contact Us", "/ContactUs.aspx")
                 EasyMenu1.MenuRoot.AddSubMenuItem("Account", "/Account/")
             Else
                 ' Not logged in
-                EasyMenu1.MenuRoot.AddSubMenuItem("Contact Us", contactLink)
+                EasyMenu1.MenuRoot.AddSubMenuItem("Contact Us", "/ContactUs.aspx")
 
                 If IncludeRegisterLink Then
                     EasyMenu1.MenuRoot.AddSubMenuItem("Register", "/Register.aspx")
