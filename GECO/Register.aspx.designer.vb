@@ -14,15 +14,6 @@ Option Explicit On
 Partial Public Class Register
     
     '''<summary>
-    '''UpdatePanel1 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents UpdatePanel1 As Global.System.Web.UI.UpdatePanel
-    
-    '''<summary>
     '''lblEmail control.
     '''</summary>
     '''<remarks>
@@ -140,6 +131,15 @@ Partial Public Class Register
     Protected WithEvents CompareValidator1 As Global.System.Web.UI.WebControls.CompareValidator
     
     '''<summary>
+    '''CaptchaUpdatePanel control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents CaptchaUpdatePanel As Global.System.Web.UI.UpdatePanel
+    
+    '''<summary>
     '''lblCaptcha control.
     '''</summary>
     '''<remarks>
@@ -203,13 +203,13 @@ Partial Public Class Register
     Protected WithEvents btnRegister As Global.System.Web.UI.WebControls.Button
     
     '''<summary>
-    '''UpdateProgress1 control.
+    '''CaptchaUpdateProgress control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents UpdateProgress1 As Global.System.Web.UI.UpdateProgress
+    Protected WithEvents CaptchaUpdateProgress As Global.System.Web.UI.UpdateProgress
     
     '''<summary>
     '''Master property.
