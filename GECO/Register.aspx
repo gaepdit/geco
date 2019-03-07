@@ -66,6 +66,15 @@
                 <asp:Button ID="btnRegister" runat="server" Text="Register" CssClass="button-large" />
             </p>
 
+            <p class="message-highlight">
+                Once you have registered, a confirmation email with an activation link will be sent to your email 
+                address. You must confirm your email before you will be able to sign into GECO. 
+                <br />
+                <br />
+                If you do not receive a confirmation email, check your junk mail or spam folder and ensure that you can receive 
+                emails from "GeorgiaAirProtectionBranch@dnr.ga.gov".
+            </p>
+
             <asp:UpdateProgress ID="UpdateProgress1" runat="server">
                 <ProgressTemplate>
                     <div class="ProgressIndicator">

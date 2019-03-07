@@ -117,6 +117,14 @@
                     <p>
                         <asp:Button ID="btnResend" runat="server" Text="Submit" ValidationGroup="Resend" CssClass="button-large" />
                     </p>
+                    <p class="message-highlight">
+                        A confirmation email with an activation link will be sent to your email 
+                        address. You must confirm your email before you will be able to sign into GECO. 
+                        <br />
+                        <br />
+                        If you do not receive a confirmation email, check your junk mail or spam folder and ensure that you can receive 
+                        emails from "GeorgiaAirProtectionBranch@dnr.ga.gov".
+                    </p>
                 </asp:View>
 
                 <asp:View ID="ConfirmEmailSuccess" runat="server">

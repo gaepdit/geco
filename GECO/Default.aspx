@@ -15,7 +15,7 @@
         <asp:HyperLink ID="Register" runat="server" Text="Register" CausesValidation="False" NavigateUrl="~/Register.aspx" CssClass="button button-large" />
     </p>
 
-    <p><a href="#">Instructions for creating a GECO account</a></p>
+    <%--<p><a href="#">Instructions for creating a GECO account</a></p>--%>
 
     <h2>Event Registration</h2>
     <p>
