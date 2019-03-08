@@ -59,15 +59,6 @@ Partial Public Class Account_Default
     Protected WithEvents lnkEditPassword As Global.System.Web.UI.WebControls.HyperLink
     
     '''<summary>
-    '''pUpdateRequired control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents pUpdateRequired As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
-    '''<summary>
     '''UpdatePanel_profile control.
     '''</summary>
     '''<remarks>
@@ -75,6 +66,15 @@ Partial Public Class Account_Default
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents UpdatePanel_profile As Global.System.Web.UI.UpdatePanel
+    
+    '''<summary>
+    '''pUpdateRequired control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents pUpdateRequired As Global.System.Web.UI.HtmlControls.HtmlGenericControl
     
     '''<summary>
     '''subForm control.

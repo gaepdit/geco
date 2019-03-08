@@ -6,6 +6,8 @@
         <ContentTemplate>
             <h1>GECO Home</h1>
 
+            <p>Georgia Environmental Connections Online ("GECO") is an online service allowing public access to various Georgia Air Protection Branch applications.</p>
+
             <p id="pUpdateRequired" runat="server" visible="false" class="message-highlight">
                 Your profile is missing required information. 
                 <asp:HyperLink ID="lnkUpdateProfile" runat="server" NavigateUrl="~/Account/" CssClass="no-visited">Please update before continuing</asp:HyperLink>.
