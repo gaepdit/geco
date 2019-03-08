@@ -12,7 +12,7 @@ Partial Class Account_Default
 
         Title = "GECO Account - " & currentUser.FullName
 
-        If Request.QueryString("action") = "updateprofile" Then
+        If Request.QueryString("action") = "updateprofile" Or currentUser.ProfileUpdateRequired Then
             pUpdateRequired.Visible = True
         End If
 
@@ -90,6 +90,8 @@ Partial Class Account_Default
             .GecoUserType = newUser.GecoUserType
             .ProfileUpdateRequired = False
         End With
+
+        pUpdateRequired.Visible = False
 
         SessionAdd(GecoSession.CurrentUser, currentUser)
     End Sub

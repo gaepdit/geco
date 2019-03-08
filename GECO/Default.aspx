@@ -6,7 +6,8 @@
     <h2>Welcome to GECO!</h2>
 
     <p>
-        GECO is an online service allowing public access to various Georgia Air Protection Branch applications.
+        Georgia Environmental Connections Online ("GECO")
+        is an online service allowing public access to various Georgia Air Protection Branch applications.
         You must be a registered user to access the online applications.
     </p>
 

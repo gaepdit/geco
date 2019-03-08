@@ -27,17 +27,17 @@
 
     <h2>Profile</h2>
 
-    <p id="pUpdateRequired" runat="server" visible="false" class="message-highlight">
-        Your profile is missing required information. Please update before continuing.
-    </p>
-
-    <p>
-        Please ensure your profile information is accurate as we use this to improve our communication with you. 
-        Also, this information is necessary when signing up for events hosted by EPD.
-    </p>
-
     <asp:UpdatePanel ID="UpdatePanel_profile" runat="server">
         <ContentTemplate>
+            <p id="pUpdateRequired" runat="server" visible="false" class="message-highlight">
+                Your profile is missing required information. Please update before continuing.
+            </p>
+
+            <p>
+                Please ensure your profile information is accurate as we use this to improve our communication with you. 
+                Also, this information is necessary when signing up for events hosted by EPD.
+            </p>
+
             <asp:Panel ID="subForm" runat="server" DefaultButton="btnUpdateProfile">
                 <p>
                     <asp:Label ID="lblProfileMessage" runat="server" CssClass="message-update"></asp:Label>
