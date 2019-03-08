@@ -1377,7 +1377,6 @@
     <Content Include="EIS\rp_facilitystatus.aspx" />
     <Content Include="EIS\rp_facilitythreshold.aspx" />
     <Content Include="EIS\rp_operscp_edit.aspx" />
-    <Content Include="EIS\rp_optout.aspx" />
     <Content Include="EIS\rp_pollutant_bulk.aspx" />
     <Content Include="EIS\rp_prepop.aspx" />
     <Content Include="EIS\rp_process_bulk.aspx" />
@@ -1586,9 +1585,6 @@
     </Compile>
     <Compile Include="EIS\rp_operscp_edit.aspx.designer.vb">
       <DependentUpon>rp_operscp_edit.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="EIS\rp_optout.aspx.designer.vb">
-      <DependentUpon>rp_optout.aspx</DependentUpon>
     </Compile>
     <Compile Include="EIS\rp_pollutant_bulk.aspx.designer.vb">
       <DependentUpon>rp_pollutant_bulk.aspx</DependentUpon>
@@ -1989,10 +1985,6 @@
     </Compile>
     <Compile Include="EIS\rp_operscp_edit.aspx.vb">
       <DependentUpon>rp_operscp_edit.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="EIS\rp_optout.aspx.vb">
-      <DependentUpon>rp_optout.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="EIS\rp_pollutant_bulk.aspx.vb">
