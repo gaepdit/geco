@@ -83,7 +83,7 @@
             </blockquote>
 
             <p>
-                <asp:Button ID="btnSend" runat="server" Text="Send Request" OnClick="btnSend_Click" CssClass="button-large" />
+                <asp:Button ID="btnSend" runat="server" Text="Send Request" Enabled="false" OnClick="btnSend_Click" CssClass="button-large" />
                 <asp:Label ID="lblSuccess" runat="server" Font-Bold="True" ForeColor="#007700" Text="Your message has been sent."
                     Visible="False"></asp:Label>
                 <asp:Label ID="lblError" runat="server" Font-Bold="True" ForeColor="#770000" Text="Error."
