@@ -1,4 +1,3 @@
-Imports System.Data
 Imports System.Data.SqlClient
 Imports System.DateTime
 
@@ -36,20 +35,16 @@ Partial Class es_default
 
     Private Sub LoadESYears()
 
-        Try
-            cboESYear.Items.Clear()
-            cboESYear.Items.Add(" -Select Year- ")
+        cboESYear.Items.Clear()
+        cboESYear.Items.Add(" -Select Year- ")
 
-            Dim query = "Select intESYear FROM esSchema where strAirsNumber = @AirsNumber order by intESYear Desc"
-            Dim param As New SqlParameter("@AirsNumber", Session("esAirsNumber"))
-            Dim dt = DB.GetDataTable(query, param)
+        Dim query = "Select intESYear FROM esSchema where strAirsNumber = @AirsNumber order by intESYear Desc"
+        Dim param As New SqlParameter("@AirsNumber", Session("esAirsNumber"))
+        Dim dt = DB.GetDataTable(query, param)
 
-            For Each dr As DataRow In dt.Rows
-                cboESYear.Items.Add(dr.Item("intESYear"))
-            Next
-        Catch ex As Exception
-            ErrorReport(ex)
-        End Try
+        For Each dr As DataRow In dt.Rows
+            cboESYear.Items.Add(dr.Item("intESYear"))
+        Next
 
     End Sub
 

@@ -1,10 +1,8 @@
-﻿Imports System.Data
-Imports System.Data.SqlClient
+﻿Imports System.Data.SqlClient
 
 Partial Class ES_espast
     Inherits Page
 
-    Public conn, conn1, connsub As New SqlConnection(oradb)
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         If Not IsPostBack Then
 
@@ -41,30 +39,9 @@ Partial Class ES_espast
 
     Private Function GetConfirmNumber(ByVal ay As String) As String
 
-        Dim SQL As String
-        Dim ConfNum As String
-
-        SQL = "Select strConfirmationNbr FROM esSchema Where strAirsYear = '" & ay & "' "
-
-        Dim cmd As New SqlCommand(SQL, conn)
-        If conn.State = ConnectionState.Closed Then
-            conn.Open()
-        End If
-
-        Dim dr As SqlDataReader = cmd.ExecuteReader
-
-        dr.Read()
-        If IsDBNull(dr("strConfirmationNbr")) Then
-            ConfNum = "No Data"
-        Else
-            ConfNum = dr.Item("strConfirmationNbr")
-        End If
-
-        If conn.State = ConnectionState.Open Then
-            conn.Close()
-        End If
-
-        Return ConfNum
+        Dim query As String = "Select strConfirmationNbr FROM esSchema Where strAirsYear = @ay "
+        Dim ConfNum As String = DB.GetString(query, New SqlParameter("@ay", ay))
+        Return If(String.IsNullOrEmpty(ConfNum), "No Data", ConfNum)
 
     End Function
 

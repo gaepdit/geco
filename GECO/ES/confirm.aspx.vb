@@ -5,7 +5,6 @@ Partial Class es_confirm
     Inherits Page
 
     Public ConfNum As String
-    Public ConfDate As String
 
     Private Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         If Not IsPostBack Then
@@ -129,21 +128,15 @@ Partial Class es_confirm
         TransDate = TransDate.Replace("-", "")
         ConfNum = AirsNumber & TransDate & TransTime
 
-        Try
+        Dim query = "Update esSchema Set strConfirmationNbr = @ConfNum Where intESYear = @esYear And strAirsNumber = @AirsNumber "
 
-            Dim query = "Update esSchema Set strConfirmationNbr = @ConfNum Where intESYear = @esYear And strAirsNumber = @AirsNumber "
+        Dim params As SqlParameter() = {
+            New SqlParameter("@ConfNum", ConfNum),
+            New SqlParameter("@esYear", esYear),
+            New SqlParameter("@AirsNumber", AirsNumber)
+        }
 
-            Dim params As SqlParameter() = {
-                New SqlParameter("@ConfNum", ConfNum),
-                New SqlParameter("@esYear", esYear),
-                New SqlParameter("@AirsNumber", AirsNumber)
-            }
-
-            DB.RunCommand(query, params)
-
-        Catch ex As Exception
-            ErrorReport(ex)
-        End Try
+        DB.RunCommand(query, params)
 
     End Sub
 

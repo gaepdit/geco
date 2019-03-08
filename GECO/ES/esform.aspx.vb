@@ -55,68 +55,50 @@ Partial Class es_esform
 
     Private Sub LoadHorizontalCollectionCode()
 
-        Try
-
-            Dim query = "Select strHorizCollectionMethodCode, strHorizCollectionMethodDesc " &
+        Dim query = "Select strHorizCollectionMethodCode, strHorizCollectionMethodDesc " &
             "FROM eiLookupHorizColMethod order by strHorizCollectionMethodDesc"
 
-            cboHorizontalCollectionCode.Items.Add(" --Select a Method-- ")
+        cboHorizontalCollectionCode.Items.Add(" --Select a Method-- ")
 
-            Dim dt = DB.GetDataTable(query)
+        Dim dt = DB.GetDataTable(query)
 
-            For Each dr In dt.Rows
-                Dim desc = dr.Item("strHorizCollectionMethodDesc")
-                Dim code = dr.Item("strHorizCollectionMethodCode")
-                cboHorizontalCollectionCode.Items.Add(desc & "  [" & code & "]")
-            Next
-
-        Catch ex As Exception
-            ErrorReport(ex)
-        End Try
+        For Each dr In dt.Rows
+            Dim desc = dr.Item("strHorizCollectionMethodDesc")
+            Dim code = dr.Item("strHorizCollectionMethodCode")
+            cboHorizontalCollectionCode.Items.Add(desc & "  [" & code & "]")
+        Next
 
     End Sub
 
     Private Sub LoadHorizontalDatumReferenceCode()
 
-        Try
+        Dim query = "Select strHorizontalReferenceDatum, strHorizontalReferenceDesc FROM eiLookupHorizRefDatum order by strHorizontalReferenceDesc"
 
-            Dim query = "Select strHorizontalReferenceDatum, strHorizontalReferenceDesc FROM eiLookupHorizRefDatum order by strHorizontalReferenceDesc"
+        cboHorizontalReferenceCode.Items.Add(" --Select a Code-- ")
 
-            cboHorizontalReferenceCode.Items.Add(" --Select a Code-- ")
+        Dim dt = DB.GetDataTable(query)
 
-            Dim dt = DB.GetDataTable(query)
-
-            For Each dr In dt.Rows
-                Dim desc = dr.Item("strHorizontalReferenceDesc")
-                Dim code = dr.Item("strHorizontalReferenceDatum")
-                cboHorizontalReferenceCode.Items.Add(desc & "  [" & code & "]")
-            Next
-
-        Catch ex As Exception
-            ErrorReport(ex)
-        End Try
+        For Each dr In dt.Rows
+            Dim desc = dr.Item("strHorizontalReferenceDesc")
+            Dim code = dr.Item("strHorizontalReferenceDatum")
+            cboHorizontalReferenceCode.Items.Add(desc & "  [" & code & "]")
+        Next
 
     End Sub
 
     Private Sub LoadState()
 
-        Try
+        Dim query = "Select Abbreviation FROM tblState order by Abbreviation"
 
-            Dim query = "Select Abbreviation FROM tblState order by Abbreviation"
+        cboContactState.Items.Add(" -- ")
 
-            cboContactState.Items.Add(" -- ")
+        Dim dt = DB.GetDataTable(query)
 
-            Dim dt = DB.GetDataTable(query)
+        For Each dr In dt.Rows
+            cboContactState.Items.Add(dr.Item("Abbreviation"))
+        Next
 
-            For Each dr In dt.Rows
-                cboContactState.Items.Add(dr.Item("Abbreviation"))
-            Next
-
-            cboContactState.SelectedIndex = 0
-
-        Catch ex As Exception
-            ErrorReport(ex)
-        End Try
+        cboContactState.SelectedIndex = 0
 
     End Sub
 
@@ -223,37 +205,38 @@ Partial Class es_esform
         Dim HRCcode As String
         Dim HRCdesc As String
 
-        Try
-            Dim query = "Select strFacilityName, " &
-                           "strFacilityAddress, " &
-                           "strFacilityCity, " &
-                           "strFacilityZip, " &
-                           "strCounty, " &
-                           "strHorizontalCollectionCode, " &
-                           "strHorizontalAccuracyMeasure, " &
-                           "strHorizontalReferenceCode, " &
-                           "dblXCoordinate, " &
-                           "dblYCoordinate, " &
-                           "strContactPrefix, " &
-                           "strContactFirstName, " &
-                           "strContactLastName, " &
-                           "strContactTitle, " &
-                           "strContactCompany, " &
-                           "strContactPhoneNumber, " &
-                           "strContactFaxNumber, " &
-                           "strContactEmail, " &
-                           "strContactAddress1, " &
-                           "strContactCity, " &
-                           "strContactState, " &
-                           "strContactZip, " &
-                           "dblVOCEmission, " &
-                           "dblNOXEmission, " &
-                           "strOptOut " &
-                       "FROM esSchema Where strAirsYear = @AirsYear "
+        Dim query = "Select strFacilityName, " &
+            "strFacilityAddress, " &
+            "strFacilityCity, " &
+            "strFacilityZip, " &
+            "strCounty, " &
+            "strHorizontalCollectionCode, " &
+            "strHorizontalAccuracyMeasure, " &
+            "strHorizontalReferenceCode, " &
+            "dblXCoordinate, " &
+            "dblYCoordinate, " &
+            "strContactPrefix, " &
+            "strContactFirstName, " &
+            "strContactLastName, " &
+            "strContactTitle, " &
+            "strContactCompany, " &
+            "strContactPhoneNumber, " &
+            "strContactFaxNumber, " &
+            "strContactEmail, " &
+            "strContactAddress1, " &
+            "strContactCity, " &
+            "strContactState, " &
+            "strContactZip, " &
+            "dblVOCEmission, " &
+            "dblNOXEmission, " &
+            "strOptOut " &
+            "FROM esSchema Where strAirsYear = @AirsYear "
 
-            Dim param As New SqlParameter("@AirsYear", AirsYear)
+        Dim param As New SqlParameter("@AirsYear", AirsYear)
 
-            Dim dr = DB.GetDataRow(query, param)
+        Dim dr = DB.GetDataRow(query, param)
+
+        If dr IsNot Nothing Then
 
             If IsDBNull(dr("strFacilityName")) Then
                 txtFacilityName.Text = ""
@@ -468,10 +451,7 @@ Partial Class es_esform
                 End If
                 pnlEmissions.Visible = True
             End If
-
-        Catch ex As Exception
-            ErrorReport(ex)
-        End Try
+        End If
 
     End Sub
 
@@ -486,22 +466,23 @@ Partial Class es_esform
         Dim HRCcode As String
         Dim HRCdesc As String
 
-        Try
-            Dim query = "select strFacilityName, " &
-                            "strFacilityStreet1, " &
-                            "strFacilityCity, " &
-                            "strFacilityState, " &
-                            "strFacilityZipCode, " &
-                            "strHorizontalCollectionCode, " &
-                            "strHorizontalAccuracyMeasure, " &
-                            "strHorizontalReferenceCode, " &
-                            "numFacilityLongitude, " &
-                            "numFacilityLatitude " &
-                     "FROM apbFacilityInformation where strAirsNumber = @AirsNumber "
+        Dim query = "select strFacilityName, " &
+            "strFacilityStreet1, " &
+            "strFacilityCity, " &
+            "strFacilityState, " &
+            "strFacilityZipCode, " &
+            "strHorizontalCollectionCode, " &
+            "strHorizontalAccuracyMeasure, " &
+            "strHorizontalReferenceCode, " &
+            "numFacilityLongitude, " &
+            "numFacilityLatitude " &
+            "FROM apbFacilityInformation where strAirsNumber = @AirsNumber "
 
-            Dim param As New SqlParameter("@AirsNumber", AirsNumber)
+        Dim param As New SqlParameter("@AirsNumber", AirsNumber)
 
-            Dim dr = DB.GetDataRow(query, param)
+        Dim dr = DB.GetDataRow(query, param)
+
+        If dr IsNot Nothing Then
 
             If IsDBNull(dr("strFacilityName")) Then
                 txtFacilityName.Text = ""
@@ -567,9 +548,7 @@ Partial Class es_esform
                 txtHorizontalAccuracyMeasure.Text = dr.Item("strHorizontalAccuracyMeasure")
             End If
 
-        Catch ex As Exception
-            ErrorReport(ex)
-        End Try
+        End If
 
     End Sub
 
@@ -589,26 +568,26 @@ Partial Class es_esform
 
         If Exist Then
 
-            Try
+            Dim query = "select strContactPrefix, " &
+                "strContactFirstName, " &
+                "strContactLastName, " &
+                "strContactTitle, " &
+                "strContactCompanyName, " &
+                "strContactPhoneNumber1, " &
+                "strContactPhoneNumber2, " &
+                "strContactFaxNumber, " &
+                "strContactEmail, " &
+                "strContactAddress1, " &
+                "strContactCity, " &
+                "strContactState, " &
+                "strContactZipCode " &
+                "FROM apbContactInformation where strContactKey = @ContactKey "
 
-                Dim query = "select strContactPrefix, " &
-                                "strContactFirstName, " &
-                                "strContactLastName, " &
-                                "strContactTitle, " &
-                                "strContactCompanyName, " &
-                                "strContactPhoneNumber1, " &
-                                "strContactPhoneNumber2, " &
-                                "strContactFaxNumber, " &
-                                "strContactEmail, " &
-                                "strContactAddress1, " &
-                                "strContactCity, " &
-                                "strContactState, " &
-                                "strContactZipCode " &
-                         "FROM apbContactInformation where strContactKey = @ContactKey "
+            Dim param As New SqlParameter("@ContactKey", ContactKey)
 
-                Dim param As New SqlParameter("@ContactKey", ContactKey)
+            Dim dr = DB.GetDataRow(query, param)
 
-                Dim dr = DB.GetDataRow(query, param)
+            If dr IsNot Nothing Then
 
                 If IsDBNull(dr("strContactPrefix")) Then
                     txtContactPrefix.Text = ""
@@ -689,9 +668,7 @@ Partial Class es_esform
                     End If
                 End If
 
-            Catch ex As Exception
-                ErrorReport(ex)
-            End Try
+            End If
 
         End If
 
@@ -817,118 +794,113 @@ Partial Class es_esform
 
         Dim query As String
 
-        Try
-            If ESExist Then
-                If FirstConfirm Then
-                    query = "Update esSchema " &
-                        " Set STRFACILITYADDRESS = @LocationAddress, " &
-                        " STRFACILITYCITY = @City, " &
-                        " STRFACILITYSTATE = @State, " &
-                        " STRFACILITYZIP = @ZipCode, " &
-                        " STRCOUNTY = @County, " &
-                        " STRCONTACTPREFIX = @ContactPrefix, " &
-                        " STRCONTACTFIRSTNAME = @ContactFirstName, " &
-                        " STRCONTACTLASTNAME = @ContactLastName, " &
-                        " STRCONTACTTITLE = @ContactTitle, " &
-                        " STRCONTACTCOMPANY = @ContactCompanyName, " &
-                        " STRCONTACTPHONENUMBER = @ContactPhoneNumber1, " &
-                        " STRCONTACTFAXNUMBER = @ContactFaxNumber, " &
-                        " STRCONTACTEMAIL = @ContactEmail, " &
-                        " STRCONTACTADDRESS1 = @ContactAddress1, " &
-                        " STRCONTACTCITY = @ContactCity, " &
-                        " STRCONTACTSTATE = @ContactState, " &
-                        " STRCONTACTZIP = @ContactZipCode, " &
-                        " STRHORIZONTALCOLLECTIONCODE = @HorizontalCollectionCode, " &
-                        " STRHORIZONTALREFERENCECODE = @HorizontalReferenceCode, " &
-                        " STRHORIZONTALACCURACYMEASURE = @HorizontalAccuracyMeasure, " &
-                        " DBLXCOORDINATE = @XCoordinate, " &
-                        " DBLYCOORDINATE = @YCoordinate, " &
-                        " NUMUSERID = @UserID, " &
-                        " DBLVOCEMISSION = @VOCAmt, " &
-                        " DBLNOXEMISSION = @NOXAmt, " &
-                        " STROPTOUT = @OptOut, " &
-                        " STRCONFIRMATIONNBR = @ConfNum, " &
-                        " strDateLastLogin = @DateLastLogin, " &
-                        " strTimeLastLogin = @TimeLastLogin, " &
-                        " DATTRANSACTION = getdate() " &
-                        " where STRAIRSYEAR = @AirsYear "
-                Else
-                    query = "Update esSchema " &
-                        " Set STRFACILITYADDRESS = @LocationAddress, " &
-                        " STRFACILITYCITY = @City, " &
-                        " STRFACILITYSTATE = @State, " &
-                        " STRFACILITYZIP = @ZipCode, " &
-                        " STRCOUNTY = @County, " &
-                        " STRCONTACTPREFIX = @ContactPrefix, " &
-                        " STRCONTACTFIRSTNAME = @ContactFirstName, " &
-                        " STRCONTACTLASTNAME = @ContactLastName, " &
-                        " STRCONTACTTITLE = @ContactTitle, " &
-                        " STRCONTACTCOMPANY = @ContactCompanyName, " &
-                        " STRCONTACTPHONENUMBER = @ContactPhoneNumber1, " &
-                        " STRCONTACTFAXNUMBER = @ContactFaxNumber, " &
-                        " STRCONTACTEMAIL = @ContactEmail, " &
-                        " STRCONTACTADDRESS1 = @ContactAddress1, " &
-                        " STRCONTACTCITY = @ContactCity, " &
-                        " STRCONTACTSTATE = @ContactState, " &
-                        " STRCONTACTZIP = @ContactZipCode, " &
-                        " STRHORIZONTALCOLLECTIONCODE = @HorizontalCollectionCode, " &
-                        " STRHORIZONTALREFERENCECODE = @HorizontalReferenceCode, " &
-                        " STRHORIZONTALACCURACYMEASURE = @HorizontalAccuracyMeasure, " &
-                        " DBLXCOORDINATE = @XCoordinate, " &
-                        " DBLYCOORDINATE = @YCoordinate, " &
-                        " NUMUSERID = @UserID, " &
-                        " DBLVOCEMISSION = @VOCAmt, " &
-                        " DBLNOXEMISSION = @NOXAmt, " &
-                        " STROPTOUT = @OptOut, " &
-                        " STRCONFIRMATIONNBR = @ConfNum, " &
-                        " strDateLastLogin = @DateLastLogin, " &
-                        " strTimeLastLogin = @TimeLastLogin, " &
-                        " strDateFirstConfirm = @DateLastLogin, " &
-                        " DATTRANSACTION = getdate() " &
-                        " where STRAIRSYEAR = @AirsYear "
-                End If
-
-                Dim params As SqlParameter() = {
-                    New SqlParameter("@LocationAddress", LocationAddress),
-                    New SqlParameter("@City", City),
-                    New SqlParameter("@State", State),
-                    New SqlParameter("@ZipCode", ZipCode),
-                    New SqlParameter("@County", County),
-                    New SqlParameter("@ContactPrefix", ContactPrefix),
-                    New SqlParameter("@ContactFirstName", ContactFirstName),
-                    New SqlParameter("@ContactLastName", ContactLastName),
-                    New SqlParameter("@ContactTitle", ContactTitle),
-                    New SqlParameter("@ContactCompanyName", ContactCompanyName),
-                    New SqlParameter("@ContactPhoneNumber1", ContactPhoneNumber1),
-                    New SqlParameter("@ContactFaxNumber", ContactFaxNumber),
-                    New SqlParameter("@ContactEmail", ContactEmail),
-                    New SqlParameter("@ContactAddress1", ContactAddress1),
-                    New SqlParameter("@ContactCity", ContactCity),
-                    New SqlParameter("@ContactState", ContactState),
-                    New SqlParameter("@ContactZipCode", ContactZipCode),
-                    New SqlParameter("@HorizontalCollectionCode", HorizontalCollectionCode),
-                    New SqlParameter("@HorizontalReferenceCode", HorizontalReferenceCode),
-                    New SqlParameter("@HorizontalAccuracyMeasure", HorizontalAccuracyMeasure),
-                    New SqlParameter("@XCoordinate ", XCoordinate),
-                    New SqlParameter("@YCoordinate ", YCoordinate),
-                    New SqlParameter("@UserID ", UserID),
-                    New SqlParameter("@VOCAmt ", VOCAmt),
-                    New SqlParameter("@NOXAmt ", NOXAmt),
-                    New SqlParameter("@OptOut", OptOut),
-                    New SqlParameter("@ConfNum", ConfNum),
-                    New SqlParameter("@DateLastLogin", DateLastLogin),
-                    New SqlParameter("@TimeLastLogin", TimeLastLogin),
-                    New SqlParameter("@AirsYear ", AirsYear)
-                }
-
-                DB.RunCommand(query, params)
+        If ESExist Then
+            If FirstConfirm Then
+                query = "Update esSchema " &
+                    " Set STRFACILITYADDRESS = @LocationAddress, " &
+                    " STRFACILITYCITY = @City, " &
+                    " STRFACILITYSTATE = @State, " &
+                    " STRFACILITYZIP = @ZipCode, " &
+                    " STRCOUNTY = @County, " &
+                    " STRCONTACTPREFIX = @ContactPrefix, " &
+                    " STRCONTACTFIRSTNAME = @ContactFirstName, " &
+                    " STRCONTACTLASTNAME = @ContactLastName, " &
+                    " STRCONTACTTITLE = @ContactTitle, " &
+                    " STRCONTACTCOMPANY = @ContactCompanyName, " &
+                    " STRCONTACTPHONENUMBER = @ContactPhoneNumber1, " &
+                    " STRCONTACTFAXNUMBER = @ContactFaxNumber, " &
+                    " STRCONTACTEMAIL = @ContactEmail, " &
+                    " STRCONTACTADDRESS1 = @ContactAddress1, " &
+                    " STRCONTACTCITY = @ContactCity, " &
+                    " STRCONTACTSTATE = @ContactState, " &
+                    " STRCONTACTZIP = @ContactZipCode, " &
+                    " STRHORIZONTALCOLLECTIONCODE = @HorizontalCollectionCode, " &
+                    " STRHORIZONTALREFERENCECODE = @HorizontalReferenceCode, " &
+                    " STRHORIZONTALACCURACYMEASURE = @HorizontalAccuracyMeasure, " &
+                    " DBLXCOORDINATE = @XCoordinate, " &
+                    " DBLYCOORDINATE = @YCoordinate, " &
+                    " NUMUSERID = @UserID, " &
+                    " DBLVOCEMISSION = @VOCAmt, " &
+                    " DBLNOXEMISSION = @NOXAmt, " &
+                    " STROPTOUT = @OptOut, " &
+                    " STRCONFIRMATIONNBR = @ConfNum, " &
+                    " strDateLastLogin = @DateLastLogin, " &
+                    " strTimeLastLogin = @TimeLastLogin, " &
+                    " DATTRANSACTION = getdate() " &
+                    " where STRAIRSYEAR = @AirsYear "
+            Else
+                query = "Update esSchema " &
+                    " Set STRFACILITYADDRESS = @LocationAddress, " &
+                    " STRFACILITYCITY = @City, " &
+                    " STRFACILITYSTATE = @State, " &
+                    " STRFACILITYZIP = @ZipCode, " &
+                    " STRCOUNTY = @County, " &
+                    " STRCONTACTPREFIX = @ContactPrefix, " &
+                    " STRCONTACTFIRSTNAME = @ContactFirstName, " &
+                    " STRCONTACTLASTNAME = @ContactLastName, " &
+                    " STRCONTACTTITLE = @ContactTitle, " &
+                    " STRCONTACTCOMPANY = @ContactCompanyName, " &
+                    " STRCONTACTPHONENUMBER = @ContactPhoneNumber1, " &
+                    " STRCONTACTFAXNUMBER = @ContactFaxNumber, " &
+                    " STRCONTACTEMAIL = @ContactEmail, " &
+                    " STRCONTACTADDRESS1 = @ContactAddress1, " &
+                    " STRCONTACTCITY = @ContactCity, " &
+                    " STRCONTACTSTATE = @ContactState, " &
+                    " STRCONTACTZIP = @ContactZipCode, " &
+                    " STRHORIZONTALCOLLECTIONCODE = @HorizontalCollectionCode, " &
+                    " STRHORIZONTALREFERENCECODE = @HorizontalReferenceCode, " &
+                    " STRHORIZONTALACCURACYMEASURE = @HorizontalAccuracyMeasure, " &
+                    " DBLXCOORDINATE = @XCoordinate, " &
+                    " DBLYCOORDINATE = @YCoordinate, " &
+                    " NUMUSERID = @UserID, " &
+                    " DBLVOCEMISSION = @VOCAmt, " &
+                    " DBLNOXEMISSION = @NOXAmt, " &
+                    " STROPTOUT = @OptOut, " &
+                    " STRCONFIRMATIONNBR = @ConfNum, " &
+                    " strDateLastLogin = @DateLastLogin, " &
+                    " strTimeLastLogin = @TimeLastLogin, " &
+                    " strDateFirstConfirm = @DateLastLogin, " &
+                    " DATTRANSACTION = getdate() " &
+                    " where STRAIRSYEAR = @AirsYear "
             End If
 
-            SavedES = True
+            Dim params As SqlParameter() = {
+                New SqlParameter("@LocationAddress", LocationAddress),
+                New SqlParameter("@City", City),
+                New SqlParameter("@State", State),
+                New SqlParameter("@ZipCode", ZipCode),
+                New SqlParameter("@County", County),
+                New SqlParameter("@ContactPrefix", ContactPrefix),
+                New SqlParameter("@ContactFirstName", ContactFirstName),
+                New SqlParameter("@ContactLastName", ContactLastName),
+                New SqlParameter("@ContactTitle", ContactTitle),
+                New SqlParameter("@ContactCompanyName", ContactCompanyName),
+                New SqlParameter("@ContactPhoneNumber1", ContactPhoneNumber1),
+                New SqlParameter("@ContactFaxNumber", ContactFaxNumber),
+                New SqlParameter("@ContactEmail", ContactEmail),
+                New SqlParameter("@ContactAddress1", ContactAddress1),
+                New SqlParameter("@ContactCity", ContactCity),
+                New SqlParameter("@ContactState", ContactState),
+                New SqlParameter("@ContactZipCode", ContactZipCode),
+                New SqlParameter("@HorizontalCollectionCode", HorizontalCollectionCode),
+                New SqlParameter("@HorizontalReferenceCode", HorizontalReferenceCode),
+                New SqlParameter("@HorizontalAccuracyMeasure", HorizontalAccuracyMeasure),
+                New SqlParameter("@XCoordinate ", XCoordinate),
+                New SqlParameter("@YCoordinate ", YCoordinate),
+                New SqlParameter("@UserID ", UserID),
+                New SqlParameter("@VOCAmt ", VOCAmt),
+                New SqlParameter("@NOXAmt ", NOXAmt),
+                New SqlParameter("@OptOut", OptOut),
+                New SqlParameter("@ConfNum", ConfNum),
+                New SqlParameter("@DateLastLogin", DateLastLogin),
+                New SqlParameter("@TimeLastLogin", TimeLastLogin),
+                New SqlParameter("@AirsYear ", AirsYear)
+            }
 
-        Catch ex As Exception
-            ErrorReport(ex)
-        End Try
+            DB.RunCommand(query, params)
+        End If
+
+        SavedES = True
 
     End Sub
 
@@ -967,93 +939,88 @@ Partial Class es_esform
 
         Dim query As String
 
-        Try
-            If Exist Then
-                query = "Update apbContactInformation Set " &
-                    "strContactPrefix = @ContactPrefix, " &
-                    "strContactFirstName = @ContactFirstName, " &
-                    "strContactLastName = @ContactLastName, " &
-                    "strContactTitle = @ContactTitle, " &
-                    "strContactEmail = @ContactEmail, " &
-                    "strContactPhoneNumber1 = @OfficePhone, " &
-                    "strContactFaxNumber = @Fax, " &
-                    "strContactCompanyName = @ContactCompanyName, " &
-                    "strContactAddress1 = @ContactAddress1, " &
-                    "strContactCity = @ContactCity, " &
-                    "strContactState = @ContactState, " &
-                    "strContactZipCode = @ContactZipCode, " &
-                    "strModifingPerson = @ModPerson, " &
-                    "strContactDescription = @ContactDescription, " &
-                    "datModifingDate = getdate() " &
-                    "where strContactKey = @ContactKey "
-            Else
-                query = "Insert into apbContactInformation (" &
-                    " strContactKey, " &
-                    " strKey, " &
-                    " strAirsNumber, " &
-                    " strContactPrefix, " &
-                    " strContactFirstName, " &
-                    " strContactLastName, " &
-                    " strContactTitle, " &
-                    " strContactEmail, " &
-                    " strContactPhoneNumber1, " &
-                    " strContactFaxNumber, " &
-                    " strContactCompanyName, " &
-                    " strContactAddress1, " &
-                    " strContactCity, " &
-                    " strContactState, " &
-                    " strContactZipCode, " &
-                    " strModifingPerson, " &
-                    " strContactDescription, " &
-                    " datModifingDate) " &
-                    " Values (" &
-                    " @ContactKey, " &
-                    " @Ckey, " &
-                    " @AirsNumber, " &
-                    " @ContactPrefix, " &
-                    " @ContactFirstName, " &
-                    " @ContactLastName, " &
-                    " @ContactTitle, " &
-                    " @ContactEmail, " &
-                    " @OfficePhone, " &
-                    " @Fax, " &
-                    " @ContactCompanyName, " &
-                    " @ContactAddress1, " &
-                    " @ContactCity, " &
-                    " @ContactState, " &
-                    " @ContactZipCode, " &
-                    " @ModPerson, " &
-                    " @ContactDescription, " &
-                    " getdate() ) "
-            End If
+        If Exist Then
+            query = "Update apbContactInformation Set " &
+                "strContactPrefix = @ContactPrefix, " &
+                "strContactFirstName = @ContactFirstName, " &
+                "strContactLastName = @ContactLastName, " &
+                "strContactTitle = @ContactTitle, " &
+                "strContactEmail = @ContactEmail, " &
+                "strContactPhoneNumber1 = @OfficePhone, " &
+                "strContactFaxNumber = @Fax, " &
+                "strContactCompanyName = @ContactCompanyName, " &
+                "strContactAddress1 = @ContactAddress1, " &
+                "strContactCity = @ContactCity, " &
+                "strContactState = @ContactState, " &
+                "strContactZipCode = @ContactZipCode, " &
+                "strModifingPerson = @ModPerson, " &
+                "strContactDescription = @ContactDescription, " &
+                "datModifingDate = getdate() " &
+                "where strContactKey = @ContactKey "
+        Else
+            query = "Insert into apbContactInformation (" &
+                " strContactKey, " &
+                " strKey, " &
+                " strAirsNumber, " &
+                " strContactPrefix, " &
+                " strContactFirstName, " &
+                " strContactLastName, " &
+                " strContactTitle, " &
+                " strContactEmail, " &
+                " strContactPhoneNumber1, " &
+                " strContactFaxNumber, " &
+                " strContactCompanyName, " &
+                " strContactAddress1, " &
+                " strContactCity, " &
+                " strContactState, " &
+                " strContactZipCode, " &
+                " strModifingPerson, " &
+                " strContactDescription, " &
+                " datModifingDate) " &
+                " Values (" &
+                " @ContactKey, " &
+                " @Ckey, " &
+                " @AirsNumber, " &
+                " @ContactPrefix, " &
+                " @ContactFirstName, " &
+                " @ContactLastName, " &
+                " @ContactTitle, " &
+                " @ContactEmail, " &
+                " @OfficePhone, " &
+                " @Fax, " &
+                " @ContactCompanyName, " &
+                " @ContactAddress1, " &
+                " @ContactCity, " &
+                " @ContactState, " &
+                " @ContactZipCode, " &
+                " @ModPerson, " &
+                " @ContactDescription, " &
+                " getdate() ) "
+        End If
 
-            Dim params As SqlParameter() = {
-                New SqlParameter("@ContactKey", ContactKey),
-                New SqlParameter("@Ckey", Ckey),
-                New SqlParameter("@AirsNumber", AirsNumber),
-                New SqlParameter("@ContactPrefix", ContactPrefix),
-                New SqlParameter("@ContactFirstName", ContactFirstName),
-                New SqlParameter("@ContactLastName", ContactLastName),
-                New SqlParameter("@ContactTitle", ContactTitle),
-                New SqlParameter("@ContactEmail", ContactEmail),
-                New SqlParameter("@OfficePhone", OfficePhone),
-                New SqlParameter("@Fax", Fax),
-                New SqlParameter("@ContactCompanyName", ContactCompanyName),
-                New SqlParameter("@ContactAddress1", ContactAddress1),
-                New SqlParameter("@ContactCity", ContactCity),
-                New SqlParameter("@ContactState", ContactState),
-                New SqlParameter("@ContactZipCode", ContactZipCode),
-                New SqlParameter("@ModPerson", ModPerson),
-                New SqlParameter("@ContactDescription", ContactDescription)
-            }
+        Dim params As SqlParameter() = {
+            New SqlParameter("@ContactKey", ContactKey),
+            New SqlParameter("@Ckey", Ckey),
+            New SqlParameter("@AirsNumber", AirsNumber),
+            New SqlParameter("@ContactPrefix", ContactPrefix),
+            New SqlParameter("@ContactFirstName", ContactFirstName),
+            New SqlParameter("@ContactLastName", ContactLastName),
+            New SqlParameter("@ContactTitle", ContactTitle),
+            New SqlParameter("@ContactEmail", ContactEmail),
+            New SqlParameter("@OfficePhone", OfficePhone),
+            New SqlParameter("@Fax", Fax),
+            New SqlParameter("@ContactCompanyName", ContactCompanyName),
+            New SqlParameter("@ContactAddress1", ContactAddress1),
+            New SqlParameter("@ContactCity", ContactCity),
+            New SqlParameter("@ContactState", ContactState),
+            New SqlParameter("@ContactZipCode", ContactZipCode),
+            New SqlParameter("@ModPerson", ModPerson),
+            New SqlParameter("@ContactDescription", ContactDescription)
+        }
 
-            DB.RunCommand(query, params)
+        DB.RunCommand(query, params)
 
-            SavedAPB = True
-
-        Catch ex As Exception
-            ErrorReport(ex)
-        End Try
+        SavedAPB = True
 
     End Sub
 
@@ -1227,37 +1194,32 @@ Partial Class es_esform
         Dim HRC As String
         Dim AirsNumber As String = Session("esAirsNumber")
 
-        Try
-            HCC = cboHorizontalCollectionCode.SelectedValue
-            HorizontalCollectionCode = Mid(HCC, InStr(HCC, "[") + 1, 3)
-            HorizontalAccuracyMeasure = txtHorizontalAccuracyMeasure.Text
-            HRC = cboHorizontalReferenceCode.SelectedValue
-            HorizontalReferenceCode = Mid(HRC, InStr(HRC, "[") + 1, 3)
-            XCoordinate = -1 * Abs(CDec(txtXCoordinate.Text))
-            YCoordinate = CDec(txtYCoordinate.Text)
+        HCC = cboHorizontalCollectionCode.SelectedValue
+        HorizontalCollectionCode = Mid(HCC, InStr(HCC, "[") + 1, 3)
+        HorizontalAccuracyMeasure = txtHorizontalAccuracyMeasure.Text
+        HRC = cboHorizontalReferenceCode.SelectedValue
+        HorizontalReferenceCode = Mid(HRC, InStr(HRC, "[") + 1, 3)
+        XCoordinate = -1 * Abs(CDec(txtXCoordinate.Text))
+        YCoordinate = CDec(txtYCoordinate.Text)
 
-            Dim query = "Update APBFACILITYINFORMATION Set " &
-                        "STRHORIZONTALCOLLECTIONCODE = @HorizontalCollectionCode," &
-                        "STRHORIZONTALACCURACYMEASURE = @HorizontalAccuracyMeasure," &
-                        "STRHORIZONTALREFERENCECODE = @HorizontalReferenceCode," &
-                        "NUMFACILITYLONGITUDE = @XCoordinate, " &
-                        "NUMFACILITYLATITUDE =  @YCoordinate " &
-                        "where strAirsNumber = @AirsNumber "
+        Dim query = "Update APBFACILITYINFORMATION Set " &
+            "STRHORIZONTALCOLLECTIONCODE = @HorizontalCollectionCode," &
+            "STRHORIZONTALACCURACYMEASURE = @HorizontalAccuracyMeasure," &
+            "STRHORIZONTALREFERENCECODE = @HorizontalReferenceCode," &
+            "NUMFACILITYLONGITUDE = @XCoordinate, " &
+            "NUMFACILITYLATITUDE =  @YCoordinate " &
+            "where strAirsNumber = @AirsNumber "
 
-            Dim params As SqlParameter() = {
-                New SqlParameter("@HorizontalCollectionCode", HorizontalCollectionCode),
-                New SqlParameter("@HorizontalAccuracyMeasure", HorizontalAccuracyMeasure),
-                New SqlParameter("@HorizontalReferenceCode", HorizontalReferenceCode),
-                New SqlParameter("@XCoordinate", XCoordinate),
-                New SqlParameter("@YCoordinate", YCoordinate),
-                New SqlParameter("@AirsNumber", AirsNumber)
-            }
+        Dim params As SqlParameter() = {
+            New SqlParameter("@HorizontalCollectionCode", HorizontalCollectionCode),
+            New SqlParameter("@HorizontalAccuracyMeasure", HorizontalAccuracyMeasure),
+            New SqlParameter("@HorizontalReferenceCode", HorizontalReferenceCode),
+            New SqlParameter("@XCoordinate", XCoordinate),
+            New SqlParameter("@YCoordinate", YCoordinate),
+            New SqlParameter("@AirsNumber", AirsNumber)
+        }
 
-            DB.RunCommand(query, params)
-
-        Catch ex As Exception
-            ErrorReport(ex)
-        End Try
+        DB.RunCommand(query, params)
 
     End Sub
 

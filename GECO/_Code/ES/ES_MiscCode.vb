@@ -1,4 +1,3 @@
-Imports System.Data
 Imports System.Data.SqlClient
 Imports System.Math
 
@@ -11,6 +10,7 @@ Public Module ES_MiscCode
             Dim OptOut As String = CheckESOptOut(ayr)
             If OptOut = "YES" Or OptOut = "NO" Then
                 Dim esSubmitted As String = GetESSubmit(ayr)
+
                 If OptOut = "YES" Then
                     esStatus = "Opted out & submitted on " & esSubmitted & "."
                 Else
@@ -75,36 +75,12 @@ Public Module ES_MiscCode
     End Function
 
     Public Function GetHorizRefDesc(code As String) As String
+        Dim query As String = "Select strHorizontalReferenceDesc " &
+            "FROM EILookupHorizRefDatum Where strHorizontalReferenceDatum = @code "
 
-        Dim SQL As String
-        Dim desc As String
+        Dim desc As String = DB.GetString(query, New SqlParameter("@code", code))
 
-        SQL = "Select strHorizontalReferenceDesc " &
-              "FROM EILookupHorizRefDatum Where strHorizontalReferenceDatum = '" & code & "' " &
-              "order by strHorizontalReferenceDesc"
-
-        Dim connmod As New SqlConnection(oradb)
-
-        Dim cmd As New SqlCommand(SQL, connmod)
-        If connmod.State = ConnectionState.Closed Then
-            connmod.Open()
-        End If
-
-        Dim dr As SqlDataReader = cmd.ExecuteReader
-
-        dr.Read()
-        If IsDBNull(dr("strHorizontalReferenceDesc")) Then
-            desc = ""
-        Else
-            desc = dr.Item("strHorizontalReferenceDesc")
-        End If
-
-        If connmod.State = ConnectionState.Open Then
-            connmod.Close()
-        End If
-
-        Return desc
-
+        Return If(String.IsNullOrEmpty(desc), "", desc)
     End Function
 
     Public Function CheckESEntry(ay As String) As Boolean

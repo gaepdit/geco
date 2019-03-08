@@ -77,20 +77,14 @@ Partial Class ei_reqchange
 
     Private Sub LoadCounty()
 
-        Try
+        cboCountyNew.Items.Add(" --Select a County-- ")
 
-            cboCountyNew.Items.Add(" --Select a County-- ")
+        Dim query = "Select strCountyName FROM EILookupCountyLatLon order by strCountyName"
+        Dim dt = DB.GetDataTable(query)
 
-            Dim query = "Select strCountyName FROM EILookupCountyLatLon order by strCountyName"
-            Dim dt = DB.GetDataTable(query)
-
-            For Each dr In dt.Rows
-                cboCountyNew.Items.Add(dr.Item("strCountyName"))
-            Next
-
-        Catch ex As Exception
-            ErrorReport(ex)
-        End Try
+        For Each dr In dt.Rows
+            cboCountyNew.Items.Add(dr.Item("strCountyName"))
+        Next
 
     End Sub
 
@@ -188,57 +182,51 @@ Partial Class ei_reqchange
             County = ""
         End If
 
-        Try
+        Dim query = "Insert Into eiRequest (strAirsNumber, " &
+            " strUserID, " &
+            " strFacilityName, " &
+            " strStreetAddress, " &
+            " strCity, " &
+            " strZipCode, " &
+            " strCounty, " &
+            " strTransactionDate, " &
+            " strTransactionTime, " &
+            " strReqOrig, " &
+            " strComments) " &
+            " Values (" &
+            " @AirsNumber, " &
+            " @UserID, " &
+            " @FacilityName, " &
+            " @StreetAddress, " &
+            " @City, " &
+            " @Zipcode, " &
+            " @County, " &
+            " @TransactionDate, " &
+            " @TransactionTime, " &
+            " @ReqOrig, " &
+            " @Comment ) "
 
-            Dim query = "Insert Into eiRequest (strAirsNumber, " &
-                                " strUserID, " &
-                                " strFacilityName, " &
-                                " strStreetAddress, " &
-                                " strCity, " &
-                                " strZipCode, " &
-                                " strCounty, " &
-                                " strTransactionDate, " &
-                                " strTransactionTime, " &
-                                " strReqOrig, " &
-                                " strComments) " &
-                            " Values (" &
-                                " @AirsNumber, " &
-                                " @UserID, " &
-                                " @FacilityName, " &
-                                " @StreetAddress, " &
-                                " @City, " &
-                                " @Zipcode, " &
-                                " @County, " &
-                                " @TransactionDate, " &
-                                " @TransactionTime, " &
-                                " @ReqOrig, " &
-                                " @Comment ) "
+        Dim params As SqlParameter() = {
+            New SqlParameter("@AirsNumber", AirsNumber),
+            New SqlParameter("@UserID", UserID),
+            New SqlParameter("@FacilityName", FacilityName),
+            New SqlParameter("@StreetAddress", StreetAddress),
+            New SqlParameter("@City", City),
+            New SqlParameter("@Zipcode", Zipcode),
+            New SqlParameter("@County", County),
+            New SqlParameter("@TransactionDate", TransactionDate),
+            New SqlParameter("@TransactionTime", TransactionTime),
+            New SqlParameter("@ReqOrig", ReqOrig),
+            New SqlParameter("@Comment", Comment)
+        }
 
-            Dim params As SqlParameter() = {
-                New SqlParameter("@AirsNumber", AirsNumber),
-                New SqlParameter("@UserID", UserID),
-                New SqlParameter("@FacilityName", FacilityName),
-                New SqlParameter("@StreetAddress", StreetAddress),
-                New SqlParameter("@City", City),
-                New SqlParameter("@Zipcode", Zipcode),
-                New SqlParameter("@County", County),
-                New SqlParameter("@TransactionDate", TransactionDate),
-                New SqlParameter("@TransactionTime", TransactionTime),
-                New SqlParameter("@ReqOrig", ReqOrig),
-                New SqlParameter("@Comment", Comment)
-            }
+        DB.RunCommand(query, params)
 
-            DB.RunCommand(query, params)
-
-            btnSubmitRequest.Visible = False
-            btnCancelConf.Visible = False
-            btnReturn.Visible = True
-            lblConfirmSubmit.Text = "Request submitted ..."
-            lblConfirmSubmit.Visible = True
-
-        Catch ex As Exception
-            ErrorReport(ex)
-        End Try
+        btnSubmitRequest.Visible = False
+        btnCancelConf.Visible = False
+        btnReturn.Visible = True
+        lblConfirmSubmit.Text = "Request submitted ..."
+        lblConfirmSubmit.Visible = True
 
     End Sub
 
