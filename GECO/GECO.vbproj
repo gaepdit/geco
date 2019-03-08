@@ -1408,7 +1408,6 @@
     <Content Include="Fees\Deposits.aspx" />
     <Content Include="Fees\Invoices.aspx" />
     <Content Include="Fees\Default.aspx" />
-    <Content Include="GetAirsNo.asmx" />
     <Content Include="Global.asax" />
     <Content Include="NoAccess.aspx" />
     <Content Include="Permits\Application.aspx" />
@@ -1716,10 +1715,6 @@
     <Compile Include="Fees\Default.aspx.vb">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
-    </Compile>
-    <Compile Include="GetAirsNo.vb">
-      <DependentUpon>GetAirsNo.asmx</DependentUpon>
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Global.asax.vb">
       <DependentUpon>Global.asax</DependentUpon>

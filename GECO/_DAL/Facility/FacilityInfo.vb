@@ -86,10 +86,10 @@ Public Module FacilityInfo
         Dim dt As DataTable
 
         If HttpContext.Current.Cache("RequestAccess") Is Nothing Then
-            Dim query = "Select DISTINCT substring (strairsnumber, 5, LEN(strairsnumber)) as strairsnumber, " &
-                " Upper(strfacilityname) as facilityname " &
-                " FROM  APBFacilityInformation " &
-                " order by strairsnumber"
+            Dim query = "select right(STRAIRSNUMBER, 8) as airsnumber,
+                STRFACILITYNAME as facilityname
+                from APBFACILITYINFORMATION
+                order by STRAIRSNUMBER"
 
             dt = DB.GetDataTable(query)
             dt.TableName = "facilityInfo"

@@ -115,16 +115,16 @@ Partial Class Home_FacilityRequest
 
             lblSuccess.Visible = False
             lblError.Visible = False
-            btnSend.Enabled = True
+            btnSend.Enabled = False
             ltlMessage.Text = ""
             bqMessage.Visible = False
 
             If what = LookupWhat.Airs Then
                 txtFacility.Text = ""
-                query = String.Format(queryformat, "strairsnumber", txtAirsNo.Text)
+                query = String.Format(queryformat, "airsnumber", txtAirsNo.Text)
             Else
                 txtAirsNo.Text = ""
-                query = String.Format(queryformat, "facilityname", Replace(txtFacility.Text.ToUpper, "'", "''"))
+                query = String.Format(queryformat, "facilityname", Replace(txtFacility.Text, "'", "''"))
             End If
 
             Dim dt As DataTable = GetCachedFacilityTable()
@@ -136,11 +136,8 @@ Partial Class Home_FacilityRequest
                     Dim dr As DataRow = rows(0)
 
                     If dr IsNot Nothing Then
-                        If what = LookupWhat.Airs Then
-                            txtFacility.Text = dr(1).ToString()
-                        Else
-                            txtAirsNo.Text = dr(0).ToString()
-                        End If
+                        txtFacility.Text = dr(1).ToString()
+                        txtAirsNo.Text = dr(0).ToString()
 
                         ltlMessage.Text = "<p>Dear GECO Administrator, <br /><br />" &
                         "You are receiving this email because you are currently the assigned GECO Administrator for " &
@@ -162,6 +159,8 @@ Partial Class Home_FacilityRequest
                         "Thank you.</p>"
 
                         bqMessage.Visible = True
+
+                        btnSend.Enabled = True
                     End If
                 End If
             End If
@@ -189,35 +188,31 @@ Partial Class Home_FacilityRequest
     <Services.WebMethod()>
     <Script.Services.ScriptMethod()>
     Public Shared Function AutoCompleteAirs(prefixText As String, count As Integer) As String()
-
         Dim dt As DataTable = GetCachedFacilityTable()
         Dim filteredList As New List(Of String)
 
         For i As Integer = 0 To dt.Rows.Count - 1
-            If dt.Rows(i)("strairsnumber").ToString().ToUpper.StartsWith(prefixText.ToString.ToUpper) Then
-                filteredList.Add(dt.Rows(i)("strairsnumber").ToString().ToUpper)
+            If dt.Rows(i)("airsnumber").ToString().StartsWith(prefixText) Then
+                filteredList.Add(dt.Rows(i)("airsnumber").ToString())
             End If
         Next
 
         Return filteredList.ToArray
-
     End Function
 
     <Services.WebMethod()>
     <Script.Services.ScriptMethod()>
     Public Shared Function AutoCompleteFacility(prefixText As String, count As Integer) As String()
-
         Dim dt As DataTable = GetCachedFacilityTable()
         Dim filteredList As New List(Of String)
 
         For i As Integer = 0 To dt.Rows.Count - 1
-            If dt.Rows(i)("facilityname").ToString().ToUpper.StartsWith(prefixText.ToString.ToUpper) Then
-                filteredList.Add(dt.Rows(i)("facilityname").ToString().ToUpper)
+            If dt.Rows(i)("facilityname").ToString().StartsWith(prefixText, StringComparison.CurrentCultureIgnoreCase) Then
+                filteredList.Add(dt.Rows(i)("facilityname").ToString())
             End If
         Next
 
         Return filteredList.ToArray
-
     End Function
 
 End Class
