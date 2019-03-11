@@ -238,7 +238,7 @@ Partial Class EventRegistration_EventDetails
             "<p><b>Event Details:</b></p>" &
             litEventDetails.Text
 
-        SendEmail(currentUser.Email, subject, Nothing, htmlBody)
+        SendEmail(currentUser.Email, subject, Nothing, htmlBody, caller:="EventRegistration_EventDetails.SendRegistrationEmail")
     End Sub
 
 #End Region
@@ -272,7 +272,7 @@ Partial Class EventRegistration_EventDetails
             "<p><b>Event Details:</b></p>" &
             litEventDetails.Text
 
-        SendEmail(currentUser.Email, subject, Nothing, htmlBody)
+        SendEmail(currentUser.Email, subject, Nothing, htmlBody, caller:="EventRegistration_EventDetails.SendCancellationEmail")
     End Sub
 
 #End Region

@@ -65,7 +65,7 @@ Public Module EmailSender
             msg.AlternateViews.Add(AlternateView.CreateAlternateViewFromString(htmlBody, New ContentType(MediaTypeNames.Text.Html)))
         End If
 
-        Dim origin As String = ConcatNonEmptyStrings(" | ", {ConcatNonEmptyStrings(".", {"GECO", caller}), GetCurrentUser()?.UserId.ToString})
+        Dim origin As String = ConcatNonEmptyStrings(" | User ID: ", {ConcatNonEmptyStrings(".", {"GECO", caller}), GetCurrentUser()?.UserId.ToString})
 
         DAL.LogEmail(msg, plainTextBody, htmlBody, origin)
 

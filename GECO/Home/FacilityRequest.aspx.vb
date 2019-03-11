@@ -1,4 +1,4 @@
-﻿Imports System.Net.Mail
+Imports System.Net.Mail
 Imports GECO.GecoModels
 
 Partial Class Home_FacilityRequest
@@ -94,7 +94,8 @@ Partial Class Home_FacilityRequest
             htmlBody &= "<p><b>Additional comments from user:</b> <br />" & txtComments.Text & "</p>"
         End If
 
-        If SendEmail(ConcatNonEmptyStrings(",", recipientList), subject, Nothing, htmlBody, ConcatNonEmptyStrings(",", ccList)) Then
+        If SendEmail(ConcatNonEmptyStrings(",", recipientList), subject, Nothing, htmlBody, ConcatNonEmptyStrings(",", ccList),
+                     caller:="Home_FacilityRequest.btnSend_Click") Then
             lblSuccess.Visible = True
             lblSuccess.Text = "Success! Your message has been sent."
             btnSend.Enabled = False
@@ -102,7 +103,6 @@ Partial Class Home_FacilityRequest
             lblError.Visible = True
             lblError.Text = "There was an error sending the email."
         End If
-
 
     End Sub
 

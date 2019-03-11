@@ -1,4 +1,4 @@
-﻿Imports System.Data.SqlClient
+Imports System.Data.SqlClient
 Imports System.Data
 Imports Reimers.Google.Map
 Imports GECO.MapHelper
@@ -720,7 +720,8 @@ Partial Class eis_fugitive_edit
                     "<p><b>Comment submitted by user:</b> " & "</p>" &
                     "<blockquote><pre>" & TxtGeographicComment.Text & "</pre></blockquote>"
 
-                SendEmail(GecoContactEmail, "GECO Emission Inventory - Release Point Geographic Info Updated", plainBody, htmlBody)
+                SendEmail(GecoContactEmail, "GECO Emission Inventory - Release Point Geographic Info Updated", plainBody, htmlBody,
+                          caller:="eis_fugitive_edit.SaveFugitiveStackGCinfo")
 
             End If
 

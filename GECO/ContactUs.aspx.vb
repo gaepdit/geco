@@ -24,7 +24,7 @@ Partial Class ContactUs
             vbNewLine & vbNewLine &
             txtMessage.Text
 
-        If SendEmail(GecoContactEmail, Subject, Body) Then
+        If SendEmail(GecoContactEmail, Subject, Body, caller:="ContactUs.btnSend_Click") Then
             lblSuccess.Visible = True
         Else
             lblError.Visible = True

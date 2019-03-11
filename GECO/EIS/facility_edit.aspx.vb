@@ -1,4 +1,4 @@
-﻿Imports System.Data.SqlClient
+Imports System.Data.SqlClient
 Imports System.Data
 Imports Reimers.Core.Maps
 Imports Reimers.Google.Map
@@ -488,7 +488,8 @@ Partial Class eis_facility_edit
                     "<p><b>Comment submitted by user:</b> " & "</p>" &
                     "<blockquote><pre>" & txtGeographicComment.Text & "</pre></blockquote>"
 
-                SendEmail(GecoContactEmail, "GECO Emission Inventory - Facility Geographic Info Update Request", plainBody, htmlBody)
+                SendEmail(GecoContactEmail, "GECO Emission Inventory - Facility Geographic Info Update Request", plainBody, htmlBody,
+                          caller:="eis_facility_edit.SaveFacilityGCInfo (1)")
 
             ElseIf hidGeographicComment.Value <> txtGeographicComment.Text Then
 
@@ -530,7 +531,8 @@ Partial Class eis_facility_edit
                     "<p><b>Comment submitted by user:</b> " & "</p>" &
                     "<blockquote><pre>" & txtGeographicComment.Text & "</pre></blockquote>"
 
-                SendEmail(GecoContactEmail, "GECO Emission Inventory - Facility Geographic Info Update Request", plainBody, htmlBody)
+                SendEmail(GecoContactEmail, "GECO Emission Inventory - Facility Geographic Info Update Request", plainBody, htmlBody,
+                          caller:="eis_facility_edit.SaveFacilityGCInfo (2)")
             End If
 
             ' Update database if comment was changed

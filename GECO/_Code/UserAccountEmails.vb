@@ -18,7 +18,8 @@ Public Module UserAccountEmails
 
         SendEmail(Trim(email), subject,
                   String.Format(plainBody, confirmationUrl),
-                  String.Format(htmlBody, confirmationUrl))
+                  String.Format(htmlBody, confirmationUrl),
+                  caller:="UserAccountEmails.SendConfirmEmailUpdateEmail")
     End Sub
 
     Public Function SendConfirmAccountEmail(email As String, token As String) As Boolean
@@ -43,7 +44,8 @@ Public Module UserAccountEmails
 
         Return SendEmail(Trim(email), subject,
                   String.Format(plainBody, confirmationUrl),
-                  String.Format(htmlBody, confirmationUrl))
+                  String.Format(htmlBody, confirmationUrl),
+                  caller:="UserAccountEmails.SendConfirmAccountEmail")
     End Function
 
     Public Sub SendPasswordResetEmail(email As String, token As String)
@@ -68,7 +70,8 @@ Public Module UserAccountEmails
 
         SendEmail(Trim(email), subject,
                   String.Format(plainBody, confirmationUrl),
-                  String.Format(htmlBody, confirmationUrl))
+                  String.Format(htmlBody, confirmationUrl),
+                  caller:="UserAccountEmails.SendPasswordResetEmail")
     End Sub
 
     Public Sub SendPasswordChangeNotification(email As String)
@@ -83,7 +86,8 @@ Public Module UserAccountEmails
             "Georgia Environmental Connections Online (GECO) was recently changed.</p> " &
             "<p>If you did not initiate this change, please contact the Air Protection Branch.</p>"
 
-        SendEmail(Trim(email), subject, plainBody, htmlBody)
+        SendEmail(Trim(email), subject, plainBody, htmlBody,
+                  caller:="UserAccountEmails.SendPasswordChangeNotification")
     End Sub
 
     Public Sub SendEmailChangeNotification(oldEmail As String, newEmail As String)

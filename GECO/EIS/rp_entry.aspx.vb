@@ -1,4 +1,4 @@
-﻿Imports System.Data
+Imports System.Data
 Imports System.Data.SqlClient
 Imports EpdIt.DBUtilities
 Imports GECO.MapHelper
@@ -745,7 +745,8 @@ Partial Class EIS_rp_entry
                     "<p><b>Comment submitted by user:</b> " & "</p>" &
                     "<blockquote><pre>" & txtGeographicComment.Text & "</pre></blockquote>"
 
-                SendEmail(GecoContactEmail, "GECO Emission Inventory - Facility Geographic Info Update Request", plainBody, htmlBody)
+                SendEmail(GecoContactEmail, "GECO Emission Inventory - Facility Geographic Info Update Request", plainBody, htmlBody,
+                          caller:="EIS_rp_entry.SaveFacilityGCInfo (1)")
 
             ElseIf hidGeographicComment.Value <> txtGeographicComment.Text Then
 
@@ -787,7 +788,8 @@ Partial Class EIS_rp_entry
                     "<p><b>Comment submitted by user:</b> " & "</p>" &
                     "<blockquote><pre>" & txtGeographicComment.Text & "</pre></blockquote>"
 
-                SendEmail(GecoContactEmail, "GECO Emission Inventory - Facility Geographic Info Update Request", plainBody, htmlBody)
+                SendEmail(GecoContactEmail, "GECO Emission Inventory - Facility Geographic Info Update Request", plainBody, htmlBody,
+                          caller:="EIS_rp_entry.SaveFacilityGCInfo (2)")
             End If
 
             ' Update database if comment was changed

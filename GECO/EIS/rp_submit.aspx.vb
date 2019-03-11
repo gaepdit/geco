@@ -1048,7 +1048,8 @@ Partial Class EIS_rp_submit
 
             htmlBody &= "</tbody></table>"
 
-            SendEmail(GecoContactEmail, "GECO EIS - Notice of large changes in reported emissions", plainBody, htmlBody)
+            SendEmail(GecoContactEmail, "GECO EIS - Notice of large changes in reported emissions", plainBody, htmlBody,
+                      caller:="EIS_rp_submit.EmailIf20PercentChange")
         End If
 
     End Sub
@@ -1111,7 +1112,8 @@ Partial Class EIS_rp_submit
 
             htmlBody &= "</tbody></table>"
 
-            SendEmail(GecoContactEmail, "GECO EIS - Notice of emission calculation method", plainBody, htmlBody)
+            SendEmail(GecoContactEmail, "GECO EIS - Notice of emission calculation method", plainBody, htmlBody,
+                      caller:="EIS_rp_submit.EmailIfEmissionCalcMethodIsVague")
         End If
 
     End Sub
