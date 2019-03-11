@@ -15,7 +15,7 @@ Public Module EmailSender
     ''' </summary>
     ''' <param name="toAddresses">The email recipients, separated by commas.</param>
     ''' <param name="mailSubject">The email subject line.</param>
-    ''' <param name="plainBody">The plaintext body of the email.</param>
+    ''' <param name="plainTextBody">The plaintext body of the email.</param>
     ''' <param name="htmlBody">The optional HTML formatted body of the email.</param>
     ''' <param name="ccAddresses">The email cc recipients, separated by commas.</param>
     ''' <param name="mailPriority">MailPriority of the email.</param>
@@ -24,13 +24,14 @@ Public Module EmailSender
     ''' multiple recipients.</remarks>
     Public Function SendEmail(toAddresses As String,
                               mailSubject As String,
-                              plainBody As String,
+                              plainTextBody As String,
                               Optional htmlBody As String = Nothing,
                               Optional ccAddresses As String = Nothing,
-                              Optional mailPriority As MailPriority = MailPriority.Normal
+                              Optional mailPriority As MailPriority = MailPriority.Normal,
+                              Optional caller As String = NameOf(EmailSender)
                               ) As Boolean
 
-        If String.IsNullOrWhiteSpace(plainBody) AndAlso String.IsNullOrWhiteSpace(htmlBody) Then
+        If String.IsNullOrWhiteSpace(plainTextBody) AndAlso String.IsNullOrWhiteSpace(htmlBody) Then
             Throw New ArgumentException("Message body required.")
         End If
 
@@ -45,6 +46,7 @@ Public Module EmailSender
         Dim msg As MailMessage = New MailMessage With {
             .From = New MailAddress(GecoEmailSender, GecoContactName),
             .Subject = mailSubject,
+            .SubjectEncoding = Encoding.UTF8,
             .Priority = mailPriority
         }
 
@@ -54,14 +56,18 @@ Public Module EmailSender
             msg.CC.Add(ccAddresses)
         End If
 
-        If plainBody IsNot Nothing Then
-            msg.AlternateViews.Add(AlternateView.CreateAlternateViewFromString(plainBody, New ContentType("text/plain")))
+        If plainTextBody IsNot Nothing Then
+            msg.Body = plainTextBody
+            msg.BodyEncoding = Encoding.UTF8
         End If
 
         If htmlBody IsNot Nothing Then
-            msg.AlternateViews.Add(AlternateView.CreateAlternateViewFromString(htmlBody, New ContentType("text/html")))
-            msg.IsBodyHtml = True
+            msg.AlternateViews.Add(AlternateView.CreateAlternateViewFromString(htmlBody, New ContentType(MediaTypeNames.Text.Html)))
         End If
+
+        Dim origin As String = ConcatNonEmptyStrings(" | ", {ConcatNonEmptyStrings(".", {"GECO", caller}), GetCurrentUser()?.UserId.ToString})
+
+        DAL.LogEmail(msg, plainTextBody, htmlBody, origin)
 
         Dim environment As String = ConfigurationManager.AppSettings("GECO_ENVIRONMENT")
 
@@ -74,8 +80,6 @@ Public Module EmailSender
                 msg.To.Clear()
                 msg.To.Add(GecoContactEmail)
                 msg.CC.Clear()
-                ' Save all emails on DEV/UAT servers for troubleshooting
-                SaveLocalEmail(msg)
             End If
 
             Try
@@ -87,7 +91,7 @@ Public Module EmailSender
                     SaveLocalEmail(msg)
                 End If
             Catch ex As Exception
-                ' If message send failure, save file then rethrow
+                ' If message send failure, save file, log & return
                 SaveLocalEmail(msg)
                 ErrorReport(ex, False)
                 Return False

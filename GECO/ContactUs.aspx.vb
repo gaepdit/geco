@@ -1,4 +1,3 @@
-Imports System.Data.SqlClient
 Imports GECO.GecoModels
 
 Partial Class ContactUs
@@ -18,25 +17,6 @@ Partial Class ContactUs
     Protected Sub btnSend_Click(sender As Object, e As EventArgs)
         lblError.Visible = False
         lblSuccess.Visible = False
-
-        Dim query As String = "Insert into OlapContactUs " &
-            "(strIPAddress, strEmail, strName, DateTimeStamp, strMessage, strSubject) " &
-            "values " &
-            "(@strIPAddress, @strEmail, @strName, getdate(), @strMessage, @strSubject) "
-
-        Dim params As SqlParameter() = {
-            New SqlParameter("@strIPAddress", Request.ServerVariables("REMOTE_ADDR")),
-            New SqlParameter("@strEmail", txtEmail.Text),
-            New SqlParameter("@strName", txtName.Text),
-            New SqlParameter("@strMessage", txtMessage.Text),
-            New SqlParameter("@strSubject", ddlSubject.Text)
-        }
-
-        Try
-            DB.RunCommand(query, params)
-        Catch ex As Exception
-            ErrorReport(ex, False)
-        End Try
 
         Dim Subject As String = "GECO Contact Form - " & ddlSubject.Text
 

@@ -1829,6 +1829,7 @@
     <Compile Include="_Code\Md5Hashing.vb" />
     <Compile Include="_DAL\Finance\CombinedFeesSummary.vb" />
     <Compile Include="_DAL\Finance\FacilityFinances.vb" />
+    <Compile Include="_DAL\Logging\EmailLog.vb" />
     <Compile Include="_DAL\Organization\Organization.vb" />
     <Compile Include="_Models\Finance\DepositApplied.vb" />
     <Compile Include="_DAL\Finance\Invoices.vb" />
@@ -2150,6 +2151,7 @@
     </None>
     <None Include="Web.configBuilder.Server-sample.xml" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

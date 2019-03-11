@@ -19,11 +19,12 @@
         If SessionItemExists(sessionItem) Then
             Return HttpContext.Current.Session(sessionItem.ToString)
         End If
+
         Return Nothing
     End Function
 
     Public Function SessionItemExists(sessionItem As GecoSession) As Boolean
-        Return HttpContext.Current.Session(sessionItem.ToString) IsNot Nothing
+        Return (HttpContext.Current.Session(sessionItem.ToString) IsNot Nothing)
     End Function
 
 End Module
