@@ -64,7 +64,7 @@ Check #,Check Name,Check Description,Error Level,Check Type,NCD
 121,Control Approach Minimum Pollutants Present,Each Control Approach component must be associated with at least one control pollutant. The component and all dependent data will not be stored if there are missing required data.,Critical,Present,no
 122,Control Measure Code Valid,Must match value in code list.,Critical,Code,no
 124,Controlled Pollutant Code Valid,Must match value in code list.,Critical,Code,no
-125,Percent Control Measures Reduction Efficiency Range,Should be greater than or equal to 5 and less than or equal to 100.,Critical,Range,no
+125,Percent Control Measures Reduction Efficiency Range,Should be greater than or equal to 5 and less than or equal to 99.999,Critical,Range,no
 127,Duplication of XML elements,An XML element or XML attribute cannot be reported twice within a complex type.  This results in ambiguous identification of information.,Critical,Cardinality,no
 128,Duplication of Complex Data Types,A complex type cannot be reported more than once containing duplicate identifiers.  This results in contradictory or inconsistent information being reported.,Critical,Cardinality,no
 133,Emissions Creation Date Data Type,The CreationTime in the Exchange Network Header must be in xsd:datetime format.  YYYY-MM-DDTHH:MM:SS ,Critical,Format,no
@@ -82,6 +82,7 @@ Check #,Check Name,Check Description,Error Level,Check Type,NCD
 157,Longitude Measure Present,The longitude measure is required when reporting the Geographic Coordinates component. The component and all dependent data will not be stored if there are missing required data.,Critical,Present,no
 167,Identifier Present for  Unit Identification,The identifier is required when reporting the unit identification component. The component and all dependent data will not be stored if there are missing required data.,Critical,Present,no
 168,Program System Code Present for Unit Identification,A program system code is required when reporting the unit identification component. The component and all dependent data will not be stored if there are missing required data.,Critical,Present,no
+169,Unit Alternate Identification Effective Date Present,The unit alternate identification effective date must be reported to be accepted.,Critical,Present,no
 170,Release Point Stack Height Measure Present,"If the release point type code is a stack type, then the release point stack height measure is required. The component and all dependent data will not be stored if there are missing required data.",Critical,Present,no
 171,Release Point Stack Diameter Measure Present,"If the release point type code is a stack type, then the release point stack diameter measure is required. The component and all dependent data will not be stored if there are missing required data.",Critical,Present,no
 172,Release Point Exit Temperature Measure Present,"If the release point type code is a stack type, then the release point exit gas temperature measure is required. The component and all dependent data will not be stored if there are missing required data.",Critical,Present,no
@@ -91,6 +92,7 @@ Check #,Check Name,Check Description,Error Level,Check Type,NCD
 185,Unit Status Code Present,The unit status code is required when reporting the EmissionsUnit component. The component and all dependent data will not be stored if there are missing required data.,Critical,Present,no
 187,SCC Present for Process,A source classification code is required when reporting the emissions process component. The component and all dependent data will not be stored if there are missing required data.,Critical,Present,no
 188,Average Percent Emissions Required,The average percent emissions is required.,Critical,Conditional,no
+191,Release Point velocity calculated from Flow and Diameter is out of range (0.001 to 1000 FPS),"If Exit Gas Flow Rate and Diameter are submitted, the following formula is used to calculate the release point exit gas velocity measure. Exit Gas Velocity = Flow Rate / Area (assuming a circular stack). If the exit gas velocity is within 0.001-1000 FPS, then the data is considered valid.",Critical,Calculation,no
 192,Consistency of Release Point Exit Gas Flow Rate and Velocity,"If all three data elements are reported, the following formula is used to calculate the release point exit gas flow rate measure. If this value and the reported exit gas flow rate are within 5% of each other then the reported data is considered valid. Flow Rate =  {Pi} * (Stack Diameter /2) ^ 2) * Velocity.",Critical,Calculation,no
 193,Release Point Stack Diameter Greater than Height,The release point stack diameter should usually be less than the release point stack height measure.,Warning,Calculation,no
 194,Release Point Fugitive Height Measure Range,"Should be between 0 to 500, inclusive.",Critical,Range,no
@@ -99,6 +101,8 @@ Check #,Check Name,Check Description,Error Level,Check Type,NCD
 197,Release Point Fugitive Angle Measure Range,"Should be between 0 to 89, inclusive.",Critical,Range,no
 199,Design Capacity Range,"Should be between 0.01 to 100,000,000; inclusive.",Critical,Range,no
 201,User Identifier Present,The user who generated the XML must be in the exchange header.,Critical,Present,no
+202,Program System Code Present,The Program System Code for the user agency who generated the XML must be in the exchange header.,Critical,Present,no
+203,Program System Code and User ID combination are valid,The combination of Program System Code and User ID must be valid.,Critical,Conditional,no
 212,Facility Company Name Data Type,Maximum allowable width of 80 characters. Longer submissions will be truncated.,Warning,Format,no
 213,Facility Site Name Data Type,Maximum allowable width of 80 characters. Longer submissions will be truncated.,Warning,Format,no
 214,Facility Site Description Data Type,Maximum allowable width of 100 characters. Longer submissions will be truncated.,Warning,Format,no
@@ -234,9 +238,9 @@ Check #,Check Name,Check Description,Error Level,Check Type,NCD
 486,Emission Calculation Method Code Present,Required when reporting the Emissions component. The component and all dependent data will not be stored if there are missing required data.,Critical,Present,no
 487,Emissions Comment Data Type,Maximum allowable width of 400 characters. Longer submissions will be truncated.,Warning,Format,no
 510,Release Point Stack Diameter Measure Range,"Must be between 0.001 to 300 FT, inclusive.",Critical,Range,no
-511,Release Point Exit Gas Temperature Measure Range,"Must be between -30 to 4000 F, inclusive.",Warning,Range,no
+511,Release Point Exit Gas Temperature Measure Outer Range,"Must be between -30 to 4000 F, inclusive",Critical,Range,no
 512,Release Point Exit Gas Velocity Measure Range for FPS for Stacks,"For stacks, release point exit gas velocity measure must be 0.001 to 1000, inclusive, if in FPS",Critical,Range,no
-517,Release Point Exit Gas Velocity Measure Range for FPM for Stacks,"For stacks, release point exit gas velocity measure must be 0.001 to 60,000, inclusive, if in FPM",Critical,Range,no
+517,Release Point Exit Gas Velocity Measure Range for FPM for Stacks,"If the release point exit gas velocity unit of measure is FPM and the release point type is not fugitive, release point exit gas velocity measure must be 0.060 to 60,000; inclusive.",Critical,Range,no
 518,Release Point Exit Gas Flow Rate Measure Range for ACFM for Stacks,"For stacks, release point exit gas flow measure must be 0.00000001 to 12,000,000 ACFM, inclusive",Critical,Range,no
 519,Release Point Exit Gas Flow Rate Measure Range for ACFS for Stacks,"For stacks, release point exit gas flow measure must be 0.00000001 to 200,000 ACFS, inclusive",Critical,Range,no
 522,Location Type Code for Excluded Location Valid,Must match value in code list.,Critical,Code,no
@@ -451,6 +455,7 @@ Check #,Check Name,Check Description,Error Level,Check Type,NCD
 931,Area Within Perimeter and Area Within Perimeter Unit of Measure Code must be reported together.,Area within perimeter and area within perimeter unit of measure must be reported together.,Warning,Duplication,no
 932,Area Within Perimeter Unit of Measure Code must match value in list of registered codes.,Must match value in code list.,Warning,Duplication,no
 933,Percent of Area Producing Emissions does not meet the required format.,This element must be reported as an integer.,Warning,Duplication,no
+934,"Percent Of Area Producing Emissions, reported for Event Locations will not be stored.","If Percent Of Area Producing Emissions for Event Locations are submitted, the data will not be stored.",Warning,Conditional,no
 935,Percent of Area Producing Emissions must be a value between {0} and {1}.,Must be between 1 and 100 inclusive.,Warning,Duplication,no
 936,"Percent of Area Producing Emissions must be the same for both flaming and smoldering stages, if they are reported separately.","If flaming and smoldering stages are reported separately for the same period, value should be the same for both.",Warning,Duplication,no
 937,Shape File Identifier is required when reporting Geospatial Parameters.,Shape file identifier is required when reporting geospatial parameters. The component and all dependent data will not be stored if there is missing required data.,Warning,Duplication,no
@@ -478,6 +483,7 @@ Check #,Check Name,Check Description,Error Level,Check Type,NCD
 961,"Percent Ten Hour Fuel Moisture, reported in the Event Emissions Process component, does not meet the required format.",This element must be reported as a decimal.,Warning,Duplication,no
 962,"Percent One Thousand Hour Fuel Moisture, reported in the Event Emissions Process component, does not meet the required format.",This element must be reported as a decimal.,Warning,Duplication,no
 963,"Percent Live Fuel Moisture, reported in the Event Emissions Process component, does not meet the required format.",This element must be reported as a decimal.,Warning,Duplication,no
+964,"Heat Release, reported in the Event Emissions Process component, is required",The Heat Release value is required when reporting an event. The component and all dependent data will not be stored if there are missing required data.,Critical,Present,no
 965,"Fuel Loading Percent Duff Fuel Moisture, reported in the Event Emissions Process component, does not meet the required format.",This element must be reported as a decimal.,Warning,Duplication,no
 966,"Heat Release, reported in the Event Emissions Process component, does not meet the required format.",This element must be reported as a float.,Warning,Duplication,no
 967,"If Heat Release is reported in the Event Emissions Process component, then Heat Release Unit of Measure is required.",If heat release is reported then heat release unit of measure code is required.,Warning,Duplication,no
@@ -510,8 +516,6 @@ Check #,Check Name,Check Description,Error Level,Check Type,NCD
 1112,Release Point Fence Line Distance Measure Critical Range,"Must be between 0 and 99,999; inclusive.",Critical,Range,no
 1132,Release Point Present for Process,A process must go to at least one release point.,Critical,Present,no
 1133,Vertical Measure Critical Range,"Must be between -1000 and 999,999; inclusive.",Critical,Range,no
-1152,Release Point Exit Gas Velocity Measure Critical Range,"Must be between 0 and 99,999.9; inclusive.",Critical,Range,no
-1153,Release Point Exit Gas Flow Rate Measure Critical Range,"Must be between 0 and 99,999,999.9; inclusive.",Critical,Range,no
 1169,Facility Site Address Not Present for Portable Facilities,"If the county FIPS code is 777, then the address component will not be accepted.  All data elements in the facility site address component will not be stored.",Critical,Present,no
 1170,Geographic Coordinates Not Present for Portable Facilities,"If the county FIPS code is 777, then the geographic coordinates component will not be accepted.  All data elements in the geographic coordinates component will not be stored.",Critical,Present,no
 1189,Active Identifier per Program System Code for  Unit Identification Cardinality,A unit may only have one active identifier for each program system code. Active means the end date is null. Currently active identifiers with matching system codes will be automatically retired.,Critical,Cardinality,no
@@ -525,6 +529,7 @@ Check #,Check Name,Check Description,Error Level,Check Type,NCD
 1253,Emissions Process Control Approach Protected,"If the data in the EIS for emissions process control approach are protected, the data will not be stored. A request to unprotect the data can be made through the Gateway. Note this affects control approach, control measure, and control pollutant components.",Critical,Conditional,no
 1269,Process Level Regulation,Only regulations indicated to be reported at the process level should be reported at the process level.,Critical,Conditional,no
 1270,Emissions Unit Level Regulation,Only regulations indicated to be reported at the unit level should be reported at the unit level.,Critical,Conditional,no
+1289,Facility Site data item Protected,"If the value for a facility data item is protected, the data will not be stored. A request to unprotect the data can be made through the Gateway.",Critical,Conditional,no
 1290,Facility Site Identifier Protected,"If the data in the EIS for a facility site identifier are protected, the data will not be stored.  A request to unprotect the data can be made through the Gateway.",Critical,Conditional,no
 1291,Identifier Protected for Unit Identification,"If the data in the EIS for identifier in unit identification are protected, the data will not be stored.  A request to unprotect the data can be made through the Gateway.",Critical,Conditional,no
 1311,Stack Height Protected,"If the data in the EIS for stack height are protected, the data will not be stored.  A request to unprotect the data can be made through the Gateway.",Critical,Conditional,no
@@ -556,7 +561,7 @@ Check #,Check Name,Check Description,Error Level,Check Type,NCD
 1481,Affiliation Type Code Present,The affiliation type code is required when reporting the facility site affiliation component. The component and all dependent data will not be stored if there are missing required data.,Critical,Present,no
 1482,Horizontal Accuracy Unit of Measure Valid,Horizontal accuracy unit of measure must be reported in meters (m).,Critical,Code,no
 1483,Vertical Unit of Measure Valid,Vertical unit of measure must be reported in meters (m).,Critical,Code,no
-1484,Aircraft Engine Type Code Valid,Must match value in code list.,Critical,Code,no
+1484,Aircraft Engine Type Code Valid,Must match active value in code list.  The SCC assigned to the code must match the SCC of the process to which it is assigned.,Critical,Code,no
 1486,Program System Code for Process Valid,Must match value in list of registered codes.,Critical,Code,no
 1487,Program System Code for Process Identification Present,A program system code is required when reporting the process identification component. The component and all dependent data will not be stored if there are missing required data.,Critical,Present,no
 1489,Release Point Stack Height  Unit Of Measure Code Valid,Must be in feet.,Critical,Code,no
@@ -591,7 +596,7 @@ Check #,Check Name,Check Description,Error Level,Check Type,NCD
 1729,EIS Process Identifier Exists,"If the EIS process identifier is reported, it must exist.",Critical,Conditional,no
 1730,Shape Required,Shape Required,Critical,Present,no
 1749,Supplemental Calculation Parameter Denominator Unit of Measure Valid,"If the supplemental calculation parameter type code is heat content, the supplemental calculation parameter denominator unit of measure must match value in code list.",Critical,Code,no
-1770,Process Identifier Exists Within Unit,"To use the agency process identifier for identification, the agency process identifier must exist in the under the emissions unit for which it was reported.",Critical,Conditional,no
+1770,Process Identifier Exists Within Unit,"To use the process identifier for identification, the emissions process must exist under the emissions unit for which it was reported.",Critical,Conditional,no
 1789,SCC in Correct Data Category,The SCC must match the Data Category provided in the Exchange Header.,Critical,Conditional,no
 1809,EIS Process Exists in Correct Unit,The reported EIS emissions process identifier matched in the EIS is associated with the reported emissions unit.,Critical,Conditional,no
 1829,SCC is Associated with Correct Process,The reported SCC must be associated with the reported emissions process identifier.,Critical,Conditional,no
@@ -642,7 +647,6 @@ Check #,Check Name,Check Description,Error Level,Check Type,NCD
 2149,Release Point Apportionment Identifier Cardinality,A release point identifier may only be used once per release point apportionment collection.,Critical,Cardinality,no
 2169,Emissions Not Accepted For Duplicate Facility Sites,Emissions are not accepted for facility sites that are flagged as duplicate.,Critical,Conditional,no
 2189,Reporting Period For Area Emissions Process Present,"For every area emissions process, there must be one or more reporting periods underneath it either already in EIS or submitted.",Critical,Present,no
-2211,Release Point Exit Gas Temperature Measure Outer Range,"Must be between -999 to 9999, inclusive.",Critical,Range,no
 2229,Potential Duplicate Facility Site,Potential duplicate facilities are flagged for review.,Warning,Comparison,no
 2249,Facility Site Operating Status Year With Emissions,"The operating status for statuses other than ""OP"" must be greater than the latest year of emissions submitted to that facility site, except for landfills.",Critical,Conditional,no
 2251,Unit Operating Status Year With Emissions,"The operating status year for statuses other than """"OP"""" must be greater than the latest year of emissions submitted to that unit, except for landfills.",Critical,Conditional,no
