@@ -1,4 +1,5 @@
 ﻿Imports System.Data.SqlClient
+Imports GECO.GecoModels
 
 Partial Class eis_Default
     Inherits Page
@@ -15,6 +16,7 @@ Partial Class eis_Default
     Private Sub EISPanel()
 
         Dim FacilitySiteID As String = GetCookie(Cookie.AirsNumber)
+        Dim facilityAIRS As New ApbFacilityId(FacilitySiteID)
         Dim EISAccessCode As String = GetCookie(EisCookie.EISAccess)
         Dim EIYear As String = ""
         Dim FacilityName As String = GetFacilityName(FacilitySiteID)
@@ -62,7 +64,7 @@ Partial Class eis_Default
                         lblFacilityName.Text = "Facility Name:"
                         lblFacilityNameText.Text = FacilityName
                         lblFacilityID.Text = "Facility AIRS No:"
-                        lblFacilityIDText.Text = FacilitySiteID
+                        lblFacilityIDText.Text = facilityAIRS.FormattedString
                         lblStatus.Text = "Status:"
                         lblStatusText.Text = eisStatusMessage
                         lblConfNumber.Text = EIYear & " Confirmation No:"
@@ -86,7 +88,7 @@ Partial Class eis_Default
                         lblFacilityName.Text = "Facility Name:"
                         lblFacilityNameText.Text = FacilityName
                         lblFacilityID.Text = "Facility AIRS No:"
-                        lblFacilityIDText.Text = FacilitySiteID
+                        lblFacilityIDText.Text = facilityAIRS.FormattedString
                         lblStatus.Text = "Status:"
                         lblStatusText.Text = eisStatusMessage
                         lblOptOutReason.Text = "Reason Not Participating:"
@@ -116,7 +118,7 @@ Partial Class eis_Default
                         lblFacilityName.Text = "Facility Name:"
                         lblFacilityNameText.Text = FacilityName
                         lblFacilityID.Text = "Facility AIRS No:"
-                        lblFacilityIDText.Text = FacilitySiteID
+                        lblFacilityIDText.Text = facilityAIRS.FormattedString
                         lblStatus.Text = "Status:"
                         lblStatusText.Text = eisStatusMessage
                         lblConfNumber.Text = ""
@@ -129,7 +131,7 @@ Partial Class eis_Default
                         btnAction2.Visible = True
                     Else
                         'Some type of error
-                        DisplayEIError(FacilitySiteID, "A1")
+                        DisplayEIError(facilityAIRS, "A1")
                     End If
                 Case "1"
                     If OptOut = "NULL" And EISStatus = "1" Then
@@ -149,7 +151,7 @@ Partial Class eis_Default
                         lblFacilityName.Text = "Facility Name:"
                         lblFacilityNameText.Text = FacilityName
                         lblFacilityID.Text = "Facility AIRS No:"
-                        lblFacilityIDText.Text = FacilitySiteID
+                        lblFacilityIDText.Text = facilityAIRS.FormattedString
                         lblStatus.Text = "Status:"
                         lblStatusText.Text = eisStatusMessage
                         lblConfNumber.Text = ""
@@ -175,7 +177,7 @@ Partial Class eis_Default
                         lblFacilityName.Text = "Facility Name:"
                         lblFacilityNameText.Text = FacilityName
                         lblFacilityID.Text = "Facility AIRS No:"
-                        lblFacilityIDText.Text = FacilitySiteID
+                        lblFacilityIDText.Text = facilityAIRS.FormattedString
                         lblStatus.Text = "Status:"
                         lblStatusText.Text = eisStatusMessage
                         lblConfNumber.Text = ""
@@ -188,7 +190,7 @@ Partial Class eis_Default
                         btnAction2.Visible = True
                     Else
                         'Some type of error
-                        DisplayEIError(FacilitySiteID, "A2")
+                        DisplayEIError(facilityAIRS, "A2")
                     End If
                 Case "2"
                     If OptOut = "0" And EISStatus = "3" Then
@@ -204,7 +206,7 @@ Partial Class eis_Default
                         lblFacilityName.Text = "Facility Name:"
                         lblFacilityNameText.Text = FacilityName
                         lblFacilityID.Text = "Facility AIRS No:"
-                        lblFacilityIDText.Text = FacilitySiteID
+                        lblFacilityIDText.Text = facilityAIRS.FormattedString
                         lblStatus.Text = "Status:"
                         lblStatusText.Text = eisStatusMessage
                         lblConfNumber.Text = EIYear & " Confirmation No:"
@@ -228,7 +230,7 @@ Partial Class eis_Default
                         lblFacilityName.Text = "Facility Name:"
                         lblFacilityNameText.Text = FacilityName
                         lblFacilityID.Text = "Facility AIRS No:"
-                        lblFacilityIDText.Text = FacilitySiteID
+                        lblFacilityIDText.Text = facilityAIRS.FormattedString
                         lblStatus.Text = "Status:"
                         lblStatusText.Text = eisStatusMessage
                         lblOptOutReason.Text = "Reason Not Participating:"
@@ -255,7 +257,7 @@ Partial Class eis_Default
                         lblFacilityName.Text = "Facility Name:"
                         lblFacilityNameText.Text = FacilityName
                         lblFacilityID.Text = "Facility AIRS No:"
-                        lblFacilityIDText.Text = FacilitySiteID
+                        lblFacilityIDText.Text = facilityAIRS.FormattedString
                         lblStatus.Text = "Status:"
                         lblStatusText.Text = eisStatusMessage
                         lblConfNumber.Text = EIYear & " Confirmation No:"
@@ -268,7 +270,7 @@ Partial Class eis_Default
                         btnAction2.Visible = True
                     Else
                         'Some type of error
-                        DisplayEIError(FacilitySiteID, "A3")
+                        DisplayEIError(facilityAIRS, "A3")
                     End If
                 Case "3"
                     'Facility not in EIS admin table. Contact APB
@@ -282,7 +284,7 @@ Partial Class eis_Default
                     lblFacilityName.Text = "Facility Name:"
                     lblFacilityNameText.Text = FacilityName
                     lblFacilityID.Text = "Facility AIRS No:"
-                    lblFacilityIDText.Text = FacilitySiteID
+                    lblFacilityIDText.Text = facilityAIRS.FormattedString
                     lblStatus.Text = ""
                     lblStatusText.Text = ""
                     lblConfNumber.Text = ""
@@ -303,7 +305,7 @@ Partial Class eis_Default
                     pnlEISNotAvailable.Visible = True
                 Case Else
                     'Some type of error
-                    DisplayEIError(FacilitySiteID, "A4")
+                    DisplayEIError(facilityAIRS, "A4")
             End Select
         Catch ex As Exception
             ErrorReport(ex)
@@ -313,7 +315,7 @@ Partial Class eis_Default
 
     End Sub
 
-    Private Sub DisplayEIError(fsid As String, errorId As String)
+    Private Sub DisplayEIError(fsid As ApbFacilityId, errorId As String)
 
         Dim FacilityName As String = GetFacilityName(fsid)
 
@@ -326,7 +328,7 @@ Partial Class eis_Default
         lblFacilityName.Text = "Facility Name:"
         lblFacilityNameText.Text = FacilityName
         lblFacilityID.Text = "Facility AIRS No:"
-        lblFacilityIDText.Text = fsid
+        lblFacilityIDText.Text = fsid.FormattedString
         lblStatus.Text = ""
         lblStatusText.Text = ""
         lblConfNumber.Text = ""
