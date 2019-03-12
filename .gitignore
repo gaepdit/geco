@@ -269,3 +269,5 @@ Web.configBuilder.Debug.xml
 Web.configBuilder.Release.xml
 Web.configBuilder.Staging.xml
 Web.config
+
+docs/GECO Instructions\.html
