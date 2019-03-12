@@ -1,0 +1,725 @@
+Check #,Check Name,Check Description,Error Level,Check Type,NCD
+0,An undocumented Critical QA Check has failed.,An undocumented Critical QA Check has failed.,Warning,Duplication,no
+11,Inventory Year Present,An inventory year must be reported in a file submission.,Critical,Present,no
+13,Facility Site Identifiers Present,There must be a facility site identifier and system code when reporting the Facility Site component. The Facility Site and all dependent data will not be stored if this identifier is missing or not valid.,Critical,Present,no
+14,EIS Facility Site Identifier Exists,"If the EIS facility site identifier is reported, it must match a record in the EIS facility inventory.",Critical,Conditional,no
+17,Emissions Unit Identifiers Present,There must be an emissions unit identification component reported when reporting the emissions unit. The component and all dependent data will not be stored if there are missing required data.,Critical,Present,no
+18,Emission Release Point Identifiers Present,Either the EIS emission release point identifier or the agency emission release point identifier is required when reporting the release point component. Both identifiers may be reported. The component and all dependent data will not be stored if there are missing required data.,Critical,Present,no
+23,State and County FIPS Code Valid,Must match value in code list.,Critical,Code,no
+25,Tribal Code Valid,Must match value in code list.,Critical,Code,no
+26,State and Country Code Valid,Must match value in code list.,Critical,Code,no
+29,NAICS Code Valid,Must match active valid value in EIS code list.,Critical,Code,no
+30,Facility Category Code Valid,Must match value in code list.,Critical,Code,no
+33,Facility Site Status Code Valid,Must match value in code list.,Critical,Code,no
+34,Facility Site Status Code Year Range,The year reported should be between 1900 to 2050.,Critical,Range,no
+35,Facility Site Status Code and Year,"If facility site status code is not ""Operating"" (OP), the facility site status code year must be reported.",Critical,Conditional,no
+36,Facility Site Name and Company Name Uniqueness,"If company name, facility site name, and the state and county FIPS, tribal code, or state and country FIPS are provided, the combination of these three data elements should be unique.",Warning,Conditional,no
+37,Address Postal Code Length,"Regardless of location, the address postal code must be between 5 and 10 characters long.",Critical,Format,no
+38,Location Address State Code Valid,Must match value in code list.,Critical,Code,no
+39,Location Address State Code Present,The location address state code is required when reporting the address component. The component and all dependent data will not be stored if there are missing required data.,Critical,Present,no
+40,Location Address Text Present,The location address text is required when reporting the address component. The component and all dependent data will not be stored if there are missing required data.,Critical,Present,no
+41,Locality Name Present,The locality name is required when reporting the address component. The component and all dependent data will not be stored if there are missing required data.,Critical,Present,no
+44,Effective Date Range for Alternative Facility Name,The effective date range for an alternative facility name is 01/01/1900 to 12/31/2050.,Critical,Range,no
+47,Effective Date Range for Facility Identification,The effective date range must be between 01/01/1900 to 12/31/2050.,Critical,Range,no
+49,End Date Range for Facility Identification,The end date range must between 01/01/1900 to 12/31/2050.,Critical,Range,no
+51,Effective Date and End Date Order for Facility Identification,The effective date must be before the end date for an facility identification.,Critical,Range,no
+55,Horizontal Collection Method Code Valid,Must match value in code list.,Critical,Code,no
+56,Horizontal Reference Datum Code Valid,Must match value in code list.,Critical,Code,no
+58,Geographic Reference Point Code Valid,Must match value in code list.,Critical,Code,no
+59,Vertical Collection Method Code Valid,Must match value in code list.,Critical,Code,no
+60,Vertical Reference Datum Code Valid,Must match value in code list.,Critical,Code,no
+61,Verification Method Code Valid,Must match value in code list.,Critical,Code,no
+62,Coordinate Data Source Code Valid,Must match value in code list.,Critical,Code,no
+63,Geometric Type Code Valid,Must match value in code list.,Critical,Code,no
+66,EIS Emissions Unit Identifier Exists,Must match an EIS emissions unit identifier.,Critical,Conditional,no
+67,Unit Type Code Present,The unit type code is required when reporting the EmissionsUnit component. The component and all dependent data will not be stored if there are missing required data.,Critical,Present,no
+68,Unit Type Code Valid,Must match value in code list.,Critical,Code,no
+69,Design Capacity Conditionally Present,"The design capacity should be reported for unit type codes: 100, 120, 140, 160, and 180",Warning,Present,no
+70,Design Capacity Unit of Measure Present,Design capacity and design capacity unit of measure must both be reported for either to be accepted.,Critical,Present,no
+71,Design Capacity Unit of Measure Code Valid,Must match value in code list.,Critical,Code,no
+72,Emissions Unit Status Code Valid,Must match value in code list.,Critical,Code,no
+73,Emissions Unit Status Code Year in Range,The year reported should be between 1900 to 2050.,Critical,Range,no
+74,Emissions Unit Status Code and Year,"If emissions unit status code is not ""Operating"" (OP), the emissions unit status code year must be reported.",Critical,Conditional,no
+75,Emissions Unit Operation Date Range,The operation date should be between 01/01/1900 to 12/31/2050.,Critical,Range,no
+83,Effective Date Range for Unit Identification,The effective date range must be between 01/01/1900 to 12/31/2050.,Critical,Range,no
+85,End Date Range for Unit Identification,The end date must be between 01/01/1900 to 12/31/2050.,Critical,Range,no
+87,Effective Date and End Date Order for  Unit Identification,The effective date must be before the end date for an unit identification.,Critical,Range,no
+90,SCC Valid,Must match value in code list.,Critical,Code,no
+94,Last Emissions Year for Process Range,The year reported should be between 1900 to 2050.,Critical,Range,no
+99,EIS Emission Release Point Identifier Exists,Must match an EIS emission release point identifier.,Critical,Conditional,no
+100,Release Point Type Code Valid,Must match value in code list.,Critical,Code,no
+101,Release Point Type Code Present for Release Points,The release point type code is required when reporting the release point component. The component and all dependent data will not be stored if there are missing required data.,Critical,Present,no
+102,Release Point Exit Gas Flow Rate Unit of Measure Present,Exit gas flow rate and exit gas flow rate unit of measure must both be reported for either to be accepted.,Critical,Present,no
+103,Release Point Exit Gas Velocity Unit of Measure Present,Exit gas velocity and exit gas velocity unit of measure must both be reported for either to be accepted.,Critical,Present,no
+106,Average Percent Emissions Range,"Must be greater than or equal to 1.0, and less than or equal to 100.0.",Critical,Range,no
+108,Complete Release Point Apportionment,"If the release point apportionment is reported, the total percent emissions apportionment reported from a single process must equal 100%. ",Critical,Calculation,no
+110,Regulatory Code Valid,Must match value in code list.,Critical,Code,no
+111,Agency Code Text for Regulations,If the regulatory code indicates it is a non Federal or a State program then the agency code text is required.,Critical,Conditional,no
+115,Percent Control Approach Capture Efficiency Range,"Should be greater than or equal to 5, and less than or equal to 100.0.",Critical,Range,no
+116,Percent Control Approach Effectiveness Range,"Should be greater than or equal to 1, and less than or equal to 100.0.",Critical,Range,no
+117,Control Approach First Inventory Year Range,The year reported should be between 1900 to 2050.,Critical,Range,no
+118,Control Approach Last Inventory Year Range,The year reported should be between 1900 to 2050.,Critical,Range,no
+119,Control Approach First and Last Inventory Year Comparison,First inventory year must be a value prior or equal to last inventory year.,Critical,Range,no
+120,Control Approach Minimum Measures Present,Each Control Approach component must be associated with at least one control measure. The component and all dependent data will not be stored if there are missing required data.,Critical,Present,no
+121,Control Approach Minimum Pollutants Present,Each Control Approach component must be associated with at least one control pollutant. The component and all dependent data will not be stored if there are missing required data.,Critical,Present,no
+122,Control Measure Code Valid,Must match value in code list.,Critical,Code,no
+124,Controlled Pollutant Code Valid,Must match value in code list.,Critical,Code,no
+125,Percent Control Measures Reduction Efficiency Range,Should be greater than or equal to 5 and less than or equal to 100.,Critical,Range,no
+127,Duplication of XML elements,An XML element or XML attribute cannot be reported twice within a complex type.  This results in ambiguous identification of information.,Critical,Cardinality,no
+128,Duplication of Complex Data Types,A complex type cannot be reported more than once containing duplicate identifiers.  This results in contradictory or inconsistent information being reported.,Critical,Cardinality,no
+133,Emissions Creation Date Data Type,The CreationTime in the Exchange Network Header must be in xsd:datetime format.  YYYY-MM-DDTHH:MM:SS ,Critical,Format,no
+134,NAICS Code Present,The NAICS code is required when reporting the facility site component for adding a new location. The component and all dependent data will not be stored if there are missing required data.,Critical,Present,no
+135,Facility Name Present,The name of the facility site is required when reporting the facility site component for adding a new location. The component and all dependent data will not be stored if there are missing required data.,Critical,Present,no
+136,Facility Site Address Present,The facility site address is required is required when the facility site component is reported for adding a new facility site. The component and all dependent data will not be stored if there are missing required data.,Critical,Present,no
+137,Geographic Coordinates Present for Facility Sites,Reporting geographic coordinates is required when the location component is reported for adding a new location. The component and all dependent data will not be stored if there are missing required data.,Critical,Present,no
+143,Facility Site Identification Code Cardinality,The point location block must contain one combination of Tribal Code; State and County FIPS Code; or State and Country FIPS Code.,Critical,Cardinality,no
+144,Acceptable Inventory Year,The reported inventory year in the file submission must be in the list of acceptable years for submission.,Critical,Conditional,no
+147,Alternative Name Type Text Present,The alternative name type text is required when reporting the alternative facility name component. The component and all dependent data will not be stored if there are missing required data.,Critical,Present,no
+148,Program System Code Present for Alternative Name,A program system code is required when reporting the alternative facility name component. The component and all dependent data will not be stored if there are missing required data.,Critical,Present,no
+151,Facility Site Identifer Present for Facility Identification,The facility site identifier is required when reporting the facility identification component. The component and all dependent data will not be stored if there are missing required data.,Critical,Present,no
+152,Program System Code Present for Facility Identification,A program system code is required when reporting the facility identification component. The component and all dependent data will not be stored if there are missing required data.,Critical,Present,no
+156,Latitude Measure Present,The latitude measure is required when reporting the Geographic Coordinates component. The component and all dependent data will not be stored if there are missing required data.,Critical,Present,no
+157,Longitude Measure Present,The longitude measure is required when reporting the Geographic Coordinates component. The component and all dependent data will not be stored if there are missing required data.,Critical,Present,no
+167,Identifier Present for  Unit Identification,The identifier is required when reporting the unit identification component. The component and all dependent data will not be stored if there are missing required data.,Critical,Present,no
+168,Program System Code Present for Unit Identification,A program system code is required when reporting the unit identification component. The component and all dependent data will not be stored if there are missing required data.,Critical,Present,no
+170,Release Point Stack Height Measure Present,"If the release point type code is a stack type, then the release point stack height measure is required. The component and all dependent data will not be stored if there are missing required data.",Critical,Present,no
+171,Release Point Stack Diameter Measure Present,"If the release point type code is a stack type, then the release point stack diameter measure is required. The component and all dependent data will not be stored if there are missing required data.",Critical,Present,no
+172,Release Point Exit Temperature Measure Present,"If the release point type code is a stack type, then the release point exit gas temperature measure is required. The component and all dependent data will not be stored if there are missing required data.",Critical,Present,no
+174,Release Point Exit Gas Flow Rate Measure or  Exit Gas Velocity Required for Stack Release Points,If the release point type code is a stack type then either exit gas velocity or exit gas flow rate is required.,Critical,Conditional,no
+182,Facility Site Status Code Present,The facility site status code is required when reporting the facility site component for a new facility site.,Critical,Present,no
+183,Address Postal Code Present,The address postal code is required when reporting the address component for adding a new location. The component and all dependent data will not be stored if there are missing required data.,Critical,Present,no
+185,Unit Status Code Present,The unit status code is required when reporting the EmissionsUnit component. The component and all dependent data will not be stored if there are missing required data.,Critical,Present,no
+187,SCC Present for Process,A source classification code is required when reporting the emissions process component. The component and all dependent data will not be stored if there are missing required data.,Critical,Present,no
+188,Average Percent Emissions Required,The average percent emissions is required.,Critical,Conditional,no
+192,Consistency of Release Point Exit Gas Flow Rate and Velocity,"If all three data elements are reported, the following formula is used to calculate the release point exit gas flow rate measure. If this value and the reported exit gas flow rate are within 5% of each other then the reported data is considered valid. Flow Rate =  {Pi} * (Stack Diameter /2) ^ 2) * Velocity.",Critical,Calculation,no
+193,Release Point Stack Diameter Greater than Height,The release point stack diameter should usually be less than the release point stack height measure.,Warning,Calculation,no
+194,Release Point Fugitive Height Measure Range,"Should be between 0 to 500, inclusive.",Critical,Range,no
+195,Release Point Fugitive Length Measure Range,"Should be between 1 to 10,000; inclusive.",Critical,Range,no
+196,Release Point Fugitive Width Measure Range,"Should be between 1 to 10,000; inclusive.",Critical,Range,no
+197,Release Point Fugitive Angle Measure Range,"Should be between 0 to 89, inclusive.",Critical,Range,no
+199,Design Capacity Range,"Should be between 0.01 to 100,000,000; inclusive.",Critical,Range,no
+201,User Identifier Present,The user who generated the XML must be in the exchange header.,Critical,Present,no
+212,Facility Company Name Data Type,Maximum allowable width of 80 characters. Longer submissions will be truncated.,Warning,Format,no
+213,Facility Site Name Data Type,Maximum allowable width of 80 characters. Longer submissions will be truncated.,Warning,Format,no
+214,Facility Site Description Data Type,Maximum allowable width of 100 characters. Longer submissions will be truncated.,Warning,Format,no
+215,Facility Site Comment Data Type,Maximum allowable width of 400 characters. Longer submissions will be truncated.,Warning,Format,no
+216,Facility Site Status Code Year Data Type,This element must be reported as an integer.,Critical,Format,no
+218,Regulation Reported at Multiple Levels,A regulation should only be reported for either the emissions unit or the emissions process but not both for the same emissions unit.,Warning,Cardinality,no
+219,Distinct Regulations for Emissions Unit,An active regulation may only be reported once for an emissions unit.,Critical,Cardinality,no
+220,Distinct Regulations for Emissions Process,An active regulation may only be reported once for an emissions process.,Critical,Cardinality,no
+221,Regulatory Code Present,The regulatory code is required when reporting the regulation component. The component and all dependent data will not be stored if there are missing required data.,Critical,Present,no
+224,Control Approach Reported at Multiple Levels,"If a control approach is reported, it must be reported at either the emissions unit or the emissions process but not both for the same emissions unit.",Critical,Cardinality,no
+226,Control Group Submission,"The control approach, control pollutants, and control measures must always be submitted together.",Critical,Present,no
+227,Control Measure Code Present,Required when reporting the control measure component. The component and all dependent data will not be stored if there are missing required data.,Critical,Present,no
+228,Pollutant Code Present,Required when reporting the control pollutant component. The component and all dependent data will not be stored if there are missing required data.,Critical,Present,no
+229,Active Identifier per Non-federal Program System Code Cardinality,Only one active Alternate Facility Site Identifier per system code is allowed. The formerly active one has been retired.,Warning,Cardinality,no
+232,Program System Code Valid for Alternative Facility Name,Must match value in list of registered codes.,Critical,Code,no
+233,Program System Code Valid for Facility Identification,Must match value in list of registered codes.,Critical,Code,no
+234,Program System Code Valid for Unit Identification,Must match value in list of registered codes.,Critical,Code,no
+236,Percent Control Measures Reduction Efficiency Data Type,This element must be reported as a decimal reported with a maximum precision of 5.1.,Critical,Format,no
+239,Control Approach Description Data Type,Maximum allowable width of 200 characters. Longer submissions will be truncated.,Warning,Format,no
+240,Percent Control Approach Capture Efficiency Data Type,"This element must be reported as a decimal, reported with a maximum precision of 5.1.",Critical,Format,no
+241,Percent Control Approach Effectiveness Data Type,"This element must be reported as a decimal,  reported with a maximum precision of 5.1.",Critical,Format,no
+242,First Inventory Year for Control Approach Data Type,This element must be reported as an integer.,Critical,Format,no
+243,Last Inventory Year for Control Approach Data Type,This element must be reported as an integer.,Critical,Format,no
+244,Control Approach Comment Data Type,Maximum allowable width of 400 characters. Longer submissions will be truncated.,Warning,Format,no
+247,Agency Code Text for Regulations Data Type,Maximum allowable width of 100 characters. Longer submissions will be truncated.,Warning,Format,no
+248,Regulation Comment Data Type,Maximum allowable width of 400 characters. Longer submissions will be truncated.,Warning,Format,no
+249,Average Percent Emissions Data Type,This element must be reported as a decimal.,Critical,Format,no
+250,Release Point Apportionment Comment Data Type,Maximum allowable width of 400 characters. Longer submissions will be truncated.,Warning,Format,no
+253,Identifier Data Type for Release Point Identification,Maximum allowable width of 20 characters. Longer submissions will be rejected.,Critical,Format,no
+254,Release Point Description Data Type,Maximum allowable width of 100 characters. Longer submissions will be truncated.,Warning,Format,no
+255,Release Point Stack Height Measure Data Type,This element must be reported as a decimal.,Critical,Format,no
+256,Release Point Stack Diameter Measure Data Type,This element must be reported as a decimal.,Critical,Format,no
+257,Release Point Exit Gas Velocity Measure Data Type,This element must be reported as a decimal.,Critical,Format,no
+258,Release Point Exit Gas Flow Rate Measure Data Type,This element must be reported as a decimal.,Critical,Format,no
+259,Release Point Exit Gas Temperature Measure Data Type,This element must be reported as an integer.,Critical,Format,no
+261,Release Point Fence Line Distance Measure Data Type,This element must be reported as an integer.,Critical,Format,no
+262,Release Point Fugitive Height Measure Data Type,This element must be reported as an integer.,Critical,Format,no
+263,Release Point Fugitive Width Measure Data Type,This element must be reported as an integer.,Critical,Format,no
+264,Release Point Fugitive Length Measure Data Type,This element must be reported as an integer.,Critical,Format,no
+265,Release Point Fugitive Angle Measure Data Type,This element must be reported as an integer.,Critical,Format,no
+266,Emission Release Point Comment Data Type,Maximum allowable width of 400 characters. Longer submissions will be truncated.,Warning,Format,no
+267,Identifier Data Type for Process Identification,Maximum allowable width of 20 characters. Longer submissions will be rejected.,Critical,Format,no
+268,Process Description Data Type,Maximum allowable width of 200 characters. Longer submissions will be truncated.,Warning,Format,no
+269,Last Emissions Year for Process Data Type,This element must be reported as an integer.,Critical,Format,no
+270,Process Comment Data Type,Maximum allowable width of 400 characters. Longer submissions will be truncated.,Warning,Format,no
+271,Identifier Data Type for Unit Identification,Maximum allowable width of 20 characters. Longer submissions will be rejected.,Critical,Format,no
+272,Effective Date for Unit Identification Data Type,Date in the format of YYYY-MM-DD.,Critical,Format,no
+273,End Date for Unit Identification Data Type,Date in the format of YYYY-MM-DD.,Critical,Format,no
+276,Unit Description Data Type,Maximum allowable width of 100 characters. Longer submissions will be truncated.,Warning,Format,no
+277,Design Capacity Data Type,This element must be reported as a float.,Critical,Format,no
+278,Unit Status Code Year Data Type,This element must be reported as an integer.,Critical,Format,no
+279,Unit Operation Date Data Type,Date in the format of YYYY-MM-DD.,Critical,Format,no
+280,Emissions Unit Comment Data Type,Maximum allowable width of 400 characters. Longer submissions will be truncated.,Warning,Format,no
+281,Latitude Measure Data Type,This element must be reported as a decimal.,Critical,Format,no
+282,Longitude Measure Data Type,This element must be reported as a decimal.,Critical,Format,no
+283,Source Map Scale Number Data Type,This element must be reported as an integer.,Critical,Format,no
+284,Horizontal Accuracy Measure Data Type,This element must be reported as an integer.,Critical,Format,no
+285,Data Collection Date Data Type,Date in the format of YYYY-MM-DD.,Critical,Format,no
+286,Location Comments Text Data Type,Maximum allowable width of 200 characters. Longer submissions will be truncated.,Warning,Format,no
+287,Vertical Measure Data Type,This element must be reported as an integer.,Critical,Format,no
+288,Facility Site Identifier Data Type,Maximum allowable width of 20 characters. Longer submissions will be rejected.,Critical,Format,no
+289,Effective Date for Facility Identification Data Type,Date in the format of YYYY-MM-DD.,Critical,Format,no
+290,End Date for Facility Identification Data Type,Date in the format of YYYY-MM-DD.,Critical,Format,no
+291,Alternative Name Data Type,Maximum allowable width of 80 characters.,Critical,Format,no
+292,Alternative Name Type Text Data Type,Maximum allowable width of 20 characters. Longer submissions will be truncated.,Warning,Format,no
+293,Effective Date for Alternative Facility Name Data Type,Date in the format of YYYY-MM-DD.,Critical,Format,no
+294,Location Address Text Data Type,Maximum allowable width of 100 characters. Longer submissions will be truncated.,Warning,Format,no
+295,Supplemental Location Text Data Type,Maximum allowable width of 50 characters. Longer submissions will be truncated.,Warning,Format,no
+296,Locality Name Data Type,Maximum allowable width of 60 characters. Longer submissions will be truncated.,Warning,Format,no
+298,Location Comment Data Type,Maximum allowable width of 400 characters. Longer submissions will be truncated.,Warning,Format,no
+299,Alternative Name Present,The alternative name is required when reporting the alternative facility name component. The component and all dependent data will not be stored if there are missing required data.,Critical,Present,no
+307,Data Collection Date Range,The data collection date must be between 01/01/1900 to 12/31/2050.,Critical,Range,no
+319,EIS Emissions Unit Identifier Matches Facility Site,The reported EIS emissions unit identifier matches in the EIS is associated with the reported facility site.,Critical,Conditional,no
+320,EIS Release Point Identifier Matches Facility Site,The reported EIS release pointer identifier matched in the EIS is associated with the reported facility site.,Critical,Conditional,no
+321,Release Point Stack Height Measure Range,"Must be between 1 to 1300 FT, inclusive.",Critical,Range,no
+329,Release Point Exit Gas Velocity Unit of Measure Code Valid,Must match value in code list.,Critical,Code,no
+330,Release Point Exit Gas Flow Rate Unit of Measure Code Valid,Must match value in code list.,Critical,Code,no
+353,Reporting Period Type Code Valid,Must match value in code list.,Critical,Code,no
+359,5 Month Ozone Season Reporting Period Code Valid,Five Month Ozone Season code can be used only for NOx emissions.,Critical,Conditional,no
+360,Summer Day Reporting Period Code Valid,"Summer Day code can be used only for NOx, VOC, or CO emissions.",Critical,Conditional,no
+364,Winter Reporting Period Code Valid,Winter code can be used only for carbon monoxide (CO) emissions.,Critical,Conditional,no
+366,Emission Operating Type Code Valid,Must match value in code list.,Critical,Code,no
+369,End Date for Episodic Reporting Period Data Type,Date in the format YYYY-MM-DD.,Critical,Format,no
+371,Start Date for Episodic Reporting Period Range,The start date for an episodic reporting period must be within the inventory year.,Critical,Range,no
+379,Start Date for Episodic Reporting Period Data Type,Date in the format YYYY-MM-DD.,Critical,Format,no
+380,End Date for Episodic Reporting Period Range,The end date for an episodic reporting period must be within the inventory year.,Critical,Range,no
+382,Reporting Period Comment Data Type,Maximum allowable width of 400 characters. Longer submissions will be truncated.,Warning,Format,no
+389,Episodic Reporting Date Relative Range,EndDate must occur after StartDate.,Critical,Range,no
+394,Calculation Parameter Value Data Type,This element must be reported as a float with a maximum of 6 significant figures.,Critical,Format,no
+395,Calculation Parameter Value Range,Must be greater than or equal to zero.,Critical,Range,no
+397,Calculation Parameter Unit of Measure Valid,Must match value in code list.,Critical,Code,no
+402,Calculation Material Code Present,Required when reporting the reporting period component. The component and all dependent data will not be stored if there are missing required data.,Critical,Present,no
+403,Calculation Parameter Type Code Valid,Must match value in code list.,Critical,Code,no
+404,Calculation Parameter Type Code Present,Required when reporting the reporting period component. The component and all dependent data will not be stored if there are missing required data.,Critical,Present,no
+407,Calculation Data Year Data Type,"This element must be reported as an integer, reported with a maximum of 4 digits.",Critical,Format,no
+408,Calculation Data Year Range,Must be between 1900 and 2050.,Critical,Range,no
+411,Calculation Data Source Data Type,Maximum allowable width of 100 characters. Longer submissions will be truncated.,Warning,Format,no
+415,Actual Hours Per Period Data Type,This element must be reported as an integer.,Critical,Format,no
+416,Actual Hours Per Period Range,Must be greater than or equal to 1 and less than or equal to 8784.,Critical,Range,no
+417,Average Hours Per Day Data Type,This element must be reported as a decimal.,Critical,Format,no
+418,Average Hours Per Day Range,Must be greater than or equal to 0.1 and less than or equal to 24.,Critical,Range,no
+419,Average Days Per Week Data Type,This element must be reported as a decimal.,Critical,Format,no
+420,Average Days Per Week Range,Must be greater than or equal to 0.1 and less than or equal to 7.,Critical,Range,no
+421,Average Weeks Per Period Data Type,This element must be reported as an integer.,Critical,Format,no
+422,Average Weeks Per Period Range,Must be greater than or equal to 1 and less than or equal to 52.,Critical,Range,no
+423,Percent Winter Activity Data Type,"This element must be reported as a decimal, reported with a maximum precision of  5.1.",Critical,Format,no
+424,Percent Winter Activity Range,"Must be a value between zero and 100, inclusive.",Critical,Range,no
+425,Percent Spring Activity Data Type,"This element must be reported as a decimal, reported with a maximum precision of  5.1.",Critical,Format,no
+426,Percent Spring Activity Range,"Must be a value between zero and 100, inclusive.",Critical,Range,no
+427,Percent Summer Activity Data Type,"This element must be reported as a decimal, reported with a maximum precision of  5.1.",Critical,Format,no
+429,Percent Summer Activity Range,"Must be value between zero and 100, inclusive.",Critical,Range,no
+430,Percent Fall Activity Data Type,"This element must be reported as a decimal, reported with a maximum precision of  5.1.",Critical,Format,no
+431,Percent Fall Activity Range,"Must be value between zero and 100, inclusive.",Critical,Range,no
+449,Complete Seasonal Percentage Should Be Reported,The seasonal percentages must either all be reported or none be reported.,Critical,Conditional,no
+450,Supplemental Calculation Parameter Value Data Type,"This element must be reported as a float, reported with a maximum precision of  5.2.",Critical,Format,no
+451,Supplemental Calculation Parameter Value Range,Must be greater than zero.,Critical,Range,no
+455,Percent Sulfur Content Range,"If the supplemental calculation parameter type code is percent sulfur content, the value must be between 0.01 and 10, inclusive.",Critical,Range,no
+457,Percent Ash Content Range,"If the supplemental calculation parameter type code is percent ash content, the value must be between 0.01 and 30, inclusive.",Critical,Range,no
+458,Supplemental Calculation Parameter Comment Data Type,Maximum allowable width of 400 characters. Longer submissions will be truncated.,Warning,Format,no
+460,Supplemental Calculation Parameter Accepted for Fuel Combustion SCCs,The Supplemental Calculations Parameter component must be associated with a fuel combustion SCC.,Critical,Conditional,no
+470,Pollutant Code Valid,Must match value in code list.,Critical,Code,no
+471,Pollutant Code Present for Emissions,Required when reporting the Emissions component. The component and all dependent data will not be stored if there are missing required data.,Critical,Present,no
+473,Total Emissions Present,Required when reporting the Emissions component. The component and all dependent data will not be stored if there are missing required data.,Critical,Present,no
+474,Total Emissions Critical Range,"Must be inside the critical outlier range when the reporting period type code is ""A"" (Annual).",Warning,Range,no
+476,Emissions Unit of Measure Code Valid,Must match value in code list.,Critical,Code,no
+477,Emissions Unit of Measure Code Valid,Must be 'CURIE' for pollutant code 605,Critical,Code,no
+479,Emissions Unit of Measure Code Present,Required when reporting the Emissions component. The component and all dependent data will not be stored if there are missing required data.,Critical,Present,no
+480,Emission Factor Data Type,"This element must be reported as a float, reported with a maximum of  4 significant figures.",Critical,Format,no
+482,Emission Factor Numerator Unit of Measure Code Valid,Must match value in code list.,Critical,Code,no
+483,Emission Factor Denominator Unit of Measure Code Valid,Must match value in code list.,Critical,Code,no
+484,Emission Factor Text Data Type,Maximum allowable width of 100 characters. Longer submissions will be truncated.,Warning,Format,no
+485,Emission Calculation Method Code Valid,Must match value in code list.,Critical,Code,no
+486,Emission Calculation Method Code Present,Required when reporting the Emissions component. The component and all dependent data will not be stored if there are missing required data.,Critical,Present,no
+487,Emissions Comment Data Type,Maximum allowable width of 400 characters. Longer submissions will be truncated.,Warning,Format,no
+510,Release Point Stack Diameter Measure Range,"Must be between 0.001 to 300 FT, inclusive.",Critical,Range,no
+511,Release Point Exit Gas Temperature Measure Range,"Must be between -30 to 4000 F, inclusive.",Warning,Range,no
+512,Release Point Exit Gas Velocity Measure Range for FPS for Stacks,"For stacks, release point exit gas velocity measure must be 0.001 to 1000, inclusive, if in FPS",Critical,Range,no
+517,Release Point Exit Gas Velocity Measure Range for FPM for Stacks,"For stacks, release point exit gas velocity measure must be 0.001 to 60,000, inclusive, if in FPM",Critical,Range,no
+518,Release Point Exit Gas Flow Rate Measure Range for ACFM for Stacks,"For stacks, release point exit gas flow measure must be 0.00000001 to 12,000,000 ACFM, inclusive",Critical,Range,no
+519,Release Point Exit Gas Flow Rate Measure Range for ACFS for Stacks,"For stacks, release point exit gas flow measure must be 0.00000001 to 200,000 ACFS, inclusive",Critical,Range,no
+522,Location Type Code for Excluded Location Valid,Must match value in code list.,Critical,Code,no
+526,Location Comment for Excluded Location Data Type,Maximum allowable width of 400 characters. Longer submissions will be truncated.,Warning,Format,no
+528,Excluded Location Valid,Excluded Location must be a geographical subset of the primary location.,Critical,Present,no
+534,Percent Control Measure Penetration Data Type,"This element must be reported as a decimal,  reported with a maximum precision of 5.1.",Critical,Format,no
+549,Percent Control Measure Penetration Range,Must be greater or equal to than 1.1 and less than or equal to 100.0.,Critical,Range,no
+550,Monthly Reporting Period Value Present,All 12 months should be submitted together.,Warning,Present,no
+555,Facility Site Identifier Exists for Point,"To use the facility site identifier and program system code for identification, the facility site identifier and system code combination must exist in the facility inventory.",Critical,Conditional,no
+558,Identifier Present for Process Identification,The identifier is required when reporting the process identification component. The component and all dependent data will not be stored if there are missing required data.,Critical,Present,no
+559,Agency Process Identifier Uniqueness,The agency process identifier must be unique within the unit.,Critical,Conditional,no
+560,Start Date Required for Episodic Reporting Period,"If the reporting period type code is episodic, the start date is required.",Critical,Conditional,no
+562,End Date Required for Episodic Reporting Period,"If the reporting period type code is episodic, the end date is required.",Critical,Conditional,no
+563,Calculation Parameter Value Present,Required when reporting the reporting period component. The component and all dependent data will not be stored if there are missing required data.,Critical,Present,no
+564,Calculation Parameter Unit of Measure Present,Required when reporting the Reporting Period component. The component and all dependent data will not be stored if there are missing required data.,Critical,Present,no
+566,Calculation Material Code Valid,Must match value in code list.,Critical,Code,no
+567,Complete Seasonal Percentage Range,The seasonal percentages must total 100 +/- 0.5.,Critical,Calculation,no
+569,Total Emissions Data Type,"This element must be reported as a float, reported with a maximum of 6 significant figures.",Critical,Format,no
+570,Emission Factor Numerator Unit of Measure Conditionally Required,"If the emission factor is reported, then the emission factor numerator unit of measure is required.",Critical,Conditional,no
+571,Emission Factor Denominator Unit of Measure Conditionally Required,"If the emission factor is reported, then the emission factor denominator unit of measure is required.",Critical,Conditional,no
+577,Census Tract Identifier for Location Valid,Must match value in code list.,Critical,Code,no
+578,Shape Identifier for Location Valid,Must match a shapefile identifier that is in the EIS shape library on the EIS Gateway.,Critical,Code,no
+592,Latitude Measure Range,Must be greater than or equal to 17 and less than or equal to 71.5.,Critical,Range,no
+593,Longitude Measure Range,Must be greater than or equal to -177 and less than or equal to -64.,Critical,Range,no
+611,Emission Factor Range,Must be greater than zero.,Critical,Range,no
+613,Emissions Type Code Present,Required when reporting the process component for nonroad. The component and all dependent data will not be stored if there are missing required data.,Critical,Present,no
+614,Emissions Type Code Valid,Must match value in code list.,Critical,Code,no
+617,Base Year for BaseYearVMT Data Type,This element must be reported as an integer.,Warning,Format,yes
+619,Base Year for BaseYearVMT Range,Must be 2008.,Warning,Range,yes
+620,FIPS County ID Code,Must match value in code list. Note - leading zeros may have been stripped.,Critical,Code,yes
+621,FIPS State ID Code,Must match value in code list. Note - leading zeros may have been stripped.,Critical,Code,yes
+622,Road Type Code,Must match value in HPMSRoadType Table code list.,Warning,Code,yes
+624,VClass Code,Must match value in M6VClass Table code list.,Warning,Code,yes
+625,VMT Data Type,This element must be reported as a float or null.,Warning,Format,yes
+626,VMT Range,Must be greater than or equal to zero.,Warning,Range,yes
+627,Altitude Data Type,This element must be reported as a character.,Critical,Format,yes
+628,Altitude Valid,Allowable values are 'H' or 'L'.,Critical,Range,yes
+629,Barometric Pressure Data Type,This element must be reported as a float.,Critical,Format,yes
+630,Barometric Pressure Range,Must be between 13 to 33.,Critical,Range,yes
+631,HDV Stage Two Percent Data Type,This element must be reported as a float or null.,Warning,Format,yes
+634,HDV Stage Two Percent Range,Must be between 0 to 100.,Warning,Range,yes
+635,LDV Stage Two Percent Data Type,This element must be reported as a float or null.,Warning,Format,yes
+636,LDV Stage Two Percent Range,Must be between 0 to 100.,Warning,Range,yes
+637,NGV Fraction File Name Code,Must match a valid State and County FIPS code.,Warning,Code,yes
+638,NGV Fraction File Name External File,"Included in the submission must be a file with the value as the file name with the extension "".ngv"".",Warning,Conditional,yes
+639,Ozone Season End Day Data Type,This element must be reported as an integer.,Critical,Format,yes
+640,Ozone Season End Day Range,Must be within 1 to 31.,Critical,Range,yes
+642,Ozone Season End Month Data Type,This element must be reported as an integer.,Critical,Format,yes
+643,Ozone Season End Month Range,Must be within 1 to 12.,Critical,Range,yes
+644,Ozone Season Start Day Data Type,This element must be reported as an integer.,Critical,Format,yes
+645,Ozone Season Start Day Range,Must be within 1 to 31.,Critical,Range,yes
+646,Ozone Season Start Month Data Type,This element must be reported as an integer.,Critical,Format,yes
+647,Ozone Season Start Month Range,Must be within 1 to 12.,Critical,Range,yes
+648,Phase In Years Data Type,This element must be reported as an integer or null.,Warning,Format,yes
+650,Phase In Years Range,Must be within 1 to 9.,Critical,Range,yes
+651,Stage 2 Start Year Data Type,This element must be reported as an integer or null.,Warning,Format,yes
+652,Stage 2 Start Year Range,"Must be within 0 to 50, 89 to 99, 2000 to 2050 or 1989 to 1999.",Critical,Range,yes
+653,File Type ID Code,Must match value in FileType Table code list.,Critical,Code,yes
+654,County NR File Name Data Type,This element must be reported as 8 characters.,Critical,Format,yes
+655,County NR File Name Value,"If the FileTypeID is ""sea"", ""pop"", or ""grw"", then this value must be SSCCC, and the external file it points to should be named SSCCCsea, or SSCCCpop, or SSCCCgrw (respectively). If the FileTypeID is any of the other acceptable values, then this value must be SSCCCFileTypeID and the external file it points to should be named SSCCCFileTypeID.alo.",Critical,Conditional,yes
+656,County NR File Name External File,"If this is provided, then the associated file must be in the submission.",Critical,Conditional,yes
+657,Month Data Type,This element must be reported as an integer.,Critical,Format,yes
+658,Month Range,Must be within 1 to 12.,Critical,Range,yes
+659,VType Code,Must match value in M6VType Table code list.,Warning,Code,yes
+660,Alloc Factor Data Type,This element must be reported as a float.,Warning,Format,yes
+661,Alloc Factor Range,Value must be within one to 100.,Warning,Range,yes
+662,Alloc Factor Yearly Total,The twelve monthly values must sum to min of 99.9 and max of 100.1 for each County-vtype-roadtype combination.,Warning,Calculation,yes
+678,ATP File Name File Exists,"If a value is reported for this file name, the file must exist in the submission.",Warning,Conditional,yes
+679,Avg Speed Dist Base File Name Files Exist,"If a value is reported for this file name, there must be 18 files that match this name with extensions of "".fwX"" and "".arX"" where ""X"" is an integer 1 to 9.",Warning,Conditional,yes
+680,Diesel Fract File Name File Exists,"If a value is reported for this file name, the file must exist in the submission. Extension must be "".dsf"".",Warning,Conditional,yes
+681,Diurn Soak Activity File Name File Exists,"If a value is reported for this file name, the file must exist in the submission. Extension must be "".dsa"".",Warning,Conditional,yes
+682,Hot Soak File Name File Exists,"If a value is reported for this file name, the file must exist in the submission. Extension must be "".hsa"".",Warning,Conditional,yes
+683,IM File Name File Exists,"If a value is reported for this file name, the file must exist in the submission. Extension must be "".imp"".",Warning,Conditional,yes
+684,Mile Accum File Name File Exists,"If a value is reported for this file name, the file must exist in the submission. Extension must be "".mil"".",Warning,Conditional,yes
+685,NRACT File Name File Exists,"If a value is reported for this file name, the file must exist in the submission. Extension must be "".act"".",Critical,Conditional,yes
+686,Reg Dist File Name File Exists,"If a value is reported for this file name, the file must exist in the submission. Extension must be "".reg"".",Warning,Conditional,yes
+687,Soak Dist File Name File Exists,"If a value is reported for this file name, the file must exist in the submission. Extension must be "".sok"".",Warning,Conditional,yes
+688,Start Dist File Name File Exists,"If a value is reported for this file name, the file must exist in the submission. Extension must be "".str"".",Warning,Conditional,yes
+689,Trip Length File Name File Exists,"If a value is reported for this file name, the file must exist in the submission. Extension must be "".wdt"".",Warning,Conditional,yes
+690,Trips Per Day File Name File Exists,"If a value is reported for this file name, the file must exist in the submission. Extension must be "".tpd"".",Warning,Conditional,yes
+691,VMT By Hour File Name File Exists,"If a value is reported for this file name, the file must exist in the submission. Extension must be "".vmt"".",Warning,Conditional,yes
+692,Hwy Diesel ID Code,Must match a diesel identification value in the diesel table or be null.,Warning,Code,yes
+693,Hwy Gasoline ID Code,Must match a gasoline identification value in the gasoline table or be null.,Warning,Code,yes
+694,NG Id Code,Must match a natural gas identification value in the natural gas table or be null.,Critical,Code,yes
+695,NR Gasoline Id Code,Must match a gasoline identification value in the gasoline table or be null.,Critical,Code,yes
+696,RM Diesel Id Code,Must match a diesel identification value in the diesel table or be null.,Critical,Code,yes
+698,NR Diesel Id Code,Must match a diesel identification value in the diesel table or be null.,Critical,Code,yes
+709,Hour Id Data Type,This element must be reported as an integer.,Critical,Format,yes
+710,Hour Id Range,Must be within 1 to 24.,Critical,Range,yes
+711,Year Data Type,This element must be reported as an integer.,Critical,Format,yes
+712,Year Range,Must be 2008.,Critical,Range,yes
+714,Relative Humidity Data Type,This element must be reported as a float.,Critical,Format,yes
+715,Relative Humidity Range,Must be within 0 to 100.,Critical,Range,yes
+716,Temperature Data Type,This element must be reported as a float.,Critical,Format,yes
+717,Temperature Range,Must be within -200 to 200.,Critical,Range,yes
+718,temperature and relative humidity must change,temperature and relative humidity must change,Critical,Present,no
+719,Diesel Id Data Type,This element must be reported as an integer.,Critical,Format,yes
+720,Diesel Id Range,"Must be between 0 to 9999, inclusive.",Critical,Range,yes
+721,Diesel Sulfur Data Type,This element must be reported as an integer.,Critical,Format,yes
+722,Diesel Sulfur Range,"Must be between 0 to 5000, inclusive.",Critical,Range,yes
+723,Gasoline Id Data Type,This element must be reported as an integer.,Critical,Format,yes
+725,Aromatic Content Data Type,This element must be reported as a float.,Critical,Format,yes
+726,Aromatic Content Range,Must be within 10 to 55.,Critical,Range,yes
+727,Benzene Content Data Type,This element must be reported as a float.,Critical,Format,yes
+728,Benzene Content Range,Must be within 0 to 5.,Critical,Range,yes
+729,E 200 Data Type,This element must be reported as a float.,Critical,Format,yes
+730,E 200 Range,Must be within 30 to 70.,Critical,Range,yes
+731,E 300 Data Type,This element must be reported as a float.,Critical,Format,yes
+732,E 300 Range,Must be within 70 to 100.,Critical,Range,yes
+733,ETBE Mkt Share Data Type,This element must be reported as a float.,Critical,Format,yes
+734,ETBE Mkt Share Range,Must be within 0 to 1.,Critical,Range,yes
+735,ETBE Volume Data Type,This element must be reported as a float.,Critical,Format,yes
+736,ETBE Volume Range,Must be within 0 to 17.6.,Critical,Range,yes
+737,ETOH Mkt Share Data Type,This element must be reported as a float.,Critical,Format,yes
+738,ETOH Mkt Share Range,Must be within 0 to 1.,Critical,Range,yes
+739,ETOH Volume Data Type,This element must be reported as a float.,Critical,Format,yes
+740,ETOH Volume Range,Must be within 0 to 10.61.,Critical,Range,yes
+741,Gas Max Sulfur Data Type,This element must be reported as a float.,Critical,Format,yes
+742,Gas Max Sulfur Range,Must be greater than or equal to the Gas Sulfur value.,Warning,Range,yes
+743,Gas Sulfur Data Type,This element must be reported as a float.,Critical,Format,yes
+744,Gas Sulfur Range,Must be greater than or equal to zero.,Critical,Range,yes
+745,MTBE Mkt Share Data Type,This element must be reported as a float.,Critical,Format,yes
+746,MTBE Mkt Share Range,Must be within 0 to 1.,Critical,Range,yes
+747,MTBE Volume Data Type,This element must be reported as a float.,Critical,Format,yes
+748,MTBE Volume Range,Must be within 0 to 15.1.,Critical,Range,yes
+749,Olefin Content Data Type,This element must be reported as a float.,Critical,Format,yes
+750,Olefin Content Range,Must be 0.0 and 30.0 (inclusive).,Critical,Range,yes
+751,RFG Value,Must be 'Y' or 'N' single character.,Critical,Range,yes
+752,RVP Data Type,This element must be reported as a float.,Critical,Format,yes
+754,RVP Range,Must be between 6 and 16,Critical,Range,yes
+755,RVP Oxy Waiver Value,Value must be 1.,Critical,Range,yes
+756,TAME Mkt Share Data Type,This element must be reported as a float.,Critical,Format,yes
+757,TAME Mkt Share Range,Must be within 0 to 1.,Critical,Range,yes
+758,TAME Volume Data Type,This element must be reported as a float.,Critical,Format,yes
+759,TAME Volume Range,Must be within 0 to 16.5.,Critical,Range,yes
+760,Mkt Share Calculation,"The sum of ETBE Mkt Share, ETOH Mkt Share, MTBE Mkt Share, and TAME Mkt Share must be less than or equal to 1.01.",Critical,Calculation,yes
+761,ETBE Mkt Share and Volume,"If either ETBE Mkt Share or ETBE Volume is zero, the other must also be 0.",Critical,Conditional,yes
+762,ETOH Mkt Share and Volume,"If either ETOH Mkt Share or ETOH Volume is zero, the other must also be 0.",Critical,Conditional,yes
+763,MTBE Mkt Share and Volume,"If either MTBE Mkt Share or MTBE Volume is zero, the other must also be 0.",Critical,Conditional,yes
+764,TAME Mkt Share and Volume,"If either TAME Mkt Share or TAME Volume is zero, the other must also be 0.",Critical,Conditional,yes
+765,NG Id Data Type,This element must be reported as an integer.,Critical,Format,yes
+766,NG Id Value,Must match reference in CountyYearMonth table.,Critical,Conditional,yes
+767,NG Sulfur Data Type,This element must be reported as an integer.,Critical,Format,yes
+768,NG Sulfur Range,Must be between 0.01 and 5000 (inclusive).,Critical,Range,yes
+771,NLEV File Name File Exists,"If a value if reported for this file name, then the file must exist in the submission.",Warning,Conditional,yes
+773,T2 Cert File Name File Exists,"If a value is reported for this file name, the file must exist in the submission. Extension must be "".t2c"".",Warning,Conditional,yes
+775,T2 Evap Phase In File Name File Exists,"If a value is reported for this file name, the file must exist in the submission. Extension must be "".t2v"".",Warning,Conditional,yes
+777,T2 Exh Phase In File Name File Exists,"If a value is reported for this file name, the file must exist in the submission. Extension must be "".t2x"".",Warning,Conditional,yes
+812,Unique Location,"The location block must contain one combination of Tribe; State and County; State, County, Census Tract; or State and Country.",Critical,Conditional,no
+830,Agency Emissions Unit Identifier Matches Facility Site,"To use the agency emissions unit identifier for identification, the agency unit identifier must exist in the facility inventory for this facility site.",Critical,Conditional,no
+832,PM Primaries Emissions Comparison,PM2.5 Primary can not exceed PM10 Primary,Critical,Conditional,no
+835,PM Filterables Emissions Comparison,PM2.5 Filterable can not exceed PM10 Filterable,Critical,Conditional,no
+838,PM Percent Control Measure Reduction Efficiency Dependency,"If both are reported, PM2.5 percent control measure reduction efficiency cannot be larger than PM10 percent control measure reduction efficiency.",Critical,Conditional,no
+849,Control Pollutant Cardinality,Control pollutant codes must be unique within a control approach.,Critical,Cardinality,no
+850,Control Measure Cardinality,Control Measure codes must be unique within a control approach.,Critical,Cardinality,no
+870,Event Identifier is required.,The event identifier is required when reporting an event. The component and all dependent data will not be stored if there are missing required data.,Warning,Duplication,no
+872,Event Identifier maximum length is {1}.,Maximum allowable width of 20 characters.,Warning,Duplication,no
+873,The combination of Program System Code and Event Identifier match an existing Event in the database. It will be replaced.,"If program system code and event identifiermatch an existing event in the database, it will be replaced.",Warning,Duplication,no
+874,Program System Code must match value in list of registered codes.,Must match value in list of registered codes.,Warning,Duplication,no
+875,Program System Code is required when reporting an Event.,A program system code is required when reporting an event. The component and all dependent data will not be stored if there is missing required data.,Warning,Duplication,no
+876,Event Name maximum length is {1}. Longer submissions are truncated.,Maximum allowable width of 40 characters. Longer submissions will be truncated.,Warning,Duplication,no
+877,Land Manager should be reported.,Land manager should be reported.,Warning,Duplication,no
+879,Land Manager maximum length is {1}. Longer submissions are truncated.,Maximum allowable width of 40 characters. Longer submissions will be truncated.,Warning,Duplication,no
+880,Location Description maximum length is {1}. Longer submissions are truncated.,Maximum allowable width of 100 characters. Longer submissions will be truncated.,Warning,Duplication,no
+881,Event Classification Code is required.,Event classification code is required when reporting an event. The component and all dependent data will not be stored if there is missing required data.,Warning,Duplication,no
+882,Event Classification Code must match value in list of registered codes.,Must match value in code list.,Warning,Duplication,no
+883,Event Size Source Code should be reported.,Event size source code should be reported.,Warning,Duplication,no
+884,Event Size Source Code must match value in list of registered codes.,Must match value in code list.,Warning,Duplication,no
+885,Containment Date reported in the Event must be formatted as YYYY-MM-DD.,Date in the format of YYYY-MM-DD.,Warning,Duplication,no
+886,Recurrence Indicator Code reported in the Event component is invalid.  The allowed values are 'Y' and 'N'.,"If provided, must be 'Yes' or 'No'.",Warning,Duplication,no
+887,Recurrence Year must be reported as an integer.,This element must be reported as an integer.,Warning,Duplication,no
+888,Recurrence Year reported in the Event is outside the allowable range.,Must be no later than current year -1.,Warning,Duplication,no
+889,Ground Based Data Source Code is required.,Ground based data source code is required when reporting an event. The component and all dependent data will not be stored if there is missing required data.,Warning,Duplication,no
+890,Ground Based Data Source Code must match value in list of registered codes.,Must match value in code list.,Warning,Duplication,no
+891,Remote Sensing Data Source Code is required.,Remote sensing data source code required when reporting an event. The component and all dependent data will not be stored if there is missing required data.,Warning,Duplication,no
+892,Remote Sensing Data Source Code must match value in list of registered codes.,Must match value in code list.,Warning,Duplication,no
+893,Fuel Consumption and Emissions Model Code must match value in list of registered codes.,Must match value in code list.,Warning,Duplication,no
+894,Fuel Type Model Code must match value in list of registered codes.,Must match value in code list.,Warning,Duplication,no
+895,Fuel Selection Code must match value in list of registered codes.,Must match value in code list.,Warning,Duplication,no
+896,Ignition Method Code must match value in list of registered codes.,Must match value in code list.,Warning,Duplication,no
+897,Ignition Location Code must match value in list of registered codes.,Must match value in code list.,Warning,Duplication,no
+898,Ignition Orientation Code must match value in list of registered codes.,Must match value in code list.,Warning,Duplication,no
+899,Event Comment maximum length is {1}. Longer submissions are truncated.,Maximum allowable width of 400 characters. Longer submissions will be truncated.,Warning,Duplication,no
+900,Identifier Exceeds 20 Characters,Identifier Exceeds 20 Characters,Critical,Format,no
+901,Identifier Exceeds 20 Characters,Identifier Exceeds 20 Characters,Critical,Format,no
+902,Check Entry,Check Entry,Critical,Format,no
+903,PSC Invalid,PSC Invalid,Critical,Code,no
+904,PSC Invalid,PSC Invalid,Critical,Code,no
+905,Invalid Date Format,Invalid Date Format,Critical,Format,no
+906,Invalid Date Format,Invalid Date Format,Critical,Format,no
+907,Exceeds Limit,Exceeds Limit,Critical,Format,no
+908,Event Begin Date in the Event Reporting Period component is a required data element.,Event begin date is required when reporting an event reporting period component. The component and all dependent data will not be stored if there is missing required data.,Warning,Duplication,no
+909,"Event Begin Date, reported in the Event Reporting Period, does not meet the required format.",Date in the format of YYYY-MM-DD.,Warning,Duplication,no
+910,Event End Date in the Event Reporting Period component is a required data element.,Event end date is required when reporting an event reporting period component. The component and all dependent data will not be stored if there is missing required data.,Warning,Duplication,no
+911,"Event End Date, reported in the Event Reporting Period, does not meet the required format.",Date in the format of YYYY-MM-DD.,Warning,Duplication,no
+912,An Event duration must be a minimum of two days.,Event duration must be a minimum of two days.,Warning,Duplication,no
+913,Invalid Start Date and End Date,Invalid Start Date and End Date,Critical,Comparison,no
+915,Event Stage Code in the Event Reporting Period component is a required data element.,Event stage code is required when reporting an event reporting period. The component and all dependent data will not be stored if there is missing required data.,Critical,Duplication,no
+916,Event Stage Code reported in the Event Reporting Period component is invalid,Must match value in code list.,Warning,Duplication,no
+917,"Begin Hour, reported in the Event Reporting Period, does not meet the required format.",This element must be reported as an integer.,Warning,Duplication,no
+918,Begin Hour reported in the Event Reporting Period component is outside the allowable range.,Must be 0 to 23 inclusive.,Warning,Duplication,no
+919,"End Hour, reported in the Event Reporting Period, does not meet the required format.",This element must be reported as an integer.,Warning,Duplication,no
+920,End Hour reported in the Event Reporting Period component is outside the allowable range.,Must be 0 to 23 inclusive.,Warning,Duplication,no
+921,"Event Reporting Period Comment, reported in the Event Reporting Period component, does not meet the required format.",Maximum allowable width of 400 characters. Longer submissions will be truncated.,Warning,Duplication,no
+922,The Event Location must contain one combination of Tribal Code or State and County FIPS Code.,The event location must contain one combination of Tribal Code; State and County FIPS Code; or State and Country Code.,Warning,Duplication,no
+923,Valid State Code,Invalid State and County FIPS Code,Critical,Code,no
+925,Valid Tribal Code,Invalid Tribal Code,Critical,Code,no
+926,Invalid FIPS Code,Invalid FIPS Code,Critical,Code,no
+927,Area Within Perimeter in the Geographic Coordinates should be reported.,Area within perimeter should be reported.,Warning,Duplication,no
+928,Area Within Perimeter does not meet the required format.,This element must be reported as a float.,Warning,Duplication,no
+929,Area Within Perimeter must be the same for both flaming and smoldering stages if they are reported separately.,"If flaming and smoldering stages are reported separately for the same period, value should be the same for both.",Warning,Duplication,no
+931,Area Within Perimeter and Area Within Perimeter Unit of Measure Code must be reported together.,Area within perimeter and area within perimeter unit of measure must be reported together.,Warning,Duplication,no
+932,Area Within Perimeter Unit of Measure Code must match value in list of registered codes.,Must match value in code list.,Warning,Duplication,no
+933,Percent of Area Producing Emissions does not meet the required format.,This element must be reported as an integer.,Warning,Duplication,no
+935,Percent of Area Producing Emissions must be a value between {0} and {1}.,Must be between 1 and 100 inclusive.,Warning,Duplication,no
+936,"Percent of Area Producing Emissions must be the same for both flaming and smoldering stages, if they are reported separately.","If flaming and smoldering stages are reported separately for the same period, value should be the same for both.",Warning,Duplication,no
+937,Shape File Identifier is required when reporting Geospatial Parameters.,Shape file identifier is required when reporting geospatial parameters. The component and all dependent data will not be stored if there is missing required data.,Warning,Duplication,no
+938,Shape File Identifier maximum length is {1}.,Maximum allowable width of 20 characters.,Warning,Duplication,no
+940,Area Within Shape is required when reporting Geospatial Parameters.,Area within shape is required when reporting geospatial parameters.,Warning,Duplication,no
+941,Area Within Shape does not meet the required format.,This element must be reported as a float.,Warning,Duplication,no
+942,"Area Within Shape must be the same for both flaming and smoldering stages, if they are reported separately.","If flaming and smoldering stages are reported separately for the same period, value should be the same for both.",Warning,Duplication,no
+943,Area Within Shape Unit of Measure Code is required when reporting Geospatial Parameters.,Area within shape unit of measure code is required when reporting geospatial parameters.,Warning,Duplication,no
+944,Area Within Shape Unit of Measure Code must match a value in list of registered codes.,Must match value in code list.,Warning,Duplication,no
+946,Percent of Area Producing Emissions does not meet the required format.,This element must be reported as an integer.,Warning,Duplication,no
+947,Percent of Area Producing Emissions must be a value between {0} and {1}.,Must be between 1 and 100 inclusive.,Warning,Duplication,no
+948,"Percent of Area Producing Emissions must be the same for both flaming and smoldering stages, if they are reported separately.","If flaming and smoldering stages are reported separately for the same period, value should be the same for both.",Warning,Duplication,no
+949,Geospatial Parameters Comment max length is {1}. Longer submissions are truncated.,Maximum allowable width of 400 characters. Longer submissions will be truncated.,Warning,Duplication,no
+950,Invalid Extension,Invalid Extension,Critical,Format,no
+951,Invalid Content Type,Invalid Content Type,Critical,Code,no
+952,Source Classification Code in the Event Emissions Process component is a required data element.,Source classification code is required when reporting an event emissions process. The component and all dependent data will not be stored if there is missing required data.,Warning,Duplication,no
+953,Source Classification Code reported in the Event Emissions Process component is invalid.,Must match value in code list.,Warning,Duplication,no
+954,Fuel Configuration Code reported in the Event Emissions Process component is invalid.,Must match value in code list.,Warning,Duplication,no
+955,"Fuel Loading, reported in the Event Emissions Process component, does not meet the required format.",This element must be reported as a float.,Warning,Duplication,no
+956,"If Fuel Loading is reported in the Event Emissions Process component, then the Fuel Loading Unit of Measure Code is required.",If fuel loading is reported then fueling loading unit of measure code is required.,Warning,Duplication,no
+957,Fuel Loading Unit of Measure Code reported in the Event Emissions Process component is invalid.,Must match value in code list.,Warning,Duplication,no
+958,"Amount of Fuel Consumed, reported in the Event Emissions Process component, does not meet the required format.",This element must be reported as a float.,Warning,Duplication,no
+959,"If Amount of Fuel Consumed is reported in the Event Emissions Process component, then the Amount of Fuel Consumed Unit of Measure is required.",If amount of fuel is reported then amount of fuel consumed unit of measure code is required.,Warning,Duplication,no
+960,Amount of Fuel Consumed Unit of Measure Code reported in the Event Emissions Process component is invalid.,Must match value in code list.,Warning,Duplication,no
+961,"Percent Ten Hour Fuel Moisture, reported in the Event Emissions Process component, does not meet the required format.",This element must be reported as a decimal.,Warning,Duplication,no
+962,"Percent One Thousand Hour Fuel Moisture, reported in the Event Emissions Process component, does not meet the required format.",This element must be reported as a decimal.,Warning,Duplication,no
+963,"Percent Live Fuel Moisture, reported in the Event Emissions Process component, does not meet the required format.",This element must be reported as a decimal.,Warning,Duplication,no
+965,"Fuel Loading Percent Duff Fuel Moisture, reported in the Event Emissions Process component, does not meet the required format.",This element must be reported as a decimal.,Warning,Duplication,no
+966,"Heat Release, reported in the Event Emissions Process component, does not meet the required format.",This element must be reported as a float.,Warning,Duplication,no
+967,"If Heat Release is reported in the Event Emissions Process component, then Heat Release Unit of Measure is required.",If heat release is reported then heat release unit of measure code is required.,Warning,Duplication,no
+968,Heat Release Unit of Measure Code reported in the Event Emissions Process component is invalid.,Must match value in code list.,Warning,Duplication,no
+969,Emission Reduction Technique Code reported in the Event Emissions Process component is invalid.,Must match value in code list.,Warning,Duplication,no
+970,"Event Emissions Process Comment, reported in the Event Emissions Process component, does not meet the required format.",Maximum allowable width of 400 characters. Longer submissions will be truncated.,Warning,Duplication,no
+990,Invalid Attachment Name,Invalid Attachment Name,Critical,Format,no
+991,Invalid Extension,Invalid Extension,Critical,Format,no
+992,Fuel Loading reported in the Event Emissions Process component is outside the allowable range.,Must be greater than zero.,Warning,Duplication,no
+994,Percent Ten Hour Fuel Moisture reported in the Event Emissions Process component is outside the allowable range.,"Must be a value between zero and 100, inclusive.",Warning,Duplication,no
+995,Percent One Thousand Hour Fuel Moisture reported in the Event Emissions Process component is outside the allowable range.,"Must be a value between zero and 100, inclusive.",Warning,Duplication,no
+996,Percent Live Fuel Moisture reported in the Event Emissions Process component is outside the allowable range.,"Must be a value between zero and 100, inclusive.",Warning,Duplication,no
+997,Percent Duff Fuel Moisture reported in the Event Emissions Process component is outside the allowable range.,"Must be a value between zero and 100, inclusive.",Warning,Duplication,no
+998,Heat Release reported in the Event Emissions Process component is outside the allowable range.,Must be greater than zero.,Warning,Duplication,no
+1031,Operating Status Dependency for Emissions Units,"An emissions unit operating status may not be changed if the facility site operating status is ""Temporarily Shutdown"" (TS) or ""Permanently Shutdown"" (PS).",Critical,Conditional,no
+1049,Event Name should be reported for wildfires and wildland fire use SCCs.,Event name should be reported for wildfires and wildland fire use SCCs.,Warning,Duplication,no
+1050,Containment Date should be reported for wildfires and wildland fire use SCCs.,Containment date should be reported for wildfires and wildland fire use SCCs.,Warning,Duplication,no
+1052,Invalid Attachment Content Type,Invalid Attachment Content Type,Critical,Code,no
+1053,Amount of Fuel Consumed reported in the Event Emissions Process component is outside the allowable range.,Amount of fuel consumed must be greater than zero.,Warning,Duplication,no
+1070,Operating Status Dependency for Release Points,"A release point operating status may not be changed if the facility site operating status is ""Temporarily Shutdown"" (TS) or ""Permanently Shutdown"" (PS).",Critical,Conditional,no
+1090,Regulatory Start Year Data Type,Year in the format of YYYY.,Critical,Format,no
+1091,Regulatory Start Year Range,The regulatory start year must be between 1900 and 2050.,Critical,Range,no
+1094,Release Point Operating Status Present,The operating status is required when reporting the emissions release point component. The component and all dependent data will not be stored if there are missing required data.,Critical,Present,no
+1095,Release Point Operating Status Code Valid,Must match value in code list.,Critical,Code,no
+1096,Release Point Operating Status Code and Year,"If the release point status code is not ""Operating"" (OP), the release point status code year should be reported.",Critical,Conditional,no
+1097,Release Point Operating Status Code Year Range,The year reported should be between 1900 to 2050.,Critical,Range,no
+1098,Release Point Operating Status Code Year Data Type,This element must be reported as an integer.,Critical,Format,no
+1110,Source Scale Map Number Range,"Must be between 1 and 999,999, inclusive.",Critical,Range,no
+1111,Horizontal Accuracy Measure Critical Range,"Must be between 0 and 999,999, inclusive.",Critical,Range,no
+1112,Release Point Fence Line Distance Measure Critical Range,"Must be between 0 and 99,999; inclusive.",Critical,Range,no
+1132,Release Point Present for Process,A process must go to at least one release point.,Critical,Present,no
+1133,Vertical Measure Critical Range,"Must be between -1000 and 999,999; inclusive.",Critical,Range,no
+1152,Release Point Exit Gas Velocity Measure Critical Range,"Must be between 0 and 99,999.9; inclusive.",Critical,Range,no
+1153,Release Point Exit Gas Flow Rate Measure Critical Range,"Must be between 0 and 99,999,999.9; inclusive.",Critical,Range,no
+1169,Facility Site Address Not Present for Portable Facilities,"If the county FIPS code is 777, then the address component will not be accepted.  All data elements in the facility site address component will not be stored.",Critical,Present,no
+1170,Geographic Coordinates Not Present for Portable Facilities,"If the county FIPS code is 777, then the geographic coordinates component will not be accepted.  All data elements in the geographic coordinates component will not be stored.",Critical,Present,no
+1189,Active Identifier per Program System Code for  Unit Identification Cardinality,A unit may only have one active identifier for each program system code. Active means the end date is null. Currently active identifiers with matching system codes will be automatically retired.,Critical,Cardinality,no
+1213,"Recurrence Year must be a value between {0,number,#} and {1,number,#}.",Recurrence Year Critical Range to be determined,Warning,Duplication,no
+1230,Facility Site Geographic Coordinates Protected,"If the data in the EIS for facility site geographic coordinates are protected, the data will not be stored. A request to unprotect the data can be made through the Gateway.",Critical,Conditional,no
+1231,Release Point Geographic Coordinates Protected,"If the data in the EIS for release point geographic coordinates are protected, data will not be stored. A request to unprotect the data can be made through the Gateway.",Critical,Conditional,no
+1249,Emissions Unit Design Capacity Protected,"If the data in the EIS for emissions unit design capacity and design capacity unit of measure are protected, the data will not be stored. A request to unprotect the data can be made through the Gateway.",Critical,Conditional,no
+1250,Emissions Unit Regulation Protected,"If the data in the EIS for emissions unit regulation are protected, the data will not be stored. A request to unprotect the data can be made through the Gateway.",Critical,Conditional,no
+1251,Process Regulation Protected,"If the data in the EIS for emissions process regulation are protected, the data will not be stored. A request to unprotect the data can be made through the Gateway.",Critical,Conditional,no
+1252,Emissions Unit Control Approach Protected,"If the data in the EIS for emissions unit control approach are protected, the data will not be stored. A request to unprotect the data can be made through the Gateway. Note this affects control approach, control measure, and control pollutant components.",Critical,Conditional,no
+1253,Emissions Process Control Approach Protected,"If the data in the EIS for emissions process control approach are protected, the data will not be stored. A request to unprotect the data can be made through the Gateway. Note this affects control approach, control measure, and control pollutant components.",Critical,Conditional,no
+1269,Process Level Regulation,Only regulations indicated to be reported at the process level should be reported at the process level.,Critical,Conditional,no
+1270,Emissions Unit Level Regulation,Only regulations indicated to be reported at the unit level should be reported at the unit level.,Critical,Conditional,no
+1290,Facility Site Identifier Protected,"If the data in the EIS for a facility site identifier are protected, the data will not be stored.  A request to unprotect the data can be made through the Gateway.",Critical,Conditional,no
+1291,Identifier Protected for Unit Identification,"If the data in the EIS for identifier in unit identification are protected, the data will not be stored.  A request to unprotect the data can be made through the Gateway.",Critical,Conditional,no
+1311,Stack Height Protected,"If the data in the EIS for stack height are protected, the data will not be stored.  A request to unprotect the data can be made through the Gateway.",Critical,Conditional,no
+1312,Stack Diameter Protected,"If the data in the EIS for stack diameter are protected, the data will not be stored.  A request to unprotect the data can be made through the Gateway.",Critical,Conditional,no
+1314,Stack Gas Velocity and UoM Protected,"If the data in the EIS for stack gas velocity and UoM are protected, the data will not be stored.  A request to unprotect the data can be made through the Gateway.",Critical,Conditional,no
+1315,Stack Gas Flow Rate and UoM Protected,"If the data in the EIS for stack gas flow rate and UoM are protected, the data will not be stored.  A request to unprotect the data can be made through the Gateway.",Critical,Conditional,no
+1349,Address Postal Code for US Data Type,"For postal codes located in the United States, they must be in the approved US Postal Code format of a five-digit number, optionally followed by a dash and a four-digit  number.",Critical,Format,no
+1369,Release Point Exit Gas Velocity Measure Range for FPS for Fugitive,"If the release point exit gas velocity unit of measure is FPS and the release point type is fugitive, release point exit gas velocity measure must be 0 to 400, inclusive.",Critical,Range,no
+1370,Release Point Exit Gas Velocity Measure Range for FPM for Fugitive,"If the release point exit gas velocity unit of measure is FPM and the release point type is fugitive, release point exit gas velocity measure must be 0 to 24,000; inclusive.",Critical,Range,no
+1371,Release Point Exit Gas Flow Rate Measure Range for ACFM for Fugitive,"If the release point exit flow gas unit of measure is ACFM and the release point type is fugitive, release point exit gas flow rate measure must be between 0 to 12,000,000; inclusive.",Critical,Range,no
+1372,Release Point Exit Gas Flow Rate Measure Range for ACFS for Fugitive,"If the release point exit flow gas unit of measure is ACFS and the release point type is fugitive, release point exit gas flow rate measure must be between 0 to 200,000; inclusive.",Critical,Range,no
+1389,Unique Facility and Alternative Facility Identifier Per Program System Code,Active Alternative Facility Identifiers must be unique within a Program System Codes and a FIPS code.,Critical,Conditional,no
+1429,Identifier Present for Release Point Identification,The identifier must be reported when reporting the release point identification component. The component and all dependent data will not be stored if there are missing required data.,Critical,Present,no
+1430,Program System Code Present for Release Point Identification,A program system code is required when reporting the release point identification component. The component and all dependent data will not be stored if there are missing required data.,Critical,Present,no
+1431,Program System Code Valid for Release Point Identification,Must match value in list of registered codes.,Critical,Code,no
+1449,Unit Operating Status at Shutdown Facility,"An emissions unit at a facility site with operating status of ""Temporarily Shutdown"" (TS) or ""Permanently Shutdown"" (PS) may not have a status of ""Operating"" (OP).",Critical,Conditional,no
+1450,Release Point Operating Status at Shutdown Facility,"A release point at a facility site with operating status of ""Temporarily Shutdown"" (TS) or ""Permanently Shutdown"" (PS) may not have a status of ""Operating"" (OP).",Critical,Conditional,no
+1469,Location Type Code Present,Required when reporting the excluded location parameter component.  The component and all dependent data will not be stored if there are missing required data.,Critical,Present,no
+1470,Location Parameter Present,Required when reporting the excluded location parameter component.  The component and all dependent data will not be stored if there are missing required data.,Critical,Present,no
+1471,Location Parameter Data Type,Must match a parameter in the system.  Maximum allowable width of 20 characters.  Longer submissions will be rejected.,Critical,Format,no
+1472,Supplemental Calculation Parameter Type Code Valid,Must match value in published EIS list.,Critical,Code,no
+1473,Supplemental Calculation Parameter Type Present,Required when reporting the supplemental calculation parameter  component. The component and all dependent data will not be stored if there are missing required data.,Critical,Present,no
+1474,Supplemental Calculation Parameter Value Present,Required when reporting supplemental calculation parameter component. The component and all dependent data will not be stored if there are missing required data.,Critical,Present,no
+1475,Supplemental Calculation Parameter Numerator Unit of Measure Valid,"If the supplemental calculation parameter type code is heat content, the supplemental calculation parameter numerator unit of measure must be ""BTU"" or ""E6BTU"".",Critical,Code,no
+1476,Supplemental Calculation Parameter Data Year Data Type,"This element must be reported as an integer, reported with a maximum of 4 digits.",Critical,Format,no
+1477,Supplemental Calculation Parameter Data Year Range,Must be between 1900 and 2050.,Critical,Range,no
+1478,Supplemental Calculation Parameter Data Source Data Type,Maximum allowable width of 100 characters. Longer submissions will be truncated.,Warning,Format,no
+1480,Affiliation Type Code Valid,Must match value in code list.,Critical,Code,no
+1481,Affiliation Type Code Present,The affiliation type code is required when reporting the facility site affiliation component. The component and all dependent data will not be stored if there are missing required data.,Critical,Present,no
+1482,Horizontal Accuracy Unit of Measure Valid,Horizontal accuracy unit of measure must be reported in meters (m).,Critical,Code,no
+1483,Vertical Unit of Measure Valid,Vertical unit of measure must be reported in meters (m).,Critical,Code,no
+1484,Aircraft Engine Type Code Valid,Must match value in code list.,Critical,Code,no
+1486,Program System Code for Process Valid,Must match value in list of registered codes.,Critical,Code,no
+1487,Program System Code for Process Identification Present,A program system code is required when reporting the process identification component. The component and all dependent data will not be stored if there are missing required data.,Critical,Present,no
+1489,Release Point Stack Height  Unit Of Measure Code Valid,Must be in feet.,Critical,Code,no
+1490,Release Point Stack Diameter Unit Of Measure Code Valid,Must be in feet.,Critical,Code,no
+1493,Release Point Fence Line Distance Unit Of Measure Code Valid,Must be in feet.,Critical,Code,no
+1495,Release Point Fugitive Height Unit Of Measure Code Valid,Must be in feet.,Critical,Code,no
+1496,Release Point Fugitive Width Unit Of Measure Code Valid,Must be in feet.,Critical,Code,no
+1497,Release Point Fugitive Length Unit Of Measure Code Valid,Must be in feet.,Critical,Code,no
+1498,State and County FIPS for Facility Identification Valid,Must match value in code list.,Critical,Code,no
+1500,Tribal Code for Facility Identification Valid,Must match value in code list.,Critical,Code,no
+1502,State and Country FIPS for Facility Identification Valid,Must match value in code list.,Critical,Code,no
+1509,Containment Date reported in the Event is outside the allowable range.,ContainmentDate critical range to be determined.,Warning,Duplication,no
+1510,Inalid Date,Inalid Date,Critical,Range,no
+1511,Event Begin Date reported in the Event Reporting Period is outside the allowable range.,Event begin date critical range to be determined.,Warning,Duplication,no
+1512,Event End Date reported in the Event Reporting Period is outside the allowable range.,Event end date critical range to be determined.,Warning,Duplication,no
+1550,Address Comment Data Type,Maximum allowable width of 400 characters. Longer submissions will be truncated.,Warning,Format,no
+1569,Reporting Period Type Code Required,Required when reporting the reporting period component. The component and all dependent data will not be stored if there are missing required data.,Critical,Present,no
+1570,Calculation Parameter Collection,"All 4 of calculation calculation parameter value, calculation parameter unit of measure, calculation material code and calculation parameter type code must be reported together or none will be accepted",Critical,Conditional,no
+1592,Emissions Operating Type Code Required for Point Emissions,Required when reporting the reporting period component for point emissions. The component and all dependent data will not be stored if there are missing required data.,Critical,Present,no
+1610,Exceeds Limit,Exceeds Limit,Critical,Format,no
+1611,Exceeds Limit,Exceeds Limit,Critical,Format,no
+1614,AffiliationOrganization Present,"If the facility site affiliation component is reported, the affiliation organization component must also be reported.",Critical,Present,no
+1620,Location Address Country Code Valid,Must match value in code list.,Critical,Code,no
+1632,Portable Facility Blocked by Protected Geographic Coordinates,"If the facility site or release point geographic coordinates are protected, a facility site cannot be changed to portable.",Critical,Conditional,no
+1649,Decimal Value Required,Decimal Value Required,Critical,Format,no
+1669,Emissions Unit Alternate Identifiers Unique,The combination of emissions unit identifier and program system code must be unique within a facility site.,Critical,Conditional,no
+1672,Facility Alternative Name Unique,The combination of facility alternative name and program system code must be unique within a facility.,Critical,Conditional,no
+1689,Release Point Agency Identifier Unique,The combination of release point agency identifier and program system code must be unique within a facility.,Critical,Conditional,no
+1709,Horizontal Accuracy Measure and Unit of Measure Present,Horizontal accuracy measure and horizontal accuracy unit of measure must be reported together.,Critical,Present,no
+1710,Vertical Measure and Unit of Measure Present,Vertical measure and vertical measure unit of measure must be reported together.,Critical,Present,no
+1711,Invalid Shape ID,Invalid Shape ID,Critical,Code,no
+1729,EIS Process Identifier Exists,"If the EIS process identifier is reported, it must exist.",Critical,Conditional,no
+1730,Shape Required,Shape Required,Critical,Present,no
+1749,Supplemental Calculation Parameter Denominator Unit of Measure Valid,"If the supplemental calculation parameter type code is heat content, the supplemental calculation parameter denominator unit of measure must match value in code list.",Critical,Code,no
+1770,Process Identifier Exists Within Unit,"To use the agency process identifier for identification, the agency process identifier must exist in the under the emissions unit for which it was reported.",Critical,Conditional,no
+1789,SCC in Correct Data Category,The SCC must match the Data Category provided in the Exchange Header.,Critical,Conditional,no
+1809,EIS Process Exists in Correct Unit,The reported EIS emissions process identifier matched in the EIS is associated with the reported emissions unit.,Critical,Conditional,no
+1829,SCC is Associated with Correct Process,The reported SCC must be associated with the reported emissions process identifier.,Critical,Conditional,no
+1849,Submittal Comment Data Type,Maximum allowable width of 400 characters. Longer submissions will be truncated.,Warning,Format,no
+1850,Model Data Type,Maximum allowable width of 100 characters. Longer submissions will be truncated.,Warning,Format,no
+1851,Model Version Data Type,Maximum allowable width of 50 characters. Longer submissions will be truncated.,Warning,Format,no
+1869,An Event Location must have one of a Geographic Coordinate component or a Geospatial Parameters component associated with it.,An event location may only have either a geographic coordinate component or a geospatial component associated with it.,Warning,Duplication,no
+1910,Gasoline ID Range,Must be between 0 and 999999 (inclusive).,Critical,Range,yes
+1930,Pollutant Not Repeated Within Process,"When reporting emissions, a pollutant may not reported multiple times under a single reporting period.",Critical,Cardinality,no
+1950,Emissions Reported Only for Operating Facilities,"Emissions submitted by state, local, or tribal agencies are not accepted for facility sites that have a facility site status code other than ""Operating"" (OP), except where facility source type is ""Landfill"" or if the Facility Site operating status code year is greater than the current inventory cycle year",Critical,Conditional,no
+1969,Cardinality of Active Facility Site Identifier in XML,Only one active facility site identifier per system code per facility site is allowed in an XML submission.,Critical,Cardinality,no
+1972,Cardinality of Active Unit Identifier in XML,Only one active unit identifier per program system code per unit is allowed in an XML submission.,Critical,Cardinality,no
+1973,Cardinality of Active Release Point Identifier in XML,Only one active release point identifier per program system code per release point is allowed in an XML submission.,Critical,Cardinality,no
+1974,Cardinality of Active Process Identifier in XML,Only one active process identifier per program system code per process is allowed in an XML submission.,Critical,Cardinality,no
+1975,Emissions Reported Only for Operating Units,"Emissions submitted by state, local, or tribal agencies are not accepted for a unit that has a unit status code other than ""Operating"" (OP), except where facility source type is ""Landfill"" or if the unit operating status code year is greater than the current inventory cycle year.",Critical,Conditional,no
+1989,Release Point Identifier Exists for Release Point Apportionment,The release point identifier referenced by the release point apportionment identifier must exist in the facility site.,Critical,Conditional,no
+2011,Supplemental Calculation Parameter Unit of Measure for Percent Types Valid,"The supplemental calculation parameter numerator and denominator unit of measure codes must both be null when the supplemental calculation parameter type is either ""Percent Ash Content"" or ""Percent Sulfur Content.""",Critical,Conditional,no
+2029,Supplemental Calculation Parameter Numerator Unit of Measure Present for Heat Content,"The supplemental calculation parameter numerator unit of measure must be reported when the supplemental calculation parameter type value is ""Heat Content"". The component and all dependent data will not be store if there are missing values.",Critical,Present,no
+2030,Supplemental Calculation Parameter Denominator Unit of Measure Present for Heat Content,"The supplemental calculation parameter Denominator unit of measure must be reported when the supplemental calculation parameter type value is ""Heat Content"". The component and all dependent data will not be store if there are missing values.",Critical,Present,no
+2052,Emissions Greater than or Equal to Zero,The total emissions values for emissions must be greater than or equal to 0.,Critical,Range,no
+2089,Release Point Identifier Exists for Identification,"To use the release point identifier and program system code for identification, the release point identifier and system code combination must exist within the facility.",Critical,Conditional,no
+2091,Process Identifier Exists for Identification,"To use the process identifier and program system code for identification, the process identifier and system code combination must exist within the unit.",Critical,Conditional,no
+2093,Data Set Identifier Authorization,The data set identifier provided must belong to the EIS or EPA agency.,Critical,Conditional,no
+2095,Data Set Identifier Exists,The data set identifier provided must already exist in the EIS.,Critical,Conditional,no
+2109,Baseyearvmt NCD Table Present,Baseyearvmt must be submitted as a .csv file in the Tables folder.,Warning,Present,yes
+2110,County NCD Table Present,County must be submitted as a .csv file in the Tables folder.,Critical,Present,yes
+2111,Countynrfile NCD Table Present,Countynrfile must be submitted as a .csv file in the Tables folder.,Critical,Present,yes
+2112,Countyvmtmonthallocation NCD Table Present,Countyvmtmonthallocation must be submitted as a .csv file in the Tables folder.,Warning,Present,yes
+2113,Countyyear NCD Table Present,Countyyear must be submitted as a .csv file in the Tables folder.,Critical,Present,yes
+2114,Countyyearmonth NCD Table Present,Countyyearmonth must be submitted as a .csv file in the Tables folder.,Critical,Present,yes
+2115,Countyyearmonthhour NCD Table Present,Countyyearmonthhour must be submitted as a .csv file in the Tables folder.,Critical,Present,yes
+2116,Diesel NCD Table Present,Diesel must be submitted as a .csv file in the Tables folder.,Critical,Present,yes
+2118,Gasoline NCD Table Present,Gasoline must be submitted as a .csv file in the Tables folder.,Critical,Present,yes
+2119,Naturalgas NCD Table Present,Naturalgas must be submitted as a .csv file in the Tables folder.,Critical,Present,yes
+2120,State NCD Table Present,State must be submitted as a .csv file in the Tables folder.,Critical,Present,yes
+2121,Baseyearvmt NCD Table Header Present,Baseyearvmt must have a data header in the first row of the .csv.,Critical,Format,yes
+2122,County NCD Table Header Present,County  must have a data header in the first row of the .csv.,Critical,Format,yes
+2123,Countynrfile NCD Table Header Present,Countynrfile must have a data header in the first row of the .csv.,Critical,Format,yes
+2124,Countyvmtmonthallocation NCD Table Header Present,Countyvmtmonthallocation must have a data header in the first row of the .csv.,Warning,Format,yes
+2125,Countyyear NCD Table Header Present,Countyyear must have a data header in the first row of the .csv.,Critical,Format,yes
+2126,Countyyearmonth NCD Table Header Present,Countyyearmonth must have a data header in the first row of the .csv.,Critical,Format,yes
+2127,Countyyearmonthhour NCD Table Header Present,Countyyearmonthhour must have a data header in the first row of the .csv.,Critical,Format,yes
+2128,Diesel NCD Table Header Present,Diesel must have a data header in the first row of the .csv.,Critical,Format,yes
+2129,Gasoline NCD Table Header Present,Gasoline must have a data header in the first row of the .csv.,Critical,Format,yes
+2130,Naturalgas NCD Table Header Present,Naturalgas must have a data header in the first row of the .csv.,Critical,Format,yes
+2131,State NCD Table Header Present,State must have a data header in the first row of the .csv.,Critical,Format,yes
+2132,State and County FIPS For NCD Submission,"When a federal or system agency user submits a NCD file, a location component with valid State and County FIPS must be provided.",Critical,Present,yes
+2149,Release Point Apportionment Identifier Cardinality,A release point identifier may only be used once per release point apportionment collection.,Critical,Cardinality,no
+2169,Emissions Not Accepted For Duplicate Facility Sites,Emissions are not accepted for facility sites that are flagged as duplicate.,Critical,Conditional,no
+2189,Reporting Period For Area Emissions Process Present,"For every area emissions process, there must be one or more reporting periods underneath it either already in EIS or submitted.",Critical,Present,no
+2211,Release Point Exit Gas Temperature Measure Outer Range,"Must be between -999 to 9999, inclusive.",Critical,Range,no
+2229,Potential Duplicate Facility Site,Potential duplicate facilities are flagged for review.,Warning,Comparison,no
+2249,Facility Site Operating Status Year With Emissions,"The operating status for statuses other than ""OP"" must be greater than the latest year of emissions submitted to that facility site, except for landfills.",Critical,Conditional,no
+2251,Unit Operating Status Year With Emissions,"The operating status year for statuses other than """"OP"""" must be greater than the latest year of emissions submitted to that unit, except for landfills.",Critical,Conditional,no
+2290,Emissions with Reporting Period,At least one valid emissions record must be provided with a reporting period.,Critical,Conditional,no
+2309,Invalid Calculation material code,Invalid Calculation material code,Critical,Code,no
+2313,Total Acceptable Emissions Range,Must be within acceptable emissions range.,Warning,Range,no
+2314,Supplemental Calculation Parameter Critical Range,Must be within acceptable supplemental calculation parameter range.,Critical,Range,no
+2315,Shape Identifier does not match reported State and County FIPS.,Please review shape identifier code tables for correct values.,Critical,Conditional,no
+2316,Aircraft Engine Type Code Present,Required when reporting the process component for aircraft. The component and all dependent data will not be stored if there are missing required data.,Critical,Present,no
+2317,Commercial Marine Vehicle Engine Type Code Present,Required when reporting the process component for commercial marine vehicles. The component and all dependent data will not be stored if there are missing required data.,Critical,Present,no
+2319,Inventory Year of Reporting Period must not be greater than Emissions Process Last Inventory Year,Please review the Reporting Periods associated with the Emissions Process to ensure the Inventory Year of the Reporting Period is not greater than the Emissions Process Last Inventory Year.,Critical,Comparison,no
+2320,Emissions of Reporting Period Conflict,"Process Emissions Data for a defined Group of Pollutants can contain either the pollutant representing the group total value, or any number pollutants representing the group member values, but not both.",Critical,Comparison,no
+2321,State MySql Database Zip CDB Table Present,State MySql Databases must be submitted as a .zip file in the CDB submission zip.,Critical,Present,yes
+2322,Shape Type Not Matching Allowed SCC,When submitting CMV/Rail Emissions the Shape Type and SCC must match accepted value combinations. The component and all dependent data will not be stored if there is a mismatch.,Critical,Present,no
+2323,Percent Control Measures Reduction Efficiency must not equal 100,"If the control measure code reported for a Facility Inventory or NonPoint Control Measure is not ""46"" (Process Change), then the Percent Control Measures Reduction Efficiency must not equal 100.",Critical,Present,no
+2324,Active Point Processes in same county for special SCC.,Supplied NP data with SCC 2285002010 has active point processes in the same county as SCC 28500201.,Warning,Present,no
+2325,Airport Uniqueness SCC - AETC conflict.,SCC and Aircraft Engine Type Code combination for supplied Airport Facility is not unique.,Critical,Present,no
+2326,Not an acceptable Pollutant and Emissions Type combination.,Pollutants and Emission Type Codes are checked against a predefined combination list and this validation failed for combination,Critical,Present,no
+2327,CDB QA_Report Present,QA_Report must be submitted as a .txt file in the MyStateSubmission.zip.,Critical,Present,no
+2328,CDB Checklist Present,Checklist must be submitted as a .xls or xlsx file in the MyStateSubmission.zip.,Critical,Present,no
+2329,CDB Documentation Present,Documentation must be submitted as a .doc or .docx file in the MyStateSubmission.zip.,Critical,Present,no
+2330,CDB County Databases Present,County Databases must be submitted as a .zip file in the MyStateSubmission.zip.,Critical,Present,no
+2331,CDB error Present in QA_Report,Errors were found in the submitted QA_Report.,Critical,Present,no
+2332,CDB County Databases mismatch,The number of submitted CDBs did not match the reported number in the QA_Report.,Critical,Comparison,no
+2333,Emissions Submitted to County FIPS,Submitting CMV or Rail Emissions to a County FIPS resulted in a warning.,Warning,Comparison,no
+2334,County DB Folder Name Must be 20 Characters Long,County DB Folder Name Must be 20 Characters Long,Critical,Format,no
+2335,County File Names must start with the letter c.,County File Names must start with the letter c.,Critical,Format,no
+2336,characters 7-11 must be a y followed by a four digit year,characters 7-11 must be a y followed by a four digit year,Critical,Format,no
+2337,County Database Folder Names last 9 characters must be a _ followed by an eight digit date,County Database Folder Names last 9 characters must be a _ followed by an eight digit date,Critical,Format,no
+2338,Presence of Release Point Exit Gas Flow Rate and Velocity,"If a Stack Diameter information is reported, the Release Point Exit Gas Flow Rate and Velocity should be reported as well.",Warning,Present,no
+2339,Presence of Release Point Stack Diameter information,"If Exit Gas Flow Rate and Velocity information is reported, a Release Point Stack Diameter should be reported as well.",Warning,Present,no
+2340,Facility Inventory Window,The Facility Inventory Submission Window is closed.,Critical,Conditional,no
+2341,Emissions Unit Permit Status Begin Year Range,The year reported should be between 1900 to 2050.,Critical,Range,no
+2342,Emissions Unit Permit Status End Year Range,The year reported should be between 1900 to 2050.,Critical,Range,no
+2343,Unit Permit Status Begin Year Data Type,This element must be reported as an integer.,Critical,Format,no
+2344,Unit Permit Status End Year Data Type,This element must be reported as an integer.,Critical,Format,no
+2345,Unit Permit Status Code and End Year,"If Unit Permit Status Code is not ""operating"" (O) an end year must be provided.",Critical,Conditional,no
+2346,Facility Site County Protected,"If the data in the EIS for facility site county is protected, the data will not be stored. A request to unprotect the data can be made through the Gateway.",Critical,Conditional,no
+2347,Facility Site Mailing Address Protected,"If the data in the EIS for facility site mailing address is protected, the data will not be stored. A request to unprotect the data can be made through the Gateway.",Critical,Conditional,no
+2348,Facility Site Locality Protected,"If the data in the EIS for facility site locality is protected, the data will not be stored. A request to unprotect the data can be made through the Gateway.",Critical,Conditional,no
+2349,Facility Site Postal Code Protected,"If the data in the EIS for facility site postal code is protected, the data will not be stored. A request to unprotect the data can be made through the Gateway.",Critical,Conditional,no
+2350,Facility Site Name Protected,"If the data in the EIS for facility site name is protected, the data will not be stored. A request to unprotect the data can be made through the Gateway.",Critical,Conditional,no
+2351,Facility Site Tribe Protected,"If the data in the EIS for facility site tribal code is protected, the data will not be stored. A request to unprotect the data can be made through the Gateway.",Critical,Conditional,no
+2352,Release Point Protected,"If the data in the EIS for release point is protected, the data will not be stored. A request to unprotect the data can be made through the Gateway.",Critical,Conditional,no
+2353,Emissions Unit Protected,"If the data in the EIS for emissions unit is protected, the data will not be stored. A request to unprotect the data can be made through the Gateway.",Critical,Conditional,no
+2354,Emissions Process Protected,"If the data in the EIS for emissions process is protected, the data will not be stored. A request to unprotect the data can be made through the Gateway.",Critical,Conditional,no
+2355,Data Set Identifier Exists,The data set identifier provided must belong to the SPPD agency.,Critical,Conditional,no
+2356,Last Inventory Year Dependency for Emissions Process,"Last Inventory Year of Emissions process may not be changed if the emissions unit operating status is ""Temporarily Shutdown"" (TS) or ""Permanently Shutdown"" (PS).",Critical,Conditional,no
+2357,PM10 Primary and Filterable Emissions Comparison,PM10 Filterable can not exceed PM10 Primary,Critical,Conditional,no
+2358,PM2.5 Primary and Filterable Emissions Comparison,PM2.5 Filterable can not exceed PM2.5 Primary,Critical,Conditional,no
+2359,PM10 Primary and PM Condensable Emissions Comparison,PM Condensable can not exceed PM10 Primary,Critical,Conditional,no
+2360,PM2.5 Primary and PM Condensable Emissions Comparison,"If PM Condensable and PM2.5 Primary are both reported pollutants, then PM Condensable should not exceed PM2.5 Primary for the same reporting period.",Critical,Conditional,no
+2361,PM10-PRI must be sum of its pieces,PM10-FIL + PM-CON must equal PM10-PRI,Warning,Conditional,no
+2362,PM25-PRI must be sum of its pieces,PM25-FIL + PM-CON must equal PM25-PRI,Warning,Conditional,no
+2363,Emission Calculation Method Code - Event Validation,Must match value in code list.,Critical,Code,no
+2364,Nonpoint Agricultural Fire/Burning (Tier 3) Activity Data Validation,Must specify valid activity data values.,Critical,Conditional,no
+2365, Operating Status Dependency for Facility - Another Agency Emission Units for this facility are still in Operation,"The Facility Operating Status may not be changed to ""Temporarily Shutdown"" (TS), ""Permanently Shutdown"" (PS), or ""Operating but Reporting Emissions in the Nonpoint Category"" (ONP) because another Agency has units that are operating.",Critical,Conditional,no
+2366, Operating Status Dependency for Facility - Another Agency Emission Processes for this facility are still in Operation,"The Facility Operating Status may not be changed to ""Temporarily Shutdown"" (TS), ""Permanently Shutdown"" (PS), or ""Operating but Reporting Emissions in the Nonpoint Category"" (ONP) because another Agency has processes that are operating.",Critical,Conditional,no
+2367, Operating Status Dependency for Facility - Another Agency Release Points for this facility are still in Operation,"The Facility Operating Status may not be changed to ""Temporarily Shutdown"" (TS), ""Permanently Shutdown"" (PS), or ""Operating but Reporting Emissions in the Nonpoint Category"" (ONP) because another Agency has release points that are operating.",Critical,Conditional,no
+2368,Unit Level Agency ID Association Dependency,"You may not edit existing Units that do not have an identifier for your Agency. In order for you to edit this Unit, you must first have a Unit ID associated with your Agency.",Critical,Conditional,no
+2369,Process Level Agency ID Association Dependency,"You may not edit existing Processes that do not have an identifier for your Agency.  In order for you to edit this Process, you must first have a Process ID associated with your Agency.",Critical,Conditional,no
+2370,Release Point Level Agency ID Association Dependency,"You may not edit existing Release Points that do not have an identifier for your Agency. In order for you to edit this Release Point, you must first have a Release Point ID associated with your Agency.",Critical,Conditional,no
+2371,Agency Unit Identifier Not Found, You may not add a Process Identifier for this Agency because no Unit Identifier for this Agency was found at the associated Unit.,Critical,Conditional,no
+2372,Agency Facility Identifier Not Found, You may not add a Release Point Identifier for this Agency because no Facility Identifier for this Agency was found at the associated Facility.,Critical,Conditional,no
+2373,Agency Facility Identifier Not Found when adding Unit Identifier,You may not add a Unit Identifier for this Agency because no Facility Identifier for this Agency was found at the associated Facility.,Critical,Conditional,no
+2374,New Unit Alternate Identifier- Agency Dependency Dependency,"You may not add a Unit Alternate Identifier for your Agency, because no Unit Identifier is currently reported at this Unit for your Agency. In order for you to add an Alternate Identifier for this Unit, you must first have an existing Unit ID associated with your Agency.",Critical,Conditional,no
+2375,Facility Level Agency ID Association Dependency,"You may not edit existing Facilities that do not have an identifier for your Agency. In order for you to edit this Facility, you must first have a Facility ID associated with your Agency.",Critical,Conditional,no
+2376,Event Staging Code Validation,Must be valid event staging code reporting period combination.,Critical,Code,no
+2377,Nonroad_CDB Documentation Present,Documentation must be submitted as a .doc or .docx file in the MyStateSubmission.zip.,Critical,Present,no
+2378,Nonroad CDB Checklist Present,Checklist must be submitted as a .xls or xlsx file in the MyStateSubmission.zip.,Critical,Present,no
+2379,Nonroad_CDB QA_Report Present,NR_QA_Report must be submitted as a .txt file in the MyStateSubmission.zip.,Critical,Present,no
+2380,Nonroad CDB County Databases Present,NR County Databases must be submitted as a .zip file in the MyStateSubmission.zip.,Critical,Present,no
+2381,CDB error Present in NR_QA_Report,Errors were found in the submitted NR_QA_Report.,Critical,Present,no
+2382,Nonroad CDB County Database Name length issue,County Database Folder Names must be 23 characters long. Please submit these County Submissions in a Folder with a correct Folder name length (23).,Critical,Comparison,no
+2383,Nonroad CDB County Database Name FIPS Part issue,"County Database Folder Names must start with a ""c"" followed by a FIPS (e.g. c26161). Please submit these County Submissions in a Folder with a correct Folder name.",Critical,Comparison,no
+2384,Nonroad CDB County Database Name Calendar Year Part issue,"County Database Folder Names characters 7-11 must be a ""y"" followed by a four digit year (e.g. y2011). Please submit these County Submissions in a Folder with a correct Folder name.",Critical,Comparison,no
+2385,Nonroad CDB County Databases mismatch,Submit the correct number of CDBs in the PSC_NR_County_Databases.zip file or correct the NR_QA_Report total reported CDBs.,Critical,Comparison,no
+2386,Nonroad CDB County Database Name Date Part issue,County Database Folder Names last 12 characters must be a _NR _ followed by an eight digit date YYYYMMDD (e.g._NR _20120601). Please submit these County Submissions in a Folder with a correct Folder name.,Critical,Comparison,no
+2387,NCD Checklist Present,Checklist must be submitted as a .xls or xlsx file as part of an NCD submission in the MyStateSubmission.zip file.,Critical,Present,no
+2388,Stack Gas Temperature Protected,"If the data in the EIS for stack gas temperature is protected, the data will not be stored.  A request to unprotect the data can be made through the Gateway.",Critical,Conditional,no
