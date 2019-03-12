@@ -454,3 +454,8 @@ div.fieldwrapperseparator .labelwarningleft {
 .asBlock {
     display: block;
 }
+
+/* Footer */
+#footer a {
+    color: #ff7;
+}
