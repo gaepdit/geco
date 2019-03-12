@@ -68,7 +68,7 @@
                 <ItemStyle HorizontalAlign="Right" VerticalAlign="Top" />
             </asp:BoundField>
             <asp:BoundField DataField="numRPFugitiveAngleMeasure"
-                HeaderText="Fugitive Angle (0&deg; to 179&deg;)">
+                HeaderText="Fugitive Angle (0&deg; to 89&deg;)">
                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                 <ItemStyle HorizontalAlign="Right" VerticalAlign="Top" />
             </asp:BoundField>

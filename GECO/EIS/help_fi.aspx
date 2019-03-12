@@ -334,12 +334,12 @@
                     The latitude and longitude coordinates for the fugitive release point should be reported as 
                     those of the western-most corner. The fugitive angle is measured clockwise around that point 
                     from true (not magnetic) north. Fugitive width is the measure along the side that would run 
-                    in the east-west direction if the angle were 0 degrees, and fugitive length is the measure 
-                    along the side that would run north-south if the angle were 0 degrees.
+                    in the east-west direction if the angle were 0°, and fugitive length is the measure 
+                    along the side that would run north-south if the angle were 0°.
                 </p>
                 <p>
                     In the example below, the release point coordinates are located at the push pin, 
-                    the width is 680 feet, the length is 1897 feet, and the angle is 22 degrees.
+                    the width is 680 feet, the length is 1897 feet, and the angle is 22°.
                 </p>
                 <asp:Image ImageUrl="~/assets/images/EIS/fugitive-angle-diagram.png" runat="server" />
                 <p>
@@ -352,11 +352,11 @@
                 </p>
                 <p>
                     <b>Fugitive Width</b>: The width of the fugitive release area measured along the side 
-                    that would run in the east-west direction if the angle were 0 degrees. (OPTIONAL)
+                    that would run in the east-west direction if the angle were 0°. (OPTIONAL)
                 </p>
                 <p>
                     <b>Fugitive Length</b>: The length of the fugitive release area measured along the side 
-                    that would run in the north-south direction if the angle were 0 degrees. (OPTIONAL)
+                    that would run in the north-south direction if the angle were 0°. (OPTIONAL)
                 </p>
                 <p>
                     <b>Fugitive Angle</b>: The angle for the fugitive release area, measured in the clockwise direction

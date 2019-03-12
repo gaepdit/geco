@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Fugitive Edit - GECO Facility Inventory" Language="VB" MasterPageFile="eismaster.master"
+<%@ Page Title="Fugitive Edit - GECO Facility Inventory" Language="VB" MasterPageFile="eismaster.master"
     AutoEventWireup="false" Inherits="GECO.eis_fugitive_edit"
     MaintainScrollPositionOnPostback="true" Codebehind="fugitive_edit.aspx.vb" %>
 
@@ -146,7 +146,7 @@
     </div>
     <div class="fieldwrapper">
         <asp:Label ID="lblRPFugitiveAngleMeasure" class="styled" runat="server"
-            Text="Fugitive Angle Measure (0 - 179):"></asp:Label>
+            Text="Fugitive Angle Measure (°):"></asp:Label>
         <asp:TextBox ID="txtRPFugitiveAngleMeasure" runat="server" class="editable" Text=""
             Width="100px" ToolTip="The orientation of the y-dimension (North-South) of the area in degrees from true North, measured positive in the clockwise direction."
             MaxLength="3"></asp:TextBox>
@@ -157,8 +157,8 @@
             TargetControlID="txtRPFugitiveAngleMeasure" WatermarkCssClass="watermarked" WatermarkText="OPTIONAL">
         </act:TextBoxWatermarkExtender>
         <asp:RangeValidator ID="rngvRPFugitiveAngleMeasure" runat="server" ControlToValidate="txtRPFugitiveAngleMeasure"
-            MinimumValue="0" MaximumValue="179" Type="Integer" ValidationGroup="vgFugitive"
-            ErrorMessage="The fugitive angle of measure must be between 0 and 179 degrees.">Must be between 0 and 179 degrees</asp:RangeValidator>
+            MinimumValue="0" MaximumValue="89" Type="Integer" ValidationGroup="vgFugitive"
+            ErrorMessage="The fugitive angle of measure must be between 0° and 89° inclusive.">Must be between 0° and 89°</asp:RangeValidator>
     </div>
     <div class="fieldwrapper">
         <asp:Label ID="lblRPComment" class="styled" runat="server" Text="Comment:"></asp:Label>

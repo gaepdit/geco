@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Fugitive Details - GECO Facility Inventory" Language="VB" MasterPageFile="eismaster.master" AutoEventWireup="false" Inherits="GECO.eis_fugitive_details" Codebehind="fugitive_details.aspx.vb" %>
+<%@ Page Title="Fugitive Details - GECO Facility Inventory" Language="VB" MasterPageFile="eismaster.master" AutoEventWireup="false" Inherits="GECO.eis_fugitive_details" Codebehind="fugitive_details.aspx.vb" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 </asp:Content>
@@ -67,7 +67,7 @@
             ReadOnly="True" Width="100px"></asp:TextBox>
     </div>
     <div class="fieldwrapper">
-        <asp:Label ID="lblRPFugitiveAngleMeasure" class="styled" runat="server" Text="Fugitive Angle (0 - 179):"></asp:Label>
+        <asp:Label ID="lblRPFugitiveAngleMeasure" class="styled" runat="server" Text="Fugitive Angle (°):"></asp:Label>
         <asp:TextBox ID="txtRPFugitiveAngleMeasure" class="readonly" runat="server" Text=""
             ReadOnly="True" Width="100px" MaxLength="2"></asp:TextBox>
     </div>
