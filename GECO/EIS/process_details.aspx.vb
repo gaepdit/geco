@@ -145,7 +145,7 @@ Partial Class eis_process_details
         SqlDataSourceID2.SelectCommand = "SELECT l.STRDESC AS PollutantType " &
             " , CASE " &
             " WHEN p.NUMPCTCTRLMEASURESREDEFFIC IS NOT NULL " &
-            " THEN concat(CONVERT(decimal(5, 1), p.NUMPCTCTRLMEASURESREDEFFIC), '%') " &
+            " THEN concat(CONVERT(decimal(6, 3), p.NUMPCTCTRLMEASURESREDEFFIC), '%') " &
             " ELSE NULL " &
             " END AS CtrlEfficiency " &
             " , CONVERT(char, p.LASTEISSUBMITDATE, 101) AS LASTEISSUBMITDATE " &

@@ -353,6 +353,8 @@
                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                         <ItemStyle HorizontalAlign="Left" VerticalAlign="Top" />
                     </asp:HyperLinkField>
+                    <asp:BoundField DataField="NUMPCTCTRLMEASURESREDEFFIC" HeaderText="Reduction Efficiency" NullDisplayText="No Data" />
+                    <asp:BoundField DataField="POLLUTANTCODE" HeaderText="Pollutant Code" NullDisplayText="No Data" />
                 </Columns>
                 <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
                 <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
@@ -449,6 +451,8 @@
                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                         <ItemStyle HorizontalAlign="Left" VerticalAlign="Top" />
                     </asp:HyperLinkField>
+                    <asp:BoundField DataField="NUMPCTCTRLMEASURESREDEFFIC" HeaderText="Reduction Efficiency" NullDisplayText="No Data" />
+                    <asp:BoundField DataField="POLLUTANTCODE" HeaderText="Pollutant Code" NullDisplayText="No Data" />
                 </Columns>
                 <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
                 <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />

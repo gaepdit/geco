@@ -392,7 +392,7 @@ Partial Class eis_emissionunit_details
             " , l.STRDESC AS PollutantType " &
             " , CASE " &
             " WHEN p.NUMPCTCTRLMEASURESREDEFFIC IS NOT NULL " &
-            " THEN concat(CONVERT(decimal(5, 1), p.NUMPCTCTRLMEASURESREDEFFIC), '%') " &
+            " THEN concat(CONVERT(decimal(6, 3), p.NUMPCTCTRLMEASURESREDEFFIC), '%') " &
             " ELSE NULL " &
             " END AS MeasureEfficiency " &
             " , CONVERT(char, p.LASTEISSUBMITDATE, 101) AS LASTEISSUBMITDATE " &
