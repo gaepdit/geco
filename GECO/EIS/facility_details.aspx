@@ -180,7 +180,7 @@
             Font-Names="Verdana" Font-Size="Small"></asp:TextBox>
     </div>
     <div class="fieldwrapper">
-        <asp:Label ID="LblHorizontalAccuracyMeasure" class="styled" runat="server" Text="Accuracy Measure(meters):"></asp:Label>
+        <asp:Label ID="LblHorizontalAccuracyMeasure" class="styled" runat="server" Text="Accuracy Measure (m):"></asp:Label>
         <asp:TextBox ID="TxtHorizontalAccuracyMeasure" class="readonly" runat="server"
             Text="" ReadOnly="True"></asp:TextBox>
     </div>

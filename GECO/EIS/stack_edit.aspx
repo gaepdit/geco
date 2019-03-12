@@ -262,8 +262,8 @@
                             Display="Dynamic">*</asp:RequiredFieldValidator>
                         <asp:RangeValidator ID="rngvLatitudeMeasure" runat="server" ControlToValidate="TxtLatitudeMeasure"
                             ValidationGroup="vgStack" MaximumValue="35.00028" MinimumValue="30.35944" Type="Double"
-                            ErrorMessage="Latitiude must be between 30.35944 and 35.200028 degrees"
-                            Display="Dynamic">Must be between 30.35944 and 35.200028</asp:RangeValidator>
+                            ErrorMessage="Latitiude must be between 30.35944° and 35.200028°"
+                            Display="Dynamic">Must be between 30.35944° and 35.200028°</asp:RangeValidator>
                     </div>
                     <div class="fieldwrapper">
                         <asp:Label ID="LblLongitudeMeasure" class="styled" runat="server" Text="Longitude:"></asp:Label>
@@ -277,8 +277,8 @@
                             Display="Dynamic">*</asp:RequiredFieldValidator>
                         <asp:RangeValidator ID="rngvLongitudeMeasure" runat="server" ControlToValidate="TxtLongitudeMeasure"
                             ValidationGroup="vgStack" MinimumValue="-85.60889" MaximumValue="-80.84417" Type="Double"
-                            ErrorMessage="Longitude must be between -85.60889 and -80.84417 degrees."
-                            Display="Dynamic">Must be between -85.60889 and -80.84417</asp:RangeValidator>
+                            ErrorMessage="Longitude must be between -85.60889° and -80.84417°."
+                            Display="Dynamic">Must be between -85.60889° and -80.84417°</asp:RangeValidator>
                     </div>
                     <div class="fieldwrapper">
                         <asp:Label class="styled" runat="server" Text="Map:"></asp:Label>
@@ -307,7 +307,7 @@
                     InitialValue="--Select Horizontal Collection Method--" Display="Dynamic">*</asp:RequiredFieldValidator>
             </div>
             <div class="fieldwrapper">
-                <asp:Label ID="LblHorizontalAccuracyMeasure" class="styled" runat="server" Text="Accuracy Measure (meters):"></asp:Label>
+                <asp:Label ID="LblHorizontalAccuracyMeasure" class="styled" runat="server" Text="Accuracy Measure (m):"></asp:Label>
                 <asp:TextBox ID="TxtHorizontalAccuracyMeasure" runat="server" class="editable" Text=""
                     Width="100px" ToolTip="The horizontal measure of the relative accuracy of the latitude and longitude coordinates."
                     MaxLength="4"></asp:TextBox>

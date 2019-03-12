@@ -123,7 +123,7 @@
             ReadOnly="True" Width="400px" Font-Names="Verdana" Font-Size="Small" TextMode="MultiLine"></asp:TextBox>
     </div>
     <div class="fieldwrapper">
-        <asp:Label ID="LblHorizontalAccuracyMeasure" class="styled" runat="server" Text="Accuracy Measure (meters):"></asp:Label>
+        <asp:Label ID="LblHorizontalAccuracyMeasure" class="styled" runat="server" Text="Accuracy Measure (m):"></asp:Label>
         <asp:TextBox ID="TxtHorizontalAccuracyMeasure" runat="server" Text="" class="readonly"
             ReadOnly="True" Width="250px"></asp:TextBox>
     </div>

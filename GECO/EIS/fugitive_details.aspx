@@ -1,4 +1,4 @@
-<%@ Page Title="Fugitive Details - GECO Facility Inventory" Language="VB" MasterPageFile="eismaster.master" AutoEventWireup="false" Inherits="GECO.eis_fugitive_details" Codebehind="fugitive_details.aspx.vb" %>
+﻿<%@ Page Title="Fugitive Details - GECO Facility Inventory" Language="VB" MasterPageFile="eismaster.master" AutoEventWireup="false" Inherits="GECO.eis_fugitive_details" Codebehind="fugitive_details.aspx.vb" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 </asp:Content>
@@ -112,7 +112,7 @@
             ReadOnly="True" Font-Names="Verdana" Font-Size="Small" TextMode="MultiLine" Width="400px"></asp:TextBox>
     </div>
     <div class="fieldwrapper">
-        <asp:Label ID="LblHorizontalAccuracyMeasure" class="styled" runat="server" Text="Accuracy Measure (meters):"></asp:Label>
+        <asp:Label ID="LblHorizontalAccuracyMeasure" class="styled" runat="server" Text="Accuracy Measure (m):"></asp:Label>
         <asp:TextBox ID="TxtHorizontalAccuracyMeasure" class="readonly" runat="server" Text=""
             ReadOnly="True"></asp:TextBox>
     </div>

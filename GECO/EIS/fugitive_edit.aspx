@@ -1,4 +1,4 @@
-<%@ Page Title="Fugitive Edit - GECO Facility Inventory" Language="VB" MasterPageFile="eismaster.master"
+﻿<%@ Page Title="Fugitive Edit - GECO Facility Inventory" Language="VB" MasterPageFile="eismaster.master"
     AutoEventWireup="false" Inherits="GECO.eis_fugitive_edit"
     MaintainScrollPositionOnPostback="true" Codebehind="fugitive_edit.aspx.vb" %>
 
@@ -223,8 +223,8 @@
                             Display="Dynamic">*</asp:RequiredFieldValidator>
                         <asp:RangeValidator ID="rngvLatitudeMeasure" runat="server" ControlToValidate="TxtLatitudeMeasure"
                             ValidationGroup="vgFugitive" MaximumValue="35.00028" MinimumValue="30.35944" Type="Double"
-                            ErrorMessage="Latitude must be between 35.200028 and 30.35944 degrees"
-                            Display="Dynamic">Must be between 35.200028 and 30.35944</asp:RangeValidator>
+                            ErrorMessage="Latitude must be between 35.200028° and 30.35944°"
+                            Display="Dynamic">Must be between 35.200028° and 30.35944°</asp:RangeValidator>
                     </div>
                     <div class="fieldwrapper">
                         <asp:Label ID="LblLongitudeMeasure" class="styled" runat="server" Text="Longitude:"></asp:Label>
@@ -238,8 +238,8 @@
                             Display="Dynamic">*</asp:RequiredFieldValidator>
                         <asp:RangeValidator ID="rngvLongitudeMeasure" runat="server" ControlToValidate="TxtLongitudeMeasure"
                             ValidationGroup="vgFugitive" MinimumValue="-85.60889" MaximumValue="-80.84417" Type="Double"
-                            ErrorMessage="Longitude must be between -85.60889 and -80.84417 degrees."
-                            Display="Dynamic">Must be between -85.60889 and -80.84417</asp:RangeValidator>
+                            ErrorMessage="Longitude must be between -85.60889° and -80.84417°."
+                            Display="Dynamic">Must be between -85.60889° and -80.84417°</asp:RangeValidator>
                     </div>
                     <div class="fieldwrapper">
                         <asp:Label class="styled" runat="server" Text="Map:"></asp:Label>
@@ -268,7 +268,7 @@
                     InitialValue="--Select Horizontal Collection Method--" Display="Dynamic">*</asp:RequiredFieldValidator>
             </div>
             <div class="fieldwrapper">
-                <asp:Label ID="LblHorizontalAccuracyMeasure" class="styled" runat="server" Text="Accuracy Measure (meters):"></asp:Label>
+                <asp:Label ID="LblHorizontalAccuracyMeasure" class="styled" runat="server" Text="Accuracy Measure (m):"></asp:Label>
                 <asp:TextBox ID="TxtHorizontalAccuracyMeasure" runat="server" class="editable" Text=""
                     Width="100px" ToolTip="The horizontal measure of the relative accuracy of teh latitude and longitude coordinates."
                     MaxLength="4"></asp:TextBox>
