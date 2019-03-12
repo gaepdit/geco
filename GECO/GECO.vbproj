@@ -2097,12 +2097,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="EIS\eismaster.master" />
-    <Content Include="EIS\files\epa_qa_checks.xlsx" />
     <Content Include="ES\es.master" />
     <Content Include="AnnualFees\FeeAmendment.xls" />
     <Content Include="AnnualFees\FeeInvoice.rpt" />
     <Content Include="AnnualFees\AnnualFees.master" />
     <Content Include="MainMaster.master" />
+    <Content Include="EIS\files\qachecks.csv" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>

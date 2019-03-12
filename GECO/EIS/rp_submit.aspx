@@ -1219,7 +1219,7 @@
             data, either upon entry or as part of this submittal QA process.
             </p>
             <p>
-                A simplified list of errors and warnings is show below. You may also download the complete spreadsheet of <a href="/EIS/files/epa_qa_checks.xlsx" download>EPA QA Checks</a>.
+                A simplified list of errors and warnings is show below. You may also download the complete spreadsheet of <a href="/EIS/files/qachecks.csv" download>EPA QA Checks</a>.
             </p>
             <h3>List of Possible EIS Errors</h3>
             <asp:GridView ID="gvwEISErrors" runat="server" CellPadding="4"

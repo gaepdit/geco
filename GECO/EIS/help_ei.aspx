@@ -399,7 +399,7 @@
             <p>
                 EPA has provided a spreadsheet listing the QA checks they perform on EIS data. Most of the same checks are performed on EPD 
                 data, either upon entry or as part of the submittal QA process. Download the complete spreadsheet of 
-                <a href="/EIS/files/epa_qa_checks.xlsx" download>EPA QA Checks</a>.
+                <a href="/EIS/files/qachecks.csv" download>EPA QA Checks</a>.
             </p>
         </asp:Panel>
     </div>
