@@ -5,7 +5,7 @@ Imports GECO.MapHelper
 Partial Class eis_stack_details
     Inherits Page
     Public RPStatusCode As String
-    Public conn, conn1, conn2, conn3 As New SqlConnection(oradb)
+    Public conn, conn1, conn2, conn3 As New SqlConnection(DBConnectionString)
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
@@ -42,7 +42,7 @@ Partial Class eis_stack_details
         Dim desc As String
         Dim code As String
 
-        ddlRPtypeCode.Items.Add("--Select Stack Type--")
+        ddlRPTypeCode.Items.Add("--Select Stack Type--")
         Try
             sql = "select strdesc, RPTypeCode FROM EISLK_RPTYPECODE " &
                 "where EISLK_RPTYPECODE.active = '1' " &
@@ -62,7 +62,7 @@ Partial Class eis_stack_details
                 code = dr.Item("RPTypeCode")
                 newListItem.Text = desc
                 newListItem.Value = code
-                ddlRPtypeCode.Items.Add(newListItem)
+                ddlRPTypeCode.Items.Add(newListItem)
 
             End While
 
@@ -401,9 +401,7 @@ Partial Class eis_stack_details
     End Sub
 
     Sub LoadRPApportionment(ByVal fsid As String, ByVal Stkid As String)
-        Dim FacilitySiteID As String = GetCookie(Cookie.AirsNumber)
-        SqlDataSourceRPApp.ConnectionString = oradb
-        SqlDataSourceRPApp.ProviderName = setProviderName()
+        SqlDataSourceRPApp.ConnectionString = DBConnectionString
 
         SqlDataSourceRPApp.SelectCommand = "select eis_process.emissionsunitid, " &
                 "eis_process.processid, " &
@@ -414,9 +412,12 @@ Partial Class eis_stack_details
                 "where eis_process.facilitysiteid = eis_rpapportionment.facilitysiteid " &
                 "and eis_process.emissionsunitid = eis_rpapportionment.emissionsunitid " &
                 "and eis_process.processid = eis_rpapportionment.processid " &
-                "and eis_process.facilitysiteid='" & FacilitySiteID & "' " &
-                "and eis_rpapportionment.releasepointid='" & Stkid & "' " &
+                "and eis_process.facilitysiteid= @FacilitySiteID " &
+                "and eis_rpapportionment.releasepointid= @Stkid " &
                 "and eis_process.Active = '1'"
+
+        SqlDataSourceRPApp.SelectParameters.Add("FacilitySiteID", fsid)
+        SqlDataSourceRPApp.SelectParameters.Add("Stkid", Stkid)
 
         gvwRPApportionment.DataBind()
 

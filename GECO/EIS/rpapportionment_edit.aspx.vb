@@ -3,7 +3,7 @@ Imports System.Data.SqlClient
 
 Partial Class eis_rpapportionment_edit
     Inherits Page
-    Public conn, conn1 As New SqlConnection(oradb)
+    Public conn, conn1 As New SqlConnection(DBConnectionString)
     Public RPApportionmentExists As Boolean
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load

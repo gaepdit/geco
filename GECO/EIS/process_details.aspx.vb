@@ -3,7 +3,7 @@ Imports System.Data.SqlClient
 
 Partial Class eis_process_details
     Inherits Page
-    Public conn, conn1 As New SqlConnection(oradb)
+    Public conn, conn1 As New SqlConnection(DBConnectionString)
     Public IDExists As Boolean
     Public EmissionUnitStatus As String
 
@@ -97,8 +97,8 @@ Partial Class eis_process_details
 
     'Load Release Point Apportionment Datagridview
     Private Sub LoadRPApportionment(ByVal fsid As String, ByVal euid As String, ByVal epid As String)
-        sqldsRPApportionment.ConnectionString = oradb
-        sqldsRPApportionment.ProviderName = setProviderName()
+        sqldsRPApportionment.ConnectionString = DBConnectionString
+
         sqldsRPApportionment.SelectCommand = "SELECT EIS_RPAPPORTIONMENT.RELEASEPOINTID " &
             ", EIS_RELEASEPOINT.STRRPDESCRIPTION " &
             ", EISLK_RPTYPECODE.STRDESC AS RPType " &
@@ -111,37 +111,46 @@ Partial Class eis_process_details
             "AND EIS_RPAPPORTIONMENT.FACILITYSITEID = EIS_RELEASEPOINT.FacilitySiteID " &
             "LEFT JOIN EISLK_RPTYPECODE " &
             "ON EIS_RELEASEPOINT.STRRPTYPECODE = EISLK_RPTYPECODE.RPTYPECODE " &
-            "WHERE EIS_RPAPPORTIONMENT.FACILITYSITEID = '" & fsid & "' " &
-            "AND EIS_RPAPPORTIONMENT.EMISSIONSUNITID = '" & euid & "' " &
-            "AND EIS_RPAPPORTIONMENT.PROCESSID = '" & epid & "' " &
+            "WHERE EIS_RPAPPORTIONMENT.FACILITYSITEID = @fsid " &
+            "AND EIS_RPAPPORTIONMENT.EMISSIONSUNITID = @euid " &
+            "AND EIS_RPAPPORTIONMENT.PROCESSID = @epid " &
             "AND EIS_RPAPPORTIONMENT.ACTIVE = '1' " &
             "AND EISLK_RPTYPECODE.Active = '1' " &
             "ORDER BY 1 "
+
+        sqldsRPApportionment.SelectParameters.Add("fsid", fsid)
+        sqldsRPApportionment.SelectParameters.Add("euid", euid)
+        sqldsRPApportionment.SelectParameters.Add("epid", epid)
 
         gvwRPApportionment.DataBind()
     End Sub
 
     'Load Process Control Measure DataGridView
     Private Sub LoadProcessControlMeasure(ByVal fsid As String, ByVal euid As String, ByVal epid As String)
-        SqlDataSourceID1.ConnectionString = oradb
-        SqlDataSourceID1.ProviderName = setProviderName()
+        SqlDataSourceID1.ConnectionString = DBConnectionString
+
         SqlDataSourceID1.SelectCommand = "select EISLK_CONTROLMEASURECODE.STRDESC as CDType, " &
             "convert(char, EIS_PROCESSCONTROLMEASURE.LastEISSubmitDate, 101) as LastEISSubmitDate " &
             "FROM EIS_PROCESSCONTROLMEASURE, EISLK_CONTROLMEASURECODE " &
-            "where EIS_PROCESSCONTROLMEASURE.FACILITYSITEID = '" & fsid & "' " &
-            "and EIS_PROCESSCONTROLMEASURE.EMISSIONSUNITID ='" & euid & "' " &
-            "and EIS_PROCESSCONTROLMEASURE.PROCESSID ='" & epid & "' " &
+            "where EIS_PROCESSCONTROLMEASURE.FACILITYSITEID = @fsid " &
+            "and EIS_PROCESSCONTROLMEASURE.EMISSIONSUNITID = @euid " &
+            "and EIS_PROCESSCONTROLMEASURE.PROCESSID = @epid " &
             "and EIS_PROCESSCONTROLMEASURE.ACTIVE = '1' " &
             "and EISLK_CONTROLMEASURECODE.Active = '1' " &
             "and EIS_PROCESSCONTROLMEASURE.STRCONTROLMEASURECODE=EISLK_CONTROLMEASURECODE.STRCONTROLMEASURECODE " &
             "order by 1"
+
+        SqlDataSourceID1.SelectParameters.Add("fsid", fsid)
+        SqlDataSourceID1.SelectParameters.Add("euid", euid)
+        SqlDataSourceID1.SelectParameters.Add("epid", epid)
+
         gvwProcessControlMeasure.DataBind()
     End Sub
 
     'Load Process Control Pollutant DataGridView
     Private Sub LoadProcessControlPollutant(ByVal fsid As String, ByVal euid As String, ByVal epid As String)
-        SqlDataSourceID2.ConnectionString = oradb
-        SqlDataSourceID2.ProviderName = setProviderName()
+        SqlDataSourceID2.ConnectionString = DBConnectionString
+
         SqlDataSourceID2.SelectCommand = "SELECT l.STRDESC AS PollutantType " &
             " , CASE " &
             " WHEN p.NUMPCTCTRLMEASURESREDEFFIC IS NOT NULL " &
@@ -164,11 +173,16 @@ Partial Class eis_process_details
             " ON c.FACILITYSITEID = p.FACILITYSITEID " &
             " AND c.EMISSIONSUNITID = p.EMISSIONSUNITID " &
             " AND c.PROCESSID = p.PROCESSID " &
-            "WHERE p.FACILITYSITEID = '" & fsid & "' " &
-            " AND p.EMISSIONSUNITID = '" & euid & "' " &
-            " AND p.PROCESSID = '" & epid & "' " &
+            "WHERE p.FACILITYSITEID = @fsid " &
+            " AND p.EMISSIONSUNITID = @euid " &
+            " AND p.PROCESSID = @epid " &
             " AND p.ACTIVE = '1' " &
             "ORDER BY PollutantType "
+
+        SqlDataSourceID2.SelectParameters.Add("fsid", fsid)
+        SqlDataSourceID2.SelectParameters.Add("euid", euid)
+        SqlDataSourceID2.SelectParameters.Add("epid", epid)
+
         gvwProcessControlPollutant.DataBind()
     End Sub
 
@@ -177,8 +191,8 @@ Partial Class eis_process_details
 
         Dim gvwReportingPeriodSize As Integer
 
-        sqldsReportingPeriod.ConnectionString = oradb
-        sqldsReportingPeriod.ProviderName = setProviderName()
+        sqldsReportingPeriod.ConnectionString = DBConnectionString
+
         sqldsReportingPeriod.SelectCommand = "select strPollutantDescription, " &
             "Case " &
                 "When vw_eis_yearly_poll_emissions.RptPeriodTypeCode = 'O3D' Then 'Summer Day' " &
@@ -190,10 +204,15 @@ Partial Class eis_process_details
             "prev3_fltTotalEmissions, " &
             "prev4_fltTotalEmissions " &
             "FROM vw_eis_yearly_poll_emissions " &
-            "where FacilitySiteID = '" & fsid & "' " &
-            "and EmissionsUnitID = '" & euid & "' " &
-            "and ProcessID = '" & epid & "' " &
+            "where FacilitySiteID = @fsid " &
+            "and EmissionsUnitID = @euid " &
+            "and ProcessID = @epid " &
             "order by strPollutantDescription, RptPeriodTypeCode"
+
+        sqldsReportingPeriod.SelectParameters.Add("fsid", fsid)
+        sqldsReportingPeriod.SelectParameters.Add("euid", euid)
+        sqldsReportingPeriod.SelectParameters.Add("epid", epid)
+
         gvwReportingPeriods.Columns(2).HeaderText = MaxYear
         gvwReportingPeriods.Columns(3).HeaderText = MaxYear - 1
         gvwReportingPeriods.Columns(4).HeaderText = MaxYear - 2

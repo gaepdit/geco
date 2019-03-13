@@ -4,7 +4,7 @@ Imports EpdIt.DBUtilities
 
 Partial Class EIS_rp_facilitystatus
     Inherits Page
-    Public conn, conn1 As New SqlConnection(oradb)
+    Public conn, conn1 As New SqlConnection(DBConnectionString)
 
     Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
 

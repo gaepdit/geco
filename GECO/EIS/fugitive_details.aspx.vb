@@ -5,7 +5,7 @@ Imports GECO.MapHelper
 Partial Class eis_fugitive_details
     Inherits Page
     Public RPStatusCode As String
-    Public conn, conn1, conn2, conn3 As New SqlConnection(oradb)
+    Public conn, conn1, conn2, conn3 As New SqlConnection(DBConnectionString)
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
@@ -343,22 +343,23 @@ Partial Class eis_fugitive_details
     End Sub
 
     Sub LoadRPApportionment(ByVal fsid As String, ByVal RPid As String)
-        Dim FacilitySiteID As String = GetCookie(Cookie.AirsNumber)
-        SqlDataSourceRPApp.ConnectionString = oradb
-        SqlDataSourceRPApp.ProviderName = setProviderName()
+        SqlDataSourceRPApp.ConnectionString = DBConnectionString
 
         SqlDataSourceRPApp.SelectCommand = "select eis_process.emissionsunitid, " &
-                "eis_process.processid, " &
-                "eis_process.strprocessdescription, " &
-                "eis_rpapportionment.releasepointid, " &
-                "concat(eis_rpapportionment.intaveragepercentemissions, '%') as intaveragepercentemissions " &
-                "FROM eis_rpapportionment, eis_process " &
-                "where eis_process.facilitysiteid = eis_rpapportionment.facilitysiteid " &
-                "and eis_process.emissionsunitid = eis_rpapportionment.emissionsunitid " &
-                "and eis_process.processid = eis_rpapportionment.processid " &
-                "and eis_process.facilitysiteid='" & FacilitySiteID & "' " &
-                "and eis_rpapportionment.releasepointid='" & RPid & "' " &
-                "and eis_process.Active = '1'"
+                " eis_process.processid, " &
+                " eis_process.strprocessdescription, " &
+                " eis_rpapportionment.releasepointid, " &
+                " concat(eis_rpapportionment.intaveragepercentemissions, '%') as intaveragepercentemissions " &
+                " FROM eis_rpapportionment, eis_process " &
+                " where eis_process.facilitysiteid = eis_rpapportionment.facilitysiteid " &
+                " and eis_process.emissionsunitid = eis_rpapportionment.emissionsunitid " &
+                " and eis_process.processid = eis_rpapportionment.processid " &
+                " and eis_process.facilitysiteid= @fsid " &
+                " and eis_rpapportionment.releasepointid= @RPid " &
+                " and eis_process.Active = '1'"
+
+        SqlDataSourceRPApp.SelectParameters.Add("fsid", fsid)
+        SqlDataSourceRPApp.SelectParameters.Add("RPid", RPid)
 
         gvwRPApportionment.DataBind()
 

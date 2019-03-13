@@ -30,8 +30,8 @@ Partial Class eis_process_summary
 
     Private Sub loadProcessSummaryGVW()
 
-        SqlDataSourceID1.ConnectionString = oradb
-        SqlDataSourceID1.ProviderName = setProviderName()
+        SqlDataSourceID1.ConnectionString = DBConnectionString
+
         SqlDataSourceID1.SelectCommand = "SELECT EIS_PROCESS.EMISSIONSUNITID " &
             ", (SELECT eislk_UnitStatusCode.strDesc " &
             "FROM eislk_UnitStatusCode " &

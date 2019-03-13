@@ -3,7 +3,7 @@ Imports System.Data.SqlClient
 
 Partial Class eis_processcontrolapproach_edit
     Inherits Page
-    Public conn, conn1 As New SqlConnection(oradb)
+    Public conn, conn1 As New SqlConnection(DBConnectionString)
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 

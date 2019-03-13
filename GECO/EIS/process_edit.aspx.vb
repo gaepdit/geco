@@ -3,7 +3,7 @@ Imports System.Data.SqlClient
 
 Partial Class eis_process_edit
     Inherits Page
-    Public conn, conn1 As New SqlConnection(oradb)
+    Public conn, conn1 As New SqlConnection(DBConnectionString)
     Public SCCExists As Boolean
     Public ProcessEISSubmit As Boolean
     Public ProcessUsedInProcessReportingPeriod As Boolean

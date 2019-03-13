@@ -3,7 +3,7 @@ Imports System.Data.SqlClient
 
 Partial Class eis_releasepoint_summary
     Inherits Page
-    Public conn, conn1 As New SqlConnection(oradb)
+    Public conn, conn1 As New SqlConnection(DBConnectionString)
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
@@ -44,8 +44,8 @@ Partial Class eis_releasepoint_summary
         Dim FacilitySiteID As String = GetCookie(Cookie.AirsNumber)
 
         'Fugitive Release Point Gridview
-        SqlDataSourceID1.ConnectionString = oradb
-        SqlDataSourceID1.ProviderName = setProviderName()
+        SqlDataSourceID1.ConnectionString = DBConnectionString
+
         SqlDataSourceID1.SelectCommand = "select " &
                 "ReleasepointID, " &
                 "strRPDescription, " &
@@ -56,10 +56,12 @@ Partial Class eis_releasepoint_summary
                 "from " &
                 "eis_ReleasePoint " &
                 "where " &
-                "FacilitySiteID = '" & FacilitySiteID & "' and " &
+                "FacilitySiteID = @FacilitySiteID and " &
                 "Active = '1' and " &
                 "eis_ReleasePoint.strRPTypeCode = '1' " &
                 "order by ReleasePointID"
+
+        SqlDataSourceID1.SelectParameters.Add("FacilitySiteID", FacilitySiteID)
 
         gvwFugRPSummary.DataBind()
 
@@ -70,8 +72,8 @@ Partial Class eis_releasepoint_summary
         Dim FacilitySiteID As String = GetCookie(Cookie.AirsNumber)
 
         'Stack Release Point Gridview
-        SqlDataSourceID2.ConnectionString = oradb
-        SqlDataSourceID2.ProviderName = setProviderName()
+        SqlDataSourceID2.ConnectionString = DBConnectionString
+
         SqlDataSourceID2.SelectCommand = "select " &
                     "ReleasePointID, strRPDescription, " &
                     "(select eislk_RPTypeCode.strDesc FROM eislk_RPTypeCode where " &
@@ -83,10 +85,12 @@ Partial Class eis_releasepoint_summary
                     "LastEISSubmitDate " &
                     "FROM eis_ReleasePoint " &
                     "where " &
-                    "FacilitySiteID = '" & FacilitySiteID & "' and " &
+                    "FacilitySiteID = @FacilitySiteID and " &
                     "Active = '1' and " &
                     "eis_ReleasePoint.strRPTypeCode <> '1' " &
                     "order by ReleasePointID "
+
+        SqlDataSourceID2.SelectParameters.Add("FacilitySiteID", FacilitySiteID)
 
         gvwRPSummary.DataBind()
 
@@ -225,15 +229,17 @@ Partial Class eis_releasepoint_summary
 
         Dim FacilitySiteID As String = GetCookie(Cookie.AirsNumber)
 
-        sqldsDeletedRP.ConnectionString = oradb
-        sqldsDeletedRP.ProviderName = setProviderName()
+        sqldsDeletedRP.ConnectionString = DBConnectionString
+
         sqldsDeletedRP.SelectCommand = "select eis_ReleasePoint.ReleasePointID, eis_ReleasePoint.strRPDescription, " &
                             "(select eislk_RPTypeCode.strDesc FROM eislk_RPTypeCode where eislk_RPTypeCode.RPTypeCode = eis_ReleasePoint.strRPTypeCode) as strRPType " &
                             "FROM eis_ReleasePoint " &
                             "where " &
-                            "FacilitySiteID = '" & FacilitySiteID & "' " &
+                            "FacilitySiteID = @FacilitySiteID " &
                             "and Active = '0' " &
                             "order by eis_ReleasePoint.ReleasePointID"
+
+        sqldsDeletedRP.SelectParameters.Add("FacilitySiteID", FacilitySiteID)
 
         gvwDeletedRP.DataBind()
 
@@ -243,15 +249,17 @@ Partial Class eis_releasepoint_summary
 
         Dim FacilitySiteID As String = GetCookie(Cookie.AirsNumber)
 
-        sqldsDeletedRP.ConnectionString = oradb
-        sqldsDeletedRP.ProviderName = setProviderName()
+        sqldsDeletedRP.ConnectionString = DBConnectionString
+
         sqldsDeletedRP.SelectCommand = "select eis_ReleasePoint.ReleasePointID, eis_ReleasePoint.strRPDescription, " &
                             "(select eislk_RPTypeCode.strDesc FROM eislk_RPTypeCode where eislk_RPTypeCode.RPTypeCode = eis_ReleasePoint.strRPTypeCode) as strRPType " &
                             "FROM eis_ReleasePoint " &
                             "where " &
-                            "FacilitySiteID = '" & FacilitySiteID & "' " &
+                            "FacilitySiteID = @FacilitySiteID " &
                             "and Active = '999' " &
                             "order by eis_ReleasePoint.ReleasePointID"
+
+        sqldsDeletedRP.SelectParameters.Add("FacilitySiteID", FacilitySiteID)
 
         gvwDeletedRP.DataBind()
 

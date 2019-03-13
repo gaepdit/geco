@@ -5,7 +5,7 @@ Imports GECO.MapHelper
 
 Partial Class eis_fugitive_edit
     Inherits Page
-    Public conn, conn1, conn2, conn3 As New SqlConnection(oradb)
+    Public conn, conn1, conn2, conn3 As New SqlConnection(DBConnectionString)
     Public SaveFugitive As String = "Fugitive information saved successfully."
     Public RPStatus As String
     Public FugitiveGCDataMissing As Boolean
@@ -432,11 +432,9 @@ Partial Class eis_fugitive_edit
     End Sub
 
     Sub LoadRPApportionment(ByVal fsid As String, ByVal RPid As String)
-        Dim FacilitySiteID As String = GetCookie(Cookie.AirsNumber)
-
         RPStatus = ddlFugitiveStatusCode.SelectedValue
-        SqlDataSourceRPApp.ConnectionString = oradb
-        SqlDataSourceRPApp.ProviderName = setProviderName()
+
+        SqlDataSourceRPApp.ConnectionString = DBConnectionString
 
         SqlDataSourceRPApp.SelectCommand = "select eis_process.emissionsunitid, " &
                 "eis_process.processid, " &
@@ -447,9 +445,12 @@ Partial Class eis_fugitive_edit
                 "where eis_process.facilitysiteid = eis_rpapportionment.facilitysiteid " &
                 "and eis_process.emissionsunitid = eis_rpapportionment.emissionsunitid " &
                 "and eis_process.processid = eis_rpapportionment.processid " &
-                "and eis_process.facilitysiteid='" & FacilitySiteID & "' " &
-                "and eis_rpapportionment.releasepointid='" & RPid & "' " &
+                "and eis_process.facilitysiteid= @fsid " &
+                "and eis_rpapportionment.releasepointid= @RPid " &
                 "and eis_process.Active = '1'"
+
+        SqlDataSourceRPApp.SelectParameters.Add("fsid", fsid)
+        SqlDataSourceRPApp.SelectParameters.Add("RPid", RPid)
 
         gvwRPApportionment.DataBind()
 
