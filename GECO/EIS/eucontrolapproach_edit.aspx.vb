@@ -128,7 +128,7 @@ Partial Class eis_eucontrolapproach_edit
                 " , u.EMISSIONSUNITID " &
                 " , u.POLLUTANTCODE " &
                 " , l.STRDESC AS PollutantType " &
-                " , CONVERT(decimal(6, 3), u.NUMPCTCTRLMEASURESREDEFFIC) AS MeasureEfficiency " &
+                " , CONVERT(decimal(4, 1), u.NUMPCTCTRLMEASURESREDEFFIC) AS MeasureEfficiency " &
                 " , FORMAT(u.LASTEISSUBMITDATE, 'MM/dd/yyyy') AS LASTEISSUBMITDATE " &
                 " , CONVERT(decimal(5, 2), c.NUMPCTCTRLAPPROACHCAPEFFIC * c.NUMPCTCTRLAPPROACHEFFECT * u.NUMPCTCTRLMEASURESREDEFFIC / 10000) " &
                 " AS CalculatedReduction " &
@@ -347,7 +347,7 @@ Partial Class eis_eucontrolapproach_edit
         Dim FacilitySiteID As String = GetCookie(Cookie.AirsNumber)
         Dim EmissionsUnitID As String = txtEmissionUnitID.Text
         Dim CPcode As String = ddlControlPollutants.SelectedValue
-        Dim CMReductEff As Decimal = Decimal.Round(CDec(txtCMReductionEff.Text), 3)
+        Dim CMReductEff As Decimal = Decimal.Round(CDec(txtCMReductionEff.Text), 1)
 
 
         Dim UpdateUserID As String = GetCookie(GecoCookie.UserID)
@@ -418,7 +418,7 @@ Partial Class eis_eucontrolapproach_edit
     'Update the Control Pollutant Efficiency
     Protected Sub gvwEUControlPollutant_RowUpdating(ByVal sender As Object, ByVal e As GridViewUpdateEventArgs) Handles gvwEUControlPollutant.RowUpdating
 
-        Dim MeasureEfficiency As Decimal = Decimal.Round(CDec(DirectCast(gvwEUControlPollutant.Rows(e.RowIndex).FindControl("txtMeasureEfficiency"), TextBox).Text), 3)
+        Dim MeasureEfficiency As Decimal = Decimal.Round(CDec(DirectCast(gvwEUControlPollutant.Rows(e.RowIndex).FindControl("txtMeasureEfficiency"), TextBox).Text), 1)
         Dim FacilitySiteID As String = gvwEUControlPollutant.DataKeys(e.RowIndex).Values(0).ToString
         Dim EmissionsUnitID As String = gvwEUControlPollutant.DataKeys(e.RowIndex).Values(1).ToString
         Dim PollutantCode As String = gvwEUControlPollutant.DataKeys(e.RowIndex).Values(2).ToString

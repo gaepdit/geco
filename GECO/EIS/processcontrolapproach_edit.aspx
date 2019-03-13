@@ -197,7 +197,7 @@
                         <asp:Label ID="lblReductionEfficiency" runat="server" Text='<%# Eval("ReductionEfficiency")%>'></asp:Label>
                     </ItemTemplate>
                     <EditItemTemplate>
-                        <asp:TextBox ID="txtReductionEfficiency" MaxLength="7" runat="server"
+                        <asp:TextBox ID="txtReductionEfficiency" MaxLength="4" runat="server"
                             Text='<%# Eval("ReductionEfficiency")%>'></asp:TextBox>
                         <asp:Label ID="lblError" Text="" Visible="false" Style="color: red" runat="server"></asp:Label>
                         <asp:RequiredFieldValidator
@@ -205,11 +205,11 @@
                             ControlToValidate="txtReductionEfficiency" Display="Dynamic"
                             ErrorMessage="The reduction efficiency is required."></asp:RequiredFieldValidator>
                         <asp:RegularExpressionValidator ID="RegexReductionEfficiency" runat="server" ControlToValidate="txtReductionEfficiency"
-                            ErrorMessage="Control Approach Reduction Efficiency can have at most three decimal places. " ValidationExpression="\d*(\.\d{0,3})?"
-                            ValidationGroup="vgCMReductionEff"></asp:RegularExpressionValidator><%-- Regex: https://regexr.com/4a34g --%>
+                            ErrorMessage="Control Approach Reduction Efficiency can have at most one decimal place. " ValidationExpression="\d*(\.\d{0,1})?"
+                            ValidationGroup="vgCMReductionEff"></asp:RegularExpressionValidator><%-- Regex: https://regexr.com/4a5ql --%>
                         <asp:RangeValidator ID="rngvReductionEfficiency" runat="server" ValidationGroup="vgPollutantGVW" Type="Double"
-                            ControlToValidate="txtReductionEfficiency" Display="Dynamic" MaximumValue="99.999" MinimumValue="5.0"
-                            ErrorMessage="The reduction efficiency must be between 5.0 and 99.999 percent."></asp:RangeValidator>
+                            ControlToValidate="txtReductionEfficiency" Display="Dynamic" MaximumValue="99.9" MinimumValue="5.0"
+                            ErrorMessage="The reduction efficiency must be between 5.0 and 99.9 percent."></asp:RangeValidator>
                     </EditItemTemplate>
                     <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                 </asp:TemplateField>
@@ -238,7 +238,7 @@
     <div class="fieldwrapper">
         <asp:Label ID="lblCMReductionEff" class="styled" runat="server" Text="Control Approach Reduction Efficiency(%):"></asp:Label>
         <asp:TextBox ID="txtCMReductionEff" runat="server" class="editable" Text=""
-            Width="100px" MaxLength="7"></asp:TextBox>
+            Width="100px" MaxLength="4"></asp:TextBox>
         <asp:RequiredFieldValidator ID="rqvCMReductionEff" runat="server" ControlToValidate="txtCMReductionEff"
             Display="Dynamic" ErrorMessage="The pollutant reduction efficiency is required."
             ValidationGroup="vgPollutantDetails"></asp:RequiredFieldValidator>
@@ -246,13 +246,13 @@
             TargetControlID="txtCMReductionEff" FilterType="Numbers, Custom" ValidChars=".">
         </act:FilteredTextBoxExtender>
         <asp:RegularExpressionValidator ID="RegexCMReductionEff" runat="server" ControlToValidate="txtCMReductionEff"
-            ErrorMessage="Control Approach Reduction Efficiency can have at most three decimal places. " ValidationExpression="\d*(\.\d{0,3})?"
+            ErrorMessage="Control Approach Reduction Efficiency can have at most one decimal place. " ValidationExpression="\d*(\.\d{0,1})?"
             ValidationGroup="vgCMReductionEff">At most three decimal places allowed.</asp:RegularExpressionValidator>
         <asp:RangeValidator ID="rngvCMReductionEff" runat="server" ControlToValidate="txtCMReductionEff"
             ValidationGroup="vgPollutantDetails" Display="Dynamic"
-            MaximumValue="99.999" MinimumValue="5.0"
-            ErrorMessage="The reduction efficiency must be between 5.0 and 99.999 percent"
-            Type="Double">Must be between 5.0 and 99.999 percent</asp:RangeValidator>
+            MaximumValue="99.9" MinimumValue="5.0"
+            ErrorMessage="The reduction efficiency must be between 5.0 and 99.9 percent"
+            Type="Double">Must be between 5.0 and 99.9 percent</asp:RangeValidator>
         <asp:Button ID="btnAddControlPollutant" runat="server" Text="Add" ToolTip=""
             Font-Size="Small" ValidationGroup="vgPollutantDetails" />
     </div>

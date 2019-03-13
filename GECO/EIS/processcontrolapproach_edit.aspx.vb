@@ -97,7 +97,7 @@ Partial Class eis_processcontrolapproach_edit
                 " , p.PROCESSID " &
                 " , p.POLLUTANTCODE " &
                 " , l.STRDESC AS PollutantType " &
-                " , CONVERT(decimal(6, 3), p.NUMPCTCTRLMEASURESREDEFFIC) AS ReductionEfficiency " &
+                " , CONVERT(decimal(4, 1), p.NUMPCTCTRLMEASURESREDEFFIC) AS ReductionEfficiency " &
                 " , p.LASTEISSUBMITDATE " &
                 " , c.NUMPCTCTRLAPPROACHCAPEFFIC " &
                 " , c.NUMPCTCTRLAPPROACHEFFECT " &
@@ -426,7 +426,7 @@ Partial Class eis_processcontrolapproach_edit
         Dim emissionunitid As String = txtEmissionUnitID.Text
         Dim processID As String = txtProcessID.Text
         Dim CPcode As String = ddlControlPollutants.SelectedValue
-        Dim CMReductEff As Decimal = Decimal.Round(CDec(txtCMReductionEff.Text), 3)
+        Dim CMReductEff As Decimal = Decimal.Round(CDec(txtCMReductionEff.Text), 1)
 
         Dim UpdateUserID As String = GetCookie(GecoCookie.UserID)
         Dim UpdateUserName As String = GetCookie(GecoCookie.UserName)
@@ -594,7 +594,7 @@ Partial Class eis_processcontrolapproach_edit
     'Update the Control Pollutant Efficiency
     Protected Sub gvwProcessCtrlPollutant_RowUpdating(ByVal sender As Object, ByVal e As System.Web.UI.WebControls.GridViewUpdateEventArgs) Handles gvwProcessCtrlPollutant.RowUpdating
         Try
-            Dim ReductionEfficiency As Decimal = Decimal.Round(CDec(DirectCast(gvwProcessCtrlPollutant.Rows(e.RowIndex).FindControl("txtReductionEfficiency"), TextBox).Text), 3)
+            Dim ReductionEfficiency As Decimal = Decimal.Round(CDec(DirectCast(gvwProcessCtrlPollutant.Rows(e.RowIndex).FindControl("txtReductionEfficiency"), TextBox).Text), 1)
             Dim FacilitySiteID As String = gvwProcessCtrlPollutant.DataKeys(e.RowIndex).Values(0).ToString
             Dim EmissionsUnitID As String = gvwProcessCtrlPollutant.DataKeys(e.RowIndex).Values(1).ToString
             Dim ProcessID As String = gvwProcessCtrlPollutant.DataKeys(e.RowIndex).Values(2).ToString
