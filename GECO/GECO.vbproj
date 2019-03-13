@@ -1382,7 +1382,6 @@
     <Content Include="EIS\rp_reset.aspx" />
     <Content Include="EIS\rp_submit.aspx" />
     <Content Include="EIS\rp_summary.aspx" />
-    <Content Include="EIS\samplecode.aspx" />
     <Content Include="EIS\sccfinder.aspx" />
     <Content Include="EIS\SourceClassCode.asmx" />
     <Content Include="EIS\stack_details.aspx" />
@@ -1599,9 +1598,6 @@
     </Compile>
     <Compile Include="EIS\rp_summary.aspx.designer.vb">
       <DependentUpon>rp_summary.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="EIS\samplecode.aspx.designer.vb">
-      <DependentUpon>samplecode.aspx</DependentUpon>
     </Compile>
     <Compile Include="EIS\sccfinder.aspx.designer.vb">
       <DependentUpon>sccfinder.aspx</DependentUpon>
@@ -2001,10 +1997,6 @@
     </Compile>
     <Compile Include="EIS\rp_summary.aspx.vb">
       <DependentUpon>rp_summary.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="EIS\samplecode.aspx.vb">
-      <DependentUpon>samplecode.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="EIS\sccfinder.aspx.vb">
