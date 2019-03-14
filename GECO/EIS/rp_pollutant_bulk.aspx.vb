@@ -24,7 +24,9 @@ Partial Class EIS_rp_pollutant_bulk
         TopPager.PageSize = ddlPager.SelectedValue
         BottomPager.PageSize = ddlPager.SelectedValue
 
-        ' IMPORTANT >> Sort order set for use by UpdateChanges subroutine (summer day check needs annual amt to work correctly so Annual must be before Summer Day value in the gvw)
+        ' IMPORTANT >> 
+        ' Sort order set for use by UpdateChanges subroutine (summer day check needs annual amt to work correctly 
+        ' so Annual must be before Summer Day value in the gvw)
         Dim query = " SELECT " &
         "     EMISSIONSUNITID, " &
         "     PROCESSID, " &

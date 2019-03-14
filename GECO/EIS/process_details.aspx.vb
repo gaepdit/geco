@@ -1,9 +1,9 @@
-﻿Imports System.Data
-Imports System.Data.SqlClient
+﻿Imports System.Data.SqlClient
+Imports EpdIt.DBUtilities
 
 Partial Class eis_process_details
     Inherits Page
-    Public conn, conn1 As New SqlConnection(DBConnectionString)
+
     Public IDExists As Boolean
     Public EmissionUnitStatus As String
 
@@ -85,11 +85,13 @@ Partial Class eis_process_details
 
             ShowFacilityInventoryMenu()
             ShowEISHelpMenu()
+
             If EISStatus = "2" Then
                 ShowEmissionInventoryMenu()
             Else
                 HideEmissionInventoryMenu()
             End If
+
             HideTextBoxBorders(Me)
 
         End If
@@ -221,6 +223,7 @@ Partial Class eis_process_details
         gvwReportingPeriods.DataBind()
 
         gvwReportingPeriodSize = gvwReportingPeriods.Rows.Count
+
         If gvwReportingPeriodSize = 0 Then
             lblGVWReportingPeriodEmpty.Text = "This process has not participated in a previous reporting period."
         End If
@@ -229,38 +232,22 @@ Partial Class eis_process_details
 
     'Load the Add Process Release Point dropdown list.
     Private Sub LoadReleasePointDDL(ByVal fsid As String)
-        Dim sql As String
-        Dim rpID As String
-
         ddlexistReleasePointID.Items.Add("--Select Release Point ID--")
-        Try
-            sql = "select RELEASEPOINTID FROM EIS_RELEASEPOINT " &
-                  "where FacilitySiteID = '" & fsid & "' and " &
-                  "strRPStatusCode = 'OP' and " &
-                  "Active = '1' " &
-                  "Order by RELEASEPOINTID"
 
-            Dim cmd As New SqlCommand(sql, conn)
+        Dim query As String = "select RELEASEPOINTID " &
+            " From EIS_RELEASEPOINT " &
+            " where FacilitySiteID = @fsid " &
+            " and strRPStatusCode = 'OP' " &
+            " and Active = '1' " &
+            " Order by RELEASEPOINTID "
 
-            If conn.State = ConnectionState.Open Then
-            Else
-                conn.Open()
-            End If
+        Dim dt As DataTable = DB.GetDataTable(query, New SqlParameter("@fsid", fsid))
 
-            Dim dr As SqlDataReader = cmd.ExecuteReader
-
-            While dr.Read
-                rpID = dr.Item("RELEASEPOINTID")
-                ddlexistReleasePointID.Items.Add(rpID)
-            End While
-
-        Catch ex As Exception
-            ErrorReport(ex)
-        Finally
-            If conn.State = ConnectionState.Open Then
-                conn.Close()
-            End If
-        End Try
+        If dt IsNot Nothing Then
+            For Each dr As DataRow In dt.Rows
+                ddlexistReleasePointID.Items.Add(GetNullableString(dr.Item("RELEASEPOINTID")))
+            Next
+        End If
     End Sub
 
     'Load the Process details
@@ -371,7 +358,6 @@ Partial Class eis_process_details
 
     'Load the Process Control Approach
     Private Sub LoadProcessControlApproach(ByVal fsid As String, ByVal euid As String, ByVal epid As String)
-        Dim sql As String = ""
         Dim UpdateUserID As String = GetCookie(GecoCookie.UserID)
         Dim UpdateUserName As String = GetCookie(GecoCookie.UserName)
         Dim UpdateUser As String = ""
@@ -380,96 +366,93 @@ Partial Class eis_process_details
         Dim PCTCTRLAPPROACHEFFECT As Decimal
 
         Try
-            sql = "select EIS_PROCESSCONTROLAPPROACH.STRCONTROLAPPROACHDESC, " &
-                        "EIS_PROCESSCONTROLAPPROACH.NUMPCTCTRLAPPROACHCAPEFFIC, " &
-                        "EIS_PROCESSCONTROLAPPROACH.NUMPCTCTRLAPPROACHEFFECT, " &
-                        "EIS_PROCESSCONTROLAPPROACH.INTFIRSTINVENTORYYEAR, " &
-                        "EIS_PROCESSCONTROLAPPROACH.INTLASTINVENTORYYEAR, " &
-                        "convert(char, UpdateDateTime, 20) As UpdateDateTime,  " &
-                        "convert(char, LastEISSubmitDate, 101) As LastEISSubmitDate, " &
-                        "UpdateUser, " &
-                        "EIS_PROCESSCONTROLAPPROACH.STRCONTROLAPPROACHCOMMENT " &
-                        "FROM EIS_PROCESSCONTROLAPPROACH " &
-                        "where EIS_PROCESSCONTROLAPPROACH.FACILITYSITEID = '" & fsid & "' " &
-                        "and EIS_PROCESSCONTROLAPPROACH.EMISSIONSUNITID = '" & euid & "' and EIS_PROCESSCONTROLAPPROACH.ACTIVE = '1'" &
-                        "and EIS_PROCESSCONTROLAPPROACH.PROCESSID = '" & epid & "' "
+            Dim query As String = "select EIS_PROCESSCONTROLAPPROACH.STRCONTROLAPPROACHDESC, " &
+                "EIS_PROCESSCONTROLAPPROACH.NUMPCTCTRLAPPROACHCAPEFFIC, " &
+                "EIS_PROCESSCONTROLAPPROACH.NUMPCTCTRLAPPROACHEFFECT, " &
+                "EIS_PROCESSCONTROLAPPROACH.INTFIRSTINVENTORYYEAR, " &
+                "EIS_PROCESSCONTROLAPPROACH.INTLASTINVENTORYYEAR, " &
+                "convert(char, UpdateDateTime, 20) As UpdateDateTime,  " &
+                "convert(char, LastEISSubmitDate, 101) As LastEISSubmitDate, " &
+                "UpdateUser, " &
+                "EIS_PROCESSCONTROLAPPROACH.STRCONTROLAPPROACHCOMMENT " &
+                "FROM EIS_PROCESSCONTROLAPPROACH " &
+                "where EIS_PROCESSCONTROLAPPROACH.FACILITYSITEID = @fsid " &
+                "and EIS_PROCESSCONTROLAPPROACH.EMISSIONSUNITID = @euid and EIS_PROCESSCONTROLAPPROACH.ACTIVE = '1'" &
+                "and EIS_PROCESSCONTROLAPPROACH.PROCESSID = @epid "
 
-            Dim cmd As New SqlCommand(sql, conn)
+            Dim params As SqlParameter() = {
+                New SqlParameter("@fsid", fsid),
+                New SqlParameter("@euid", euid),
+                New SqlParameter("@epid", epid)
+            }
 
-            If conn.State = ConnectionState.Open Then
-            Else
-                conn.Open()
-            End If
+            Dim dr As DataRow = DB.GetDataRow(query, params)
 
-            Dim dr As SqlDataReader = cmd.ExecuteReader
+            If dr IsNot Nothing Then
 
-            dr.Read()
-
-            If IsDBNull(dr("STRCONTROLAPPROACHDESC")) Then
-                txtControlApproachDescription.Text = ""
-            Else
-                txtControlApproachDescription.Text = dr.Item("STRCONTROLAPPROACHDESC")
-            End If
-            If IsDBNull(dr("NUMPCTCTRLAPPROACHCAPEFFIC")) Then
-                txtPctCtrlApproachCapEffic.Text = ""
-            Else
-                PctCtrlApproachCapEffic = dr.Item("NUMPCTCTRLAPPROACHCAPEFFIC")
-                If PctCtrlApproachCapEffic = -1 Then
+                If IsDBNull(dr("STRCONTROLAPPROACHDESC")) Then
+                    txtControlApproachDescription.Text = ""
+                Else
+                    txtControlApproachDescription.Text = dr.Item("STRCONTROLAPPROACHDESC")
+                End If
+                If IsDBNull(dr("NUMPCTCTRLAPPROACHCAPEFFIC")) Then
                     txtPctCtrlApproachCapEffic.Text = ""
                 Else
-                    txtPctCtrlApproachCapEffic.Text = PctCtrlApproachCapEffic
+                    PctCtrlApproachCapEffic = dr.Item("NUMPCTCTRLAPPROACHCAPEFFIC")
+                    If PctCtrlApproachCapEffic = -1 Then
+                        txtPctCtrlApproachCapEffic.Text = ""
+                    Else
+                        txtPctCtrlApproachCapEffic.Text = PctCtrlApproachCapEffic
+                    End If
                 End If
-            End If
-            If IsDBNull(dr("NUMPCTCTRLAPPROACHEFFECT")) Then
-                txtPctCtrlApproachEffect.Text = ""
-            Else
-                PCTCTRLAPPROACHEFFECT = dr.Item("NUMPCTCTRLAPPROACHEFFECT")
-                If PCTCTRLAPPROACHEFFECT = -1 Then
+                If IsDBNull(dr("NUMPCTCTRLAPPROACHEFFECT")) Then
                     txtPctCtrlApproachEffect.Text = ""
                 Else
-                    txtPctCtrlApproachEffect.Text = PCTCTRLAPPROACHEFFECT
+                    PCTCTRLAPPROACHEFFECT = dr.Item("NUMPCTCTRLAPPROACHEFFECT")
+                    If PCTCTRLAPPROACHEFFECT = -1 Then
+                        txtPctCtrlApproachEffect.Text = ""
+                    Else
+                        txtPctCtrlApproachEffect.Text = PCTCTRLAPPROACHEFFECT
+                    End If
                 End If
-            End If
-            If IsDBNull(dr("INTFIRSTINVENTORYYEAR")) Then
-                txtFirstInventoryYear.Text = ""
-            Else
-                txtFirstInventoryYear.Text = dr.Item("INTFIRSTINVENTORYYEAR")
-            End If
-            If IsDBNull(dr("INTLASTINVENTORYYEAR")) Then
-                txtLastInventoryYear.Text = ""
-            Else
-                txtLastInventoryYear.Text = dr.Item("INTLASTINVENTORYYEAR")
-            End If
-            If IsDBNull(dr("STRCONTROLAPPROACHCOMMENT")) Then
-                txtControlApproachComment.Text = ""
-            Else
-                txtControlApproachComment.Text = dr.Item("STRCONTROLAPPROACHCOMMENT")
-            End If
-            If IsDBNull(dr("LastEISSubmitDate")) Then
-                txtLastSubmitEPA_CP.Text = "Never submitted"
-            Else
-                txtLastSubmitEPA_CP.Text = dr.Item("LastEISSubmitDate")
-            End If
-            If IsDBNull(dr("UpdateUser")) Then
-                UpdateUser = ""
-            Else
-                UpdateUser = dr.Item("UpdateUser")
-                UpdateUser = Mid(UpdateUser, InStr(UpdateUser, "-") + 1)
-            End If
-            If IsDBNull(dr("UpdateDateTime")) Then
-                UpdateDateTime = ""
-            Else
-                UpdateDateTime = dr.Item("UpdateDateTime")
-            End If
+                If IsDBNull(dr("INTFIRSTINVENTORYYEAR")) Then
+                    txtFirstInventoryYear.Text = ""
+                Else
+                    txtFirstInventoryYear.Text = dr.Item("INTFIRSTINVENTORYYEAR")
+                End If
+                If IsDBNull(dr("INTLASTINVENTORYYEAR")) Then
+                    txtLastInventoryYear.Text = ""
+                Else
+                    txtLastInventoryYear.Text = dr.Item("INTLASTINVENTORYYEAR")
+                End If
+                If IsDBNull(dr("STRCONTROLAPPROACHCOMMENT")) Then
+                    txtControlApproachComment.Text = ""
+                Else
+                    txtControlApproachComment.Text = dr.Item("STRCONTROLAPPROACHCOMMENT")
+                End If
+                If IsDBNull(dr("LastEISSubmitDate")) Then
+                    txtLastSubmitEPA_CP.Text = "Never submitted"
+                Else
+                    txtLastSubmitEPA_CP.Text = dr.Item("LastEISSubmitDate")
+                End If
+                If IsDBNull(dr("UpdateUser")) Then
+                    UpdateUser = ""
+                Else
+                    UpdateUser = dr.Item("UpdateUser")
+                    UpdateUser = Mid(UpdateUser, InStr(UpdateUser, "-") + 1)
+                End If
+                If IsDBNull(dr("UpdateDateTime")) Then
+                    UpdateDateTime = ""
+                Else
+                    UpdateDateTime = dr.Item("UpdateDateTime")
+                End If
 
-            txtLastUpdate_CP.Text = UpdateDateTime & " by " & UpdateUser
+                txtLastUpdate_CP.Text = UpdateDateTime & " by " & UpdateUser
+
+            End If
 
         Catch ex As Exception
             ErrorReport(ex)
-        Finally
-            If conn.State = ConnectionState.Open Then
-                conn.Close()
-            End If
         End Try
 
     End Sub
@@ -495,9 +478,6 @@ Partial Class eis_process_details
         'and any other fields that are required for the insert before going to edit page for more details.
         'Edit pages perform only updates.
 
-        Dim sql As String = ""
-        Dim sql2 As String = ""
-        Dim FacilitySiteID As String = GetCookie(Cookie.AirsNumber)
         Dim NewEmissionUnitID As String = txtEmissionUnitID.Text.ToUpper
         Dim NewProcessID As String = txtNewProcessID.Text.ToUpper
         Dim ReleasePointID As String = ddlexistReleasePointID.SelectedValue.ToUpper
@@ -507,86 +487,73 @@ Partial Class eis_process_details
         Dim UpdateUser As String = UpdateUserID & "-" & UpdateUserName
         Dim Active As String = "1"
 
-        Try
-            'Insert new process into talbe EIS_PROCESS
-            sql = "Insert into EIS_PROCESS (" &
-                        "FacilitySiteID, " &
-                        "EmissionsUnitID, " &
-                        "PROCESSID, " &
-                        "STRPROCESSDESCRIPTION, " &
-                        "Active, " &
-                        "UpdateUser, " &
-                        "UpdateDateTime, " &
-                        "CreateDateTime) " &
-                "Values (" &
-                        "'" & FacilitySiteID & "', " &
-                        "'" & NewEmissionUnitID & "', " &
-                        "'" & NewProcessID & "', " &
-                        "'" & ProcessDescription & "', " &
-                        "'" & Active & "', " &
-                        "'" & Replace(UpdateUser, "'", "''") & "', " &
-                        "getdate(), " &
-                        "getdate()) "
+        Dim sqlList As New List(Of String)
+        Dim paramList As New List(Of SqlParameter())
 
-            Dim cmd As New SqlCommand(sql, conn)
+        'Insert new process into talbe EIS_PROCESS
+        sqlList.Add("Insert into EIS_PROCESS (" &
+                    "FacilitySiteID, " &
+                    "EmissionsUnitID, " &
+                    "PROCESSID, " &
+                    "STRPROCESSDESCRIPTION, " &
+                    "Active, " &
+                    "UpdateUser, " &
+                    "UpdateDateTime, " &
+                    "CreateDateTime) " &
+                    "Values (" &
+                    "@FacilitySiteID, " &
+                    "@NewEmissionUnitID, " &
+                    "@NewProcessID, " &
+                    "@ProcessDescription, " &
+                    "@Active, " &
+                    "@UpdateUser, " &
+                    "getdate(), " &
+                    "getdate()) ")
 
-            If conn.State = ConnectionState.Open Then
-            Else
-                conn.Open()
-            End If
+        Dim params As SqlParameter() = {
+            New SqlParameter("@FacilitySiteID", fsid),
+            New SqlParameter("@NewEmissionUnitID", NewEmissionUnitID),
+            New SqlParameter("@NewProcessID", NewProcessID),
+            New SqlParameter("@ProcessDescription", ProcessDescription),
+            New SqlParameter("@Active", Active),
+            New SqlParameter("@UpdateUser", UpdateUser),
+            New SqlParameter("@ReleasePointID", ReleasePointID)
+        }
 
-            Dim dr As SqlDataReader = cmd.ExecuteReader
-            dr.Close()
+        paramList.Add(params)
 
-            'Insert new Release point apportionment into table EIS_RPAPPORTIONMENT
-            sql2 = "Insert into EIS_RPAPPORTIONMENT (" &
-                       "FacilitySiteID, " &
-                       "EmissionsUnitID, " &
-                       "PROCESSID, " &
-                       "RELEASEPOINTID, " &
-                       "INTAVERAGEPERCENTEMISSIONS, " &
-                       "Active, " &
-                       "RPAPPORTIONMENTID, " &
-                       "UpdateUser, " &
-                       "UpdateDateTime, " &
-                       "CreateDateTime) " &
-               "Values (" &
-                       "'" & FacilitySiteID & "', " &
-                       "'" & NewEmissionUnitID & "', " &
-                       "'" & NewProcessID & "', " &
-                       "'" & ReleasePointID & "', " &
-                       "100, " &
-                       "'" & Active & "', " &
-                       "(select " &
-                       "case " &
-                       "when max(RPAPPORTIONMENTID) is null then 1 " &
-                       "else max(RPAPPORTIONMENTID) + 1 " &
-                       "End RPAPPORTIONMENTID " &
-                       "FROM EIS_RPAPPORTIONMENT), " &
-                       "'" & Replace(UpdateUser, "'", "''") & "', " &
-                       "getdate(), " &
-                       "getdate()) "
+        'Insert new Release point apportionment into table EIS_RPAPPORTIONMENT
+        sqlList.Add("Insert into EIS_RPAPPORTIONMENT (" &
+                    "FacilitySiteID, " &
+                    "EmissionsUnitID, " &
+                    "PROCESSID, " &
+                    "RELEASEPOINTID, " &
+                    "INTAVERAGEPERCENTEMISSIONS, " &
+                    "Active, " &
+                    "RPAPPORTIONMENTID, " &
+                    "UpdateUser, " &
+                    "UpdateDateTime, " &
+                    "CreateDateTime) " &
+                    "Values (" &
+                    "@FacilitySiteID, " &
+                    "@NewEmissionUnitID, " &
+                    "@NewProcessID, " &
+                    "@ReleasePointID, " &
+                    "100, " &
+                    "@Active, " &
+                    "(select " &
+                    "case " &
+                    "when max(RPAPPORTIONMENTID) is null then 1 " &
+                    "else max(RPAPPORTIONMENTID) + 1 " &
+                    "End RPAPPORTIONMENTID " &
+                    "FROM EIS_RPAPPORTIONMENT), " &
+                    "@UpdateUser, " &
+                    "getdate(), " &
+                    "getdate()) ")
 
-            Dim cmd2 As New SqlCommand(sql2, conn)
+        paramList.Add(params)
 
-            If conn.State = ConnectionState.Open Then
-            Else
-                conn.Open()
-            End If
-
-            Dim dr2 As SqlDataReader = cmd2.ExecuteReader
-
-            If conn.State = ConnectionState.Open Then
-                conn.Close()
-            End If
-
-        Catch ex As Exception
-            ErrorReport(ex)
-        Finally
-            If conn.State = ConnectionState.Open Then
-                conn.Close()
-            End If
-        End Try
+        DB.RunCommand(sqlList, paramList)
 
     End Sub
 
@@ -597,9 +564,6 @@ Partial Class eis_process_details
         'and any other fields that are required for the insert before going to edit page for more details.
         'Edit pages perform only updates.
 
-        Dim sql As String = ""
-        Dim sql2 As String = ""
-        Dim FacilitySiteID As String = GetCookie(Cookie.AirsNumber)
         Dim EmissionunitID As String = txtEmissionUnitID.Text.ToUpper
         Dim ProcessID As String = txtNewProcessID.Text.ToUpper
         Dim ReleasePointID As String = ddlexistReleasePointID.SelectedValue.ToUpper
@@ -609,75 +573,62 @@ Partial Class eis_process_details
         Dim UpdateUser As String = GetCookie(GecoCookie.UserID) & "-" & GetCookie(GecoCookie.UserName)
         Dim Active As String = "1"
 
-        Try
-            'Update process in table EIS_PROCESS, change Active = 1
-            sql = "Update EIS_PROCESS " &
-                  " Set Active = '" & Active & "', " &
-                  " UPDATEUSER = '" & Replace(UpdateUser, "'", "''") & "', " &
-                  " UpdateDateTime = getdate() " &
-                  " where EIS_PROCESS.FACILITYSITEID = '" & FacilitySiteID & "'and " &
-                  " EIS_PROCESS.EmissionsUnitID = '" & EmissionunitID & "' and " &
-                  " EIS_PROCESS.PROCESSID = '" & ProcessID & "' "
+        Dim sqlList As New List(Of String)
+        Dim paramList As New List(Of SqlParameter())
 
-            Dim cmd As New SqlCommand(sql, conn)
+        'Update process in table EIS_PROCESS, change Active = 1
+        sqlList.Add("Update EIS_PROCESS " &
+                " Set Active = @Active, " &
+                " UPDATEUSER = @UpdateUser, " &
+                " UpdateDateTime = getdate() " &
+                " where EIS_PROCESS.FACILITYSITEID = @FacilitySiteID and " &
+                " EIS_PROCESS.EmissionsUnitID = @EmissionunitID and " &
+                " EIS_PROCESS.PROCESSID = @ProcessID ")
 
-            If conn.State = ConnectionState.Open Then
-            Else
-                conn.Open()
-            End If
+        Dim params As SqlParameter() = {
+            New SqlParameter("@FacilitySiteID", fsid),
+            New SqlParameter("@EmissionunitID", EmissionunitID),
+            New SqlParameter("@ProcessID", ProcessID),
+            New SqlParameter("@ProcessDescription", ProcessDescription),
+            New SqlParameter("@Active", Active),
+            New SqlParameter("@UpdateUser", UpdateUser),
+            New SqlParameter("@ReleasePointID", ReleasePointID)
+        }
 
-            Dim dr As SqlDataReader = cmd.ExecuteReader
-            dr.Close()
+        paramList.Add(params)
 
-            'insert new Release point apportionment into table EIS_RPAPPORTIONMENT
-            sql2 = "Insert into EIS_RPAPPORTIONMENT (" &
-                       "FacilitySiteID, " &
-                       "EmissionsUnitID, " &
-                       "PROCESSID, " &
-                       "RELEASEPOINTID, " &
-                       "INTAVERAGEPERCENTEMISSIONS, " &
-                       "Active, " &
-                       "RPAPPORTIONMENTID, " &
-                       "UpdateUser, " &
-                       "UpdateDateTime, " &
-                       "CreateDateTime) " &
-               "Values (" &
-                       "'" & FacilitySiteID & "', " &
-                       "'" & EmissionunitID & "', " &
-                       "'" & ProcessID & "', " &
-                       "'" & ReleasePointID & "', " &
-                       "100, " &
-                       "'" & Active & "', " &
-                       "(select " &
-                       "case " &
-                       "when max(RPAPPORTIONMENTID) is null then 1 " &
-                       "else max(RPAPPORTIONMENTID) + 1 " &
-                       "End RPAPPORTIONMENTID " &
-                       "FROM EIS_RPAPPORTIONMENT), " &
-                       "'" & Replace(UpdateUser, "'", "''") & "', " &
-                       "getdate(), " &
-                       "getdate()) "
+        'insert new Release point apportionment into table EIS_RPAPPORTIONMENT
+        sqlList.Add("Insert into EIS_RPAPPORTIONMENT (" &
+                    "FacilitySiteID, " &
+                    "EmissionsUnitID, " &
+                    "PROCESSID, " &
+                    "RELEASEPOINTID, " &
+                    "INTAVERAGEPERCENTEMISSIONS, " &
+                    "Active, " &
+                    "RPAPPORTIONMENTID, " &
+                    "UpdateUser, " &
+                    "UpdateDateTime, " &
+                    "CreateDateTime) " &
+                    "Values (" &
+                    "@FacilitySiteID, " &
+                    "@EmissionunitID, " &
+                    "@ProcessID, " &
+                    "@ReleasePointID, " &
+                    "100, " &
+                    "@Active, " &
+                    "(select " &
+                    "case " &
+                    "when max(RPAPPORTIONMENTID) is null then 1 " &
+                    "else max(RPAPPORTIONMENTID) + 1 " &
+                    "End RPAPPORTIONMENTID " &
+                    "FROM EIS_RPAPPORTIONMENT), " &
+                    "@UpdateUser, " &
+                    "getdate(), " &
+                    "getdate()) ")
 
-            Dim cmd2 As New SqlCommand(sql2, conn)
+        paramList.Add(params)
 
-            If conn.State = ConnectionState.Open Then
-            Else
-                conn.Open()
-            End If
-
-            Dim dr2 As SqlDataReader = cmd2.ExecuteReader
-
-            If conn.State = ConnectionState.Open Then
-                conn.Close()
-            End If
-
-        Catch ex As Exception
-            ErrorReport(ex)
-        Finally
-            If conn.State = ConnectionState.Open Then
-                conn.Close()
-            End If
-        End Try
+        DB.RunCommand(sqlList, paramList)
 
     End Sub
 
@@ -715,7 +666,6 @@ Partial Class eis_process_details
         'and any other fields that are required for the insert before going to edit page for more details.
         'Edit pages perform only updates.
 
-        Dim sql As String = ""
         Dim FacilitySiteID As String = GetCookie(Cookie.AirsNumber)
         Dim eu As String = txtEmissionUnitID.Text.ToUpper
         Dim ep As String = txtProcessID.Text.ToUpper
@@ -727,91 +677,40 @@ Partial Class eis_process_details
         Dim UpdateUser As String = UpdateUserID & "-" & UpdateUserName
         Dim Active As String = "1"
 
-        Try
-            sql = "Insert into EIS_PROCESSCONTROLAPPROACH (" &
-                        "FacilitySiteID, " &
-                        "EmissionsUnitID, " &
-                        "PROCESSID, " &
-                        "STRCONTROLAPPROACHDESC, " &
-                        "NUMPCTCTRLAPPROACHCAPEFFIC, " &
-                        "NUMPCTCTRLAPPROACHEFFECT, " &
-                        "Active, " &
-                        "UpdateUser, " &
-                        "UpdateDateTime, " &
-                        "CreateDateTime) " &
-                "Values (" &
-                        "'" & FacilitySiteID & "', " &
-                        "'" & eu & "', " &
-                        "'" & ep & "', " &
-                        "'" & ProcessControlApproachDesc & "', " &
-                        DbStringDecimalOrNull(ProcCtrlApproachCapEffic) & ", " &
-                        DbStringDecimalOrNull(ProcCtrlApproachEffect) & ", " &
-                        "'" & Active & "', " &
-                        "'" & Replace(UpdateUser, "'", "''") & "', " &
-                        "getdate(), " &
-                        "getdate()) "
+        Dim query = "Insert into EIS_PROCESSCONTROLAPPROACH (" &
+                    "FacilitySiteID, " &
+                    "EmissionsUnitID, " &
+                    "PROCESSID, " &
+                    "STRCONTROLAPPROACHDESC, " &
+                    "NUMPCTCTRLAPPROACHCAPEFFIC, " &
+                    "NUMPCTCTRLAPPROACHEFFECT, " &
+                    "Active, " &
+                    "UpdateUser, " &
+                    "UpdateDateTime, " &
+                    "CreateDateTime) " &
+                    "Values (" &
+                    "@FacilitySiteID, " &
+                    "@eu, " &
+                    "@ep, " &
+                    "@ProcessControlApproachDesc, " &
+                    "@ProcCtrlApproachCapEffic, " &
+                    "@ProcCtrlApproachEffect, " &
+                    "'1', " &
+                    "@UpdateUser, " &
+                    "getdate(), " &
+                    "getdate()) "
 
-            Dim cmd As New SqlCommand(sql, conn)
+        Dim params As SqlParameter() = {
+            New SqlParameter("@FacilitySiteID", FacilitySiteID),
+            New SqlParameter("@eu", eu),
+            New SqlParameter("@ep", ep),
+            New SqlParameter("@ProcessControlApproachDesc", ProcessControlApproachDesc),
+            New SqlParameter("@ProcCtrlApproachCapEffic", DbStringDecimalOrNull(ProcCtrlApproachCapEffic)),
+            New SqlParameter("@ProcCtrlApproachEffect", DbStringDecimalOrNull(ProcCtrlApproachEffect)),
+            New SqlParameter("@UpdateUser", UpdateUser)
+        }
 
-            If conn.State = ConnectionState.Open Then
-            Else
-                conn.Open()
-            End If
-
-            Dim dr As SqlDataReader = cmd.ExecuteReader
-
-            If conn.State = ConnectionState.Open Then
-                conn.Close()
-            End If
-
-        Catch ex As Exception
-            ErrorReport(ex)
-        Finally
-            If conn.State = ConnectionState.Open Then
-                conn.Close()
-            End If
-        End Try
-
-    End Sub
-
-    Sub ProcessControlApproachCheck(ByVal Sender As Object, ByVal args As ServerValidateEventArgs)
-
-        Dim sql As String = ""
-        Dim FacilitySiteID As String = GetCookie(Cookie.AirsNumber)
-        Dim ProcessControlApproach As String = args.Value
-
-        ProcessControlApproach = ProcessControlApproach.ToUpper
-        Try
-            sql = "Select STRCONTROLAPPROACHDESC FROM EIS_PROCESSCONTROLAPPROACH " &
-                    "where FacilitySiteID = '" & FacilitySiteID & "' " &
-                    "and STRCONTROLAPPROACHDESC = '" & ProcessControlApproach & "'"
-
-            Dim cmd1 As New SqlCommand(sql, conn1)
-
-            If conn1.State = ConnectionState.Open Then
-            Else
-                conn1.Open()
-            End If
-
-            Dim dr1 As SqlDataReader = cmd1.ExecuteReader
-            Dim recExist As Boolean = dr1.Read
-
-            If recExist Then
-                args.IsValid = False
-                btnAddControlApproach_ModalPopupExtender.Show()
-                IDExists = True
-            Else
-                args.IsValid = True
-                IDExists = False
-            End If
-
-        Catch ex As Exception
-            ErrorReport(ex)
-        Finally
-            If conn.State = ConnectionState.Open Then
-                conn.Close()
-            End If
-        End Try
+        DB.RunCommand(query, params)
 
     End Sub
 
