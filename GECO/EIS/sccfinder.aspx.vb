@@ -1,20 +1,21 @@
 ﻿Partial Class EIS_sccfinder
     Inherits Page
 
-    Protected Sub rcbLevel1_SelectedIndexChanged(sender As Object, e As System.EventArgs) Handles rcbLevel1.SelectedIndexChanged, rcbLevel2.SelectedIndexChanged, rcbLevel3.SelectedIndexChanged, rcbLevel4.SelectedIndexChanged
-        Try
-            Dim sCC As String = GetSCC(Me.rcbLevel1.SelectedItem.Text, Me.rcbLevel2.SelectedItem.Text, Me.rcbLevel3.SelectedItem.Text, Me.rcbLevel4.SelectedItem.Text)
-            If Not String.IsNullOrEmpty(sCC) Then
-                Me.txtSCC.Text = sCC
-                Me.btnUseSCC.Visible = True
-                Me.txtSCC.Visible = True
-            Else
-                Me.txtSCC.Text = "No Code found!"
-                Me.btnUseSCC.Visible = False
-                Me.txtSCC.Visible = False
-            End If
-        Catch ex As Exception
-            ex.ToString()
-        End Try
+    Private Sub GetSccValue()
+        Dim SCC As String = GetSCC(rcbLevel1.SelectedItem.Text, rcbLevel2.SelectedItem.Text, rcbLevel3.SelectedItem.Text, rcbLevel4.SelectedItem.Text)
+
+        If Not String.IsNullOrEmpty(SCC) Then
+            lblSCC.Text = SCC
+            lblSCC.Visible = True
+            btnUseSCC.Visible = True
+        Else
+            lblSCC.Visible = False
+            btnUseSCC.Visible = False
+        End If
     End Sub
+
+    Private Sub btnLookUp_Click(sender As Object, e As EventArgs) Handles btnLookUp.Click
+        GetSccValue()
+    End Sub
+
 End Class

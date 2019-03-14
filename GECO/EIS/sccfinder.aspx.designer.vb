@@ -32,15 +32,6 @@ Partial Public Class EIS_sccfinder
     Protected WithEvents ToolkitScriptManager1 As Global.AjaxControlToolkit.ToolkitScriptManager
     
     '''<summary>
-    '''UpdatePanel1 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents UpdatePanel1 As Global.System.Web.UI.UpdatePanel
-    
-    '''<summary>
     '''lblLevel1 control.
     '''</summary>
     '''<remarks>
@@ -149,13 +140,31 @@ Partial Public Class EIS_sccfinder
     Protected WithEvents cddLevel4 As Global.AjaxControlToolkit.CascadingDropDown
     
     '''<summary>
-    '''txtSCC control.
+    '''UpdatePanel1 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtSCC As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents UpdatePanel1 As Global.System.Web.UI.UpdatePanel
+    
+    '''<summary>
+    '''btnLookUp control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnLookUp As Global.System.Web.UI.WebControls.Button
+    
+    '''<summary>
+    '''lblSCC control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblSCC As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
     '''btnUseSCC control.
