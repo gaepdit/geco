@@ -1,6 +1,7 @@
 Imports System.Data.SqlClient
 Imports GECO.FeeBusinessEntity
 Imports GECO.GecoModels
+Imports EpdIt.DBUtilities
 
 Partial Class AnnualFees_Default
     Inherits Page
@@ -1185,6 +1186,17 @@ Partial Class AnnualFees_Default
         grdFeeHistory.DataSource = GetAnnualFeeHistory(currentAirs)
         grdFeeHistory.DataBind()
     End Sub
+
+    Protected Function NullableFeeProduct(a As Object, b As Object) As Decimal?
+        Dim aNull As Decimal? = GetNullable(Of Decimal?)(a)
+        Dim bNull As Decimal? = GetNullable(Of Decimal?)(b)
+
+        If aNull.HasValue AndAlso bNull.HasValue Then
+            Return aNull.Value * bNull.Value
+        End If
+
+        Return Nothing
+    End Function
 
 #End Region
 

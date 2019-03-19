@@ -808,11 +808,11 @@
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="Annual Emissions Fees">
                             <ItemTemplate>
-                                Fee&nbsp;Rate:&nbsp;<b><%# String.Format("{0:c}", Eval("NUMPERTONRATE")) %></b>
-                                Fee&nbsp;for&nbsp;VOC:&nbsp;<b><%# String.Format("{0:c}", Eval("INTVOCTONS") * Eval("NUMPERTONRATE")) %></b><br />
-                                Fee&nbsp;for&nbsp;NO<sub>x</sub>:&nbsp;<b><%# String.Format("{0:c}", Eval("INTNOXTONS") * Eval("NUMPERTONRATE")) %></b><br />
-                                Fee&nbsp;for&nbsp;PM:&nbsp;<b><%# String.Format("{0:c}", Eval("INTPMTONS") * Eval("NUMPERTONRATE")) %></b><br />
-                                Fee&nbsp;for&nbsp;SO<sub>2</sub>:&nbsp;<b><%# String.Format("{0:c}", Eval("INTSO2TONS") * Eval("NUMPERTONRATE")) %></b><br />
+                                Fee&nbsp;Rate:&nbsp;<b><%# String.Format("{0:c}", Eval("NUMPERTONRATE")) %></b><br />
+                                Fee&nbsp;for&nbsp;VOC:&nbsp;<b><%# String.Format("{0:c}", NullableFeeProduct(Eval("INTVOCTONS"), Eval("NUMPERTONRATE"))) %></b><br />
+                                Fee&nbsp;for&nbsp;NO<sub>x</sub>:&nbsp;<b><%# String.Format("{0:c}", NullableFeeProduct(Eval("INTNOXTONS"), Eval("NUMPERTONRATE"))) %></b><br />
+                                Fee&nbsp;for&nbsp;PM:&nbsp;<b><%# String.Format("{0:c}", NullableFeeProduct(Eval("INTPMTONS"), Eval("NUMPERTONRATE"))) %></b><br />
+                                Fee&nbsp;for&nbsp;SO<sub>2</sub>:&nbsp;<b><%# String.Format("{0:c}", NullableFeeProduct(Eval("INTSO2TONS"), Eval("NUMPERTONRATE"))) %></b><br />
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="Total Fees">
