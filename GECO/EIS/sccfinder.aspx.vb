@@ -1,8 +1,8 @@
 ﻿Partial Class EIS_sccfinder
     Inherits Page
 
-    Private Sub GetSccValue()
-        Dim SCC As String = GetSCC(rcbLevel1.SelectedItem.Text, rcbLevel2.SelectedItem.Text, rcbLevel3.SelectedItem.Text, rcbLevel4.SelectedItem.Text)
+    Private Sub LookUpScc()
+        Dim SCC As String = GetSccValue(rcbLevel1.SelectedItem.Text, rcbLevel2.SelectedItem.Text, rcbLevel3.SelectedItem.Text, rcbLevel4.SelectedItem.Text)
 
         If Not String.IsNullOrEmpty(SCC) Then
             lblSCC.Text = SCC
@@ -15,7 +15,7 @@
     End Sub
 
     Private Sub btnLookUp_Click(sender As Object, e As EventArgs) Handles btnLookUp.Click
-        GetSccValue()
+        LookUpScc()
     End Sub
 
 End Class

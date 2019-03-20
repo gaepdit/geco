@@ -1,5 +1,4 @@
-﻿Imports System.Data
-Imports System.Data.SqlClient
+﻿Imports System.Data.SqlClient
 
 Partial Class eis_process_edit
     Inherits Page
@@ -116,50 +115,16 @@ Partial Class eis_process_edit
 
     End Sub
 
-    Sub SCCCheck(ByVal Sender As Object, ByVal args As ServerValidateEventArgs)
-
-        Dim sql As String = ""
-        Dim SCC As String = args.Value
-
-        Try
-            sql = "Select SOURCECLASSCODE FROM EISLK_SOURCECLASSCODE " &
-                    "where SOURCECLASSCODE = '" & SCC & "' and Active = '1'"
-            Dim cmd1 As New SqlCommand(sql, conn1)
-
-            If conn1.State = ConnectionState.Open Then
-            Else
-                conn1.Open()
-            End If
-
-            Dim dr1 As SqlDataReader = cmd1.ExecuteReader
-            Dim recExist As Boolean = dr1.Read
-
-            If recExist Then
-                args.IsValid = True
-                SCCExists = True
-            Else
-                args.IsValid = False
-                SCCExists = False
-            End If
-
-        Catch ex As Exception
-            ErrorReport(ex)
-        Finally
-            If conn.State = ConnectionState.Open Then
-                conn.Close()
-            End If
-        End Try
+    Protected Sub SCCCheck(Sender As Object, args As ServerValidateEventArgs)
+        SCCExists = SccIsValid(args.Value)
     End Sub
 
     Protected Sub btnSave_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnSave.Click
-        If SCCExists = False Then
-
-        Else
+        If SCCExists Then
             SaveProcessInfo()
             lblMessageTop.Text = "Process saved succesfully"
             lblMessageTop.Visible = True
         End If
-
     End Sub
 
     Private Sub SaveProcessInfo()
