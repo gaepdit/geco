@@ -66,12 +66,8 @@
         <asp:Label ID="lblSourceClassCode" class="styled" runat="server" Text="Source Classification Code:"></asp:Label>
         <asp:TextBox ID="txtSourceClassCode" runat="server" Text="" class="readonly" ReadOnly="True"
             Width="100px"></asp:TextBox>
+        <asp:Label ID="lblSccDetails" runat="server" />
     </div>
-    <%--The following field removed. No longer submitting as misinterpreted its meaning --%>    <%--<div class="fieldwrapper">
-        <asp:Label ID="lblLastEmissionsYear" class="styled" runat="server" Text="Last Inventory Year:"></asp:Label>
-        <asp:TextBox ID="txtLastEmissionsYear" runat="server" Text="" class="readonly"
-            ReadOnly="True" Width="100px"></asp:TextBox>
-    </div>--%>
     <div class="fieldwrapper">
         <asp:Label ID="lblProcessComment" class="styled" runat="server" Text="Process Comment:"></asp:Label>
         <asp:TextBox ID="txtProcessComment" runat="server" Text="" class="readonly" TextMode="MultiLine" Rows="4" 

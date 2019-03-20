@@ -239,6 +239,15 @@ Partial Public Class eis_process_edit
     Protected WithEvents btnSCCLoopup As Global.System.Web.UI.WebControls.Button
     
     '''<summary>
+    '''lblSccDetails control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblSccDetails As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
     '''lblProcessComment control.
     '''</summary>
     '''<remarks>

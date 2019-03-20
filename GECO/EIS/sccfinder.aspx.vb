@@ -2,12 +2,20 @@
     Inherits Page
 
     Private Sub LookUpScc()
-        Dim SCC As String = GetSccValue(rcbLevel1.SelectedItem.Text, rcbLevel2.SelectedItem.Text, rcbLevel3.SelectedItem.Text, rcbLevel4.SelectedItem.Text)
+        Dim SccDetails As SccDetails = GetSccDetails(rcbLevel1.SelectedItem.Text, rcbLevel2.SelectedItem.Text, rcbLevel3.SelectedItem.Text, rcbLevel4.SelectedItem.Text)
 
-        If Not String.IsNullOrEmpty(SCC) Then
-            lblSCC.Text = SCC
-            lblSCC.Visible = True
-            btnUseSCC.Visible = True
+        If SccDetails IsNot Nothing Then
+            dSccDetails.Visible = True
+            lblSCC.Text = SccDetails.SCC
+            lCategory.Text = SccDetails.Category
+            lDesc.Text = SccDetails.Description
+            lShortName.Text = SccDetails.ShortName
+            lSector.Text = SccDetails.Sector
+            lUsage.Text = SccDetails.UsageNotes
+            lUpdated.Text = SccDetails.LastUpdated
+            lTier1.Text = SccDetails.Tier1
+            lTier2.Text = SccDetails.Tier2
+            lTier3.Text = SccDetails.Tier3
         Else
             lblSCC.Visible = False
             btnUseSCC.Visible = False

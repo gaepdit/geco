@@ -1,6 +1,6 @@
-﻿<%@ Page Title="Process Edit - GECO Facility Inventory" Language="VB" MasterPageFile="eismaster.master"
+<%@ Page Title="Process Edit - GECO Facility Inventory" Language="VB" MasterPageFile="eismaster.master"
     AutoEventWireup="false" MaintainScrollPositionOnPostback="true"
-    Inherits="GECO.eis_process_edit" Codebehind="process_edit.aspx.vb" %>
+    Inherits="GECO.eis_process_edit" CodeBehind="process_edit.aspx.vb" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <style type="text/css">
@@ -16,7 +16,7 @@
     </style>
     <script type="text/javascript">
         function openSCCLookup() {
-            window.open('sccfinder.aspx', null, 'height=350,width=550,status=yes,toolbar=no,menubar=no,location=0,top=100,left=250');
+            window.open('sccfinder.aspx', null, 'height=700,width=550,status=yes,toolbar=no,menubar=no,location=0,top=100,left=250');
             return false;
         }
     </script>
@@ -100,7 +100,7 @@
         <div class="fieldwrapper">
             <asp:Label ID="lblSourceClassCode" class="styled" runat="server" Text="Source Classification Code:"></asp:Label>
             <asp:TextBox ID="txtSourceClassCode" runat="server" class="editable" Text="" Width="100px"
-                MaxLength="8"></asp:TextBox>
+                MaxLength="10"></asp:TextBox>
             <act:FilteredTextBoxExtender ID="filtxtSourceClassCode" runat="server" Enabled="True"
                 FilterType="Numbers" TargetControlID="txtSourceClassCode">
             </act:FilteredTextBoxExtender>
@@ -113,6 +113,7 @@
                 CssClass="validator">*</asp:CustomValidator>
             &nbsp;<asp:Button ID="btnSCCLoopup" runat="server" Text="SCC Lookup" ToolTip="" Font-Size="Small"
                 CausesValidation="False" OnClientClick="openSCCLookup();" />
+            <asp:Label ID="lblSccDetails" runat="server" />
         </div>
         <div class="fieldwrapper">
             <asp:Label ID="lblProcessComment" class="styled" runat="server" Text="Process Comment:"></asp:Label>

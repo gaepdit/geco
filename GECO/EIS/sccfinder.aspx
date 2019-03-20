@@ -11,16 +11,7 @@
     <link rel="mask-icon" href="~/assets/epd-favicons/safari-pinned-tab.svg?v=69kRrvbXdL" color="#5bbad5" />
     <link rel="shortcut icon" href="~/favicon.ico?v=69kRrvbXdL" />
     <meta name="theme-color" content="#e5f6fa" />
-    <style type="text/css">
-        body {
-            background: #ffffff;
-            margin: 10px;
-            padding: 10px;
-            font-family: 'Verdana', 'Arial', 'Helvetica';
-            font-size: 75%;
-            _font-size: 100%; /* using underscore hack for MSIE here */
-        }
-    </style>
+    <link href="~/assets/css/site.css?v=20190312" rel="stylesheet" type="text/css" />
     <script type="text/javascript">
         function PassSCCCode() {
             window.opener.document.getElementById("ctl00_ContentPlaceHolder3_txtSourceClassCode").value = document.getElementById('<%=lblSCC.ClientID%>').innerText;
@@ -30,31 +21,28 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <act:ToolkitScriptManager ID="ToolkitScriptManager1" EnablePartialRendering="true" runat="server" />
-        <div>
+        <div class="content">
+            <act:ToolkitScriptManager ID="ToolkitScriptManager1" EnablePartialRendering="true" runat="server" />
             <p>
                 To find SCC for a specific type of Emission Source, select appropriate description
-                        of Emission Source from each level of drop down boxes. The SCC will be displayed
-                        below once you have completed all levels.
+                of Emission Source from each level of drop down boxes. The SCC will be displayed
+                below once you have completed all levels. Select the most appropriate Source Type.
             </p>
             <p>
-                Select most appropriate Source Type
+                <asp:Label ID="lblLevel1" runat="server" AssociatedControlID="rcbLevel1">Level 1</asp:Label><br />
+                <asp:DropDownList ID="rcbLevel1" runat="server" />
             </p>
             <p>
-                <asp:Label ID="lblLevel1" runat="server" AssociatedControlID="rcbLevel1">Level 1</asp:Label>&nbsp;
-                        <asp:DropDownList ID="rcbLevel1" runat="server" />
+                <asp:Label ID="lblLevel2" runat="server" AssociatedControlID="rcbLevel2">Level 2</asp:Label><br />
+                <asp:DropDownList ID="rcbLevel2" runat="server" />
             </p>
             <p>
-                <asp:Label ID="lblLevel2" runat="server" AssociatedControlID="rcbLevel2">Level 2</asp:Label>&nbsp;
-                        <asp:DropDownList ID="rcbLevel2" runat="server" />
+                <asp:Label ID="lblLevel3" runat="server" AssociatedControlID="rcbLevel3">Level 3</asp:Label><br />
+                <asp:DropDownList ID="rcbLevel3" runat="server" />
             </p>
             <p>
-                <asp:Label ID="lblLevel3" runat="server" AssociatedControlID="rcbLevel3">Level 3</asp:Label>&nbsp;
-                        <asp:DropDownList ID="rcbLevel3" runat="server" />
-            </p>
-            <p>
-                <asp:Label ID="lblLevel4" runat="server" AssociatedControlID="rcbLevel4">Level 4</asp:Label>&nbsp;
-                        <asp:DropDownList ID="rcbLevel4" runat="server" />
+                <asp:Label ID="lblLevel4" runat="server" AssociatedControlID="rcbLevel4">Level 4</asp:Label><br />
+                <asp:DropDownList ID="rcbLevel4" runat="server" />
             </p>
 
             <act:CascadingDropDown ID="cddLevel1" runat="server" ServiceMethod="GetLevel1" Category="Level1"
@@ -69,20 +57,79 @@
             <act:CascadingDropDown ID="cddLevel4" runat="server" ServiceMethod="GetLevel4" Category="Level4"
                 LoadingText="[ Loading... ]" PromptText="- Select -" TargetControlID="rcbLevel4" ParentControlID="rcbLevel3"
                 ServicePath="SourceClassCode.asmx" />
+
+            <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
+                <ContentTemplate>
+                    <p>
+                        <asp:Button ID="btnLookUp" runat="server" Text="Look up SCC" />
+                    </p>
+
+                    <div id="dSccDetails" runat="server" visible="false">
+                        <h2 id="">
+                            <asp:Label ID="lblSCC" runat="server" Text="" />
+                            <asp:Button ID="btnUseSCC" runat="server" Text="Use this SCC code" OnClientClick="PassSCCCode();" />
+                        </h2>
+
+                        <table id="tblScc" runat="server" class="table-simple table-compact">
+                            <tr>
+                                <th>Category</th>
+                                <td>
+                                    <asp:Label ID="lCategory" runat="server" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Description</th>
+                                <td>
+                                    <asp:Label ID="lDesc" runat="server" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Short Name</th>
+                                <td>
+                                    <asp:Label ID="lShortName" runat="server" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Sector</th>
+                                <td>
+                                    <asp:Label ID="lSector" runat="server" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Usage Notes</th>
+                                <td>
+                                    <asp:Label ID="lUsage" runat="server" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Last Updated</th>
+                                <td>
+                                    <asp:Label ID="lUpdated" runat="server" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Tier 1</th>
+                                <td>
+                                    <asp:Label ID="lTier1" runat="server" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Tier 2</th>
+                                <td>
+                                    <asp:Label ID="lTier2" runat="server" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Tier 3</th>
+                                <td>
+                                    <asp:Label ID="lTier3" runat="server" />
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </ContentTemplate>
+            </asp:UpdatePanel>
         </div>
-        <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
-            <ContentTemplate>
-                <p>
-                    <asp:Button ID="btnLookUp" runat="server" Text="Look up SCC" />
-                </p>
-                <p>
-                    <b>
-                        <asp:Label ID="lblSCC" runat="server" Visible="false" Text="" />
-                    </b>                    
-                    <asp:Button ID="btnUseSCC" runat="server" Text="Use this SCC code" Visible="false" OnClientClick="PassSCCCode();" />
-                </p>
-            </ContentTemplate>
-        </asp:UpdatePanel>
     </form>
 </body>
 </html>

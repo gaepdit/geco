@@ -324,10 +324,16 @@ Partial Class eis_process_details
                 Else
                     txtProcessComment.Text = dr.Item("STRPROCESSCOMMENT")
                 End If
+
                 If IsDBNull(dr("SOURCECLASSCODE")) Then
                     txtSourceClassCode.Text = ""
                 Else
                     txtSourceClassCode.Text = dr.Item("SOURCECLASSCODE")
+
+                    If IsValidScc(txtSourceClassCode.Text) Then
+                        Dim sccDetails As SccDetails = GetSccDetails(txtSourceClassCode.Text)
+                        lblSccDetails.Text = ConcatNonEmptyStrings("; ", {sccDetails.Level1, sccDetails.Level2, sccDetails.Level3, sccDetails.Level4})
+                    End If
                 End If
 
                 If IsDBNull(dr("LastEISSubmitDate")) Then

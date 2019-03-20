@@ -1,4 +1,4 @@
-﻿Imports System.Data.SqlClient
+Imports System.Data.SqlClient
 
 Partial Class eis_process_edit
     Inherits Page
@@ -116,7 +116,7 @@ Partial Class eis_process_edit
     End Sub
 
     Protected Sub SCCCheck(Sender As Object, args As ServerValidateEventArgs)
-        SCCExists = SccIsValid(args.Value)
+        SCCExists = IsValidScc(args.Value)
     End Sub
 
     Protected Sub btnSave_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnSave.Click
@@ -142,15 +142,16 @@ Partial Class eis_process_edit
         processcomment = Left(processcomment, 400)
 
         Try
-            Dim query = "Update EIS_PROCESS Set EIS_PROCESS.SOURCECLASSCODE = @SCC, " &
-                                     " EIS_PROCESS.STRPROCESSDESCRIPTION = @processDescription, " &
-                                     " EIS_PROCESS.STRPROCESSCOMMENT = @processcomment, " &
-                                     " EIS_PROCESS.UpdateUser = @UpdateUser," &
-                                     " EIS_PROCESS.UpdateDateTime = getdate() " &
-                                     " where EIS_PROCESS.FACILITYSITEID = @FacilitySiteID" &
-                                     " and EIS_PROCESS.EMISSIONSUNITID = @euID" &
-                                     " and EIS_PROCESS.ACTIVE = '1' " &
-                                     " and EIS_PROCESS.PROCESSID = @processID"
+            Dim query = "Update EIS_PROCESS Set SOURCECLASSCODE = @SCC, " &
+                " STRPROCESSDESCRIPTION = @processDescription, " &
+                " STRPROCESSCOMMENT = @processcomment, " &
+                " UpdateUser = @UpdateUser," &
+                " UpdateDateTime = getdate() " &
+                " where FACILITYSITEID = @FacilitySiteID" &
+                " and EMISSIONSUNITID = @euID" &
+                " and ACTIVE = '1' " &
+                " and PROCESSID = @processID"
+
             Dim params = {
                 New SqlParameter("@SCC", SCC),
                 New SqlParameter("@processDescription", processDescription),
