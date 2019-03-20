@@ -1,10 +1,6 @@
 <%@ Page Title="Facility Inventory Help" Language="VB" MasterPageFile="eismaster.master"
     AutoEventWireup="false" Inherits="GECO.EIS_help_fi" Codebehind="help_fi.aspx.vb" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-</asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
-</asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder3" runat="Server">
     <act:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server"></act:ToolkitScriptManager>
     <div class="pageheader">

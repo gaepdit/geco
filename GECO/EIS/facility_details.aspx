@@ -1,9 +1,5 @@
 ﻿<%@ Page Language="VB" MasterPageFile="eismaster.master" AutoEventWireup="false" Inherits="GECO.eis_facility_details" Title="Facility Details - GECO Facility Inventory" Codebehind="facility_details.aspx.vb" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-</asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
-</asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder3" runat="Server">
     <div class="pageheader">
         <act:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server"></act:ToolkitScriptManager>

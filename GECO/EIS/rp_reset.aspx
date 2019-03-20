@@ -1,9 +1,5 @@
 <%@ Page Title="Reset Data - GECO Emission Inventory" Language="VB" MasterPageFile="eismaster.master" AutoEventWireup="false" Inherits="GECO.EIS_rp_reset" Codebehind="rp_reset.aspx.vb" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-</asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
-</asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder3" runat="Server">
     <div class="fieldwrapperseparator">
         <asp:Label ID="lblSeparator" class="styledseparator" runat="server" Text="Reset Emissions Inventory Data"

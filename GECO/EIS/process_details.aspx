@@ -1,23 +1,6 @@
 <%@ Page Title="Process Details - GECO Facility Inventory" Language="VB" MasterPageFile="eismaster.master"
     AutoEventWireup="false" Inherits="GECO.eis_process_details" Codebehind="process_details.aspx.vb" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-    <style type="text/css">
-        .style2 {
-            width: 211px;
-        }
-
-        .style4 {
-            width: 233px;
-        }
-
-        .style5 {
-            width: 283px;
-        }
-    </style>
-</asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
-</asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder3" runat="Server">
     <act:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server"></act:ToolkitScriptManager>
     <div class="pageheader">

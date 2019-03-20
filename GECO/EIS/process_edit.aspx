@@ -2,27 +2,6 @@
     AutoEventWireup="false" MaintainScrollPositionOnPostback="true"
     Inherits="GECO.eis_process_edit" CodeBehind="process_edit.aspx.vb" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-    <style type="text/css">
-        .style2 {
-            font-size: large;
-        }
-
-        .style3 {
-            font-size: large;
-            color: #FF0000;
-            font-weight: bold;
-        }
-    </style>
-    <script type="text/javascript">
-        function openSCCLookup() {
-            window.open('sccfinder.aspx', null, 'height=700,width=550,status=yes,toolbar=no,menubar=no,location=0,top=100,left=250');
-            return false;
-        }
-    </script>
-</asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
-</asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder3" runat="Server">
     <script type="text/javascript">
         function Count(text) {

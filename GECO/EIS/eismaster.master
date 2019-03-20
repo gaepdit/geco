@@ -1,4 +1,4 @@
-﻿<%@ Master Language="VB" Inherits="GECO.APB_eismaster" Codebehind="eismaster.master.vb" %>
+﻿<%@ Master Language="VB" Inherits="GECO.APB_eismaster" CodeBehind="eismaster.master.vb" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang="en-us" xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
@@ -9,14 +9,13 @@
     <link rel="mask-icon" href="~/assets/epd-favicons/safari-pinned-tab.svg?v=69kRrvbXdL" color="#5bbad5" />
     <link rel="shortcut icon" href="~/favicon.ico?v=69kRrvbXdL" />
     <meta name="theme-color" content="#e5f6fa" />
-    <link href="~/assets/css/eis_styles.css?v=20180724" rel="stylesheet" type="text/css" />
-    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-    </asp:ContentPlaceHolder>
-    <style type="text/css">
-        .style1 {
-            width: 452px;
+    <link href="~/assets/css/eis_styles.css?v=20190320" rel="stylesheet" type="text/css" />
+    <script type="text/javascript">
+        function openSCCLookup() {
+            window.open('sccfinder.aspx', null, 'height=700,width=550,status=yes,toolbar=no,menubar=no,location=0,top=100,left=250');
+            return false;
         }
-    </style>
+    </script>
 </head>
 <body>
     <form id="form1" class="form" runat="server">
@@ -111,8 +110,6 @@
                         </Items>
                     </asp:Menu>
                 </asp:Panel>
-                <asp:ContentPlaceHolder ID="ContentPlaceHolder2" runat="server">
-                </asp:ContentPlaceHolder>
             </div>
             <div id="content">
                 <asp:ContentPlaceHolder ID="ContentPlaceHolder3" runat="server">

@@ -1,10 +1,6 @@
 <%@ Page Title="Release Point Summary - GECO Facility Inventory" Language="VB" MasterPageFile="eismaster.master"
     AutoEventWireup="false" Inherits="GECO.eis_releasepoint_summary" Codebehind="releasepoint_summary.aspx.vb" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-</asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
-</asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder3" runat="Server">
     <act:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server"></act:ToolkitScriptManager>
     <div class="fieldwrapperseparator">

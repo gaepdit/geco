@@ -3,10 +3,6 @@
     Inherits="GECO.eis_stack_edit" Codebehind="stack_edit.aspx.vb" %>
 
 <%@ Register Assembly="Reimers.Google.Map" Namespace="Reimers.Google.Map" TagPrefix="Reimers" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-</asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
-</asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder3" runat="Server">
     <script type="text/javascript">
         function Count(text, maxlength, displayEl) {

@@ -2,10 +2,6 @@
     AutoEventWireup="false" MaintainScrollPositionOnPostback="true" Inherits="GECO.EIS_rp_summary" Codebehind="rp_summary.aspx.vb" %>
 <%@ Register src="../Controls/PreventRePost.ascx" tagname="PreventRePost" tagprefix="uc1" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-</asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
-</asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder3" runat="Server">
     <div class="pageheader">
         Process Reporting Period Summary
