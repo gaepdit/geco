@@ -113,6 +113,51 @@ Partial Public Class EIS_rp_facilitystatus
     Protected WithEvents lblEIYear2 As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
+    '''rblIsColocated control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rblIsColocated As Global.System.Web.UI.WebControls.RadioButtonList
+    
+    '''<summary>
+    '''reqIsColocated control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents reqIsColocated As Global.System.Web.UI.WebControls.RequiredFieldValidator
+    
+    '''<summary>
+    '''pnlColocation control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents pnlColocation As Global.System.Web.UI.WebControls.Panel
+    
+    '''<summary>
+    '''txtColocatedWith control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtColocatedWith As Global.System.Web.UI.WebControls.TextBox
+    
+    '''<summary>
+    '''reqColocatedWith control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents reqColocatedWith As Global.System.Web.UI.WebControls.RequiredFieldValidator
+    
+    '''<summary>
     '''btnContinue control.
     '''</summary>
     '''<remarks>

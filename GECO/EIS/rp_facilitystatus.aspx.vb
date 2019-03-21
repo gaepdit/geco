@@ -1,6 +1,4 @@
-﻿Imports System.Data
-Imports System.Data.SqlClient
-Imports EpdIt.DBUtilities
+﻿Imports System.Data.SqlClient
 
 Partial Class EIS_rp_facilitystatus
     Inherits Page
@@ -28,11 +26,13 @@ Partial Class EIS_rp_facilitystatus
 
     Protected Sub rblOperate_SelectedIndexChanged(sender As Object, e As EventArgs) Handles rblOperate.SelectedIndexChanged
 
-        If rblOperate.SelectedValue = "No" Then
-            pnlShutdownStatus.Visible = True
-        Else
-            pnlShutdownStatus.Visible = False
-        End If
+        pnlShutdownStatus.Visible = (rblOperate.SelectedValue = "No")
+
+    End Sub
+
+    Private Sub rblIsColocated_SelectedIndexChanged(sender As Object, e As EventArgs) Handles rblIsColocated.SelectedIndexChanged
+
+        pnlColocation.Visible = (rblIsColocated.SelectedValue = "Yes")
 
     End Sub
 
@@ -42,24 +42,24 @@ Partial Class EIS_rp_facilitystatus
         Dim UpdateUserID As String = GetCookie(GecoCookie.UserID)
         Dim UpdateUserName As String = GetCookie(GecoCookie.UserName)
         Dim UpdateUser As String = UpdateUserID & "-" & UpdateUserName
-        Dim AdminComment As String = txtComment.Text
         Dim eiYear As Integer = CInt(GetCookie(EisCookie.EISMaxYear))
-        Dim opt As String = ""
-        Dim optoutReason As String = ""
-        Dim EIFacilityStatus As String = "OP"
-        Dim FacilityStatusOnLoad As String = GetFacilityStatusCode_Facility(FacilitySiteID)
 
         'Saving FacilityStatus as OP even if not during
-        SaveFacilityStatus(FacilitySiteID, EIFacilityStatus, UpdateUser, eiYear)
+        SaveFacilityStatus(FacilitySiteID, "OP", UpdateUser, eiYear)
 
         If Len(txtComment.Text) > 0 Then
-            SaveAdminComment(FacilitySiteID, eiYear, AdminComment)
+            SaveAdminComment(FacilitySiteID, eiYear, txtComment.Text)
         End If
 
-        If pnlShutdownStatus.Visible = True Then
-            opt = "1"
-            optoutReason = "1"
-            SaveOption(FacilitySiteID, opt, UpdateUser, eiYear, optoutReason)
+        If rblOperate.SelectedValue = "No" Then
+            Dim colocated As Boolean = (rblIsColocated.SelectedValue = "Yes")
+            Dim colocation As String = Nothing
+
+            If rblIsColocated.SelectedValue = "Yes" Then
+                colocation = txtColocatedWith.Text
+            End If
+
+            SaveOption(FacilitySiteID, "1", UpdateUser, eiYear, "1", colocated, colocation)
             ResetCookies(FacilitySiteID)
             Response.Redirect("Default.aspx")
         Else

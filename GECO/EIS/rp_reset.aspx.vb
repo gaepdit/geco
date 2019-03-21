@@ -60,6 +60,8 @@ Partial Class EIS_rp_reset
                     " strConfirmationNumber = null, " &
                     " datFinalize = null, " &
                     " intPrePopYear = null, " &
+                    " IsColocated = null, " &
+                    " ColocatedWith = null, " &
                     " UpdateUser = @uuser, " &
                     " UpdateDateTime = getdate() " &
                     " where " &

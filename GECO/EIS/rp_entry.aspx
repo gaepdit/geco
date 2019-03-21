@@ -397,8 +397,7 @@
         </div>
         <div class="buttonwrapper">
             <asp:Button runat="server" ID="btnSave" CssClass="buttondiv"
-                Text="Save &amp; Continue" Width="169px" Font-Bold="True" Font-Size="Medium"
-                ForeColor="#CC0000" />
+                Text="Save &amp; Continue" Width="169px" Font-Bold="True" Font-Size="Medium" />
             <br />
         </div>
     </asp:Panel>

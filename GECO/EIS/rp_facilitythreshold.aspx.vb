@@ -151,8 +151,6 @@ Partial Class EIS_rp_threshold
         Dim PM25 As String = rblPM25.SelectedValue
         Dim NH3 As String = rblNH3.SelectedValue
         Dim Pb As String = rblPb.SelectedValue
-        Dim opt As String = ""
-        Dim optoutReason As String = ""
 
         EIType = GetEIType(eiYear)
 
@@ -166,16 +164,19 @@ Partial Class EIS_rp_threshold
 
         If SOX = "Yes" And VOC = "Yes" And NOX = "Yes" And CO = "Yes" And PM10 = "Yes" And PM25 = "Yes" And NH3 = "Yes" And Pb = "Yes" Then
             'Facility will be opted out of the EI
-            opt = "1"
-            optoutReason = "2"
-            SaveOption(FacilitySiteID, opt, UpdateUser, eiYear, optoutReason)
+            Dim colocated As Boolean = (rblIsColocated.SelectedValue = "Yes")
+            Dim colocation As String = Nothing
+
+            If rblIsColocated.SelectedValue = "Yes" Then
+                colocation = txtColocatedWith.Text
+            End If
+
+            SaveOption(FacilitySiteID, "1", UpdateUser, eiYear, "2", colocated, colocation)
             ResetCookies(FacilitySiteID)
             Response.Redirect("Default.aspx")
         Else
             'Facility will be opted into the EI
-            opt = "0"
-            optoutReason = Nothing
-            SaveOption(FacilitySiteID, opt, UpdateUser, eiYear, optoutReason)
+            SaveOption(FacilitySiteID, "0", UpdateUser, eiYear)
             ResetCookies(FacilitySiteID)
             Response.Redirect("rp_prepop.aspx")
         End If
@@ -209,13 +210,14 @@ Partial Class EIS_rp_threshold
         If SOX = "Yes" And VOC = "Yes" And NOX = "Yes" And CO = "Yes" And PM10 = "Yes" And PM25 = "Yes" And NH3 = "Yes" And Pb = "Yes" Then
             'Facility will be opted out of the EI - show opt OUT status message and submit button
             lblOptOutStatus1.Text = "The facility will not participate in the Emissions Inventory process for " & eiYear & "."
+            pnlColocate.Visible = True
         Else
             'Facility will be opted into the EI - show opt IN status message and submit button
             lblOptOutStatus1.Text = "The facility will participate in the Emissions Inventory process for " & eiYear & "."
+            pnlColocate.Visible = False
         End If
-        lblOptOutStatus2.Text = "Click Submit to continue or Cancel to make changes above."
-        lblOptOutStatus1.Visible = True
-        lblOptOutStatus2.Visible = True
+
+        dOptOut.Visible = True
         lblNextButton.Text = "Submit"
 
         btnContinue.Visible = False
@@ -265,8 +267,7 @@ Partial Class EIS_rp_threshold
         End If
 
         EnableRbls()
-        lblOptOutStatus1.Text = ""
-        lblOptOutStatus2.Text = ""
+        dOptOut.Visible = False
         lblNextButton.Text = "Continue"
 
         btnCancel.Visible = False
@@ -381,6 +382,12 @@ Partial Class EIS_rp_threshold
         Catch ex As Exception
             ErrorReport(ex)
         End Try
+    End Sub
+
+    Private Sub rblIsColocated_SelectedIndexChanged(sender As Object, e As EventArgs) Handles rblIsColocated.SelectedIndexChanged
+
+        pnlColocation.Visible = (rblIsColocated.SelectedValue = "Yes")
+
     End Sub
 
 #Region "  Menu Routines  "

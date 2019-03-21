@@ -445,6 +445,8 @@ Partial Class eis_Default
                 " strConfirmationNumber = null, " &
                 " datFinalize = null, " &
                 " datEISStatus = getdate(), " &
+                " IsColocated = null, " &
+                " ColocatedWith = null, " &
                 " UpdateUser = @UpdateUser, " &
                 " UpdateDateTime = getdate() " &
                 " where FacilitySiteID = @fsid and " &

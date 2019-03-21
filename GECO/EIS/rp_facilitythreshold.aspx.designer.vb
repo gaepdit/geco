@@ -689,6 +689,15 @@ Partial Public Class EIS_rp_threshold
     Protected WithEvents vgThresholds As Global.System.Web.UI.WebControls.ValidationSummary
     
     '''<summary>
+    '''dOptOut control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents dOptOut As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+    
+    '''<summary>
     '''lblOptOutStatus1 control.
     '''</summary>
     '''<remarks>
@@ -698,13 +707,58 @@ Partial Public Class EIS_rp_threshold
     Protected WithEvents lblOptOutStatus1 As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
-    '''lblOptOutStatus2 control.
+    '''pnlColocate control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lblOptOutStatus2 As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents pnlColocate As Global.System.Web.UI.WebControls.Panel
+    
+    '''<summary>
+    '''rblIsColocated control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rblIsColocated As Global.System.Web.UI.WebControls.RadioButtonList
+    
+    '''<summary>
+    '''reqIsColocated control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents reqIsColocated As Global.System.Web.UI.WebControls.RequiredFieldValidator
+    
+    '''<summary>
+    '''pnlColocation control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents pnlColocation As Global.System.Web.UI.WebControls.Panel
+    
+    '''<summary>
+    '''txtColocatedWith control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtColocatedWith As Global.System.Web.UI.WebControls.TextBox
+    
+    '''<summary>
+    '''reqColocatedWith control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents reqColocatedWith As Global.System.Web.UI.WebControls.RequiredFieldValidator
     
     '''<summary>
     '''btnContinue control.
