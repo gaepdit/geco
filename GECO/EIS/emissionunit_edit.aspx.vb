@@ -411,19 +411,20 @@ Partial Class eis_emissionunit_edit
         Dim EmissionsUnitID As String = txtEmissionsUnitID.Text.ToUpper
         Dim FacilitySiteID As String = GetCookie(Cookie.AirsNumber)
         Dim InventoryYear As String = GetCookie(EisCookie.EISMaxYear)
+
         Dim UpdateUserID As String = GetCookie(GecoCookie.UserID)
         Dim UpdateUserName As String = GetCookie(GecoCookie.UserName)
         Dim UpdateUser As String = UpdateUserID & "-" & UpdateUserName
 
         DeleteEmissionsUnit(FacilitySiteID, EmissionsUnitID, UpdateUser)
         EUProcessesSetActiveZero(FacilitySiteID, EmissionsUnitID, UpdateUser)
-        DeleteEUCtrlAppPollutants(FacilitySiteID, EmissionsUnitID)
-        DeleteEUCtrlAppMeasures(FacilitySiteID, EmissionsUnitID)
-        DeleteEUControlApproach(FacilitySiteID, EmissionsUnitID)
-        DeleteProcessRPApp_EU(FacilitySiteID, EmissionsUnitID)
-        DeleteAllProcessControlPollutants_EU(FacilitySiteID, EmissionsUnitID)
-        DeleteAllProcessControlMeasures_EU(FacilitySiteID, EmissionsUnitID)
-        DeleteProcessControlApproach_EU(FacilitySiteID, EmissionsUnitID)
+        DeleteEUCtrlAppPollutants(FacilitySiteID, EmissionsUnitID, UpdateUser)
+        DeleteEUCtrlAppMeasures(FacilitySiteID, EmissionsUnitID, UpdateUser)
+        DeleteEUControlApproach(FacilitySiteID, EmissionsUnitID, UpdateUser)
+        DeleteProcessRPApp_EU(FacilitySiteID, EmissionsUnitID, UpdateUser)
+        DeleteAllProcessControlPollutants_EU(FacilitySiteID, EmissionsUnitID, UpdateUser)
+        DeleteAllProcessControlMeasures_EU(FacilitySiteID, EmissionsUnitID, UpdateUser)
+        DeleteProcessControlApproach_EU(FacilitySiteID, EmissionsUnitID, UpdateUser)
         lblConfirmDelete1.Text = "Emission Unit " & EmissionsUnitID & " and any associated processes, control approaches, control measures, and pollutants have been deleted."
         lblConfirmDelete2.Text = ""
         btnConfirmDelete.Visible = False

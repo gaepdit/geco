@@ -1,5 +1,4 @@
-﻿Imports System.Data
-Imports System.Data.SqlClient
+﻿Imports System.Data.SqlClient
 
 Partial Class eis_rpapportionment_edit
     Inherits Page
@@ -64,6 +63,7 @@ Partial Class eis_rpapportionment_edit
                             "eis_RPApportionment.FacilitySiteID = '" & fsid & "' and " &
                             "eis_RPApportionment.EmissionsUnitID = '" & euid & "' and " &
                             "eis_RPApportionment.ProcessID = '" & ProcessID & "' and " &
+                            " EIS_RPAPPORTIONMENT.ACTIVE = '1' and " &
                             "eis_RPApportionment.ReleasePointID = eis_ReleasePoint.ReleasePointID) " &
                             "Order by ReleasePointID"
 
@@ -398,7 +398,14 @@ Partial Class eis_rpapportionment_edit
                 lblRPApportionmentDeleteWarning.Text = ""
                 lblRPApportionmentDeleteWarning.Visible = True
 
-                Dim sql = "Delete FROM  eis_RPApportionment " &
+                Dim UpdateUserID As String = GetCookie(GecoCookie.UserID)
+                Dim UpdateUserName As String = GetCookie(GecoCookie.UserName)
+                Dim UpdateUser As String = UpdateUserID & "-" & UpdateUserName
+
+                Dim sql = "update eis_RPApportionment " &
+                " set ACTIVE = '0', " &
+                " UPDATEUSER = '" & UpdateUser & "', " &
+                " UPDATEDATETIME = sysdatetime() " &
                 "where eis_RPApportionment.FacilitySiteID = '" & FacilitySiteID & "' and " &
                 "eis_RPApportionment.EmissionsUnitID = '" & EmissionsUnitID & "' and " &
                 "eis_RPApportionment.ProcessID = '" & ProcessID & "' and " &

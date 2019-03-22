@@ -1,5 +1,4 @@
-﻿Imports System.Data
-Imports System.Data.SqlClient
+﻿Imports System.Data.SqlClient
 
 Partial Class eis_processcontrolapproach_edit
     Inherits Page
@@ -110,6 +109,7 @@ Partial Class eis_processcontrolapproach_edit
                 " ON c.FACILITYSITEID = p.FACILITYSITEID " &
                 " AND c.EMISSIONSUNITID = p.EMISSIONSUNITID " &
                 " AND c.PROCESSID = p.PROCESSID " &
+                " and c.ACTIVE = '1' " &
                 "WHERE p.FACILITYSITEID = '" & fsid & "' " &
                 " AND p.EMISSIONSUNITID = '" & euid & "' " &
                 " AND p.PROCESSID = '" & epid & "' " &
@@ -469,8 +469,15 @@ Partial Class eis_processcontrolapproach_edit
                 Dim ProcessID As String = gvwProcessControlMeasure.DataKeys(e.RowIndex).Values(2).ToString
                 Dim MeasureCode As String = gvwProcessControlMeasure.DataKeys(e.RowIndex).Values(3).ToString
 
-                Dim Sql = "Delete FROM  EIS_PROCESSCONTROLMEASURE " &
-                        "where " &
+                Dim UpdateUserID As String = GetCookie(GecoCookie.UserID)
+                Dim UpdateUserName As String = GetCookie(GecoCookie.UserName)
+                Dim UpdateUser As String = UpdateUserID & "-" & UpdateUserName
+
+                Dim Sql = "update EIS_PROCESSCONTROLMEASURE " &
+                        " set ACTIVE = '0', " &
+                        " UPDATEUSER = '" & UpdateUser & "', " &
+                        " UPDATEDATETIME = sysdatetime() " &
+                        " where " &
                         "EIS_PROCESSCONTROLMEASURE.FACILITYSITEID ='" & FacilitySiteID & "' and " &
                         "EIS_PROCESSCONTROLMEASURE.EMISSIONSUNITID ='" & EmissionsUnitID & "' and " &
                         "EIS_PROCESSCONTROLMEASURE.PROCESSID = '" & ProcessID & "' and " &
@@ -519,8 +526,16 @@ Partial Class eis_processcontrolapproach_edit
                 Dim EmissionsUnitID As String = gvwProcessCtrlPollutant.DataKeys(e.RowIndex).Values(1).ToString
                 Dim ProcessID As String = gvwProcessCtrlPollutant.DataKeys(e.RowIndex).Values(2).ToString
                 Dim PollutantCode As String = gvwProcessCtrlPollutant.DataKeys(e.RowIndex).Values(3).ToString
-                Dim Sql = "Delete FROM  EIS_PROCESSCONTROLPOLLUTANT " &
-                        "where " &
+
+                Dim UpdateUserID As String = GetCookie(GecoCookie.UserID)
+                Dim UpdateUserName As String = GetCookie(GecoCookie.UserName)
+                Dim UpdateUser As String = UpdateUserID & "-" & UpdateUserName
+
+                Dim Sql = "update EIS_PROCESSCONTROLPOLLUTANT " &
+                        " set ACTIVE = '0', " &
+                        " UPDATEUSER = '" & UpdateUser & "', " &
+                        " UPDATEDATETIME = sysdatetime() " &
+                        " where " &
                         "EIS_PROCESSCONTROLPOLLUTANT.FACILITYSITEID ='" & FacilitySiteID & "' and " &
                         "EIS_PROCESSCONTROLPOLLUTANT.EMISSIONSUNITID ='" & EmissionsUnitID & "' and " &
                         "EIS_PROCESSCONTROLPOLLUTANT.PROCESSID = '" & ProcessID & "' and " &
@@ -566,9 +581,13 @@ Partial Class eis_processcontrolapproach_edit
         Dim EmissionsUnitID As String = txtEmissionUnitID.Text.ToUpper
         Dim ProcessID As String = txtProcessID.Text.ToUpper
 
-        DeleteAllProcessControlMeasures(FacilitySiteID, EmissionsUnitID, ProcessID)
-        DeleteAllProcessControlPollutants(FacilitySiteID, EmissionsUnitID, ProcessID)
-        DeleteProcessControlApproach(FacilitySiteID, EmissionsUnitID, ProcessID)
+        Dim UpdateUserID As String = GetCookie(GecoCookie.UserID)
+        Dim UpdateUserName As String = GetCookie(GecoCookie.UserName)
+        Dim UpdateUser As String = UpdateUserID & "-" & UpdateUserName
+
+        DeleteAllProcessControlMeasures(FacilitySiteID, EmissionsUnitID, ProcessID, UpdateUser)
+        DeleteAllProcessControlPollutants(FacilitySiteID, EmissionsUnitID, ProcessID, UpdateUser)
+        DeleteProcessControlApproach(FacilitySiteID, EmissionsUnitID, ProcessID, UpdateUser)
         lblDeleteProcessCA.Text = "The Process Control Approach, Pollutants and Measures have been deleted."
         btnDeleteCancel.Visible = False
         btnDeleteOK.Visible = False

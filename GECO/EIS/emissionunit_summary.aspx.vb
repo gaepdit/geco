@@ -59,6 +59,7 @@ Partial Class eis_emissionunit_summary
             "ON eis_EmissionsUnit.FacilitySiteID = EIS_UnitControlApproach.FacilitySiteID " &
             "AND EIS_EmissionsUnit.FacilitySiteID = EIS_UnitControlApproach.FacilitySiteID " &
             "AND eis_EmissionsUnit.EmissionsUnitID = eis_UnitControlApproach.EmissionsUnitID " &
+            " AND eis_UnitControlApproach.ACTIVE = '1' " &
             "WHERE eis_EmissionsUnit.ACTIVE = '1' " &
             "AND eis_EmissionsUnit.FacilitySiteID = @fsid " &
             "ORDER BY eis_EmissionsUnit.EmissionsUnitID "
