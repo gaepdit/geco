@@ -230,10 +230,10 @@ Partial Class eis_process_edit
         Dim UpdateUserName As String = GetCookie(GecoCookie.UserName)
         Dim UpdateUser As String = UpdateUserID & "-" & UpdateUserName
 
-        DeleteProcessRPApp(FacilitySiteID, EmissionsUnitID, ProcessID, UpdateUser)
-        DeleteAllProcessControlPollutants(FacilitySiteID, EmissionsUnitID, ProcessID, UpdateUser)
-        DeleteAllProcessControlMeasures(FacilitySiteID, EmissionsUnitID, ProcessID, UpdateUser)
-        DeleteProcessControlApproach(FacilitySiteID, EmissionsUnitID, ProcessID, UpdateUser)
+        DeleteProcessRPApp(FacilitySiteID, EmissionsUnitID, ProcessID)
+        DeleteAllProcessControlPollutants(FacilitySiteID, EmissionsUnitID, ProcessID)
+        DeleteAllProcessControlMeasures(FacilitySiteID, EmissionsUnitID, ProcessID)
+        DeleteProcessControlApproach(FacilitySiteID, EmissionsUnitID, ProcessID)
         DeleteProcess(FacilitySiteID, EmissionsUnitID, ProcessID, UpdateUser)
         lblConfirmDelete1.Text = "Process " + ProcessID + " for Emission Unit " + EmissionsUnitID + " has been deleted."
         btnNoDelete.Visible = False

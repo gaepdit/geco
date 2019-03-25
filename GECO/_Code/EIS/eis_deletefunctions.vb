@@ -1,4 +1,4 @@
-﻿Imports System.Data.SqlClient
+Imports System.Data.SqlClient
 
 Public Module eis_deletefunctions
 
@@ -52,16 +52,12 @@ Public Module eis_deletefunctions
         Return DB.RunCommand(query, params)
     End Function
 
-    Public Function DeleteEUControlApproach(ByVal fsid As String, ByVal euid As String, UpdUser As String) As Boolean
-        Dim query As String = "update EIS_UNITCONTROLAPPROACH
-            set ACTIVE         = '0',
-                UPDATEUSER     = @UpdUser,
-                UPDATEDATETIME = sysdatetime()
-            where FACILITYSITEID = @fsid
-              and EMISSIONSUNITID = @euid"
+    Public Function DeleteEUControlApproach(ByVal fsid As String, ByVal euid As String) As Boolean
+        Dim query As String = "Delete FROM eis_UnitControlApproach where " &
+            " FacilitySiteID = @fsid " &
+            " and EmissionsUnitID = @euid "
 
         Dim params As SqlParameter() = {
-            New SqlParameter("@UpdUser", UpdUser),
             New SqlParameter("@fsid", fsid),
             New SqlParameter("@euid", euid)
         }
@@ -69,16 +65,12 @@ Public Module eis_deletefunctions
         Return DB.RunCommand(query, params)
     End Function
 
-    Public Function DeleteEUCtrlAppMeasures(ByVal fsid As String, ByVal euid As String, UpdUser As String) As Boolean
-        Dim query As String = "update EIS_UNITCONTROLMEASURE
-            set ACTIVE         = '0',
-                UPDATEUSER     = @UpdUser,
-                UPDATEDATETIME = sysdatetime()
-            where FACILITYSITEID = @fsid
-              and EMISSIONSUNITID = @euid"
+    Public Function DeleteEUCtrlAppMeasures(ByVal fsid As String, ByVal euid As String) As Boolean
+        Dim query As String = "Delete FROM eis_UnitControlMeasure where " &
+            " FacilitySiteID = @fsid " &
+            " and EmissionsUnitID = @euid "
 
         Dim params As SqlParameter() = {
-            New SqlParameter("@UpdUser", UpdUser),
             New SqlParameter("@fsid", fsid),
             New SqlParameter("@euid", euid)
         }
@@ -86,16 +78,12 @@ Public Module eis_deletefunctions
         Return DB.RunCommand(query, params)
     End Function
 
-    Public Function DeleteEUCtrlAppPollutants(ByVal fsid As String, ByVal euid As String, UpdUser As String) As Boolean
-        Dim query As String = "update EIS_UNITCONTROLPOLLUTANT
-            set ACTIVE         = '0',
-                UPDATEUSER     = @UpdUser,
-                UPDATEDATETIME = sysdatetime()
-            where FACILITYSITEID = @fsid
-              and EMISSIONSUNITID = @euid"
+    Public Function DeleteEUCtrlAppPollutants(ByVal fsid As String, ByVal euid As String) As Boolean
+        Dim query As String = "Delete FROM eis_UnitControlPollutant where " &
+            " FacilitySiteID = @fsid " &
+            " and EmissionsUnitID = @euid "
 
         Dim params As SqlParameter() = {
-            New SqlParameter("@UpdUser", UpdUser),
             New SqlParameter("@fsid", fsid),
             New SqlParameter("@euid", euid)
         }
@@ -103,17 +91,13 @@ Public Module eis_deletefunctions
         Return DB.RunCommand(query, params)
     End Function
 
-    Public Function DeleteProcessRPApp(ByVal fsid As String, ByVal euid As String, ByVal epid As String, UpdUser As String) As Boolean
-        Dim query As String = "update EIS_RPAPPORTIONMENT
-            set ACTIVE         = '0',
-                UPDATEUSER     = @UpdUser,
-                UPDATEDATETIME = sysdatetime()
-            where FACILITYSITEID = @fsid
-              and EMISSIONSUNITID = @euid
-              and PROCESSID = @epid"
+    Public Function DeleteProcessRPApp(ByVal fsid As String, ByVal euid As String, ByVal epid As String) As Boolean
+        Dim query As String = "Delete FROM EIS_RPAPPORTIONMENT where " &
+            " FacilitySiteID = @fsid " &
+            " and EmissionsUnitID = @euid " &
+            " and ProcessID = @epid "
 
         Dim params As SqlParameter() = {
-            New SqlParameter("@UpdUser", UpdUser),
             New SqlParameter("@fsid", fsid),
             New SqlParameter("@euid", euid),
             New SqlParameter("@epid", epid)
@@ -122,16 +106,12 @@ Public Module eis_deletefunctions
         Return DB.RunCommand(query, params)
     End Function
 
-    Public Function DeleteProcessRPApp_EU(ByVal fsid As String, ByVal euid As String, UpdUser As String) As Boolean
-        Dim query As String = "update EIS_RPAPPORTIONMENT
-            set ACTIVE         = '0',
-                UPDATEUSER     = @UpdUser,
-                UPDATEDATETIME = sysdatetime()
-            where FACILITYSITEID = @fsid
-              and EMISSIONSUNITID = @euid"
+    Public Function DeleteProcessRPApp_EU(ByVal fsid As String, ByVal euid As String) As Boolean
+        Dim query As String = "Delete FROM EIS_RPAPPORTIONMENT where " &
+            " FacilitySiteID = @fsid " &
+            " and EmissionsUnitID = @euid "
 
         Dim params As SqlParameter() = {
-            New SqlParameter("@UpdUser", UpdUser),
             New SqlParameter("@fsid", fsid),
             New SqlParameter("@euid", euid)
         }
@@ -139,17 +119,13 @@ Public Module eis_deletefunctions
         Return DB.RunCommand(query, params)
     End Function
 
-    Public Function DeleteProcessControlApproach(ByVal fsid As String, ByVal euid As String, ByVal epid As String, UpdUser As String) As Boolean
-        Dim query As String = "update EIS_PROCESSCONTROLAPPROACH
-            set ACTIVE         = '0',
-                UPDATEUSER     = @UpdUser,
-                UPDATEDATETIME = sysdatetime()
-            where FACILITYSITEID = @fsid
-              and EMISSIONSUNITID = @euid
-              and PROCESSID = @epid"
+    Public Function DeleteProcessControlApproach(ByVal fsid As String, ByVal euid As String, ByVal epid As String) As Boolean
+        Dim query As String = "Delete FROM EIS_PROCESSCONTROLAPPROACH where " &
+            " FacilitySiteID = @fsid " &
+            " and EmissionsUnitID = @euid " &
+            " and ProcessID = @epid "
 
         Dim params As SqlParameter() = {
-            New SqlParameter("@UpdUser", UpdUser),
             New SqlParameter("@fsid", fsid),
             New SqlParameter("@euid", euid),
             New SqlParameter("@epid", epid)
@@ -158,16 +134,12 @@ Public Module eis_deletefunctions
         Return DB.RunCommand(query, params)
     End Function
 
-    Public Function DeleteProcessControlApproach_EU(ByVal fsid As String, ByVal euid As String, UpdUser As String) As Boolean
-        Dim query As String = "update EIS_PROCESSCONTROLAPPROACH
-            set ACTIVE         = '0',
-                UPDATEUSER     = @UpdUser,
-                UPDATEDATETIME = sysdatetime()
-            where FACILITYSITEID = @fsid
-              and EMISSIONSUNITID = @euid"
+    Public Function DeleteProcessControlApproach_EU(ByVal fsid As String, ByVal euid As String) As Boolean
+        Dim query As String = "Delete FROM EIS_PROCESSCONTROLAPPROACH where " &
+            " FacilitySiteID = @fsid " &
+            " and EmissionsUnitID = @euid "
 
         Dim params As SqlParameter() = {
-            New SqlParameter("@UpdUser", UpdUser),
             New SqlParameter("@fsid", fsid),
             New SqlParameter("@euid", euid)
         }
@@ -175,17 +147,13 @@ Public Module eis_deletefunctions
         Return DB.RunCommand(query, params)
     End Function
 
-    Public Function DeleteAllProcessControlMeasures(ByVal fsid As String, ByVal euid As String, ByVal epid As String, UpdUser As String) As Boolean
-        Dim query As String = "update EIS_PROCESSCONTROLMEASURE
-            set ACTIVE         = '0',
-                UPDATEUSER     = @UpdUser,
-                UPDATEDATETIME = sysdatetime()
-            where FACILITYSITEID = @fsid
-              and EMISSIONSUNITID = @euid
-              and PROCESSID = @epid"
+    Public Function DeleteAllProcessControlMeasures(ByVal fsid As String, ByVal euid As String, ByVal epid As String) As Boolean
+        Dim query As String = "Delete FROM EIS_PROCESSCONTROLMEASURE where " &
+            " FacilitySiteID = @fsid " &
+            " and EmissionsUnitID = @euid " &
+            " and ProcessID = @epid "
 
         Dim params As SqlParameter() = {
-            New SqlParameter("@UpdUser", UpdUser),
             New SqlParameter("@fsid", fsid),
             New SqlParameter("@euid", euid),
             New SqlParameter("@epid", epid)
@@ -194,16 +162,12 @@ Public Module eis_deletefunctions
         Return DB.RunCommand(query, params)
     End Function
 
-    Public Function DeleteAllProcessControlMeasures_EU(ByVal fsid As String, ByVal euid As String, UpdUser As String) As Boolean
-        Dim query As String = "update EIS_PROCESSCONTROLMEASURE
-            set ACTIVE         = '0',
-                UPDATEUSER     = @UpdUser,
-                UPDATEDATETIME = sysdatetime()
-            where FACILITYSITEID = @fsid
-              and EMISSIONSUNITID = @euid"
+    Public Function DeleteAllProcessControlMeasures_EU(ByVal fsid As String, ByVal euid As String) As Boolean
+        Dim query As String = "Delete FROM EIS_PROCESSCONTROLMEASURE where " &
+            " FacilitySiteID = @fsid " &
+            " and EmissionsUnitID = @euid "
 
         Dim params As SqlParameter() = {
-            New SqlParameter("@UpdUser", UpdUser),
             New SqlParameter("@fsid", fsid),
             New SqlParameter("@euid", euid)
         }
@@ -211,17 +175,13 @@ Public Module eis_deletefunctions
         Return DB.RunCommand(query, params)
     End Function
 
-    Public Function DeleteAllProcessControlPollutants(ByVal fsid As String, ByVal euid As String, ByVal epid As String, UpdUser As String) As Boolean
-        Dim query As String = "update EIS_PROCESSCONTROLPOLLUTANT
-            set ACTIVE         = '0',
-                UPDATEUSER     = @UpdUser,
-                UPDATEDATETIME = sysdatetime()
-            where FACILITYSITEID = @fsid
-              and EMISSIONSUNITID = @euid
-              and PROCESSID = @epid"
+    Public Function DeleteAllProcessControlPollutants(ByVal fsid As String, ByVal euid As String, ByVal epid As String) As Boolean
+        Dim query As String = "Delete FROM EIS_PROCESSCONTROLPOLLUTANT where " &
+            " FacilitySiteID = @fsid " &
+            " and EmissionsUnitID = @euid " &
+            " and ProcessID = @epid "
 
         Dim params As SqlParameter() = {
-            New SqlParameter("@UpdUser", UpdUser),
             New SqlParameter("@fsid", fsid),
             New SqlParameter("@euid", euid),
             New SqlParameter("@epid", epid)
@@ -230,16 +190,12 @@ Public Module eis_deletefunctions
         Return DB.RunCommand(query, params)
     End Function
 
-    Public Function DeleteAllProcessControlPollutants_EU(ByVal fsid As String, ByVal euid As String, UpdUser As String) As Boolean
-        Dim query As String = "update EIS_PROCESSCONTROLPOLLUTANT
-            set ACTIVE         = '0',
-                UPDATEUSER     = @UpdUser,
-                UPDATEDATETIME = sysdatetime()
-            where FACILITYSITEID = @fsid
-              and EMISSIONSUNITID = @euid"
+    Public Function DeleteAllProcessControlPollutants_EU(ByVal fsid As String, ByVal euid As String) As Boolean
+        Dim query As String = "Delete FROM EIS_PROCESSCONTROLPOLLUTANT where " &
+            " FacilitySiteID = @fsid " &
+            " and EmissionsUnitID = @euid "
 
         Dim params As SqlParameter() = {
-            New SqlParameter("@UpdUser", UpdUser),
             New SqlParameter("@fsid", fsid),
             New SqlParameter("@euid", euid)
         }

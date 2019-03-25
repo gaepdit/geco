@@ -1,4 +1,4 @@
-﻿Imports System.Data.SqlClient
+Imports System.Data.SqlClient
 
 Partial Class eis_eucontrolapproach_edit
     Inherits Page
@@ -390,20 +390,12 @@ Partial Class eis_eucontrolapproach_edit
             lblEUControlMeasureWarning.Visible = True
             e.Cancel = True
         Else
-            Dim UpdateUserID As String = GetCookie(GecoCookie.UserID)
-            Dim UpdateUserName As String = GetCookie(GecoCookie.UserName)
-            Dim UpdateUser As String = UpdateUserID & "-" & UpdateUserName
-
-            Dim query = "update EIS_UNITCONTROLMEASURE " &
-                " set ACTIVE = '0', " &
-                " UPDATEUSER = @UpdateUser, " &
-                " UPDATEDATETIME = sysdatetime() " &
+            Dim query = "Delete FROM  EIS_UNITCONTROLMEASURE " &
                 "where EIS_UNITCONTROLMEASURE.FACILITYSITEID = @FacilitySiteID " &
                 "and EIS_UNITCONTROLMEASURE.EMISSIONSUNITID = @EmissionsUnitID " &
                 "and EIS_UNITCONTROLMEASURE.STRCONTROLMEASURECODE = @MeasureCode "
 
             Dim params = {
-                New SqlParameter("@UpdateUser", UpdateUser),
                 New SqlParameter("@FacilitySiteID", FacilitySiteID),
                 New SqlParameter("@EmissionsUnitID", EmissionsUnitID),
                 New SqlParameter("@MeasureCode", MeasureCode)
@@ -479,20 +471,12 @@ Partial Class eis_eucontrolapproach_edit
                 Dim EmissionsUnitID As String = gvwEUControlPollutant.DataKeys(e.RowIndex).Values(1).ToString
                 Dim PollutantCode As String = gvwEUControlPollutant.DataKeys(e.RowIndex).Values(2).ToString
 
-                Dim UpdateUserID As String = GetCookie(GecoCookie.UserID)
-                Dim UpdateUserName As String = GetCookie(GecoCookie.UserName)
-                Dim UpdateUser As String = UpdateUserID & "-" & UpdateUserName
-
-                Dim query = "update EIS_UNITCONTROLPOLLUTANT " &
-                    " set ACTIVE = '0', " &
-                    " UPDATEUSER = @UpdateUser, " &
-                    " UPDATEDATETIME = sysdatetime() " &
+                Dim query = "Delete FROM  EIS_UNITCONTROLPOLLUTANT " &
                     " where EIS_UNITCONTROLPOLLUTANT.FACILITYSITEID = @FacilitySiteID " &
                     " and EIS_UNITCONTROLPOLLUTANT.EMISSIONSUNITID = @EmissionsUnitID " &
                     " and EIS_UNITCONTROLPOLLUTANT.pollutantcode = @PollutantCode "
 
                 Dim params = {
-                    New SqlParameter("@UpdateUser", UpdateUser),
                     New SqlParameter("@FacilitySiteID", FacilitySiteID),
                     New SqlParameter("@EmissionsUnitID", EmissionsUnitID),
                     New SqlParameter("@PollutantCode", PollutantCode)
@@ -530,13 +514,9 @@ Partial Class eis_eucontrolapproach_edit
         Dim EmissionsUnitID As String = txtEmissionUnitID.Text.ToUpper
         Dim targetpage As String = "~/EIS/emissionunit_details.aspx?eu=" & EmissionsUnitID
 
-        Dim UpdateUserID As String = GetCookie(GecoCookie.UserID)
-        Dim UpdateUserName As String = GetCookie(GecoCookie.UserName)
-        Dim UpdateUser As String = UpdateUserID & "-" & UpdateUserName
-
-        DeleteEUCtrlAppMeasures(FacilitySiteID, EmissionsUnitID, UpdateUser)
-        DeleteEUCtrlAppPollutants(FacilitySiteID, EmissionsUnitID, UpdateUser)
-        DeleteEUControlApproach(FacilitySiteID, EmissionsUnitID, UpdateUser)
+        DeleteEUCtrlAppMeasures(FacilitySiteID, EmissionsUnitID)
+        DeleteEUCtrlAppPollutants(FacilitySiteID, EmissionsUnitID)
+        DeleteEUControlApproach(FacilitySiteID, EmissionsUnitID)
 
         lblDeleteUnitCA.Text = "The Emissions Unit Control Approach, Pollutants and Measures have been deleted."
         btnDeleteCancel.Visible = False
