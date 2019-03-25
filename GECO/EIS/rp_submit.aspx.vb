@@ -1068,6 +1068,7 @@ Partial Class EIS_rp_submit
         "         on e.FACILITYSITEID = p.FACILITYSITEID " &
         "            and e.EMISSIONSUNITID = p.EMISSIONSUNITID " &
         "            and e.PROCESSID = p.PROCESSID " &
+        "            and p.ACTIVE = '1' " &
         " where e.FACILITYSITEID = @FacilitySiteID " &
         "       and INTINVENTORYYEAR = @year " &
         "       and convert(int, e.EMCALCMETHODCODE) in (2, 13, 33) "

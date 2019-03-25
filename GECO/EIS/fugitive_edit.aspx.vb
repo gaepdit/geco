@@ -447,6 +447,7 @@ Partial Class eis_fugitive_edit
                 "and eis_process.processid = eis_rpapportionment.processid " &
                 "and eis_process.facilitysiteid= @fsid " &
                 "and eis_rpapportionment.releasepointid= @RPid " &
+                " and EIS_RPAPPORTIONMENT.ACTIVE = '1' " &
                 "and eis_process.Active = '1'"
 
         SqlDataSourceRPApp.SelectParameters.Add("fsid", fsid)

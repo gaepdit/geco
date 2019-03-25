@@ -1,4 +1,4 @@
-﻿Imports System.Data.SqlClient
+Imports System.Data.SqlClient
 Imports EpdIt.DBUtilities
 
 Partial Class eis_process_details
@@ -175,6 +175,7 @@ Partial Class eis_process_details
             " ON c.FACILITYSITEID = p.FACILITYSITEID " &
             " AND c.EMISSIONSUNITID = p.EMISSIONSUNITID " &
             " AND c.PROCESSID = p.PROCESSID " &
+            " AND c.ACTIVE = '1' " &
             "WHERE p.FACILITYSITEID = @fsid " &
             " AND p.EMISSIONSUNITID = @euid " &
             " AND p.PROCESSID = @epid " &

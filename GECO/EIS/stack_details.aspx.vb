@@ -414,6 +414,7 @@ Partial Class eis_stack_details
                 "and eis_process.processid = eis_rpapportionment.processid " &
                 "and eis_process.facilitysiteid= @FacilitySiteID " &
                 "and eis_rpapportionment.releasepointid= @Stkid " &
+                " and EIS_RPAPPORTIONMENT.ACTIVE = '1' " &
                 "and eis_process.Active = '1'"
 
         SqlDataSourceRPApp.SelectParameters.Add("FacilitySiteID", fsid)

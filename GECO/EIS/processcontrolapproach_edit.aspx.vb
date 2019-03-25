@@ -1,4 +1,3 @@
-﻿Imports System.Data
 Imports System.Data.SqlClient
 
 Partial Class eis_processcontrolapproach_edit
@@ -110,6 +109,7 @@ Partial Class eis_processcontrolapproach_edit
                 " ON c.FACILITYSITEID = p.FACILITYSITEID " &
                 " AND c.EMISSIONSUNITID = p.EMISSIONSUNITID " &
                 " AND c.PROCESSID = p.PROCESSID " &
+                " and c.ACTIVE = '1' " &
                 "WHERE p.FACILITYSITEID = '" & fsid & "' " &
                 " AND p.EMISSIONSUNITID = '" & euid & "' " &
                 " AND p.PROCESSID = '" & epid & "' " &

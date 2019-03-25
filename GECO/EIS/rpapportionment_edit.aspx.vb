@@ -1,4 +1,3 @@
-﻿Imports System.Data
 Imports System.Data.SqlClient
 
 Partial Class eis_rpapportionment_edit
@@ -64,6 +63,7 @@ Partial Class eis_rpapportionment_edit
                             "eis_RPApportionment.FacilitySiteID = '" & fsid & "' and " &
                             "eis_RPApportionment.EmissionsUnitID = '" & euid & "' and " &
                             "eis_RPApportionment.ProcessID = '" & ProcessID & "' and " &
+                            " EIS_RPAPPORTIONMENT.ACTIVE = '1' and " &
                             "eis_RPApportionment.ReleasePointID = eis_ReleasePoint.ReleasePointID) " &
                             "Order by ReleasePointID"
 

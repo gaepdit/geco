@@ -1,4 +1,4 @@
-﻿Imports System.Data.SqlClient
+Imports System.Data.SqlClient
 
 Public Module eis_deletefunctions
 
@@ -16,7 +16,7 @@ Public Module eis_deletefunctions
             "Update EIS_RELEASEPOINT Set " &
             " Active = '0', " &
             " UPDATEUSER = @UpdUser, " &
-            " UpdateDateTime = getdate() " &
+            " UpdateDateTime = sysdatetime() " &
             " where FacilitySiteID = @fsid " &
             " and ReleasePointID = @rpid "
         )
@@ -26,7 +26,7 @@ Public Module eis_deletefunctions
             "Update EIS_RPGEOCOORDINATES Set " &
             " Active = '0', " &
             " UPDATEUSER = @UpdUser, " &
-            " UpdateDateTime = getdate() " &
+            " UpdateDateTime = sysdatetime() " &
             " where FacilitySiteID = @fsid " &
             " and ReleasePointID = @rpid "
         )
@@ -39,7 +39,7 @@ Public Module eis_deletefunctions
         Dim query As String = "Update eis_EmissionsUnit Set " &
             " Active = '0', " &
             " UpdateUser = @UpdUser, " &
-            " UpdateDateTime = getdate() " &
+            " UpdateDateTime = sysdatetime() " &
             " where FacilitySiteID = @fsid " &
             " and EmissionsUnitID = @euid "
 
@@ -204,18 +204,15 @@ Public Module eis_deletefunctions
     End Function
 
     Public Function DeleteProcess(ByVal fsid As String, ByVal euid As String, ByVal epid As String, ByVal UpdUser As String) As Boolean
-        Dim Active As String = "0"
-
-        Dim query As String = "Update EIS_PROCESS Set " &
-            " Active = @Active, " &
-            " UpdateUser = @UpdUser, " &
-            " UpdateDateTime = getdate() " &
-            " where FacilitySiteID = @fsid " &
-            " and EmissionsUnitID = @euid " &
-            " and ProcessID = @epid "
+        Dim query As String = "update EIS_PROCESS
+            set ACTIVE         = '0',
+                UPDATEUSER     = @UpdUser,
+                UPDATEDATETIME = sysdatetime()
+            where FACILITYSITEID = @fsid
+              and EMISSIONSUNITID = @euid
+              and PROCESSID = @epid"
 
         Dim params As SqlParameter() = {
-            New SqlParameter("@Active", Active),
             New SqlParameter("@UpdUser", UpdUser),
             New SqlParameter("@fsid", fsid),
             New SqlParameter("@euid", euid),
@@ -226,18 +223,14 @@ Public Module eis_deletefunctions
     End Function
 
     Public Function EUProcessesSetActiveZero(ByVal fsid As String, ByVal euid As String, ByVal UpdUser As String) As Boolean
-        'Sets Active = '0' for all Processes for indicated Emission Unit when "deleting" an EU or shutting down an EU
-        Dim Active As String = "0"
-
-        Dim query As String = "Update EIS_PROCESS Set " &
-            " Active = @Active, " &
-            " UpdateUser = @UpdUser, " &
-            " UpdateDateTime = getdate() " &
-            " where FacilitySiteID = @fsid " &
-            " and EmissionsUnitID = @euid "
+        Dim query As String = "update EIS_PROCESS
+            set ACTIVE         = '0',
+                UPDATEUSER     = @UpdUser,
+                UPDATEDATETIME = sysdatetime()
+            where FACILITYSITEID = @fsid
+              and EMISSIONSUNITID = @euid"
 
         Dim params As SqlParameter() = {
-            New SqlParameter("@Active", Active),
             New SqlParameter("@UpdUser", UpdUser),
             New SqlParameter("@fsid", fsid),
             New SqlParameter("@euid", euid)
@@ -246,26 +239,8 @@ Public Module eis_deletefunctions
         Return DB.RunCommand(query, params)
     End Function
 
-    Public Function DeletePollutant(ByVal fsid As String, ByVal euid As String, ByVal prid As String, ByVal pcode As String, ByVal eiyr As Integer) As Boolean
-        Dim query As String = "Delete FROM  eis_ReportingPeriodEmissions " &
-            " where FacilitySiteID = @fsid " &
-            " and EmissionsUnitID = @euid " &
-            " and ProcessID = @prid " &
-            " and PollutantCode = @pcode " &
-            " and intInventoryYear = @eiyr "
-
-        Dim params As SqlParameter() = {
-            New SqlParameter("@fsid", fsid),
-            New SqlParameter("@euid", euid),
-            New SqlParameter("@prid", prid),
-            New SqlParameter("@pcode", pcode),
-            New SqlParameter("@eiyr", eiyr)
-        }
-
-        Return DB.RunCommand(query, params)
-    End Function
-
-#Region "  Delete Reporting Period elements (Emissions, SCP, Details, Reporting Period) mainly for handling summer day "
+    ' Delete Reporting Period elements (Emissions, SCP, Details, Reporting Period) mainly for handling summer day
+    ' (Rather than set `ACTIVE = 0`, we allow data to be deleted for current (in process) year.)
 
     Public Function DeleteReportingPeriodEmissions(ByVal eiyr As Integer, ByVal fsid As String, ByVal euid As String, ByVal prid As String, ByVal pcode As String, ByVal rptpertypecode As String) As Boolean
         Dim query As String = "Delete FROM eis_ReportingPeriodEmissions " &
@@ -325,7 +300,5 @@ Public Module eis_deletefunctions
 
         Return DB.RunCommand(query, params)
     End Function
-
-#End Region
 
 End Module
