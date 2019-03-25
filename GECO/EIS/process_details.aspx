@@ -49,7 +49,10 @@
         <asp:Label ID="lblSourceClassCode" class="styled" runat="server" Text="Source Classification Code:"></asp:Label>
         <asp:TextBox ID="txtSourceClassCode" runat="server" Text="" class="readonly" ReadOnly="True"
             Width="100px"></asp:TextBox>
-        <asp:Label ID="lblSccDetails" runat="server" />
+    </div>
+    <div class="fieldwrapper">
+        <asp:Label ID="lblSccDescLabel" class="styled" runat="server" Text="SCC Description:"></asp:Label>
+        <asp:Label ID="lblSccDesc" runat="server" />
     </div>
     <div class="fieldwrapper">
         <asp:Label ID="lblProcessComment" class="styled" runat="server" Text="Process Comment:"></asp:Label>

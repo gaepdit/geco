@@ -288,11 +288,18 @@ Partial Class EIS_rp_operscp_edit
                 Else
                     txtProcessDescription.Text = dr.Item("strProcessDescription")
                 End If
+
                 If IsDBNull(dr("SOURCECLASSCODE")) Then
+                    SourceClassCode = ""
                     txtSourceClassCode.Text = ""
+                    lblSccDesc.Text = ""
                 Else
-                    txtSourceClassCode.Text = dr.Item("SOURCECLASSCODE")
                     SourceClassCode = dr.Item("SOURCECLASSCODE")
+                    txtSourceClassCode.Text = SourceClassCode
+
+                    If IsValidScc(SourceClassCode) Then
+                        lblSccDesc.Text = GetSccDetails(SourceClassCode)?.Description
+                    End If
                 End If
 
                 'Begin Process Operating Details

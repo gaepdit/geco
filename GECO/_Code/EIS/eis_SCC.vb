@@ -1,6 +1,6 @@
 Imports System.Data.SqlClient
 
-Public Module SCC
+Public Module eis_SCC
 
     Public Function IsValidScc(SCC As String) As Boolean
         Dim query As String = "select convert(bit, count(*))
@@ -150,7 +150,7 @@ Public Module SCC
             .MapTo = dr("map to").ToString(),
             .LastInventoryYear = dr("last inventory year").ToString(),
             .Category = dr("data category").ToString(),
-            .Description = dr("code description").ToString(),
+            .CodeDescription = dr("code description").ToString(),
             .ShortName = dr("short name").ToString(),
             .Sector = dr("sector").ToString(),
             .UsageNotes = dr("usage notes").ToString(),
@@ -172,7 +172,7 @@ Public Class SccDetails
     Public Property MapTo As String
     Public Property LastInventoryYear As String
     Public Property Category As String
-    Public Property Description As String
+    Public Property CodeDescription As String
     Public Property ShortName As String
     Public Property Sector As String
     Public Property UsageNotes As String
@@ -180,4 +180,10 @@ Public Class SccDetails
     Public Property Tier1 As String
     Public Property Tier2 As String
     Public Property Tier3 As String
+
+    Public ReadOnly Property Description As String
+        Get
+            Return ConcatNonEmptyStrings("; ", {Level1, Level2, Level3, Level4})
+        End Get
+    End Property
 End Class

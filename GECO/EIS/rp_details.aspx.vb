@@ -244,10 +244,16 @@ Partial Class EIS_rp_details
                 Else
                     txtProcessDescription.Text = dr.Item("strProcessDescription")
                 End If
+
                 If IsDBNull(dr("SOURCECLASSCODE")) Then
                     txtSourceClassCode.Text = ""
+                    lblSccDesc.Text = ""
                 Else
                     txtSourceClassCode.Text = dr.Item("SOURCECLASSCODE")
+
+                    If IsValidScc(dr.Item("SOURCECLASSCODE")) Then
+                        lblSccDesc.Text = GetSccDetails(dr.Item("SOURCECLASSCODE"))?.Description
+                    End If
                 End If
 
                 'Begin Process Operating Details

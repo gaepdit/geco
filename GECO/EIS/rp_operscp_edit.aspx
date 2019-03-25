@@ -73,6 +73,10 @@
         <asp:TextBox ID="txtSourceClassCode" runat="server" Text="" class="readonly" ReadOnly="True"
             Width="100px"></asp:TextBox>
     </div>
+    <div class="fieldwrapper">
+        <asp:Label ID="lblSccDescLabel" class="styled" runat="server" Text="SCC Description:"></asp:Label>
+        <asp:Label ID="lblSccDesc" runat="server" />
+    </div>
     <div class="fieldwrapperseparator">
         <asp:Label ID="lblProcessOperatingDetails" CssClass="styledseparator" runat="server"
             Text="Process Operating Details"></asp:Label>

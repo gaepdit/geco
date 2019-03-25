@@ -78,7 +78,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <th>Description</th>
+                                <th>Code Description</th>
                                 <td>
                                     <asp:Label ID="lDesc" runat="server" />
                                 </td>
