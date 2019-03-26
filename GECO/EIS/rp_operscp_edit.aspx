@@ -22,7 +22,7 @@
         Edit Process Operating Details
     </div>
     <div class="fieldwrapperseparator">
-        <asp:Label ID="lblSeparatorNoText" class="styledseparator" runat="server" Text="Process"
+        <asp:Label ID="lblSeparatorNoText" CssClass="styledseparator" runat="server" Text="Process"
             BackColor="#ffffff" ForeColor="#ffffff"></asp:Label>
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
             <ContentTemplate>
@@ -44,37 +44,37 @@
     <asp:ValidationSummary ID="sumvFugitive" runat="server" ForeColor="Red" ValidationGroup="vgRPDetailsEdit"
         HeaderText="You received the following errors:"></asp:ValidationSummary>
     <div class="fieldwrapper">
-        <asp:Label ID="lblEISYear" class="styled" runat="server" Text="Reporting Period:"></asp:Label>
-        <asp:TextBox ID="txtEISYear" class="readonly" runat="server" Text="" ReadOnly="true"
+        <asp:Label ID="lblEISYear" CssClass="styled" runat="server" Text="Reporting Period:"></asp:Label>
+        <asp:TextBox ID="txtEISYear" CssClass="readonly" runat="server" Text="" ReadOnly="true"
             Width="100px"></asp:TextBox>
     </div>
     <div class="fieldwrapper">
-        <asp:Label ID="lblEmissionUnitID" class="styled" runat="server" Text="Emission Unit ID:"></asp:Label>
-        <asp:TextBox ID="txtEmissionsUnitID" class="readonly" runat="server" Text="" ReadOnly="true"
+        <asp:Label ID="lblEmissionUnitID" CssClass="styled" runat="server" Text="Emission Unit ID:"></asp:Label>
+        <asp:TextBox ID="txtEmissionsUnitID" CssClass="readonly" runat="server" Text="" ReadOnly="true"
             Width="100px"></asp:TextBox>
     </div>
     <div class="fieldwrapper">
-        <asp:Label ID="lblEmissionUnitDescription" class="styled" runat="server" Text="Emission Unit Description:"></asp:Label>
-        <asp:TextBox ID="txtUnitDescription" class="readonly" runat="server" Text="" ReadOnly="true"
+        <asp:Label ID="lblEmissionUnitDescription" CssClass="styled" runat="server" Text="Emission Unit Description:"></asp:Label>
+        <asp:TextBox ID="txtUnitDescription" CssClass="readonly" runat="server" Text="" ReadOnly="true"
             Width="300px"></asp:TextBox>
     </div>
     <div class="fieldwrapper">
-        <asp:Label ID="lblProcessID" class="styled" runat="server" Text="Process ID:"></asp:Label>
-        <asp:TextBox ID="txtProcessID" class="readonly" runat="server" Text="" ReadOnly="true"
+        <asp:Label ID="lblProcessID" CssClass="styled" runat="server" Text="Process ID:"></asp:Label>
+        <asp:TextBox ID="txtProcessID" CssClass="readonly" runat="server" Text="" ReadOnly="true"
             Width="100px"></asp:TextBox>
     </div>
     <div class="fieldwrapper">
-        <asp:Label ID="lblProcessDescription" class="styled" runat="server" Text="Process Description:"></asp:Label>
-        <asp:TextBox ID="txtProcessDescription" class="readonly" runat="server" Text="" ReadOnly="True"
+        <asp:Label ID="lblProcessDescription" CssClass="styled" runat="server" Text="Process Description:"></asp:Label>
+        <asp:TextBox ID="txtProcessDescription" CssClass="readonly" runat="server" Text="" ReadOnly="True"
             Width="300px"></asp:TextBox>
     </div>
     <div class="fieldwrapper">
-        <asp:Label ID="lblSourceClassCode" class="styled" runat="server" Text="Source Classification Code:"></asp:Label>
-        <asp:TextBox ID="txtSourceClassCode" runat="server" Text="" class="readonly" ReadOnly="True"
+        <asp:Label ID="lblSourceClassCode" CssClass="styled" runat="server" Text="Source Classification Code:"></asp:Label>
+        <asp:TextBox ID="txtSourceClassCode" runat="server" Text="" CssClass="readonly" ReadOnly="True"
             Width="100px"></asp:TextBox>
     </div>
     <div class="fieldwrapper">
-        <asp:Label ID="lblSccDescLabel" class="styled" runat="server" Text="SCC Description:"></asp:Label>
+        <asp:Label ID="lblSccDescLabel" CssClass="styled" runat="server" Text="SCC Description:"></asp:Label>
         <asp:Label ID="lblSccDesc" runat="server" />
     </div>
     <div class="fieldwrapperseparator">
@@ -83,15 +83,15 @@
     </div>
     <div class="fieldwrapper">
         <asp:Label ID="lblCalcParamType" CssClass="styled" runat="server" Text="Calculation Parameter Type:"></asp:Label>
-        <asp:DropDownList ID="ddlCalcParamType" runat="server" class="">
+        <asp:DropDownList ID="ddlCalcParamType" runat="server">
         </asp:DropDownList>
         <asp:RequiredFieldValidator ID="reqvCalcParamType" ControlToValidate="ddlCalcParamType"
             runat="server" InitialValue="-- Select Type --" ErrorMessage="The Calculation Parameter Type is required."
             Display="Dynamic" ValidationGroup="vgRPDetailsEdit">*</asp:RequiredFieldValidator>
     </div>
     <div class="fieldwrapper">
-        <asp:Label ID="lblCalcParamValue" class="styled" runat="server" Text="Actual Annual Throughput/Activity:"></asp:Label>
-        <asp:TextBox ID="txtCalcParamValue" runat="server" class="editable" Text=""
+        <asp:Label ID="lblCalcParamValue" CssClass="styled" runat="server" Text="Actual Annual Throughput/Activity:"></asp:Label>
+        <asp:TextBox ID="txtCalcParamValue" runat="server" CssClass="editable" Text=""
             Width="100px" MaxLength="11"></asp:TextBox>
         <act:FilteredTextBoxExtender ID="filtxtCalcParamValue" runat="server" Enabled="True"
             FilterType="Custom, Numbers" TargetControlID="txtCalcParamValue" ValidChars=".">
@@ -104,7 +104,7 @@
     </div>
     <div class="fieldwrapper">
         <asp:Label ID="lblCalcParamUoM" CssClass="styled" runat="server" Text="Annual Throughput/Activity Units:"></asp:Label>
-        <asp:DropDownList ID="ddlCalcParamUoM" runat="server" class="">
+        <asp:DropDownList ID="ddlCalcParamUoM" runat="server">
         </asp:DropDownList>
         <asp:RequiredFieldValidator ID="reqvCalcParamUoM" ControlToValidate="ddlCalcParamUoM"
             runat="server" InitialValue="-- Select Units --" Display="Dynamic" ErrorMessage="The Annual Throughput/Activity Units are required."
@@ -112,16 +112,16 @@
     </div>
     <div class="fieldwrapper">
         <asp:Label ID="lblMaterialCode" CssClass="styled" runat="server" Text="Material Processed or Fuel Used:"></asp:Label>
-        <asp:DropDownList ID="ddlMaterialCode" runat="server" class="">
+        <asp:DropDownList ID="ddlMaterialCode" runat="server">
         </asp:DropDownList>
         <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="ddlMaterialCode"
             InitialValue="-- Select Material --" ErrorMessage="The Material Processed or Fuel Used is required."
             ValidationGroup="vgRPDetailsEdit">*</asp:RequiredFieldValidator>
     </div>
     <div class="fieldwrapper">
-        <asp:Label ID="lblRPComment" class="styled" runat="server" Text="Comments:"></asp:Label>
+        <asp:Label ID="lblRPComment" CssClass="styled" runat="server" Text="Comments:"></asp:Label>
         <div style="display: inline-block">
-            <asp:TextBox ID="txtRPComment" runat="server" class="editable" TextMode="MultiLine" Rows="4" onKeyUp="javascript:Count(this);"
+            <asp:TextBox ID="txtRPComment" runat="server" CssClass="editable" TextMode="MultiLine" Rows="4" onKeyUp="javascript:Count(this);"
                 Text="" Width="400px"></asp:TextBox>
             <act:TextBoxWatermarkExtender ID="txtRPComment_TextBoxWatermarkExtender" runat="server"
                 Enabled="True" TargetControlID="txtRPComment" WatermarkText="OPTIONAL" WatermarkCssClass="watermarked">
@@ -134,11 +134,11 @@
         </div>
     </div>
     <div class="fieldwrapperseparator">
-        <asp:Label ID="lblSeparator" class="styledseparator" runat="server" Text="Daily, Weekly &amp; Annual Information"></asp:Label>
+        <asp:Label ID="lblSeparator" CssClass="styledseparator" runat="server" Text="Daily, Weekly &amp; Annual Information"></asp:Label>
     </div>
     <div class="fieldwrapper">
-        <asp:Label ID="lblAvgHoursPerDay" class="styled" runat="server" Text="Average Hours Per Day:"></asp:Label>
-        <asp:TextBox ID="txtAvgHoursPerDay" runat="server" class="editable" Text="" Width="100px"
+        <asp:Label ID="lblAvgHoursPerDay" CssClass="styled" runat="server" Text="Average Hours Per Day:"></asp:Label>
+        <asp:TextBox ID="txtAvgHoursPerDay" runat="server" CssClass="editable" Text="" Width="100px"
             MaxLength="4" ReadOnly="false"></asp:TextBox>
         <asp:RequiredFieldValidator ID="reqvAvgHoursPerDay" runat="server" ControlToValidate="txtAvgHoursPerDay"
             ErrorMessage="The Average Hours Per Day is required." ValidationGroup="vgRPDetailsEdit">*</asp:RequiredFieldValidator>
@@ -150,8 +150,8 @@
             ValidationGroup="vgRPDetailsEdit">Must be between 0.1 and 24</asp:RangeValidator>
     </div>
     <div class="fieldwrapper">
-        <asp:Label ID="lblAvgDaysPerWeek" class="styled" runat="server" Text="Average Days Per Week:"></asp:Label>
-        <asp:TextBox ID="txtAvgDaysPerWeek" runat="server" class="editable" Text="" Width="100px"
+        <asp:Label ID="lblAvgDaysPerWeek" CssClass="styled" runat="server" Text="Average Days Per Week:"></asp:Label>
+        <asp:TextBox ID="txtAvgDaysPerWeek" runat="server" CssClass="editable" Text="" Width="100px"
             ReadOnly="false" MaxLength="3"></asp:TextBox>
         <act:FilteredTextBoxExtender ID="filtxtAvgDaysPerWeek" runat="server" Enabled="True"
             FilterType="Custom, Numbers" TargetControlID="txtAvgDaysPerWeek" ValidChars=".">
@@ -163,8 +163,8 @@
             ValidationGroup="vgRPDetailsEdit">Must be between 0.1 and 7</asp:RangeValidator>
     </div>
     <div class="fieldwrapper">
-        <asp:Label ID="lblAvgWeeksPerYear" class="styled" runat="server" Text="Average Weeks Per Year:"></asp:Label>
-        <asp:TextBox ID="txtAvgWeeksPerYear" runat="server" class="editable" Text="" Width="100px"
+        <asp:Label ID="lblAvgWeeksPerYear" CssClass="styled" runat="server" Text="Average Weeks Per Year:"></asp:Label>
+        <asp:TextBox ID="txtAvgWeeksPerYear" runat="server" CssClass="editable" Text="" Width="100px"
             ReadOnly="false" MaxLength="2"></asp:TextBox>
         <act:FilteredTextBoxExtender ID="filtxtAvgWeeksPerYear" runat="server" Enabled="True"
             FilterType="Numbers" TargetControlID="txtAvgWeeksPerYear">
@@ -176,8 +176,8 @@
             ValidationGroup="vgRPDetailsEdit">Must be between 1 and 52</asp:RangeValidator>
     </div>
     <div class="fieldwrapper">
-        <asp:Label ID="lblActualHoursPerYear" class="styled" runat="server" Text="Actual Hours Per Year:"></asp:Label>
-        <asp:TextBox ID="txtActualHoursPerYear" runat="server" class="editable" Text="" Width="100px"
+        <asp:Label ID="lblActualHoursPerYear" CssClass="styled" runat="server" Text="Actual Hours Per Year:"></asp:Label>
+        <asp:TextBox ID="txtActualHoursPerYear" runat="server" CssClass="editable" Text="" Width="100px"
             ReadOnly="false" MaxLength="4"></asp:TextBox>
         <act:FilteredTextBoxExtender ID="filxtxActualHoursPerYear" runat="server" Enabled="True"
             FilterType="Numbers" TargetControlID="txtActualHoursPerYear">
@@ -189,11 +189,11 @@
             ValidationGroup="vgRPDetailsEdit">Must be between 1 and 8,784</asp:RangeValidator>
     </div>
     <div class="fieldwrapperseparator">
-        <asp:Label ID="lblSeasonalInfo" class="styledseparator" runat="server" Text="Seasonal Operation Percentages"></asp:Label>
+        <asp:Label ID="lblSeasonalInfo" CssClass="styledseparator" runat="server" Text="Seasonal Operation Percentages"></asp:Label>
     </div>
     <div class="fieldwrapper">
-        <asp:Label ID="lblWinterPct" class="styled" runat="server" Text="Winter Percent (%):"></asp:Label>
-        <asp:TextBox ID="txtWinterPct" runat="server" class="editable" Text="" Width="75px"
+        <asp:Label ID="lblWinterPct" CssClass="styled" runat="server" Text="Winter Percent (%):"></asp:Label>
+        <asp:TextBox ID="txtWinterPct" runat="server" CssClass="editable" Text="" Width="75px"
             MaxLength="4" ReadOnly="false"
             ToolTip="Months: January, February ... December"></asp:TextBox>
         <act:FilteredTextBoxExtender ID="filtxtWinterPct" runat="server" Enabled="True" TargetControlID="txtWinterPct"
@@ -206,8 +206,8 @@
             ValidationGroup="vgRPDetailsEdit">Must be between 0 and 100</asp:RangeValidator>
     </div>
     <div class="fieldwrapper">
-        <asp:Label ID="lblSpringPct" class="styled" runat="server" Text="Spring Percent (%):"></asp:Label>
-        <asp:TextBox ID="txtSpringPct" runat="server" class="editable" Text="" Width="75px"
+        <asp:Label ID="lblSpringPct" CssClass="styled" runat="server" Text="Spring Percent (%):"></asp:Label>
+        <asp:TextBox ID="txtSpringPct" runat="server" CssClass="editable" Text="" Width="75px"
             MaxLength="4" ReadOnly="false" ToolTip="Months: March, April, and May"></asp:TextBox>
         <act:FilteredTextBoxExtender ID="filtxtSpringPct" runat="server" Enabled="True" TargetControlID="txtSpringPct"
             FilterType="Custom, Numbers" ValidChars=".">
@@ -219,8 +219,8 @@
             ValidationGroup="vgRPDetailsEdit">Must be between 0 and 100</asp:RangeValidator>
     </div>
     <div class="fieldwrapper">
-        <asp:Label ID="lblSummerPct" class="styled" runat="server" Text="Summer Percent (%):"></asp:Label>
-        <asp:TextBox ID="txtSummerPct" runat="server" class="editable" Text="" Width="75px"
+        <asp:Label ID="lblSummerPct" CssClass="styled" runat="server" Text="Summer Percent (%):"></asp:Label>
+        <asp:TextBox ID="txtSummerPct" runat="server" CssClass="editable" Text="" Width="75px"
             MaxLength="4" ReadOnly="false" ToolTip="Months: June, July, and August"></asp:TextBox>
         <act:FilteredTextBoxExtender ID="filtxtSummerPct" runat="server" Enabled="True" TargetControlID="txtSummerPct"
             FilterType="Custom, Numbers" ValidChars=".">
@@ -232,8 +232,8 @@
             ValidationGroup="vgRPDetailsEdit">Must be between 0 and 100</asp:RangeValidator>
     </div>
     <div class="fieldwrapper">
-        <asp:Label ID="lblFallPct" class="styled" runat="server" Text="Fall Percent (%):"></asp:Label>
-        <asp:TextBox ID="txtFallPct" runat="server" class="editable" Text="" Width="75px"
+        <asp:Label ID="lblFallPct" CssClass="styled" runat="server" Text="Fall Percent (%):"></asp:Label>
+        <asp:TextBox ID="txtFallPct" runat="server" CssClass="editable" Text="" Width="75px"
             MaxLength="4" ReadOnly="false" ToolTip="Months: September, Ocotber, and November"></asp:TextBox>
         <act:FilteredTextBoxExtender ID="filtxtFallPct" runat="server" Enabled="True" TargetControlID="txtFallPct"
             FilterType="Custom, Numbers" ValidChars=".">
@@ -247,8 +247,8 @@
     <asp:UpdatePanel ID="UpdatePanel3" runat="server">
         <ContentTemplate>
             <div class="fieldwrapper">
-                <asp:Label ID="lblTotalPct" class="styled" runat="server" Text="Total Seasonal Percent (%):"></asp:Label>
-                <asp:TextBox ID="txtTotalPct" runat="server" class="editable" Text="" Width="75px"
+                <asp:Label ID="lblTotalPct" CssClass="styled" runat="server" Text="Total Seasonal Percent (%):"></asp:Label>
+                <asp:TextBox ID="txtTotalPct" runat="server" CssClass="editable" Text="" Width="75px"
                     MaxLength="4" ReadOnly="True" Font-Bold="True"></asp:TextBox>&nbsp
                 <asp:Button ID="btnSumSeasonalPct" runat="server" Text="Calculate"
                     CausesValidation="False" />&nbsp
@@ -257,19 +257,19 @@
         </ContentTemplate>
     </asp:UpdatePanel>
     <div class="fieldwrapperseparator">
-        <asp:Label ID="lblFuelBurning" class="styledseparator" runat="server" Text="Fuel Burning Information"></asp:Label>
+        <asp:Label ID="lblFuelBurning" CssClass="styledseparator" runat="server" Text="Fuel Burning Information"></asp:Label>
     </div>
     <asp:UpdatePanel ID="UpdatePanel4" runat="server">
         <ContentTemplate>
             <div class="fieldwrapper">
                 <asp:Label ID="lblFuelUsage" CssClass="styled" runat="server" Text="Is this process fuel burning?"></asp:Label>
-                <asp:DropDownList ID="ddlFuelBurning" runat="server" class="" AutoPostBack="true">
+                <asp:DropDownList ID="ddlFuelBurning" runat="server" AutoPostBack="true">
                 </asp:DropDownList>
             </div>
             <asp:Panel ID="pnlFuelBurning" runat="server" Width="100%">
                 <div class="fieldwrapper">
-                    <asp:Label ID="lblHeatContent" class="styled" runat="server" Text="Heat Content:"></asp:Label>
-                    <asp:TextBox ID="txtHeatContent" class="editable" runat="server" ReadOnly="false"
+                    <asp:Label ID="lblHeatContent" CssClass="styled" runat="server" Text="Heat Content:"></asp:Label>
+                    <asp:TextBox ID="txtHeatContent" CssClass="editable" runat="server" ReadOnly="false"
                         Width="100px" ValidationGroup="vgRPDetailsEdit" MaxLength="9"></asp:TextBox>
                     <act:FilteredTextBoxExtender ID="filtxtHeatContent"
                         runat="server" Enabled="True" TargetControlID="txtHeatContent" FilterType="Custom, Numbers" ValidChars=".">
@@ -285,9 +285,9 @@
                         MaximumValue="99999.99" MinimumValue="0.01">Must be between 0.01 and 99,999.99</asp:RangeValidator>
                 </div>
                 <div class="fieldwrapper">
-                    <asp:Label ID="lblHeatContentNumUoM" class="styled" runat="server" Text="Heat Content Units:"></asp:Label>
+                    <asp:Label ID="lblHeatContentNumUoM" CssClass="styled" runat="server" Text="Heat Content Units:"></asp:Label>
                     Million BTUs / 
-                    <asp:DropDownList ID="ddlHeatContentDenUoM" runat="server" class=""
+                    <asp:DropDownList ID="ddlHeatContentDenUoM" runat="server"
                         ValidationGroup="vgRPDetailsEdit"
                         ToolTip="E6FT3S indicates million standard cubic feet">
                     </asp:DropDownList>
@@ -298,8 +298,8 @@
                 <div style="text-align: center;">
                 </div>
                 <div class="fieldwrapper">
-                    <asp:Label ID="lblSulfurPct" class="styled" runat="server" Text="Sulfur Content (%):"></asp:Label>
-                    <asp:TextBox ID="txtSulfurPct" class="editable" runat="server" ReadOnly="false" Width="75px"
+                    <asp:Label ID="lblSulfurPct" CssClass="styled" runat="server" Text="Sulfur Content (%):"></asp:Label>
+                    <asp:TextBox ID="txtSulfurPct" CssClass="editable" runat="server" ReadOnly="false" Width="75px"
                         MaxLength="4" ValidationGroup="vgRPDetailsEdit"></asp:TextBox>
                     <act:FilteredTextBoxExtender ID="filtxtSulfurPct" runat="server" Enabled="True" FilterType="Custom, Numbers"
                         TargetControlID="txtSulfurPct" ValidChars=".">
@@ -313,8 +313,8 @@
                         MinimumValue="0.01" ValidationGroup="vgRPDetailsEdit">Must be from 0.01% to 10%</asp:RangeValidator>
                 </div>
                 <div class="fieldwrapper">
-                    <asp:Label ID="lblAshPct" class="styled" runat="server" Text="Ash Content (%):"></asp:Label>
-                    <asp:TextBox ID="txtAshPct" class="editable" runat="server" ReadOnly="false" Width="75px"
+                    <asp:Label ID="lblAshPct" CssClass="styled" runat="server" Text="Ash Content (%):"></asp:Label>
+                    <asp:TextBox ID="txtAshPct" CssClass="editable" runat="server" ReadOnly="false" Width="75px"
                         MaxLength="4" ValidationGroup="vgRPDetailsEdit"></asp:TextBox>
                     <act:FilteredTextBoxExtender ID="filtxtAshPct" runat="server" Enabled="True" FilterType="Custom, Numbers"
                         TargetControlID="txtAshPct" ValidChars=".">
@@ -331,7 +331,7 @@
         </ContentTemplate>
     </asp:UpdatePanel>
     <div class="fieldwrapperseparator">
-        <asp:Label ID="lblSummary" class="styledseparator" runat="server" Text="lblSeparatorwithSaveandNoText"
+        <asp:Label ID="lblSummary" CssClass="styledseparator" runat="server" Text="lblSeparatorwithSaveandNoText"
             BackColor="#ffffff" ForeColor="#ffffff"></asp:Label>
     </div>
     <asp:UpdatePanel ID="UpdatePanel2" runat="server">
@@ -344,7 +344,7 @@
                     CausesValidation="False" UseSubmitBehavior="False" PostBackUrl="~/EIS/rp_summary.aspx" />&nbsp;
                 <asp:Button ID="btnDelete" runat="server" Text="Remove"
                     CausesValidation="False" ToolTip="Remove from reporting period" />
-                <act:ModalPopupExtender ID="mpeDelete" runat="server" DynamicServicePath="" Enabled="True"
+                <act:ModalPopupExtender ID="mpeDelete" runat="server" Enabled="True"
                     TargetControlID="btnDelete" BackgroundCssClass="modalProgressGreyBackground"
                     PopupControlID="pnlConfirmDelete">
                 </act:ModalPopupExtender>
