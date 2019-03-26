@@ -1,6 +1,16 @@
-﻿Imports System.Data.SqlClient
+Imports System.Data.SqlClient
 
 Public Module eis_RPOperatingDetails
+
+    ' Calc param UOM
+    Public Function GetCalcParamUoMCodes() As DataTable
+        Dim query = "select STRDESC as Description, CALCPARAMUOMCODE as Code
+            from EISLK_CALCPARAMUOMCODE
+            where ACTIVE = '1'
+            order by Description"
+
+        Return DB.GetDataTable(query)
+    End Function
 
     Public Function GetCalcParamUoMCodesForScc(SCC As String) As DataTable
         If SCC Is Nothing Then
@@ -8,12 +18,13 @@ Public Module eis_RPOperatingDetails
         End If
 
         Dim query As String = "select c.CALCPARAMUOMCODE as Code,
-                   c.STRDESC          as UnitOfMeasureDesc
+                   c.STRDESC          as Description
             from EISLK_SCC_UOM u
                  inner join EISLK_CALCPARAMUOMCODE c
                             on u.UnitOfMeasure = c.CALCPARAMUOMCODE
             where ACTIVE = '1'
-              and SourceClassificationCode = @SCC"
+              and SourceClassificationCode = @SCC
+            order by Description"
 
         Dim param As New SqlParameter("@SCC", SCC)
 
@@ -30,33 +41,49 @@ Public Module eis_RPOperatingDetails
         Return DB.GetString(query, param)
     End Function
 
+    ' Calc Param Types
     Public Function GetCalcParamTypes() As DataTable
         Dim query = "select strdesc, calcparatypecode FROM EISLK_CALCPARAMETERTYPECODE where Active = '1' order by strDesc "
 
         Return DB.GetDataTable(query)
     End Function
 
-    Public Function GetCalcParamUoMCodes() As DataTable
-        Dim query = "select STRDESC as UnitOfMeasureDesc, CALCPARAMUOMCODE as Code
-            from EISLK_CALCPARAMUOMCODE
+    ' Calc param material
+    Public Function GetCalcMaterialCodes() As DataTable
+        Dim query = "select STRDESC as Description, CALCULATEMATERIALCODE as Code
+            FROM EISLK_CALCULATEMATERIALCODE
             where ACTIVE = '1'
-            order by UnitOfMeasureDesc"
+            order by STRDESC"
 
         Return DB.GetDataTable(query)
     End Function
 
-    Public Function GetCalcParamMaterialCodes() As DataTable
-        Dim query = "select strdesc, calculatematerialcode FROM EISLK_CALCULATEMATERIALCODE where Active = '1' order by strDesc"
+    Public Function GetCalcMaterialCodesForScc(SCC As String) As DataTable
+        If SCC Is Nothing Then
+            Return Nothing
+        End If
 
-        Return DB.GetDataTable(query)
+        Dim query As String = "select c.CALCULATEMATERIALCODE as Code, c.STRDESC as Description
+            FROM EISLK_CALCULATEMATERIALCODE c
+                 inner join EISLK_SCC_CALCULATEMATERIALCODE s
+                            on s.CALCULATEMATERIALCODE = c.CALCULATEMATERIALCODE
+            where ACTIVE = '1'
+              and s.SCC = @SCC
+            order by Description"
+
+        Dim param As New SqlParameter("@SCC", SCC)
+
+        Return DB.GetDataTable(query, param)
     End Function
 
+    ' SCP denominator
     Public Function GetScpDenomUoMCodes() As DataTable
         Dim query = "select strdesc, SCPDenomUOMCode FROM eislk_SCPDenomUOMCode where Active = '1' order by strDesc"
 
         Return DB.GetDataTable(query)
     End Function
 
+    ' Reporting period operating details
     Public Function GetRPOperatingDetails(Year As String, FSID As String, EUID As String, EPID As String) As DataRow
         Dim query = "select INTINVENTORYYEAR, " &
             " EMISSIONSUNITID, " &

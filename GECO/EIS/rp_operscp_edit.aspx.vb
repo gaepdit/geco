@@ -1,9 +1,14 @@
-﻿Partial Class EIS_rp_operscp_edit
+Imports EpdIt.DBUtilities
+
+Partial Class EIS_rp_operscp_edit
     Inherits Page
 
-    Private Property SelectedSCC As String = ""
-    Private Property SelectedCalcParamUomCode As String = ""
+    Private Property SelectedSCC As String = Nothing
+    Private Property SelectedCalcParamUom As String = Nothing
+    Private Property SelectedCalcMaterial As String = Nothing
+
     Private CalcParamUomCodesTable As DataTable = Nothing
+    Private CalcMaterialCodesTable As DataTable = Nothing
 
     Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
 
@@ -20,7 +25,6 @@
 
         If Not IsPostBack Then
             LoadCalcParamTypeDDL()
-            LoadMaterialCodeDDL()
             LoadFuelBurningDDL()
             LoadHeatContentDenUoMDDL()
             btnSummary2.Visible = False
@@ -29,6 +33,7 @@
 
             LoadRPDetails(InventoryYear, FacilitySiteID, EmissionsUnitID, ProcessID)
             LoadCalcParamUoM()
+            LoadMaterialCodeDDL()
 
             SumSeasonalPercentages()
         End If
@@ -54,48 +59,56 @@
     End Sub
 
     Private Sub LoadCalcParamUoM()
-        Dim reqExists As Boolean = True
-
         If Not String.IsNullOrEmpty(SelectedSCC) Then
             CalcParamUomCodesTable = GetCalcParamUoMCodesForScc(SelectedSCC)
         End If
 
         If CalcParamUomCodesTable Is Nothing OrElse CalcParamUomCodesTable.Rows.Count = 0 Then
             CalcParamUomCodesTable = GetCalcParamUoMCodes()
-            reqExists = False
         End If
 
         With ddlCalcParamUoM
             .DataSource = CalcParamUomCodesTable
             .DataValueField = "Code"
-            .DataTextField = "UnitOfMeasureDesc"
+            .DataTextField = "Description"
             .DataBind()
             .Items.Insert(0, "-- Select Units --")
             .SelectedIndex = 0
         End With
 
-        If Not String.IsNullOrEmpty(SelectedCalcParamUomCode) AndAlso CalcParamUomCodesTable.Rows.Contains(SelectedCalcParamUomCode) Then
-            ddlCalcParamUoM.SelectedValue = SelectedCalcParamUomCode
+        If Not String.IsNullOrEmpty(SelectedCalcParamUom) AndAlso CalcParamUomCodesTable.Rows.Contains(SelectedCalcParamUom) Then
+            ddlCalcParamUoM.SelectedValue = SelectedCalcParamUom
 
-            If reqExists AndAlso CalcParamUomCodesTable.Rows.Count = 1 Then
+            If CalcParamUomCodesTable.Rows.Count = 1 Then
                 ddlCalcParamUoM.Enabled = False
             End If
         End If
     End Sub
 
     Private Sub LoadMaterialCodeDDL()
-        ddlMaterialCode.Items.Add("-- Select Material --")
+        If Not String.IsNullOrEmpty(SelectedSCC) Then
+            CalcMaterialCodesTable = GetCalcMaterialCodesForScc(SelectedSCC)
+        End If
 
-        Dim dt As DataTable = GetCalcParamMaterialCodes()
+        If CalcMaterialCodesTable Is Nothing OrElse CalcMaterialCodesTable.Rows.Count = 0 Then
+            CalcMaterialCodesTable = GetCalcMaterialCodes()
+        End If
 
-        If dt IsNot Nothing Then
-            For Each dr In dt.Rows
-                Dim newListItem As New ListItem With {
-                        .Text = dr.Item("strdesc"),
-                        .Value = dr.Item("calculatematerialcode")
-                    }
-                ddlMaterialCode.Items.Add(newListItem)
-            Next
+        With ddlMaterialCode
+            .DataSource = CalcMaterialCodesTable
+            .DataValueField = "Code"
+            .DataTextField = "Description"
+            .DataBind()
+            .Items.Insert(0, "-- Select Material --")
+            .SelectedIndex = 0
+        End With
+
+        If Not String.IsNullOrEmpty(SelectedCalcMaterial) AndAlso CalcMaterialCodesTable.Rows.Contains(SelectedCalcMaterial) Then
+            ddlMaterialCode.SelectedValue = SelectedCalcMaterial
+
+            If CalcMaterialCodesTable.Rows.Count = 1 Then
+                ddlMaterialCode.Enabled = False
+            End If
         End If
     End Sub
 
@@ -200,12 +213,12 @@
                 txtProcessDescription.Text = dr.Item("strProcessDescription")
             End If
 
-            If IsDBNull(dr("SOURCECLASSCODE")) Then
-                SelectedSCC = ""
+            SelectedSCC = GetNullableString(dr.Item("SOURCECLASSCODE"))
+
+            If String.IsNullOrEmpty(SelectedSCC) Then
                 txtSourceClassCode.Text = ""
                 lblSccDesc.Text = ""
             Else
-                SelectedSCC = dr.Item("SOURCECLASSCODE")
                 txtSourceClassCode.Text = SelectedSCC
 
                 If IsValidScc(SelectedSCC) Then
@@ -225,15 +238,10 @@
                 txtCalcParamValue.Text = dr.Item("FLTCALCPARAMETERVALUE")
             End If
 
-            If Not IsDBNull(dr("CALCPARAMUOMCODE")) Then
-                SelectedCalcParamUomCode = dr.Item("CALCPARAMUOMCODE")
-            End If
+            SelectedCalcParamUom = GetNullableString(dr.Item("CALCPARAMUOMCODE"))
 
-            If IsDBNull(dr("CALCULATEMATERIALCODE")) Then
-                ddlMaterialCode.SelectedIndex = 0
-            Else
-                ddlMaterialCode.SelectedValue = dr.Item("CALCULATEMATERIALCODE")
-            End If
+            SelectedCalcMaterial = GetNullableString(dr.Item("CALCULATEMATERIALCODE"))
+
             If IsDBNull(dr("STRREPORTINGPERIODCOMMENT")) Then
                 txtRPComment.Text = ""
             Else
