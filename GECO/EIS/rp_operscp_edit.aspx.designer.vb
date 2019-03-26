@@ -320,15 +320,6 @@ Partial Public Class EIS_rp_operscp_edit
     Protected WithEvents reqvCalcParamUoM As Global.System.Web.UI.WebControls.RequiredFieldValidator
     
     '''<summary>
-    '''cmpCalcParamUom control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents cmpCalcParamUom As Global.System.Web.UI.WebControls.CompareValidator
-    
-    '''<summary>
     '''lblMaterialCode control.
     '''</summary>
     '''<remarks>

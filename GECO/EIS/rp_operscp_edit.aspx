@@ -1,5 +1,5 @@
 <%@ Page Title="Reporting Period Operating Details Edit - GECO Emissions Inventory "
-    Language="VB" MasterPageFile="eismaster.master" AutoEventWireup="false" Inherits="GECO.EIS_rp_operscp_edit" Codebehind="rp_operscp_edit.aspx.vb" %>
+    Language="VB" MasterPageFile="eismaster.master" AutoEventWireup="false" Inherits="GECO.EIS_rp_operscp_edit" CodeBehind="rp_operscp_edit.aspx.vb" %>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder3" runat="Server">
     <script type="text/javascript">
@@ -109,8 +109,6 @@
         <asp:RequiredFieldValidator ID="reqvCalcParamUoM" ControlToValidate="ddlCalcParamUoM"
             runat="server" InitialValue="-- Select Units --" Display="Dynamic" ErrorMessage="The Annual Throughput/Activity Units are required."
             ValidationGroup="vgRPDetailsEdit">*</asp:RequiredFieldValidator>
-        <asp:CompareValidator ID="cmpCalcParamUom" ControlToValidate="ddlCalcParamUoM" runat="server" 
-            Operator="Equal" Type="String" ValidationGroup="vgRPDetailsEdit">* Invalid units selected</asp:CompareValidator>
     </div>
     <div class="fieldwrapper">
         <asp:Label ID="lblMaterialCode" CssClass="styled" runat="server" Text="Material Processed or Fuel Used:"></asp:Label>

@@ -1798,7 +1798,7 @@
     <Compile Include="_Code\EIS\eis_GetSubmittalErrors.vb" />
     <Compile Include="_Code\EIS\eis_releasePoints.vb" />
     <Compile Include="_Code\EIS\eis_reportingperiod.vb" />
-    <Compile Include="_Code\EIS\eis_UnitOfMeasure.vb" />
+    <Compile Include="_Code\EIS\eis_RPOperatingDetails.vb" />
     <Compile Include="_Code\EmailSender.vb" />
     <Compile Include="_Code\EncryptDecrypt.vb" />
     <Compile Include="_Code\EnumHelpers.vb" />
