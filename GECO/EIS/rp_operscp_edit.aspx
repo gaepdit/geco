@@ -29,13 +29,13 @@
                 <div class="sepbuttons">
                     <asp:Label ID="lblMessageTop" runat="server" Font-Bold="True" Font-Names="Arial"
                         Font-Size="Small" ForeColor="Red"></asp:Label>
-                    <asp:Button ID="btnSave1" runat="server" Text="Save" ToolTip="" Font-Size="Small"
+                    <asp:Button ID="btnSave1" runat="server" Text="Save" Font-Size="Small"
                         ValidationGroup="vgRPDetailsEdit" UseSubmitBehavior="False" />&nbsp;&nbsp;<asp:Button
                             ID="btnSummary3" runat="server" Text="Summary" CausesValidation="False"
                             UseSubmitBehavior="False" PostBackUrl="~/EIS/rp_summary.aspx"
                             Font-Size="Small" />
                     &nbsp;
-                    <asp:Button ID="btnCancel1" runat="server" Text="Return to Details" ToolTip="" Font-Size="Small"
+                    <asp:Button ID="btnCancel1" runat="server" Text="Return to Details" Font-Size="Small"
                         CausesValidation="False" UseSubmitBehavior="False" />
                 </div>
             </ContentTemplate>
@@ -195,7 +195,7 @@
         <asp:Label ID="lblWinterPct" CssClass="styled" runat="server" Text="Winter Percent (%):"></asp:Label>
         <asp:TextBox ID="txtWinterPct" runat="server" CssClass="editable" Text="" Width="75px"
             MaxLength="4" ReadOnly="false"
-            ToolTip="Months: January, February ... December"></asp:TextBox>
+            ToolTip="Months: January, February, & December"></asp:TextBox>
         <act:FilteredTextBoxExtender ID="filtxtWinterPct" runat="server" Enabled="True" TargetControlID="txtWinterPct"
             FilterType="Custom, Numbers" ValidChars=".">
         </act:FilteredTextBoxExtender>
@@ -208,7 +208,7 @@
     <div class="fieldwrapper">
         <asp:Label ID="lblSpringPct" CssClass="styled" runat="server" Text="Spring Percent (%):"></asp:Label>
         <asp:TextBox ID="txtSpringPct" runat="server" CssClass="editable" Text="" Width="75px"
-            MaxLength="4" ReadOnly="false" ToolTip="Months: March, April, and May"></asp:TextBox>
+            MaxLength="4" ReadOnly="false" ToolTip="Months: March, April, & May"></asp:TextBox>
         <act:FilteredTextBoxExtender ID="filtxtSpringPct" runat="server" Enabled="True" TargetControlID="txtSpringPct"
             FilterType="Custom, Numbers" ValidChars=".">
         </act:FilteredTextBoxExtender>
@@ -221,7 +221,7 @@
     <div class="fieldwrapper">
         <asp:Label ID="lblSummerPct" CssClass="styled" runat="server" Text="Summer Percent (%):"></asp:Label>
         <asp:TextBox ID="txtSummerPct" runat="server" CssClass="editable" Text="" Width="75px"
-            MaxLength="4" ReadOnly="false" ToolTip="Months: June, July, and August"></asp:TextBox>
+            MaxLength="4" ReadOnly="false" ToolTip="Months: June, July, & August"></asp:TextBox>
         <act:FilteredTextBoxExtender ID="filtxtSummerPct" runat="server" Enabled="True" TargetControlID="txtSummerPct"
             FilterType="Custom, Numbers" ValidChars=".">
         </act:FilteredTextBoxExtender>
@@ -234,7 +234,7 @@
     <div class="fieldwrapper">
         <asp:Label ID="lblFallPct" CssClass="styled" runat="server" Text="Fall Percent (%):"></asp:Label>
         <asp:TextBox ID="txtFallPct" runat="server" CssClass="editable" Text="" Width="75px"
-            MaxLength="4" ReadOnly="false" ToolTip="Months: September, Ocotber, and November"></asp:TextBox>
+            MaxLength="4" ReadOnly="false" ToolTip="Months: September, Ocotber, & November"></asp:TextBox>
         <act:FilteredTextBoxExtender ID="filtxtFallPct" runat="server" Enabled="True" TargetControlID="txtFallPct"
             FilterType="Custom, Numbers" ValidChars=".">
         </act:FilteredTextBoxExtender>
@@ -337,9 +337,9 @@
         <ContentTemplate>
             <div class="buttonwrapper">
                 <asp:Button ID="btnSave2" runat="server" Text="Save" CausesValidation="True" ValidationGroup="vgRPDetailsEdit" />&nbsp;
-                <asp:Button ID="btnCancel2" runat="server" Text="Return to Details" ToolTip="" Width="120px"
+                <asp:Button ID="btnCancel2" runat="server" Text="Return to Details" Width="120px"
                     CausesValidation="False" />&nbsp;
-                <asp:Button ID="btnSummary" runat="server" Text="Summary" ToolTip="" Font-Size="Small"
+                <asp:Button ID="btnSummary" runat="server" Text="Summary" Font-Size="Small"
                     CausesValidation="False" UseSubmitBehavior="False" PostBackUrl="~/EIS/rp_summary.aspx" />&nbsp;
                 <asp:Button ID="btnDelete" runat="server" Text="Remove"
                     CausesValidation="False" ToolTip="Remove from reporting period" />
