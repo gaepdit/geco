@@ -1,6 +1,7 @@
-<%@ Page Title="Reporting Period Summary - GECO Emissions Inventory" Language="VB" MasterPageFile="eismaster.master" 
-    AutoEventWireup="false" MaintainScrollPositionOnPostback="true" Inherits="GECO.EIS_rp_summary" Codebehind="rp_summary.aspx.vb" %>
-<%@ Register src="../Controls/PreventRePost.ascx" tagname="PreventRePost" tagprefix="uc1" %>
+<%@ Page Title="Reporting Period Summary - GECO Emissions Inventory" Language="VB" MasterPageFile="eismaster.master"
+    AutoEventWireup="false" MaintainScrollPositionOnPostback="true" Inherits="GECO.EIS_rp_summary" CodeBehind="rp_summary.aspx.vb" %>
+
+<%@ Register Src="../Controls/PreventRePost.ascx" TagName="PreventRePost" TagPrefix="uc1" %>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder3" runat="Server">
     <div class="pageheader">
@@ -11,7 +12,7 @@
         <asp:Label ID="lblRPSummary" class="styledseparator" runat="server" Text="Processes in the Reporting Period"></asp:Label>
     </div>
     <div class="gridview">
-        <asp:GridView ID="gvwReportingPeriodSummary" runat="server" 
+        <asp:GridView ID="gvwReportingPeriodSummary" runat="server"
             CellPadding="4" Font-Names="Arial" Font-Size="Small" DataKeyNames="EmissionsUnitID,ProcessID"
             ForeColor="#333333" GridLines="None" AutoGenerateColumns="False"
             class="gridview" PageSize="20">
@@ -37,14 +38,12 @@
                     <ItemStyle HorizontalAlign="Left" />
                 </asp:HyperLinkField>
                 <asp:BoundField DataField="ControlApproach" HeaderText="Control Approach"
-                    HtmlEncode="false" SortExpression="SourceClassCode" ConvertEmptyStringToNull="False"
-                    NullDisplayText="No Data">
+                    ConvertEmptyStringToNull="False" NullDisplayText="No Data">
                     <HeaderStyle HorizontalAlign="Center" />
                     <ItemStyle HorizontalAlign="Center" />
                 </asp:BoundField>
                 <asp:BoundField HeaderText="Last EPA Submittal" DataField="LastEISSubmitDate"
-                    SortExpression="UnitProcessControl" DataFormatString="{0:d}"
-                    NullDisplayText="Not Submitted">
+                    DataFormatString="{0:d}" NullDisplayText="Not Submitted">
                     <HeaderStyle HorizontalAlign="Center" />
                     <ItemStyle Width="100px" HorizontalAlign="Center" />
                 </asp:BoundField>
@@ -85,14 +84,12 @@
                     <ItemStyle HorizontalAlign="Left" />
                 </asp:BoundField>
                 <asp:BoundField DataField="ControlApproach" HeaderText="Control Approach"
-                    HtmlEncode="false" SortExpression="SourceClassCode" ConvertEmptyStringToNull="False"
-                    NullDisplayText="No Data">
+                    ConvertEmptyStringToNull="False" NullDisplayText="No Data">
                     <HeaderStyle HorizontalAlign="Center" />
                     <ItemStyle HorizontalAlign="Center" />
                 </asp:BoundField>
                 <asp:BoundField HeaderText="Last EPA Submittal" DataField="LastEISSubmitDate"
-                    SortExpression="UnitProcessControl" DataFormatString="{0:d}"
-                    NullDisplayText="Not Submitted">
+                    DataFormatString="{0:d}" NullDisplayText="Not Submitted">
                     <HeaderStyle HorizontalAlign="Center" />
                     <ItemStyle Width="100px" HorizontalAlign="Center" />
                 </asp:BoundField>

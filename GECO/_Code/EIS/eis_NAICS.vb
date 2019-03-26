@@ -1,7 +1,7 @@
 ﻿Imports System.Data
 Imports System.Data.SqlClient
 
-Public Module NAICS
+Public Module eis_NAICS
 
     Public Function GetNaicsCodeDesc(ByVal NaicsCode As String) As String
         Dim query As String = "Select strDesc " &

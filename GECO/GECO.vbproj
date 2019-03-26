@@ -1798,7 +1798,7 @@
     <Compile Include="_Code\EIS\eis_GetSubmittalErrors.vb" />
     <Compile Include="_Code\EIS\eis_releasePoints.vb" />
     <Compile Include="_Code\EIS\eis_reportingperiod.vb" />
-    <Compile Include="_Code\EIS\eis_UnitOfMeasure.vb" />
+    <Compile Include="_Code\EIS\eis_RPOperatingDetails.vb" />
     <Compile Include="_Code\EmailSender.vb" />
     <Compile Include="_Code\EncryptDecrypt.vb" />
     <Compile Include="_Code\EnumHelpers.vb" />
@@ -1838,10 +1838,10 @@
     <Compile Include="_Models\Permit\ApplicationFeeInfo.vb" />
     <Compile Include="_Models\Permit\PermitApplication.vb" />
     <Compile Include="_Models\UserSession.vb" />
-    <Compile Include="_DAL\Facility\NAICS.vb" />
+    <Compile Include="_Code\EIS\eis_NAICS.vb" />
     <Compile Include="_Code\ParseNullables.vb" />
     <Compile Include="_Code\RandomStrings.vb" />
-    <Compile Include="_DAL\Facility\SCC.vb" />
+    <Compile Include="_Code\EIS\eis_SCC.vb" />
     <Compile Include="_Code\SessionHelper.vb" />
     <Compile Include="_Code\StringFunctions.vb" />
     <Compile Include="_Code\UrlHelper.vb" />

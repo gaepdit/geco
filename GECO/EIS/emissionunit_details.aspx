@@ -243,10 +243,6 @@
                     <HeaderStyle HorizontalAlign="Left" />
                     <ItemStyle HorizontalAlign="Center" VerticalAlign="Top" />
                 </asp:BoundField>
-                <%--<asp:BoundField DataField="INTLASTEMISSIONSYEAR" HeaderText="Last Inventory Year">
-                    <HeaderStyle HorizontalAlign="Left" />
-                    <ItemStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                </asp:BoundField>--%>
                 <asp:BoundField DataField="LastEISSubmitDate" HeaderText="Last EPA Submittal"
                     NullDisplayText="Not Submitted" DataFormatString="{0:d}">
                     <HeaderStyle HorizontalAlign="Left" />

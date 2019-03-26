@@ -45,12 +45,16 @@
         <asp:TextBox ID="txtSourceClassCode" runat="server" Text="" class="readonly" ReadOnly="True"
             Width="100px"></asp:TextBox>
     </div>
+    <div class="fieldwrapper">
+        <asp:Label ID="lblSccDescLabel" class="styled" runat="server" Text="SCC Description:"></asp:Label>
+        <asp:Label ID="lblSccDesc" runat="server" />
+    </div>
     <div class="fieldwrapperseparator">
         <asp:Label ID="lblEmissionDetails" class="styledseparator" runat="server" Text="Emission Details"></asp:Label>
         <div class="sepbuttons">
             <asp:Button ID="btnAddPollutant" runat="server" Text="Add" ToolTip="" Font-Size="Small" />
             <act:ModalPopupExtender ID="btnAddPollutant_ModalPopupExtender" runat="server" BackgroundCssClass="modalProgressGreyBackground"
-                CancelControlID="btnCancel" DynamicServicePath="" Enabled="True" OkControlID="btnCancel"
+                CancelControlID="btnCancel" Enabled="True" OkControlID="btnCancel"
                 PopupControlID="pnlAddPollutant" TargetControlID="btnAddPollutant">
             </act:ModalPopupExtender>
             <asp:Button ID="btnEditRPEmissions" runat="server" Text="Edit" ToolTip="" Font-Size="Small" />

@@ -328,12 +328,12 @@ Partial Class eis_process_details
 
                 If IsDBNull(dr("SOURCECLASSCODE")) Then
                     txtSourceClassCode.Text = ""
+                    lblSccDesc.Text = ""
                 Else
                     txtSourceClassCode.Text = dr.Item("SOURCECLASSCODE")
 
-                    If IsValidScc(txtSourceClassCode.Text) Then
-                        Dim sccDetails As SccDetails = GetSccDetails(txtSourceClassCode.Text)
-                        lblSccDetails.Text = ConcatNonEmptyStrings("; ", {sccDetails.Level1, sccDetails.Level2, sccDetails.Level3, sccDetails.Level4})
+                    If IsValidScc(dr.Item("SOURCECLASSCODE")) Then
+                        lblSccDesc.Text = GetSccDetails(dr.Item("SOURCECLASSCODE"))?.Description
                     End If
                 End If
 

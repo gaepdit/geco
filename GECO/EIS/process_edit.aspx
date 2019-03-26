@@ -90,7 +90,7 @@
                 OnServerValidate="SCCCheck" ErrorMessage="The Source Classification Code is not valid. Enter a valid SCC code."
                 Font-Names="Arial" Font-Size="Small" Display="Dynamic" ValidationGroup="vgProcessEdit"
                 CssClass="validator">*</asp:CustomValidator>
-            &nbsp;<asp:Button ID="btnSCCLoopup" runat="server" Text="SCC Lookup" ToolTip="" Font-Size="Small"
+            &nbsp;<asp:Button ID="btnSCCLoopup" runat="server" Text="Find SCC" ToolTip="" Font-Size="Small"
                 CausesValidation="False" OnClientClick="openSCCLookup();" />
             <asp:Label ID="lblSccDetails" runat="server" />
         </div>

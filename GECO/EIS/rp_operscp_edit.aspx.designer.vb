@@ -194,6 +194,24 @@ Partial Public Class EIS_rp_operscp_edit
     Protected WithEvents txtSourceClassCode As Global.System.Web.UI.WebControls.TextBox
     
     '''<summary>
+    '''lblSccDescLabel control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblSccDescLabel As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
+    '''lblSccDesc control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblSccDesc As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
     '''lblProcessOperatingDetails control.
     '''</summary>
     '''<remarks>
@@ -300,15 +318,6 @@ Partial Public Class EIS_rp_operscp_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents reqvCalcParamUoM As Global.System.Web.UI.WebControls.RequiredFieldValidator
-    
-    '''<summary>
-    '''cmpCalcParamUom control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents cmpCalcParamUom As Global.System.Web.UI.WebControls.CompareValidator
     
     '''<summary>
     '''lblMaterialCode control.

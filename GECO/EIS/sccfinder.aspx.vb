@@ -8,7 +8,7 @@
             dSccDetails.Visible = True
             lblSCC.Text = SccDetails.SCC
             lCategory.Text = SccDetails.Category
-            lDesc.Text = SccDetails.Description
+            lDesc.Text = SccDetails.CodeDescription
             lShortName.Text = SccDetails.ShortName
             lSector.Text = SccDetails.Sector
             lUsage.Text = SccDetails.UsageNotes
