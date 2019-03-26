@@ -76,11 +76,37 @@ Public Module eis_RPOperatingDetails
         Return DB.GetDataTable(query, param)
     End Function
 
+    ' Fuel burning processes
+    Public Function GetFuelBurningSccList() As DataTable
+        Dim query As String = "select distinct SCC from EISLK_SCC_CALCULATEMATERIALCODE"
+
+        Dim dt As DataTable = DB.GetDataTable(query)
+        dt.PrimaryKey = {dt.Columns(0)}
+
+        Return dt
+    End Function
+
     ' SCP denominator
     Public Function GetScpDenomUoMCodes() As DataTable
-        Dim query = "select strdesc, SCPDenomUOMCode FROM eislk_SCPDenomUOMCode where Active = '1' order by strDesc"
+        Dim query = "select SCPDENOMUOMCODE as Code, STRDESC as Description
+            from EISLK_SCPDENOMUOMCODE
+            where ACTIVE = '1'
+            order by Description"
 
         Return DB.GetDataTable(query)
+    End Function
+
+    Public Function GetScpDenomUoMCodesForScc(SCC As String) As DataTable
+        Dim query = "select c.SCPDENOMUOMCODE as Code, c.STRDESC as Description
+            from EISLK_SCPDENOMUOMCODE c
+                 inner join EISLK_SCC_SCPDENOMUOMCODE s
+                            on s.SCPDENOMUOMCODE = c.SCPDENOMUOMCODE
+            where ACTIVE = '1'
+              and s.SCC = @SCC"
+
+        Dim param As New SqlParameter("@SCC", SCC)
+
+        Return DB.GetDataTable(query, param)
     End Function
 
     ' Reporting period operating details

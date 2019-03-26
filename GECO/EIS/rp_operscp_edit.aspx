@@ -264,13 +264,15 @@
             <div class="fieldwrapper">
                 <asp:Label ID="lblFuelUsage" CssClass="styled" runat="server" Text="Is this process fuel burning?"></asp:Label>
                 <asp:DropDownList ID="ddlFuelBurning" runat="server" AutoPostBack="true">
+                    <asp:ListItem>No</asp:ListItem>
+                    <asp:ListItem>Yes</asp:ListItem>
                 </asp:DropDownList>
             </div>
             <asp:Panel ID="pnlFuelBurning" runat="server" Width="100%">
                 <div class="fieldwrapper">
                     <asp:Label ID="lblHeatContent" CssClass="styled" runat="server" Text="Heat Content:"></asp:Label>
                     <asp:TextBox ID="txtHeatContent" CssClass="editable" runat="server" ReadOnly="false"
-                        Width="100px" ValidationGroup="vgRPDetailsEdit" MaxLength="9"></asp:TextBox>
+                        Width="100px" ValidationGroup="vgRPDetailsEdit" MaxLength="8"></asp:TextBox>
                     <act:FilteredTextBoxExtender ID="filtxtHeatContent"
                         runat="server" Enabled="True" TargetControlID="txtHeatContent" FilterType="Custom, Numbers" ValidChars=".">
                     </act:FilteredTextBoxExtender>
@@ -287,12 +289,9 @@
                 <div class="fieldwrapper">
                     <asp:Label ID="lblHeatContentNumUoM" CssClass="styled" runat="server" Text="Heat Content Units:"></asp:Label>
                     Million BTUs / 
-                    <asp:DropDownList ID="ddlHeatContentDenUoM" runat="server"
-                        ValidationGroup="vgRPDetailsEdit"
-                        ToolTip="E6FT3S indicates million standard cubic feet">
-                    </asp:DropDownList>
+                    <asp:DropDownList ID="ddlHeatContentDenUoM" runat="server" ValidationGroup="vgRPDetailsEdit" />
                     <asp:RequiredFieldValidator ID="reqvHeatContentDenUoM" runat="server" ControlToValidate="ddlHeatContentDenUoM"
-                        ErrorMessage="The Heat Content Units are required." InitialValue="-Select a Value-"
+                        ErrorMessage="The Heat Content Units are required." InitialValue="-- Select a Value --"
                         ValidationGroup="vgRPDetailsEdit">*</asp:RequiredFieldValidator>
                 </div>
                 <div style="text-align: center;">

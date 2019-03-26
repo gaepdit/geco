@@ -1,4 +1,4 @@
-Imports EpdIt.DBUtilities
+﻿Imports EpdIt.DBUtilities
 
 Partial Class EIS_rp_operscp_edit
     Inherits Page
@@ -6,9 +6,16 @@ Partial Class EIS_rp_operscp_edit
     Private Property SelectedSCC As String = Nothing
     Private Property SelectedCalcParamUom As String = Nothing
     Private Property SelectedCalcMaterial As String = Nothing
+    Private Property SelectedScpDenom As String = Nothing
+    Private Property SelectedIsFuelBurning As Boolean = False
+    Private Property SelectedHeatContent As Decimal? = Nothing
+    Private Property SelectedSulfurContent As Decimal? = Nothing
+    Private Property SelectedAshContent As Decimal? = Nothing
 
-    Private CalcParamUomCodesTable As DataTable = Nothing
-    Private CalcMaterialCodesTable As DataTable = Nothing
+    Private CalcParamUomCodeTable As DataTable = Nothing
+    Private CalcMaterialCodeTable As DataTable = Nothing
+    Private FuelBurningSccTable As DataTable = Nothing
+    Private ScpDenomCodeTable As DataTable = Nothing
 
     Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
 
@@ -25,15 +32,15 @@ Partial Class EIS_rp_operscp_edit
 
         If Not IsPostBack Then
             LoadCalcParamTypeDDL()
-            LoadFuelBurningDDL()
-            LoadHeatContentDenUoMDDL()
+
             btnSummary2.Visible = False
             lblTotalSeasonValidate.Visible = False
             lblDeleteConfirm1.Text = DeleteMsg
 
             LoadRPDetails(InventoryYear, FacilitySiteID, EmissionsUnitID, ProcessID)
             LoadCalcParamUoM()
-            LoadMaterialCodeDDL()
+            LoadMaterialCodes()
+            LoadFuelBurningInfo()
 
             SumSeasonalPercentages()
         End If
@@ -60,15 +67,15 @@ Partial Class EIS_rp_operscp_edit
 
     Private Sub LoadCalcParamUoM()
         If Not String.IsNullOrEmpty(SelectedSCC) Then
-            CalcParamUomCodesTable = GetCalcParamUoMCodesForScc(SelectedSCC)
+            CalcParamUomCodeTable = GetCalcParamUoMCodesForScc(SelectedSCC)
         End If
 
-        If CalcParamUomCodesTable Is Nothing OrElse CalcParamUomCodesTable.Rows.Count = 0 Then
-            CalcParamUomCodesTable = GetCalcParamUoMCodes()
+        If CalcParamUomCodeTable Is Nothing OrElse CalcParamUomCodeTable.Rows.Count = 0 Then
+            CalcParamUomCodeTable = GetCalcParamUoMCodes()
         End If
 
         With ddlCalcParamUoM
-            .DataSource = CalcParamUomCodesTable
+            .DataSource = CalcParamUomCodeTable
             .DataValueField = "Code"
             .DataTextField = "Description"
             .DataBind()
@@ -76,26 +83,26 @@ Partial Class EIS_rp_operscp_edit
             .SelectedIndex = 0
         End With
 
-        If Not String.IsNullOrEmpty(SelectedCalcParamUom) AndAlso CalcParamUomCodesTable.Rows.Contains(SelectedCalcParamUom) Then
+        If Not String.IsNullOrEmpty(SelectedCalcParamUom) AndAlso CalcParamUomCodeTable.Rows.Contains(SelectedCalcParamUom) Then
             ddlCalcParamUoM.SelectedValue = SelectedCalcParamUom
 
-            If CalcParamUomCodesTable.Rows.Count = 1 Then
+            If CalcParamUomCodeTable.Rows.Count = 1 Then
                 ddlCalcParamUoM.Enabled = False
             End If
         End If
     End Sub
 
-    Private Sub LoadMaterialCodeDDL()
+    Private Sub LoadMaterialCodes()
         If Not String.IsNullOrEmpty(SelectedSCC) Then
-            CalcMaterialCodesTable = GetCalcMaterialCodesForScc(SelectedSCC)
+            CalcMaterialCodeTable = GetCalcMaterialCodesForScc(SelectedSCC)
         End If
 
-        If CalcMaterialCodesTable Is Nothing OrElse CalcMaterialCodesTable.Rows.Count = 0 Then
-            CalcMaterialCodesTable = GetCalcMaterialCodes()
+        If CalcMaterialCodeTable Is Nothing OrElse CalcMaterialCodeTable.Rows.Count = 0 Then
+            CalcMaterialCodeTable = GetCalcMaterialCodes()
         End If
 
         With ddlMaterialCode
-            .DataSource = CalcMaterialCodesTable
+            .DataSource = CalcMaterialCodeTable
             .DataValueField = "Code"
             .DataTextField = "Description"
             .DataBind()
@@ -103,33 +110,67 @@ Partial Class EIS_rp_operscp_edit
             .SelectedIndex = 0
         End With
 
-        If Not String.IsNullOrEmpty(SelectedCalcMaterial) AndAlso CalcMaterialCodesTable.Rows.Contains(SelectedCalcMaterial) Then
+        If Not String.IsNullOrEmpty(SelectedCalcMaterial) AndAlso CalcMaterialCodeTable.Rows.Contains(SelectedCalcMaterial) Then
             ddlMaterialCode.SelectedValue = SelectedCalcMaterial
 
-            If CalcMaterialCodesTable.Rows.Count = 1 Then
+            If CalcMaterialCodeTable.Rows.Count = 1 Then
                 ddlMaterialCode.Enabled = False
             End If
         End If
     End Sub
 
-    Private Sub LoadFuelBurningDDL()
-        ddlFuelBurning.Items.Add("No")
-        ddlFuelBurning.Items.Add("Yes")
-    End Sub
+    Private Sub LoadFuelBurningInfo()
+        If Not String.IsNullOrEmpty(SelectedSCC) Then
+            ScpDenomCodeTable = GetScpDenomUoMCodesForScc(SelectedSCC)
+        End If
 
-    Private Sub LoadHeatContentDenUoMDDL()
-        ddlHeatContentDenUoM.Items.Add("-Select a Value-")
+        If ScpDenomCodeTable Is Nothing OrElse ScpDenomCodeTable.Rows.Count = 0 Then
+            ScpDenomCodeTable = GetScpDenomUoMCodes()
+        End If
 
-        Dim dt As DataTable = GetScpDenomUoMCodes()
+        With ddlHeatContentDenUoM
+            .DataSource = ScpDenomCodeTable
+            .DataValueField = "Code"
+            .DataTextField = "Description"
+            .DataBind()
+            .Items.Insert(0, "-- Select a Value --")
+            .SelectedIndex = 0
+        End With
 
-        If dt IsNot Nothing Then
-            For Each dr In dt.Rows
-                Dim newListItem As New ListItem With {
-                        .Text = dr.Item("strdesc"),
-                        .Value = dr.Item("SCPDenomUOMCode")
-                    }
-                ddlHeatContentDenUoM.Items.Add(newListItem)
-            Next
+        FuelBurningSccTable = GetFuelBurningSccList()
+
+        If SelectedIsFuelBurning OrElse FuelBurningSccTable.Rows.Contains(SelectedSCC) Then
+            ddlFuelBurning.SelectedValue = "Yes"
+            pnlFuelBurning.Visible = True
+
+            If FuelBurningSccTable.Rows.Contains(SelectedSCC) Then
+                ddlFuelBurning.Enabled = False
+            End If
+
+            If Not String.IsNullOrEmpty(SelectedScpDenom) AndAlso ScpDenomCodeTable.Rows.Contains(SelectedScpDenom) Then
+                ddlHeatContentDenUoM.SelectedValue = SelectedScpDenom
+
+                If ScpDenomCodeTable.Rows.Count = 1 Then
+                    ddlHeatContentDenUoM.Enabled = False
+                End If
+            End If
+
+            If SelectedIsFuelBurning Then
+                txtHeatContent.Text = SelectedHeatContent
+
+                cbxSulfurNegligible.Checked = Not SelectedSulfurContent.HasValue
+                txtSulfurPct.Text = If(SelectedSulfurContent, "")
+                txtSulfurPct.Enabled = SelectedSulfurContent.HasValue
+                reqvSulfurPct.Enabled = SelectedSulfurContent.HasValue
+
+                cbxAshNegligible.Checked = Not SelectedAshContent.HasValue
+                txtAshPct.Text = If(SelectedAshContent, "")
+                txtAshPct.Enabled = SelectedAshContent.HasValue
+                reqvAshPct.Enabled = SelectedAshContent.HasValue
+            End If
+        Else
+            ddlFuelBurning.SelectedValue = "No"
+            pnlFuelBurning.Visible = False
         End If
     End Sub
 
@@ -178,10 +219,6 @@ Partial Class EIS_rp_operscp_edit
     End Function
 
     Private Sub LoadRPDetails(Year As String, FSID As String, EUID As String, EPID As String)
-        Dim HeatContent As String = ""
-        Dim SulfurContent As String = ""
-        Dim AshContent As String = ""
-
         Dim dr As DataRow = GetRPOperatingDetails(Year, FSID, EUID, EPID)
 
         If dr IsNot Nothing Then
@@ -232,6 +269,7 @@ Partial Class EIS_rp_operscp_edit
             Else
                 ddlCalcParamType.SelectedValue = dr.Item("STRCALCPARATYPECODE")
             End If
+
             If IsDBNull(dr("FLTCALCPARAMETERVALUE")) Then
                 txtCalcParamValue.Text = ""
             Else
@@ -292,62 +330,13 @@ Partial Class EIS_rp_operscp_edit
                 txtFallPct.Text = dr.Item("NUMPERCENTFALLACTIVITY")
             End If
 
-            'Fuel Burning Information
-            If IsDBNull(dr("HEATCONTENT")) Then
-                HeatContent = ""
-            Else
-                HeatContent = dr.Item("HEATCONTENT")
-            End If
-            If IsDBNull(dr("SULFURCONTENT")) Then
-                SulfurContent = ""
-                cbxSulfurNegligible.Checked = False
-                txtSulfurPct.Enabled = True
-                reqvSulfurPct.Enabled = True
-            Else
-                SulfurContent = dr.Item("SULFURCONTENT")
-            End If
-            If IsDBNull(dr("ASHCONTENT")) Then
-                AshContent = ""
-                cbxAshNegligible.Checked = False
-                txtAshPct.Enabled = True
-                reqvAshPct.Enabled = True
-            Else
-                AshContent = dr.Item("ASHCONTENT")
-            End If
+            SelectedHeatContent = GetNullable(Of Decimal?)(dr.Item("HEATCONTENT"))
 
-            If (HeatContent = "") Then
-                ddlFuelBurning.SelectedValue = "No"
-                pnlFuelBurning.Visible = False
-            Else
-                ddlFuelBurning.SelectedValue = "Yes"
-                pnlFuelBurning.Visible = True
-                txtHeatContent.Text = HeatContent
-                txtSulfurPct.Text = SulfurContent
-                txtAshPct.Text = AshContent
-                If txtSulfurPct.Text = "" Then
-                    cbxSulfurNegligible.Checked = True
-                    reqvSulfurPct.Enabled = False
-                    txtSulfurPct.Enabled = False
-                Else
-                    cbxSulfurNegligible.Checked = False
-                    reqvSulfurPct.Enabled = True
-                    txtSulfurPct.Enabled = True
-                End If
-                If txtAshPct.Text = "" Then
-                    cbxAshNegligible.Checked = True
-                    reqvAshPct.Enabled = False
-                    txtAshPct.Enabled = False
-                Else
-                    cbxAshNegligible.Checked = False
-                    reqvAshPct.Enabled = True
-                    txtAshPct.Enabled = True
-                End If
-
-                If IsDBNull(dr("HCDENOM")) Then
-                    ddlHeatContentDenUoM.SelectedIndex = 0
-                Else
-                    ddlHeatContentDenUoM.SelectedValue = dr.Item("HCDENOM")
-                End If
+            If SelectedHeatContent.HasValue Then
+                SelectedIsFuelBurning = True
+                SelectedScpDenom = GetNullableString(dr.Item("HCDENOM"))
+                SelectedAshContent = GetNullable(Of Decimal?)(dr.Item("ASHCONTENT"))
+                SelectedSulfurContent = GetNullable(Of Decimal?)(dr.Item("SULFURCONTENT"))
             End If
 
             'Hide Delete Button if LastEISSubmit is not null
@@ -511,7 +500,9 @@ Partial Class EIS_rp_operscp_edit
             pnlFuelBurning.Visible = False
             txtHeatContent.Text = ""
             ddlHeatContentDenUoM.SelectedIndex = 0
+            cbxAshNegligible.Checked = False
             txtAshPct.Text = ""
+            cbxSulfurNegligible.Checked = False
             txtSulfurPct.Text = ""
         End If
     End Sub
