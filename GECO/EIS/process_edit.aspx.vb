@@ -116,11 +116,12 @@ Partial Class eis_process_edit
     End Sub
 
     Protected Sub SCCCheck(Sender As Object, args As ServerValidateEventArgs)
-        SCCExists = IsValidScc(args.Value)
+        args.IsValid = IsValidScc(args.Value)
+        SCCExists = args.IsValid
     End Sub
 
     Protected Sub btnSave_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnSave.Click
-        If SCCExists Then
+        If Page.IsValid Then
             SaveProcessInfo()
             lblMessageTop.Text = "Process saved succesfully"
             lblMessageTop.Visible = True
