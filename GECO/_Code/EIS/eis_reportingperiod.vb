@@ -1,5 +1,4 @@
-﻿Imports System.Data
-Imports System.Data.SqlClient
+﻿Imports System.Data.SqlClient
 Imports EpdIt.DBUtilities
 
 Public Module eis_reportingperiod
@@ -546,10 +545,10 @@ Public Module eis_reportingperiod
 
 #End Region
 
-    Public Function SaveOption(fsid As String, opt As String, uuser As String, eiyr As String,
+    Public Sub SaveOption(fsid As String, opt As String, uuser As String, eiyr As String,
                                Optional ooreason As String = Nothing,
                                Optional colocated As Boolean? = Nothing,
-                               Optional colocation As String = Nothing) As Boolean
+                               Optional colocation As String = Nothing)
         Dim eisAccessCode As String
         Dim eisStatusCode As String
 
@@ -632,8 +631,33 @@ Public Module eis_reportingperiod
                 " and InventoryYear = @eiyr "
         End If
 
-        Return DB.RunCommand(query, params)
-    End Function
+        DB.RunCommand(query, params)
+
+        If colocated AndAlso Not String.IsNullOrWhiteSpace(colocation) Then
+            'Send email to APB
+            Dim airs As String = New GecoModels.ApbFacilityId(fsid).FormattedString
+            Dim facilityName As String = GetFacilityName(fsid)
+            Dim reason As String = DecodeOptOutReason(ooreason)
+
+            Dim plainBody As String = "The following facility has opted out of the Emissions Inventory for " & eiyr &
+                " and has provided co-location information." & vbNewLine &
+                vbNewLine &
+                "Facility: " & airs & ", " & facilityName & vbNewLine &
+                "Opt-out reason: " & reason & vbNewLine &
+                "Co-location info: " & vbNewLine &
+                colocation & vbNewLine
+
+            Dim htmlBody As String = "<p>The following facility has opted out of the Emissions Inventory for " & eiyr &
+                " and has provided co-location information.</p>" &
+                "<p><b>Facility</b>: " & airs & ", " & facilityName & "<br />" &
+                "<b>Opt-out reason</b>: " & reason & "<br />" &
+                "<b>Co-location info</b>:</p>" &
+                "<blockquote><pre>" & colocation & "</pre></blockquote>"
+
+            SendEmail(GecoContactEmail, "GECO EIS - Facility opt out and co-location", plainBody, htmlBody,
+                      caller:="eis_reportingperiod.SaveOption")
+        End If
+    End Sub
 
 #Region " Get Values "
 

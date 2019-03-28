@@ -149,15 +149,6 @@ Partial Public Class EIS_rp_facilitystatus
     Protected WithEvents txtColocatedWith As Global.System.Web.UI.WebControls.TextBox
     
     '''<summary>
-    '''reqColocatedWith control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents reqColocatedWith As Global.System.Web.UI.WebControls.RequiredFieldValidator
-    
-    '''<summary>
     '''btnContinue control.
     '''</summary>
     '''<remarks>

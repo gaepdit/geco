@@ -64,15 +64,12 @@
                                             ErrorMessage="Select Yes or No to continue" Font-Bold="False" />
                                         <asp:Panel ID="pnlColocation" runat="server" Visible="false">
                                             <div style="text-align: center; font-size: medium;">
-                                                What facility are you colocated with?
-                                                <br />
-                                                (Please provide name and AIRS # of colocated facility.)
+                                                What facility are you colocated with? Please provide name and AIRS # of colocated facility.
+                                                Your facility and/or the colocated facility will be contacted by the Air Protection 
+                                                Branch about possible EI submittal.
                                                 <br />
                                                 <asp:TextBox ID="txtColocatedWith" runat="server" BackColor="White"
                                                     TextMode="MultiLine" Width="350px" MaxLength="4000" Rows="4"></asp:TextBox><br />
-                                                <asp:RequiredFieldValidator ID="reqColocatedWith" runat="server"
-                                                    ControlToValidate="txtColocatedWith"
-                                                    ErrorMessage="Enter co-location details to continue." Font-Bold="False" />
                                             </div>
                                         </asp:Panel>
                                     </div>
