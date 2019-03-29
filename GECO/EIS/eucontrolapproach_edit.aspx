@@ -69,9 +69,9 @@
                 TargetControlID="txtPctCtrlApproachCapEffic" FilterType="Custom, Numbers" ValidChars=".">
             </act:FilteredTextBoxExtender>
             <asp:RangeValidator ID="rngvPctCtrlApproachCapEffic" runat="server" ControlToValidate="txtPctCtrlApproachCapEffic"
-                ErrorMessage="The Capture Efficiency must be between 1 and 100 percent."
-                MaximumValue="100" MinimumValue="1" ValidationGroup="vgUnitCPEdit"
-                Type="Double" Style="font-size: small">Must be between 1 and 100</asp:RangeValidator>
+                ErrorMessage="The Capture Efficiency must be between 5 and 100 percent."
+                MaximumValue="100" MinimumValue="5" ValidationGroup="vgUnitCPEdit"
+                Type="Double" Style="font-size: small">Must be between 5 and 100</asp:RangeValidator>
         </div>
         <div class="fieldwrapper">
             <asp:Label ID="lblPctCtrlApproachEffect" class="styled" runat="server" Text="Control Approach Effectiveness (%):"></asp:Label>

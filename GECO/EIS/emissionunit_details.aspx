@@ -481,8 +481,8 @@
                             CssClass="validator" Display="Dynamic" ErrorMessage="* Control approach efficiency is required."
                             ValidationGroup="AddUnitControlApproach"></asp:RequiredFieldValidator>
                         <asp:RangeValidator ID="rngvCtrlApprEffic" runat="server" ControlToValidate="txtCtrlApprCapEffic"
-                            CssClass="validator" Display="Dynamic" MaximumValue="100" MinimumValue="1"
-                            ErrorMessage="* The control approach efficiency must be between 1 and 100 percent."
+                            CssClass="validator" Display="Dynamic" MaximumValue="100" MinimumValue="5"
+                            ErrorMessage="* The control approach efficiency must be between 5 and 100 percent."
                             Type="Double"></asp:RangeValidator>
                     </td>
                 </tr>

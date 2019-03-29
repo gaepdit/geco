@@ -452,9 +452,9 @@
                     <asp:RequiredFieldValidator ID="rqvProcessCACaptureEffic" runat="server" ControlToValidate="txtProcessCACaptureEffic"
                         ErrorMessage="The Process Control Approach Capture Efficiency is required." ValidationGroup="vgAddProcessControlApproach">*</asp:RequiredFieldValidator>
                     <asp:RangeValidator ID="rngvProcessCACaptureEffic" runat="server" ValidationGroup="vgAddProcessControlApproach"
-                        ErrorMessage="The Process Control Approach Capture Efficiency must be between 1 and 100."
-                        ControlToValidate="txtProcessCACaptureEffic" MaximumValue="100" MinimumValue="1"
-                        Type="Double">Must be between 1 and 100</asp:RangeValidator>
+                        ErrorMessage="The Process Control Approach Capture Efficiency must be between 5 and 100."
+                        ControlToValidate="txtProcessCACaptureEffic" MaximumValue="100" MinimumValue="5"
+                        Type="Double">Must be between 5 and 100</asp:RangeValidator>
                 </td>
             </tr>
             <tr>

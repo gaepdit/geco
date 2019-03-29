@@ -66,9 +66,9 @@
             ErrorMessage="Control Approach Capture Efficiency can have at most one decimal place. " ValidationExpression="\d*\.?\d?"
             ValidationGroup="vgProcessControlAppEdit">At most one decimal place allowed. </asp:RegularExpressionValidator>
         <asp:RangeValidator ID="rngvPctCtrlApproachCapEffic" runat="server" ControlToValidate="txtPctCtrlApproachCapEffic"
-            MinimumValue="1.0" MaximumValue="100.0" Type="Double" ValidationGroup="vgProcessControlAppEdit"
-            ErrorMessage="The Percent Control Approach Capture Efficiency is outside the expected range of 1.0 to 100"
-            Display="Dynamic">Must be between 1.0 and 100 percent.</asp:RangeValidator>
+            MinimumValue="5" MaximumValue="100" Type="Double" ValidationGroup="vgProcessControlAppEdit"
+            ErrorMessage="The Percent Control Approach Capture Efficiency is outside the expected range of 5 to 100"
+            Display="Dynamic">Must be between 5 and 100 percent.</asp:RangeValidator>
     </div>
     <div class="fieldwrapper">
         <asp:Label ID="lblPctCtrlApproachEffect" class="styled" runat="server" Text="Percent Control Approach Effectiveness:"></asp:Label>

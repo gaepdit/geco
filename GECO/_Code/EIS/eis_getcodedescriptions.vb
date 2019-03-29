@@ -112,9 +112,11 @@ Public Module eis_getcodedescriptions
             New SqlParameter("@eiyr", eiyr)
         }
 
-        Dim result = DB.GetString(query, params)
+        Return DecodeOptOutReason(DB.GetString(query, params))
+    End Function
 
-        Select Case result
+    Public Function DecodeOptOutReason(reason As String) As String
+        Select Case reason
             Case "1"
                 Return "Facility did not operate"
             Case "2"

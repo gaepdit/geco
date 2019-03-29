@@ -533,7 +533,10 @@ Partial Class eis_stack_edit
 
     End Sub
 
-    Sub FlowRateRangeAndGasVelocityCheck(ByVal Sender As Object, ByVal args As ServerValidateEventArgs) Handles custRPExitGASVelocityMeasure.ServerValidate
+    ' Custom validators
+
+
+    Protected Sub FlowRateRangeAndGasVelocityCheck(ByVal Sender As Object, ByVal args As ServerValidateEventArgs) Handles custRPExitGASVelocityMeasure.ServerValidate
         If txtRPExitGasVelocityMeasure.Text = "" And txtRPExitGasFlowRateMeasure.Text = "" Then
             RPGASRateAndFlowPresent = False
             args.IsValid = False
@@ -546,51 +549,39 @@ Partial Class eis_stack_edit
         End If
     End Sub
 
-    Sub FlowRateRangeCheck(ByVal Sender As Object, ByVal args As ServerValidateEventArgs) Handles cusvRPExitGasFlowRateMeasure.ServerValidate
+    Protected Sub FlowRateRangeCheck(ByVal Sender As Object, ByVal args As ServerValidateEventArgs) Handles cusvRPExitGasFlowRateMeasure.ServerValidate
         Dim StackDiameter As String = txtRPStackDiameterMeasure.Text
         Dim StackVelocity As String = txtRPExitGasVelocityMeasure.Text
         Dim StackFlowRate As Decimal = args.Value
-        Dim StackFlowRateMinMax As MinMaxFlowRate
-        Dim StackMinFlowRate As Decimal
-        Dim StackMaxFlowRate As Decimal
 
         lblStackMessage.Visible = False
+
         If StackDiameter = "" Or StackVelocity = "" Then
-            'Do Nothing
+            Exit Sub
+        End If
+
+        Dim StackFlowRateMinMax As MinMaxValues = GetRPMinMaxFlowRate(StackDiameter, StackVelocity)
+        Dim CalculatedExitGasVelocity As Decimal = CalculateVelocity(StackDiameter, StackFlowRate)
+
+        RPFlowRateInRange = False
+        args.IsValid = False
+
+        If StackFlowRate < StackFlowRateMinMax.MinValue Or StackFlowRate > StackFlowRateMinMax.MaxValue Then
+            cusvRPExitGasFlowRateMeasure.ErrorMessage = "Stack flow rate is outside of expected range based on stack diameter and velocity: " & StackFlowRateMinMax.MinValue & " acfs to " & StackFlowRateMinMax.MaxValue & " acfs."
+            cusvRPExitGasFlowRateMeasure.Text = "Stack flow rate is outside of expected range: " & StackFlowRateMinMax.MinValue & " to " & StackFlowRateMinMax.MaxValue & " acfs."
+            sumvStack.ShowSummary = True
+        ElseIf StackFlowRate <= 0 Or StackFlowRate > 200000 Then
+            cusvRPExitGasFlowRateMeasure.ErrorMessage = "Stack flow rate is outside of the allowed range of 0.1 to 200,000 acfs."
+            cusvRPExitGasFlowRateMeasure.Text = "Stack flow rate is outside of allowed range of 0.1 to 200,000 acfs."
+            sumvStack.ShowSummary = True
+        ElseIf CalculatedExitGasVelocity < 0.001 Or CalculatedExitGasVelocity > 1000 Then
+            cusvRPExitGasFlowRateMeasure.ErrorMessage = "Based on the stack diameter and flow rate entered, the calculated exit " &
+                "gas velocity (" & CalculatedExitGasVelocity.ToString & ") is outside of the allowed range of 0.001 to 1000 FPS."
+            cusvRPExitGasFlowRateMeasure.Text = "Calculated exit gas velocity is outside of the allowed range of 0.001 to 1000 FPS."
+            sumvStack.ShowSummary = True
         Else
-            StackFlowRateMinMax = GetRPMinMaxFlowRate(StackDiameter, StackVelocity)
-            StackMinFlowRate = Math.Round(StackFlowRateMinMax.MinFlowRate, 1)
-            StackMaxFlowRate = Math.Round(StackFlowRateMinMax.MaxFlowRate, 1)
-
-            If StackFlowRate < StackMinFlowRate Then
-                RPFlowRateInRange = False
-                args.IsValid = False
-                cusvRPExitGasFlowRateMeasure.ErrorMessage = "The stack flow rate is below the calculated range of " & StackMinFlowRate & " acfs to " & StackMaxFlowRate & " acfs."
-                cusvRPExitGasFlowRateMeasure.Text = "Stack flow rate below allowed range: " & StackMinFlowRate & " to " & StackMaxFlowRate & " acfs."
-                sumvStack.ShowSummary = True
-            ElseIf StackFlowRate > StackMaxFlowRate Then
-                RPFlowRateInRange = False
-                args.IsValid = False
-                cusvRPExitGasFlowRateMeasure.ErrorMessage = "The stack flow rate is above the calculated range of " & StackMinFlowRate & " acfs to " & StackMaxFlowRate & " acfs."
-                cusvRPExitGasFlowRateMeasure.Text = "Stack flow rate above allowed range: " & StackMinFlowRate & " to " & StackMaxFlowRate & " acfs."
-                sumvStack.ShowSummary = True
-            ElseIf StackMaxFlowRate < 0.1 Or StackMinFlowRate > 200000 Then
-                RPFlowRateInRange = False
-                args.IsValid = False
-                cusvRPExitGasFlowRateMeasure.ErrorMessage = "The stack flow rate calculated using the diameter and velocity is outside of the allowed range of 0.1 to 200,000 acfs."
-                cusvRPExitGasFlowRateMeasure.Text = "Calculated flow rate is outside of allowed range of 0.1 to 200,000 acfs."
-                sumvStack.ShowSummary = True
-            ElseIf StackFlowRate < 0.1 Or StackFlowRate > 200000 Then
-                RPFlowRateInRange = False
-                args.IsValid = False
-                cusvRPExitGasFlowRateMeasure.ErrorMessage = "The stack flow rate entered is outside of the allowed range of 0.1 to 200,000 acfs."
-                cusvRPExitGasFlowRateMeasure.Text = "Entered flow rate is outside of allowed range of 0.1 to 200,000 acfs."
-                sumvStack.ShowSummary = True
-            Else
-                RPFlowRateInRange = True
-                args.IsValid = True
-            End If
-
+            RPFlowRateInRange = True
+            args.IsValid = True
         End If
 
     End Sub

@@ -126,19 +126,13 @@
             <div class="fieldwrapper">
                 <asp:Label ID="lblRPExitGasVelocityMeasure" class="styled" runat="server" Text="Exit Gas Velocity (fps):"></asp:Label>
                 <asp:TextBox ID="txtRPExitGasVelocityMeasure" runat="server" class="editable" Text=""
-                    Width="100px" MaxLength="5"></asp:TextBox>
+                    Width="100px" MaxLength="7"></asp:TextBox>
                 <act:FilteredTextBoxExtender ID="filtxtRPExitGasVelocityMeasure" runat="server" Enabled="True"
                     FilterType="Custom, Numbers" TargetControlID="txtRPExitGasVelocityMeasure" ValidChars=".">
                 </act:FilteredTextBoxExtender>
-                <%-- <asp:RequiredFieldValidator ID="reqvRPExitGasVelocityMeasure" ControlToValidate="txtRPExitGasVelocityMeasure"
-                    runat="server" ErrorMessage="The Exit Gas Velocity is required." ValidationGroup="vgStack"
-                    Display="Dynamic">*</asp:RequiredFieldValidator>--%>
-                <asp:RegularExpressionValidator ID="rgxvExitGasVelocity" runat="server" ControlToValidate="txtRPExitGasVelocityMeasure"
-                    ErrorMessage="Exit gas velocity can have at most one decimal place." ValidationExpression="\d*\.?\d?"
-                    ValidationGroup="vgStack">At most one decimal place allowed. </asp:RegularExpressionValidator>
                 <asp:RangeValidator ID="rngvRPExitGasVelocityMeasure" runat="server" ControlToValidate="txtRPExitGasVelocityMeasure"
-                    MinimumValue="0.1" MaximumValue="600" Type="Double" ErrorMessage="The exit gas velocity is outside the expected range of 0.1 to 600 FPS."
-                    ValidationGroup="vgStack">Must be 0.1 to 600. </asp:RangeValidator>
+                    MinimumValue="0.001" MaximumValue="1000" Type="Double" ErrorMessage="The exit gas velocity is outside the allowable range of 0.001 to 1000 FPS."
+                    ValidationGroup="vgStack">Must be 0.001 to 1000. </asp:RangeValidator>
                 <asp:CustomValidator ID="custRPExitGASVelocityMeasure" ValidateEmptyText="true" ControlToValidate="txtRPExitGasVelocityMeasure"
                     runat="server" OnServerValidate="FlowRateRangeAndGasVelocityCheck" ValidationGroup="vgStack"
                     Display="Dynamic"></asp:CustomValidator>
