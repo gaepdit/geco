@@ -2,7 +2,6 @@
 
 Partial Class EIS_rp_facilitystatus
     Inherits Page
-    Public conn, conn1 As New SqlConnection(DBConnectionString)
 
     Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
 
@@ -112,7 +111,7 @@ Partial Class EIS_rp_facilitystatus
                 "(select max(inventoryYear) as MaxYear, " &
                 "EIS_Admin.FacilitySiteID " &
                 "FROM EIS_Admin GROUP BY EIS_Admin.FacilitySiteID ) MaxResults  " &
-                "where EIS_Admin.FacilitySiteID = '" & fsid & "' " &
+                "where EIS_Admin.FacilitySiteID = @fsid " &
                 "and EIS_Admin.inventoryYear = maxresults.maxyear " &
                 "and EIS_Admin.FacilitySiteID = maxresults.FacilitySiteID " &
                 "group by EIS_Admin.FacilitySiteID, " &
@@ -122,7 +121,9 @@ Partial Class EIS_rp_facilitystatus
                 "EIS_Admin.strEnrollment, EIS_Admin.datFinalize, " &
                 "EIS_Admin.strConfirmationNumber"
 
-            Dim dr = DB.GetDataRow(query)
+            Dim param As New SqlParameter("@fsid", fsid)
+
+            Dim dr = DB.GetDataRow(query, param)
 
             If dr Is Nothing Then
                 'Set EISAccess cookie to "3" id facility does not exist in EIS Admin table
@@ -194,10 +195,6 @@ Partial Class EIS_rp_facilitystatus
 
         Catch ex As Exception
             ErrorReport(ex)
-        Finally
-            If conn.State = ConnectionState.Open Then
-                conn.Close()
-            End If
         End Try
 
     End Sub

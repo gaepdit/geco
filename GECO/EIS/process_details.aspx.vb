@@ -711,8 +711,8 @@ Partial Class eis_process_details
             New SqlParameter("@eu", eu),
             New SqlParameter("@ep", ep),
             New SqlParameter("@ProcessControlApproachDesc", ProcessControlApproachDesc),
-            New SqlParameter("@ProcCtrlApproachCapEffic", DbStringDecimalOrNull(ProcCtrlApproachCapEffic)),
-            New SqlParameter("@ProcCtrlApproachEffect", DbStringDecimalOrNull(ProcCtrlApproachEffect)),
+            New SqlParameter("@ProcCtrlApproachCapEffic", If(String.IsNullOrEmpty(ProcCtrlApproachCapEffic), ProcCtrlApproachCapEffic, Nothing)),
+            New SqlParameter("@ProcCtrlApproachEffect", If(String.IsNullOrEmpty(ProcCtrlApproachEffect), ProcCtrlApproachEffect, Nothing)),
             New SqlParameter("@UpdateUser", UpdateUser)
         }
 

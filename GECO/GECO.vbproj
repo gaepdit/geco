@@ -1781,7 +1781,6 @@
     <Compile Include="_Code\CookieHelper.vb" />
     <Compile Include="_Code\HtmlTableFunctions.vb" />
     <Compile Include="_DAL\DataBaseConnection.vb" />
-    <Compile Include="_Code\DbStringUtils.vb" />
     <Compile Include="_Code\EIS\eis_accesschecks.vb" />
     <Compile Include="_Code\EIS\eis_calculationmethod.vb" />
     <Compile Include="_Code\EIS\eis_ControlApproachPollutants.vb" />

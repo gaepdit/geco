@@ -417,8 +417,8 @@ Partial Class eis_facility_edit
             End If
 
             Dim gcUpdated As Boolean =
-                DbStringDecimalOrNull(hidLatitude.Value) <> DbStringDecimalOrNull(TxtLatitudeMeasure.Text) OrElse
-                DbStringDecimalOrNull(hidLongitude.Value) <> DbStringDecimalOrNull(TxtLongitudeMeasure.Text) OrElse
+                hidLatitude.Value <> TxtLatitudeMeasure.Text OrElse
+                hidLongitude.Value <> TxtLongitudeMeasure.Text OrElse
                 hidHorCollectionMetCode.Value <> ddlHorCollectionMetCode.SelectedValue OrElse
                 hidHorizontalAccuracyMeasure.Value <> TxtHorizontalAccuracyMeasure.Text OrElse
                 hidHorReferenceDatCode.Value <> ddlHorReferenceDatCode.SelectedValue
@@ -442,8 +442,8 @@ Partial Class eis_facility_edit
                     vbNewLine &
                     "Current Geographic Coordinate Information: " & vbNewLine &
                     vbNewLine &
-                    "    Latitude: " & DbStringDecimalOrNull(hidLatitude.Value) & vbNewLine &
-                    "    Longitude: " & DbStringDecimalOrNull(hidLongitude.Value) & vbNewLine &
+                    "    Latitude: " & hidLatitude.Value & vbNewLine &
+                    "    Longitude: " & hidLongitude.Value & vbNewLine &
                     "    Horizontal Collection Method: " & hidHorCollectionMetCode.Value & " - " & hidHorCollectionMetDesc.Value & vbNewLine &
                     "    Accuracy Measure: " & hidHorizontalAccuracyMeasure.Value & vbNewLine &
                     "    Horizontal Reference Datum: " & hidHorReferenceDatCode.Value & " - " & hidHorReferenceDatDesc.Value & vbNewLine &
@@ -451,8 +451,8 @@ Partial Class eis_facility_edit
                     vbNewLine &
                     "Updated Geographic Coordinate Information submitted by user: " & vbNewLine &
                     vbNewLine &
-                    "    Latitude: " & DbStringDecimalOrNull(TxtLatitudeMeasure.Text) & vbNewLine &
-                    "    Longitude: " & DbStringDecimalOrNull(TxtLongitudeMeasure.Text) & vbNewLine &
+                    "    Latitude: " & TxtLatitudeMeasure.Text & vbNewLine &
+                    "    Longitude: " & TxtLongitudeMeasure.Text & vbNewLine &
                     "    Horizontal Collection Method: " & ddlHorCollectionMetCode.SelectedValue & " - " & ddlHorCollectionMetCode.SelectedItem.Text & vbNewLine &
                     "    Accuracy Measure: " & TxtHorizontalAccuracyMeasure.Text & vbNewLine &
                     "    Horizontal Reference Datum: " & ddlHorReferenceDatCode.SelectedValue & " - " & ddlHorReferenceDatCode.SelectedItem.Text & vbNewLine &
@@ -469,8 +469,8 @@ Partial Class eis_facility_edit
                     "<p><b>Update User:</b> " & UpdateUserName & " (" & UpdateUserID & ")" & "</p>" &
                     "<p><b>Current Geographic Coordinate Information:</b> " & "</p>" &
                     "<ul>" &
-                    "<li><b>Latitude:</b> " & DbStringDecimalOrNull(hidLatitude.Value) & "</li>" &
-                    "<li><b>Longitude:</b> " & DbStringDecimalOrNull(hidLongitude.Value) & "</li>" &
+                    "<li><b>Latitude:</b> " & hidLatitude.Value & "</li>" &
+                    "<li><b>Longitude:</b> " & hidLongitude.Value & "</li>" &
                     "<li><b>Horizontal Collection Method:</b> " & hidHorCollectionMetCode.Value & " - " & hidHorCollectionMetDesc.Value & "</li>" &
                     "<li><b>Accuracy Measure:</b> " & hidHorizontalAccuracyMeasure.Value & "</li>" &
                     "<li><b>Horizontal Reference Datum:</b> " & hidHorReferenceDatCode.Value & " - " & hidHorReferenceDatDesc.Value & "</li>" &
@@ -478,8 +478,8 @@ Partial Class eis_facility_edit
                     "</ul>" &
                     "<p><b>Updated Geographic Coordinate Information submitted by user:</b> " & "</p>" &
                     "<ul>" &
-                    "<li><b>Latitude:</b> " & DbStringDecimalOrNull(TxtLatitudeMeasure.Text) & "</li>" &
-                    "<li><b>Longitude:</b> " & DbStringDecimalOrNull(TxtLongitudeMeasure.Text) & "</li>" &
+                    "<li><b>Latitude:</b> " & TxtLatitudeMeasure.Text & "</li>" &
+                    "<li><b>Longitude:</b> " & TxtLongitudeMeasure.Text & "</li>" &
                     "<li><b>Horizontal Collection Method:</b> " & ddlHorCollectionMetCode.SelectedValue & " - " & ddlHorCollectionMetCode.SelectedItem.Text & "</li>" &
                     "<li><b>Accuracy Measure:</b> " & TxtHorizontalAccuracyMeasure.Text & "</li>" &
                     "<li><b>Horizontal Reference Datum:</b> " & ddlHorReferenceDatCode.SelectedValue & " - " & ddlHorReferenceDatCode.SelectedItem.Text & "</li>" &
@@ -504,8 +504,8 @@ Partial Class eis_facility_edit
                     vbNewLine &
                     "Current Geographic Coordinate Information: " & vbNewLine &
                     vbNewLine &
-                    "    Latitude: " & DbStringDecimalOrNull(hidLatitude.Value) & vbNewLine &
-                    "    Longitude: " & DbStringDecimalOrNull(hidLongitude.Value) & vbNewLine &
+                    "    Latitude: " & hidLatitude.Value & vbNewLine &
+                    "    Longitude: " & hidLongitude.Value & vbNewLine &
                     "    Horizontal Collection Method: " & hidHorCollectionMetCode.Value & " - " & hidHorCollectionMetDesc.Value & vbNewLine &
                     "    Accuracy Measure: " & hidHorizontalAccuracyMeasure.Value & vbNewLine &
                     "    Horizontal Reference Datum: " & hidHorReferenceDatCode.Value & " - " & hidHorReferenceDatDesc.Value & vbNewLine &
@@ -521,8 +521,8 @@ Partial Class eis_facility_edit
                     "<p><b>Update User:</b> " & UpdateUserName & " (" & UpdateUserID & ")" & "</p>" &
                     "<p><b>Current Geographic Coordinate Information:</b> " & "</p>" &
                     "<ul>" &
-                    "<li><b>Latitude:</b> " & DbStringDecimalOrNull(hidLatitude.Value) & "</li>" &
-                    "<li><b>Longitude:</b> " & DbStringDecimalOrNull(hidLongitude.Value) & "</li>" &
+                    "<li><b>Latitude:</b> " & hidLatitude.Value & "</li>" &
+                    "<li><b>Longitude:</b> " & hidLongitude.Value & "</li>" &
                     "<li><b>Horizontal Collection Method:</b> " & hidHorCollectionMetCode.Value & " - " & hidHorCollectionMetDesc.Value & "</li>" &
                     "<li><b>Accuracy Measure:</b> " & hidHorizontalAccuracyMeasure.Value & "</li>" &
                     "<li><b>Horizontal Reference Datum:</b> " & hidHorReferenceDatCode.Value & " - " & hidHorReferenceDatDesc.Value & "</li>" &

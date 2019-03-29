@@ -1,11 +1,10 @@
 Imports System.Data.SqlClient
-Imports System.Data
-Imports Reimers.Google.Map
 Imports GECO.MapHelper
+Imports Reimers.Google.Map
 
 Partial Class eis_fugitive_edit
     Inherits Page
-    Public conn, conn1, conn2, conn3 As New SqlConnection(DBConnectionString)
+
     Public SaveFugitive As String = "Fugitive information saved successfully."
     Public RPStatus As String
     Public FugitiveGCDataMissing As Boolean
@@ -69,38 +68,22 @@ Partial Class eis_fugitive_edit
     End Sub
 
     Private Sub loadFugiveStatusCode()
-        Dim sql As String
-        Dim desc As String
-        Dim code As String
-
         ddlFugitiveStatusCode.Items.Add("--Select Operating Status--")
         Try
-            sql = " select strDesc, RPStatusCode FROM EISLK_RPSTATUSCODE where Active = '1' order by strDesc"
+            Dim query As String = " select strDesc, RPStatusCode FROM EISLK_RPSTATUSCODE where Active = '1' order by strDesc"
 
-            Dim cmd As New SqlCommand(sql, conn)
+            Dim dt As DataTable = DB.GetDataTable(query)
 
-            If conn.State = ConnectionState.Open Then
-            Else
-                conn.Open()
-            End If
-
-            Dim dr As SqlDataReader = cmd.ExecuteReader
-
-            While dr.Read
-                Dim newListItem As New ListItem()
-                desc = dr.Item("strdesc")
-                code = dr.Item("RPStatusCode")
-                newListItem.Text = desc
-                newListItem.Value = code
+            For Each dr As DataRow In dt.Rows
+                Dim newListItem As New ListItem With {
+                    .Text = dr.Item("strdesc").ToString,
+                    .Value = dr.Item("RPStatusCode").ToString
+                }
                 ddlFugitiveStatusCode.Items.Add(newListItem)
-            End While
+            Next
 
         Catch ex As Exception
             ErrorReport(ex)
-        Finally
-            If conn.State = ConnectionState.Open Then
-                conn.Close()
-            End If
         End Try
     End Sub
 
@@ -163,9 +146,6 @@ Partial Class eis_fugitive_edit
 
     Private Sub LoadFugitiveDetails(ByVal fsid As String, ByVal RPid As String)
 
-        Dim sql As String = ""
-        Dim sql2 As String = ""
-        Dim sql3 As String = ""
         Dim RPFencelineDistanceMeasure As Decimal
         Dim RPFugitiveHeightMeasure As Decimal
         Dim RPFugitiveWidthMeasure As Decimal
@@ -174,180 +154,154 @@ Partial Class eis_fugitive_edit
         Dim EISSubmit As String
 
         Try
-            sql = "select ReleasePointID, " &
-                        "STRRPDESCRIPTION, " &
-                        "strRPStatusCode, " &
-                        "NumRPStatusCodeYear, " &
-                        "NUMRPFENCELINEDISTMEASURE, " &
-                        "numRPFugitiveHeightMeasure , " &
-                        "numRPFugitiveWidthMeasure, " &
-                        "numRPFugitiveLengthMeasure, " &
-                        "numRPFugitiveAngleMeasure, " &
-                        "strRPComment, " &
-                        "Active, " &
-                        "strEISSubmit " &
-                        "FROM EIS_ReleasePoint " &
-                        "where EIS_ReleasePoint.FACILITYSITEID = '" & fsid & "' " &
-                        "and ReleasePointID = '" & RPid & "'"
+            Dim query As String = "select ReleasePointID, " &
+                "STRRPDESCRIPTION, " &
+                "strRPStatusCode, " &
+                "NumRPStatusCodeYear, " &
+                "NUMRPFENCELINEDISTMEASURE, " &
+                "numRPFugitiveHeightMeasure , " &
+                "numRPFugitiveWidthMeasure, " &
+                "numRPFugitiveLengthMeasure, " &
+                "numRPFugitiveAngleMeasure, " &
+                "strRPComment, " &
+                "Active, " &
+                "strEISSubmit " &
+                "FROM EIS_ReleasePoint " &
+                "where EIS_ReleasePoint.FACILITYSITEID = @fsid " &
+                "and ReleasePointID = @RPid"
 
-            Dim cmd As New SqlCommand(sql, conn)
+            Dim params As SqlParameter() = {
+                New SqlParameter("@fsid", fsid),
+                New SqlParameter("@RPid", RPid)
+            }
 
-            If conn.State = ConnectionState.Open Then
-            Else
-                conn.Open()
-            End If
+            Dim dr As DataRow = DB.GetDataRow(query, params)
 
-            Dim dr As SqlDataReader = cmd.ExecuteReader
-            Dim Active As String
-            dr.Read()
+            If dr IsNot Nothing Then
 
-            'Load Fugitive Release Point Details
+                'Load Fugitive Release Point Details
 
-            If IsDBNull(dr("Active")) Then
-                btnCancel.Visible = False
-                btnCancel3.Visible = False
-            Else
-                Active = dr.Item("Active")
-                If Active = "0" Then
+                If IsDBNull(dr("Active")) Then
                     btnCancel.Visible = False
                     btnCancel3.Visible = False
                 Else
-                    btnCancel.Visible = True
-                    btnCancel3.Visible = True
+                    If dr.Item("Active") = "0" Then
+                        btnCancel.Visible = False
+                        btnCancel3.Visible = False
+                    Else
+                        btnCancel.Visible = True
+                        btnCancel3.Visible = True
+                    End If
                 End If
-            End If
 
-            If IsDBNull(dr("ReleasePointID")) Then
-                txtReleasePointID.Text = ""
-            Else
-                txtReleasePointID.Text = dr.Item("ReleasePointID")
-            End If
+                If IsDBNull(dr("ReleasePointID")) Then
+                    txtReleasePointID.Text = ""
+                Else
+                    txtReleasePointID.Text = dr.Item("ReleasePointID")
+                End If
 
-            If IsDBNull(dr("strRPDescription")) Then
-                txtRPDescription.Text = ""
-            Else
-                txtRPDescription.Text = dr.Item("strRPDescription")
-            End If
+                If IsDBNull(dr("strRPDescription")) Then
+                    txtRPDescription.Text = ""
+                Else
+                    txtRPDescription.Text = dr.Item("strRPDescription")
+                End If
 
-            If IsDBNull(dr("strRPStatusCode")) Then
-                ddlFugitiveStatusCode.SelectedValue = ""
-            Else
-                ddlFugitiveStatusCode.SelectedValue = dr.Item("strRPStatusCode")
-                RPStatus = ddlFugitiveStatusCode.SelectedValue
-                txtFugitiveStatusCodeOnLoad.Text = ddlFugitiveStatusCode.SelectedValue
-            End If
+                If IsDBNull(dr("strRPStatusCode")) Then
+                    ddlFugitiveStatusCode.SelectedValue = ""
+                Else
+                    ddlFugitiveStatusCode.SelectedValue = dr.Item("strRPStatusCode")
+                    RPStatus = ddlFugitiveStatusCode.SelectedValue
+                    txtFugitiveStatusCodeOnLoad.Text = ddlFugitiveStatusCode.SelectedValue
+                End If
 
-            If IsDBNull(dr("NUMRPFENCELINEDISTMEASURE")) Then
-                txtRPFenceLineDistanceMeasure.Text = ""
-            Else
-                RPFencelineDistanceMeasure = dr.Item("NUMRPFENCELINEDISTMEASURE")
-                If RPFencelineDistanceMeasure = -1 Then
+                If IsDBNull(dr("NUMRPFENCELINEDISTMEASURE")) Then
                     txtRPFenceLineDistanceMeasure.Text = ""
                 Else
-                    txtRPFenceLineDistanceMeasure.Text = RPFencelineDistanceMeasure
+                    RPFencelineDistanceMeasure = dr.Item("NUMRPFENCELINEDISTMEASURE")
+                    If RPFencelineDistanceMeasure = -1 Then
+                        txtRPFenceLineDistanceMeasure.Text = ""
+                    Else
+                        txtRPFenceLineDistanceMeasure.Text = RPFencelineDistanceMeasure
+                    End If
                 End If
-            End If
 
-            If IsDBNull(dr("numRPFugitiveHeightMeasure")) Then
-                txtRPFugitiveHeightMeasure.Text = ""
-            Else
-                RPFugitiveHeightMeasure = dr.Item("numRPFugitiveHeightMeasure")
-                If RPFugitiveHeightMeasure = -1 Then
+                If IsDBNull(dr("numRPFugitiveHeightMeasure")) Then
                     txtRPFugitiveHeightMeasure.Text = ""
                 Else
-                    txtRPFugitiveHeightMeasure.Text = RPFugitiveHeightMeasure
+                    RPFugitiveHeightMeasure = dr.Item("numRPFugitiveHeightMeasure")
+                    If RPFugitiveHeightMeasure = -1 Then
+                        txtRPFugitiveHeightMeasure.Text = ""
+                    Else
+                        txtRPFugitiveHeightMeasure.Text = RPFugitiveHeightMeasure
+                    End If
                 End If
-            End If
 
-            If IsDBNull(dr("numRPFugitiveWidthMeasure")) Then
-                txtRPFugitiveWidthMeasure.Text = ""
-            Else
-                RPFugitiveWidthMeasure = dr.Item("numRPFugitiveWidthMeasure")
-                If RPFugitiveWidthMeasure = -1 Then
+                If IsDBNull(dr("numRPFugitiveWidthMeasure")) Then
                     txtRPFugitiveWidthMeasure.Text = ""
                 Else
-                    txtRPFugitiveWidthMeasure.Text = RPFugitiveWidthMeasure
+                    RPFugitiveWidthMeasure = dr.Item("numRPFugitiveWidthMeasure")
+                    If RPFugitiveWidthMeasure = -1 Then
+                        txtRPFugitiveWidthMeasure.Text = ""
+                    Else
+                        txtRPFugitiveWidthMeasure.Text = RPFugitiveWidthMeasure
+                    End If
                 End If
-            End If
 
-            If IsDBNull(dr("numRPFugitiveLengthMeasure")) Then
-                txtRPFugitiveLengthMeasure.Text = ""
-            Else
-                RPFugitiveLengthMeasure = dr.Item("numRPFugitiveLengthMeasure")
-                If RPFugitiveLengthMeasure = -1 Then
+                If IsDBNull(dr("numRPFugitiveLengthMeasure")) Then
                     txtRPFugitiveLengthMeasure.Text = ""
                 Else
-                    txtRPFugitiveLengthMeasure.Text = RPFugitiveLengthMeasure
+                    RPFugitiveLengthMeasure = dr.Item("numRPFugitiveLengthMeasure")
+                    If RPFugitiveLengthMeasure = -1 Then
+                        txtRPFugitiveLengthMeasure.Text = ""
+                    Else
+                        txtRPFugitiveLengthMeasure.Text = RPFugitiveLengthMeasure
+                    End If
                 End If
-            End If
 
-            If IsDBNull(dr("numRPFugitiveAngleMeasure")) Then
-                txtRPFugitiveAngleMeasure.Text = ""
-            Else
-                RPFugitiveAngleMeasure = dr.Item("numRPFugitiveAngleMeasure")
-                If RPFugitiveAngleMeasure = -1 Then
+                If IsDBNull(dr("numRPFugitiveAngleMeasure")) Then
                     txtRPFugitiveAngleMeasure.Text = ""
                 Else
-                    txtRPFugitiveAngleMeasure.Text = RPFugitiveAngleMeasure
+                    RPFugitiveAngleMeasure = dr.Item("numRPFugitiveAngleMeasure")
+                    If RPFugitiveAngleMeasure = -1 Then
+                        txtRPFugitiveAngleMeasure.Text = ""
+                    Else
+                        txtRPFugitiveAngleMeasure.Text = RPFugitiveAngleMeasure
+                    End If
                 End If
-            End If
 
-            If IsDBNull(dr("strRPComment")) Then
-                txtRPComment.Text = ""
-            Else
-                txtRPComment.Text = dr.Item("strRPComment")
-            End If
+                If IsDBNull(dr("strRPComment")) Then
+                    txtRPComment.Text = ""
+                Else
+                    txtRPComment.Text = dr.Item("strRPComment")
+                End If
 
-            If IsDBNull(dr.Item("strEISSubmit")) Then
-                FugitiveEISSubmit = False
-            Else
-                EISSubmit = dr.Item("strEISSubmit")
-                If EISSubmit = "0" Then
+                If IsDBNull(dr.Item("strEISSubmit")) Then
                     FugitiveEISSubmit = False
                 Else
-                    FugitiveEISSubmit = True
+                    EISSubmit = dr.Item("strEISSubmit")
+                    If EISSubmit = "0" Then
+                        FugitiveEISSubmit = False
+                    Else
+                        FugitiveEISSubmit = True
+                    End If
                 End If
-            End If
-            dr.Close()
 
-            'Check if Fuguitive GC infof exists before loading
-            sql2 = "select numLatitudeMeasure " &
-                        "FROM EIS_RPGeoCoordinates where " &
-                        "EIS_RPGeoCoordinates.FACILITYSITEID = '" & fsid & "' and " &
-                        "RELEASEPOINTID = '" & RPid & "'"
-
-            Dim cmd2 As New SqlCommand(sql2, conn2)
-
-            If conn2.State = ConnectionState.Open Then
-            Else
-                conn2.Open()
             End If
 
-            Dim dr2 As SqlDataReader = cmd2.ExecuteReader
-            Dim recExist As Boolean = dr2.Read
-            dr2.Close()
-
-            If recExist Then
-                'Load Fugitive GC Information
-                sql3 = "select numLatitudeMeasure, " &
+            'Load Fugitive GC Information
+            query = "select numLatitudeMeasure, " &
                             "numLongitudeMeasure, " &
                             "STRHORCOLLMETCode, " &
                             "INTHORACCURACYMEASURE, " &
                             "STRHORREFDATUMCode, " &
                             "strGeographicComment " &
                             "FROM EIS_RPGeoCoordinates " &
-                            "where EIS_RPGeoCoordinates.FACILITYSITEID = '" & fsid & "' " &
-                            "and ReleasePointID = '" & RPid & "'"
-                Dim cmd3 As New SqlCommand(sql3, conn3)
+                            "where EIS_RPGeoCoordinates.FACILITYSITEID = @fsid " &
+                            "and ReleasePointID = @RPid "
 
-                If conn3.State = ConnectionState.Open Then
-                Else
-                    conn3.Open()
-                End If
+            Dim dr3 As DataRow = DB.GetDataRow(query, params)
 
-                Dim dr3 As SqlDataReader = cmd3.ExecuteReader
-
-                dr3.Read()
+            If dr3 IsNot Nothing Then
 
                 If IsDBNull(dr3("numLatitudeMeasure")) Then
                     TxtLatitudeMeasure.Text = ""
@@ -399,7 +353,6 @@ Partial Class eis_fugitive_edit
                 imgGoogleStaticMap.ImageUrl = GoogleMaps.GetStaticMapUrl(New Coordinate(MapLatitude, MapLongitude))
                 lnkGoogleMap.NavigateUrl = GoogleMaps.GetMapLinkUrl(New Coordinate(MapLatitude, MapLongitude))
 
-                dr3.Close()
             Else
                 lblFugitiveMessage.Text = FugitiveGCMessage
                 lblFugitiveGCDataMissing.Text = FugitiveGCMessage
@@ -417,16 +370,6 @@ Partial Class eis_fugitive_edit
 
         Catch ex As Exception
             ErrorReport(ex)
-        Finally
-            If conn.State = ConnectionState.Open Then
-                conn.Close()
-            End If
-            If conn2.State = ConnectionState.Open Then
-                conn2.Close()
-            End If
-            If conn3.State = ConnectionState.Open Then
-                conn3.Close()
-            End If
         End Try
 
     End Sub
@@ -625,8 +568,8 @@ Partial Class eis_fugitive_edit
             End If
 
             Dim gcUpdated As Boolean =
-                DbStringDecimalOrNull(hidLatitude.Value) <> DbStringDecimalOrNull(TxtLatitudeMeasure.Text) OrElse
-                DbStringDecimalOrNull(hidLongitude.Value) <> DbStringDecimalOrNull(TxtLongitudeMeasure.Text) OrElse
+                hidLatitude.Value <> TxtLatitudeMeasure.Text OrElse
+                hidLongitude.Value <> TxtLongitudeMeasure.Text OrElse
                 hidHorCollectionMetCode.Value <> ddlHorCollectionMetCode.SelectedValue OrElse
                 hidHorizontalAccuracyMeasure.Value <> TxtHorizontalAccuracyMeasure.Text OrElse
                 hidHorReferenceDatCode.Value <> ddlHorReferenceDatCode.SelectedValue OrElse
@@ -674,8 +617,8 @@ Partial Class eis_fugitive_edit
                     vbNewLine &
                     "Previous Geographic Coordinate Information: " & vbNewLine &
                     vbNewLine &
-                    "    Latitude: " & DbStringDecimalOrNull(hidLatitude.Value) & vbNewLine &
-                    "    Longitude: " & DbStringDecimalOrNull(hidLongitude.Value) & vbNewLine &
+                    "    Latitude: " & hidLatitude.Value & vbNewLine &
+                    "    Longitude: " & hidLongitude.Value & vbNewLine &
                     "    Horizontal Collection Method: " & hidHorCollectionMetCode.Value & " - " & hidHorCollectionMetDesc.Value & vbNewLine &
                     "    Accuracy Measure: " & hidHorizontalAccuracyMeasure.Value & vbNewLine &
                     "    Horizontal Reference Datum: " & hidHorReferenceDatCode.Value & " - " & hidHorReferenceDatDesc.Value & vbNewLine &
@@ -683,8 +626,8 @@ Partial Class eis_fugitive_edit
                     vbNewLine &
                     "Updated Geographic Coordinate Information submitted by user: " & vbNewLine &
                     vbNewLine &
-                    "    Latitude: " & DbStringDecimalOrNull(TxtLatitudeMeasure.Text) & vbNewLine &
-                    "    Longitude: " & DbStringDecimalOrNull(TxtLongitudeMeasure.Text) & vbNewLine &
+                    "    Latitude: " & TxtLatitudeMeasure.Text & vbNewLine &
+                    "    Longitude: " & TxtLongitudeMeasure.Text & vbNewLine &
                     "    Horizontal Collection Method: " & ddlHorCollectionMetCode.SelectedValue & " - " & ddlHorCollectionMetCode.SelectedItem.Text & vbNewLine &
                     "    Accuracy Measure: " & TxtHorizontalAccuracyMeasure.Text & vbNewLine &
                     "    Horizontal Reference Datum: " & ddlHorReferenceDatCode.SelectedValue & " - " & ddlHorReferenceDatCode.SelectedItem.Text & vbNewLine &
@@ -702,8 +645,8 @@ Partial Class eis_fugitive_edit
                     "<p><b>Update User:</b> " & UpdateUserName & " (" & UpdateUserID & ")" & "</p>" &
                     "<p><b>Previous Geographic Coordinate Information:</b> " & "</p>" &
                     "<ul>" &
-                    "<li><b>Latitude:</b> " & DbStringDecimalOrNull(hidLatitude.Value) & "</li>" &
-                    "<li><b>Longitude:</b> " & DbStringDecimalOrNull(hidLongitude.Value) & "</li>" &
+                    "<li><b>Latitude:</b> " & hidLatitude.Value & "</li>" &
+                    "<li><b>Longitude:</b> " & hidLongitude.Value & "</li>" &
                     "<li><b>Horizontal Collection Method:</b> " & hidHorCollectionMetCode.Value & " - " & hidHorCollectionMetDesc.Value & "</li>" &
                     "<li><b>Accuracy Measure:</b> " & hidHorizontalAccuracyMeasure.Value & "</li>" &
                     "<li><b>Horizontal Reference Datum:</b> " & hidHorReferenceDatCode.Value & " - " & hidHorReferenceDatDesc.Value & "</li>" &
@@ -711,8 +654,8 @@ Partial Class eis_fugitive_edit
                     "</ul>" &
                     "<p><b>Updated Geographic Coordinate Information submitted by user:</b> " & "</p>" &
                     "<ul>" &
-                    "<li><b>Latitude:</b> " & DbStringDecimalOrNull(TxtLatitudeMeasure.Text) & "</li>" &
-                    "<li><b>Longitude:</b> " & DbStringDecimalOrNull(TxtLongitudeMeasure.Text) & "</li>" &
+                    "<li><b>Latitude:</b> " & TxtLatitudeMeasure.Text & "</li>" &
+                    "<li><b>Longitude:</b> " & TxtLongitudeMeasure.Text & "</li>" &
                     "<li><b>Horizontal Collection Method:</b> " & ddlHorCollectionMetCode.SelectedValue & " - " & ddlHorCollectionMetCode.SelectedItem.Text & "</li>" &
                     "<li><b>Accuracy Measure:</b> " & TxtHorizontalAccuracyMeasure.Text & "</li>" &
                     "<li><b>Horizontal Reference Datum:</b> " & ddlHorReferenceDatCode.SelectedValue & " - " & ddlHorReferenceDatCode.SelectedItem.Text & "</li>" &
@@ -793,43 +736,34 @@ Partial Class eis_fugitive_edit
 
     Protected Sub GetFacilityCoordinates()
         Try
-            Dim sql As String = ""
             Dim FacilitySiteID As String = GetCookie(Cookie.AirsNumber)
 
             'Load Facility GC Information
-            sql = "Select numLatitudeMeasure, " &
-                        "numLongitudeMeasure, " &
-                        "STRHORCOLLMETCode, " &
-                        "INTHORACCURACYMEASURE , " &
-                        "STRHORREFDATUMCode, " &
-                        "strGeographicComment " &
-                        "FROM EIS_FacilityGeoCoord " &
-                        "where EIS_FacilityGeoCoord.FACILITYSITEID = '" & FacilitySiteID & "' "
+            Dim query As String = "Select numLatitudeMeasure, " &
+                "numLongitudeMeasure, " &
+                "STRHORCOLLMETCode, " &
+                "INTHORACCURACYMEASURE , " &
+                "STRHORREFDATUMCode, " &
+                "strGeographicComment " &
+                "FROM EIS_FacilityGeoCoord " &
+                "where EIS_FacilityGeoCoord.FACILITYSITEID = @FacilitySiteID "
 
-            Dim cmd As New SqlCommand(sql, conn)
+            Dim param As New SqlParameter("@FacilitySiteID", FacilitySiteID)
 
-            If conn.State = ConnectionState.Open Then
-            Else
-                conn.Open()
+            Dim dr As DataRow = DB.GetDataRow(query, param)
+
+            If dr IsNot Nothing Then
+
+                If Not IsDBNull(dr("numLatitudeMeasure")) Then
+                    hidLatitude.Value = dr.Item("numLatitudeMeasure")
+                End If
+                If Not IsDBNull(dr("numLongitudeMeasure")) Then
+                    hidLongitude.Value = dr.Item("numLongitudeMeasure")
+                End If
+
             End If
-
-            Dim dr As SqlDataReader = cmd.ExecuteReader
-
-            dr.Read()
-
-            If Not IsDBNull(dr("numLatitudeMeasure")) Then
-                hidLatitude.Value = dr.Item("numLatitudeMeasure")
-            End If
-            If Not IsDBNull(dr("numLongitudeMeasure")) Then
-                hidLongitude.Value = dr.Item("numLongitudeMeasure")
-            End If
-            dr.Close()
         Catch ex As Exception
             ErrorReport(ex)
-        Finally
-            If conn.State = ConnectionState.Open Then
-                conn.Close()
-            End If
         End Try
     End Sub
 

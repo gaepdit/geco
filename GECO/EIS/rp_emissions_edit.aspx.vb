@@ -1,5 +1,4 @@
-﻿Imports System.Data
-Imports System.Data.SqlClient
+﻿Imports System.Data.SqlClient
 
 Partial Class EIS_rp_emissions_edit
     Inherits Page
@@ -725,9 +724,9 @@ Partial Class EIS_rp_emissions_edit
                 New SqlParameter("@EmissionTotal", EmissionTotal),
                 New SqlParameter("@EmissionsUoM", EmissionsUoM),
                 New SqlParameter("@EmissionFactor", EmissionFactor),
-                New SqlParameter("@EMCalcMethodCode", EMCalcMethodCode.RealStringOrNothing),
-                New SqlParameter("@EFNumerator", EFNumerator.RealStringOrNothing),
-                New SqlParameter("@EFDenominator", EFDenominator.RealStringOrNothing),
+                New SqlParameter("@EMCalcMethodCode", If(Not String.IsNullOrEmpty(EMCalcMethodCode), EMCalcMethodCode, Nothing)),
+                New SqlParameter("@EFNumerator", If(Not String.IsNullOrEmpty(EFNumerator), EFNumerator, Nothing)),
+                New SqlParameter("@EFDenominator", If(Not String.IsNullOrEmpty(EFDenominator), EFDenominator, Nothing)),
                 New SqlParameter("@EmissionFactorText", EmissionFactorText),
                 New SqlParameter("@Comment", Comment),
                 New SqlParameter("@Active", Active),
@@ -736,7 +735,7 @@ Partial Class EIS_rp_emissions_edit
                 New SqlParameter("@EmissionsUnitID", EmissionsUnitID),
                 New SqlParameter("@ProcessID", ProcessID),
                 New SqlParameter("@PollutantCode", PollutantCode),
-                New SqlParameter("@RPTypeCode", RPTypeCode.RealStringOrNothing),
+                New SqlParameter("@RPTypeCode", If(Not String.IsNullOrEmpty(RPTypeCode), RPTypeCode, Nothing)),
                 New SqlParameter("@EIYEar", EIYear)
             }
 
@@ -849,13 +848,13 @@ Partial Class EIS_rp_emissions_edit
                 New SqlParameter("@euid", euid),
                 New SqlParameter("@pcode", pcode),
                 New SqlParameter("@prid", prid),
-                New SqlParameter("@RPTypeCode", RPTypeCode.RealStringOrNothing),
+                New SqlParameter("@RPTypeCode", If(Not String.IsNullOrEmpty(RPTypeCode), RPTypeCode, Nothing)),
                 New SqlParameter("@TotalEmissions", TotalEmissions),
                 New SqlParameter("@EmissionsUoM", EmissionsUoM),
-                New SqlParameter("@EMCalcMethodCode", EMCalcMethodCode.RealStringOrNothing),
+                New SqlParameter("@EMCalcMethodCode", If(Not String.IsNullOrEmpty(EMCalcMethodCode), EMCalcMethodCode, Nothing)),
                 New SqlParameter("@EmissionFactor", EmissionFactor),
-                New SqlParameter("@EFNumerator", EFNumerator.RealStringOrNothing),
-                New SqlParameter("@EFDenominator", EFDenominator.RealStringOrNothing),
+                New SqlParameter("@EFNumerator", If(Not String.IsNullOrEmpty(EFNumerator), EFNumerator, Nothing)),
+                New SqlParameter("@EFDenominator", If(Not String.IsNullOrEmpty(EFDenominator), EFDenominator, Nothing)),
                 New SqlParameter("@EmissionFactorText", EmissionFactorText),
                 New SqlParameter("@Comment", Comment),
                 New SqlParameter("@Active", Active),

@@ -1,5 +1,4 @@
-﻿Imports System.Data
-Imports System.Data.SqlClient
+﻿Imports System.Data.SqlClient
 
 Partial Class EIS_report_fw_emsummary
     Inherits Page
@@ -37,7 +36,7 @@ Partial Class EIS_report_fw_emsummary
 
             Dim dt As DataTable = DB.GetDataTable(query, param)
 
-            If dt IsNot Nothing AndAlso dt.Rows.Count > 0 Then
+            If dt IsNot Nothing Then
                 For Each dr As DataRow In dt.Rows
                     ddlInventoryYear_fwemSummary.Items.Add(dr("intInventoryYear").ToString)
                 Next
