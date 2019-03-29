@@ -2,7 +2,6 @@ Imports System.Data.SqlClient
 
 Partial Class eis_processcontrolapproach_edit
     Inherits Page
-    Public conn, conn1 As New SqlConnection(DBConnectionString)
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
@@ -52,38 +51,33 @@ Partial Class eis_processcontrolapproach_edit
 
     Private Sub LoadProcessControlMeasureDGV(ByVal fsid As String, ByVal euid As String, ByVal epid As String)
         Try
-            Dim sql = "select " &
-                  "EIS_PROCESSCONTROLMEASURE.FACILITYSITEID, " &
-                  "EIS_PROCESSCONTROLMEASURE.EMISSIONSUNITID, " &
-                  "EIS_PROCESSCONTROLMEASURE.PROCESSID, " &
-                  "EIS_PROCESSCONTROLMEASURE.STRCONTROLMEASURECODE as MeasureCode, " &
-                  "(Select strDesc FROM EISLK_CONTROLMEASURECODE where " &
-                  "EIS_PROCESSCONTROLMEASURE.STRCONTROLMEASURECODE = EISLK_CONTROLMEASURECODE.STRCONTROLMEASURECODE " &
-                  "and EISLK_CONTROLMEASURECODE.Active = '1') as CDType, " &
-                  "EIS_PROCESSCONTROLMEASURE.LastEISSubmitDate from " &
-                  "EIS_PROCESSCONTROLMEASURE " &
-                  "where EIS_PROCESSCONTROLMEASURE.FACILITYSITEID = '" & fsid & "' " &
-                  "and EIS_PROCESSCONTROLMEASURE.EMISSIONSUNITID = '" & euid & "' " &
-                  "and EIS_PROCESSCONTROLMEASURE.PROCESSID = '" & epid & "' " &
-                  "and EIS_PROCESSCONTROLMEASURE.ACTIVE = '1' " &
-                  "order by CDType"
+            Dim query As String = "select " &
+                "EIS_PROCESSCONTROLMEASURE.FACILITYSITEID, " &
+                "EIS_PROCESSCONTROLMEASURE.EMISSIONSUNITID, " &
+                "EIS_PROCESSCONTROLMEASURE.PROCESSID, " &
+                "EIS_PROCESSCONTROLMEASURE.STRCONTROLMEASURECODE as MeasureCode, " &
+                "(Select strDesc FROM EISLK_CONTROLMEASURECODE where " &
+                "EIS_PROCESSCONTROLMEASURE.STRCONTROLMEASURECODE = EISLK_CONTROLMEASURECODE.STRCONTROLMEASURECODE " &
+                "and EISLK_CONTROLMEASURECODE.Active = '1') as CDType, " &
+                "EIS_PROCESSCONTROLMEASURE.LastEISSubmitDate from " &
+                "EIS_PROCESSCONTROLMEASURE " &
+                "where EIS_PROCESSCONTROLMEASURE.FACILITYSITEID = @fsid " &
+                "and EIS_PROCESSCONTROLMEASURE.EMISSIONSUNITID = @euid " &
+                "and EIS_PROCESSCONTROLMEASURE.PROCESSID = @epid " &
+                "and EIS_PROCESSCONTROLMEASURE.ACTIVE = '1' " &
+                "order by CDType"
 
-            Dim cmd As New SqlCommand(sql, conn)
+            Dim params As SqlParameter() = {
+                New SqlParameter("@fsid", fsid),
+                New SqlParameter("@euid", euid),
+                New SqlParameter("@epid", epid)
+            }
 
-            If conn.State = ConnectionState.Open Then
-            Else
-                conn.Open()
-            End If
-
-            gvwProcessControlMeasure.DataSource = cmd.ExecuteReader
+            gvwProcessControlMeasure.DataSource = DB.GetDataTable(query, params)
             gvwProcessControlMeasure.DataBind()
 
         Catch ex As Exception
             ErrorReport(ex)
-        Finally
-            If conn.State = ConnectionState.Open Then
-                conn.Close()
-            End If
         End Try
 
     End Sub
@@ -91,7 +85,7 @@ Partial Class eis_processcontrolapproach_edit
 
     Private Sub LoadProcessControlPollutantsDGV(ByVal fsid As String, ByVal euid As String, ByVal epid As String)
         Try
-            Dim sql = "SELECT p.FACILITYSITEID " &
+            Dim query As String = "SELECT p.FACILITYSITEID " &
                 " , p.EMISSIONSUNITID " &
                 " , p.PROCESSID " &
                 " , p.POLLUTANTCODE " &
@@ -110,107 +104,69 @@ Partial Class eis_processcontrolapproach_edit
                 " AND c.EMISSIONSUNITID = p.EMISSIONSUNITID " &
                 " AND c.PROCESSID = p.PROCESSID " &
                 " and c.ACTIVE = '1' " &
-                "WHERE p.FACILITYSITEID = '" & fsid & "' " &
-                " AND p.EMISSIONSUNITID = '" & euid & "' " &
-                " AND p.PROCESSID = '" & epid & "' " &
+                "WHERE p.FACILITYSITEID = @fsid " &
+                " AND p.EMISSIONSUNITID = @euid " &
+                " AND p.PROCESSID = @epid " &
                 " AND p.ACTIVE = '1' " &
                 "ORDER BY PollutantType "
 
-            Dim cmd As New SqlCommand(sql, conn)
+            Dim params As SqlParameter() = {
+                New SqlParameter("@fsid", fsid),
+                New SqlParameter("@euid", euid),
+                New SqlParameter("@epid", epid)
+            }
 
-            If conn.State = ConnectionState.Open Then
-            Else
-                conn.Open()
-            End If
-
-            gvwProcessCtrlPollutant.DataSource = cmd.ExecuteReader
+            gvwProcessCtrlPollutant.DataSource = DB.GetDataTable(query, params)
             gvwProcessCtrlPollutant.DataBind()
 
         Catch ex As Exception
             ErrorReport(ex)
-        Finally
-            If conn.State = ConnectionState.Open Then
-                conn.Close()
-            End If
         End Try
     End Sub
 
     Private Sub LoadcontrolMeasureDDL()
-        Dim sql As String
-        Dim desc As String
-        Dim code As String
-
         ddlControlMeasure.Items.Add("--Select a Control Measure --")
         Try
-            sql = "select STRCONTROLMEASURECODE, strdesc FROM EISLK_CONTROLMEASURECODE where Active = '1' order by strDesc"
-            Dim cmd As New SqlCommand(sql, conn)
+            Dim query As String = "select STRCONTROLMEASURECODE, strdesc FROM EISLK_CONTROLMEASURECODE where Active = '1' order by strDesc"
 
-            If conn.State = ConnectionState.Open Then
-            Else
-                conn.Open()
-            End If
+            Dim dt As DataTable = DB.GetDataTable(query)
 
-            Dim dr As SqlDataReader = cmd.ExecuteReader
-
-            While dr.Read
-                Dim newListItem As New ListItem()
-                desc = dr.Item("strdesc")
-                code = dr.Item("STRCONTROLMEASURECODE")
-                newListItem.Text = desc
-                newListItem.Value = code
+            For Each dr As DataRow In dt.Rows
+                Dim newListItem As New ListItem With {
+                    .Text = dr.Item("strdesc"),
+                    .Value = dr.Item("STRCONTROLMEASURECODE")
+                }
                 ddlControlMeasure.Items.Add(newListItem)
-            End While
+            Next
         Catch ex As Exception
             ErrorReport(ex)
-        Finally
-            If conn.State = ConnectionState.Open Then
-                conn.Close()
-            End If
         End Try
     End Sub
 
     Private Sub LoadControlPollutantDDL()
-        Dim sql As String
-        Dim desc As String
-        Dim code As String
-
         ddlControlPollutants.Items.Add("--Select a Pollutant --")
         Try
-            sql = " select POLLUTANTCODE, STRDESC " &
-            "FROM EISLK_POLLUTANTCODE " &
-            "where EISLK_POLLUTANTCODE.STRPOLLUTANTTYPE = 'CAP' and EISLK_POLLUTANTCODE.ACTIVE ='1' order by STRDESC"
+            Dim query As String = " select POLLUTANTCODE, STRDESC " &
+                "FROM EISLK_POLLUTANTCODE " &
+                "where EISLK_POLLUTANTCODE.STRPOLLUTANTTYPE = 'CAP' and EISLK_POLLUTANTCODE.ACTIVE ='1' order by STRDESC"
 
-            Dim cmd As New SqlCommand(sql, conn)
+            Dim dt As DataTable = DB.GetDataTable(query)
 
-            If conn.State = ConnectionState.Open Then
-            Else
-                conn.Open()
-            End If
-
-            Dim dr As SqlDataReader = cmd.ExecuteReader
-
-            While dr.Read
-                Dim newListItem As New ListItem()
-                desc = dr.Item("strdesc")
-                code = dr.Item("POLLUTANTCODE")
-                newListItem.Text = desc
-                newListItem.Value = code
+            For Each dr As DataRow In dt.Rows
+                Dim newListItem As New ListItem With {
+                    .Text = dr.Item("strdesc"),
+                    .Value = dr.Item("POLLUTANTCODE")
+                }
                 ddlControlPollutants.Items.Add(newListItem)
-            End While
-
+            Next
         Catch ex As Exception
             ErrorReport(ex)
-        Finally
-            If conn.State = ConnectionState.Open Then
-                conn.Close()
-            End If
         End Try
     End Sub
 
     Private Sub LoadProcessControlApproach(ByVal fsid As String, ByVal euid As String, ByVal epid As String)
-        Dim sql As String = ""
         Try
-            sql = "select EMISSIONSUNITID, " &
+            Dim query As String = "select EMISSIONSUNITID, " &
                          "PROCESSID, " &
                         "STRCONTROLAPPROACHDESC, " &
                         "NUMPCTCTRLAPPROACHCAPEFFIC, " &
@@ -218,59 +174,57 @@ Partial Class eis_processcontrolapproach_edit
                         "INTFIRSTINVENTORYYEAR, " &
                         "INTLASTINVENTORYYEAR, " &
                         "STRCONTROLAPPROACHCOMMENT " &
-                        "FROM EIS_PROCESSCONTROLAPPROACH where FACILITYSITEID = '" & fsid & "' " &
-                        "and EMISSIONSUNITID = '" & euid & "' and ACTIVE = '1'" &
-                        "and PROCESSID = '" & epid & "' "
+                        "FROM EIS_PROCESSCONTROLAPPROACH where FACILITYSITEID = @fsid " &
+                        "and EMISSIONSUNITID = @euid and ACTIVE = '1'" &
+                        "and PROCESSID = @epid "
 
-            Dim cmd As New SqlCommand(sql, conn)
+            Dim params As SqlParameter() = {
+                New SqlParameter("@fsid", fsid),
+                New SqlParameter("@euid", euid),
+                New SqlParameter("@epid", epid)
+            }
 
-            If conn.State = ConnectionState.Open Then
-            Else
-                conn.Open()
-            End If
+            Dim dr As DataRow = DB.GetDataRow(query, params)
 
-            Dim dr As SqlDataReader = cmd.ExecuteReader
+            If dr IsNot Nothing Then
 
-            dr.Read()
-            If IsDBNull(dr("EMISSIONSUNITID")) Then
-                txtEmissionUnitID.Text = ""
-            Else
-                txtEmissionUnitID.Text = dr.Item("EMISSIONSUNITID")
+                If IsDBNull(dr("EMISSIONSUNITID")) Then
+                    txtEmissionUnitID.Text = ""
+                Else
+                    txtEmissionUnitID.Text = dr.Item("EMISSIONSUNITID")
 
-            End If
-            If IsDBNull(dr("PROCESSID")) Then
-                txtProcessID.Text = ""
-            Else
-                txtProcessID.Text = dr.Item("PROCESSID")
-            End If
+                End If
+                If IsDBNull(dr("PROCESSID")) Then
+                    txtProcessID.Text = ""
+                Else
+                    txtProcessID.Text = dr.Item("PROCESSID")
+                End If
 
-            If IsDBNull(dr("STRCONTROLAPPROACHDESC")) Then
-                txtControlApproachDescription.Text = ""
-            Else
-                txtControlApproachDescription.Text = dr.Item("STRCONTROLAPPROACHDESC")
-            End If
-            If IsDBNull(dr("NUMPCTCTRLAPPROACHCAPEFFIC")) Then
-                txtPctCtrlApproachCapEffic.Text = ""
-            Else
-                txtPctCtrlApproachCapEffic.Text = dr.Item("NUMPCTCTRLAPPROACHCAPEFFIC")
-            End If
-            If IsDBNull(dr("NUMPCTCTRLAPPROACHEFFECT")) Then
-                txtPctCtrlApproachEffect.Text = ""
-            Else
-                txtPctCtrlApproachEffect.Text = dr.Item("NUMPCTCTRLAPPROACHEFFECT")
-            End If
+                If IsDBNull(dr("STRCONTROLAPPROACHDESC")) Then
+                    txtControlApproachDescription.Text = ""
+                Else
+                    txtControlApproachDescription.Text = dr.Item("STRCONTROLAPPROACHDESC")
+                End If
+                If IsDBNull(dr("NUMPCTCTRLAPPROACHCAPEFFIC")) Then
+                    txtPctCtrlApproachCapEffic.Text = ""
+                Else
+                    txtPctCtrlApproachCapEffic.Text = dr.Item("NUMPCTCTRLAPPROACHCAPEFFIC")
+                End If
+                If IsDBNull(dr("NUMPCTCTRLAPPROACHEFFECT")) Then
+                    txtPctCtrlApproachEffect.Text = ""
+                Else
+                    txtPctCtrlApproachEffect.Text = dr.Item("NUMPCTCTRLAPPROACHEFFECT")
+                End If
 
-            If IsDBNull(dr("STRCONTROLAPPROACHCOMMENT")) Then
-                txtControlApproachComment.Text = ""
-            Else
-                txtControlApproachComment.Text = dr.Item("STRCONTROLAPPROACHCOMMENT")
+                If IsDBNull(dr("STRCONTROLAPPROACHCOMMENT")) Then
+                    txtControlApproachComment.Text = ""
+                Else
+                    txtControlApproachComment.Text = dr.Item("STRCONTROLAPPROACHCOMMENT")
+                End If
+
             End If
         Catch ex As Exception
             ErrorReport(ex)
-        Finally
-            If conn.State = ConnectionState.Open Then
-                conn.Close()
-            End If
         End Try
     End Sub
 
@@ -282,7 +236,6 @@ Partial Class eis_processcontrolapproach_edit
     End Sub
 
     Private Sub saveControlApproach()
-        Dim sql As String = ""
         Dim eisAirsNumber As String = GetCookie(Cookie.AirsNumber)
         Dim emissionunitid As String = txtEmissionUnitID.Text
         Dim processID As String = txtProcessID.Text
@@ -301,33 +254,34 @@ Partial Class eis_processcontrolapproach_edit
         End If
 
         Try
-            sql = "Update EIS_PROCESSCONTROLAPPROACH Set EIS_PROCESSCONTROLAPPROACH.STRCONTROLAPPROACHDESC = '" & ControlApproachDescription & "', " &
-                     " EIS_PROCESSCONTROLAPPROACH.NUMPCTCTRLAPPROACHCAPEFFIC = " & DbStringDecimalOrNull(ConAppCaptureEff) & ", " &
-                     " EIS_PROCESSCONTROLAPPROACH.NUMPCTCTRLAPPROACHEFFECT = " & DbStringDecimalOrNull(conAppEffective) & ", " &
-                     " EIS_PROCESSCONTROLAPPROACH.updateuser = '" & Replace(UpdateUser, "'", "''") & "', " &
-                     " EIS_PROCESSCONTROLAPPROACH.STRCONTROLAPPROACHCOMMENT = '" & conAppComment & "', " &
-                     " UpdateDateTime = getdate() " &
-                     " where EIS_PROCESSCONTROLAPPROACH.FACILITYSITEID = '" & eisAirsNumber & "' " &
-                     " and EIS_PROCESSCONTROLAPPROACH.EMISSIONSUNITID = '" & emissionunitid & "' " &
-                     " and EIS_PROCESSCONTROLAPPROACH.ACTIVE = '1' " &
-                     " and EIS_PROCESSCONTROLAPPROACH.PROCESSID = '" & processID & "' "
+            Dim query As String = "Update EIS_PROCESSCONTROLAPPROACH " &
+                " Set EIS_PROCESSCONTROLAPPROACH.STRCONTROLAPPROACHDESC = @ControlApproachDescription, " &
+                " EIS_PROCESSCONTROLAPPROACH.NUMPCTCTRLAPPROACHCAPEFFIC = @ConAppCaptureEff, " &
+                " EIS_PROCESSCONTROLAPPROACH.NUMPCTCTRLAPPROACHEFFECT = @conAppEffective, " &
+                " EIS_PROCESSCONTROLAPPROACH.updateuser = @UpdateUser, " &
+                " EIS_PROCESSCONTROLAPPROACH.STRCONTROLAPPROACHCOMMENT = @conAppComment, " &
+                " UpdateDateTime = getdate() " &
+                " where EIS_PROCESSCONTROLAPPROACH.FACILITYSITEID = @eisAirsNumber " &
+                " and EIS_PROCESSCONTROLAPPROACH.EMISSIONSUNITID = @emissionunitid " &
+                " and EIS_PROCESSCONTROLAPPROACH.ACTIVE = '1' " &
+                " and EIS_PROCESSCONTROLAPPROACH.PROCESSID = @processID "
 
-            Dim cmd As New SqlCommand(sql, conn)
+            Dim params As SqlParameter() = {
+                New SqlParameter("@ControlApproachDescription", ControlApproachDescription),
+                New SqlParameter("@ConAppCaptureEff", If(Not String.IsNullOrEmpty(ConAppCaptureEff), ConAppCaptureEff, Nothing)),
+                New SqlParameter("@conAppEffective", If(Not String.IsNullOrEmpty(conAppEffective), conAppEffective, Nothing)),
+                New SqlParameter("@UpdateUser", UpdateUser),
+                New SqlParameter("@conAppComment", conAppComment),
+                New SqlParameter("@eisAirsNumber", eisAirsNumber),
+                New SqlParameter("@emissionunitid", emissionunitid),
+                New SqlParameter("@processID", processID)
+            }
 
-            If conn.State = ConnectionState.Open Then
-            Else
-                conn.Open()
-            End If
-
-            Dim dr As SqlDataReader = cmd.ExecuteReader
+            DB.RunCommand(query, params)
 
             LoadProcessControlPollutantsDGV(eisAirsNumber, emissionunitid, processID)
         Catch ex As Exception
             ErrorReport(ex)
-        Finally
-            If conn.State = ConnectionState.Open Then
-                conn.Close()
-            End If
         End Try
     End Sub
 
@@ -338,7 +292,7 @@ Partial Class eis_processcontrolapproach_edit
     End Sub
 
     Private Sub insertControlMeasure()
-        Dim sql As String = ""
+
         Dim Active As Integer = "1"
         Dim FacilitySiteID As String = GetCookie(Cookie.AirsNumber)
         Dim emissionunitid As String = txtEmissionUnitID.Text
@@ -349,29 +303,27 @@ Partial Class eis_processcontrolapproach_edit
         Dim UpdateUserName As String = GetCookie(GecoCookie.UserName)
         Dim UpdateUser As String = UpdateUserID & "-" & UpdateUserName
         lblProcessControlMeasureWarning.Visible = "False"
+
         Try
-            sql = "Select STRCONTROLMEASURECODE FROM EIS_PROCESSCONTROLMEASURE " &
-                " where EIS_PROCESSCONTROLMEASURE.FACILITYSITEID = '" & FacilitySiteID & "' " &
-                " and EIS_PROCESSCONTROLMEASURE.EMISSIONSUNITID = '" & emissionunitid & "' " &
-                " and EIS_PROCESSCONTROLMEASURE.PROCESSID = '" & processID & "' " &
-                " and EIS_PROCESSCONTROLMEASURE.STRCONTROLMEASURECODE = '" & CMcode & "' " &
+            Dim query As String = "Select STRCONTROLMEASURECODE FROM EIS_PROCESSCONTROLMEASURE " &
+                " where EIS_PROCESSCONTROLMEASURE.FACILITYSITEID = @FacilitySiteID " &
+                " and EIS_PROCESSCONTROLMEASURE.EMISSIONSUNITID = @emissionunitid " &
+                " and EIS_PROCESSCONTROLMEASURE.PROCESSID = @processID " &
+                " and EIS_PROCESSCONTROLMEASURE.STRCONTROLMEASURECODE = @CMcode " &
                 " and EIS_PROCESSCONTROLMEASURE.ACTIVE = '1' "
 
-            Dim cmd1 As New SqlCommand(sql, conn1)
+            Dim params As SqlParameter() = {
+                New SqlParameter("@FacilitySiteID", FacilitySiteID),
+                New SqlParameter("@emissionunitid", emissionunitid),
+                New SqlParameter("@processID", processID),
+                New SqlParameter("@CMcode", If(Not String.IsNullOrEmpty(CMcode), CMcode, Nothing))
+            }
 
-            If conn1.State = ConnectionState.Open Then
-            Else
-                conn1.Open()
-            End If
-
-            Dim dr1 As SqlDataReader = cmd1.ExecuteReader
-            Dim recExist As Boolean = dr1.Read
-
-            If recExist = True Then
+            If DB.ValueExists(query, params) Then
                 lblProcessControlMeasureWarning.Text = "Please select a new control measure. This one already exists in the Control Approach."
                 lblProcessControlMeasureWarning.Visible = "True"
             Else
-                sql = "Insert Into EIS_PROCESSCONTROLMEASURE (FACILITYSITEID, " &
+                query = "Insert Into EIS_PROCESSCONTROLMEASURE (FACILITYSITEID, " &
                             "EMISSIONSUNITID, " &
                             "PROCESSID, " &
                             "STRCONTROLMEASURECODE, " &
@@ -380,38 +332,32 @@ Partial Class eis_processcontrolapproach_edit
                             "UPDATEDATETIME, " &
                             "CreateDateTime) " &
                         " Values (" &
-                            "'" & Replace(FacilitySiteID, "'", "''") & "', " &
-                            "'" & Replace(emissionunitid.ToUpper, "'", "''") & "', " &
-                            "'" & Replace(processID.ToUpper, "'", "''") & "', " &
-                            DbStringNonEmptyOrNull(Replace(CMcode.ToUpper, "'", "''")) & ", " &
-                            "'" & Replace(Active, "'", "''") & "', " &
-                            "'" & Replace(UpdateUser, "'", "''") & "', " &
+                            " @FacilitySiteID, " &
+                            " @emissionunitid, " &
+                            " @processID, " &
+                            " @CMcode, " &
+                            " @Active, " &
+                            " @UpdateUser, " &
                             "getdate() " & ", " &
                             "getdate()) "
 
-                Dim cmd As New SqlCommand(sql, conn)
+                Dim params2 As SqlParameter() = {
+                    New SqlParameter("@FacilitySiteID", FacilitySiteID),
+                    New SqlParameter("@emissionunitid", emissionunitid),
+                    New SqlParameter("@processID", processID),
+                    New SqlParameter("@CMcode", If(Not String.IsNullOrEmpty(CMcode), CMcode, Nothing)),
+                    New SqlParameter("@Active", Active),
+                    New SqlParameter("@UpdateUser", UpdateUser)
+                }
 
-                'Open the connection to the database and write the record
-                If conn.State = ConnectionState.Open Then
-                Else
-                    conn.Open()
-                End If
+                DB.RunCommand(query, params2)
 
-                Dim dr As SqlDataReader = cmd.ExecuteReader
-
-                If conn.State = ConnectionState.Open Then
-                    conn.Close()
-                End If
                 ddlControlMeasure.SelectedIndex = "0"
             End If
 
             LoadProcessControlMeasureDGV(FacilitySiteID, emissionunitid, processID)
         Catch ex As Exception
             ErrorReport(ex)
-        Finally
-            If conn.State = ConnectionState.Open Then
-                conn.Close()
-            End If
         End Try
     End Sub
 
@@ -469,32 +415,27 @@ Partial Class eis_processcontrolapproach_edit
                 Dim ProcessID As String = gvwProcessControlMeasure.DataKeys(e.RowIndex).Values(2).ToString
                 Dim MeasureCode As String = gvwProcessControlMeasure.DataKeys(e.RowIndex).Values(3).ToString
 
-                Dim Sql = "Delete FROM  EIS_PROCESSCONTROLMEASURE " &
-                        "where " &
-                        "EIS_PROCESSCONTROLMEASURE.FACILITYSITEID ='" & FacilitySiteID & "' and " &
-                        "EIS_PROCESSCONTROLMEASURE.EMISSIONSUNITID ='" & EmissionsUnitID & "' and " &
-                        "EIS_PROCESSCONTROLMEASURE.PROCESSID = '" & ProcessID & "' and " &
-                        "EIS_PROCESSCONTROLMEASURE.STRCONTROLMEASURECODE ='" & MeasureCode & "'"
+                Dim query As String = "Delete FROM  EIS_PROCESSCONTROLMEASURE " &
+                    "where " &
+                    "FACILITYSITEID = @FacilitySiteID and " &
+                    "EMISSIONSUNITID = @EmissionsUnitID and " &
+                    "PROCESSID = @ProcessID and " &
+                    "STRCONTROLMEASURECODE = @MeasureCode "
 
-                Dim cmd As New SqlCommand(Sql, conn)
-                If conn.State = ConnectionState.Open Then
-                Else
-                    conn.Open()
-                End If
-                cmd.ExecuteNonQuery()
-                If conn.State = ConnectionState.Open Then
-                    conn.Close()
-                End If
+                Dim params As SqlParameter() = {
+                    New SqlParameter("@FacilitySiteID", FacilitySiteID),
+                    New SqlParameter("@EmissionsUnitID", EmissionsUnitID),
+                    New SqlParameter("@ProcessID", ProcessID),
+                    New SqlParameter("@MeasureCode", MeasureCode)
+                }
+
+                DB.RunCommand(query, params)
 
                 LoadProcessControlMeasureDGV(FacilitySiteID, EmissionsUnitID, ProcessID)
             End If
             ddlControlMeasure.SelectedIndex = 0
         Catch ex As Exception
             ErrorReport(ex)
-        Finally
-            If conn.State = ConnectionState.Open Then
-                conn.Close()
-            End If
         End Try
 
     End Sub
@@ -519,30 +460,28 @@ Partial Class eis_processcontrolapproach_edit
                 Dim EmissionsUnitID As String = gvwProcessCtrlPollutant.DataKeys(e.RowIndex).Values(1).ToString
                 Dim ProcessID As String = gvwProcessCtrlPollutant.DataKeys(e.RowIndex).Values(2).ToString
                 Dim PollutantCode As String = gvwProcessCtrlPollutant.DataKeys(e.RowIndex).Values(3).ToString
-                Dim Sql = "Delete FROM  EIS_PROCESSCONTROLPOLLUTANT " &
-                        "where " &
-                        "EIS_PROCESSCONTROLPOLLUTANT.FACILITYSITEID ='" & FacilitySiteID & "' and " &
-                        "EIS_PROCESSCONTROLPOLLUTANT.EMISSIONSUNITID ='" & EmissionsUnitID & "' and " &
-                        "EIS_PROCESSCONTROLPOLLUTANT.PROCESSID = '" & ProcessID & "' and " &
-                        "EIS_PROCESSCONTROLPOLLUTANT.pollutantcode ='" & PollutantCode & "'"
-                Dim cmd As New SqlCommand(Sql, conn)
-                If conn.State = ConnectionState.Open Then
-                Else
-                    conn.Open()
-                End If
-                cmd.ExecuteNonQuery()
-                If conn.State = ConnectionState.Open Then
-                    conn.Close()
-                End If
+
+                Dim query As String = "Delete FROM  EIS_PROCESSCONTROLPOLLUTANT " &
+                    "where " &
+                    "FACILITYSITEID = @FacilitySiteID and " &
+                    "EMISSIONSUNITID = @EmissionsUnitID and " &
+                    "PROCESSID = @ProcessID and " &
+                    "pollutantcode = @PollutantCode "
+
+                Dim params As SqlParameter() = {
+                    New SqlParameter("@FacilitySiteID", FacilitySiteID),
+                    New SqlParameter("@EmissionsUnitID", EmissionsUnitID),
+                    New SqlParameter("@ProcessID", ProcessID),
+                    New SqlParameter("@PollutantCode", PollutantCode)
+                }
+
+                DB.RunCommand(Query, params)
+
                 LoadProcessControlPollutantsDGV(FacilitySiteID, EmissionsUnitID, ProcessID)
                 ClearProcessCtrlDetails()
             End If
         Catch ex As Exception
             ErrorReport(ex)
-        Finally
-            If conn.State = ConnectionState.Open Then
-                conn.Close()
-            End If
         End Try
     End Sub
 

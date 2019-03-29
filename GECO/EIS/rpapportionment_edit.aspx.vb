@@ -2,7 +2,7 @@ Imports System.Data.SqlClient
 
 Partial Class eis_rpapportionment_edit
     Inherits Page
-    Public conn, conn1 As New SqlConnection(DBConnectionString)
+
     Public RPApportionmentExists As Boolean
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
@@ -43,8 +43,6 @@ Partial Class eis_rpapportionment_edit
     End Sub
 
     Private Sub LoadReleasePoints(ByVal fsid As String, ByVal euid As String)
-        Dim sql As String
-        Dim RPID As String
         Dim ProcessID As String = Request.QueryString("ep")
 
         ddlReleasePointID.Items.Clear()
@@ -52,76 +50,67 @@ Partial Class eis_rpapportionment_edit
 
         'sql statement to select Release Point IDs that are in eis_ReleasePoint and not in eis_RPApprotionment
         Try
-            sql = "select ReleasePointID FROM eis_ReleasePoint " &
-                            "where " &
-                            "eis_ReleasePoint.FacilitySiteID = '" & fsid & "' and " &
-                            "eis_ReleasePoint.Active = '1' and " &
-                            "eis_ReleasePoint.strRPStatusCode = 'OP' and " &
-                            "not exists " &
-                            "(select ReleasePointID FROM eis_RPApportionment " &
-                            "where " &
-                            "eis_RPApportionment.FacilitySiteID = '" & fsid & "' and " &
-                            "eis_RPApportionment.EmissionsUnitID = '" & euid & "' and " &
-                            "eis_RPApportionment.ProcessID = '" & ProcessID & "' and " &
-                            " EIS_RPAPPORTIONMENT.ACTIVE = '1' and " &
-                            "eis_RPApportionment.ReleasePointID = eis_ReleasePoint.ReleasePointID) " &
-                            "Order by ReleasePointID"
+            Dim query As String = "select ReleasePointID FROM eis_ReleasePoint " &
+                "where " &
+                "eis_ReleasePoint.FacilitySiteID = @fsid and " &
+                "eis_ReleasePoint.Active = '1' and " &
+                "eis_ReleasePoint.strRPStatusCode = 'OP' and " &
+                "not exists " &
+                "(select ReleasePointID FROM eis_RPApportionment " &
+                "where " &
+                "eis_RPApportionment.FacilitySiteID = @fsid and " &
+                "eis_RPApportionment.EmissionsUnitID = @euid and " &
+                "eis_RPApportionment.ProcessID = @ProcessID and " &
+                " EIS_RPAPPORTIONMENT.ACTIVE = '1' and " &
+                "eis_RPApportionment.ReleasePointID = eis_ReleasePoint.ReleasePointID) " &
+                "Order by ReleasePointID"
 
-            Dim cmd As New SqlCommand(sql, conn)
-            If conn.State = ConnectionState.Open Then
-            Else
-                conn.Open()
-            End If
-            Dim dr As SqlDataReader = cmd.ExecuteReader
-            While dr.Read
-                RPID = dr.Item("ReleasePointID")
-                ddlReleasePointID.Items.Add(RPID)
-            End While
+            Dim params As SqlParameter() = {
+                New SqlParameter("@fsid", fsid),
+                New SqlParameter("@euid", euid),
+                New SqlParameter("@ProcessID", ProcessID)
+            }
+
+            Dim dt As DataTable = DB.GetDataTable(query, params)
+
+            For Each dr As DataRow In dt.Rows
+                ddlReleasePointID.Items.Add(dr.Item("ReleasePointID"))
+            Next
         Catch ex As Exception
             ErrorReport(ex)
-        Finally
-            If conn.State = ConnectionState.Open Then
-                conn.Close()
-            End If
         End Try
     End Sub
 
     Private Sub LoadRPApportionDetails(ByVal fsid As String, ByVal euid As String, ByVal prid As String)
-
-        Dim sql1 As String = ""
-        Dim sql2 As String = ""
-
         Try
-            sql1 = "select FacilitySiteID, EmissionsUnitID, " &
+            Dim query As String = "select FacilitySiteID, EmissionsUnitID, " &
                         "(Select strUnitDescription FROM eis_EmissionsUnit where " &
-                        "eis_EmissionsUnit.FacilitySiteID = '" & fsid & "' and " &
-                        "eis_EmissionsUnit.EmissionsUnitID = '" & euid & "') As strUnitDescription, " &
+                        "eis_EmissionsUnit.FacilitySiteID = @fsid and " &
+                        "eis_EmissionsUnit.EmissionsUnitID = @euid ) As strUnitDescription, " &
                         "ProcessID, " &
                         "(Select strProcessDescription FROM eis_Process where " &
-                        "eis_Process.FacilitySiteID = '" & fsid & "' and " &
-                        "eis_Process.EmissionsUnitID = '" & euid & "' and " &
-                        "eis_Process.ProcessID = '" & prid & "') As strProcessDescription, " &
+                        "eis_Process.FacilitySiteID = @fsid and " &
+                        "eis_Process.EmissionsUnitID = @euid and " &
+                        "eis_Process.ProcessID = @prid) As strProcessDescription, " &
                         "ReleasePointID, " &
                         "intAveragepercentEmissions, " &
                         "strRPApportionmentComment " &
                         "FROM eis_RPApportionment " &
                         "where " &
-                        "FacilitySiteID = '" & fsid & "' " &
-                        "and EmissionsUnitID = '" & euid & "' " &
-                        "and ProcessID = '" & prid & "' " &
+                        "FacilitySiteID = @fsid " &
+                        "and EmissionsUnitID = @euid " &
+                        "and ProcessID = @prid " &
                         "and Active = '1'"
 
-            Dim cmd1 As New SqlCommand(sql1, conn)
+            Dim params As SqlParameter() = {
+                New SqlParameter("@fsid", fsid),
+                New SqlParameter("@euid", euid),
+                New SqlParameter("@prid", prid)
+            }
 
-            If conn.State = ConnectionState.Open Then
-            Else
-                conn.Open()
-            End If
+            Dim dr1 As DataRow = DB.GetDataRow(query, params)
 
-            Dim dr1 As SqlDataReader = cmd1.ExecuteReader
-            Dim recExist As Boolean = dr1.Read
-
-            If recExist Then
+            If dr1 IsNot Nothing Then
                 If IsDBNull(dr1("EmissionsUnitID")) Then
                     txtEmissionsUnitID.Text = ""
                 Else
@@ -156,19 +145,12 @@ Partial Class eis_rpapportionment_edit
 
         Catch ex As Exception
             ErrorReport(ex)
-        Finally
-            If conn.State = ConnectionState.Open Then
-                conn.Close()
-            End If
         End Try
     End Sub
 
     Private Sub LoadRPApportionmentGridView(ByVal fsid As String, ByVal euid As String, ByVal prid As String)
-
-        Dim sql As String = ""
-
         Try
-            sql = "SELECT eis_RPApportionment.FacilitySiteID " &
+            Dim query As String = "SELECT eis_RPApportionment.FacilitySiteID " &
                 ", eis_RPApportionment.EmissionsUnitID " &
                 ", eis_RPApportionment.ProcessID " &
                 ", eis_RPApportionment.ReleasePointID " &
@@ -184,34 +166,23 @@ Partial Class eis_rpapportionment_edit
                 "AND eis_RPApportionment.FacilitySiteID = eis_ReleasePoint.FacilitySiteID " &
                 "LEFT JOIN eislk_RPTypeCode " &
                 "ON eis_ReleasePoint.strRPTypeCode = eislk_RPTypeCode.RPTypeCode " &
-                "WHERE eis_RPApportionment.FacilitySiteID = '" & fsid & "' " &
-                "AND eis_RPApportionment.EmissionsUnitID = '" & euid & "' " &
-                "AND eis_RPApportionment.ProcessID = '" & prid & "' " &
+                "WHERE eis_RPApportionment.FacilitySiteID = @fsid " &
+                "AND eis_RPApportionment.EmissionsUnitID = @euid " &
+                "AND eis_RPApportionment.ProcessID = @prid " &
                 "AND eis_RPApportionment.Active = '1' " &
                 "AND eislk_RPTypeCode.Active = '1' "
 
-            Dim cmd As New SqlCommand(sql, conn)
+            Dim params As SqlParameter() = {
+                New SqlParameter("@fsid", fsid),
+                New SqlParameter("@euid", euid),
+                New SqlParameter("@prid", prid)
+            }
 
-            If conn.State = ConnectionState.Open Then
-            Else
-                conn.Open()
-            End If
-
-            gvwRPApportionment.DataSource = cmd.ExecuteReader
+            gvwRPApportionment.DataSource = DB.GetDataTable(query, params)
             gvwRPApportionment.DataBind()
-
-            If conn.State = ConnectionState.Open Then
-                conn.Close()
-            End If
-
         Catch ex As Exception
             ErrorReport(ex)
-        Finally
-            If conn.State = ConnectionState.Open Then
-                conn.Close()
-            End If
         End Try
-
     End Sub
 
     Protected Sub btnCancel1_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnProcessSummary.Click
@@ -257,8 +228,6 @@ Partial Class eis_rpapportionment_edit
         'and any other fields that are required for the insert before going to edit page for more details.
         'Edit pages perform only updates.
 
-        Dim sql1 As String = ""
-        Dim sql2 As String = ""
         Dim ReleasePointID As String = ddlReleasePointID.SelectedValue
         Dim AveragePctEmissions As Integer = CInt(txtAvgPctEmissions.Text)
         Dim RPApportioncomment As String = txtRPApportionmentComment.Text
@@ -272,98 +241,67 @@ Partial Class eis_rpapportionment_edit
 
         Try
 
-            sql2 = "Insert into eis_RPApportionment (" &
-                        "FacilitySiteID, " &
-                        "EmissionsUnitID, " &
-                        "ProcessID, " &
-                        "ReleasePointID, " &
-                        "RPApportionmentID, " &
-                        "intAveragePercentEmissions, " &
-                        "strRPApportionmentComment, " &
-                        "Active, " &
-                        "UpdateUser, " &
-                        "UpdateDateTime, " &
-                        "CreateDateTime) " &
+            Dim query As String = "Insert into eis_RPApportionment (" &
+                "FacilitySiteID, " &
+                "EmissionsUnitID, " &
+                "ProcessID, " &
+                "ReleasePointID, " &
+                "RPApportionmentID, " &
+                "intAveragePercentEmissions, " &
+                "strRPApportionmentComment, " &
+                "Active, " &
+                "UpdateUser, " &
+                "UpdateDateTime, " &
+                "CreateDateTime) " &
                 "Values (" &
-                        "'" & fsid & "', " &
-                        "'" & euid & "', " &
-                        "'" & prid & "', " &
-                        "'" & ReleasePointID & "', " &
-                        "Next Value for EIS_SEQ_RPAPPID, " &
-                        " " & AveragePctEmissions & ", " &
-                        "'" & Replace(RPApportioncomment, "'", "''") & "', " &
-                        "'" & Active & "', " &
-                        "'" & Replace(UpdateUser, "'", "''") & "', " &
-                        "getdate(), " &
-                        "getdate()) "
+                "@fsid, " &
+                "@euid, " &
+                "@prid, " &
+                "@ReleasePointID, " &
+                "Next Value for EIS_SEQ_RPAPPID, " &
+                "@AveragePctEmissions, " &
+                "@RPApportioncomment, " &
+                "@Active, " &
+                "@UpdateUser, " &
+                "getdate(), " &
+                "getdate()) "
 
-            Dim cmd As New SqlCommand(sql2, conn)
-
-            If conn.State = ConnectionState.Open Then
-            Else
-                conn.Open()
-            End If
-
-            Dim dr As SqlDataReader = cmd.ExecuteReader
-
-            If conn.State = ConnectionState.Open Then
-                conn.Close()
-            End If
+            Dim params As SqlParameter() = {
+                New SqlParameter("@fsid", fsid),
+                New SqlParameter("@euid", euid),
+                New SqlParameter("@prid", prid),
+                New SqlParameter("@ReleasePointID", ReleasePointID),
+                New SqlParameter("@AveragePctEmissions", AveragePctEmissions),
+                New SqlParameter("@RPApportioncomment", RPApportioncomment),
+                New SqlParameter("@Active", Active),
+                New SqlParameter("@UpdateUser", UpdateUser)
+            }
+            DB.RunCommand(query, params)
 
             'Populate gridview
             LoadRPApportionmentGridView(fsid, euid, prid)
 
         Catch ex As Exception
             ErrorReport(ex)
-        Finally
-            If conn.State = ConnectionState.Open Then
-                conn.Close()
-            End If
         End Try
 
     End Sub
 
     Private Function RPApportiomentTotal(ByVal fsid As String, ByVal euid As String, ByVal prid As String) As Integer
+        Dim query As String = "select sum(intAveragePercentEmissions) As RPApportionmentTotal FROM eis_RPApportionment " &
+            "where " &
+            "FacilitySiteID = @fsid and " &
+            "EmissionsUnitID = @euid and " &
+            "ProcessID = @prid and " &
+            "Active = '1'"
 
-        Dim sql As String = ""
-        Dim Result As Integer
+        Dim params As SqlParameter() = {
+            New SqlParameter("@fsid", fsid),
+            New SqlParameter("@euid", euid),
+            New SqlParameter("@prid", prid)
+        }
 
-        euid = euid.ToUpper
-        prid = prid.ToUpper
-
-        Try
-            sql = "select sum(intAveragePercentEmissions) As RPApportionmentTotal FROM eis_RPApportionment " &
-                  "where " &
-                  "FacilitySiteID = '" & fsid & "' and " &
-                  "EmissionsUnitID = '" & euid & "' and " &
-                  "ProcessID = '" & prid & "' and " &
-                  "Active = '1'"
-
-            Dim cmd1 As New SqlCommand(sql, conn1)
-
-            If conn1.State = ConnectionState.Open Then
-            Else
-                conn1.Open()
-            End If
-
-            Dim dr1 As SqlDataReader = cmd1.ExecuteReader
-            dr1.Read()
-            Result = dr1.Item("RPApportionmentTotal")
-
-            If conn.State = ConnectionState.Open Then
-                conn.Close()
-            End If
-
-        Catch ex As Exception
-            ErrorReport(ex)
-        Finally
-            If conn.State = ConnectionState.Open Then
-                conn.Close()
-            End If
-        End Try
-
-        Return Result
-
+        Return DB.GetInteger(query, params)
     End Function
 
     Private Sub RPApportionmentCheck(ByVal rptotal As Integer)
@@ -398,23 +336,20 @@ Partial Class eis_rpapportionment_edit
                 lblRPApportionmentDeleteWarning.Text = ""
                 lblRPApportionmentDeleteWarning.Visible = True
 
-                Dim sql = "Delete FROM  eis_RPApportionment " &
-                "where eis_RPApportionment.FacilitySiteID = '" & FacilitySiteID & "' and " &
-                "eis_RPApportionment.EmissionsUnitID = '" & EmissionsUnitID & "' and " &
-                "eis_RPApportionment.ProcessID = '" & ProcessID & "' and " &
-                "eis_RPApportionment.ReleasePointID = '" & ReleasePointID & "'"
+                Dim query As String = "Delete FROM  eis_RPApportionment " &
+                    "where FacilitySiteID = @FacilitySiteID and " &
+                    "EmissionsUnitID = @EmissionsUnitID and " &
+                    "ProcessID = @ProcessID and " &
+                    "ReleasePointID = @ReleasePointID "
 
-                Dim cmd As New SqlCommand(sql, conn)
-                If conn.State = ConnectionState.Open Then
-                Else
-                    conn.Open()
-                End If
+                Dim params As SqlParameter() = {
+                    New SqlParameter("@FacilitySiteID", FacilitySiteID),
+                    New SqlParameter("@EmissionsUnitID", EmissionsUnitID),
+                    New SqlParameter("@ProcessID", ProcessID),
+                    New SqlParameter("@ReleasePointID", ReleasePointID)
+                }
 
-                cmd.ExecuteNonQuery()
-
-                If conn.State = ConnectionState.Open Then
-                    conn.Close()
-                End If
+                DB.RunCommand(query, params)
 
                 LoadRPApportionmentGridView(FacilitySiteID, EmissionsUnitID, ProcessID)
                 LoadReleasePoints(FacilitySiteID, EmissionsUnitID)
@@ -424,10 +359,6 @@ Partial Class eis_rpapportionment_edit
             End If
         Catch ex As Exception
             ErrorReport(ex)
-        Finally
-            If conn.State = ConnectionState.Open Then
-                conn.Close()
-            End If
         End Try
 
     End Sub
@@ -453,7 +384,6 @@ Partial Class eis_rpapportionment_edit
     End Sub
 
     Protected Sub gvwRPApportionment_RowUpdating(ByVal sender As Object, ByVal e As System.Web.UI.WebControls.GridViewUpdateEventArgs) Handles gvwRPApportionment.RowUpdating
-
         Try
             Dim AvgPctEmissions As String = DirectCast(gvwRPApportionment.Rows(e.RowIndex).FindControl("txtAvgPctEmissions"), TextBox).Text
             Dim RPApportionmentComment As String = DirectCast(gvwRPApportionment.Rows(e.RowIndex).FindControl("txtRPApportionmentComment"), TextBox).Text
@@ -464,24 +394,25 @@ Partial Class eis_rpapportionment_edit
 
             RPApportionmentComment = Left(RPApportionmentComment, 400)
 
-            Dim sql = "Update eis_RPApportionment Set " &
-                    "eis_RPApportionment.intAveragepercentEmissions = " & DbStringIntOrNull(AvgPctEmissions) & ", " &
-                    "eis_RPApportionment.strRPApportionmentComment = '" & Replace(RPApportionmentComment, "'", "''") & "' " &
-                    "where " &
-                    "eis_RPApportionment.FacilitySiteID = '" & FacilitySiteID & "' and " &
-                    "eis_RPApportionment.EmissionsUnitID = '" & EmissionsUnitID & "' and " &
-                    "eis_RPApportionment.ProcessID = '" & ProcessID & "' and " &
-                    "eis_RPApportionment.ReleasePointID = '" & ReleasePointID & "' "
+            Dim query As String = "Update eis_RPApportionment Set " &
+                "eis_RPApportionment.intAveragepercentEmissions = @AvgPctEmissions, " &
+                "eis_RPApportionment.strRPApportionmentComment = @RPApportionmentComment " &
+                "where " &
+                "eis_RPApportionment.FacilitySiteID = @FacilitySiteID and " &
+                "eis_RPApportionment.EmissionsUnitID = @EmissionsUnitID and " &
+                "eis_RPApportionment.ProcessID = @ProcessID and " &
+                "eis_RPApportionment.ReleasePointID = @ReleasePointID "
 
-            Dim cmd As New SqlCommand(sql, conn)
-            If conn.State = ConnectionState.Open Then
-            Else
-                conn.Open()
-            End If
-            cmd.ExecuteNonQuery()
-            If conn.State = ConnectionState.Open Then
-                conn.Close()
-            End If
+            Dim params As SqlParameter() = {
+                New SqlParameter("@AvgPctEmissions", If(Not String.IsNullOrEmpty(AvgPctEmissions), AvgPctEmissions, Nothing)),
+                New SqlParameter("@RPApportionmentComment", RPApportionmentComment),
+                New SqlParameter("@FacilitySiteID", FacilitySiteID),
+                New SqlParameter("@EmissionsUnitID", EmissionsUnitID),
+                New SqlParameter("@ProcessID", ProcessID),
+                New SqlParameter("@ReleasePointID", ReleasePointID)
+            }
+
+            DB.RunCommand(query, params)
 
             gvwRPApportionment.EditIndex = -1
             LoadRPApportionmentGridView(FacilitySiteID, EmissionsUnitID, ProcessID)
@@ -490,10 +421,6 @@ Partial Class eis_rpapportionment_edit
 
         Catch ex As Exception
             ErrorReport(ex)
-        Finally
-            If conn.State = ConnectionState.Open Then
-                conn.Close()
-            End If
         End Try
     End Sub
 

@@ -1,11 +1,10 @@
 ﻿Imports System.Data.SqlClient
-Imports System.Data
-Imports Reimers.Google.Map
 Imports GECO.MapHelper
+Imports Reimers.Google.Map
 
 Partial Class eis_stack_edit
     Inherits Page
-    Public conn, conn1, conn2, conn3 As New SqlConnection(DBConnectionString)
+
     Public SaveStack As String = "Stack Information saved successfully."
     Public RPStatus As String
     Public StackGCDataMissing As Boolean
@@ -71,76 +70,46 @@ Partial Class eis_stack_edit
     End Sub
 
     Private Sub loadStackStatusDDL()
-        Dim sql As String
-        Dim desc As String
-        Dim code As String
-
         ddlStackStatusCode.Items.Add("--Select Operating Status--")
         Try
-            sql = "select strDesc, RPStatusCode FROM EISLK_RPSTATUSCODE where Active = '1'"
+            Dim query As String = "select strDesc, RPStatusCode FROM EISLK_RPSTATUSCODE where Active = '1'"
 
-            Dim cmd As New SqlCommand(sql, conn)
+            Dim dt As DataTable = DB.GetDataTable(query)
 
-            If conn.State = ConnectionState.Open Then
-            Else
-                conn.Open()
+            If dt IsNot Nothing Then
+                For Each dr As DataRow In dt.Rows
+                    Dim newListItem As New ListItem With {
+                        .Text = dr.Item("strdesc"),
+                        .Value = dr.Item("RPStatusCode")
+                    }
+                    ddlStackStatusCode.Items.Add(newListItem)
+                Next
             End If
-
-            Dim dr As SqlDataReader = cmd.ExecuteReader
-
-            While dr.Read
-                Dim newListItem As New ListItem()
-                desc = dr.Item("strdesc")
-                code = dr.Item("RPStatusCode")
-                newListItem.Text = desc
-                newListItem.Value = code
-                ddlStackStatusCode.Items.Add(newListItem)
-            End While
-
         Catch ex As Exception
             ErrorReport(ex)
-        Finally
-            If conn.State = ConnectionState.Open Then
-                conn.Close()
-            End If
         End Try
     End Sub
 
     Private Sub loadStackTypeDDL()
-        Dim sql As String
-        Dim desc As String
-        Dim code As String
-
         ddlRPtypeCode.Items.Add("--Select Stack Type--")
         Try
-            sql = "select strdesc, RPTypeCode FROM EISLK_RPTYPECODE " &
+            Dim query As String = "select strdesc, RPTypeCode FROM EISLK_RPTYPECODE " &
                 "where EISLK_RPTYPECODE.active = '1' " &
                 "and EISLK_RPTYPECODE.strdesc <> 'Fugitive' order by strdesc"
-            Dim cmd As New SqlCommand(sql, conn)
 
-            If conn.State = ConnectionState.Open Then
-            Else
-                conn.Open()
+            Dim dt As DataTable = DB.GetDataTable(query)
+
+            If dt IsNot Nothing Then
+                For Each dr As DataRow In dt.Rows
+                    Dim newListItem As New ListItem With {
+                        .Text = dr.Item("strdesc"),
+                        .Value = dr.Item("RPTypeCode")
+                    }
+                    ddlRPtypeCode.Items.Add(newListItem)
+                Next
             End If
-
-            Dim dr As SqlDataReader = cmd.ExecuteReader
-
-            While dr.Read
-                Dim newListItem As New ListItem()
-                desc = dr.Item("strdesc")
-                code = dr.Item("RPTypeCode")
-                newListItem.Text = desc
-                newListItem.Value = code
-                ddlRPtypeCode.Items.Add(newListItem)
-
-            End While
-
         Catch ex As Exception
             ErrorReport(ex)
-        Finally
-            If conn.State = ConnectionState.Open Then
-                conn.Close()
-            End If
         End Try
     End Sub
 
@@ -203,9 +172,6 @@ Partial Class eis_stack_edit
 
     Private Sub loadStackInfo(ByVal fsid As String, ByVal RPid As String)
 
-        Dim sql As String = ""
-        Dim sql2 As String = ""
-        Dim sql3 As String = ""
         Dim UpdateUser As String = ""
         Dim UpdateDateTime As String = ""
         Dim RPFenceLineDistanceMeasure As Decimal
@@ -218,182 +184,155 @@ Partial Class eis_stack_edit
         Dim EISSubmit As String
 
         Try
-            sql = "select ReleasePointID, " &
-                        "strRPDescription, " &
-                        "strRPTypeCode, " &
-                        "strRPStatusCode, " &
-                        "numRPStatusCodeYear, " &
-                        "numRPExitGasVelocityMeasure, " &
-                        "numRPExitGasFlowRateMeasure, " &
-                        "NUMRPEXITGASTEMPMEASURE, " &
-                        "NUMRPFENCELINEDISTMEASURE, " &
-                        "NUMRPSTACKHEIGHTMEASURE, " &
-                        "NUMRPSTACKDIAMETERMEASURE, " &
-                        "strRPComment, " &
-                        "strEISSubmit " &
-                        "FROM EIS_ReleasePoint where EIS_ReleasePoint.FACILITYSITEID = '" & fsid & "' " &
-                        "and RELEASEPOINTID = '" & RPid.ToUpper & "'"
+            Dim query As String = "select ReleasePointID, " &
+                "strRPDescription, " &
+                "strRPTypeCode, " &
+                "strRPStatusCode, " &
+                "numRPStatusCodeYear, " &
+                "numRPExitGasVelocityMeasure, " &
+                "numRPExitGasFlowRateMeasure, " &
+                "NUMRPEXITGASTEMPMEASURE, " &
+                "NUMRPFENCELINEDISTMEASURE, " &
+                "NUMRPSTACKHEIGHTMEASURE, " &
+                "NUMRPSTACKDIAMETERMEASURE, " &
+                "strRPComment, " &
+                "strEISSubmit " &
+                "FROM EIS_ReleasePoint where EIS_ReleasePoint.FACILITYSITEID = @fsid " &
+                "and RELEASEPOINTID = @RPid "
 
-            Dim cmd As New SqlCommand(sql, conn)
+            Dim params As SqlParameter() = {
+                New SqlParameter("@fsid", fsid),
+                New SqlParameter("@RPid", RPid)
+            }
 
-            If conn.State = ConnectionState.Open Then
-            Else
-                conn.Open()
-            End If
+            Dim dr As DataRow = DB.GetDataRow(query, params)
 
-            Dim dr As SqlDataReader = cmd.ExecuteReader
+            If dr IsNot Nothing Then
 
-            dr.Read()
+                'Load Stack Release Point Details
+                If IsDBNull(dr("ReleasePointID")) Then
+                    txtReleasePointID.Text = ""
+                Else
+                    txtReleasePointID.Text = dr.Item("ReleasePointID")
+                End If
 
-            'Load Stack Release Point Details
-            If IsDBNull(dr("ReleasePointID")) Then
-                txtReleasePointID.Text = ""
-            Else
-                txtReleasePointID.Text = dr.Item("ReleasePointID")
-            End If
+                If IsDBNull(dr("strRPDescription")) Then
+                    txtRPDescription.Text = ""
+                Else
+                    txtRPDescription.Text = dr.Item("strRPDescription")
+                End If
 
-            If IsDBNull(dr("strRPDescription")) Then
-                txtRPDescription.Text = ""
-            Else
-                txtRPDescription.Text = dr.Item("strRPDescription")
-            End If
+                If IsDBNull(dr("strRPTypeCode")) Then
+                    ddlRPtypeCode.SelectedValue = ""
+                Else
+                    ddlRPtypeCode.SelectedValue = dr.Item("strRPTypeCode")
+                End If
 
-            If IsDBNull(dr("strRPTypeCode")) Then
-                ddlRPtypeCode.SelectedValue = ""
-            Else
-                ddlRPtypeCode.SelectedValue = dr.Item("strRPTypeCode")
-            End If
+                If IsDBNull(dr("strRPStatusCode")) Then
+                    ddlStackStatusCode.SelectedValue = ""
+                Else
+                    ddlStackStatusCode.SelectedValue = dr.Item("strRPStatusCode")
+                    txtStackStatusCodeOnLoad.Text = ddlStackStatusCode.SelectedValue
+                End If
 
-            If IsDBNull(dr("strRPStatusCode")) Then
-                ddlStackStatusCode.SelectedValue = ""
-            Else
-                ddlStackStatusCode.SelectedValue = dr.Item("strRPStatusCode")
-                txtStackStatusCodeOnLoad.Text = ddlStackStatusCode.SelectedValue
-            End If
-
-            If IsDBNull(dr("numRPExitGasVelocityMeasure")) Then
-                txtRPExitGasVelocityMeasure.Text = ""
-            Else
-                RPExitGasVelocityMeasure = dr.Item("numRPExitGasVelocityMeasure")
-                If RPExitGasVelocityMeasure = -1 Then
+                If IsDBNull(dr("numRPExitGasVelocityMeasure")) Then
                     txtRPExitGasVelocityMeasure.Text = ""
                 Else
-                    txtRPExitGasVelocityMeasure.Text = FormatNumber(RPExitGasVelocityMeasure, 1)
+                    RPExitGasVelocityMeasure = dr.Item("numRPExitGasVelocityMeasure")
+                    If RPExitGasVelocityMeasure = -1 Then
+                        txtRPExitGasVelocityMeasure.Text = ""
+                    Else
+                        txtRPExitGasVelocityMeasure.Text = FormatNumber(RPExitGasVelocityMeasure, 1)
+                    End If
                 End If
-            End If
 
-            If IsDBNull(dr("numRPExitGasFlowRateMeasure")) Then
-                txtRPExitGasFlowRateMeasure.Text = ""
-            Else
-                RPExitGasFlowRateMeasure = dr.Item("numRPExitGasFlowRateMeasure")
-                If RPExitGasFlowRateMeasure = -1 Then
+                If IsDBNull(dr("numRPExitGasFlowRateMeasure")) Then
                     txtRPExitGasFlowRateMeasure.Text = ""
                 Else
-                    txtRPExitGasFlowRateMeasure.Text = FormatNumber(RPExitGasFlowRateMeasure, 1)
+                    RPExitGasFlowRateMeasure = dr.Item("numRPExitGasFlowRateMeasure")
+                    If RPExitGasFlowRateMeasure = -1 Then
+                        txtRPExitGasFlowRateMeasure.Text = ""
+                    Else
+                        txtRPExitGasFlowRateMeasure.Text = FormatNumber(RPExitGasFlowRateMeasure, 1)
+                    End If
                 End If
-            End If
 
-            If IsDBNull(dr("NUMRPEXITGASTEMPMEASURE")) Then
-                txtRPExitGasTemperatureMeasure.Text = ""
-            Else
-                RPExitGasTemperatureMeasure = dr.Item("NUMRPEXITGASTEMPMEASURE")
-                If RPExitGasTemperatureMeasure = -1 Then
+                If IsDBNull(dr("NUMRPEXITGASTEMPMEASURE")) Then
                     txtRPExitGasTemperatureMeasure.Text = ""
                 Else
-                    txtRPExitGasTemperatureMeasure.Text = FormatNumber(RPExitGasTemperatureMeasure, 0)
+                    RPExitGasTemperatureMeasure = dr.Item("NUMRPEXITGASTEMPMEASURE")
+                    If RPExitGasTemperatureMeasure = -1 Then
+                        txtRPExitGasTemperatureMeasure.Text = ""
+                    Else
+                        txtRPExitGasTemperatureMeasure.Text = FormatNumber(RPExitGasTemperatureMeasure, 0)
+                    End If
                 End If
-            End If
 
-            If IsDBNull(dr("NUMRPFENCELINEDISTMEASURE")) Then
-                txtRPFenceLineDistanceMeasure.Text = ""
-            Else
-                RPFenceLineDistanceMeasure = dr.Item("NUMRPFENCELINEDISTMEASURE")
-                If RPFenceLineDistanceMeasure = -1 Then
+                If IsDBNull(dr("NUMRPFENCELINEDISTMEASURE")) Then
                     txtRPFenceLineDistanceMeasure.Text = ""
                 Else
-                    txtRPFenceLineDistanceMeasure.Text = FormatNumber(RPFenceLineDistanceMeasure, 0)
+                    RPFenceLineDistanceMeasure = dr.Item("NUMRPFENCELINEDISTMEASURE")
+                    If RPFenceLineDistanceMeasure = -1 Then
+                        txtRPFenceLineDistanceMeasure.Text = ""
+                    Else
+                        txtRPFenceLineDistanceMeasure.Text = FormatNumber(RPFenceLineDistanceMeasure, 0)
+                    End If
                 End If
-            End If
 
-            If IsDBNull(dr("NUMRPSTACKHEIGHTMEASURE")) Then
-                txtRPStackHeightMeasure.Text = ""
-            Else
-                RPStackHeightMeasure = dr.Item("NUMRPSTACKHEIGHTMEASURE")
-                If RPStackHeightMeasure = -1 Then
+                If IsDBNull(dr("NUMRPSTACKHEIGHTMEASURE")) Then
                     txtRPStackHeightMeasure.Text = ""
                 Else
-                    txtRPStackHeightMeasure.Text = FormatNumber(RPStackHeightMeasure, 1)
+                    RPStackHeightMeasure = dr.Item("NUMRPSTACKHEIGHTMEASURE")
+                    If RPStackHeightMeasure = -1 Then
+                        txtRPStackHeightMeasure.Text = ""
+                    Else
+                        txtRPStackHeightMeasure.Text = FormatNumber(RPStackHeightMeasure, 1)
+                    End If
                 End If
-            End If
 
-            If IsDBNull(dr("NUMRPSTACKDIAMETERMEASURE")) Then
-                txtRPStackDiameterMeasure.Text = ""
-            Else
-                RPStackDiameterMeasure = dr.Item("NUMRPSTACKDIAMETERMEASURE")
-                If RPStackDiameterMeasure = -1 Then
+                If IsDBNull(dr("NUMRPSTACKDIAMETERMEASURE")) Then
                     txtRPStackDiameterMeasure.Text = ""
                 Else
-                    txtRPStackDiameterMeasure.Text = FormatNumber(RPStackDiameterMeasure, 1)
+                    RPStackDiameterMeasure = dr.Item("NUMRPSTACKDIAMETERMEASURE")
+                    If RPStackDiameterMeasure = -1 Then
+                        txtRPStackDiameterMeasure.Text = ""
+                    Else
+                        txtRPStackDiameterMeasure.Text = FormatNumber(RPStackDiameterMeasure, 1)
+                    End If
                 End If
-            End If
 
-            If IsDBNull(dr("strRPComment")) Then
-                txtRPComment.Text = ""
-            Else
-                txtRPComment.Text = dr.Item("strRPComment")
-            End If
+                If IsDBNull(dr("strRPComment")) Then
+                    txtRPComment.Text = ""
+                Else
+                    txtRPComment.Text = dr.Item("strRPComment")
+                End If
 
-            If IsDBNull(dr.Item("strEISSubmit")) Then
-                StackEISSubmit = False
-            Else
-                EISSubmit = dr.Item("strEISSubmit")
-                If EISSubmit = "0" Then
+                If IsDBNull(dr.Item("strEISSubmit")) Then
                     StackEISSubmit = False
                 Else
-                    StackEISSubmit = True
+                    EISSubmit = dr.Item("strEISSubmit")
+                    If EISSubmit = "0" Then
+                        StackEISSubmit = False
+                    Else
+                        StackEISSubmit = True
+                    End If
                 End If
             End If
-            dr.Close()
 
-            'Check if RP GeoCoord data exists before loading data
-            sql2 = "select numLatitudeMeasure " &
-                        "FROM EIS_RPGeoCoordinates where " &
-                        "EIS_RPGeoCoordinates.FACILITYSITEID = '" & fsid & "' and " &
-                        "RELEASEPOINTID = '" & RPid & "'"
+            'Load Stack GC Information
+            query = "Select numLatitudeMeasure, " &
+                "numLongitudeMeasure, " &
+                "STRHORCOLLMETCode, " &
+                "INTHORACCURACYMEASURE , " &
+                "STRHORREFDATUMCode, " &
+                "strGeographicComment " &
+                "FROM EIS_RPGeoCoordinates " &
+                "where EIS_RPGeoCoordinates.FACILITYSITEID = @fsid " &
+                "and ReleasePointID = @RPid "
 
-            Dim cmd2 As New SqlCommand(sql2, conn2)
+            Dim dr3 As DataRow = DB.GetDataRow(query, params)
 
-            If conn2.State = ConnectionState.Open Then
-            Else
-                conn2.Open()
-            End If
-
-            Dim dr2 As SqlDataReader = cmd2.ExecuteReader
-            Dim recExist As Boolean = dr2.Read
-            dr2.Close()
-
-            If recExist Then
-                'Load Stack GC Information
-                sql3 = "Select numLatitudeMeasure, " &
-                            "numLongitudeMeasure, " &
-                            "STRHORCOLLMETCode, " &
-                            "INTHORACCURACYMEASURE , " &
-                            "STRHORREFDATUMCode, " &
-                            "strGeographicComment " &
-                            "FROM EIS_RPGeoCoordinates " &
-                            "where EIS_RPGeoCoordinates.FACILITYSITEID = '" & fsid & "' " &
-                            "and ReleasePointID = '" & RPid & "' "
-
-                Dim cmd3 As New SqlCommand(sql3, conn3)
-
-                If conn3.State = ConnectionState.Open Then
-                Else
-                    conn3.Open()
-                End If
-
-                Dim dr3 As SqlDataReader = cmd3.ExecuteReader
-
-                dr3.Read()
+            If dr3 IsNot Nothing Then
 
                 If IsDBNull(dr3("numLatitudeMeasure")) Then
                     TxtLatitudeMeasure.Text = ""
@@ -449,7 +388,6 @@ Partial Class eis_stack_edit
                 imgGoogleStaticMap.ImageUrl = GoogleMaps.GetStaticMapUrl(New Coordinate(MapLatitude, MapLongitude))
                 lnkGoogleMap.NavigateUrl = GoogleMaps.GetMapLinkUrl(New Coordinate(MapLatitude, MapLongitude))
 
-                dr3.Close()
             Else
                 lblStackMessage.Text = "Release point geographic coordinate info incomplete."
                 lblStackMessage.Visible = True
@@ -468,16 +406,6 @@ Partial Class eis_stack_edit
 
         Catch ex As Exception
             ErrorReport(ex)
-        Finally
-            If conn.State = ConnectionState.Open Then
-                conn.Close()
-            End If
-            If conn2.State = ConnectionState.Open Then
-                conn2.Close()
-            End If
-            If conn3.State = ConnectionState.Open Then
-                conn3.Close()
-            End If
         End Try
 
     End Sub
@@ -512,14 +440,8 @@ Partial Class eis_stack_edit
             ddlStackStatusCode.Enabled = True
         Else
             lblReleasePointAppMessage.Text = "The Release Point cannot be deleted. Either delete the process or add another release point to the apportionment " &
-                                    "before deleting the remaining release point. See Help for more details."
+                "before deleting the remaining release point. See Help for more details."
             lblReleasePointAppMessage.Visible = True
-
-            'If ddlStackStatusCode.SelectedValue <> "OP" Then
-            '    ddlStackStatusCode.Enabled = True
-            'Else
-            '    ddlStackStatusCode.Enabled = False
-            'End If
         End If
 
     End Sub
@@ -534,7 +456,6 @@ Partial Class eis_stack_edit
     End Sub
 
     ' Custom validators
-
 
     Protected Sub FlowRateRangeAndGasVelocityCheck(ByVal Sender As Object, ByVal args As ServerValidateEventArgs) Handles custRPExitGASVelocityMeasure.ServerValidate
         If txtRPExitGasVelocityMeasure.Text = "" And txtRPExitGasFlowRateMeasure.Text = "" Then
@@ -587,16 +508,16 @@ Partial Class eis_stack_edit
     End Sub
 
     Private Sub saveStackInfo()
-        Dim SQL As String = ""
+        Dim query As String = ""
         Dim RPDescription As String = txtRPDescription.Text
         Dim RPTypeCode As String = ddlRPtypeCode.SelectedItem.Value
         Dim RPStatusCode As String = ddlStackStatusCode.SelectedItem.Value
-        Dim RPFenceLineDistanceMeasure As String = DbStringIntOrNull(txtRPFenceLineDistanceMeasure.Text)
-        Dim RPStackHeightMeasure As String = DbStringDecimalOrNull(txtRPStackHeightMeasure.Text)
-        Dim RPStackDiameterMeasure As String = DbStringDecimalOrNull(txtRPStackDiameterMeasure.Text)
-        Dim RPExitGasVelocityMeasure As String = DbStringDecimalOrNull(txtRPExitGasVelocityMeasure.Text)
-        Dim RPExitGasFlowRateMeasure As String = DbStringDecimalOrNull(txtRPExitGasFlowRateMeasure.Text)
-        Dim RPExitGasTempMeasure As String = DbStringIntOrNull(txtRPExitGasTemperatureMeasure.Text)
+        Dim RPFenceLineDistanceMeasure As String = txtRPFenceLineDistanceMeasure.Text
+        Dim RPStackHeightMeasure As String = txtRPStackHeightMeasure.Text
+        Dim RPStackDiameterMeasure As String = txtRPStackDiameterMeasure.Text
+        Dim RPExitGasVelocityMeasure As String = txtRPExitGasVelocityMeasure.Text
+        Dim RPExitGasFlowRateMeasure As String = txtRPExitGasFlowRateMeasure.Text
+        Dim RPExitGasTempMeasure As String = txtRPExitGasTemperatureMeasure.Text
         Dim RPComment As String = txtRPComment.Text
         Dim FacilitySiteID As String = GetCookie(Cookie.AirsNumber)
         Dim StackID As String = txtReleasePointID.Text
@@ -615,65 +536,65 @@ Partial Class eis_stack_edit
         StackID = Left(StackID, 6)
 
         Try
-            If RPFlowRateInRange = False Then 'do nothing
-            Else
+            If RPFlowRateInRange Then
                 If StatusCodeOnLoad = StatusCodeChanged Or StatusCodeChanged = "" Then
                     'Does not update Stack Status and Stack Status Code year
-                    SQL = "Update EIS_RELEASEPOINT Set STRRPTYPECODE = '" & RPTypeCode & "', " &
-                                   "STRRPDESCRIPTION ='" & Replace(RPDescription, "'", "''") & "', " &
-                                   "NUMRPFENCELINEDISTMEASURE = " & RPFenceLineDistanceMeasure & ", " &
-                                   "NUMRPEXITGASVELOCITYMEASURE = " & RPExitGasVelocityMeasure & ", " &
-                                   "NUMRPEXITGASFLOWRATEMEASURE = " & RPExitGasFlowRateMeasure & ", " &
-                                   "NUMRPEXITGASTEMPMEASURE = " & RPExitGasTempMeasure & ", " &
-                                   "NUMRPSTACKHEIGHTMEASURE = " & RPStackHeightMeasure & ", " &
-                                   "NUMRPSTACKDIAMETERMEASURE = " & RPStackDiameterMeasure & ", " &
-                                   "STRRPCOMMENT = '" & Replace(RPComment, "'", "''") & "', " &
-                                   "Active = '" & Active & "', " &
-                                   "UpdateUser = '" & Replace(UpdateUser, "'", "''") & "', " &
-                                   "UpdateDateTime = getdate() " &
-                                   "where EIS_RELEASEPOINT.FACILITYSITEID = '" & FacilitySiteID & "' " &
-                                   "and ReleasePointID = '" & StackID & "' "
+                    query = "Update EIS_RELEASEPOINT Set " &
+                        "STRRPTYPECODE = @RPTypeCode, " &
+                        "STRRPDESCRIPTION = @RPDescription, " &
+                        "NUMRPFENCELINEDISTMEASURE = @RPFenceLineDistanceMeasure, " &
+                        "NUMRPEXITGASVELOCITYMEASURE = @RPExitGasVelocityMeasure, " &
+                        "NUMRPEXITGASFLOWRATEMEASURE = @RPExitGasFlowRateMeasure, " &
+                        "NUMRPEXITGASTEMPMEASURE = @RPExitGasTempMeasure, " &
+                        "NUMRPSTACKHEIGHTMEASURE = @RPStackHeightMeasure, " &
+                        "NUMRPSTACKDIAMETERMEASURE = @RPStackDiameterMeasure, " &
+                        "STRRPCOMMENT = @RPComment, " &
+                        "Active = @Active, " &
+                        "UpdateUser = @UpdateUser, " &
+                        "UpdateDateTime = getdate() " &
+                        "where FACILITYSITEID = @FacilitySiteID " &
+                        "and ReleasePointID = @StackID "
                 Else
                     'update stack Status and Unit Status Code year
-                    SQL = "Update EIS_RELEASEPOINT Set " &
-                                   "STRRPTYPECODE = '" & RPTypeCode & "', " &
-                                   "STRRPDESCRIPTION ='" & Replace(RPDescription, "'", "''") & "', " &
-                                   "NUMRPFENCELINEDISTMEASURE = " & RPFenceLineDistanceMeasure & ", " &
-                                   "NUMRPEXITGASVELOCITYMEASURE = " & RPExitGasVelocityMeasure & ", " &
-                                   "NUMRPEXITGASFLOWRATEMEASURE = " & RPExitGasFlowRateMeasure & ", " &
-                                   "NUMRPEXITGASTEMPMEASURE = " & RPExitGasTempMeasure & ", " &
-                                   "NUMRPSTACKHEIGHTMEASURE = " & RPStackHeightMeasure & ", " &
-                                   "NUMRPSTACKDIAMETERMEASURE = " & RPStackDiameterMeasure & ", " &
-                                   "STRRPSTATUSCODE = '" & RPStatusCode & "', " &
-                                   "NUMRPSTATUSCODEYEAR = '" & StackStatusCodeYear & "', " &
-                                   "STRRPCOMMENT = '" & Replace(RPComment, "'", "''") & "', " &
-                                   "ACTIVE = '" & Active & "', " &
-                                   "UpdateUser = '" & Replace(UpdateUser, "'", "''") & "', " &
-                                   "UpdateDateTime = getdate() " &
-                                   "where EIS_RELEASEPOINT.FACILITYSITEID = '" & FacilitySiteID & "' " &
-                                   "and ReleasePointID = '" & StackID & "' "
+                    query = "Update EIS_RELEASEPOINT Set " &
+                        "STRRPTYPECODE = @RPTypeCode, " &
+                        "STRRPDESCRIPTION = @RPDescription, " &
+                        "NUMRPFENCELINEDISTMEASURE = @RPFenceLineDistanceMeasure, " &
+                        "NUMRPEXITGASVELOCITYMEASURE = @RPExitGasVelocityMeasure, " &
+                        "NUMRPEXITGASFLOWRATEMEASURE = @RPExitGasFlowRateMeasure, " &
+                        "NUMRPEXITGASTEMPMEASURE = @RPExitGasTempMeasure, " &
+                        "NUMRPSTACKHEIGHTMEASURE = @RPStackHeightMeasure, " &
+                        "NUMRPSTACKDIAMETERMEASURE = @RPStackDiameterMeasure, " &
+                        "STRRPSTATUSCODE = @RPStatusCode, " &
+                        "NUMRPSTATUSCODEYEAR = @StackStatusCodeYear, " &
+                        "STRRPCOMMENT = @RPComment, " &
+                        "ACTIVE = @Active, " &
+                        "UpdateUser = @UpdateUser, " &
+                        "UpdateDateTime = getdate() " &
+                        "where FACILITYSITEID = @FacilitySiteID " &
+                        "and ReleasePointID = @StackID "
                 End If
 
-                Dim cmd As New SqlCommand(SQL, conn)
+                Dim params As SqlParameter() = {
+                    New SqlParameter("@RPTypeCode", RPTypeCode),
+                    New SqlParameter("@RPDescription", RPDescription),
+                    New SqlParameter("@RPFenceLineDistanceMeasure", If(Not String.IsNullOrEmpty(RPFenceLineDistanceMeasure), RPFenceLineDistanceMeasure, Nothing)),
+                    New SqlParameter("@RPExitGasVelocityMeasure", If(Not String.IsNullOrEmpty(RPExitGasVelocityMeasure), RPExitGasVelocityMeasure, Nothing)),
+                    New SqlParameter("@RPExitGasFlowRateMeasure", If(Not String.IsNullOrEmpty(RPExitGasFlowRateMeasure), RPExitGasFlowRateMeasure, Nothing)),
+                    New SqlParameter("@RPExitGasTempMeasure", If(Not String.IsNullOrEmpty(RPExitGasTempMeasure), RPExitGasTempMeasure, Nothing)),
+                    New SqlParameter("@RPStackHeightMeasure", If(Not String.IsNullOrEmpty(RPStackHeightMeasure), RPStackHeightMeasure, Nothing)),
+                    New SqlParameter("@RPStackDiameterMeasure", If(Not String.IsNullOrEmpty(RPStackDiameterMeasure), RPStackDiameterMeasure, Nothing)),
+                    New SqlParameter("@RPComment", RPComment),
+                    New SqlParameter("@Active", Active),
+                    New SqlParameter("@UpdateUser", UpdateUser),
+                    New SqlParameter("@FacilitySiteID", FacilitySiteID),
+                    New SqlParameter("@StackID", StackID)
+                }
 
-                'Open the connection to the database and write the record
-                If conn.State = ConnectionState.Open Then
-                Else
-                    conn.Open()
-                End If
-
-                Dim dr As SqlDataReader = cmd.ExecuteReader
-
-                If conn.State = ConnectionState.Open Then
-                    conn.Close()
-                End If
+                DB.RunCommand(query, params)
             End If
         Catch ex As Exception
             ErrorReport(ex)
-        Finally
-            If conn.State = ConnectionState.Open Then
-                conn.Close()
-            End If
         End Try
     End Sub
 
@@ -682,7 +603,7 @@ Partial Class eis_stack_edit
         txtReleasePointID.Text = Left(txtReleasePointID.Text, 6)
         Dim StackID As String = txtReleasePointID.Text
         Dim HCD As String = ddlHorCollectionMetCode.SelectedValue
-        Dim HorizontalAccuracyMeasure As String = DbStringIntOrNull(TxtHorizontalAccuracyMeasure.Text)
+        Dim HorizontalAccuracyMeasure As String = TxtHorizontalAccuracyMeasure.Text
         Dim HRD As String = ddlHorReferenceDatCode.SelectedValue
         Dim UpdateUserID As String = GetCookie(GecoCookie.UserID)
         Dim UpdateUserName As String = GetCookie(GecoCookie.UserName)
@@ -699,7 +620,7 @@ Partial Class eis_stack_edit
                 New SqlParameter("@StackID", StackID),
                 New SqlParameter("@numLatitude", TxtLatitudeMeasure.Text),
                 New SqlParameter("@numLongitude", TxtLongitudeMeasure.Text),
-                New SqlParameter("@HorizontalAccuracyMeasure", HorizontalAccuracyMeasure),
+                New SqlParameter("@HorizontalAccuracyMeasure", If(Not String.IsNullOrEmpty(HorizontalAccuracyMeasure), HorizontalAccuracyMeasure, Nothing)),
                 New SqlParameter("@HCD", HCD),
                 New SqlParameter("@HRD", HRD),
                 New SqlParameter("@GeographicComment", Left(TxtGeographicComment.Text, 200)),
@@ -740,8 +661,8 @@ Partial Class eis_stack_edit
             End If
 
             Dim gcUpdated As Boolean =
-                DbStringDecimalOrNull(hidLatitude.Value) <> DbStringDecimalOrNull(TxtLatitudeMeasure.Text) OrElse
-                DbStringDecimalOrNull(hidLongitude.Value) <> DbStringDecimalOrNull(TxtLongitudeMeasure.Text) OrElse
+                hidLatitude.Value <> TxtLatitudeMeasure.Text OrElse
+                hidLongitude.Value <> TxtLongitudeMeasure.Text OrElse
                 hidHorCollectionMetCode.Value <> ddlHorCollectionMetCode.SelectedValue OrElse
                 hidHorizontalAccuracyMeasure.Value <> TxtHorizontalAccuracyMeasure.Text OrElse
                 hidHorReferenceDatCode.Value <> ddlHorReferenceDatCode.SelectedValue OrElse
@@ -789,8 +710,8 @@ Partial Class eis_stack_edit
                     vbNewLine &
                     "Previous Geographic Coordinate Information: " & vbNewLine &
                     vbNewLine &
-                    "    Latitude: " & DbStringDecimalOrNull(hidLatitude.Value) & vbNewLine &
-                    "    Longitude: " & DbStringDecimalOrNull(hidLongitude.Value) & vbNewLine &
+                    "    Latitude: " & hidLatitude.Value & vbNewLine &
+                    "    Longitude: " & hidLongitude.Value & vbNewLine &
                     "    Horizontal Collection Method: " & hidHorCollectionMetCode.Value & " - " & hidHorCollectionMetDesc.Value & vbNewLine &
                     "    Accuracy Measure: " & hidHorizontalAccuracyMeasure.Value & vbNewLine &
                     "    Horizontal Reference Datum: " & hidHorReferenceDatCode.Value & " - " & hidHorReferenceDatDesc.Value & vbNewLine &
@@ -798,8 +719,8 @@ Partial Class eis_stack_edit
                     vbNewLine &
                     "Updated Geographic Coordinate Information submitted by user: " & vbNewLine &
                     vbNewLine &
-                    "    Latitude: " & DbStringDecimalOrNull(TxtLatitudeMeasure.Text) & vbNewLine &
-                    "    Longitude: " & DbStringDecimalOrNull(TxtLongitudeMeasure.Text) & vbNewLine &
+                    "    Latitude: " & TxtLatitudeMeasure.Text & vbNewLine &
+                    "    Longitude: " & TxtLongitudeMeasure.Text & vbNewLine &
                     "    Horizontal Collection Method: " & ddlHorCollectionMetCode.SelectedValue & " - " & ddlHorCollectionMetCode.SelectedItem.Text & vbNewLine &
                     "    Accuracy Measure: " & TxtHorizontalAccuracyMeasure.Text & vbNewLine &
                     "    Horizontal Reference Datum: " & ddlHorReferenceDatCode.SelectedValue & " - " & ddlHorReferenceDatCode.SelectedItem.Text & vbNewLine &
@@ -817,8 +738,8 @@ Partial Class eis_stack_edit
                     "<p><b>Update User:</b> " & UpdateUserName & " (" & UpdateUserID & ")" & "</p>" &
                     "<p><b>Previous Geographic Coordinate Information:</b> " & "</p>" &
                     "<ul>" &
-                    "<li><b>Latitude:</b> " & DbStringDecimalOrNull(hidLatitude.Value) & "</li>" &
-                    "<li><b>Longitude:</b> " & DbStringDecimalOrNull(hidLongitude.Value) & "</li>" &
+                    "<li><b>Latitude:</b> " & hidLatitude.Value & "</li>" &
+                    "<li><b>Longitude:</b> " & hidLongitude.Value & "</li>" &
                     "<li><b>Horizontal Collection Method:</b> " & hidHorCollectionMetCode.Value & " - " & hidHorCollectionMetDesc.Value & "</li>" &
                     "<li><b>Accuracy Measure:</b> " & hidHorizontalAccuracyMeasure.Value & "</li>" &
                     "<li><b>Horizontal Reference Datum:</b> " & hidHorReferenceDatCode.Value & " - " & hidHorReferenceDatDesc.Value & "</li>" &
@@ -826,8 +747,8 @@ Partial Class eis_stack_edit
                     "</ul>" &
                     "<p><b>Updated Geographic Coordinate Information submitted by user:</b> " & "</p>" &
                     "<ul>" &
-                    "<li><b>Latitude:</b> " & DbStringDecimalOrNull(TxtLatitudeMeasure.Text) & "</li>" &
-                    "<li><b>Longitude:</b> " & DbStringDecimalOrNull(TxtLongitudeMeasure.Text) & "</li>" &
+                    "<li><b>Latitude:</b> " & TxtLatitudeMeasure.Text & "</li>" &
+                    "<li><b>Longitude:</b> " & TxtLongitudeMeasure.Text & "</li>" &
                     "<li><b>Horizontal Collection Method:</b> " & ddlHorCollectionMetCode.SelectedValue & " - " & ddlHorCollectionMetCode.SelectedItem.Text & "</li>" &
                     "<li><b>Accuracy Measure:</b> " & TxtHorizontalAccuracyMeasure.Text & "</li>" &
                     "<li><b>Horizontal Reference Datum:</b> " & ddlHorReferenceDatCode.SelectedValue & " - " & ddlHorReferenceDatCode.SelectedItem.Text & "</li>" &
@@ -847,7 +768,6 @@ Partial Class eis_stack_edit
     End Sub
 
     Private Sub deleteStack()
-        Dim SQL As String = ""
         Dim FacilitySiteID As String = GetCookie(Cookie.AirsNumber)
         Dim stackID As String = txtReleasePointID.Text
 
@@ -856,43 +776,43 @@ Partial Class eis_stack_edit
         Dim UpdateUser As String = UpdateUserID & "-" & UpdateUserName
         Dim Active As String = "0"
         stackID = stackID.ToUpper
+
         Try
-            SQL = "Update EIS_RELEASEPOINT Set " &
-                                    "Active = '" & Active & "', " &
-                                    "UPDATEUSER = '" & Replace(UpdateUser, "'", "''") & "', " &
-                                    "UpdateDateTime = getdate() " &
-                                    "where FacilitySiteID = '" & FacilitySiteID & "' " &
-                                    "and ReleasePointID = '" & stackID & "' "
-            Dim cmd As New SqlCommand(SQL, conn)
+            Dim queryList As New List(Of String)
 
-            If conn.State = ConnectionState.Open Then
-            Else
-                conn.Open()
-            End If
+            Dim paramsList As New List(Of SqlParameter())
 
-            Dim dr As SqlDataReader = cmd.ExecuteReader
+            queryList.Add("Update EIS_RELEASEPOINT Set " &
+                          "Active = @Active, " &
+                          "UPDATEUSER = @UpdateUser, " &
+                          "UpdateDateTime = getdate() " &
+                          "where FacilitySiteID = @FacilitySiteID " &
+                          "and ReleasePointID = @stackID ")
 
-            SQL = "Update EIS_RPGEOCOORDINATES Set " &
-                                "Active = '" & Active & "', " &
-                                "UPDATEUSER = '" & Replace(UpdateUser, "'", "''") & "', " &
-                                "UpdateDateTime = getdate() " &
-                                "where EIS_RPGEOCOORDINATES.FACILITYSITEID = '" & FacilitySiteID & "' " &
-                                "and ReleasePointID = '" & stackID & "' "
-            Dim cmd2 As New SqlCommand(SQL, conn)
+            paramsList.Add({
+                New SqlParameter("@Active", Active),
+                New SqlParameter("@UpdateUser", UpdateUser),
+                New SqlParameter("@FacilitySiteID", FacilitySiteID),
+                New SqlParameter("@stackID", stackID)
+            })
 
-            If conn.State = ConnectionState.Open Then
-            Else
-                conn.Open()
-            End If
+            queryList.Add("Update EIS_RPGEOCOORDINATES Set " &
+                          "Active = @Active, " &
+                          "UPDATEUSER = @UpdateUser, " &
+                          "UpdateDateTime = getdate() " &
+                          "where FACILITYSITEID = @FacilitySiteID " &
+                          "and ReleasePointID = @stackID ")
 
-            Dim dr2 As SqlDataReader = cmd2.ExecuteReader
+            paramsList.Add({
+                New SqlParameter("@Active", Active),
+                New SqlParameter("@UpdateUser", UpdateUser),
+                New SqlParameter("@FacilitySiteID", FacilitySiteID),
+                New SqlParameter("@stackID", stackID)
+            })
 
+            DB.RunCommand(queryList, paramsList)
         Catch ex As Exception
             ErrorReport(ex)
-        Finally
-            If conn.State = ConnectionState.Open Then
-                conn.Close()
-            End If
         End Try
 
     End Sub
@@ -948,43 +868,34 @@ Partial Class eis_stack_edit
 
     Protected Sub GetFacilityCoordinates()
         Try
-            Dim sql As String = ""
             Dim FacilitySiteID As String = GetCookie(Cookie.AirsNumber)
 
             'Load Facility GC Information
-            sql = "Select numLatitudeMeasure, " &
-                        "numLongitudeMeasure, " &
-                        "STRHORCOLLMETCode, " &
-                        "INTHORACCURACYMEASURE , " &
-                        "STRHORREFDATUMCode, " &
-                        "strGeographicComment " &
-                        "FROM EIS_FacilityGeoCoord " &
-                        "where EIS_FacilityGeoCoord.FACILITYSITEID = '" & FacilitySiteID & "' "
+            Dim query As String = "Select numLatitudeMeasure, " &
+                "numLongitudeMeasure, " &
+                "STRHORCOLLMETCode, " &
+                "INTHORACCURACYMEASURE , " &
+                "STRHORREFDATUMCode, " &
+                "strGeographicComment " &
+                "FROM EIS_FacilityGeoCoord " &
+                "where EIS_FacilityGeoCoord.FACILITYSITEID = @FacilitySiteID "
 
-            Dim cmd As New SqlCommand(sql, conn)
+            Dim param As New SqlParameter("@FacilitySiteID", FacilitySiteID)
 
-            If conn.State = ConnectionState.Open Then
-            Else
-                conn.Open()
+            Dim dr As DataRow = DB.GetDataRow(query, param)
+
+            If dr IsNot Nothing Then
+                If Not IsDBNull(dr("numLatitudeMeasure")) Then
+                    hidLatitude.Value = dr.Item("numLatitudeMeasure")
+                End If
+
+                If Not IsDBNull(dr("numLongitudeMeasure")) Then
+                    hidLongitude.Value = dr.Item("numLongitudeMeasure")
+                End If
             End If
 
-            Dim dr As SqlDataReader = cmd.ExecuteReader
-
-            dr.Read()
-
-            If Not IsDBNull(dr("numLatitudeMeasure")) Then
-                hidLatitude.Value = dr.Item("numLatitudeMeasure")
-            End If
-            If Not IsDBNull(dr("numLongitudeMeasure")) Then
-                hidLongitude.Value = dr.Item("numLongitudeMeasure")
-            End If
-            dr.Close()
         Catch ex As Exception
             ErrorReport(ex)
-        Finally
-            If conn.State = ConnectionState.Open Then
-                conn.Close()
-            End If
         End Try
     End Sub
 

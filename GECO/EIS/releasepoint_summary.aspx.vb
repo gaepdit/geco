@@ -1,9 +1,7 @@
-﻿Imports System.Data
-Imports System.Data.SqlClient
+﻿Imports System.Data.SqlClient
 
 Partial Class eis_releasepoint_summary
     Inherits Page
-    Public conn, conn1 As New SqlConnection(DBConnectionString)
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
@@ -97,40 +95,23 @@ Partial Class eis_releasepoint_summary
     End Sub
 
     Private Sub loadStackTypeDDL()
-        Dim sql As String
-        Dim desc As String
-        Dim code As String
-
         ddlRPtypeCode.Items.Add("--Select Stack Type--")
         Try
-            sql = "select strdesc, RPTypeCode FROM EISLK_RPTYPECODE " &
+            Dim query As String = "select strdesc, RPTypeCode FROM EISLK_RPTYPECODE " &
                 "where EISLK_RPTYPECODE.active = '1' " &
                 "and EISLK_RPTYPECODE.strdesc <> 'Fugitive' order by strdesc"
-            Dim cmd As New SqlCommand(sql, conn)
 
-            If conn.State = ConnectionState.Open Then
-            Else
-                conn.Open()
-            End If
+            Dim dt As DataTable = DB.GetDataTable(query)
 
-            Dim dr As SqlDataReader = cmd.ExecuteReader
-
-            While dr.Read
-                Dim newListItem As New ListItem()
-                desc = dr.Item("strdesc")
-                code = dr.Item("RPTypeCode")
-                newListItem.Text = desc
-                newListItem.Value = code
+            For Each dr As DataRow In dt.Rows
+                Dim newListItem As New ListItem With {
+                    .Text = dr.Item("strdesc"),
+                    .Value = dr.Item("RPTypeCode")
+                }
                 ddlRPtypeCode.Items.Add(newListItem)
-
-            End While
-
+            Next
         Catch ex As Exception
             ErrorReport(ex)
-        Finally
-            If conn.State = ConnectionState.Open Then
-                conn.Close()
-            End If
         End Try
     End Sub
 
@@ -142,11 +123,11 @@ Partial Class eis_releasepoint_summary
 
     Sub FugitiveRPIDCheck(ByVal Sender As Object, ByVal args As ServerValidateEventArgs)
 
-        Dim sql As String = ""
         Dim FacilitySiteID As String = GetCookie(Cookie.AirsNumber)
         Dim Fugitiveid As String = args.Value.ToUpper
         Dim targetpage As String = "fugitive_edit.aspx" & "?fug=" & Fugitiveid
         Dim FugitiveActive As String = CheckReleasePointIDexist(FacilitySiteID, Fugitiveid)
+
         Select Case FugitiveActive
             Case "0"
                 args.IsValid = True
@@ -293,34 +274,24 @@ Partial Class eis_releasepoint_summary
     End Sub
 
     Private Sub UndeleteRP(ByVal fsid As String, ByVal rpid As String, ByVal uuser As String)
-
-        Dim sql As String = ""
-
         Try
-            sql = "Update eis_ReleasePoint Set " &
+            Dim query As String = "Update eis_ReleasePoint Set " &
                              "Active = '1', " &
-                             "UpdateUser = '" & Replace(uuser, "'", "''") & "', " &
+                             "UpdateUser = @uuser, " &
                              "UpdateDateTime = getdate() " &
-                             "where FacilitySiteID = '" & fsid & "' " &
-                             "and ReleasePointID = '" & rpid & "' "
+                             "where FacilitySiteID = @fsid " &
+                             "and ReleasePointID = @rpid "
 
-            Dim cmd As New SqlCommand(sql, conn)
-            'Open the connection to the database and write the record
-            If conn.State = ConnectionState.Open Then
-            Else
-                conn.Open()
-            End If
+            Dim params As SqlParameter() = {
+                New SqlParameter("@uuser", uuser),
+                New SqlParameter("@fsid", fsid),
+                New SqlParameter("@rpid", rpid)
+            }
 
-            Dim dr As SqlDataReader = cmd.ExecuteReader
-
+            DB.RunCommand(query, params)
         Catch ex As Exception
             ErrorReport(ex)
-        Finally
-            If conn.State = ConnectionState.Open Then
-                conn.Close()
-            End If
         End Try
-
     End Sub
 
 #End Region
