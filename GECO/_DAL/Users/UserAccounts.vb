@@ -76,6 +76,16 @@ Public Module UserAccounts
         Return user
     End Function
 
+    Public Function GetGecoUser(userId As Integer) As GecoUser
+        Dim dr As DataRow = DB.SPGetDataRow("geco.GetGecoUser", New SqlParameter("@UserId", userId))
+
+        If dr Is Nothing Then
+            Return Nothing
+        End If
+
+        Return ParseUserFromDataRow(dr)
+    End Function
+
     Public Function GecoUserExists(email As String) As Boolean
         Dim query = "select geco.UserExists(@email)"
 

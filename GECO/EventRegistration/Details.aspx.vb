@@ -50,7 +50,7 @@ Partial Class EventRegistration_EventDetails
         End If
     End Sub
 
-#Region " Display event "
+    ' Display event
 
     Private Sub DisplayEventDetails()
         Dim dr = GetEventDetails(eventId)
@@ -144,9 +144,7 @@ Partial Class EventRegistration_EventDetails
         litCapacity.Text &= "</p>"
     End Sub
 
-#End Region
-
-#Region " Display Registration Status "
+    ' Display Registration Status
 
     Private Function CheckRegistration() As Boolean
         If UserIsRegisteredForEvent(eventId, currentUser.UserId) Then
@@ -190,9 +188,7 @@ Partial Class EventRegistration_EventDetails
         End If
     End Sub
 
-#End Region
-
-#Region " Registration "
+    ' Registration
 
     Protected Sub btnPasscode_Click(sender As Object, e As EventArgs) Handles btnPasscode.Click
         If txtPasscode.Text = GetSessionItem(GecoSession.EventPasscode).ToString Then
@@ -222,36 +218,39 @@ Partial Class EventRegistration_EventDetails
     End Sub
 
     Private Sub SendRegistrationEmail(confirmationNumber As String, status As Integer)
-        Dim subject As String = "GA EPD Event Registration"
+        Dim subject As String = "GA EPD Event Registration Confirmed"
 
         Dim linkPath As String = Page.ResolveUrl("~/EventRegistration/Details.aspx") & "?eventid=" & eventId.ToString
         Dim linkUri As Uri = New Uri(New Uri(Request.Url.GetLeftPart(UriPartial.Authority) + Request.ApplicationPath), linkPath)
 
-        Dim htmlBody As String = "<p>Dear " & currentUser.FullName & ", </p>" &
-            "<p>Thank you for registering for the following event. "
+        Dim htmlBody As String = "<p>Dear " & currentUser.FullName & ",</p>" &
+            "<p>Thank you for registering for the following event. </p>"
 
         If status = 2 Then
-            htmlBody &= "<em>The event is currently full, but you have been placed on the waiting list.</em></p>"
+            htmlBody &= "<p><em>The event is currently full, but you have been placed on the waiting list.</em></p>"
         End If
 
-        htmlBody &= "</p><p>To view your registration status or make changes, visit: <br />" & linkUri.ToString & " </p>" &
+        htmlBody &= "<p>To view your registration status or make changes, visit: <br />" & linkUri.ToString & " </p>" &
             "<p><b>Event Details:</b></p>" &
             litEventDetails.Text
 
         SendEmail(currentUser.Email, subject, Nothing, htmlBody, caller:="EventRegistration_EventDetails.SendRegistrationEmail")
     End Sub
 
-#End Region
-
-#Region " Cancellation "
+    ' Cancellation
 
     Protected Sub btnCancelRegistration_Click(sender As Object, e As EventArgs) Handles btnCancelRegistration.Click
-        Dim result As DbResult = CancelEventRegistration(currentUser.UserId, eventId, txtComments.Text)
+        Dim newConfirmedUser As Integer = -1
+        Dim result As DbResult = CancelEventRegistration(currentUser.UserId, eventId, txtComments.Text, newConfirmedUser)
 
         Select Case result
             Case DbResult.Success
                 lblMessage.Text = "Your registration has been canceled."
                 SendCancellationEmail()
+
+                If newConfirmedUser > -1 Then
+                    SendMovedOffWaitListEmail(newConfirmedUser)
+                End If
             Case Else
                 lblMessage.Text = "There was an error. Please try again or contact us."
         End Select
@@ -261,12 +260,12 @@ Partial Class EventRegistration_EventDetails
     End Sub
 
     Private Sub SendCancellationEmail()
-        Dim subject As String = "GA EPD Event Registration"
+        Dim subject As String = "GA EPD Event Registration Cancelled"
 
         Dim linkPath As String = Page.ResolveUrl("~/EventRegistration/Details.aspx") & "?eventid=" & eventId.ToString
         Dim linkUri As Uri = New Uri(New Uri(Request.Url.GetLeftPart(UriPartial.Authority) + Request.ApplicationPath), linkPath)
 
-        Dim htmlBody As String = "<p>Dear " & currentUser.FullName & ", </p>" &
+        Dim htmlBody As String = "<p>Dear " & currentUser.FullName & ",</p>" &
             "<p>Your registration for the following event has been <b>canceled.</b></p>" &
             "<p>To view the event or renew your registration, please visit: <br />" & linkUri.ToString & " </p>" &
             "<p><b>Event Details:</b></p>" &
@@ -275,6 +274,24 @@ Partial Class EventRegistration_EventDetails
         SendEmail(currentUser.Email, subject, Nothing, htmlBody, caller:="EventRegistration_EventDetails.SendCancellationEmail")
     End Sub
 
-#End Region
+    Private Sub SendMovedOffWaitListEmail(newConfirmedUser As Integer)
+        Dim subject As String = "GA EPD Event Registration Updated"
+
+        Dim user As GecoUser = GetGecoUser(newConfirmedUser)
+
+        If user IsNot Nothing Then
+            Dim linkPath As String = Page.ResolveUrl("~/EventRegistration/Details.aspx") & "?eventid=" & eventId.ToString
+            Dim linkUri As Uri = New Uri(New Uri(Request.Url.GetLeftPart(UriPartial.Authority) + Request.ApplicationPath), linkPath)
+
+            Dim htmlBody As String = "<p>Dear " & user.FullName & ",</p>" &
+            "<p>Thank you for registering for the following event. You have been moved off the waiting list, and your registration is now <b>confirmed.</b></p>"
+
+            htmlBody &= "<p>To view your registration status or make changes, visit: <br />" & linkUri.ToString & " </p>" &
+            "<p><b>Event Details:</b></p>" &
+            litEventDetails.Text
+
+            SendEmail(user.Email, subject, Nothing, htmlBody, caller:="EventRegistration_EventDetails.SendMovedOffWaitListEmail")
+        End If
+    End Sub
 
 End Class

@@ -157,14 +157,12 @@ Public Module Events
         Select Case returnValue
             Case 0
                 Return DbResult.Success
-            Case 1
+            Case Else
                 Return DbResult.Failure
         End Select
-
-        Return DbResult.DbError
     End Function
 
-    Public Function CancelEventRegistration(userId As Integer, eventId As Integer, comment As String) As DbResult
+    Public Function CancelEventRegistration(userId As Integer, eventId As Integer, comment As String, ByRef newConfirmedUser As Integer) As DbResult
         Dim spName = "geco.CancelEventRegistration"
 
         Dim params As SqlParameter() = {
@@ -173,16 +171,15 @@ Public Module Events
             New SqlParameter("@Comment", comment)
         }
 
-        Dim returnValue As Integer = DB.SPReturnValue(spName, params)
+        Dim returnValue As Integer
+        newConfirmedUser = DB.SPGetInteger(spName, params, returnValue)
 
         Select Case returnValue
             Case 0
                 Return DbResult.Success
-            Case 1
+            Case Else
                 Return DbResult.Failure
         End Select
-
-        Return DbResult.DbError
     End Function
 
 End Module

@@ -1,5 +1,3 @@
-Imports System.ComponentModel
-
 Namespace GecoModels
     Public Class GecoUser
         Inherits Person
