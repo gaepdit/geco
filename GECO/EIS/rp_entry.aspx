@@ -3,10 +3,6 @@
     Inherits="GECO.EIS_rp_entry" Codebehind="rp_entry.aspx.vb" %>
 
 <%@ Register Assembly="Reimers.Google.Map" Namespace="Reimers.Google.Map" TagPrefix="Reimers" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-</asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
-</asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder3" runat="Server">
     <script type="text/javascript">
         function Count(text) {
@@ -193,9 +189,9 @@
                     <asp:RequiredFieldValidator ID="reqvLatitudeMeasure" ControlToValidate="TxtLatitudeMeasure"
                         runat="server" ErrorMessage="The facility latitude is required." Display="Dynamic">*</asp:RequiredFieldValidator>
                     <asp:RangeValidator ID="rngvLatitudeMeasure" runat="server" ControlToValidate="TxtLatitudeMeasure" Type="Double"
-                        MaximumValue="35.00028" MinimumValue="30.35944" ErrorMessage="Facility latitude must be between 30.35944 and 35.200028 degrees."
+                        MaximumValue="35.00028" MinimumValue="30.35944" ErrorMessage="Facility latitude must be between 30.35944° and 35.200028°."
                         Display="Dynamic">
-                        Must be between 30.35944 and 35.200028</asp:RangeValidator>
+                        Must be between 30.35944° and 35.200028°</asp:RangeValidator>
                 </div>
                 <div class="fieldwrapper">
                     <asp:Label ID="LblLongitudeMeasure" class="styled" runat="server" Text="Longitude:"></asp:Label>
@@ -207,8 +203,8 @@
                         runat="server" ErrorMessage="The facility longitude is required.">*</asp:RequiredFieldValidator>
                     <asp:RangeValidator ID="rngvLongitudeMeasure" runat="server" ControlToValidate="TxtLongitudeMeasure"
                         MinimumValue="-85.60889" MaximumValue="-80.84417" type="Double"
-                        ErrorMessage="The facility longitude must be between -85.60889 and -80.84417 degrees.">
-                        Must be between -85.60889 and -80.84417</asp:RangeValidator>
+                        ErrorMessage="The facility longitude must be between -85.60889° and -80.84417°.">
+                        Must be between -85.60889° and -80.84417°</asp:RangeValidator>
                 </div>
                 <div class="fieldwrapper">
                     <asp:Label class="styled" runat="server" Text="Map:"></asp:Label>
@@ -232,7 +228,7 @@
                 InitialValue="--Select Horizontal Collection Method--" Display="Dynamic">*</asp:RequiredFieldValidator>
         </div>
         <div class="fieldwrapper">
-            <asp:Label ID="LblHorizontalAccuracyMeasure" class="styled" runat="server" Text="Accuracy Measure(meters):"></asp:Label>
+            <asp:Label ID="LblHorizontalAccuracyMeasure" class="styled" runat="server" Text="Accuracy Measure (m):"></asp:Label>
             <asp:TextBox ID="TxtHorizontalAccuracyMeasure" runat="server" class="editable" Text="" Width="100px"></asp:TextBox>
             <act:FilteredTextBoxExtender ID="filtxtHorizontalAccuracyMeasure" runat="server"
                 Enabled="True" FilterType="Numbers" TargetControlID="TxtHorizontalAccuracyMeasure">
@@ -401,8 +397,7 @@
         </div>
         <div class="buttonwrapper">
             <asp:Button runat="server" ID="btnSave" CssClass="buttondiv"
-                Text="Save &amp; Continue" Width="169px" Font-Bold="True" Font-Size="Medium"
-                ForeColor="#CC0000" />
+                Text="Save &amp; Continue" Width="169px" Font-Bold="True" Font-Size="Medium" />
             <br />
         </div>
     </asp:Panel>

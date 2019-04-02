@@ -2,10 +2,6 @@
     MaintainScrollPositionOnPostback="true" MasterPageFile="eismaster.master"
     AutoEventWireup="false" Inherits="GECO.EIS_rp_submit" Codebehind="rp_submit.aspx.vb" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-</asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
-</asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder3" runat="Server">
     <act:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server"></act:ToolkitScriptManager>
     <div class="fieldwrapperseparator">
@@ -353,6 +349,8 @@
                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                         <ItemStyle HorizontalAlign="Left" VerticalAlign="Top" />
                     </asp:HyperLinkField>
+                    <asp:BoundField DataField="NUMPCTCTRLMEASURESREDEFFIC" HeaderText="Reduction Efficiency" NullDisplayText="No Data" />
+                    <asp:BoundField DataField="POLLUTANTCODE" HeaderText="Pollutant Code" NullDisplayText="No Data" />
                 </Columns>
                 <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
                 <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
@@ -449,6 +447,8 @@
                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                         <ItemStyle HorizontalAlign="Left" VerticalAlign="Top" />
                     </asp:HyperLinkField>
+                    <asp:BoundField DataField="NUMPCTCTRLMEASURESREDEFFIC" HeaderText="Reduction Efficiency" NullDisplayText="No Data" />
+                    <asp:BoundField DataField="POLLUTANTCODE" HeaderText="Pollutant Code" NullDisplayText="No Data" />
                 </Columns>
                 <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
                 <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
@@ -1219,7 +1219,7 @@
             data, either upon entry or as part of this submittal QA process.
             </p>
             <p>
-                A simplified list of errors and warnings is show below. You may also download the complete spreadsheet of <a href="/EIS/files/epa_qa_checks.xlsx" download>EPA QA Checks</a>.
+                A simplified list of errors and warnings is show below. You may also download the complete spreadsheet of <a href="/EIS/files/qachecks.csv" download>EPA QA Checks</a>.
             </p>
             <h3>List of Possible EIS Errors</h3>
             <asp:GridView ID="gvwEISErrors" runat="server" CellPadding="4"

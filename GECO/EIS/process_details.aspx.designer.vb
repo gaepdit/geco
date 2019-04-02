@@ -194,6 +194,24 @@ Partial Public Class eis_process_details
     Protected WithEvents txtSourceClassCode As Global.System.Web.UI.WebControls.TextBox
     
     '''<summary>
+    '''lblSccDescLabel control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblSccDescLabel As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
+    '''lblSccDesc control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblSccDesc As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
     '''lblProcessComment control.
     '''</summary>
     '''<remarks>

@@ -1,5 +1,4 @@
-﻿Imports System.Data
-Imports System.Data.SqlClient
+﻿Imports System.Data.SqlClient
 
 Partial Class EIS_rp_submit
     Inherits Page
@@ -101,55 +100,50 @@ Partial Class EIS_rp_submit
         Dim eisAccessCode As String = "2"
         Dim eisStatusCode As String = "3"
 
-        Try
-            Dim query = "select datFinalize FROM eis_Admin where " &
-                " FacilitySiteID = @fsid and InventoryYear = @eiyr and datInitialFinalize is not null "
+        Dim query = "select datFinalize FROM eis_Admin where " &
+            " FacilitySiteID = @fsid and InventoryYear = @eiyr and datInitialFinalize is not null "
 
-            Dim params As SqlParameter() = {
-                New SqlParameter("@fsid", fsid),
-                New SqlParameter("@eiyr", eiyr)
-            }
+        Dim params As SqlParameter() = {
+            New SqlParameter("@fsid", fsid),
+            New SqlParameter("@eiyr", eiyr)
+        }
 
-            If DB.ValueExists(query, params) Then
-                query = "update eis_Admin set " &
-                    " eisAccessCode = @eisAccessCode, " &
-                    " eisStatusCode = @eisStatusCode, " &
-                    " datEISStatus = getdate(), " &
-                    " strConfirmationNumber = Next Value for EIS_SEQ_ConfNum, " &
-                    " datFinalize = getdate(), " &
-                    " UpdateUser = @uuser, " &
-                    " UpdateDateTime = getdate() " &
-                    " where " &
-                    " FacilitySiteID = @fsid and " &
-                    " InventoryYear = @eiyr "
-            Else
-                query = "update eis_Admin set " &
-                    " eisAccessCode = @eisAccessCode, " &
-                    " eisStatusCode = @eisStatusCode, " &
-                    " datEISStatus = getdate(), " &
-                    " strConfirmationNumber = Next Value for EIS_SEQ_ConfNum, " &
-                    " datInitialFinalize = getdate(), " &
-                    " datFinalize = getdate(), " &
-                    " UpdateUser = @uuser, " &
-                    " UpdateDateTime = getdate() " &
-                    " where " &
-                    " FacilitySiteID = @fsid and " &
-                    " InventoryYear = @eiyr "
-            End If
+        If DB.ValueExists(query, params) Then
+            query = "update eis_Admin set " &
+                " eisAccessCode = @eisAccessCode, " &
+                " eisStatusCode = @eisStatusCode, " &
+                " datEISStatus = getdate(), " &
+                " strConfirmationNumber = Next Value for EIS_SEQ_ConfNum, " &
+                " datFinalize = getdate(), " &
+                " UpdateUser = @uuser, " &
+                " UpdateDateTime = getdate() " &
+                " where " &
+                " FacilitySiteID = @fsid and " &
+                " InventoryYear = @eiyr "
+        Else
+            query = "update eis_Admin set " &
+                " eisAccessCode = @eisAccessCode, " &
+                " eisStatusCode = @eisStatusCode, " &
+                " datEISStatus = getdate(), " &
+                " strConfirmationNumber = Next Value for EIS_SEQ_ConfNum, " &
+                " datInitialFinalize = getdate(), " &
+                " datFinalize = getdate(), " &
+                " UpdateUser = @uuser, " &
+                " UpdateDateTime = getdate() " &
+                " where " &
+                " FacilitySiteID = @fsid and " &
+                " InventoryYear = @eiyr "
+        End If
 
-            Dim params2 As SqlParameter() = {
-                New SqlParameter("@eisAccessCode", eisAccessCode),
-                New SqlParameter("@eisStatusCode", eisStatusCode),
-                New SqlParameter("@uuser", uuser),
-                New SqlParameter("@fsid", fsid),
-                New SqlParameter("@eiyr", eiyr)
-            }
+        Dim params2 As SqlParameter() = {
+            New SqlParameter("@eisAccessCode", eisAccessCode),
+            New SqlParameter("@eisStatusCode", eisStatusCode),
+            New SqlParameter("@uuser", uuser),
+            New SqlParameter("@fsid", fsid),
+            New SqlParameter("@eiyr", eiyr)
+        }
 
-            Return DB.RunCommand(query, params2)
-
-        Catch ex As Exception
-            ErrorReport(ex)
-        End Try
+        Return DB.RunCommand(query, params2)
 
     End Function
 
@@ -1068,6 +1062,7 @@ Partial Class EIS_rp_submit
         "         on e.FACILITYSITEID = p.FACILITYSITEID " &
         "            and e.EMISSIONSUNITID = p.EMISSIONSUNITID " &
         "            and e.PROCESSID = p.PROCESSID " &
+        "            and p.ACTIVE = '1' " &
         " where e.FACILITYSITEID = @FacilitySiteID " &
         "       and INTINVENTORYYEAR = @year " &
         "       and convert(int, e.EMCALCMETHODCODE) in (2, 13, 33) "

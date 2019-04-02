@@ -2,10 +2,6 @@
     MaintainScrollPositionOnPostback="true" MasterPageFile="eismaster.master"
     AutoEventWireup="false" Inherits="GECO.eis_eucontrolapproach_edit" Codebehind="eucontrolapproach_edit.aspx.vb" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-</asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
-</asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder3" runat="Server">
     <script type="text/javascript">
         function Count(text) {
@@ -73,9 +69,9 @@
                 TargetControlID="txtPctCtrlApproachCapEffic" FilterType="Custom, Numbers" ValidChars=".">
             </act:FilteredTextBoxExtender>
             <asp:RangeValidator ID="rngvPctCtrlApproachCapEffic" runat="server" ControlToValidate="txtPctCtrlApproachCapEffic"
-                ErrorMessage="The Capture Efficiency must be between 1 and 100 percent."
-                MaximumValue="100" MinimumValue="1" ValidationGroup="vgUnitCPEdit"
-                Type="Double" Style="font-size: small">Must be between 1 and 100</asp:RangeValidator>
+                ErrorMessage="The Capture Efficiency must be between 5 and 100 percent."
+                MaximumValue="100" MinimumValue="5" ValidationGroup="vgUnitCPEdit"
+                Type="Double" Style="font-size: small">Must be between 5 and 100</asp:RangeValidator>
         </div>
         <div class="fieldwrapper">
             <asp:Label ID="lblPctCtrlApproachEffect" class="styled" runat="server" Text="Control Approach Effectiveness (%):"></asp:Label>
@@ -193,19 +189,19 @@
                             <asp:Label ID="lblMeasureEfficiency" runat="server" Text='<%# Eval("MeasureEfficiency")%>'></asp:Label>
                         </ItemTemplate>
                         <EditItemTemplate>
-                            <asp:TextBox ID="txtMeasureEfficiency" runat="server" MaxLength="5" Text='<%# Eval("MeasureEfficiency")%>'
+                            <asp:TextBox ID="txtMeasureEfficiency" runat="server" MaxLength="4" Text='<%# Eval("MeasureEfficiency")%>'
                                 ValidationGroup="vgPollutantDGV"></asp:TextBox>
                             <asp:Label ID="lblError" Text="" Visible="false" Style="color: red" runat="server"></asp:Label>
                             <act:FilteredTextBoxExtender ID="filtxtMeasureEfficiency" runat="server" Enabled="True"
                                 TargetControlID="txtMeasureEfficiency" FilterType="Numbers,Custom" ValidChars=".">
                             </act:FilteredTextBoxExtender>
                             <asp:RegularExpressionValidator ID="RegexCMReductionEff" runat="server" ControlToValidate="txtMeasureEfficiency"
-                                ErrorMessage="Efficiency can have at most one decimal place. " ValidationExpression="\d*\.?\d?"
-                                ValidationGroup="vgPollutantDGV">At most one decimal place allowed.</asp:RegularExpressionValidator>
+                                ErrorMessage="Efficiency can have at most one decimal place. " ValidationExpression="\d*(\.\d{0,1})?"
+                                ValidationGroup="vgPollutantDGV">At most one decimal place allowed.</asp:RegularExpressionValidator><%-- Regex: https://regexr.com/4a5ql --%>
                             <asp:RangeValidator ID="rngvMeasureEfficiency" runat="server" ValidationGroup="vgPollutantDGV"
-                                ControlToValidate="txtMeasureEfficiency" Display="Dynamic" MaximumValue="100"
-                                MinimumValue="1" ErrorMessage="The reduction efficiency must be between 1.0 and 100.0 percent."
-                                Type="Double">*</asp:RangeValidator>
+                                ControlToValidate="txtMeasureEfficiency" Display="Dynamic" MaximumValue="99.9"
+                                MinimumValue="5" ErrorMessage="The reduction efficiency must be between 5.0 and 99.9 percent."
+                                Type="Double"></asp:RangeValidator>
                             <asp:RequiredFieldValidator ID="rqvTxtMeasureEfficiency" runat="server" ControlToValidate="txtMeasureEfficiency"
                                 Display="Dynamic" Font-Size="small" ErrorMessage="Reduction efficiency is required" 
                                 ValidationGroup="vgPollutantDGV"></asp:RequiredFieldValidator>
@@ -245,12 +241,12 @@
                 TargetControlID="txtCMReductionEff" FilterType="Numbers,Custom" ValidChars=".">
             </act:FilteredTextBoxExtender>
             <asp:RegularExpressionValidator ID="RegexCMReductionEff" runat="server" ControlToValidate="txtCMReductionEff"
-                ErrorMessage="Control Measure Reduction Efficiency can have at most one decimal place. " ValidationExpression="\d*\.?\d?"
+                ErrorMessage="Control Measure Reduction Efficiency can have at most one decimal place. " ValidationExpression="\d*(\.\d{0,1})?"
                 ValidationGroup="vgCMReductionEff">At most one decimal place allowed.</asp:RegularExpressionValidator>
             <asp:RangeValidator ID="rngvCMReductionEff" runat="server" ControlToValidate="txtCMReductionEff"
-                ValidationGroup="vgCMReductionEff" ErrorMessage="The reduction efficiency must be between 1.0 and 100.0 percent."
-                Display="Dynamic" MaximumValue="100" MinimumValue="1" Type="Double"
-                Style="font-size: small">Must be between 1.0 and 100.0 percent.</asp:RangeValidator>
+                ValidationGroup="vgCMReductionEff" ErrorMessage="The reduction efficiency must be between 5.0 and 99.9 percent."
+                Display="Dynamic" MaximumValue="99.9" MinimumValue="5" Type="Double"
+                Style="font-size: small">Must be between 5.0 and 99.9 percent.</asp:RangeValidator>
             &nbsp;
             <asp:Button ID="btnAddControlPollutant" runat="server" Text="Add" ToolTip="" Font-Size="Small"
                 ValidationGroup="vgCMReductionEff" UseSubmitBehavior="False" />

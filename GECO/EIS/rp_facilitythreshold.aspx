@@ -1,10 +1,6 @@
 <%@ Page Title="Facility Thresholds - GECO Emission Inventory" Language="VB" MaintainScrollPositionOnPostback="true" MasterPageFile="eismaster.master"
-    AutoEventWireup="false" Inherits="GECO.EIS_rp_threshold" Codebehind="rp_facilitythreshold.aspx.vb" %>
+    AutoEventWireup="false" Inherits="GECO.EIS_rp_threshold" CodeBehind="rp_facilitythreshold.aspx.vb" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-</asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
-</asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder3" runat="Server">
     <act:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server"></act:ToolkitScriptManager>
     <div class="pageheader">
@@ -173,7 +169,7 @@
         </asp:Table>
         <br />
         <div>
-            <asp:TextBox ID="txtComment" runat="server" class="editable" TextMode="MultiLine" Rows="4" 
+            <asp:TextBox ID="txtComment" runat="server" class="editable" TextMode="MultiLine" Rows="4"
                 Text="" Width="400px" MaxLength="400" Height="50px"></asp:TextBox>
             <act:TextBoxWatermarkExtender ID="txtComment_TextBoxWatermarkExtender" runat="server"
                 Enabled="True" TargetControlID="txtComment" WatermarkCssClass="watermarked" WatermarkText="Type optional comments here">
@@ -181,29 +177,49 @@
         </div>
     </div>
     <p>
-        Clicking &quot;<asp:Label ID="lblNextButton" runat="server">Continue</asp:Label>&quot; below and submitting
-            this form is certification that the facility&#39;s potential emissions are as described
-            by the selections in the table above. Depending on the responses the facility may
-            or may not have to participate in the Emissions Inventory process for the
-            <asp:Label ID="lblEIYear" runat="server"></asp:Label>
+        Clicking &ldquo;<asp:Label ID="lblNextButton" runat="server">Continue</asp:Label>&rdquo; below and submitting
+        this form is certification that the facility&#39;s potential emissions are as described
+        by the selections in the table above. Depending on the responses the facility may
+        or may not have to participate in the Emissions Inventory process for the
+        <asp:Label ID="lblEIYear" runat="server"></asp:Label>
         calendar year.
     </p>
     <asp:ValidationSummary ID="vgThresholds" runat="server" Style="text-align: center"
         ValidationGroup="vgThreshold" HeaderText="One or more selections were not made. All are required." />
-    <div style="text-align: center;">
-        <asp:Label ID="lblOptOutStatus1" runat="server" ForeColor="#000099" Font-Bold="True"
-            Font-Size="Medium" Visible="False"></asp:Label><br />
-        <br />
-        <asp:Label ID="lblOptOutStatus2" runat="server" ForeColor="#000099" Font-Bold="True"
-            Font-Size="Medium" Visible="False"></asp:Label>
+    <div id="dOptOut" runat="server" visible="false" style="text-align: center;">
+        <asp:Label ID="lblOptOutStatus1" runat="server" ForeColor="#000099" Font-Bold="True" Font-Size="Medium" /><br />
+
+        <asp:Panel ID="pnlColocate" runat="server" Visible="false">
+            <p style="font-size: medium;">
+                Is your facility colocated with another facility?
+            </p>
+            <asp:RadioButtonList ID="rblIsColocated" runat="server" RepeatDirection="Horizontal"
+                Font-Size="Medium" AutoPostBack="True" RepeatLayout="Flow">
+                <asp:ListItem Value="Yes">Yes</asp:ListItem>
+                <asp:ListItem Value="No">No</asp:ListItem>
+            </asp:RadioButtonList><br />
+            <asp:RequiredFieldValidator ID="reqIsColocated" runat="server"
+                ControlToValidate="rblIsColocated" ValidationGroup="vgOptOut"
+                ErrorMessage="Select Yes or No to continue" Font-Bold="False" />
+            <asp:Panel ID="pnlColocation" runat="server" Visible="false">
+                <div style="text-align: center; font-size: medium;">
+                    What facility are you colocated with? Please provide name and AIRS # of colocated facility.
+                    Your facility and/or the colocated facility will be contacted by the Air Protection 
+                    Branch about possible EI submittal.
+                    <br />
+                    <asp:TextBox ID="txtColocatedWith" runat="server" BackColor="White"
+                        TextMode="MultiLine" Width="350px" MaxLength="4000" Rows="4"></asp:TextBox><br />
+                </div>
+            </asp:Panel>
+        </asp:Panel>
+
+        <p>Click Submit to continue or Cancel to make changes above.</p>
     </div>
+
     <div class="buttonwrapper" style="text-align: center;">
-        <asp:Button runat="server" ID="btnContinue" CssClass="buttondiv" Text="Continue"
-            Font-Size="Large" ValidationGroup="vgThreshold" />
-        <asp:Button runat="server" ID="btnSubmit" CssClass="buttondiv" Text="Submit" Font-Size="Large"
-            ValidationGroup="vgThreshold" Visible="False" />
-        <asp:Button runat="server" ID="btnCancel" CssClass="buttondiv" Text="Cancel" Font-Size="Large"
-            CausesValidation="False" Visible="False" />
+        <asp:Button runat="server" ID="btnContinue" CssClass="buttondiv" Text="Continue" Font-Size="Large" ValidationGroup="vgThreshold" />
+        <asp:Button runat="server" ID="btnSubmit" CssClass="buttondiv" Text="Submit" Font-Size="Large" ValidationGroup="vgOptOut" Visible="False" />
+        <asp:Button runat="server" ID="btnCancel" CssClass="buttondiv" Text="Cancel" Font-Size="Large" CausesValidation="False" Visible="False" />
     </div>
     <br />
     <br />

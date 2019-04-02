@@ -1,4 +1,4 @@
-﻿Imports System.Data.SqlClient
+Imports System.Data.SqlClient
 
 Partial Class eis_eucontrolapproach_edit
     Inherits Page
@@ -128,9 +128,9 @@ Partial Class eis_eucontrolapproach_edit
                 " , u.EMISSIONSUNITID " &
                 " , u.POLLUTANTCODE " &
                 " , l.STRDESC AS PollutantType " &
-                " , CONVERT(decimal(5, 1), u.NUMPCTCTRLMEASURESREDEFFIC) AS MeasureEfficiency " &
+                " , CONVERT(decimal(4, 1), u.NUMPCTCTRLMEASURESREDEFFIC) AS MeasureEfficiency " &
                 " , FORMAT(u.LASTEISSUBMITDATE, 'MM/dd/yyyy') AS LASTEISSUBMITDATE " &
-                " , CONVERT(decimal(10, 2), c.NUMPCTCTRLAPPROACHCAPEFFIC * c.NUMPCTCTRLAPPROACHEFFECT * u.NUMPCTCTRLMEASURESREDEFFIC / 10000) " &
+                " , CONVERT(decimal(5, 2), c.NUMPCTCTRLAPPROACHCAPEFFIC * c.NUMPCTCTRLAPPROACHEFFECT * u.NUMPCTCTRLMEASURESREDEFFIC / 10000) " &
                 " AS CalculatedReduction " &
                 " FROM dbo.EIS_UNITCONTROLPOLLUTANT AS u " &
                 " LEFT JOIN dbo.EISLK_POLLUTANTCODE AS l " &
@@ -139,6 +139,7 @@ Partial Class eis_eucontrolapproach_edit
                 " LEFT JOIN dbo.EIS_UNITCONTROLAPPROACH AS c " &
                 " ON c.FACILITYSITEID = u.FACILITYSITEID " &
                 " AND c.EMISSIONSUNITID = u.EMISSIONSUNITID " &
+                " AND c.ACTIVE = '1' " &
                 " WHERE u.FACILITYSITEID = @fsid " &
                 " AND u.EMISSIONSUNITID = @euid " &
                 " AND u.ACTIVE = '1' " &
@@ -348,7 +349,6 @@ Partial Class eis_eucontrolapproach_edit
         Dim EmissionsUnitID As String = txtEmissionUnitID.Text
         Dim CPcode As String = ddlControlPollutants.SelectedValue
         Dim CMReductEff As Decimal = Decimal.Round(CDec(txtCMReductionEff.Text), 1)
-
 
         Dim UpdateUserID As String = GetCookie(GecoCookie.UserID)
         Dim UpdateUserName As String = GetCookie(GecoCookie.UserName)

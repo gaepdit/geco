@@ -2,10 +2,6 @@
     AutoEventWireup="false" Inherits="GECO.eis_emissionunit_details" Codebehind="emissionunit_details.aspx.vb" %>
 <%@ Register src="../Controls/PreventRePost.ascx" tagname="PreventRePost" tagprefix="uc1" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-</asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
-</asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder3" runat="Server">
     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
     <div class="pageheader">
@@ -247,10 +243,6 @@
                     <HeaderStyle HorizontalAlign="Left" />
                     <ItemStyle HorizontalAlign="Center" VerticalAlign="Top" />
                 </asp:BoundField>
-                <%--<asp:BoundField DataField="INTLASTEMISSIONSYEAR" HeaderText="Last Inventory Year">
-                    <HeaderStyle HorizontalAlign="Left" />
-                    <ItemStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                </asp:BoundField>--%>
                 <asp:BoundField DataField="LastEISSubmitDate" HeaderText="Last EPA Submittal"
                     NullDisplayText="Not Submitted" DataFormatString="{0:d}">
                     <HeaderStyle HorizontalAlign="Left" />
@@ -489,8 +481,8 @@
                             CssClass="validator" Display="Dynamic" ErrorMessage="* Control approach efficiency is required."
                             ValidationGroup="AddUnitControlApproach"></asp:RequiredFieldValidator>
                         <asp:RangeValidator ID="rngvCtrlApprEffic" runat="server" ControlToValidate="txtCtrlApprCapEffic"
-                            CssClass="validator" Display="Dynamic" MaximumValue="100" MinimumValue="1"
-                            ErrorMessage="* The control approach efficiency must be between 1 and 100 percent."
+                            CssClass="validator" Display="Dynamic" MaximumValue="100" MinimumValue="5"
+                            ErrorMessage="* The control approach efficiency must be between 5 and 100 percent."
                             Type="Double"></asp:RangeValidator>
                     </td>
                 </tr>

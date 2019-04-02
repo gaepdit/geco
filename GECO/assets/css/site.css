@@ -652,6 +652,11 @@ textarea {
         width: 25%
     }
 
+.table-simple.table-compact th,
+.table-simple.table-compact td {
+    padding: 0 10px 4px 0;
+}
+
 /* Update messages */
 .message-update {
     color: #80005e;
@@ -798,7 +803,7 @@ button,
     [type="submit"]:disabled {
         background: #ddd;
         color: #777;
-        box-shadow:none;
+        box-shadow: none;
     }
 
     a.button.button-large,

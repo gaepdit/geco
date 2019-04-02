@@ -37,26 +37,27 @@ Partial Class EIS_report_processes
 
     Private Sub loadProcessSummarygvw()
 
-        Dim query = "SELECT eis_Process.EmissionsUnitID " &
-            ", eislk_UnitStatusCode.strDesc AS strUnitDesc " &
-            ", eis_Process.ProcessID " &
-            ", eis_Process.strProcessDescription " &
-            ", eis_Process.SourceClassCode " &
-            ", CONCAT(strDesc1, '; ', strDesc2, '; ', strDesc3, '; ', strDesc4) AS strSCCDesc " &
-            ", eis_Process.strProcessComment " &
-            ", eis_Process.LastEISSubmitDate " &
-            "FROM EIS_Process " &
-            "LEFT JOIN EISLK_SourceClassCode " &
-            "ON EIS_Process.SourceClassCode = EISLK_SourceClassCode.sourceclasscode " &
-            "LEFT JOIN EIS_EmissionsUnit " &
-            "ON EIS_Process.FacilitySiteID = EIS_EmissionsUnit.FacilitySiteID " &
-            "AND EIS_Process.EmissionsUnitID = EIS_EmissionsUnit.EmissionsUnitID " &
-            "INNER JOIN EISLK_UnitStatusCode " &
-            "ON EIS_EmissionsUnit.strUnitStatusCode = EISLK_UnitStatusCode.UnitStatusCode " &
-            "WHERE EIS_Process.facilitysiteid = @FacilitySiteID " &
-            "AND EIS_Process.active = '1' " &
-            "ORDER BY eis_Process.EmissionsUnitID " &
-            ", eis_Process.ProcessID "
+        Dim query = "SELECT p.EmissionsUnitID,
+                   s.strDesc AS strUnitDesc,
+                   p.ProcessID,
+                   p.strProcessDescription,
+                   p.SourceClassCode,
+                   CONCAT(c.[scc level one], '; ', c.[scc level two], '; ',
+                          c.[scc level three], '; ', c.[scc level four])
+                             AS strSCCDesc,
+                   p.strProcessComment,
+                   p.LastEISSubmitDate
+            FROM EIS_PROCESS p
+                 LEFT JOIN EISLK_SCC c
+                           ON p.SourceClassCode = c.SCC
+                 LEFT JOIN EIS_EMISSIONSUNIT u
+                           ON p.FacilitySiteID = u.FacilitySiteID
+                               AND p.EmissionsUnitID = u.EmissionsUnitID
+                 INNER JOIN EISLK_UNITSTATUSCODE s
+                            ON u.strUnitStatusCode = s.UnitStatusCode
+            WHERE p.facilitysiteid = @FacilitySiteID
+              AND p.active = '1'
+            ORDER BY p.EmissionsUnitID, p.ProcessID "
 
         Dim param As New SqlParameter("@FacilitySiteID", FacilitySiteID)
 

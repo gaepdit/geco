@@ -1,10 +1,6 @@
 <%@ Page Title="Facility Inventory Help" Language="VB" MasterPageFile="eismaster.master"
     AutoEventWireup="false" Inherits="GECO.EIS_help_fi" Codebehind="help_fi.aspx.vb" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-</asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
-</asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder3" runat="Server">
     <act:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server"></act:ToolkitScriptManager>
     <div class="pageheader">
@@ -334,12 +330,12 @@
                     The latitude and longitude coordinates for the fugitive release point should be reported as 
                     those of the western-most corner. The fugitive angle is measured clockwise around that point 
                     from true (not magnetic) north. Fugitive width is the measure along the side that would run 
-                    in the east-west direction if the angle were 0 degrees, and fugitive length is the measure 
-                    along the side that would run north-south if the angle were 0 degrees.
+                    in the east-west direction if the angle were 0°, and fugitive length is the measure 
+                    along the side that would run north-south if the angle were 0°.
                 </p>
                 <p>
                     In the example below, the release point coordinates are located at the push pin, 
-                    the width is 680 feet, the length is 1897 feet, and the angle is 22 degrees.
+                    the width is 680 feet, the length is 1897 feet, and the angle is 22°.
                 </p>
                 <asp:Image ImageUrl="~/assets/images/EIS/fugitive-angle-diagram.png" runat="server" />
                 <p>
@@ -352,11 +348,11 @@
                 </p>
                 <p>
                     <b>Fugitive Width</b>: The width of the fugitive release area measured along the side 
-                    that would run in the east-west direction if the angle were 0 degrees. (OPTIONAL)
+                    that would run in the east-west direction if the angle were 0°. (OPTIONAL)
                 </p>
                 <p>
                     <b>Fugitive Length</b>: The length of the fugitive release area measured along the side 
-                    that would run in the north-south direction if the angle were 0 degrees. (OPTIONAL)
+                    that would run in the north-south direction if the angle were 0°. (OPTIONAL)
                 </p>
                 <p>
                     <b>Fugitive Angle</b>: The angle for the fugitive release area, measured in the clockwise direction
@@ -647,7 +643,7 @@
             <p>
                 EPA has provided a spreadsheet listing the QA checks they perform on EIS data. Most of the same checks are performed on EPD 
                 data, either upon entry or as part of the submittal QA process. Download the complete spreadsheet of 
-                <a href="/EIS/files/epa_qa_checks.xlsx" download>EPA QA Checks</a>.
+                <a href="/EIS/files/qachecks.csv" download>EPA QA Checks</a>.
             </p>
         </asp:Panel>
     </div>

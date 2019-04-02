@@ -2,10 +2,6 @@
     MasterPageFile="eismaster.master" AutoEventWireup="false"
     Inherits="GECO.eis_stack_details" Codebehind="stack_details.aspx.vb" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-</asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
-</asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder3" runat="Server">
     <act:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server"></act:ToolkitScriptManager>
     <div class="pageheader">
@@ -123,7 +119,7 @@
             ReadOnly="True" Width="400px" Font-Names="Verdana" Font-Size="Small" TextMode="MultiLine"></asp:TextBox>
     </div>
     <div class="fieldwrapper">
-        <asp:Label ID="LblHorizontalAccuracyMeasure" class="styled" runat="server" Text="Accuracy Measure (meters):"></asp:Label>
+        <asp:Label ID="LblHorizontalAccuracyMeasure" class="styled" runat="server" Text="Accuracy Measure (m):"></asp:Label>
         <asp:TextBox ID="TxtHorizontalAccuracyMeasure" runat="server" Text="" class="readonly"
             ReadOnly="True" Width="250px"></asp:TextBox>
     </div>

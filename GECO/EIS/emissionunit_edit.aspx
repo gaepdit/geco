@@ -1,10 +1,6 @@
 <%@ Page Title="Emissions Unit Edit - GECO Facility Inventory" Language="VB" MaintainScrollPositionOnPostback="true" MasterPageFile="eismaster.master"
     AutoEventWireup="false" Inherits="GECO.eis_emissionunit_edit" Codebehind="emissionunit_edit.aspx.vb" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-</asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
-</asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder3" runat="Server">
     <script type="text/javascript">
         function Count(text) {

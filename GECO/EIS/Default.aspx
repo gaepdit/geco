@@ -1,10 +1,6 @@
 <%@ Page Title="GECO Emissions Inventory System" Language="VB" MasterPageFile="eismaster.master"
     AutoEventWireup="false" Inherits="GECO.eis_Default" Codebehind="Default.aspx.vb" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-</asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
-</asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder3" runat="Server">
     <act:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server"></act:ToolkitScriptManager>
     <h1>Emissions Inventory System</h1>

@@ -1,10 +1,7 @@
-﻿Imports System.Data
-Imports System.Data.SqlClient
-Imports EpdIt.DBUtilities
+﻿Imports System.Data.SqlClient
 
 Partial Class EIS_rp_facilitystatus
     Inherits Page
-    Public conn, conn1 As New SqlConnection(oradb)
 
     Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
 
@@ -28,11 +25,13 @@ Partial Class EIS_rp_facilitystatus
 
     Protected Sub rblOperate_SelectedIndexChanged(sender As Object, e As EventArgs) Handles rblOperate.SelectedIndexChanged
 
-        If rblOperate.SelectedValue = "No" Then
-            pnlShutdownStatus.Visible = True
-        Else
-            pnlShutdownStatus.Visible = False
-        End If
+        pnlShutdownStatus.Visible = (rblOperate.SelectedValue = "No")
+
+    End Sub
+
+    Private Sub rblIsColocated_SelectedIndexChanged(sender As Object, e As EventArgs) Handles rblIsColocated.SelectedIndexChanged
+
+        pnlColocation.Visible = (rblIsColocated.SelectedValue = "Yes")
 
     End Sub
 
@@ -42,24 +41,24 @@ Partial Class EIS_rp_facilitystatus
         Dim UpdateUserID As String = GetCookie(GecoCookie.UserID)
         Dim UpdateUserName As String = GetCookie(GecoCookie.UserName)
         Dim UpdateUser As String = UpdateUserID & "-" & UpdateUserName
-        Dim AdminComment As String = txtComment.Text
         Dim eiYear As Integer = CInt(GetCookie(EisCookie.EISMaxYear))
-        Dim opt As String = ""
-        Dim optoutReason As String = ""
-        Dim EIFacilityStatus As String = "OP"
-        Dim FacilityStatusOnLoad As String = GetFacilityStatusCode_Facility(FacilitySiteID)
 
         'Saving FacilityStatus as OP even if not during
-        SaveFacilityStatus(FacilitySiteID, EIFacilityStatus, UpdateUser, eiYear)
+        SaveFacilityStatus(FacilitySiteID, "OP", UpdateUser, eiYear)
 
         If Len(txtComment.Text) > 0 Then
-            SaveAdminComment(FacilitySiteID, eiYear, AdminComment)
+            SaveAdminComment(FacilitySiteID, eiYear, txtComment.Text)
         End If
 
-        If pnlShutdownStatus.Visible = True Then
-            opt = "1"
-            optoutReason = "1"
-            SaveOption(FacilitySiteID, opt, UpdateUser, eiYear, optoutReason)
+        If rblOperate.SelectedValue = "No" Then
+            Dim colocated As Boolean = (rblIsColocated.SelectedValue = "Yes")
+            Dim colocation As String = Nothing
+
+            If rblIsColocated.SelectedValue = "Yes" Then
+                colocation = txtColocatedWith.Text
+            End If
+
+            SaveOption(FacilitySiteID, "1", UpdateUser, eiYear, "1", colocated, colocation)
             ResetCookies(FacilitySiteID)
             Response.Redirect("Default.aspx")
         Else
@@ -112,7 +111,7 @@ Partial Class EIS_rp_facilitystatus
                 "(select max(inventoryYear) as MaxYear, " &
                 "EIS_Admin.FacilitySiteID " &
                 "FROM EIS_Admin GROUP BY EIS_Admin.FacilitySiteID ) MaxResults  " &
-                "where EIS_Admin.FacilitySiteID = '" & fsid & "' " &
+                "where EIS_Admin.FacilitySiteID = @fsid " &
                 "and EIS_Admin.inventoryYear = maxresults.maxyear " &
                 "and EIS_Admin.FacilitySiteID = maxresults.FacilitySiteID " &
                 "group by EIS_Admin.FacilitySiteID, " &
@@ -122,7 +121,9 @@ Partial Class EIS_rp_facilitystatus
                 "EIS_Admin.strEnrollment, EIS_Admin.datFinalize, " &
                 "EIS_Admin.strConfirmationNumber"
 
-            Dim dr = DB.GetDataRow(query)
+            Dim param As New SqlParameter("@fsid", fsid)
+
+            Dim dr = DB.GetDataRow(query, param)
 
             If dr Is Nothing Then
                 'Set EISAccess cookie to "3" id facility does not exist in EIS Admin table
@@ -194,10 +195,6 @@ Partial Class EIS_rp_facilitystatus
 
         Catch ex As Exception
             ErrorReport(ex)
-        Finally
-            If conn.State = ConnectionState.Open Then
-                conn.Close()
-            End If
         End Try
 
     End Sub

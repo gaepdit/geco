@@ -1712,7 +1712,7 @@ Partial Class AnnualFees_Default
                 + "where strairsnumber = @AIRS " _
                 + "and numfeeyear = @feeyear "
 
-            Dim conn As New SqlConnection(oradb)
+            Dim conn As New SqlConnection(DBConnectionString)
             Dim cmd As New SqlCommand(SQL, conn)
 
             'add SQL parameters for first SQL update
@@ -1913,7 +1913,7 @@ Partial Class AnnualFees_Default
             + "getdate(), " _
             + "@upduser)"
 
-            Dim conn As New SqlConnection(oradb)
+            Dim conn As New SqlConnection(DBConnectionString)
             Dim cmd As New SqlCommand(SQL, conn)
 
             'add SQL parameters for first SQL update

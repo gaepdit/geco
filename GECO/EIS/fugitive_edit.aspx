@@ -3,10 +3,6 @@
     MaintainScrollPositionOnPostback="true" Codebehind="fugitive_edit.aspx.vb" %>
 
 <%@ Register Assembly="Reimers.Google.Map" Namespace="Reimers.Google.Map" TagPrefix="Reimers" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-</asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
-</asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder3" runat="Server">
     <script type="text/javascript">
         function Count(text, maxlength, displayEl) {
@@ -146,7 +142,7 @@
     </div>
     <div class="fieldwrapper">
         <asp:Label ID="lblRPFugitiveAngleMeasure" class="styled" runat="server"
-            Text="Fugitive Angle Measure (0 - 179):"></asp:Label>
+            Text="Fugitive Angle Measure (°):"></asp:Label>
         <asp:TextBox ID="txtRPFugitiveAngleMeasure" runat="server" class="editable" Text=""
             Width="100px" ToolTip="The orientation of the y-dimension (North-South) of the area in degrees from true North, measured positive in the clockwise direction."
             MaxLength="3"></asp:TextBox>
@@ -157,8 +153,8 @@
             TargetControlID="txtRPFugitiveAngleMeasure" WatermarkCssClass="watermarked" WatermarkText="OPTIONAL">
         </act:TextBoxWatermarkExtender>
         <asp:RangeValidator ID="rngvRPFugitiveAngleMeasure" runat="server" ControlToValidate="txtRPFugitiveAngleMeasure"
-            MinimumValue="0" MaximumValue="179" Type="Integer" ValidationGroup="vgFugitive"
-            ErrorMessage="The fugitive angle of measure must be between 0 and 179 degrees.">Must be between 0 and 179 degrees</asp:RangeValidator>
+            MinimumValue="0" MaximumValue="89" Type="Integer" ValidationGroup="vgFugitive"
+            ErrorMessage="The fugitive angle of measure must be between 0° and 89° inclusive.">Must be between 0° and 89°</asp:RangeValidator>
     </div>
     <div class="fieldwrapper">
         <asp:Label ID="lblRPComment" class="styled" runat="server" Text="Comment:"></asp:Label>
@@ -223,8 +219,8 @@
                             Display="Dynamic">*</asp:RequiredFieldValidator>
                         <asp:RangeValidator ID="rngvLatitudeMeasure" runat="server" ControlToValidate="TxtLatitudeMeasure"
                             ValidationGroup="vgFugitive" MaximumValue="35.00028" MinimumValue="30.35944" Type="Double"
-                            ErrorMessage="Latitude must be between 35.200028 and 30.35944 degrees"
-                            Display="Dynamic">Must be between 35.200028 and 30.35944</asp:RangeValidator>
+                            ErrorMessage="Latitude must be between 35.200028° and 30.35944°"
+                            Display="Dynamic">Must be between 35.200028° and 30.35944°</asp:RangeValidator>
                     </div>
                     <div class="fieldwrapper">
                         <asp:Label ID="LblLongitudeMeasure" class="styled" runat="server" Text="Longitude:"></asp:Label>
@@ -238,8 +234,8 @@
                             Display="Dynamic">*</asp:RequiredFieldValidator>
                         <asp:RangeValidator ID="rngvLongitudeMeasure" runat="server" ControlToValidate="TxtLongitudeMeasure"
                             ValidationGroup="vgFugitive" MinimumValue="-85.60889" MaximumValue="-80.84417" Type="Double"
-                            ErrorMessage="Longitude must be between -85.60889 and -80.84417 degrees."
-                            Display="Dynamic">Must be between -85.60889 and -80.84417</asp:RangeValidator>
+                            ErrorMessage="Longitude must be between -85.60889° and -80.84417°."
+                            Display="Dynamic">Must be between -85.60889° and -80.84417°</asp:RangeValidator>
                     </div>
                     <div class="fieldwrapper">
                         <asp:Label class="styled" runat="server" Text="Map:"></asp:Label>
@@ -268,7 +264,7 @@
                     InitialValue="--Select Horizontal Collection Method--" Display="Dynamic">*</asp:RequiredFieldValidator>
             </div>
             <div class="fieldwrapper">
-                <asp:Label ID="LblHorizontalAccuracyMeasure" class="styled" runat="server" Text="Accuracy Measure (meters):"></asp:Label>
+                <asp:Label ID="LblHorizontalAccuracyMeasure" class="styled" runat="server" Text="Accuracy Measure (m):"></asp:Label>
                 <asp:TextBox ID="TxtHorizontalAccuracyMeasure" runat="server" class="editable" Text=""
                     Width="100px" ToolTip="The horizontal measure of the relative accuracy of teh latitude and longitude coordinates."
                     MaxLength="4"></asp:TextBox>

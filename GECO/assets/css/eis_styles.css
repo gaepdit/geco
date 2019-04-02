@@ -454,3 +454,36 @@ div.fieldwrapperseparator .labelwarningleft {
 .asBlock {
     display: block;
 }
+
+/* Footer */
+#footer a {
+    color: #ff7;
+}
+
+/* 🙄 */
+
+.style1 {
+    width: 452px;
+}
+
+.style2 {
+    width: 211px;
+}
+
+.style2 {
+    font-size: large;
+}
+
+.style3 {
+    font-size: large;
+    color: #FF0000;
+    font-weight: bold;
+}
+
+.style4 {
+    width: 233px;
+}
+
+.style5 {
+    width: 283px;
+}

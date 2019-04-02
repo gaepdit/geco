@@ -14,15 +14,6 @@ Option Explicit On
 Partial Public Class APB_eismaster
     
     '''<summary>
-    '''ContentPlaceHolder1 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents ContentPlaceHolder1 As Global.System.Web.UI.WebControls.ContentPlaceHolder
-    
-    '''<summary>
     '''form1 control.
     '''</summary>
     '''<remarks>
@@ -201,15 +192,6 @@ Partial Public Class APB_eismaster
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents mnuEISHelp As Global.System.Web.UI.WebControls.Menu
-    
-    '''<summary>
-    '''ContentPlaceHolder2 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents ContentPlaceHolder2 As Global.System.Web.UI.WebControls.ContentPlaceHolder
     
     '''<summary>
     '''ContentPlaceHolder3 control.

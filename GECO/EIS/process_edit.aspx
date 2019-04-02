@@ -1,28 +1,7 @@
-﻿<%@ Page Title="Process Edit - GECO Facility Inventory" Language="VB" MasterPageFile="eismaster.master"
+<%@ Page Title="Process Edit - GECO Facility Inventory" Language="VB" MasterPageFile="eismaster.master"
     AutoEventWireup="false" MaintainScrollPositionOnPostback="true"
-    Inherits="GECO.eis_process_edit" Codebehind="process_edit.aspx.vb" %>
+    Inherits="GECO.eis_process_edit" CodeBehind="process_edit.aspx.vb" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-    <style type="text/css">
-        .style2 {
-            font-size: large;
-        }
-
-        .style3 {
-            font-size: large;
-            color: #FF0000;
-            font-weight: bold;
-        }
-    </style>
-    <script type="text/javascript">
-        function openSCCLookup() {
-            window.open('sccfinder.aspx', null, 'height=350,width=550,status=yes,toolbar=no,menubar=no,location=0,top=100,left=250');
-            return false;
-        }
-    </script>
-</asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
-</asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder3" runat="Server">
     <script type="text/javascript">
         function Count(text) {
@@ -100,7 +79,7 @@
         <div class="fieldwrapper">
             <asp:Label ID="lblSourceClassCode" class="styled" runat="server" Text="Source Classification Code:"></asp:Label>
             <asp:TextBox ID="txtSourceClassCode" runat="server" class="editable" Text="" Width="100px"
-                MaxLength="8"></asp:TextBox>
+                MaxLength="10"></asp:TextBox>
             <act:FilteredTextBoxExtender ID="filtxtSourceClassCode" runat="server" Enabled="True"
                 FilterType="Numbers" TargetControlID="txtSourceClassCode">
             </act:FilteredTextBoxExtender>
@@ -111,8 +90,9 @@
                 OnServerValidate="SCCCheck" ErrorMessage="The Source Classification Code is not valid. Enter a valid SCC code."
                 Font-Names="Arial" Font-Size="Small" Display="Dynamic" ValidationGroup="vgProcessEdit"
                 CssClass="validator">*</asp:CustomValidator>
-            &nbsp;<asp:Button ID="btnSCCLoopup" runat="server" Text="SCC Lookup" ToolTip="" Font-Size="Small"
+            &nbsp;<asp:Button ID="btnSCCLoopup" runat="server" Text="Find SCC" ToolTip="" Font-Size="Small"
                 CausesValidation="False" OnClientClick="openSCCLookup();" />
+            <asp:Label ID="lblSccDetails" runat="server" />
         </div>
         <div class="fieldwrapper">
             <asp:Label ID="lblProcessComment" class="styled" runat="server" Text="Process Comment:"></asp:Label>

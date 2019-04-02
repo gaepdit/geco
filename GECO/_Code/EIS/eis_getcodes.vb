@@ -1,5 +1,4 @@
-﻿Imports System.Data
-Imports System.Data.SqlClient
+﻿Imports System.Data.SqlClient
 
 Public Structure MinMaxLatLon
     Public MinLat As Decimal
@@ -8,14 +7,14 @@ Public Structure MinMaxLatLon
     Public MaxLon As Decimal
 End Structure
 
-Public Structure MinMaxFlowRate
-    Public MinFlowRate As Decimal
-    Public MaxFlowRate As Decimal
+Public Structure MinMaxValues
+    Public MinValue As Decimal
+    Public MaxValue As Decimal
 End Structure
 
 Public Module eis_getcodes
 
-    Function GetCountyLatLong(ByVal CountyCode As String) As MinMaxLatLon
+    Public Function GetCountyLatLong(CountyCode As String) As MinMaxLatLon
         Dim countyMinMax As New MinMaxLatLon With {
             .MaxLat = 35.200028,
             .MaxLon = -85.60889,
@@ -48,14 +47,22 @@ Public Module eis_getcodes
         Return countyMinMax
     End Function
 
-    Function GetRPMinMaxFlowRate(ByVal diameter As Decimal, ByVal velocity As Decimal) As MinMaxFlowRate
-        Return New MinMaxFlowRate With {
-            .MaxFlowRate = 1.0495 * Math.PI * (diameter ^ 2) / 4 * velocity,
-            .MinFlowRate = 0.955 * Math.PI * (diameter ^ 2) / 4 * velocity
+    Public Function GetRPMinMaxFlowRate(diameter As Decimal, velocity As Decimal) As MinMaxValues
+        Return New MinMaxValues With {
+            .MaxValue = Math.Round(1.0495 * CalculateFlowRate(diameter, velocity), 1),
+            .MinValue = Math.Round(0.955 * CalculateFlowRate(diameter, velocity), 1)
         }
     End Function
 
-    Function GetFacilityStatusCode_Facility(ByVal fsid As String) As String
+    Public Function CalculateFlowRate(diameter As Decimal, velocity As Decimal) As Decimal
+        Return Math.PI * (diameter ^ 2) / 4 * velocity
+    End Function
+
+    Public Function CalculateVelocity(diameter As Decimal, flowRate As Decimal) As Decimal
+        Return flowRate / (Math.PI * (diameter ^ 2) / 4)
+    End Function
+
+    Public Function GetFacilityStatusCode_Facility(fsid As String) As String
         Dim query As String = "Select strFacilitySiteStatusCode " &
             " from eis_FacilitySite " &
             " Where FacilitySiteID = @fsid "

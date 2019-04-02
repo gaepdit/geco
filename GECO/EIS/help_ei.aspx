@@ -1,9 +1,5 @@
 ﻿<%@ Page Title="Emissions Inventory Help" Language="VB" MasterPageFile="eismaster.master" AutoEventWireup="false" Inherits="GECO.EIS_help_ei" Codebehind="help_ei.aspx.vb" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-</asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
-</asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder3" runat="Server">
     <act:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server"></act:ToolkitScriptManager>
     <div class="pageheader">
@@ -399,7 +395,7 @@
             <p>
                 EPA has provided a spreadsheet listing the QA checks they perform on EIS data. Most of the same checks are performed on EPD 
                 data, either upon entry or as part of the submittal QA process. Download the complete spreadsheet of 
-                <a href="/EIS/files/epa_qa_checks.xlsx" download>EPA QA Checks</a>.
+                <a href="/EIS/files/qachecks.csv" download>EPA QA Checks</a>.
             </p>
         </asp:Panel>
     </div>

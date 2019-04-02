@@ -1,9 +1,8 @@
-﻿Imports System.Data
 Imports System.Data.SqlClient
 
 Partial Class eis_process_edit
     Inherits Page
-    Public conn, conn1 As New SqlConnection(oradb)
+
     Public SCCExists As Boolean
     Public ProcessEISSubmit As Boolean
     Public ProcessUsedInProcessReportingPeriod As Boolean
@@ -116,50 +115,17 @@ Partial Class eis_process_edit
 
     End Sub
 
-    Sub SCCCheck(ByVal Sender As Object, ByVal args As ServerValidateEventArgs)
-
-        Dim sql As String = ""
-        Dim SCC As String = args.Value
-
-        Try
-            sql = "Select SOURCECLASSCODE FROM EISLK_SOURCECLASSCODE " &
-                    "where SOURCECLASSCODE = '" & SCC & "' and Active = '1'"
-            Dim cmd1 As New SqlCommand(sql, conn1)
-
-            If conn1.State = ConnectionState.Open Then
-            Else
-                conn1.Open()
-            End If
-
-            Dim dr1 As SqlDataReader = cmd1.ExecuteReader
-            Dim recExist As Boolean = dr1.Read
-
-            If recExist Then
-                args.IsValid = True
-                SCCExists = True
-            Else
-                args.IsValid = False
-                SCCExists = False
-            End If
-
-        Catch ex As Exception
-            ErrorReport(ex)
-        Finally
-            If conn.State = ConnectionState.Open Then
-                conn.Close()
-            End If
-        End Try
+    Protected Sub SCCCheck(Sender As Object, args As ServerValidateEventArgs)
+        args.IsValid = IsValidScc(args.Value)
+        SCCExists = args.IsValid
     End Sub
 
     Protected Sub btnSave_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnSave.Click
-        If SCCExists = False Then
-
-        Else
+        If Page.IsValid Then
             SaveProcessInfo()
             lblMessageTop.Text = "Process saved succesfully"
             lblMessageTop.Visible = True
         End If
-
     End Sub
 
     Private Sub SaveProcessInfo()
@@ -177,15 +143,16 @@ Partial Class eis_process_edit
         processcomment = Left(processcomment, 400)
 
         Try
-            Dim query = "Update EIS_PROCESS Set EIS_PROCESS.SOURCECLASSCODE = @SCC, " &
-                                     " EIS_PROCESS.STRPROCESSDESCRIPTION = @processDescription, " &
-                                     " EIS_PROCESS.STRPROCESSCOMMENT = @processcomment, " &
-                                     " EIS_PROCESS.UpdateUser = @UpdateUser," &
-                                     " EIS_PROCESS.UpdateDateTime = getdate() " &
-                                     " where EIS_PROCESS.FACILITYSITEID = @FacilitySiteID" &
-                                     " and EIS_PROCESS.EMISSIONSUNITID = @euID" &
-                                     " and EIS_PROCESS.ACTIVE = '1' " &
-                                     " and EIS_PROCESS.PROCESSID = @processID"
+            Dim query = "Update EIS_PROCESS Set SOURCECLASSCODE = @SCC, " &
+                " STRPROCESSDESCRIPTION = @processDescription, " &
+                " STRPROCESSCOMMENT = @processcomment, " &
+                " UpdateUser = @UpdateUser," &
+                " UpdateDateTime = getdate() " &
+                " where FACILITYSITEID = @FacilitySiteID" &
+                " and EMISSIONSUNITID = @euID" &
+                " and ACTIVE = '1' " &
+                " and PROCESSID = @processID"
+
             Dim params = {
                 New SqlParameter("@SCC", SCC),
                 New SqlParameter("@processDescription", processDescription),

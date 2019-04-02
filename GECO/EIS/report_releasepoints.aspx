@@ -1,9 +1,5 @@
 <%@ Page Title="Report - Facility Release Points" Language="VB" MasterPageFile="eismaster.master" AutoEventWireup="false" Inherits="GECO.EIS_report_releasepoints" CodeBehind="report_releasepoints.aspx.vb" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-</asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
-</asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder3" runat="Server">
     <div class="pageheader">
         Release Points
@@ -68,7 +64,7 @@
                 <ItemStyle HorizontalAlign="Right" VerticalAlign="Top" />
             </asp:BoundField>
             <asp:BoundField DataField="numRPFugitiveAngleMeasure"
-                HeaderText="Fugitive Angle (0&deg; to 179&deg;)">
+                HeaderText="Fugitive Angle (0&deg; to 89&deg;)">
                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                 <ItemStyle HorizontalAlign="Right" VerticalAlign="Top" />
             </asp:BoundField>

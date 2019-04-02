@@ -1,4 +1,3 @@
-Imports System.Data.SqlClient
 Imports System.Web.Services
 Imports AjaxControlToolkit
 
@@ -12,91 +11,105 @@ Public Class SourceClassCode
 
     <WebMethod()>
     Public Function GetLevel1(knownCategoryValues As String, category As String) As CascadingDropDownNameValue()
-        Try
-            Dim cascadingDropDownNameValues As New List(Of CascadingDropDownNameValue)
-            Dim query As String = "SELECT Distinct STRDESC1 FROM EISLK_SourceClassCode Where Active = '1' ORDER By STRDESC1"
-            Dim dt As DataTable = DB.GetDataTable(query)
+        Dim vals As New List(Of CascadingDropDownNameValue)
+
+        Using dt As DataTable = GetSccLevel1()
             For Each dtrow As DataRow In dt.Rows
-                cascadingDropDownNameValues.Add(New CascadingDropDownNameValue(dtrow("STRDESC1").ToString, dtrow("STRDESC1").ToString))
+                vals.Add(New CascadingDropDownNameValue(dtrow("scc level one").ToString, dtrow("scc level one").ToString))
             Next
-            Return cascadingDropDownNameValues.ToArray()
-        Catch ex As Exception
-            ErrorReport(ex)
-            Return Nothing
-        End Try
+        End Using
+
+        Return vals.ToArray()
     End Function
 
     <WebMethod()>
     Public Function GetLevel2(knownCategoryValues As String, category As String) As CascadingDropDownNameValue()
-        Try
-            Dim stringDictionaries As StringDictionary = CascadingDropDown.ParseKnownCategoryValuesString(knownCategoryValues)
-            If (stringDictionaries.ContainsKey("Level1")) Then
-                Dim cascadingDropDownNameValues As New List(Of CascadingDropDownNameValue)
-                Dim query As String = "SELECT Distinct STRDESC2 FROM EISLK_SourceClassCode " &
-                    " Where Active = '1' and STRDESC1 = @Level1 ORDER By STRDESC2"
-                Dim param As New SqlParameter("@Level1", stringDictionaries("Level1"))
-                Dim dt As DataTable = DB.GetDataTable(query, param)
+        Dim sd As StringDictionary = ParseKnownCategoryValuesString(knownCategoryValues)
+
+        If (sd.ContainsKey("Level1")) Then
+            Dim vals As New List(Of CascadingDropDownNameValue)
+
+            Using dt As DataTable = GetSccLevel2(sd("Level1"))
                 For Each dtrow As DataRow In dt.Rows
-                    cascadingDropDownNameValues.Add(New CascadingDropDownNameValue(dtrow("STRDESC2").ToString, dtrow("STRDESC2").ToString))
+                    vals.Add(New CascadingDropDownNameValue(dtrow("scc level two").ToString, dtrow("scc level two").ToString))
                 Next
-                Return cascadingDropDownNameValues.ToArray()
-            Else
-                Return Nothing
-            End If
-        Catch
-            Return Nothing
-        End Try
+            End Using
+
+            Return vals.ToArray()
+        End If
+
+        Return Nothing
     End Function
 
     <WebMethod()>
     Public Function GetLevel3(knownCategoryValues As String, category As String) As CascadingDropDownNameValue()
-        Try
-            Dim stringDictionaries As StringDictionary = CascadingDropDown.ParseKnownCategoryValuesString(knownCategoryValues)
-            If stringDictionaries.ContainsKey("Level1") AndAlso stringDictionaries.ContainsKey("Level2") Then
-                Dim cascadingDropDownNameValues As New List(Of CascadingDropDownNameValue)
-                Dim query As String = "SELECT Distinct STRDESC3 FROM EISLK_SourceClassCode " &
-                    " Where Active = '1' and STRDESC1 = @Level1 and STRDESC2 = @Level2 ORDER By STRDESC3"
-                Dim param As SqlParameter() = {
-                    New SqlParameter("@Level1", stringDictionaries("Level1")),
-                    New SqlParameter("@Level2", stringDictionaries("Level2"))
-                }
-                Dim dt As DataTable = DB.GetDataTable(query, param)
+        Dim sd As StringDictionary = ParseKnownCategoryValuesString(knownCategoryValues)
+
+        If sd.ContainsKey("Level1") AndAlso sd.ContainsKey("Level2") Then
+            Dim vals As New List(Of CascadingDropDownNameValue)
+
+            Using dt As DataTable = GetSccLevel3(sd("Level1"), sd("Level2"))
                 For Each dtrow As DataRow In dt.Rows
-                    cascadingDropDownNameValues.Add(New CascadingDropDownNameValue(dtrow("STRDESC3").ToString, dtrow("STRDESC3").ToString))
+                    vals.Add(New CascadingDropDownNameValue(dtrow("scc level three").ToString, dtrow("scc level three").ToString))
                 Next
-                Return cascadingDropDownNameValues.ToArray()
-            Else
-                Return Nothing
-            End If
-        Catch
-            Return Nothing
-        End Try
+            End Using
+
+            Return vals.ToArray()
+        End If
+
+        Return Nothing
     End Function
 
     <WebMethod()>
     Public Function GetLevel4(knownCategoryValues As String, category As String) As CascadingDropDownNameValue()
-        Try
-            Dim stringDictionaries As StringDictionary = CascadingDropDown.ParseKnownCategoryValuesString(knownCategoryValues)
-            If stringDictionaries.ContainsKey("Level1") AndAlso stringDictionaries.ContainsKey("Level2") AndAlso stringDictionaries.ContainsKey("Level3") Then
-                Dim cascadingDropDownNameValues As New List(Of CascadingDropDownNameValue)
-                Dim query As String = "SELECT Distinct STRDESC4 FROM EISLK_SourceClassCode " &
-                    " Where Active = '1' and STRDESC1 = @Level1 and STRDESC2 = @Level2 and STRDESC3 = @Level3 ORDER By STRDESC4"
-                Dim param As SqlParameter() = {
-                    New SqlParameter("@Level1", stringDictionaries("Level1")),
-                    New SqlParameter("@Level2", stringDictionaries("Level2")),
-                    New SqlParameter("@Level3", stringDictionaries("Level3"))
-                }
-                Dim dt As DataTable = DB.GetDataTable(query, param)
+        Dim sd As StringDictionary = ParseKnownCategoryValuesString(knownCategoryValues)
+
+        If sd.ContainsKey("Level1") AndAlso sd.ContainsKey("Level2") AndAlso sd.ContainsKey("Level3") Then
+            Dim vals As New List(Of CascadingDropDownNameValue)
+
+            Using dt As DataTable = GetSccLevel4(sd("Level1"), sd("Level2"), sd("Level3"))
                 For Each dtrow As DataRow In dt.Rows
-                    cascadingDropDownNameValues.Add(New CascadingDropDownNameValue(dtrow("STRDESC4").ToString, dtrow("STRDESC4").ToString))
+                    vals.Add(New CascadingDropDownNameValue(dtrow("scc level four").ToString, dtrow("scc level four").ToString))
                 Next
-                Return cascadingDropDownNameValues.ToArray()
-            Else
-                Return Nothing
-            End If
-        Catch
-            Return Nothing
-        End Try
+            End Using
+
+            Return vals.ToArray()
+        End If
+
+        Return Nothing
+    End Function
+
+    Private Function ParseKnownCategoryValuesString(knownCategoryValues As String) As StringDictionary
+        ' Sometimes our category values contain colons or semicolons which confuses 
+        ' CascadingDropDown.ParseKnownCategoryValuesString
+        ' This function works around that limitation
+        knownCategoryValues = Left(knownCategoryValues, knownCategoryValues.Length - 1)
+
+        knownCategoryValues = Replace(knownCategoryValues, "Level1:", "LEVEL_1_DELIMITER")
+        knownCategoryValues = Replace(knownCategoryValues, ";Level2:", "LEVEL_2_DELIMITER")
+        knownCategoryValues = Replace(knownCategoryValues, ";Level3:", "LEVEL_3_DELIMITER")
+
+        knownCategoryValues = Replace(knownCategoryValues, ":", "_COLON_REPLACEMENT")
+        knownCategoryValues = Replace(knownCategoryValues, ";", "SEMICOLON_REPLACEMENT")
+
+        knownCategoryValues = Replace(knownCategoryValues, "LEVEL_1_DELIMITER", "Level1:")
+        knownCategoryValues = Replace(knownCategoryValues, "LEVEL_2_DELIMITER", ";Level2:")
+        knownCategoryValues = Replace(knownCategoryValues, "LEVEL_3_DELIMITER", ";Level3:")
+
+        Dim sd As StringDictionary = CascadingDropDown.ParseKnownCategoryValuesString(knownCategoryValues)
+
+        Dim keys As New List(Of String)
+
+        For Each key As String In sd.Keys
+            keys.Add(key)
+        Next
+
+        For Each key As String In keys
+            sd(key) = Replace(sd(key), "SEMICOLON_REPLACEMENT", ";")
+            sd(key) = Replace(sd(key), "_COLON_REPLACEMENT", ":")
+        Next
+
+        Return sd
     End Function
 
 End Class

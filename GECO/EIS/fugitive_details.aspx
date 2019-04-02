@@ -1,9 +1,5 @@
 ﻿<%@ Page Title="Fugitive Details - GECO Facility Inventory" Language="VB" MasterPageFile="eismaster.master" AutoEventWireup="false" Inherits="GECO.eis_fugitive_details" Codebehind="fugitive_details.aspx.vb" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-</asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
-</asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder3" runat="Server">
     <act:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server"></act:ToolkitScriptManager>
     <div class="pageheader">
@@ -67,7 +63,7 @@
             ReadOnly="True" Width="100px"></asp:TextBox>
     </div>
     <div class="fieldwrapper">
-        <asp:Label ID="lblRPFugitiveAngleMeasure" class="styled" runat="server" Text="Fugitive Angle (0 - 179):"></asp:Label>
+        <asp:Label ID="lblRPFugitiveAngleMeasure" class="styled" runat="server" Text="Fugitive Angle (°):"></asp:Label>
         <asp:TextBox ID="txtRPFugitiveAngleMeasure" class="readonly" runat="server" Text=""
             ReadOnly="True" Width="100px" MaxLength="2"></asp:TextBox>
     </div>
@@ -112,7 +108,7 @@
             ReadOnly="True" Font-Names="Verdana" Font-Size="Small" TextMode="MultiLine" Width="400px"></asp:TextBox>
     </div>
     <div class="fieldwrapper">
-        <asp:Label ID="LblHorizontalAccuracyMeasure" class="styled" runat="server" Text="Accuracy Measure (meters):"></asp:Label>
+        <asp:Label ID="LblHorizontalAccuracyMeasure" class="styled" runat="server" Text="Accuracy Measure (m):"></asp:Label>
         <asp:TextBox ID="TxtHorizontalAccuracyMeasure" class="readonly" runat="server" Text=""
             ReadOnly="True"></asp:TextBox>
     </div>

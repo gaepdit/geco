@@ -1,9 +1,5 @@
 ﻿<%@ Page Language="VB" MasterPageFile="eismaster.master" AutoEventWireup="false" Inherits="GECO.eis_facility_details" Title="Facility Details - GECO Facility Inventory" Codebehind="facility_details.aspx.vb" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-</asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
-</asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder3" runat="Server">
     <div class="pageheader">
         <act:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server"></act:ToolkitScriptManager>
@@ -180,7 +176,7 @@
             Font-Names="Verdana" Font-Size="Small"></asp:TextBox>
     </div>
     <div class="fieldwrapper">
-        <asp:Label ID="LblHorizontalAccuracyMeasure" class="styled" runat="server" Text="Accuracy Measure(meters):"></asp:Label>
+        <asp:Label ID="LblHorizontalAccuracyMeasure" class="styled" runat="server" Text="Accuracy Measure (m):"></asp:Label>
         <asp:TextBox ID="TxtHorizontalAccuracyMeasure" class="readonly" runat="server"
             Text="" ReadOnly="True"></asp:TextBox>
     </div>

@@ -392,7 +392,7 @@ Partial Class eis_emissionunit_details
             " , l.STRDESC AS PollutantType " &
             " , CASE " &
             " WHEN p.NUMPCTCTRLMEASURESREDEFFIC IS NOT NULL " &
-            " THEN concat(CONVERT(decimal(5, 1), p.NUMPCTCTRLMEASURESREDEFFIC), '%') " &
+            " THEN concat(CONVERT(decimal(4, 1), p.NUMPCTCTRLMEASURESREDEFFIC), '%') " &
             " ELSE NULL " &
             " END AS MeasureEfficiency " &
             " , CONVERT(char, p.LASTEISSUBMITDATE, 101) AS LASTEISSUBMITDATE " &
@@ -410,6 +410,7 @@ Partial Class eis_emissionunit_details
             "LEFT JOIN dbo.EIS_UNITCONTROLAPPROACH AS c " &
             " ON c.FACILITYSITEID = p.FACILITYSITEID " &
             " AND c.EMISSIONSUNITID = p.EMISSIONSUNITID " &
+            " AND c.ACTIVE = '1' " &
             "WHERE p.FACILITYSITEID = @fsid " &
             " AND p.EMISSIONSUNITID = @euid " &
             " AND p.ACTIVE = '1' " &
@@ -434,6 +435,7 @@ Partial Class eis_emissionunit_details
             " AND p.FacilitySiteID = a.FacilitySiteID  " &
             " AND p.EmissionsUnitID = a.EmissionsUnitID  " &
             " AND p.ProcessID = a.ProcessID " &
+            " AND a.ACTIVE = '1' " &
             " WHERE p.Active = '1' AND p.FacilitySiteID = @fsid " &
             " AND p.EmissionsUnitID = @euid " &
             " ORDER BY p.EmissionsUnitID"

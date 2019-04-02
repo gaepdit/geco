@@ -158,6 +158,15 @@ Partial Public Class EIS_sccfinder
     Protected WithEvents btnLookUp As Global.System.Web.UI.WebControls.Button
     
     '''<summary>
+    '''dSccDetails control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents dSccDetails As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+    
+    '''<summary>
     '''lblSCC control.
     '''</summary>
     '''<remarks>
@@ -174,4 +183,94 @@ Partial Public Class EIS_sccfinder
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnUseSCC As Global.System.Web.UI.WebControls.Button
+    
+    '''<summary>
+    '''tblScc control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents tblScc As Global.System.Web.UI.HtmlControls.HtmlTable
+    
+    '''<summary>
+    '''lCategory control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lCategory As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
+    '''lDesc control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lDesc As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
+    '''lShortName control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lShortName As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
+    '''lSector control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lSector As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
+    '''lUsage control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lUsage As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
+    '''lUpdated control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lUpdated As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
+    '''lTier1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lTier1 As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
+    '''lTier2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lTier2 As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
+    '''lTier3 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lTier3 As Global.System.Web.UI.WebControls.Label
 End Class

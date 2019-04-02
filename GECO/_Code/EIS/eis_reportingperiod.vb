@@ -1,10 +1,9 @@
-﻿Imports System.Data
-Imports System.Data.SqlClient
+﻿Imports System.Data.SqlClient
 Imports EpdIt.DBUtilities
 
 Public Module eis_reportingperiod
 
-    Public Function GetEIType(ByVal eiyear As String) As String
+    Public Function GetEIType(eiyear As String) As String
         Dim query As String = "Select strEIType " &
             " FROM eiThresholdYears " &
             " Where strYear = @eiyear "
@@ -16,7 +15,7 @@ Public Module eis_reportingperiod
 
 #Region " Pre-pop "
 
-    Public Function PrePopulateEI(ByVal FSID As String, ByVal PastEIYear As String, ByVal CurrentEIYear As String) As Boolean
+    Public Function PrePopulateEI(FSID As String, PastEIYear As String, CurrentEIYear As String) As Boolean
         Dim UserID As String = GetCookie(GecoCookie.UserID)
         Dim UserName As String = GetCookie(GecoCookie.UserName)
         Dim UpdateUser As String = UserID & "-" & UserName
@@ -223,7 +222,7 @@ Public Module eis_reportingperiod
 
 #Region " Reset "
 
-    Public Function ResetEI(ByVal fsid As String, ByVal eiyear As String) As Boolean
+    Public Function ResetEI(fsid As String, eiyear As String) As Boolean
         Dim queryList As New List(Of String)
         Dim paramsList As New List(Of SqlParameter())
 
@@ -401,7 +400,7 @@ Public Module eis_reportingperiod
 
 #Region " Delete Routines "
 
-    Public Function DeleteRPProcessAndEmissions(ByVal eiyear As String, ByVal fsid As String, ByVal euid As String, ByVal epid As String) As Boolean
+    Public Function DeleteRPProcessAndEmissions(eiyear As String, fsid As String, euid As String, epid As String) As Boolean
         'This routine removes a process from the reporting period based on the FSID, EUID, PRID and EI Year
         'Used when deleting an emission unit or making an emission unit temporarily or permanently shut down
         Dim queryList As New List(Of String)
@@ -453,7 +452,7 @@ Public Module eis_reportingperiod
         Return DB.RunCommand(queryList, paramsList)
     End Function
 
-    Public Function DeleteRPProcessAndEmissions_EU(ByVal eiyear As String, ByVal fsid As String, ByVal euid As String) As Boolean
+    Public Function DeleteRPProcessAndEmissions_EU(eiyear As String, fsid As String, euid As String) As Boolean
         'This routine removes all processes for an emission unit from the reporting period based on the FSID, EUID and EI Year
         'Used when deleting an emission unit or making an emission unit temporarily or permanently shut down
         Dim queryList As New List(Of String)
@@ -500,7 +499,7 @@ Public Module eis_reportingperiod
         Return DB.RunCommand(queryList, paramsList)
     End Function
 
-    Public Function DeleteRPSCP(ByVal eiyear As String, ByVal fsid As String, ByVal euid As String, ByVal epid As String) As Boolean
+    Public Function DeleteRPSCP(eiyear As String, fsid As String, euid As String, epid As String) As Boolean
         Dim query As String = "delete FROM EIS_ProcessRptPeriodSCP " &
             " where FacilitySiteID = @fsid " &
             " and EmissionsUnitID = @euid " &
@@ -517,7 +516,7 @@ Public Module eis_reportingperiod
         Return DB.RunCommand(query, params)
     End Function
 
-    Public Function DeleteSulfurAsh(ByVal eiyear As String, ByVal fsid As String, ByVal euid As String, ByVal epid As String, ByVal contype As String) As Boolean
+    Public Function DeleteSulfurAsh(eiyear As String, fsid As String, euid As String, epid As String, contype As String) As Boolean
         Dim DeleteType As String = ""
 
         If contype = "SULFUR" Then
@@ -546,7 +545,10 @@ Public Module eis_reportingperiod
 
 #End Region
 
-    Public Function SaveOption(ByVal fsid As String, ByVal opt As String, ByVal uuser As String, ByVal eiyr As String, ByVal ooreason As String) As Boolean
+    Public Sub SaveOption(fsid As String, opt As String, uuser As String, eiyr As String,
+                               Optional ooreason As String = Nothing,
+                               Optional colocated As Boolean? = Nothing,
+                               Optional colocation As String = Nothing)
         Dim eisAccessCode As String
         Dim eisStatusCode As String
 
@@ -567,7 +569,9 @@ Public Module eis_reportingperiod
             New SqlParameter("@ooreason", ooreason),
             New SqlParameter("@uuser", uuser),
             New SqlParameter("@fsid", fsid),
-            New SqlParameter("@eiyr", eiyr)
+            New SqlParameter("@eiyr", eiyr),
+            New SqlParameter("@colocated", colocated),
+            New SqlParameter("@colocation", colocation)
         }
 
         If opt = "1" Then
@@ -590,6 +594,8 @@ Public Module eis_reportingperiod
                     " strConfirmationNumber = Next Value for EIS_SEQ_ConfNum, " &
                     " datInitialFinalize = getdate(), " &
                     " datFinalize = getdate(), " &
+                    " IsColocated = @colocated, " &
+                    " ColocatedWith = @colocation, " &
                     " UpdateUser = @uuser, " &
                     " UpdateDateTime = getdate() " &
                     " where FacilitySiteID = @fsid " &
@@ -604,6 +610,8 @@ Public Module eis_reportingperiod
                     " strOptOutReason = @ooreason, " &
                     " strConfirmationNumber = Next Value for EIS_SEQ_ConfNum, " &
                     " datFinalize = getdate(), " &
+                    " IsColocated = @colocated, " &
+                    " ColocatedWith = @colocation, " &
                     " UpdateUser = @uuser, " &
                     " UpdateDateTime = getdate() " &
                     " where FacilitySiteID = @fsid " &
@@ -615,23 +623,50 @@ Public Module eis_reportingperiod
                 " strOptOut = @opt, " &
                 " eisAccessCode = @eisAccessCode, " &
                 " eisStatusCode = @eisStatusCode, " &
+                " IsColocated = @colocated, " &
+                " ColocatedWith = @colocation, " &
                 " UpdateUser = @uuser, " &
                 " UpdateDateTime = getdate() " &
                 " where FacilitySiteID = @fsid " &
                 " and InventoryYear = @eiyr "
         End If
 
-        Return DB.RunCommand(query, params)
-    End Function
+        DB.RunCommand(query, params)
+
+        If colocated AndAlso Not String.IsNullOrWhiteSpace(colocation) Then
+            'Send email to APB
+            Dim airs As String = New GecoModels.ApbFacilityId(fsid).FormattedString
+            Dim facilityName As String = GetFacilityName(fsid)
+            Dim reason As String = DecodeOptOutReason(ooreason)
+
+            Dim plainBody As String = "The following facility has opted out of the Emissions Inventory for " & eiyr &
+                " and has provided co-location information." & vbNewLine &
+                vbNewLine &
+                "Facility: " & airs & ", " & facilityName & vbNewLine &
+                "Opt-out reason: " & reason & vbNewLine &
+                "Co-location info: " & vbNewLine &
+                colocation & vbNewLine
+
+            Dim htmlBody As String = "<p>The following facility has opted out of the Emissions Inventory for " & eiyr &
+                " and has provided co-location information.</p>" &
+                "<p><b>Facility</b>: " & airs & ", " & facilityName & "<br />" &
+                "<b>Opt-out reason</b>: " & reason & "<br />" &
+                "<b>Co-location info</b>:</p>" &
+                "<blockquote><pre>" & colocation & "</pre></blockquote>"
+
+            SendEmail(GecoContactEmail, "GECO EIS - Facility opt out and co-location", plainBody, htmlBody,
+                      caller:="eis_reportingperiod.SaveOption")
+        End If
+    End Sub
 
 #Region " Get Values "
 
-    Public Function GetEmissionTotal(ByVal fsid As String,
-                                     ByVal euid As String,
-                                     ByVal prid As String,
-                                     ByVal pollcode As String,
-                                     ByVal rptperiodtype As String,
-                                     ByVal eiyr As Integer) As Double
+    Public Function GetEmissionTotal(fsid As String,
+                                      euid As String,
+                                      prid As String,
+                                      pollcode As String,
+                                      rptperiodtype As String,
+                                      eiyr As Integer) As Double
 
         Dim query As String = "select fltTotalEmissions " &
             " from eis_ReportingPeriodEmissions " &

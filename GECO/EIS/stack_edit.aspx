@@ -3,10 +3,6 @@
     Inherits="GECO.eis_stack_edit" Codebehind="stack_edit.aspx.vb" %>
 
 <%@ Register Assembly="Reimers.Google.Map" Namespace="Reimers.Google.Map" TagPrefix="Reimers" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-</asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
-</asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder3" runat="Server">
     <script type="text/javascript">
         function Count(text, maxlength, displayEl) {
@@ -130,19 +126,13 @@
             <div class="fieldwrapper">
                 <asp:Label ID="lblRPExitGasVelocityMeasure" class="styled" runat="server" Text="Exit Gas Velocity (fps):"></asp:Label>
                 <asp:TextBox ID="txtRPExitGasVelocityMeasure" runat="server" class="editable" Text=""
-                    Width="100px" MaxLength="5"></asp:TextBox>
+                    Width="100px" MaxLength="7"></asp:TextBox>
                 <act:FilteredTextBoxExtender ID="filtxtRPExitGasVelocityMeasure" runat="server" Enabled="True"
                     FilterType="Custom, Numbers" TargetControlID="txtRPExitGasVelocityMeasure" ValidChars=".">
                 </act:FilteredTextBoxExtender>
-                <%-- <asp:RequiredFieldValidator ID="reqvRPExitGasVelocityMeasure" ControlToValidate="txtRPExitGasVelocityMeasure"
-                    runat="server" ErrorMessage="The Exit Gas Velocity is required." ValidationGroup="vgStack"
-                    Display="Dynamic">*</asp:RequiredFieldValidator>--%>
-                <asp:RegularExpressionValidator ID="rgxvExitGasVelocity" runat="server" ControlToValidate="txtRPExitGasVelocityMeasure"
-                    ErrorMessage="Exit gas velocity can have at most one decimal place." ValidationExpression="\d*\.?\d?"
-                    ValidationGroup="vgStack">At most one decimal place allowed. </asp:RegularExpressionValidator>
                 <asp:RangeValidator ID="rngvRPExitGasVelocityMeasure" runat="server" ControlToValidate="txtRPExitGasVelocityMeasure"
-                    MinimumValue="0.1" MaximumValue="600" Type="Double" ErrorMessage="The exit gas velocity is outside the expected range of 0.1 to 600 FPS."
-                    ValidationGroup="vgStack">Must be 0.1 to 600. </asp:RangeValidator>
+                    MinimumValue="0.001" MaximumValue="1000" Type="Double" ErrorMessage="The exit gas velocity is outside the allowable range of 0.001 to 1000 FPS."
+                    ValidationGroup="vgStack">Must be 0.001 to 1000. </asp:RangeValidator>
                 <asp:CustomValidator ID="custRPExitGASVelocityMeasure" ValidateEmptyText="true" ControlToValidate="txtRPExitGasVelocityMeasure"
                     runat="server" OnServerValidate="FlowRateRangeAndGasVelocityCheck" ValidationGroup="vgStack"
                     Display="Dynamic"></asp:CustomValidator>
@@ -262,8 +252,8 @@
                             Display="Dynamic">*</asp:RequiredFieldValidator>
                         <asp:RangeValidator ID="rngvLatitudeMeasure" runat="server" ControlToValidate="TxtLatitudeMeasure"
                             ValidationGroup="vgStack" MaximumValue="35.00028" MinimumValue="30.35944" Type="Double"
-                            ErrorMessage="Latitiude must be between 30.35944 and 35.200028 degrees"
-                            Display="Dynamic">Must be between 30.35944 and 35.200028</asp:RangeValidator>
+                            ErrorMessage="Latitiude must be between 30.35944° and 35.200028°"
+                            Display="Dynamic">Must be between 30.35944° and 35.200028°</asp:RangeValidator>
                     </div>
                     <div class="fieldwrapper">
                         <asp:Label ID="LblLongitudeMeasure" class="styled" runat="server" Text="Longitude:"></asp:Label>
@@ -277,8 +267,8 @@
                             Display="Dynamic">*</asp:RequiredFieldValidator>
                         <asp:RangeValidator ID="rngvLongitudeMeasure" runat="server" ControlToValidate="TxtLongitudeMeasure"
                             ValidationGroup="vgStack" MinimumValue="-85.60889" MaximumValue="-80.84417" Type="Double"
-                            ErrorMessage="Longitude must be between -85.60889 and -80.84417 degrees."
-                            Display="Dynamic">Must be between -85.60889 and -80.84417</asp:RangeValidator>
+                            ErrorMessage="Longitude must be between -85.60889° and -80.84417°."
+                            Display="Dynamic">Must be between -85.60889° and -80.84417°</asp:RangeValidator>
                     </div>
                     <div class="fieldwrapper">
                         <asp:Label class="styled" runat="server" Text="Map:"></asp:Label>
@@ -307,7 +297,7 @@
                     InitialValue="--Select Horizontal Collection Method--" Display="Dynamic">*</asp:RequiredFieldValidator>
             </div>
             <div class="fieldwrapper">
-                <asp:Label ID="LblHorizontalAccuracyMeasure" class="styled" runat="server" Text="Accuracy Measure (meters):"></asp:Label>
+                <asp:Label ID="LblHorizontalAccuracyMeasure" class="styled" runat="server" Text="Accuracy Measure (m):"></asp:Label>
                 <asp:TextBox ID="TxtHorizontalAccuracyMeasure" runat="server" class="editable" Text=""
                     Width="100px" ToolTip="The horizontal measure of the relative accuracy of the latitude and longitude coordinates."
                     MaxLength="4"></asp:TextBox>

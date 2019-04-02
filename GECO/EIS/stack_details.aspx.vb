@@ -1,11 +1,10 @@
 ﻿Imports System.Data.SqlClient
-Imports System.Data
 Imports GECO.MapHelper
 
 Partial Class eis_stack_details
     Inherits Page
+
     Public RPStatusCode As String
-    Public conn, conn1, conn2, conn3 As New SqlConnection(oradb)
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
@@ -38,48 +37,28 @@ Partial Class eis_stack_details
     End Sub
 
     Private Sub loadStackTypeDDL()
-        Dim sql As String
-        Dim desc As String
-        Dim code As String
-
-        ddlRPtypeCode.Items.Add("--Select Stack Type--")
+        ddlRPTypeCode.Items.Add("--Select Stack Type--")
         Try
-            sql = "select strdesc, RPTypeCode FROM EISLK_RPTYPECODE " &
+            Dim query As String = "select strdesc, RPTypeCode FROM EISLK_RPTYPECODE " &
                 "where EISLK_RPTYPECODE.active = '1' " &
                 "and EISLK_RPTYPECODE.strdesc <> 'Fugitive' order by strdesc"
-            Dim cmd As New SqlCommand(sql, conn)
 
-            If conn.State = ConnectionState.Open Then
-            Else
-                conn.Open()
-            End If
+            Dim dt As DataTable = DB.GetDataTable(query)
 
-            Dim dr As SqlDataReader = cmd.ExecuteReader
-
-            While dr.Read
-                Dim newListItem As New ListItem()
-                desc = dr.Item("strdesc")
-                code = dr.Item("RPTypeCode")
-                newListItem.Text = desc
-                newListItem.Value = code
-                ddlRPtypeCode.Items.Add(newListItem)
-
-            End While
-
+            For Each dr As DataRow In dt.Rows
+                Dim newListItem As New ListItem With {
+                    .Text = dr.Item("strdesc"),
+                    .Value = dr.Item("RPTypeCode")
+                }
+                ddlRPTypeCode.Items.Add(newListItem)
+            Next
         Catch ex As Exception
             ErrorReport(ex)
-        Finally
-            If conn.State = ConnectionState.Open Then
-                conn.Close()
-            End If
         End Try
     End Sub
 
     Private Sub LoadStackDetails(ByVal fsid As String, ByVal Stkid As String)
 
-        Dim sql As String = ""
-        Dim sql2 As String = ""
-        Dim sql3 As String = ""
         Dim FacilitySiteID As String = GetCookie(Cookie.AirsNumber)
         Dim HCCcode As String
         Dim HCCdesc As String
@@ -101,205 +80,180 @@ Partial Class eis_stack_details
         Dim RPStatusCodeyear As String = ""
 
         Try
-            sql = "select ReleasePointID, " &
-                        "strRPDescription, " &
-                        "strRPTypeCode , " &
-                        "strRPStatusCode, " &
-                        "numRPStatusCodeYear, " &
-                        "numRPStackHeightMeasure , " &
-                        "numRPStackDiameterMeasure, " &
-                        "numRPExitGasVelocityMeasure, " &
-                        "numRPExitGasFlowRateMeasure, " &
-                        "numRPExitGasTempMeasure, " &
-                        "numRPFencelineDistMeasure, " &
-                        "convert(char, UpdateDateTime, 20) As UpdateDateTime,  " &
-                        "convert(char, LastEISSubmitDate, 101) As LastEISSubmitDate, " &
-                        "UpdateUser, " &
-                        "strRPComment " &
-                        "FROM EIS_ReleasePoint " &
-                        "where EIS_ReleasePoint.FACILITYSITEID = '" & FacilitySiteID & "' and " &
-                        "RELEASEPOINTID = '" & Stkid & "'"
-            Dim cmd As New SqlCommand(sql, conn)
+            Dim query As String = "select ReleasePointID, " &
+                "strRPDescription, " &
+                "strRPTypeCode , " &
+                "strRPStatusCode, " &
+                "numRPStatusCodeYear, " &
+                "numRPStackHeightMeasure , " &
+                "numRPStackDiameterMeasure, " &
+                "numRPExitGasVelocityMeasure, " &
+                "numRPExitGasFlowRateMeasure, " &
+                "numRPExitGasTempMeasure, " &
+                "numRPFencelineDistMeasure, " &
+                "convert(char, UpdateDateTime, 20) As UpdateDateTime,  " &
+                "convert(char, LastEISSubmitDate, 101) As LastEISSubmitDate, " &
+                "UpdateUser, " &
+                "strRPComment " &
+                "FROM EIS_ReleasePoint " &
+                "where EIS_ReleasePoint.FACILITYSITEID = @FacilitySiteID and " &
+                "RELEASEPOINTID = @Stkid "
 
-            If conn.State = ConnectionState.Open Then
-            Else
-                conn.Open()
-            End If
+            Dim params As SqlParameter() = {
+                New SqlParameter("@FacilitySiteID", FacilitySiteID),
+                New SqlParameter("@Stkid", Stkid)
+            }
 
-            Dim dr As SqlDataReader = cmd.ExecuteReader
+            Dim dr As DataRow = DB.GetDataRow(query, params)
 
-            dr.Read()
+            If dr IsNot Nothing Then
 
-            'Facility Name and Location
-            If IsDBNull(dr("ReleasePointID")) Then
-                txtReleasePointID.Text = ""
-            Else
-                txtReleasePointID.Text = dr.Item("ReleasePointID")
-            End If
+                'Facility Name and Location
+                If IsDBNull(dr("ReleasePointID")) Then
+                    txtReleasePointID.Text = ""
+                Else
+                    txtReleasePointID.Text = dr.Item("ReleasePointID")
+                End If
 
-            If IsDBNull(dr("strRPDescription")) Then
-                txtRPDescription.Text = ""
-            Else
-                txtRPDescription.Text = dr.Item("strRPDescription")
-            End If
+                If IsDBNull(dr("strRPDescription")) Then
+                    txtRPDescription.Text = ""
+                Else
+                    txtRPDescription.Text = dr.Item("strRPDescription")
+                End If
 
-            If IsDBNull(dr("strRPTypeCode")) Then
-                txtRPTypeCode.Text = ""
-                RPTypeCode = ""
-            Else
-                RPTypeCode = dr.Item("strRPTypeCode")
-                RPTypeCodedesc = GetStackTypeCodeDesc(RPTypeCode)
-                txtRPTypeCode.Text = RPTypeCodedesc
-            End If
+                If IsDBNull(dr("strRPTypeCode")) Then
+                    txtRPTypeCode.Text = ""
+                    RPTypeCode = ""
+                Else
+                    RPTypeCode = dr.Item("strRPTypeCode")
+                    RPTypeCodedesc = GetStackTypeCodeDesc(RPTypeCode)
+                    txtRPTypeCode.Text = RPTypeCodedesc
+                End If
 
-            If IsDBNull(dr("strRPStatusCode")) Then
-                txtRPStatusCode.Text = ""
-                RPStatusCode = ""
-            Else
-                RPStatusCode = dr.Item("strRPStatusCode")
-                RPStatusCodeDesc = GetStackStatusCodeDesc(RPStatusCode)
-            End If
+                If IsDBNull(dr("strRPStatusCode")) Then
+                    txtRPStatusCode.Text = ""
+                    RPStatusCode = ""
+                Else
+                    RPStatusCode = dr.Item("strRPStatusCode")
+                    RPStatusCodeDesc = GetStackStatusCodeDesc(RPStatusCode)
+                End If
 
-            If IsDBNull(dr("NumRPStatusCodeYear")) Then
-                RPStatusCodeyear = ""
-            Else
-                RPStatusCodeyear = dr.Item("NumRPStatusCodeYear")
-            End If
-            txtRPStatusCode.Text = RPStatusCodeDesc & " as reported in " & RPStatusCodeyear
+                If IsDBNull(dr("NumRPStatusCodeYear")) Then
+                    RPStatusCodeyear = ""
+                Else
+                    RPStatusCodeyear = dr.Item("NumRPStatusCodeYear")
+                End If
+                txtRPStatusCode.Text = RPStatusCodeDesc & " as reported in " & RPStatusCodeyear
 
-            If IsDBNull(dr("numRPExitGasVelocityMeasure")) Then
-                txtRPExitGasVelocityMeasure.Text = ""
-            Else
-                RPExitGasVelocityMeasure = dr.Item("numRPExitGasVelocityMeasure")
-                If RPExitGasVelocityMeasure = -1 Then
+                If IsDBNull(dr("numRPExitGasVelocityMeasure")) Then
                     txtRPExitGasVelocityMeasure.Text = ""
                 Else
-                    txtRPExitGasVelocityMeasure.Text = FormatNumber(RPExitGasVelocityMeasure, 1)
+                    RPExitGasVelocityMeasure = dr.Item("numRPExitGasVelocityMeasure")
+                    If RPExitGasVelocityMeasure = -1 Then
+                        txtRPExitGasVelocityMeasure.Text = ""
+                    Else
+                        txtRPExitGasVelocityMeasure.Text = FormatNumber(RPExitGasVelocityMeasure, 1)
+                    End If
                 End If
-            End If
 
-            If IsDBNull(dr("numRPExitGasFlowRateMeasure")) Then
-                txtRPExitGasFlowRateMeasure.Text = ""
-            Else
-                RPExitGasFlowRateMeasure = dr.Item("numRPExitGasFlowRateMeasure")
-                If RPExitGasFlowRateMeasure = -1 Then
+                If IsDBNull(dr("numRPExitGasFlowRateMeasure")) Then
                     txtRPExitGasFlowRateMeasure.Text = ""
                 Else
-                    txtRPExitGasFlowRateMeasure.Text = FormatNumber(RPExitGasFlowRateMeasure, 1)
+                    RPExitGasFlowRateMeasure = dr.Item("numRPExitGasFlowRateMeasure")
+                    If RPExitGasFlowRateMeasure = -1 Then
+                        txtRPExitGasFlowRateMeasure.Text = ""
+                    Else
+                        txtRPExitGasFlowRateMeasure.Text = FormatNumber(RPExitGasFlowRateMeasure, 1)
+                    End If
                 End If
-            End If
 
-            If IsDBNull(dr("NUMRPEXITGASTEMPMEASURE")) Then
-                txtRPExitGasTemperatureMeasure.Text = ""
-            Else
-                RPExitGasTemperatureMeasure = dr.Item("NUMRPEXITGASTEMPMEASURE")
-                If RPExitGasTemperatureMeasure = -1 Then
+                If IsDBNull(dr("NUMRPEXITGASTEMPMEASURE")) Then
                     txtRPExitGasTemperatureMeasure.Text = ""
                 Else
-                    txtRPExitGasTemperatureMeasure.Text = FormatNumber(RPExitGasTemperatureMeasure, 0)
+                    RPExitGasTemperatureMeasure = dr.Item("NUMRPEXITGASTEMPMEASURE")
+                    If RPExitGasTemperatureMeasure = -1 Then
+                        txtRPExitGasTemperatureMeasure.Text = ""
+                    Else
+                        txtRPExitGasTemperatureMeasure.Text = FormatNumber(RPExitGasTemperatureMeasure, 0)
+                    End If
                 End If
-            End If
 
-            If IsDBNull(dr("NUMRPFENCELINEDISTMEASURE")) Then
-                txtRPFenceLineDistanceMeasure.Text = ""
-            Else
-                RPFenceLineDistanceMeasure = dr.Item("NUMRPFENCELINEDISTMEASURE")
-                If RPFenceLineDistanceMeasure = -1 Then
+                If IsDBNull(dr("NUMRPFENCELINEDISTMEASURE")) Then
                     txtRPFenceLineDistanceMeasure.Text = ""
                 Else
-                    txtRPFenceLineDistanceMeasure.Text = FormatNumber(RPFenceLineDistanceMeasure, 0)
+                    RPFenceLineDistanceMeasure = dr.Item("NUMRPFENCELINEDISTMEASURE")
+                    If RPFenceLineDistanceMeasure = -1 Then
+                        txtRPFenceLineDistanceMeasure.Text = ""
+                    Else
+                        txtRPFenceLineDistanceMeasure.Text = FormatNumber(RPFenceLineDistanceMeasure, 0)
+                    End If
                 End If
-            End If
-            If IsDBNull(dr("NUMRPSTACKHEIGHTMEASURE")) Then
-                txtRPStackHeightMeasure.Text = ""
-            Else
-                RPStackHeightMeasure = dr.Item("NUMRPSTACKHEIGHTMEASURE")
-                If RPStackHeightMeasure = -1 Then
+                If IsDBNull(dr("NUMRPSTACKHEIGHTMEASURE")) Then
                     txtRPStackHeightMeasure.Text = ""
                 Else
-                    txtRPStackHeightMeasure.Text = FormatNumber(RPStackHeightMeasure, 1)
+                    RPStackHeightMeasure = dr.Item("NUMRPSTACKHEIGHTMEASURE")
+                    If RPStackHeightMeasure = -1 Then
+                        txtRPStackHeightMeasure.Text = ""
+                    Else
+                        txtRPStackHeightMeasure.Text = FormatNumber(RPStackHeightMeasure, 1)
+                    End If
                 End If
-            End If
 
-            If IsDBNull(dr("NUMRPSTACKDIAMETERMEASURE")) Then
-                txtRPStackDiameterMeasure.Text = ""
-            Else
-                RPStackDiameterMeasure = dr.Item("NUMRPSTACKDIAMETERMEASURE")
-                If RPStackDiameterMeasure = -1 Then
+                If IsDBNull(dr("NUMRPSTACKDIAMETERMEASURE")) Then
                     txtRPStackDiameterMeasure.Text = ""
                 Else
-                    txtRPStackDiameterMeasure.Text = FormatNumber(RPStackDiameterMeasure, 1)
+                    RPStackDiameterMeasure = dr.Item("NUMRPSTACKDIAMETERMEASURE")
+                    If RPStackDiameterMeasure = -1 Then
+                        txtRPStackDiameterMeasure.Text = ""
+                    Else
+                        txtRPStackDiameterMeasure.Text = FormatNumber(RPStackDiameterMeasure, 1)
+                    End If
                 End If
-            End If
 
-            If IsDBNull(dr("strRPComment")) Then
-                txtRPComment.Text = ""
-                txtRPComment.Visible = False
-            Else
-                txtRPComment.Text = dr.Item("strRPComment")
-            End If
-
-            If IsDBNull(dr("LastEISSubmitDate")) Then
-                txtLastEISSubmit.Text = "Never submitted"
-            Else
-                txtLastEISSubmit.Text = dr.Item("LastEISSubmitDate")
-            End If
-            If IsDBNull(dr("UpdateUser")) Then
-                UpdateUser = ""
-            Else
-                UpdateUser = dr.Item("UpdateUser")
-                UpdateUser = Mid(UpdateUser, InStr(UpdateUser, "-") + 1)
-            End If
-            If IsDBNull(dr("UpdateDateTime")) Then
-                UpdateDateTime = ""
-            Else
-                UpdateDateTime = dr.Item("UpdateDateTime")
-            End If
-            txtLastUpdate.Text = UpdateDateTime & " by " & UpdateUser
-            dr.Close()
-
-            'Check if RP GeoCoord data exists before loading data
-            sql2 = "select numLatitudeMeasure " &
-                        "FROM EIS_RPGeoCoordinates where " &
-                        "EIS_RPGeoCoordinates.FACILITYSITEID = '" & FacilitySiteID & "' and " &
-                        "RELEASEPOINTID = '" & Stkid & "'"
-
-            Dim cmd2 As New SqlCommand(sql2, conn2)
-
-            If conn2.State = ConnectionState.Open Then
-            Else
-                conn2.Open()
-            End If
-
-            Dim dr2 As SqlDataReader = cmd2.ExecuteReader
-            Dim recExist As Boolean = dr2.Read
-            dr2.Close()
-
-            If recExist Then
-                'Load Stack GC Information
-                sql3 = "select numLatitudeMeasure, " &
-                            "numLongitudeMeasure, " &
-                            "STRHORCOLLMETCode, " &
-                            "INTHORACCURACYMEASURE , " &
-                            "STRHORREFDATUMCode, " &
-                            "convert(char, UpdateDateTime, 20) As UpdateDateTime,  " &
-                            "convert(char, LastEISSubmitDate, 101) As LastEISSubmitDate, " &
-                            "UpdateUser, " &
-                            "strGeographicComment " &
-                            "FROM EIS_RPGeoCoordinates " &
-                            "where EIS_RPGeoCoordinates.FACILITYSITEID = '" & FacilitySiteID & "' " &
-                            "and RELEASEPOINTID = '" & Stkid & "'"
-
-                Dim cmd3 As New SqlCommand(sql3, conn3)
-
-                If conn3.State = ConnectionState.Open Then
+                If IsDBNull(dr("strRPComment")) Then
+                    txtRPComment.Text = ""
+                    txtRPComment.Visible = False
                 Else
-                    conn3.Open()
+                    txtRPComment.Text = dr.Item("strRPComment")
                 End If
 
-                Dim dr3 As SqlDataReader = cmd3.ExecuteReader
+                If IsDBNull(dr("LastEISSubmitDate")) Then
+                    txtLastEISSubmit.Text = "Never submitted"
+                Else
+                    txtLastEISSubmit.Text = dr.Item("LastEISSubmitDate")
+                End If
+                If IsDBNull(dr("UpdateUser")) Then
+                    UpdateUser = ""
+                Else
+                    UpdateUser = dr.Item("UpdateUser")
+                    UpdateUser = Mid(UpdateUser, InStr(UpdateUser, "-") + 1)
+                End If
+                If IsDBNull(dr("UpdateDateTime")) Then
+                    UpdateDateTime = ""
+                Else
+                    UpdateDateTime = dr.Item("UpdateDateTime")
+                End If
+                txtLastUpdate.Text = UpdateDateTime & " by " & UpdateUser
 
-                dr3.Read()
+            End If
+
+            'Load Stack GC Information
+            query = "select numLatitudeMeasure, " &
+                "numLongitudeMeasure, " &
+                "STRHORCOLLMETCode, " &
+                "INTHORACCURACYMEASURE , " &
+                "STRHORREFDATUMCode, " &
+                "convert(char, UpdateDateTime, 20) As UpdateDateTime,  " &
+                "convert(char, LastEISSubmitDate, 101) As LastEISSubmitDate, " &
+                "UpdateUser, " &
+                "strGeographicComment " &
+                "FROM EIS_RPGeoCoordinates " &
+                "where EIS_RPGeoCoordinates.FACILITYSITEID = @FacilitySiteID " &
+                "and RELEASEPOINTID = @Stkid "
+
+            Dim dr3 As DataRow = DB.GetDataRow(query, params)
+
+            If dr3 IsNot Nothing Then
 
                 If IsDBNull(dr3("numLatitudeMeasure")) Then
                     TxtLatitudeMeasure.Text = ""
@@ -372,38 +326,21 @@ Partial Class eis_stack_details
                     UpdateDateTime = dr3.Item("UpdateDateTime")
                 End If
                 txtLastUpdate_SGC.Text = UpdateDateTime & " by " & UpdateUser
-                dr3.Close()
-
-                If CheckRPGCData(FacilitySiteID, Stkid) Then
-                    lblNoRPGeoCoordInfo.Text = "Stack geographic coordinate info need to be provided. Click the Edit button above."
-                End If
 
             End If
 
-            If conn.State = ConnectionState.Open Then
-                conn.Close()
-            End If
-            If conn2.State = ConnectionState.Open Then
-                conn2.Close()
-            End If
-            If conn3.State = ConnectionState.Open Then
-                conn3.Close()
+            If CheckRPGCData(FacilitySiteID, Stkid) Then
+                lblNoRPGeoCoordInfo.Text = "Stack geographic coordinate info need to be provided. Click the Edit button above."
             End If
 
         Catch ex As Exception
             ErrorReport(ex)
-        Finally
-            If conn.State = ConnectionState.Open Then
-                conn.Close()
-            End If
         End Try
 
     End Sub
 
     Sub LoadRPApportionment(ByVal fsid As String, ByVal Stkid As String)
-        Dim FacilitySiteID As String = GetCookie(Cookie.AirsNumber)
-        SqlDataSourceRPApp.ConnectionString = oradb
-        SqlDataSourceRPApp.ProviderName = setProviderName()
+        SqlDataSourceRPApp.ConnectionString = DBConnectionString
 
         SqlDataSourceRPApp.SelectCommand = "select eis_process.emissionsunitid, " &
                 "eis_process.processid, " &
@@ -414,9 +351,13 @@ Partial Class eis_stack_details
                 "where eis_process.facilitysiteid = eis_rpapportionment.facilitysiteid " &
                 "and eis_process.emissionsunitid = eis_rpapportionment.emissionsunitid " &
                 "and eis_process.processid = eis_rpapportionment.processid " &
-                "and eis_process.facilitysiteid='" & FacilitySiteID & "' " &
-                "and eis_rpapportionment.releasepointid='" & Stkid & "' " &
+                "and eis_process.facilitysiteid= @FacilitySiteID " &
+                "and eis_rpapportionment.releasepointid= @Stkid " &
+                " and EIS_RPAPPORTIONMENT.ACTIVE = '1' " &
                 "and eis_process.Active = '1'"
+
+        SqlDataSourceRPApp.SelectParameters.Add("FacilitySiteID", fsid)
+        SqlDataSourceRPApp.SelectParameters.Add("Stkid", Stkid)
 
         gvwRPApportionment.DataBind()
 
@@ -512,8 +453,6 @@ Partial Class eis_stack_details
 
     Private Sub DuplicateStack(ByVal fsid As String, ByVal stkid As String)
 
-        Dim sqldup As String = ""
-        Dim sqlsource As String = ""
         Dim SourceStackID As String = txtReleasePointID.Text.ToUpper
         Dim DupStackID As String = stkid.ToUpper
         Dim RPDescription As String = txtDupStackDescription.Text
@@ -538,59 +477,57 @@ Partial Class eis_stack_details
 
         Try
             'Get data for source unit
-            sqlsource = "select * FROM eis_ReleasePoint " &
-                        "where " &
-                        "FacilitySiteID = '" & fsid & "' and " &
-                        "ReleasePointID = '" & SourceStackID.ToUpper & "'"
+            Dim query As String = "select * FROM eis_ReleasePoint " &
+                "where " &
+                "FacilitySiteID = @fsid and " &
+                "ReleasePointID = @SourceStackID "
 
-            Dim cmd1 As New SqlCommand(sqlsource, conn)
+            Dim params As SqlParameter() = {
+                New SqlParameter("@fsid", fsid),
+                New SqlParameter("@SourceStackID", SourceStackID)
+            }
 
-            If conn.State = ConnectionState.Open Then
-            Else
-                conn.Open()
-            End If
+            Dim dr1 As DataRow = DB.GetDataRow(query, params)
 
-            Dim dr1 As SqlDataReader = cmd1.ExecuteReader
+            If dr1 IsNot Nothing Then
 
-            dr1.Read()
+                If IsDBNull(dr1("strRPTypeCode")) Then
+                    RPTypeCode = ""
+                Else
+                    RPTypeCode = dr1.Item("strRPTypeCode")
+                End If
+                If IsDBNull(dr1("numRPStackHeightMeasure")) Then
+                    RPStackHeightMeasure = ""
+                Else
+                    RPStackHeightMeasure = dr1.Item("numRPStackHeightMeasure")
+                End If
+                If IsDBNull(dr1("numRPStackDiameterMeasure")) Then
+                    RPStackDiameterMeasure = ""
+                Else
+                    RPStackDiameterMeasure = dr1.Item("numRPStackDiameterMeasure")
+                End If
+                If IsDBNull(dr1("numRPExitGasVelocityMeasure")) Then
+                    RPExitGasVelocityMeasure = ""
+                Else
+                    RPExitGasVelocityMeasure = dr1.Item("numRPExitGasVelocityMeasure")
+                End If
+                If IsDBNull(dr1("numRPExitGasFlowRateMeasure")) Then
+                    RPExitGasFlowRateMeasure = ""
+                Else
+                    RPExitGasFlowRateMeasure = dr1.Item("numRPExitGasFlowRateMeasure")
+                End If
+                If IsDBNull(dr1("numRPExitGasTempMeasure")) Then
+                    RPExitGasTempMeasure = ""
+                Else
+                    RPExitGasTempMeasure = dr1.Item("numRPExitGasTempMeasure")
+                End If
+                If IsDBNull(dr1("numRPFenceLineDistMeasure")) Then
+                    RPFenceLineDistMeasure = ""
+                Else
+                    RPFenceLineDistMeasure = dr1.Item("numRPFenceLineDistMeasure")
+                End If
 
-            If IsDBNull(dr1("strRPTypeCode")) Then
-                RPTypeCode = ""
-            Else
-                RPTypeCode = dr1.Item("strRPTypeCode")
-            End If
-            If IsDBNull(dr1("numRPStackHeightMeasure")) Then
-                RPStackHeightMeasure = ""
-            Else
-                RPStackHeightMeasure = dr1.Item("numRPStackHeightMeasure")
-            End If
-            If IsDBNull(dr1("numRPStackDiameterMeasure")) Then
-                RPStackDiameterMeasure = ""
-            Else
-                RPStackDiameterMeasure = dr1.Item("numRPStackDiameterMeasure")
-            End If
-            If IsDBNull(dr1("numRPExitGasVelocityMeasure")) Then
-                RPExitGasVelocityMeasure = ""
-            Else
-                RPExitGasVelocityMeasure = dr1.Item("numRPExitGasVelocityMeasure")
-            End If
-            If IsDBNull(dr1("numRPExitGasFlowRateMeasure")) Then
-                RPExitGasFlowRateMeasure = ""
-            Else
-                RPExitGasFlowRateMeasure = dr1.Item("numRPExitGasFlowRateMeasure")
-            End If
-            If IsDBNull(dr1("numRPExitGasTempMeasure")) Then
-                RPExitGasTempMeasure = ""
-            Else
-                RPExitGasTempMeasure = dr1.Item("numRPExitGasTempMeasure")
-            End If
-            If IsDBNull(dr1("numRPFenceLineDistMeasure")) Then
-                RPFenceLineDistMeasure = ""
-            Else
-                RPFenceLineDistMeasure = dr1.Item("numRPFenceLineDistMeasure")
-            End If
-
-            sqldup = "Insert into eis_ReleasePoint (" &
+                Dim query2 As String = "Insert into eis_ReleasePoint (" &
                         "FacilitySiteID, " &
                         "ReleasePointID, " &
                         "strRPTypeCode, " &
@@ -608,42 +545,45 @@ Partial Class eis_stack_details
                         "UpdateDateTime, " &
                         "CreateDateTime) " &
                 "Values (" &
-                        "'" & fsid & "', " &
-                        "'" & DupStackID & "', " &
-                        "'" & RPTypeCode & "', " &
-                        "'" & Replace(RPDescription, "'", "''") & "', " &
-                        DbStringDecimalOrNull(RPStackHeightMeasure) & ", " &
-                        DbStringDecimalOrNull(RPStackDiameterMeasure) & ", " &
-                        DbStringDecimalOrNull(RPExitGasVelocityMeasure) & ", " &
-                        DbStringDecimalOrNull(RPExitGasFlowRateMeasure) & ", " &
-                        DbStringIntOrNull(RPExitGasTempMeasure) & ", " &
-                        DbStringIntOrNull(RPFenceLineDistMeasure) & ", " &
-                        "'" & RPStatusCode & "', " &
-                        "'" & RPStatusCodeYear & "', " &
-                        "'" & Active & "', " &
-                        "'" & Replace(UpdateUser, "'", "''") & "', " &
+                        "@fsid, " &
+                        "@DupStackID, " &
+                        "@RPTypeCode, " &
+                        "@RPDescription, " &
+                        "@RPStackHeightMeasure, " &
+                        "@RPStackDiameterMeasure, " &
+                        "@RPExitGasVelocityMeasure, " &
+                        "@RPExitGasFlowRateMeasure, " &
+                        "@RPExitGasTempMeasure, " &
+                        "@RPFenceLineDistMeasure, " &
+                        "@RPStatusCode, " &
+                        "@RPStatusCodeYear, " &
+                        "@Active, " &
+                        "@UpdateUser, " &
                         "getdate(), " &
                         "getdate()) "
 
-            Dim cmd2 As New SqlCommand(sqldup, conn)
+                Dim params2 As SqlParameter() = {
+                    New SqlParameter("@fsid", fsid),
+                    New SqlParameter("@DupStackID", DupStackID),
+                    New SqlParameter("@RPTypeCode", RPTypeCode),
+                    New SqlParameter("@RPDescription", RPDescription),
+                    New SqlParameter("@RPStackHeightMeasure", If(Not String.IsNullOrEmpty(RPStackHeightMeasure), RPStackHeightMeasure, Nothing)),
+                    New SqlParameter("@RPStackDiameterMeasure", If(Not String.IsNullOrEmpty(RPStackDiameterMeasure), RPStackDiameterMeasure, Nothing)),
+                    New SqlParameter("@RPExitGasVelocityMeasure", If(Not String.IsNullOrEmpty(RPExitGasVelocityMeasure), RPExitGasVelocityMeasure, Nothing)),
+                    New SqlParameter("@RPExitGasFlowRateMeasure", If(Not String.IsNullOrEmpty(RPExitGasFlowRateMeasure), RPExitGasFlowRateMeasure, Nothing)),
+                    New SqlParameter("@RPExitGasTempMeasure", If(Not String.IsNullOrEmpty(RPExitGasTempMeasure), RPExitGasTempMeasure, Nothing)),
+                    New SqlParameter("@RPFenceLineDistMeasure", If(Not String.IsNullOrEmpty(RPFenceLineDistMeasure), RPFenceLineDistMeasure, Nothing)),
+                    New SqlParameter("@RPStatusCode", RPStatusCode),
+                    New SqlParameter("@RPStatusCodeYear", RPStatusCodeYear),
+                    New SqlParameter("@Active", Active),
+                    New SqlParameter("@UpdateUser", UpdateUser)
+                }
 
-            If conn.State = ConnectionState.Open Then
-            Else
-                conn.Open()
-            End If
-
-            Dim dr2 As SqlDataReader = cmd2.ExecuteReader
-
-            If conn.State = ConnectionState.Open Then
-                conn.Close()
+                DB.RunCommand(query2, params2)
             End If
 
         Catch ex As Exception
             ErrorReport(ex)
-        Finally
-            If conn.State = ConnectionState.Open Then
-                conn.Close()
-            End If
         End Try
 
     End Sub

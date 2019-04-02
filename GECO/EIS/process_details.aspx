@@ -1,23 +1,6 @@
 <%@ Page Title="Process Details - GECO Facility Inventory" Language="VB" MasterPageFile="eismaster.master"
     AutoEventWireup="false" Inherits="GECO.eis_process_details" Codebehind="process_details.aspx.vb" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-    <style type="text/css">
-        .style2 {
-            width: 211px;
-        }
-
-        .style4 {
-            width: 233px;
-        }
-
-        .style5 {
-            width: 283px;
-        }
-    </style>
-</asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
-</asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder3" runat="Server">
     <act:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server"></act:ToolkitScriptManager>
     <div class="pageheader">
@@ -67,11 +50,10 @@
         <asp:TextBox ID="txtSourceClassCode" runat="server" Text="" class="readonly" ReadOnly="True"
             Width="100px"></asp:TextBox>
     </div>
-    <%--The following field removed. No longer submitting as misinterpreted its meaning --%>    <%--<div class="fieldwrapper">
-        <asp:Label ID="lblLastEmissionsYear" class="styled" runat="server" Text="Last Inventory Year:"></asp:Label>
-        <asp:TextBox ID="txtLastEmissionsYear" runat="server" Text="" class="readonly"
-            ReadOnly="True" Width="100px"></asp:TextBox>
-    </div>--%>
+    <div class="fieldwrapper">
+        <asp:Label ID="lblSccDescLabel" class="styled" runat="server" Text="SCC Description:"></asp:Label>
+        <asp:Label ID="lblSccDesc" runat="server" />
+    </div>
     <div class="fieldwrapper">
         <asp:Label ID="lblProcessComment" class="styled" runat="server" Text="Process Comment:"></asp:Label>
         <asp:TextBox ID="txtProcessComment" runat="server" Text="" class="readonly" TextMode="MultiLine" Rows="4" 
@@ -470,9 +452,9 @@
                     <asp:RequiredFieldValidator ID="rqvProcessCACaptureEffic" runat="server" ControlToValidate="txtProcessCACaptureEffic"
                         ErrorMessage="The Process Control Approach Capture Efficiency is required." ValidationGroup="vgAddProcessControlApproach">*</asp:RequiredFieldValidator>
                     <asp:RangeValidator ID="rngvProcessCACaptureEffic" runat="server" ValidationGroup="vgAddProcessControlApproach"
-                        ErrorMessage="The Process Control Approach Capture Efficiency must be between 1 and 100."
-                        ControlToValidate="txtProcessCACaptureEffic" MaximumValue="100" MinimumValue="1"
-                        Type="Double">Must be between 1 and 100</asp:RangeValidator>
+                        ErrorMessage="The Process Control Approach Capture Efficiency must be between 5 and 100."
+                        ControlToValidate="txtProcessCACaptureEffic" MaximumValue="100" MinimumValue="5"
+                        Type="Double">Must be between 5 and 100</asp:RangeValidator>
                 </td>
             </tr>
             <tr>
