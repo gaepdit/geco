@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RuleSet Name="SQL Security Ruleset" Description="These rules focus on finding security vulnerabilities in SQL queries." ToolsVersion="12.0">
+  <Rules AnalyzerId="Microsoft.Analyzers.ManagedCodeAnalysis" RuleNamespace="Microsoft.Rules.Managed">
+    <Rule Id="CA2100" Action="Warning" />
+  </Rules>
+</RuleSet>

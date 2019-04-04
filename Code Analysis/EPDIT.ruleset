@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RuleSet Name="EPDIT" ToolsVersion="12.0">
+  <Include Path="dead code.ruleset" Action="Default" />
+  <Include Path="other rules.ruleset" Action="Default" />
+</RuleSet>
