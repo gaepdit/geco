@@ -490,8 +490,8 @@ Partial Class eis_stack_edit
             cusvRPExitGasFlowRateMeasure.ErrorMessage = "Stack flow rate is outside of expected range based on stack diameter and velocity: " & StackFlowRateMinMax.MinValue & " acfs to " & StackFlowRateMinMax.MaxValue & " acfs."
             cusvRPExitGasFlowRateMeasure.Text = "Stack flow rate is outside of expected range: " & StackFlowRateMinMax.MinValue & " to " & StackFlowRateMinMax.MaxValue & " acfs."
             sumvStack.ShowSummary = True
-        ElseIf StackFlowRate <= 0 Or StackFlowRate > 200000 Then
-            cusvRPExitGasFlowRateMeasure.ErrorMessage = "Stack flow rate is outside of the allowed range of 0.1 to 200,000 acfs."
+        ElseIf StackFlowRate < 0.00000001 Or StackFlowRate > 200000 Then
+            cusvRPExitGasFlowRateMeasure.ErrorMessage = "Stack flow rate is outside of the allowed range of 0.00000001 to 200,000 acfs."
             cusvRPExitGasFlowRateMeasure.Text = "Stack flow rate is outside of allowed range of 0.1 to 200,000 acfs."
             sumvStack.ShowSummary = True
         ElseIf CalculatedExitGasVelocity < 0.001 Or CalculatedExitGasVelocity > 1000 Then

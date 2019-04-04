@@ -144,9 +144,10 @@
                 <act:FilteredTextBoxExtender ID="filtxtRPExitGasFlowRateMeasure" runat="server" Enabled="True"
                     FilterType="Custom, Numbers" TargetControlID="txtRPExitGasFlowRateMeasure" ValidChars=".">
                 </act:FilteredTextBoxExtender>
-                <asp:RegularExpressionValidator ID="rgxvExitGasFlowRate" runat="server" ControlToValidate="txtRPExitGasFlowRateMeasure"
-                    ErrorMessage="Exit gas flow rate can have at most one decimal place. " ValidationExpression="\d*\.?\d?"
-                    ValidationGroup="vgStack">At most one decimal place allowed. </asp:RegularExpressionValidator>
+                <asp:RangeValidator ID="rngvRPExitGasFlowRateMeasure" runat="server" ControlToValidate="txtRPExitGasFlowRateMeasure"
+                    MinimumValue="0.00000001" MaximumValue="200000" Type="Double" 
+                    ErrorMessage="The exit gas flow rate is outside the allowable range of 0.00000001 to 200,000 ACFS."
+                    ValidationGroup="vgStack">Must be 0.00000001 to 200,000. </asp:RangeValidator>
                 <asp:CustomValidator ID="cusvRPExitGasFlowRateMeasure" ControlToValidate="txtRPExitGasFlowRateMeasure"
                     runat="server" OnServerValidate="FlowRateRangeCheck" ValidationGroup="vgStack"
                     Display="Dynamic"></asp:CustomValidator>

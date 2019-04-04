@@ -410,13 +410,13 @@ Partial Public Class eis_stack_edit
     Protected WithEvents filtxtRPExitGasFlowRateMeasure As Global.AjaxControlToolkit.FilteredTextBoxExtender
     
     '''<summary>
-    '''rgxvExitGasFlowRate control.
+    '''rngvRPExitGasFlowRateMeasure control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents rgxvExitGasFlowRate As Global.System.Web.UI.WebControls.RegularExpressionValidator
+    Protected WithEvents rngvRPExitGasFlowRateMeasure As Global.System.Web.UI.WebControls.RangeValidator
     
     '''<summary>
     '''cusvRPExitGasFlowRateMeasure control.
