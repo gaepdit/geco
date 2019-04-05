@@ -23,7 +23,9 @@ Public Class Memo
 
     Protected Overrides Sub Render(writer As HtmlTextWriter)
         If asPDF Then
-            Using sw As New StringWriter(), htw As New HtmlTextWriter(sw), ms As New MemoryStream()
+            Dim sw As New StringWriter(), htw As New HtmlTextWriter(sw), ms As New MemoryStream()
+
+            Try
                 MyBase.Render(htw)
 
                 Dim pdfConverter As New HtmlToPdf(768)
@@ -66,7 +68,10 @@ Public Class Memo
                 Response.AddHeader("Content-Length", ms.Length.ToString())
                 Response.BinaryWrite(ms.ToArray())
                 Response.End()
-            End Using
+            Finally
+                If ms IsNot Nothing Then ms.Dispose()
+                If htw IsNot Nothing Then htw.Dispose()
+            End Try
         Else
             MyBase.Render(writer)
         End If

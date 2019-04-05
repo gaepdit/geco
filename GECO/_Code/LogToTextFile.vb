@@ -8,14 +8,13 @@ Public Module Logging
         Directory.CreateDirectory(folder)
 
         Try
-            Using sw As StreamWriter = New StreamWriter(Path.Combine(folder, fileName), True)
-                sw.WriteLine("===== BEGIN LOG " & Date.Now.ToString)
-                sw.WriteLine()
-                sw.WriteLine(value)
-                sw.WriteLine()
-                sw.Flush()
-                sw.Close()
-            End Using
+            Dim sw As StreamWriter = New StreamWriter(Path.Combine(folder, fileName), True)
+            sw.WriteLine("===== BEGIN LOG " & Date.Now.ToString)
+            sw.WriteLine()
+            sw.WriteLine(value)
+            sw.WriteLine()
+            sw.Flush()
+            sw.Close()
         Catch ex As Exception
             'do nothing
         End Try

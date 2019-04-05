@@ -22,35 +22,43 @@ Public Class EncryptDecrypt
 
     'The function used to encrypt the text
     Private Shared Function Encrypt(strText As String, strEncrKey As String) As String
-        Dim byKey = UTF8.GetBytes(Left(strEncrKey, 8))
-        Dim inputByteArray = UTF8.GetBytes(strText)
-
-        Using ms As New MemoryStream(),
+        Dim byKey = UTF8.GetBytes(Left(strEncrKey, 8)),
+            inputByteArray = UTF8.GetBytes(strText),
+            ms As New MemoryStream(),
             des As New DESCryptoServiceProvider(),
             cs As New CryptoStream(ms, des.CreateEncryptor(byKey, IV), CryptoStreamMode.Write)
 
+        Try
             cs.Write(inputByteArray, 0, inputByteArray.Length)
             cs.FlushFinalBlock()
 
             Return ToBase64String(ms.ToArray())
+        Finally
+            If cs IsNot Nothing Then cs.Dispose()
+            If des IsNot Nothing Then des.Dispose()
+        End Try
 
-        End Using
     End Function
 
     'The function used to decrypt the text
     Private Shared Function Decrypt(strText As String, sDecrKey As String) As String
-        Dim byKey = UTF8.GetBytes(Left(sDecrKey, 8))
-        Dim inputByteArray = FromBase64String(strText)
 
-        Using ms As New MemoryStream(),
-            des As New DESCryptoServiceProvider(),
-            cs As New CryptoStream(ms, des.CreateDecryptor(byKey, IV), CryptoStreamMode.Write)
+        Dim byKey = UTF8.GetBytes(Left(sDecrKey, 8)),
+            inputByteArray = FromBase64String(strText),
+            ms As New MemoryStream(),
+            DES As New DESCryptoServiceProvider(),
+            cs As New CryptoStream(ms, DES.CreateDecryptor(byKey, IV), CryptoStreamMode.Write)
 
+        Try
             cs.Write(inputByteArray, 0, inputByteArray.Length)
             cs.FlushFinalBlock()
 
             Return UTF8.GetString(ms.ToArray())
+        Finally
+            If cs IsNot Nothing Then cs.Dispose()
+            If DES IsNot Nothing Then DES.Dispose()
+        End Try
 
-        End Using
     End Function
+
 End Class

@@ -14,7 +14,9 @@ Public Module GridViewExportUtil
             datatable.TableName = "Sheet1"
         End If
 
-        Using wb As New XLWorkbook()
+        Dim wb As New XLWorkbook(), ms As New MemoryStream()
+
+        Try
             wb.AddWorksheet(datatable)
 
             Dim httpResponse As HttpResponse = HttpContext.Current.Response
@@ -22,14 +24,14 @@ Public Module GridViewExportUtil
             httpResponse.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
             httpResponse.AddHeader("content-disposition", String.Format("attachment; filename=""{0}.xlsx""", fileName))
 
-            Using ms As MemoryStream = New MemoryStream()
-                wb.SaveAs(ms)
-                ms.WriteTo(httpResponse.OutputStream)
-                ms.Close()
-            End Using
+            wb.SaveAs(ms)
+            ms.WriteTo(httpResponse.OutputStream)
+            ms.Close()
 
             httpResponse.End()
-        End Using
+        Finally
+            If wb IsNot Nothing Then wb.Dispose()
+        End Try
 
     End Sub
 
