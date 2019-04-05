@@ -243,7 +243,7 @@
         </act:FilteredTextBoxExtender>
         <asp:RegularExpressionValidator ID="RegexCMReductionEff" runat="server" ControlToValidate="txtCMReductionEff"
             ErrorMessage="Control Approach Reduction Efficiency can have at most one decimal place. " ValidationExpression="\d*(\.\d{0,1})?"
-            ValidationGroup="vgCMReductionEff">At most three decimal places allowed.</asp:RegularExpressionValidator>
+            ValidationGroup="vgCMReductionEff">At most one decimal place allowed.</asp:RegularExpressionValidator>
         <asp:RangeValidator ID="rngvCMReductionEff" runat="server" ControlToValidate="txtCMReductionEff"
             ValidationGroup="vgPollutantDetails" Display="Dynamic"
             MaximumValue="99.9" MinimumValue="5.0"
