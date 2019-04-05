@@ -130,6 +130,9 @@
                 <act:FilteredTextBoxExtender ID="filtxtRPExitGasVelocityMeasure" runat="server" Enabled="True"
                     FilterType="Custom, Numbers" TargetControlID="txtRPExitGasVelocityMeasure" ValidChars=".">
                 </act:FilteredTextBoxExtender>
+                <asp:RegularExpressionValidator ID="RegexRPExitGasVelocityMeasure" runat="server" ControlToValidate="txtRPExitGasVelocityMeasure"
+                    ErrorMessage="Exit gas velocity can have at most three decimal places. " ValidationExpression="\d*(\.\d{0,3})?"
+                    ValidationGroup="vgStack">At most three decimal places allowed.</asp:RegularExpressionValidator><%-- Regex: https://regexr.com/4a34g --%>
                 <asp:RangeValidator ID="rngvRPExitGasVelocityMeasure" runat="server" ControlToValidate="txtRPExitGasVelocityMeasure"
                     MinimumValue="0.001" MaximumValue="1000" Type="Double" ErrorMessage="The exit gas velocity is outside the allowable range of 0.001 to 1000 FPS."
                     ValidationGroup="vgStack">Must be 0.001 to 1000. </asp:RangeValidator>
