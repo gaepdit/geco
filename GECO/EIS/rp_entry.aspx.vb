@@ -353,11 +353,9 @@ Partial Class EIS_rp_entry
     End Sub
 
     Protected Sub btnSearchNAICS_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnSearchNAICS.Click
-
-        Dim dview As New DataView
-        Dim NAICSDataTable As New DataTable("NAICS")
-        NAICSDataTable = Cache("NAICSDataTable")
-        dview.Table = NAICSDataTable
+        Dim dview As New DataView With {
+            .Table = Cache("NAICSDataTable")
+        }
 
         'No search text in any field
         If txtLookupNAICSCode.Text = "" And txtLookupNAICSDesc.Text = "" Then
