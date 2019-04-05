@@ -406,9 +406,6 @@ Partial Class eis_Default
 
         Dim FacilitySiteID As String = GetCookie(Cookie.AirsNumber)
         Dim EIYear As String = GetCookie(EisCookie.EISMaxYear)
-        Dim UpdateUserID As String = GetCookie(GecoCookie.UserID)
-        Dim UpdateUserName As String = GetCookie(GecoCookie.UserName)
-        Dim UpdateUser As String = UpdateUserID & "-" & UpdateUserName
 
         Unsubmit(FacilitySiteID, EIYear)
         ResetCookies(FacilitySiteID)

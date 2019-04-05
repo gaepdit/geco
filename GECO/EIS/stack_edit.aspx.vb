@@ -172,8 +172,6 @@ Partial Class eis_stack_edit
 
     Private Sub loadStackInfo(ByVal fsid As String, ByVal RPid As String)
 
-        Dim UpdateUser As String = ""
-        Dim UpdateDateTime As String = ""
         Dim RPFenceLineDistanceMeasure As Decimal
         Dim RPExitGasVelocityMeasure As Decimal
         Dim RPExitGasFlowRateMeasure As Decimal
@@ -511,7 +509,6 @@ Partial Class eis_stack_edit
         Dim query As String = ""
         Dim RPDescription As String = txtRPDescription.Text
         Dim RPTypeCode As String = ddlRPtypeCode.SelectedItem.Value
-        Dim RPStatusCode As String = ddlStackStatusCode.SelectedItem.Value
         Dim RPFenceLineDistanceMeasure As String = txtRPFenceLineDistanceMeasure.Text
         Dim RPStackHeightMeasure As String = txtRPStackHeightMeasure.Text
         Dim RPStackDiameterMeasure As String = txtRPStackDiameterMeasure.Text
@@ -526,7 +523,6 @@ Partial Class eis_stack_edit
         Dim UpdateUserName As String = GetCookie(GecoCookie.UserName)
         Dim UpdateUser As String = UpdateUserID & "-" & UpdateUserName
 
-        Dim StackStatusCodeYear = Now.Year
         Dim StatusCodeOnLoad = txtStackStatusCodeOnLoad.Text
         Dim StatusCodeChanged = txtStackStatusCodeChanged.Text
 
@@ -818,10 +814,6 @@ Partial Class eis_stack_edit
     End Sub
 
     Protected Sub btnSaveStack1_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnSaveStack1.Click, btnSaveStack2.Click
-
-        Dim FacilitySiteID As String = GetCookie(Cookie.AirsNumber)
-        Dim rpid As String = txtReleasePointID.Text.ToUpper
-
         If RPFlowRateInRange = False Or RPGASRateAndFlowPresent = False Then
             'Do Nothing
         Else

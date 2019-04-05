@@ -209,9 +209,6 @@ Partial Class eis_process_summary
         Dim EmissionunitID As String = ddlExistEmissionUnitID.SelectedValue.ToUpper
         Dim ProcessID As String = txtNewProcessID.Text.ToUpper
         Dim ReleasePointID As String = ddlexistReleasePointID.SelectedValue.ToUpper
-        Dim ProcessDescription As String = txtNewProcessDesc.Text
-        Dim UpdateUserID As String = GetCookie(GecoCookie.UserID)
-        Dim UpdateUserName As String = GetCookie(GecoCookie.UserName)
         Dim UpdateUser As String = GetCookie(GecoCookie.UserID) & "-" & GetCookie(GecoCookie.UserName)
 
         Try

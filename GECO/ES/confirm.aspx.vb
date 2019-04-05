@@ -9,7 +9,6 @@ Partial Class es_confirm
     Private Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         If Not IsPostBack Then
 
-            Dim Source As String = Session("ConfirmOption")
             Dim ESExist As Boolean
             Dim AirsYear As String = Session("AirsYear")
 

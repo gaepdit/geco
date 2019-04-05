@@ -112,6 +112,7 @@ Public Module EmailSender
         End Using
     End Sub
 
+    <CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1804:RemoveUnusedLocals", MessageId:="testEmail")>
     Public Function IsValidEmailAddress(emailAddress As String) As Boolean
         If String.IsNullOrEmpty(emailAddress) Then Return False
 

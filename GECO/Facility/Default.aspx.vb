@@ -120,7 +120,6 @@ Partial Class FacilityHome
         '        3 - If facility is enrolled for current EI year, EISStatus, OptOut, date finalized and conf number cookies are created
         '            Based on values of above, EI status message is created and displayed on Facility Home page
         '        4 - If facility not enrolled - message indicating that the EI is not applicable is displayed
-        Dim eiStatus As String = ""
         Dim CurrentEIYear As Integer = Now.Year - 1
         Dim EISMaxYear As Integer = 0
         Dim EIDeadlineDate As String = ""

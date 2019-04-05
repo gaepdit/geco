@@ -50,8 +50,6 @@ Partial Class eis_fugitive_details
         Dim HORACCURACYMEASURE As Decimal
         Dim FacilityLongitude As String
         Dim FacilityLatitude As String
-        Dim RPTypeCode As String = ""
-        Dim RPTypeCodeDesc As String = ""
         Dim RPStatusCodeDesc As String = ""
         Dim RPStatusCodeyear As String = ""
 
@@ -416,7 +414,6 @@ Partial Class eis_fugitive_details
         Dim RPFugitiveHeightMeasure As String = ""
         Dim RPFugitiveWidthMeasure As String = ""
         Dim RPFugitiveLengthMeasure As String = ""
-        Dim RPExitGasTempMeasure As String = ""
         Dim RPFugitiveAngleMeasure As String = ""
         Dim RPStatusCode As String = "OP"
         Dim RPStatusCodeYear As Integer = Now.Year

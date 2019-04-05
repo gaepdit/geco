@@ -6,11 +6,12 @@ Public Module RandomStrings
         Randomize()
         Dim chrChars() As Char = strAllowedCharacters.ToCharArray
         Dim strReturn As New StringBuilder
-        Dim grtRandom As New Random
+
         Do Until Len(strReturn.ToString) = intLength
             Dim x As Integer = Rnd() * (chrChars.Length - 1)
             strReturn.Append(chrChars(x))
         Loop
+
         Return strReturn.ToString
     End Function
 

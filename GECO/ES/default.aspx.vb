@@ -7,7 +7,6 @@ Partial Class es_default
     Private Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
         Dim CountyName As String
         Dim intESYear As Integer = Now.Year - 1
-        Dim strESYear As String = intESYear.ToString
 
         Session("ESYear") = intESYear.ToString
         Session("esAirsNumber") = "0413" & GetCookie(Cookie.AirsNumber)

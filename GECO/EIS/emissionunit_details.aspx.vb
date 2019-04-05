@@ -734,7 +734,6 @@ Partial Class eis_emissionunit_details
         Dim EmissionunitID As String = txtEmissionUnitID.Text.ToUpper
         Dim ProcessID As String = txtNewProcessID.Text.ToUpper
         Dim ReleasePointID As String = ddlReleasePointID.SelectedValue.ToUpper
-        Dim ProcessDescription As String = txtNewProcessDesc.Text
         Dim UpdateUserID As String = GetCookie(GecoCookie.UserID)
         Dim UpdateUserName As String = GetCookie(GecoCookie.UserName)
         Dim UpdateUser As String = UpdateUserID & "-" & UpdateUserName

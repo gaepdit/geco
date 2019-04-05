@@ -512,7 +512,6 @@ Partial Class eis_eucontrolapproach_edit
     Protected Sub btnDeleteOK_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnDeleteOK.Click
         Dim FacilitySiteID As String = GetCookie(Cookie.AirsNumber)
         Dim EmissionsUnitID As String = txtEmissionUnitID.Text.ToUpper
-        Dim targetpage As String = "~/EIS/emissionunit_details.aspx?eu=" & EmissionsUnitID
 
         DeleteEUCtrlAppMeasures(FacilitySiteID, EmissionsUnitID)
         DeleteEUCtrlAppPollutants(FacilitySiteID, EmissionsUnitID)

@@ -365,8 +365,6 @@ Partial Class eis_process_details
 
     'Load the Process Control Approach
     Private Sub LoadProcessControlApproach(ByVal fsid As String, ByVal euid As String, ByVal epid As String)
-        Dim UpdateUserID As String = GetCookie(GecoCookie.UserID)
-        Dim UpdateUserName As String = GetCookie(GecoCookie.UserName)
         Dim UpdateUser As String = ""
         Dim UpdateDateTime As String = ""
         Dim PctCtrlApproachCapEffic As Decimal
@@ -575,8 +573,6 @@ Partial Class eis_process_details
         Dim ProcessID As String = txtNewProcessID.Text.ToUpper
         Dim ReleasePointID As String = ddlexistReleasePointID.SelectedValue.ToUpper
         Dim ProcessDescription As String = txtNewProcessDesc.Text
-        Dim UpdateUserID As String = GetCookie(GecoCookie.UserID)
-        Dim UpdateUserName As String = GetCookie(GecoCookie.UserName)
         Dim UpdateUser As String = GetCookie(GecoCookie.UserID) & "-" & GetCookie(GecoCookie.UserName)
         Dim Active As String = "1"
 
@@ -682,7 +678,6 @@ Partial Class eis_process_details
         Dim UpdateUserID As String = GetCookie(GecoCookie.UserID)
         Dim UpdateUserName As String = GetCookie(GecoCookie.UserName)
         Dim UpdateUser As String = UpdateUserID & "-" & UpdateUserName
-        Dim Active As String = "1"
 
         Dim query = "Insert into EIS_PROCESSCONTROLAPPROACH (" &
                     "FacilitySiteID, " &

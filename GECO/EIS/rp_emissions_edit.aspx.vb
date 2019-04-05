@@ -526,9 +526,6 @@ Partial Class EIS_rp_emissions_edit
         'Checks Emission Unit ID when adding new emission unit in panel
         Dim EIYear As Integer = GetCookie(EisCookie.EISMaxYear)
         Dim FacilitySiteID As String = GetCookie(Cookie.AirsNumber)
-        Dim UpdateUserID As String = GetCookie(GecoCookie.UserID)
-        Dim UpdateUserName As String = GetCookie(GecoCookie.UserName)
-        Dim UpdateUser As String = UpdateUserID & "-" & UpdateUserName
         Dim EmissionsUnitID As String = txtEmissionUnitID.Text.ToUpper
         Dim ProcessID As String = txtProcessID.Text.ToUpper
         Dim SummerDayEntered As Boolean = False
@@ -871,7 +868,6 @@ Partial Class EIS_rp_emissions_edit
 
     Private Sub ReturnToDetails()
 
-        Dim FacilitySiteID As String = GetCookie(Cookie.AirsNumber)
         Dim EmissionsUnitID As String = txtEmissionUnitID.Text.ToUpper
         Dim ProcessID As String = txtProcessID.Text.ToUpper
         Dim EIYear As Integer = GetCookie(EisCookie.EISMaxYear)

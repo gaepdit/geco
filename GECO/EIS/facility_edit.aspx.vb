@@ -15,7 +15,6 @@ Partial Class eis_facility_edit
 
     Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
 
-        Dim FacilitySiteID As String = GetCookie(Cookie.AirsNumber)
         Dim EISStatus As String = GetCookie(EisCookie.EISStatus)
         Dim EISAccessCode As String = GetCookie(EisCookie.EISAccess)
 
@@ -750,7 +749,6 @@ Partial Class eis_facility_edit
     'Saves Contact information to the IAIP
     Private Sub SaveAPBContactInformation()
         Dim query As String
-        Dim company As String = txtFacilitySiteName.Text
         Dim ContactPrefix As String = txtPrefix.Text
         Dim ContactFirstName As String = txtFirstName.Text
         Dim ContactLastName As String = txtLastName.Text

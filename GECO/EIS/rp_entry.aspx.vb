@@ -1006,7 +1006,6 @@ Partial Class EIS_rp_entry
     'Saves Contact information to the IAIP
     Private Sub SaveAPBContactInformation()
         Dim query As String
-        Dim company As String = txtFacilitySiteName.Text
         Dim ContactPrefix As String = txtPrefix.Text
         Dim ContactFirstName As String = txtFirstName.Text
         Dim ContactLastName As String = txtLastName.Text

@@ -250,7 +250,6 @@ Partial Class eis_releasepoint_summary
 
         If e.CommandName = "Undelete" Then
             Dim FacilitySiteID As String = GetCookie(Cookie.AirsNumber)
-            Dim InventoryYear As String = GetCookie(EisCookie.EISMaxYear)
             Dim index As Integer = Convert.ToInt32(e.CommandArgument)
             Dim row As GridViewRow = gvwDeletedRP.Rows(index)
             Dim ReleasePointID As String = Server.HtmlDecode(row.Cells(0).Text)
@@ -258,7 +257,6 @@ Partial Class eis_releasepoint_summary
             Dim UpdateUserID As String = GetCookie(GecoCookie.UserID)
             Dim UpdateUserName As String = GetCookie(GecoCookie.UserName)
             Dim UpdateUser As String = UpdateUserID & "-" & UpdateUserName
-            Dim sql As String = ""
             Dim targetpage As String = ""
 
             If StackType = "Fugitive" Then

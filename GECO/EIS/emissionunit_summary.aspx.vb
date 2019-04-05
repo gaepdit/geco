@@ -197,7 +197,6 @@ Partial Class eis_emissionunit_summary
 
         If e.CommandName = "Undelete" Then
             Dim FacilitySiteID As String = GetCookie(Cookie.AirsNumber)
-            Dim InventoryYear As String = GetCookie(EisCookie.EISMaxYear)
             Dim index As Integer = Convert.ToInt32(e.CommandArgument)
             Dim row As GridViewRow = gvwDeletedEU.Rows(index)
             Dim EmissionsUnitID As String = Server.HtmlDecode(row.Cells(0).Text)

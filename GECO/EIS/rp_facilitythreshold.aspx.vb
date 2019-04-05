@@ -37,10 +37,6 @@ Partial Class EIS_rp_threshold
 
     Private Sub LoadpageInfo(eit As String)
 
-        Dim UpdateUserID As String = GetCookie(GecoCookie.UserID)
-        Dim UpdateUserName As String = GetCookie(GecoCookie.UserName)
-        Dim UpdateUser As String = UpdateUserID & "-" & UpdateUserName
-
         Dim Pollutant As String = ""
         Dim Threshold As String = ""
         Dim ThresholdNAA As String = ""
@@ -255,12 +251,9 @@ Partial Class EIS_rp_threshold
 
         Dim eiYear As String = GetCookie(EisCookie.EISMaxYear)
 
-        Dim Pb As String = ""
-
         EIType = GetEIType(eiYear)
 
         If EIType = "ANNUAL" Then
-            Pb = "Yes"
             rblPb.Enabled = False
             tblThreshold.Rows.RemoveAt(8)
         End If

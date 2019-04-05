@@ -123,14 +123,8 @@ Partial Class eis_emissionunit_edit
     Private Sub LoadEmissionUnitDetails(ByVal euid As String)
 
         Dim FacilitySiteID As String = GetCookie(Cookie.AirsNumber)
-        Dim Updateuser As String = ""
         Dim UnitDesignCapacity As Decimal
         Dim MaxNameplateCapacity As Decimal
-        Dim UnitTypeCodeDesc As String = ""
-        Dim UnitStatusCode As String = ""
-        Dim UnitStatusCodeDesc As String = ""
-        Dim UnitDesignCapacityUOMCode As String = ""
-        Dim UnitDesignCapacityUOMCodeDesc As String = ""
         Dim EISSubmit As String = ""
 
         euid = euid.ToUpper
@@ -410,7 +404,6 @@ Partial Class eis_emissionunit_edit
 
         Dim EmissionsUnitID As String = txtEmissionsUnitID.Text.ToUpper
         Dim FacilitySiteID As String = GetCookie(Cookie.AirsNumber)
-        Dim InventoryYear As String = GetCookie(EisCookie.EISMaxYear)
         Dim UpdateUserID As String = GetCookie(GecoCookie.UserID)
         Dim UpdateUserName As String = GetCookie(GecoCookie.UserName)
         Dim UpdateUser As String = UpdateUserID & "-" & UpdateUserName
@@ -436,8 +429,6 @@ Partial Class eis_emissionunit_edit
 #End Region
 
     Protected Sub UnitStatusChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles ddlUnitStatusCode.SelectedIndexChanged
-
-        Dim EmissionUnitID As String = txtEmissionsUnitID.Text
 
         txtUnitStatusCodeChanged.Text = ddlUnitStatusCode.SelectedValue
 

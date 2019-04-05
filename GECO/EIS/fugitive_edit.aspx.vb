@@ -678,9 +678,6 @@ Partial Class eis_fugitive_edit
 
     Protected Sub btnSaveFugitive_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnSaveFugitive1.Click, btnSaveFugitive2.Click
 
-        Dim FacilitySiteID As String = GetCookie(Cookie.AirsNumber)
-        Dim rpid As String = txtReleasePointID.Text.ToUpper
-
         lblFugitiveMessage.Visible = False
         SaveFugitiveStackInfo()
         SaveFugitiveStackGCinfo()

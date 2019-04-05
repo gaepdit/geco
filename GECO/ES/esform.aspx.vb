@@ -196,7 +196,6 @@ Partial Class es_esform
         Dim ContactPhoneNumber As String
         Dim ContactFaxNumber As String
         Dim ContactZip As String
-        Dim ContactKey As String = Session("esAirsNumber") & "42"
         Dim YesNo As String
         Dim VOCAmt As Double
         Dim NOXAmt As Double
@@ -706,8 +705,6 @@ Partial Class es_esform
 
         Dim AirsNumber As String = Session("esAirsNumber")
         Dim AirsYear As String = Session("AirsYear")
-        Dim ESYear As Integer = Session("ESYear")
-        Dim FacilityName As String
         Dim LocationAddress As String
         Dim City As String
         Dim State As String
@@ -754,7 +751,6 @@ Partial Class es_esform
         ESExist = CheckESExist(AirsYear)
         FirstConfirm = CheckFirstConfirm(AirsYear)
 
-        FacilityName = txtFacilityName.Text
         LocationAddress = txtLocationAddress.Text
         City = txtCity.Text
         State = txtState.Text
@@ -923,15 +919,12 @@ Partial Class es_esform
         Dim ContactZipCode As String = txtContactZipCode.Text & txtContactZipPlus4.Text
         Dim ModPerson As String = "0"
         Dim ContactDescription As String = "ES Contact"
-        Dim day As String = Now.ToString("d-MMM-yyyy")
         Dim hr As String = Now.Hour
         Dim min As String = Now.Minute
         Dim sec As String = Now.Second
         If Len(hr) < 2 Then hr = "0" & hr
         If Len(min) < 2 Then min = "0" & min
         If Len(sec) < 2 Then sec = "0" & sec
-        Dim TransactionTime As String = hr & ":" & min & ":" & sec
-        Dim TransactionDate As String = day.ToUpper
         Dim Exist As Boolean
 
         Exist = ContactExistAPB()

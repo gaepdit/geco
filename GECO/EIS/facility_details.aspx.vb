@@ -7,7 +7,6 @@ Partial Class eis_facility_details
 
     Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
 
-        Dim FacilitySiteID As String = GetCookie(Cookie.AirsNumber)
         Dim EISStatus As String = GetCookie(EisCookie.EISStatus)
         Dim EISAccessCode As String = GetCookie(EisCookie.EISAccess)
 
