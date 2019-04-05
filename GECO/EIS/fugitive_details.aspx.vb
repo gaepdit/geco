@@ -19,7 +19,7 @@ Partial Class eis_fugitive_details
         End If
 
         If Not IsPostBack Then
-            LoadFugitiveDetails(FacilitySiteID, FugitiveID)
+            LoadFugitiveDetails(FugitiveID)
             LoadRPApportionment(FacilitySiteID, FugitiveID)
         End If
 
@@ -33,7 +33,7 @@ Partial Class eis_fugitive_details
         HideTextBoxBorders(Me)
     End Sub
 
-    Private Sub LoadFugitiveDetails(fsid As String, RPid As String)
+    Private Sub LoadFugitiveDetails(RPid As String)
 
         Dim FacilitySiteID As String = GetCookie(Cookie.AirsNumber)
         Dim UpdateUser As String = ""

@@ -478,7 +478,7 @@ Partial Class eis_process_details
         Response.Redirect(targetpage)
     End Sub
 
-    Private Sub InsertProcess(ByVal fsid As String, ByVal euid As String, ByVal pid As String)
+    Private Sub InsertProcess(ByVal fsid As String)
 
         'Code to insert a new Process
         'Reminder: insert only FacilitySiteID, Process ID, description, UpdateUser, CreateDateTime, UpdateDateTime (same as Create)
@@ -564,7 +564,7 @@ Partial Class eis_process_details
 
     End Sub
 
-    Private Sub UpdateProcess(ByVal fsid As String, ByVal euid As String, ByVal pid As String)
+    Private Sub UpdateProcess(ByVal fsid As String)
 
         'Code to update a deleted Process that is being re-used
         'Reminder: insert only FacilitySiteID, Process ID, description, UpdateUser, CreateDateTime, UpdateDateTime (same as Create)
@@ -651,7 +651,7 @@ Partial Class eis_process_details
         Select Case ProcessActive
             Case UnitActiveStatus.Inactive
                 args.IsValid = True
-                UpdateProcess(FacilitySiteID, EmissionsUnitID, ProcessID)
+                UpdateProcess(FacilitySiteID)
                 Response.Redirect(targetpage)
             Case UnitActiveStatus.Active
                 args.IsValid = False
@@ -660,7 +660,7 @@ Partial Class eis_process_details
                 btnAddProcess_ModalPopupExtender.Show()
             Case UnitActiveStatus.DoesNotExist
                 args.IsValid = True
-                InsertProcess(FacilitySiteID, EmissionsUnitID, ProcessID)
+                InsertProcess(FacilitySiteID)
                 Response.Redirect(targetpage)
         End Select
 

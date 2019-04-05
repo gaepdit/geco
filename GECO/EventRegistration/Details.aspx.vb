@@ -208,7 +208,7 @@ Partial Class EventRegistration_EventDetails
         Select Case result
             Case DbResult.Success
                 lblMessage.Text = "You have been successfully registered."
-                SendRegistrationEmail(confirmationNumber, status)
+                SendRegistrationEmail(status)
             Case Else
                 lblMessage.Text = "There was a problem registering you. Please try again or contact us."
         End Select
@@ -217,7 +217,7 @@ Partial Class EventRegistration_EventDetails
         CheckCapacity()
     End Sub
 
-    Private Sub SendRegistrationEmail(confirmationNumber As String, status As Integer)
+    Private Sub SendRegistrationEmail(status As Integer)
         Dim subject As String = "GA EPD Event Registration Confirmed"
 
         Dim linkPath As String = Page.ResolveUrl("~/EventRegistration/Details.aspx") & "?eventid=" & eventId.ToString

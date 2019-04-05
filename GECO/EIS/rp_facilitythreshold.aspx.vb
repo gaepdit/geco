@@ -25,7 +25,7 @@ Partial Class EIS_rp_threshold
             End If
 
             lblEIYear.Text = EIYear
-            LoadpageInfo(EIType, FacilitySiteID, EIYear)
+            LoadpageInfo(EIType)
             txtComment.Text = GetAdminComment(FacilitySiteID, EIYear)
 
             HideFacilityInventoryMenu()
@@ -35,7 +35,7 @@ Partial Class EIS_rp_threshold
 
     End Sub
 
-    Private Sub LoadpageInfo(eit As String, FacilitySiteID As String, eiYear As String)
+    Private Sub LoadpageInfo(eit As String)
 
         Dim UpdateUserID As String = GetCookie(GecoCookie.UserID)
         Dim UpdateUserName As String = GetCookie(GecoCookie.UserName)

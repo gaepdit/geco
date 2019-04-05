@@ -411,7 +411,7 @@ Partial Class eis_Default
         Dim UpdateUser As String = UpdateUserID & "-" & UpdateUserName
 
         Unsubmit(FacilitySiteID, EIYear)
-        ResetCookies(FacilitySiteID, EIYear, UpdateUser)
+        ResetCookies(FacilitySiteID)
         Response.Redirect("Default.aspx")
 
     End Sub
@@ -468,7 +468,7 @@ Partial Class eis_Default
 
     End Sub
 
-    Private Sub ResetCookies(fsid As String, eiyr As String, uuser As String)
+    Private Sub ResetCookies(fsid As String)
         Dim EISCookies As New HttpCookie("EISAccessInfo")
         Dim EISMaxYear As Integer
         Dim enrolled As String = ""

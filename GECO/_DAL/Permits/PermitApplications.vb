@@ -31,7 +31,7 @@ Namespace DAL
             Dim permitApplication As PermitApplication = PermitApplicationFromDataRow(appNumber, ds.Tables(0).Rows(0))
 
             With permitApplication
-                .ApplicationFeeInfo = ApplicationFeeInfoFromDataRow(appNumber, ds.Tables(1).Rows(0))
+                .ApplicationFeeInfo = ApplicationFeeInfoFromDataRow(ds.Tables(1).Rows(0))
                 .ApplicationInvoices = ds.Tables(2)
                 .ApplicationPayments = ds.Tables(3)
             End With

@@ -185,6 +185,7 @@ Partial Class Home_FacilityRequest
         End If
     End Sub
 
+    <CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId:="count")>
     <Services.WebMethod()>
     <Script.Services.ScriptMethod()>
     Public Shared Function AutoCompleteAirs(prefixText As String, count As Integer) As String()
@@ -200,6 +201,7 @@ Partial Class Home_FacilityRequest
         Return filteredList.ToArray
     End Function
 
+    <CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId:="count")>
     <Services.WebMethod()>
     <Script.Services.ScriptMethod()>
     Public Shared Function AutoCompleteFacility(prefixText As String, count As Integer) As String()

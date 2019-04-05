@@ -9,6 +9,8 @@ Imports AjaxControlToolkit
 Public Class SourceClassCode
     Inherits WebService
 
+    <CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId:="knownCategoryValues")>
+    <CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId:="category")>
     <WebMethod()>
     Public Function GetLevel1(knownCategoryValues As String, category As String) As CascadingDropDownNameValue()
         Dim vals As New List(Of CascadingDropDownNameValue)
@@ -22,6 +24,7 @@ Public Class SourceClassCode
         Return vals.ToArray()
     End Function
 
+    <CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId:="category")>
     <WebMethod()>
     Public Function GetLevel2(knownCategoryValues As String, category As String) As CascadingDropDownNameValue()
         Dim sd As StringDictionary = ParseKnownCategoryValuesString(knownCategoryValues)
@@ -41,6 +44,7 @@ Public Class SourceClassCode
         Return Nothing
     End Function
 
+    <CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId:="category")>
     <WebMethod()>
     Public Function GetLevel3(knownCategoryValues As String, category As String) As CascadingDropDownNameValue()
         Dim sd As StringDictionary = ParseKnownCategoryValuesString(knownCategoryValues)
@@ -60,6 +64,7 @@ Public Class SourceClassCode
         Return Nothing
     End Function
 
+    <CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId:="category")>
     <WebMethod()>
     Public Function GetLevel4(knownCategoryValues As String, category As String) As CascadingDropDownNameValue()
         Dim sd As StringDictionary = ParseKnownCategoryValuesString(knownCategoryValues)

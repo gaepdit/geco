@@ -27,8 +27,8 @@ Partial Class EIS_rp_emissions_edit
 
         If Not IsPostBack Then
 
-            LoadPollutantsGVW(FacilitySiteID, EmissionsUnitID, ProcessID, EIYEar)
-            LoadPollutantsDDL(FacilitySiteID, EmissionsUnitID, ProcessID, EIYEar)
+            LoadPollutantsGVW(FacilitySiteID, EmissionsUnitID, ProcessID)
+            LoadPollutantsDDL()
             LoadEMCalcMethod()
             LoadEFNumUoM()
             LoadEFDenUoM()
@@ -57,7 +57,7 @@ Partial Class EIS_rp_emissions_edit
 
 #Region "Load Routines  "
 
-    Private Sub LoadPollutantsGVW(ByVal fsid As String, ByVal euid As String, ByVal prid As String, ByVal eiyr As String)
+    Private Sub LoadPollutantsGVW(ByVal fsid As String, ByVal euid As String, ByVal prid As String)
         Dim query = " select " &
             "     EMISSIONSUNITID, " &
             "     PROCESSID, " &
@@ -93,7 +93,7 @@ Partial Class EIS_rp_emissions_edit
 
     End Sub
 
-    Private Sub LoadPollutantsDDL(ByVal fsid As String, ByVal euid As String, ByVal prid As String, ByVal eiy As Integer)
+    Private Sub LoadPollutantsDDL()
         ddlPollutant.Items.Clear()
         ddlPollutant.Items.Add("--Select Pollutant--")
 
@@ -419,7 +419,7 @@ Partial Class EIS_rp_emissions_edit
                 DeleteProcessReportingPeriod(EIYear, FacilitySiteID, EmissionsUnitID, ProcessID, "O3D")
             End If
         End If
-        LoadPollutantsGVW(FacilitySiteID, EmissionsUnitID, ProcessID, EIYear)
+        LoadPollutantsGVW(FacilitySiteID, EmissionsUnitID, ProcessID)
         ClearForm()
         'Clear textbox in Delete Confirm panel
         txtPollutantToDelete.Text = ""
@@ -559,7 +559,7 @@ Partial Class EIS_rp_emissions_edit
             If SummerDayEntered And (PollutantCode = "VOC" Or PollutantCode = "NOX") Then
                 SaveSummerDay(FacilitySiteID, EmissionsUnitID, ProcessID, PollutantCode, EIYear)
             End If
-            LoadPollutantsGVW(FacilitySiteID, EmissionsUnitID, ProcessID, EIYear)
+            LoadPollutantsGVW(FacilitySiteID, EmissionsUnitID, ProcessID)
             lblSaveMessage1.Text = "Emissions information saved successfully"
             lblSaveMessage2.Text = lblSaveMessage1.Text
             lblSaveMessage1.Visible = True
@@ -611,7 +611,7 @@ Partial Class EIS_rp_emissions_edit
                 End If
             End If
 
-            LoadPollutantsGVW(FacilitySiteID, EmissionsUnitID, ProcessID, EIYear)
+            LoadPollutantsGVW(FacilitySiteID, EmissionsUnitID, ProcessID)
             lblSaveMessage1.Text = "Emissions information saved successfully"
             lblSaveMessage2.Text = "Emissions information saved successfully"
             txtPollutantToDelete.Text = ddlPollutant.SelectedItem.Text

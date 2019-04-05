@@ -723,7 +723,7 @@ Partial Class eis_emissionunit_details
 
 #Region "  Add Process Panel  "
 
-    Private Sub UpdateProcess(ByVal fsid As String, ByVal euid As String, ByVal pid As String)
+    Private Sub UpdateProcess()
 
         'Code to update a deleted Process that is being re-used
         'Reminder: insert only FacilitySiteID, Process ID, description, UpdateUser, CreateDateTime, UpdateDateTime (same as Create)
@@ -812,7 +812,7 @@ Partial Class eis_emissionunit_details
         Select Case ProcessIDActive
             Case UnitActiveStatus.Inactive
                 args.IsValid = True
-                UpdateProcess(FacilitySiteID, EmissionsUnitID, ProcessID)
+                UpdateProcess()
                 Response.Redirect(Targetpage)
             Case UnitActiveStatus.Active
                 args.IsValid = False

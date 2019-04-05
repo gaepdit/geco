@@ -5,7 +5,7 @@ Imports GECO.GecoModels
 Namespace DAL
     Public Module ApplicationFees
 
-        Public Function ApplicationFeeInfoFromDataRow(appNumber As Integer, dr As DataRow) As ApplicationFeeInfo
+        Public Function ApplicationFeeInfoFromDataRow(dr As DataRow) As ApplicationFeeInfo
             If dr Is Nothing Then
                 Return Nothing
             End If

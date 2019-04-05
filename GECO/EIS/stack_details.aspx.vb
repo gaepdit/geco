@@ -20,7 +20,7 @@ Partial Class eis_stack_details
         End If
 
         If Not IsPostBack Then
-            LoadStackDetails(FacilitySiteID, StackID)
+            LoadStackDetails(StackID)
             LoadRPApportionment(FacilitySiteID, StackID)
             loadStackTypeDDL()
         End If
@@ -57,7 +57,7 @@ Partial Class eis_stack_details
         End Try
     End Sub
 
-    Private Sub LoadStackDetails(ByVal fsid As String, ByVal Stkid As String)
+    Private Sub LoadStackDetails(ByVal Stkid As String)
 
         Dim FacilitySiteID As String = GetCookie(Cookie.AirsNumber)
         Dim HCCcode As String
