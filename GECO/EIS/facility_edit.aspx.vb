@@ -959,7 +959,7 @@ Partial Class eis_facility_edit
 
     Protected Sub gvwNAICS_PageIndexChanging(sender As Object, e As Web.UI.WebControls.GridViewPageEventArgs) Handles gvwNAICS.PageIndexChanging
 
-        gvwNAICS.DataSource = SortDataTable(Session("MyNAICSView"), True)
+        gvwNAICS.DataSource = SortDataTable(Session("MyNAICSView"))
         gvwNAICS.PageIndex = e.NewPageIndex
         gvwNAICS.DataBind()
         lblRowCount.Text = "No. of NAICS Codes: " & Session("MyNAICSView").Rows.Count
@@ -968,56 +968,13 @@ Partial Class eis_facility_edit
 
 #Region " Sorting "
 
-    Protected Function SortDataTable(pdataTable As DataTable, isPageIndexChanging As Boolean) As DataView
+    Protected Function SortDataTable(pdataTable As DataTable) As DataView
 
         If Not pdataTable Is Nothing Then
-            Dim pdataView As New DataView(pdataTable)
-            If GridViewSortExpression <> String.Empty Then
-                If isPageIndexChanging Then
-                    pdataView.Sort = String.Format("{0} {1}", GridViewSortExpression, GridViewSortDirection)
-                Else
-                    pdataView.Sort = String.Format("{0} {1}", GridViewSortExpression, GetSortDirection())
-                End If
-            End If
-            Return pdataView
+            Return New DataView(pdataTable)
         Else
             Return New DataView()
         End If
-
-    End Function
-
-    Private Property GridViewSortDirection() As String
-
-        Get
-            Return IIf(ViewState("SortDirection") = Nothing, "ASC", ViewState("SortDirection"))
-        End Get
-        Set(value As String)
-            ViewState("SortDirection") = value
-        End Set
-
-    End Property
-
-    Private Property GridViewSortExpression() As String
-
-        Get
-            Return IIf(ViewState("SortExpression") = Nothing, String.Empty, ViewState("SortExpression"))
-        End Get
-        Set(value As String)
-            ViewState("SortExpression") = value
-        End Set
-
-    End Property
-
-    Private Function GetSortDirection() As String
-
-        Select Case GridViewSortDirection
-            Case "ASC"
-                GridViewSortDirection = "DESC"
-            Case "DESC"
-                GridViewSortDirection = "ASC"
-        End Select
-
-        Return GridViewSortDirection
 
     End Function
 

@@ -1,4 +1,4 @@
-Imports System.Data.SqlClient
+﻿Imports System.Data.SqlClient
 Imports GECO.MapHelper
 Imports Reimers.Google.Map
 
@@ -757,56 +757,6 @@ Partial Class eis_stack_edit
                           caller:="eis_stack_edit.SaveStackGCinfo")
             End If
 
-        Catch ex As Exception
-            ErrorReport(ex)
-        End Try
-
-    End Sub
-
-    Private Sub deleteStack()
-        Dim FacilitySiteID As String = GetCookie(Cookie.AirsNumber)
-        Dim stackID As String = txtReleasePointID.Text
-
-        Dim UpdateUserID As String = GetCookie(GecoCookie.UserID)
-        Dim UpdateUserName As String = GetCookie(GecoCookie.UserName)
-        Dim UpdateUser As String = UpdateUserID & "-" & UpdateUserName
-        Dim Active As String = "0"
-        stackID = stackID.ToUpper
-
-        Try
-            Dim queryList As New List(Of String)
-
-            Dim paramsList As New List(Of SqlParameter())
-
-            queryList.Add("Update EIS_RELEASEPOINT Set " &
-                          "Active = @Active, " &
-                          "UPDATEUSER = @UpdateUser, " &
-                          "UpdateDateTime = getdate() " &
-                          "where FacilitySiteID = @FacilitySiteID " &
-                          "and ReleasePointID = @stackID ")
-
-            paramsList.Add({
-                New SqlParameter("@Active", Active),
-                New SqlParameter("@UpdateUser", UpdateUser),
-                New SqlParameter("@FacilitySiteID", FacilitySiteID),
-                New SqlParameter("@stackID", stackID)
-            })
-
-            queryList.Add("Update EIS_RPGEOCOORDINATES Set " &
-                          "Active = @Active, " &
-                          "UPDATEUSER = @UpdateUser, " &
-                          "UpdateDateTime = getdate() " &
-                          "where FACILITYSITEID = @FacilitySiteID " &
-                          "and ReleasePointID = @stackID ")
-
-            paramsList.Add({
-                New SqlParameter("@Active", Active),
-                New SqlParameter("@UpdateUser", UpdateUser),
-                New SqlParameter("@FacilitySiteID", FacilitySiteID),
-                New SqlParameter("@stackID", stackID)
-            })
-
-            DB.RunCommand(queryList, paramsList)
         Catch ex As Exception
             ErrorReport(ex)
         End Try
