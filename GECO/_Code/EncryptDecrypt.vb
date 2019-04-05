@@ -7,8 +7,8 @@ Imports System.Text.Encoding
 <DebuggerStepThrough()>
 Public Class EncryptDecrypt
 
-    Private Shared _key As String = "&%#@?,:*"
-    Private Shared IV As Byte() = {&H12, &H34, &H56, &H78, &H90, &HAB, &HCD, &HEF}
+    Private Shared ReadOnly _key As String = "&%#@?,:*"
+    Private Shared ReadOnly IV As Byte() = {&H12, &H34, &H56, &H78, &H90, &HAB, &HCD, &HEF}
 
     ' Encrypt the text
     Public Shared Function EncryptText(ByVal strText As String) As String

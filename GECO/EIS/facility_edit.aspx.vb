@@ -9,7 +9,7 @@ Partial Class eis_facility_edit
     Inherits Page
 
     Private NAICSExists As Boolean
-    Private FacilitySaveSuccess As String = "Facility information successfully saved."
+    Private ReadOnly FacilitySaveSuccess As String = "Facility information successfully saved."
 
 #Region " Load Routines "
 
