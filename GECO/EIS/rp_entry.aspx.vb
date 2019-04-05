@@ -489,18 +489,6 @@ Partial Class EIS_rp_entry
 
 #Region " Menu Routines "
 
-    Private Sub ShowFacilityInventoryMenu()
-
-        Dim menuFacilityInventory As Panel
-
-        menuFacilityInventory = CType(Master.FindControl("pnlFacilityInventory"), Panel)
-
-        If Not menuFacilityInventory Is Nothing Then
-            menuFacilityInventory.Visible = True
-        End If
-
-    End Sub
-
     Private Sub HideFacilityInventoryMenu()
 
         Dim menuFacilityInventory As Panel
@@ -509,18 +497,6 @@ Partial Class EIS_rp_entry
 
         If Not menuFacilityInventory Is Nothing Then
             menuFacilityInventory.Visible = False
-        End If
-
-    End Sub
-
-    Private Sub ShowEmissionInventoryMenu()
-
-        Dim menuEmissionInventory As Panel
-
-        menuEmissionInventory = CType(Master.FindControl("pnlEmissionInventory"), Panel)
-
-        If Not menuEmissionInventory Is Nothing Then
-            menuEmissionInventory.Visible = True
         End If
 
     End Sub
@@ -545,18 +521,6 @@ Partial Class EIS_rp_entry
 
         If Not menuEISHelp Is Nothing Then
             menuEISHelp.Visible = True
-        End If
-
-    End Sub
-
-    Private Sub HideEISHelpMenu()
-
-        Dim menuEISHelp As Panel
-
-        menuEISHelp = CType(Master.FindControl("pnlEISHelp"), Panel)
-
-        If Not menuEISHelp Is Nothing Then
-            menuEISHelp.Visible = False
         End If
 
     End Sub

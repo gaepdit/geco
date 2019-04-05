@@ -95,16 +95,6 @@ Partial Class es_confirm
 
     End Sub
 
-    Private Sub HideSubmitHelp()
-
-        Dim SubmitHelp = CType(Master.FindControl("pnlSubmitHelp"), Panel)
-
-        If Not SubmitHelp Is Nothing Then
-            SubmitHelp.Visible = False
-        End If
-
-    End Sub
-
 #End Region
 
 #Region " Confirmation Number Routines "

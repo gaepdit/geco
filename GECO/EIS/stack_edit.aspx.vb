@@ -1,4 +1,4 @@
-﻿Imports System.Data.SqlClient
+Imports System.Data.SqlClient
 Imports GECO.MapHelper
 Imports Reimers.Google.Map
 
@@ -982,18 +982,6 @@ Partial Class eis_stack_edit
 
     End Sub
 
-    Private Sub HideFacilityInventoryMenu()
-
-        Dim menuFacilityInventory As Panel
-
-        menuFacilityInventory = CType(Master.FindControl("pnlFacilityInventory"), Panel)
-
-        If Not menuFacilityInventory Is Nothing Then
-            menuFacilityInventory.Visible = False
-        End If
-
-    End Sub
-
     Private Sub ShowEmissionInventoryMenu()
 
         Dim menuEmissionInventory As Panel
@@ -1026,18 +1014,6 @@ Partial Class eis_stack_edit
 
         If Not menuEISHelp Is Nothing Then
             menuEISHelp.Visible = True
-        End If
-
-    End Sub
-
-    Private Sub HideEISHelpMenu()
-
-        Dim menuEISHelp As Panel
-
-        menuEISHelp = CType(Master.FindControl("pnlEISHelp"), Panel)
-
-        If Not menuEISHelp Is Nothing Then
-            menuEISHelp.Visible = False
         End If
 
     End Sub

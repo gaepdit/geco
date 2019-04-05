@@ -652,18 +652,6 @@ Partial Class eis_Default
 
     End Sub
 
-    Private Sub HideEISHelpMenu()
-
-        Dim menuEISHelp As Panel
-
-        menuEISHelp = CType(Master.FindControl("pnlEISHelp"), Panel)
-
-        If Not menuEISHelp Is Nothing Then
-            menuEISHelp.Visible = False
-        End If
-
-    End Sub
-
 #End Region
 
 End Class
