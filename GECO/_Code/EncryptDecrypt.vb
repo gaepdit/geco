@@ -6,7 +6,7 @@ Imports System.Text.Encoding
 <DebuggerStepThrough()>
 Public Module EncryptDecrypt
 
-    Private ReadOnly _key As String = "&%#@?,:*"
+    Private Const _key As String = "&%#@?,:*"
     Private ReadOnly IV As Byte() = {&H12, &H34, &H56, &H78, &H90, &HAB, &HCD, &HEF}
 
     ' Encrypt the text
