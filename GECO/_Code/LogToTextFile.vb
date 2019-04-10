@@ -1,6 +1,6 @@
 Imports System.IO
 
-Public Module Logging
+Public Module GecoLogging
 
     Public Sub LogToTextFile(value As String)
         Dim fileName As String = "GecoLog.txt"
