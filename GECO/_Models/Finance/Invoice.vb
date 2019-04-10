@@ -70,8 +70,8 @@ Namespace GecoModels
             End Set
         End Property
 
-        Public Property InvoiceItems As List(Of InvoiceItem)
-        Public Property DepositsApplied As List(Of DepositApplied)
+        Public ReadOnly Property InvoiceItems As New List(Of InvoiceItem)
+        Public ReadOnly Property DepositsApplied As New List(Of DepositApplied)
 
         <DisplayName("Category")>
         Public ReadOnly Property InvoiceCategoryDisplay As String

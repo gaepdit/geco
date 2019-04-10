@@ -53,9 +53,7 @@ Namespace DAL
                 .Voided = CBool(dr("Voided")),
                 .VoidedDate = GetNullableDateTime(dr.Item("VoidedDate")),
                 .ApplicationID = GetNullable(Of Integer)(dr("ApplicationID")),
-                .FeeYear = GetNullable(Of Integer)(dr("FeeYear")),
-                .InvoiceItems = New List(Of InvoiceItem),
-                .DepositsApplied = New List(Of DepositApplied)
+                .FeeYear = GetNullable(Of Integer)(dr("FeeYear"))
             }
         End Function
 
