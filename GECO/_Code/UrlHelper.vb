@@ -1,5 +1,6 @@
 Public Module UrlHelper
 
+    <CodeAnalysis.SuppressMessage("Design", "CA1055")>
     Public Function FullyQualifiedUrl(relativeUrl As String) As String
         Dim request As HttpRequest = HttpContext.Current.Request
 

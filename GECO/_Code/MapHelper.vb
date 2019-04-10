@@ -34,14 +34,17 @@
         Private Const _defaultSize As String = "600x200"
         Private Const _defaultZoom As Integer = 16
 
+        <CodeAnalysis.SuppressMessage("Design", "CA1055")>
         Public Function GetMapLinkUrl(coordinates As Coordinate) As String
             Return String.Format(_googleLinkUri, coordinates.ToString())
         End Function
 
+        <CodeAnalysis.SuppressMessage("Design", "CA1055")>
         Public Function GetMapLinkUrl(address As String, city As String) As String
             Return String.Format(_googleLinkUri, address & ", " & city & " GA")
         End Function
 
+        <CodeAnalysis.SuppressMessage("Design", "CA1055")>
         Public Function GetStaticMapUrl(coordinates As Coordinate,
                                                Optional size As String = _defaultSize,
                                                Optional zoom As Integer = _defaultZoom,
@@ -53,6 +56,7 @@
             Return String.Format(_googleStaticMapUri, coordinates.ToString(), zoom, size, mapType, marker, key)
         End Function
 
+        <CodeAnalysis.SuppressMessage("Design", "CA1055")>
         Public Function GetStaticMapUrl(address As String,
                                                city As String,
                                                Optional size As String = _defaultSize,
