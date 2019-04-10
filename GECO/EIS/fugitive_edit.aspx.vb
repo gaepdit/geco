@@ -5,12 +5,11 @@ Imports Reimers.Google.Map
 Partial Class eis_fugitive_edit
     Inherits Page
 
-    Public SaveFugitive As String = "Fugitive information saved successfully."
-    Public RPStatus As String
-    Public FugitiveGCDataMissing As Boolean
-    Public FugitiveGCMessage As String = "Fugitive geographic coordinate data incomplete. Correct and save."
-    Public FugitiveEISSubmit As Boolean
-    Public FugitiveUsedInRPA As Boolean
+    Private ReadOnly SaveFugitive As String = "Fugitive information saved successfully."
+    Private FugitiveGCDataMissing As Boolean
+    Private ReadOnly FugitiveGCMessage As String = "Fugitive geographic coordinate data incomplete. Correct and save."
+    Private FugitiveEISSubmit As Boolean
+    Private FugitiveUsedInRPA As Boolean
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
@@ -210,7 +209,6 @@ Partial Class eis_fugitive_edit
                     ddlFugitiveStatusCode.SelectedValue = ""
                 Else
                     ddlFugitiveStatusCode.SelectedValue = dr.Item("strRPStatusCode")
-                    RPStatus = ddlFugitiveStatusCode.SelectedValue
                     txtFugitiveStatusCodeOnLoad.Text = ddlFugitiveStatusCode.SelectedValue
                 End If
 
@@ -375,7 +373,6 @@ Partial Class eis_fugitive_edit
     End Sub
 
     Sub LoadRPApportionment(ByVal fsid As String, ByVal RPid As String)
-        RPStatus = ddlFugitiveStatusCode.SelectedValue
 
         SqlDataSourceRPApp.ConnectionString = DBConnectionString
 

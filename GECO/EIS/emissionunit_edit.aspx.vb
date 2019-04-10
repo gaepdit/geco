@@ -4,9 +4,8 @@ Imports EpdIt.DBUtilities
 Partial Class eis_emissionunit_edit
     Inherits Page
 
-    Public EISSubmitStatus As Boolean
-    Public EUProcessExist As Boolean
-    Public ProcessActive As String
+    Private EISSubmitStatus As Boolean
+    Private EUProcessExist As Boolean
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 

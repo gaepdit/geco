@@ -3,7 +3,7 @@
 Partial Class eis_process_summary
     Inherits Page
 
-    Public FacilitySiteID As String
+    Private FacilitySiteID As String
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 

@@ -3,7 +3,7 @@
 Partial Class EIS_rp_emissions_edit
     Inherits Page
 
-    Public EmissionTotal As Double
+    Private EmissionTotal As Double
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 

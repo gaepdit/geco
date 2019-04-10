@@ -3,8 +3,6 @@ Imports System.Data.SqlClient
 Partial Class eis_rpapportionment_edit
     Inherits Page
 
-    Public RPApportionmentExists As Boolean
-
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
         Dim FacilitySiteID As String = GetCookie(Cookie.AirsNumber)
@@ -17,7 +15,7 @@ Partial Class eis_rpapportionment_edit
 
         If Not IsPostBack Then
 
-            RPApportionmentExists = CheckAnyRPApportionment(FacilitySiteID, EmissionsUnitID, ProcessID)
+            Dim RPApportionmentExists As Boolean = CheckAnyRPApportionment(FacilitySiteID, EmissionsUnitID, ProcessID)
             LoadReleasePoints(FacilitySiteID, EmissionsUnitID)
             LoadRPApportionDetails(FacilitySiteID, EmissionsUnitID, ProcessID)
 

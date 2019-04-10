@@ -4,8 +4,8 @@ Imports EpdIt.DBUtilities
 Partial Class EIS_rp_threshold
     Inherits Page
 
-    Public SummerDayRequired As Boolean
-    Public EIType As String
+    Private SummerDayRequired As Boolean
+    Private EIType As String
 
     Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
 

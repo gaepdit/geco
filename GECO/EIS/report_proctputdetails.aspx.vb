@@ -1,10 +1,9 @@
-﻿Imports System.Data
-Imports System.Data.SqlClient
+﻿Imports System.Data.SqlClient
 
 Partial Class EIS_report_proctputdetails
     Inherits Page
 
-    Public FacilitySiteID As String
+    Private FacilitySiteID As String
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 

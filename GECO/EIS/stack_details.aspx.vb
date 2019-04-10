@@ -4,7 +4,7 @@ Imports GECO.MapHelper
 Partial Class eis_stack_details
     Inherits Page
 
-    Public RPStatusCode As String
+    Private RPStatusCode As String
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 

@@ -4,8 +4,7 @@ Imports EpdIt.DBUtilities
 Partial Class eis_process_details
     Inherits Page
 
-    Public IDExists As Boolean
-    Public EmissionUnitStatus As String
+    Private EmissionUnitStatus As String
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
@@ -720,13 +719,9 @@ Partial Class eis_process_details
         Dim Processid As String = txtExistProcessID.Text.ToUpper
         Dim EmissionUnitId As String = txtEmissionUnitID.Text.ToUpper
         Dim targetpage As String = "Processcontrolapproach_edit.aspx" & "?eu=" & EmissionUnitId & "&ep=" & Processid
-        If IDExists Then
-            btnInsertProcessControlApproach.Visible = False
-            'Nothing - we do this to make sure the modalpopup shows if there is an existing emission unit id
-        Else
-            InsertProcessControlApproach()
-            Response.Redirect(targetpage)
-        End If
+
+        InsertProcessControlApproach()
+        Response.Redirect(targetpage)
     End Sub
 
     Protected Sub btnEditRPApportion_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnEditRPApportion.Click

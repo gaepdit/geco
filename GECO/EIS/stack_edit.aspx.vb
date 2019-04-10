@@ -5,14 +5,10 @@ Imports Reimers.Google.Map
 Partial Class eis_stack_edit
     Inherits Page
 
-    Public SaveStack As String = "Stack Information saved successfully."
-    Public RPStatus As String
-    Public StackGCDataMissing As Boolean
-    Public StackGCMessage As String = "Stack geographic coordinate data is missing one or more elements. Correct and save."
-    Public StackEISSubmit As Boolean
-    Public StackUsedInRPA As Boolean
-    Public RPFlowRateInRange As Boolean
-    Public RPGASRateAndFlowPresent As Boolean
+    Private ReadOnly StackGCMessage As String = "Stack geographic coordinate data is missing one or more elements. Correct and save."
+    Private StackEISSubmit As Boolean
+    Private RPFlowRateInRange As Boolean
+    Private RPGASRateAndFlowPresent As Boolean
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
@@ -35,8 +31,8 @@ Partial Class eis_stack_edit
             LoadStackGCIValidation()
             loadStackInfo(FacilitySiteID, stackID) 'Loads Stack Info and sets StackEISSubmit based on EIS_ReleasePoint.strEISSubmit value
             LoadRPApportionment(FacilitySiteID, stackID)
-            StackUsedInRPA = CheckRPApportionment(FacilitySiteID, stackID)
-            StackGCDataMissing = CheckRPGCData(FacilitySiteID, stackID)
+            Dim StackUsedInRPA As Boolean = CheckRPApportionment(FacilitySiteID, stackID)
+            Dim StackGCDataMissing As Boolean = CheckRPGCData(FacilitySiteID, stackID)
 
             If StackGCDataMissing Then
                 lblStackGCDataMissing.Text = StackGCMessage
@@ -410,7 +406,6 @@ Partial Class eis_stack_edit
 
     Sub LoadRPApportionment(ByVal fsid As String, ByVal RPid As String)
 
-        RPStatus = ddlStackStatusCode.SelectedValue
         SqlDataSourceRPApp.ConnectionString = DBConnectionString
 
         SqlDataSourceRPApp.SelectCommand = "select eis_process.emissionsunitid, " &
@@ -770,7 +765,7 @@ Partial Class eis_stack_edit
             lblStackMessage.Visible = False
             saveStackInfo()
             SaveStackGCinfo()
-            lblStackMessage.Text = SaveStack
+            lblStackMessage.Text = "Stack Information saved successfully."
             lblStackMessage.Visible = True
             lblStackGCDataMissing.Text = ""
         End If

@@ -3,10 +3,9 @@
 Partial Class eis_emissionunit_details
     Inherits Page
 
-    Public IDExists As Boolean
-    Public ElecGen As Boolean
-    Public FuelBurning As Boolean
-    Public UnitStatusCode As String
+    Private ElecGen As Boolean
+    Private FuelBurning As Boolean
+    Private UnitStatusCode As String
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 

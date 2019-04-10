@@ -4,7 +4,7 @@ Imports System.DateTime
 Partial Class es_confirm
     Inherits Page
 
-    Public ConfNum As String
+    Private ConfNum As String
 
     Private Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         If Not IsPostBack Then

@@ -3,7 +3,8 @@ Imports GECO.MapHelper
 
 Partial Class eis_fugitive_details
     Inherits Page
-    Public RPStatusCode As String
+
+    Private RPStatusCode As String
 
     Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
 

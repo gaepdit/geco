@@ -3,9 +3,7 @@ Imports System.Data.SqlClient
 Partial Class eis_process_edit
     Inherits Page
 
-    Public SCCExists As Boolean
-    Public ProcessEISSubmit As Boolean
-    Public ProcessUsedInProcessReportingPeriod As Boolean
+    Private ProcessEISSubmit As Boolean
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
@@ -21,7 +19,7 @@ Partial Class eis_process_edit
             txtProcessID.Text = processid
             LoadProcessDetails(emissionunitID, processid) 'Loads Process Info and sets ProcessEISSubmit based on EIS_Process.strEISSubmit value
             pnlProcess.Visible = True
-            ProcessUsedInProcessReportingPeriod = CheckProcessReportingPeriod(FacilitySiteID, emissionunitID, processid)
+            Dim ProcessUsedInProcessReportingPeriod As Boolean = CheckProcessReportingPeriod(FacilitySiteID, emissionunitID, processid)
 
             If ProcessEISSubmit = True Or ProcessUsedInProcessReportingPeriod = True Then
                 btnDeleteProcess.Visible = False
@@ -117,7 +115,6 @@ Partial Class eis_process_edit
 
     Protected Sub SCCCheck(Sender As Object, args As ServerValidateEventArgs)
         args.IsValid = IsValidScc(args.Value)
-        SCCExists = args.IsValid
     End Sub
 
     Protected Sub btnSave_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnSave.Click

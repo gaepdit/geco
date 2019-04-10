@@ -5,9 +5,9 @@ Imports System.Math
 Partial Class es_esform
     Inherits Page
 
-    Public SavedES As Boolean
-    Public SavedAPB As Boolean
-    Public ESExist As Boolean
+    Private SavedES As Boolean
+    Private SavedAPB As Boolean
+    Private ESExist As Boolean
 
     Private Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         'Dim CountyName As String
