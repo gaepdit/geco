@@ -4,11 +4,11 @@ Imports System.Net.Mime
 
 Public Module EmailSender
 
-    Public GecoEmailSender As String = ConfigurationManager.AppSettings("GecoEmailSender")
-    Public GecoContactEmail As String = ConfigurationManager.AppSettings("GecoContactEmail")
-    Public GecoContactName As String = ConfigurationManager.AppSettings("GecoContactName")
-    Public SaveAllEmails As Boolean = ConfigurationManager.AppSettings("SaveAllEmails")
-    Public EnableSendingEmail As Boolean = ConfigurationManager.AppSettings("EnableSendingEmail")
+    Public ReadOnly GecoEmailSender As String = ConfigurationManager.AppSettings("GecoEmailSender")
+    Public ReadOnly GecoContactEmail As String = ConfigurationManager.AppSettings("GecoContactEmail")
+    Public ReadOnly GecoContactName As String = ConfigurationManager.AppSettings("GecoContactName")
+    Public ReadOnly SaveAllEmails As Boolean = ConfigurationManager.AppSettings("SaveAllEmails")
+    Public ReadOnly EnableSendingEmail As Boolean = ConfigurationManager.AppSettings("EnableSendingEmail")
 
     ''' <summary>
     ''' Sends an email and returns true if successful; otherwise false.

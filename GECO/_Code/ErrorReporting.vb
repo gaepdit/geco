@@ -4,7 +4,7 @@ Imports SharpRaven.Data
 
 Public Module ErrorReporting
 
-    Public LogExceptionsToFile As Boolean = ConfigurationManager.AppSettings("LogExceptionsToFile")
+    Public ReadOnly LogExceptionsToFile As Boolean = ConfigurationManager.AppSettings("LogExceptionsToFile")
 
     Public Sub ErrorReport(exc As Exception, Optional redirectToErrorPage As Boolean = True)
         If LogExceptionsToFile Then
