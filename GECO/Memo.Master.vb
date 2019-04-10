@@ -11,12 +11,13 @@ Public Class Memo
     Private Property queryID As Integer = -1
 
     Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
-        Boolean.TryParse(Request.QueryString("pdf"), asPDF)
-        Integer.TryParse(Request.QueryString("id"), queryID)
+        If Not Integer.TryParse(Request.QueryString("id"), queryID) Then
+            queryID = -1
+        End If
 
         lblDirector.Text = GetManagerName("EpdDirector")
 
-        If asPDF Then
+        If Boolean.TryParse(Request.QueryString("pdf"), asPDF) And asPDF Then
             pnlToolbar.Visible = False
         End If
     End Sub
