@@ -12,11 +12,6 @@ Partial Class EIS_rp_operscp_edit
     Private Property SelectedSulfurContent As Decimal? = Nothing
     Private Property SelectedAshContent As Decimal? = Nothing
 
-    Private CalcParamUomCodeTable As DataTable = Nothing
-    Private CalcMaterialCodeTable As DataTable = Nothing
-    Private FuelBurningSccTable As DataTable = Nothing
-    Private ScpDenomCodeTable As DataTable = Nothing
-
     Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
 
         Dim FacilitySiteID As String = GetCookie(Cookie.AirsNumber)
@@ -66,6 +61,8 @@ Partial Class EIS_rp_operscp_edit
     End Sub
 
     Private Sub LoadCalcParamUoM()
+        Dim CalcParamUomCodeTable As DataTable = Nothing
+
         If Not String.IsNullOrEmpty(SelectedSCC) Then
             CalcParamUomCodeTable = GetCalcParamUoMCodesForScc(SelectedSCC)
         End If
@@ -93,6 +90,8 @@ Partial Class EIS_rp_operscp_edit
     End Sub
 
     Private Sub LoadMaterialCodes()
+        Dim CalcMaterialCodeTable As DataTable = Nothing
+
         If Not String.IsNullOrEmpty(SelectedSCC) Then
             CalcMaterialCodeTable = GetCalcMaterialCodesForScc(SelectedSCC)
         End If
@@ -120,6 +119,8 @@ Partial Class EIS_rp_operscp_edit
     End Sub
 
     Private Sub LoadFuelBurningInfo()
+        Dim ScpDenomCodeTable As DataTable = Nothing
+
         If Not String.IsNullOrEmpty(SelectedSCC) Then
             ScpDenomCodeTable = GetScpDenomUoMCodesForScc(SelectedSCC)
         End If
@@ -137,7 +138,7 @@ Partial Class EIS_rp_operscp_edit
             .SelectedIndex = 0
         End With
 
-        FuelBurningSccTable = GetFuelBurningSccList()
+        Dim FuelBurningSccTable As DataTable = GetFuelBurningSccList()
 
         If SelectedIsFuelBurning OrElse FuelBurningSccTable.Rows.Contains(SelectedSCC) Then
             ddlFuelBurning.SelectedValue = "Yes"

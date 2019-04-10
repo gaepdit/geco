@@ -1,7 +1,6 @@
 Imports System.Data.SqlClient
-Imports GECO.FeeBusinessEntity
-Imports GECO.GecoModels
 Imports EpdIt.DBUtilities
+Imports GECO.GecoModels
 
 Partial Class AnnualFees_Default
     Inherits Page
@@ -12,7 +11,6 @@ Partial Class AnnualFees_Default
     Private Property currentAirs As ApbFacilityId
 
     Dim feetotal, feepart70, feesm, feensps, feecalculated As Double
-    Private xmldatasource As New XmlDataSource
 
 #End Region
 
@@ -2561,6 +2559,7 @@ Partial Class AnnualFees_Default
 #Region "Miscellaneous Subs"
 
     Protected Sub DoServerSideCode(ByVal sender As Object, ByVal e As EventArgs)
+        Dim xmldatasource As New XmlDataSource
 
         Try
             'Based on which tab is clicked the following will be executed
@@ -2639,6 +2638,9 @@ Partial Class AnnualFees_Default
         Catch exThreadAbort As System.Threading.ThreadAbortException
         Catch ex As Exception
             ErrorReport(ex)
+
+        Finally
+            xmldatasource.Dispose()
         End Try
     End Sub
 

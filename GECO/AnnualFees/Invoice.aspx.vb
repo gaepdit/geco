@@ -3,13 +3,14 @@ Imports CrystalDecisions.CrystalReports.Engine
 
 Partial Class AnnualFees_Invoice
     Inherits Page
-    Dim CrReportDocument As New ReportDocument()
 
     Protected Sub Page_Init(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Init
         ConfigureCrystalReports()
     End Sub
 
     Private Sub ConfigureCrystalReports()
+        Dim CrReportDocument As New ReportDocument()
+
         Dim crConnectionInfo As ConnectionInfo
 
         Dim reportPath As String
@@ -76,6 +77,8 @@ Partial Class AnnualFees_Invoice
             myCrystalReportViewer.ToolPanelView = CrystalDecisions.Web.ToolPanelViewType.None
         Catch ex As Exception
             ErrorReport(ex)
+        Finally
+            CrReportDocument.Dispose()
         End Try
 
     End Sub
@@ -92,8 +95,4 @@ Partial Class AnnualFees_Invoice
 
     End Sub
 
-    Protected Sub Page_Unload(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Unload
-        CrReportDocument.Close()
-        CrReportDocument.Dispose()
-    End Sub
 End Class
