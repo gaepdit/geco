@@ -23,12 +23,6 @@
         Public Property DatePermitIssued As Date?
         Public Property PermitFileName As String
 
-        Public ReadOnly Property PermitFileLink As String
-            Get
-                Return GetPermitFileLink(PermitFileName)
-            End Get
-        End Property
-
         Public Property PermitNumberInDB As String
             Get
                 ' Permit number stored in DB has had hyphens removed 😒
@@ -89,12 +83,12 @@
             Return ConcatNonEmptyStrings("-", {Mid(value, 1, 4), Mid(value, 5, 3), Mid(value, 8)})
         End Function
 
-        Public Shared Function GetPermitFileLink(permitFileName As String) As String
-            If String.IsNullOrEmpty(permitFileName) Then
+        Public Function GetPermitFileLink() As String
+            If String.IsNullOrEmpty(PermitFileName) Then
                 Return Nothing
             End If
 
-            Return "http://permitsearch.gaepd.org/permit.aspx?id=" & permitFileName
+            Return "http://permitsearch.gaepd.org/permit.aspx?id=" & PermitFileName
         End Function
 
         Public Shared Function GetPermitAirsSearchLink(airs As ApbFacilityId) As String

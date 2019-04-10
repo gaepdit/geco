@@ -76,7 +76,7 @@ Public Class Permit_Application
             If Not String.IsNullOrEmpty(.PermitFileName) Then
                 Dim anchor As New HyperLink With {
                     .Target = "_blank",
-                    .NavigateUrl = PermitApplication.PermitFileLink,
+                    .NavigateUrl = PermitApplication.GetPermitFileLink(),
                     .Text = "Permit"
                 }
 
