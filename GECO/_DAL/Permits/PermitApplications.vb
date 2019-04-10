@@ -45,9 +45,10 @@ Namespace DAL
                 .FirstName = GetNullableString(dr.Item("FirstName")),
                 .LastName = GetNullableString(dr.Item("LastName")),
                 .Email = GetNullableString(dr.Item("Email")),
-                .UnformattedPhoneNumber = GetNullableString(dr.Item("Phone")),
                 .ActiveEmployee = CBool(dr.Item("ActiveEmployee"))
             }
+
+            staffResponsible.SetUnformattedPhoneNumber(GetNullableString(dr.Item("Phone")))
 
             Dim facilityAddress As New Address With {
                 .Street = GetNullableString(dr.Item("FacilityStreet")),

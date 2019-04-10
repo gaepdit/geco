@@ -8,21 +8,17 @@ Partial Class MainMaster
     Public Property IsFacilitySubpage As Boolean = False
     Private Property currentUser As GecoUser
 
-    Public WriteOnly Property UserName As String
-        Set(value As String)
-            If Not String.IsNullOrWhiteSpace(value) Then
-                lblUserName.Text = String.Concat("Welcome: ", value)
-            End If
-        End Set
-    End Property
+    Private Sub SetUserName(value As String)
+        If Not String.IsNullOrWhiteSpace(value) Then
+            lblUserName.Text = String.Concat("Welcome: ", value)
+        End If
+    End Sub
 
-    Public WriteOnly Property Facility As String
-        Set(value As String)
-            If Not String.IsNullOrWhiteSpace(value) Then
-                lblFacility.Text = String.Concat("Current Facility: ", value)
-            End If
-        End Set
-    End Property
+    Public Sub SetFacility(value As String)
+        If Not String.IsNullOrWhiteSpace(value) Then
+            lblFacility.Text = String.Concat("Current Facility: ", value)
+        End If
+    End Sub
 
     Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
         SetUpEasyMenu()
@@ -31,7 +27,11 @@ Partial Class MainMaster
             currentUser = GetCurrentUser()
 
             If currentUser IsNot Nothing Then
-                UserName = If(String.IsNullOrWhiteSpace(currentUser.FullName), currentUser.Email, currentUser.FullName)
+                If String.IsNullOrWhiteSpace(currentUser.FullName) Then
+                    SetUserName(currentUser.Email)
+                Else
+                    SetUserName(currentUser.FullName)
+                End If
             End If
         End If
     End Sub

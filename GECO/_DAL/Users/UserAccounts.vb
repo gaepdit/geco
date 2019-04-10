@@ -62,7 +62,6 @@ Public Module UserAccounts
             .Title = GetNullableString(dr("Title")),
             .Company = GetNullableString(dr("Company")),
             .PhoneNumber = GetNullableString(dr("Phone")),
-            .UnformattedPhoneNumber = GetNullableString(dr("UnformattedPhone")),
             .GecoUserType = GetNullableString(dr("UserType")),
             .Address = New Address() With {
                 .Street = GetNullableString(dr("Street")),
@@ -72,6 +71,8 @@ Public Module UserAccounts
             },
             .ProfileUpdateRequired = CBool(dr("UpdateRequired"))
         }
+
+        user.SetUnformattedPhoneNumber(GetNullableString(dr("UnformattedPhone")))
 
         Return user
     End Function

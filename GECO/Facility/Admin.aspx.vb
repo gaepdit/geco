@@ -46,7 +46,7 @@ Partial Class FacilityAdmin
             LoadFacilityInfo()
             LoadUserGrid()
 
-            Master.Facility = ConcatNonEmptyStrings(", ", {currentAirs.FormattedString(), currentFacility})
+            Master.SetFacility(ConcatNonEmptyStrings(", ", {currentAirs.FormattedString(), currentFacility}))
 
             Title = "GECO Facility Admin - " & lblFacilityDisplay.Text
             lblAIRS.Text = currentAirs.FormattedString

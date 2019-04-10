@@ -49,7 +49,7 @@ Partial Class FacilitySummary
             LoadFacilityHeaderData()
             LoadStateContactInformation()
 
-            Master.Facility = ConcatNonEmptyStrings(", ", {currentAirs.FormattedString(), currentFacility})
+            Master.SetFacility(ConcatNonEmptyStrings(", ", {currentAirs.FormattedString(), currentFacility}))
 
             Title = "GECO Facility Summary - " & lblFacilityDisplay.Text
             lblAIRS.Text = currentAirs.FormattedString

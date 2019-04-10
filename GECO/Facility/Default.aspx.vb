@@ -50,7 +50,7 @@ Partial Class FacilityHome
             LoadFacilityInfo()
             GetApplicationStatus()
 
-            Master.Facility = ConcatNonEmptyStrings(", ", {currentAirs.FormattedString(), currentFacility})
+            Master.SetFacility(ConcatNonEmptyStrings(", ", {currentAirs.FormattedString(), currentFacility}))
 
             Title = "GECO Facility Summary - " & currentFacility
             lblAIRS.Text = currentAirs.FormattedString
