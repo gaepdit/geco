@@ -5,7 +5,7 @@
         Property Longitude() As Decimal
     End Interface
 
-    Public Structure Coordinate
+    Public Class Coordinate
         Implements ISpatialCoordinate
 
         Public Sub New(ByVal latitude As Decimal, ByVal longitude As Decimal)
@@ -19,7 +19,7 @@
         Public Overrides Function ToString() As String
             Return Latitude.ToString & "," & Longitude.ToString
         End Function
-    End Structure
+    End Class
 
     Public Enum GoogleMapType
         roadmap

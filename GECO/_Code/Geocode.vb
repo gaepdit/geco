@@ -10,7 +10,7 @@ Namespace GoogleGeocoder
 
     End Interface
 
-    Public Structure Coordinate
+    Public Class Coordinate
         Implements ISpatialCoordinate
 
         Public Sub New(ByVal latitude As Decimal, ByVal longitude As Decimal)
@@ -22,7 +22,7 @@ Namespace GoogleGeocoder
 
         Public Property Longitude() As Decimal Implements ISpatialCoordinate.Longitude
 
-    End Structure
+    End Class
 
     Public Module Geocode
         Private Const googleUri As String = "https://maps.google.com/maps/geo?q="

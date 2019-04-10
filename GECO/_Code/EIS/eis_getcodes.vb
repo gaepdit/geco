@@ -1,16 +1,16 @@
 ﻿Imports System.Data.SqlClient
 
-Public Structure MinMaxLatLon
+Public Class MinMaxLatLon
     Public Property MinLat As Decimal
     Public Property MaxLat As Decimal
     Public Property MinLon As Decimal
     Public Property MaxLon As Decimal
-End Structure
+End Class
 
-Public Structure MinMaxValues
+Public Class MinMaxValues
     Public Property MinValue As Decimal
     Public Property MaxValue As Decimal
-End Structure
+End Class
 
 Public Module eis_getcodes
 
