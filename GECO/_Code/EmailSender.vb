@@ -24,7 +24,7 @@ Public Module EmailSender
     ''' multiple recipients.</remarks>
     Public Function SendEmail(toAddresses As String,
                               mailSubject As String,
-                              plainTextBody As String,
+                              Optional plainTextBody As String = Nothing,
                               Optional htmlBody As String = Nothing,
                               Optional ccAddresses As String = Nothing,
                               Optional mailPriority As MailPriority = MailPriority.Normal,
@@ -36,7 +36,7 @@ Public Module EmailSender
         End If
 
         If String.IsNullOrEmpty(toAddresses) Then
-            Throw New ArgumentNullException("Recipient address required.")
+            Throw New ArgumentNullException(NameOf(toAddresses), "Recipient address required.")
         End If
 
         If String.IsNullOrWhiteSpace(mailSubject) Then
