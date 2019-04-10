@@ -28,21 +28,21 @@
         terrain
     End Enum
 
-    Public Class GoogleMaps
+    Public Module GoogleMaps
         Private Const _googleLinkUri As String = "https://maps.google.com/maps/place/{0}"
         Private Const _googleStaticMapUri As String = "https://maps.googleapis.com/maps/api/staticmap?center={0}&zoom={1}&size={2}&maptype={3}&markers={4}&key={5}"
         Private Const _defaultSize As String = "600x200"
         Private Const _defaultZoom As Integer = 16
 
-        Public Shared Function GetMapLinkUrl(coordinates As Coordinate) As String
+        Public Function GetMapLinkUrl(coordinates As Coordinate) As String
             Return String.Format(_googleLinkUri, coordinates.ToString())
         End Function
 
-        Public Shared Function GetMapLinkUrl(address As String, city As String) As String
+        Public Function GetMapLinkUrl(address As String, city As String) As String
             Return String.Format(_googleLinkUri, address & ", " & city & " GA")
         End Function
 
-        Public Shared Function GetStaticMapUrl(coordinates As Coordinate,
+        Public Function GetStaticMapUrl(coordinates As Coordinate,
                                                Optional size As String = _defaultSize,
                                                Optional zoom As Integer = _defaultZoom,
                                                Optional mapType As GoogleMapType = GoogleMapType.hybrid
@@ -53,7 +53,7 @@
             Return String.Format(_googleStaticMapUri, coordinates.ToString(), zoom, size, mapType, marker, key)
         End Function
 
-        Public Shared Function GetStaticMapUrl(address As String,
+        Public Function GetStaticMapUrl(address As String,
                                                city As String,
                                                Optional size As String = _defaultSize,
                                                Optional zoom As Integer = _defaultZoom,
@@ -65,5 +65,5 @@
             Return String.Format(_googleStaticMapUri, center, zoom, size, mapType, "", key)
         End Function
 
-    End Class
+    End Module
 End Namespace

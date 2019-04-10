@@ -1,10 +1,9 @@
-Imports System.Data
 Imports System.Data.SqlClient
 Imports GECO.GecoModels
 
-Public Class FeeBusinessEntity
+Public Module FeeBusinessEntity
 
-    Public Shared Function CheckFinalSubmit(airsno As ApbFacilityId) As DataTable
+    Public Function CheckFinalSubmit(airsno As ApbFacilityId) As DataTable
         Dim SQL As String = "select numfeeyear as intyear, intsubmittal from " &
             "fs_admin where " &
             "strairsnumber = @airsno and " &
@@ -18,7 +17,7 @@ Public Class FeeBusinessEntity
         Return DB.GetDataTable(SQL, param)
     End Function
 
-    Public Shared Function GetFeeRates(ByVal feeyear As Integer) As DataRow
+    Public Function GetFeeRates(ByVal feeyear As Integer) As DataRow
         'In the database table fs_feerate, all the rates for a particular year are saved
         Dim SQL = "Select numsmfee, " &
             " numpertonrate, numnspsfee, " &
@@ -33,7 +32,7 @@ Public Class FeeBusinessEntity
         Return DB.GetDataRow(SQL, param)
     End Function
 
-    Public Shared Function GetNSPSExemptList(ByVal feeyear As Integer) As DataTable
+    Public Function GetNSPSExemptList(ByVal feeyear As Integer) As DataTable
         Dim SQL = "select fslk_NSPSReasonYear.NSPSReasonCode as ReasonID, fslk_NSPSReason.Description as Reason " &
             " FROM fslk_NSPSReasonYear " &
             " join fslk_NSPSReason on fslk_NSPSReasonYear.NSPSReasonCode = fslk_NSPSReason.NSPSReasonCode " &
@@ -45,7 +44,7 @@ Public Class FeeBusinessEntity
         Return DB.GetDataTable(SQL, param)
     End Function
 
-    Public Shared Function GetClassInfo(ByVal feeyear As Integer) As DataRow
+    Public Function GetClassInfo(ByVal feeyear As Integer) As DataRow
         Dim SQL = "Select strclass, strnsps, " &
             " strpart70 FROM fs_mailout " &
             " where strairsnumber = @airs and numfeeyear = @feeyear "
@@ -58,7 +57,7 @@ Public Class FeeBusinessEntity
         Return DB.GetDataRow(SQL, params)
     End Function
 
-    Public Shared Function GetFS_ContactInfo(ByVal feeyear As Integer) As DataRow
+    Public Function GetFS_ContactInfo(ByVal feeyear As Integer) As DataRow
         'In the database table fs_contactinfo, the contact for
         'Fees has a contact key of airsnumber and fee year
 
@@ -78,7 +77,7 @@ Public Class FeeBusinessEntity
         Return DB.GetDataRow(query, params)
     End Function
 
-    Public Shared Function GetAPBContactInformation(key As Integer) As DataRow
+    Public Function GetAPBContactInformation(key As Integer) As DataRow
         'In the database table fs_contactinfo, the contact for
         'Fees has a contact key of airsnumber and two digits (40)
 
@@ -98,7 +97,7 @@ Public Class FeeBusinessEntity
         Return DB.GetDataRow(query, params)
     End Function
 
-    Public Shared Function GetFacilityInfo(ByVal feeyear As Integer) As DataRow
+    Public Function GetFacilityInfo(ByVal feeyear As Integer) As DataRow
         'In the database table apbcontactinformation, the contact for
         'Fees has a contact key of airsnumber and two digits (40)
         Dim SQL = " Select strfacilityname, strfacilityaddress1, " &
@@ -114,7 +113,7 @@ Public Class FeeBusinessEntity
         Return DB.GetDataRow(SQL, params)
     End Function
 
-    Public Shared Function GetFacilityInfoTemp() As DataRow
+    Public Function GetFacilityInfoTemp() As DataRow
         'In the database table apbcontactinformation, the contact for
         'Fees has a contact key of airsnumber and two digits (40)
         Dim SQL = "Select strfacilityname, strfacilitystreet1, " &
@@ -127,7 +126,7 @@ Public Class FeeBusinessEntity
         Return DB.GetDataRow(SQL, param)
     End Function
 
-    Public Shared Function GetCalculationInfo(ByVal feeyear As Integer) As DataRow
+    Public Function GetCalculationInfo(ByVal feeyear As Integer) As DataRow
         Dim SQL = "Select intvoctons, intpmtons, intso2tons, intnoxtons, " &
             " numpart70fee, numsmfee, numnspsfee, numtotalfee, " &
             " strnspsexempt, strnspsexemptreason as strnspsreason, " &
@@ -144,7 +143,7 @@ Public Class FeeBusinessEntity
         Return DB.GetDataRow(SQL, params)
     End Function
 
-    Public Shared Function GetPaySubmitInfo(ByVal feeyear As Integer) As DataRow
+    Public Function GetPaySubmitInfo(ByVal feeyear As Integer) As DataRow
         Dim SQL = "SELECT aud.STRPAYMENTPLAN, " &
             " aud.strofficialname, " &
             " aud.strofficialtitle, " &
@@ -163,7 +162,7 @@ Public Class FeeBusinessEntity
         Return DB.GetDataRow(SQL, params)
     End Function
 
-    Public Shared Function GetFeeStatus(airs As ApbFacilityId) As DataRow
+    Public Function GetFeeStatus(airs As ApbFacilityId) As DataRow
         Dim query As String = " select " &
         "     a.STRAIRSNUMBER, " &
         "     a.NUMFEEYEAR, " &
@@ -187,10 +186,10 @@ Public Class FeeBusinessEntity
         Return DB.GetDataRow(query, param)
     End Function
 
-    Public Shared Function GetAnnualFeeHistory(airs As ApbFacilityId) As DataTable
+    Public Function GetAnnualFeeHistory(airs As ApbFacilityId) As DataTable
         Dim spName As String = "iaip_facility.GetAnnualFeesHistory"
 
         Return DB.SPGetDataTable(spName, New SqlParameter("@FacilityID", airs.DbFormattedString))
     End Function
 
-End Class
+End Module
