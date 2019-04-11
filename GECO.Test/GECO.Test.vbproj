@@ -86,6 +86,7 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GlobalSuppressions.vb" />
     <Compile Include="ModelTests\ApbFacilityIdTest.vb" />
     <Compile Include="UnitTestTests.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
