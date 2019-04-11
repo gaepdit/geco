@@ -1464,6 +1464,7 @@
       <DependentUpon>Password.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="GlobalSuppressions.vb" />
     <Compile Include="Home\FacilityRequest.aspx.designer.vb">
       <DependentUpon>FacilityRequest.aspx</DependentUpon>
     </Compile>
