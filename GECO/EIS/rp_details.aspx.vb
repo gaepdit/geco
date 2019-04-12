@@ -149,11 +149,11 @@ Partial Class EIS_rp_details
     End Sub
 
     Private Sub LoadRPDetails(ByVal Year As String, ByVal FSID As String, ByVal EUID As String, ByVal EPID As String, ByVal RPTYPE As String)
-        Dim HeatContent As String = ""
-        Dim SulfurContent As String = ""
-        Dim AshContent As String = ""
-        Dim UpdateUser As String = ""
-        Dim UpdateDateTime As String = ""
+        Dim HeatContent As String
+        Dim SulfurContent As String
+        Dim AshContent As String
+        Dim UpdateUser As String
+        Dim UpdateDateTime As String
         Dim Negligible As String = "Zero or negligible"
 
         Try

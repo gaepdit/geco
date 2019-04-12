@@ -106,10 +106,8 @@ Partial Class es_confirm
         Dim day As String = Now.ToString("d-MMM-yyyy")
         Dim hr As String = Now.Hour
         Dim min As String = Now.Minute
-        Dim sec As String = Now.Second
         If Len(hr) < 2 Then hr = "0" & hr
         If Len(min) < 2 Then min = "0" & min
-        If Len(sec) < 2 Then sec = "0" & sec
         Dim TransDate As String = day.ToUpper
         Dim TransTime As String = hr & min
         Dim ConfNum As String

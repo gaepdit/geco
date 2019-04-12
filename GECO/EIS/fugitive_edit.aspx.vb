@@ -423,7 +423,7 @@ Partial Class eis_fugitive_edit
     End Sub
 
     Private Sub SaveFugitiveStackInfo()
-        Dim SQL As String = ""
+        Dim SQL As String
         Dim FugitiveID As String = Left(txtReleasePointID.Text, 6)
         Dim RPDescription As String = Left(txtRPDescription.Text, 100)
         Dim RPStatusCode As String = ddlFugitiveStatusCode.SelectedValue

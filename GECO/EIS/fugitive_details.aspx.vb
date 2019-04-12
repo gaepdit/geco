@@ -37,12 +37,12 @@ Partial Class eis_fugitive_details
     Private Sub LoadFugitiveDetails(RPid As String)
 
         Dim FacilitySiteID As String = GetCookie(Cookie.AirsNumber)
-        Dim UpdateUser As String = ""
-        Dim UpdateDateTime As String = ""
-        Dim HCCcode As String = ""
-        Dim HCCdesc As String = ""
-        Dim HRCcode As String = ""
-        Dim HRCdesc As String = ""
+        Dim UpdateUser As String
+        Dim UpdateDateTime As String
+        Dim HCCcode As String
+        Dim HCCdesc As String
+        Dim HRCcode As String
+        Dim HRCdesc As String
         Dim RPFencelineDistanceMeasure As Decimal
         Dim RPFugitiveHeightMeasure As Decimal
         Dim RPFugitiveWidthMeasure As Decimal
@@ -51,8 +51,8 @@ Partial Class eis_fugitive_details
         Dim HORACCURACYMEASURE As Decimal
         Dim FacilityLongitude As String
         Dim FacilityLatitude As String
-        Dim RPStatusCodeDesc As String = ""
-        Dim RPStatusCodeyear As String = ""
+        Dim RPStatusCodeDesc As String
+        Dim RPStatusCodeyear As String
 
         Try
             Dim query As String = "select RELEASEPOINTID, " &
@@ -97,6 +97,7 @@ Partial Class eis_fugitive_details
                 If IsDBNull(dr("strRPStatusCode")) Then
                     txtRPStatusCode.Text = 0
                     RPStatusCode = ""
+                    RPStatusCodeDesc = ""
                 Else
                     RPStatusCode = dr.Item("strRPStatusCode")
                     RPStatusCodeDesc = GetStackStatusCodeDesc(RPStatusCode)
@@ -410,12 +411,12 @@ Partial Class eis_fugitive_details
         Dim SourceFugitiveID As String = txtReleasePointID.Text.ToUpper
         Dim DupFugitiveID As String = stkid.ToUpper
         Dim RPDescription As String = txtDupFugitiveDescription.Text
-        Dim RPTypeCode As String = ""
-        Dim RPFenceLineDistMeasure As String = ""
-        Dim RPFugitiveHeightMeasure As String = ""
-        Dim RPFugitiveWidthMeasure As String = ""
-        Dim RPFugitiveLengthMeasure As String = ""
-        Dim RPFugitiveAngleMeasure As String = ""
+        Dim RPTypeCode As String
+        Dim RPFenceLineDistMeasure As String
+        Dim RPFugitiveHeightMeasure As String
+        Dim RPFugitiveWidthMeasure As String
+        Dim RPFugitiveLengthMeasure As String
+        Dim RPFugitiveAngleMeasure As String
         Dim RPStatusCode As String = "OP"
         Dim RPStatusCodeYear As Integer = Now.Year
         Dim Active As String = "1"

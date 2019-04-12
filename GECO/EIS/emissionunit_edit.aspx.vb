@@ -124,7 +124,7 @@ Partial Class eis_emissionunit_edit
         Dim FacilitySiteID As String = GetCookie(Cookie.AirsNumber)
         Dim UnitDesignCapacity As Decimal
         Dim MaxNameplateCapacity As Decimal
-        Dim EISSubmit As String = ""
+        Dim EISSubmit As String
 
         euid = euid.ToUpper
 
@@ -263,16 +263,13 @@ Partial Class eis_emissionunit_edit
         Dim UpdateUser As String = UpdateUserID & "-" & UpdateUserName
         Dim StatusCodeOnLoad As String = txtUnitStatusCodeOnLoad.Text
         Dim StatusCodeChanged As String = txtUnitStatusCodeChanged.Text
-        Dim ShutDownStatus As String = ""
 
         If StatusCodeOnLoad = "OP" And (StatusCodeChanged = "PS" Or StatusCodeChanged = "TS") Then
             'Open Unit Status warning
-            ShutDownStatus = "S"
             mpeUnitStatusShutdown.Show()
         Else
             'Operating or already shutdown >> Save emission unit
-            ShutDownStatus = "O"
-            SaveEmissionUnit(FacilitySiteID, UpdateUser, ShutDownStatus)
+            SaveEmissionUnit(FacilitySiteID, UpdateUser, "O")
             txtUnitStatusCodeOnLoad.Text = ddlUnitStatusCode.SelectedValue
             txtUnitStatusCodeChanged.Text = ""
         End If
@@ -285,9 +282,8 @@ Partial Class eis_emissionunit_edit
         Dim UpdateUserID As String = GetCookie(GecoCookie.UserID)
         Dim UpdateUserName As String = GetCookie(GecoCookie.UserName)
         Dim UpdateUser As String = UpdateUserID & "-" & UpdateUserName
-        Dim ShutDownStatus As String = "S"
 
-        SaveEmissionUnit(FacilitySiteID, UpdateUser, ShutDownStatus)
+        SaveEmissionUnit(FacilitySiteID, UpdateUser, "S")
         'Set process active = "0" for all EU processes
         EUProcessesSetActiveZero(txtEmissionsUnitID.Text, FacilitySiteID, UpdateUser)
         lblSaveMessage1.Text = "Emission unit saved successfully"

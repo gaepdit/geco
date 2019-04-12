@@ -284,7 +284,6 @@ Partial Class es_esform
                 txtYCoordinate.Text = Round(Abs(dr.Item("dblYCoordinate")), 6)
             End If
             If IsDBNull(dr("strHorizontalCollectionCode")) Then
-                HCCcode = ""
                 cboHorizontalCollectionCode.SelectedIndex = 0
             Else
                 HCCcode = dr.Item("strHorizontalCollectionCode")
@@ -292,7 +291,6 @@ Partial Class es_esform
                 cboHorizontalCollectionCode.SelectedValue = HCCdesc & "  [" & HCCcode & "]"
             End If
             If IsDBNull(dr("strHorizontalReferenceCode")) Then
-                HRCcode = ""
                 cboHorizontalReferenceCode.SelectedIndex = 0
             Else
                 HRCcode = dr.Item("strHorizontalReferenceCode")
@@ -333,9 +331,7 @@ Partial Class es_esform
             Else
                 txtContactCompanyName.Text = dr.Item("strContactCompany")
             End If
-            If IsDBNull(dr("strContactPhoneNumber")) Then
-                ContactPhoneNumber = ""
-            Else
+            If Not IsDBNull(dr("strContactPhoneNumber")) Then
                 ContactPhoneNumber = dr.Item("strContactPhoneNumber")
                 If Len(ContactPhoneNumber) <= 10 Then
                     txtOfficePhoneNbr.Text = ContactPhoneNumber
@@ -347,9 +343,7 @@ Partial Class es_esform
                 End If
             End If
 
-            If IsDBNull(dr("strContactFaxNumber")) Then
-                ContactFaxNumber = ""
-            Else
+            If Not IsDBNull(dr("strContactFaxNumber")) Then
                 ContactFaxNumber = dr.Item("strContactFaxNumber")
                 txtFaxNbr.Text = Mid(ContactFaxNumber, 1, 10)
             End If
@@ -526,7 +520,6 @@ Partial Class es_esform
                 txtYCoordinate.Text = Round(dr.Item("numFacilityLatitude"), 6)
             End If
             If IsDBNull(dr("strHorizontalCollectionCode")) Then
-                HCCcode = ""
                 cboHorizontalCollectionCode.SelectedIndex = 0
             Else
                 HCCcode = dr.Item("strHorizontalCollectionCode")
@@ -534,7 +527,6 @@ Partial Class es_esform
                 cboHorizontalCollectionCode.SelectedValue = HCCdesc & "  [" & HCCcode & "]"
             End If
             If IsDBNull(dr("strHorizontalReferenceCode")) Then
-                HRCcode = ""
                 cboHorizontalReferenceCode.SelectedIndex = 0
             Else
                 HRCcode = dr.Item("strHorizontalReferenceCode")
@@ -613,9 +605,7 @@ Partial Class es_esform
                 Else
                     txtContactCompanyName.Text = dr.Item("strContactCompanyName")
                 End If
-                If IsDBNull(dr("strContactPhoneNumber1")) Then
-                    ContactPhoneNumber1 = ""
-                Else
+                If Not IsDBNull(dr("strContactPhoneNumber1")) Then
                     ContactPhoneNumber1 = dr.Item("strContactPhoneNumber1")
                     If Len(ContactPhoneNumber1) <= 10 Then
                         txtOfficePhoneNbr.Text = ContactPhoneNumber1
@@ -627,9 +617,7 @@ Partial Class es_esform
                     End If
                 End If
 
-                If IsDBNull(dr("strContactFaxNumber")) Then
-                    ContactFaxNumber = ""
-                Else
+                If Not IsDBNull(dr("strContactFaxNumber")) Then
                     ContactFaxNumber = dr.Item("strContactFaxNumber")
                     txtFaxNbr.Text = Mid(ContactFaxNumber, 1, 10)
                 End If
@@ -919,12 +907,6 @@ Partial Class es_esform
         Dim ContactZipCode As String = txtContactZipCode.Text & txtContactZipPlus4.Text
         Dim ModPerson As String = "0"
         Dim ContactDescription As String = "ES Contact"
-        Dim hr As String = Now.Hour
-        Dim min As String = Now.Minute
-        Dim sec As String = Now.Second
-        If Len(hr) < 2 Then hr = "0" & hr
-        If Len(min) < 2 Then min = "0" & min
-        If Len(sec) < 2 Then sec = "0" & sec
         Dim Exist As Boolean
 
         Exist = ContactExistAPB()

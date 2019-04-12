@@ -118,12 +118,12 @@ Partial Class eis_emissionunit_details
     End Sub
 
     Private Sub LoadEmissionUnitDetails(ByVal fsid As String, ByVal euid As String)
-        Dim UpdateUser As String = ""
-        Dim UpdateDateTime As String = ""
+        Dim UpdateUser As String
+        Dim UpdateDateTime As String
         Dim UnitDesignCapacity As Decimal
         Dim MaxNameplateCapacity As Decimal
         Dim UnitTypeCode As String = ""
-        Dim unitDesignCapacityUOMCode As String = ""
+        Dim unitDesignCapacityUOMCode As String
 
         Try
             Dim query = "select " &
@@ -274,8 +274,8 @@ Partial Class eis_emissionunit_details
 
     Private Sub LoadUnitCtrlApprDetails(ByVal fsid As String, ByVal euid As String)
 
-        Dim UpdateUser As String = ""
-        Dim UpdateDateTime As String = ""
+        Dim UpdateUser As String
+        Dim UpdateDateTime As String
 
         Try
             Dim query = "select " &

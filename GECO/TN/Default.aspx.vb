@@ -95,12 +95,12 @@ Partial Class TN_Default
 
         Dim FirstName As String
         Dim LastName As String
-        Dim Telephone As String = ""
+        Dim Telephone As String
         Dim AreaCode As String = ""
         Dim Prefix As String = ""
         Dim TelNbr As String = ""
         Dim TelExt As String = ""
-        Dim Fax As String = ""
+        Dim Fax As String
         Dim StartDate As Date
         Dim StaffResponsible As String
 

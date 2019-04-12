@@ -94,12 +94,12 @@ Partial Class EIS_rp_facilitystatus
 
         Dim EISCookies As New HttpCookie("EISAccessInfo")
         Dim EISMaxYear As Integer
-        Dim enrolled As String = ""
-        Dim eisStatus As String = ""
-        Dim accesscode As String = ""
-        Dim optout As String = ""
-        Dim dateFinalize As String = ""
-        Dim confirmationnumber As String = ""
+        Dim enrolled As String
+        Dim eisStatus As String
+        Dim accesscode As String
+        Dim optout As String
+        Dim dateFinalize As String
+        Dim confirmationnumber As String
         Dim CurrentEIYear As Integer = Now.Year - 1
 
         Try

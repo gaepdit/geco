@@ -501,7 +501,7 @@ Partial Class eis_stack_edit
     End Sub
 
     Private Sub saveStackInfo()
-        Dim query As String = ""
+        Dim query As String
         Dim RPDescription As String = txtRPDescription.Text
         Dim RPTypeCode As String = ddlRPtypeCode.SelectedItem.Value
         Dim RPFenceLineDistanceMeasure As String = txtRPFenceLineDistanceMeasure.Text

@@ -4,7 +4,7 @@ Imports System.Math
 Public Module ES_MiscCode
 
     Public Function StatusES(ayr As String) As String
-        Dim esStatus As String = ""
+        Dim esStatus As String
 
         If CheckESExist(ayr) Then
             Dim OptOut As String = CheckESOptOut(ayr)

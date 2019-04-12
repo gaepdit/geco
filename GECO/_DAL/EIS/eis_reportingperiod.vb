@@ -560,7 +560,7 @@ Public Module eis_reportingperiod
             eisStatusCode = "2"
         End If
 
-        Dim query As String = ""
+        Dim query As String
 
         Dim params As SqlParameter() = {
             New SqlParameter("@opt", opt),

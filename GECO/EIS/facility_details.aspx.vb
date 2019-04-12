@@ -31,13 +31,13 @@ Partial Class eis_facility_details
     Private Sub LoadFacilityDetails()
         Dim FacilitySiteID As String = GetCookie(Cookie.AirsNumber)
         TxtLocationAddressStateCode.Text = "GA"
-        Dim UpdateUser As String = ""
-        Dim UpdateDateTime As String = ""
+        Dim UpdateUser As String
+        Dim UpdateDateTime As String
         Dim HORACCURACYMEASURE As Decimal
-        Dim StatusDesc As String = ""
+        Dim StatusDesc As String
         Dim OperatingStatusCodeYear As String
-        Dim NAICSCode As String = ""
-        Dim NAICSDesc As String = ""
+        Dim NAICSCode As String
+        Dim NAICSDesc As String
 
         Try
             Dim query = "select strFacilitySiteName, " &

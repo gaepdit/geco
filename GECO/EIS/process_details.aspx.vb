@@ -8,8 +8,8 @@ Partial Class eis_process_details
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
-        Dim EUCtrlApproachExist As Boolean = "False"
-        Dim ProcCtrlApproachExist As Boolean = "False"
+        Dim EUCtrlApproachExist As Boolean
+        Dim ProcCtrlApproachExist As Boolean
         Dim FacilitySiteID As String = GetCookie(Cookie.AirsNumber)
         Dim EISStatus As String = GetCookie(EisCookie.EISStatus)
         Dim EISAccessCode As String = GetCookie(EisCookie.EISAccess)
@@ -253,9 +253,9 @@ Partial Class eis_process_details
     'Load the Process details
     Private Sub LoadProcessDetails(ByVal fsid As String, ByVal euid As String, ByVal epid As String)
 
-        Dim UpdateUser As String = ""
-        Dim UpdateDateTime As String = ""
-        Dim EmissionsUnitID As String = ""
+        Dim UpdateUser As String
+        Dim UpdateDateTime As String
+        Dim EmissionsUnitID As String
 
         Try
             Dim query = " select " &
@@ -364,8 +364,8 @@ Partial Class eis_process_details
 
     'Load the Process Control Approach
     Private Sub LoadProcessControlApproach(ByVal fsid As String, ByVal euid As String, ByVal epid As String)
-        Dim UpdateUser As String = ""
-        Dim UpdateDateTime As String = ""
+        Dim UpdateUser As String
+        Dim UpdateDateTime As String
         Dim PctCtrlApproachCapEffic As Decimal
         Dim PCTCTRLAPPROACHEFFECT As Decimal
 

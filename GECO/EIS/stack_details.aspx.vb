@@ -64,8 +64,8 @@ Partial Class eis_stack_details
         Dim HCCdesc As String
         Dim HRCcode As String
         Dim HRCdesc As String
-        Dim UpdateUser As String = ""
-        Dim UpdateDateTime As String = ""
+        Dim UpdateUser As String
+        Dim UpdateDateTime As String
         Dim RPExitGasVelocityMeasure As Decimal
         Dim RPExitGasFlowRateMeasure As Decimal
         Dim RPExitGasTemperatureMeasure As Decimal
@@ -74,10 +74,10 @@ Partial Class eis_stack_details
         Dim RPFenceLineDistanceMeasure As Decimal
         Dim FacilityLongitude As String
         Dim FacilityLatitude As String
-        Dim RPTypeCode As String = ""
-        Dim RPTypeCodedesc As String = ""
+        Dim RPTypeCode As String
+        Dim RPTypeCodedesc As String 
         Dim RPStatusCodeDesc As String = ""
-        Dim RPStatusCodeyear As String = ""
+        Dim RPStatusCodeyear As String
 
         Try
             Dim query As String = "select ReleasePointID, " &
@@ -456,13 +456,13 @@ Partial Class eis_stack_details
         Dim SourceStackID As String = txtReleasePointID.Text.ToUpper
         Dim DupStackID As String = stkid.ToUpper
         Dim RPDescription As String = txtDupStackDescription.Text
-        Dim RPTypeCode As String = ""
-        Dim RPStackHeightMeasure As String = ""
-        Dim RPStackDiameterMeasure As String = ""
-        Dim RPExitGasVelocityMeasure As String = ""
-        Dim RPExitGasFlowRateMeasure As String = ""
-        Dim RPExitGasTempMeasure As String = ""
-        Dim RPFenceLineDistMeasure As String = ""
+        Dim RPTypeCode As String
+        Dim RPStackHeightMeasure As String
+        Dim RPStackDiameterMeasure As String
+        Dim RPExitGasVelocityMeasure As String
+        Dim RPExitGasFlowRateMeasure As String
+        Dim RPExitGasTempMeasure As String
+        Dim RPFenceLineDistMeasure As String
         Dim RPStatusCode As String = "OP"
         Dim RPStatusCodeYear As Integer = Now.Year
         Dim Active As String = "1"

@@ -911,7 +911,7 @@ Partial Class AnnualFees_Default
     End Sub
 
     Protected Sub LoadFeeCalculations()
-        Dim dr As DataRow = Nothing
+        Dim dr As DataRow
 
         Try
             'First Get Info from Header Table

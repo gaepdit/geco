@@ -37,9 +37,9 @@ Partial Class EIS_rp_threshold
 
     Private Sub LoadpageInfo(eit As String)
 
-        Dim Pollutant As String = ""
-        Dim Threshold As String = ""
-        Dim ThresholdNAA As String = ""
+        Dim Pollutant As String
+        Dim Threshold As String
+        Dim ThresholdNAA As String
 
         Try
             Dim query = "select " &
@@ -145,7 +145,7 @@ Partial Class EIS_rp_threshold
         Dim PM10 As String = rblPM10.SelectedValue
         Dim PM25 As String = rblPM25.SelectedValue
         Dim NH3 As String = rblNH3.SelectedValue
-        Dim Pb As String = rblPb.SelectedValue
+        Dim Pb As String
 
         EIType = GetEIType(eiYear)
 
@@ -272,12 +272,12 @@ Partial Class EIS_rp_threshold
 
         Dim EISCookies As New HttpCookie("EISAccessInfo")
         Dim EISMaxYear As Integer
-        Dim enrolled As String = ""
-        Dim eisStatus As String = ""
-        Dim accesscode As String = ""
-        Dim optout As String = ""
-        Dim dateFinalize As String = ""
-        Dim confirmationnumber As String = ""
+        Dim enrolled As String
+        Dim eisStatus As String
+        Dim accesscode As String
+        Dim optout As String
+        Dim dateFinalize As String
+        Dim confirmationnumber As String
         Dim CurrentEIYear As Integer = Now.Year - 1
 
         Try

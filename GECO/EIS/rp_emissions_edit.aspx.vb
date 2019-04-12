@@ -296,9 +296,7 @@ Partial Class EIS_rp_emissions_edit
 
     Private Sub LoadSummerDay(ByVal fsid As String, ByVal euid As String, ByVal prid As String, ByVal pcode As String, ByVal eiyr As Integer)
 
-        Dim SummerDayCode As String = ""
-
-        SummerDayCode = CheckSummerDayExist(fsid, euid, prid, pcode, eiyr)
+        Dim SummerDayCode As String = CheckSummerDayExist(fsid, euid, prid, pcode, eiyr)
 
         If (SummerDayCode = pcode) Then
             pnlSummerDayPollutant.Visible = True

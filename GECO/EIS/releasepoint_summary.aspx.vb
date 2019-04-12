@@ -257,7 +257,7 @@ Partial Class eis_releasepoint_summary
             Dim UpdateUserID As String = GetCookie(GecoCookie.UserID)
             Dim UpdateUserName As String = GetCookie(GecoCookie.UserName)
             Dim UpdateUser As String = UpdateUserID & "-" & UpdateUserName
-            Dim targetpage As String = ""
+            Dim targetpage As String
 
             If StackType = "Fugitive" Then
                 targetpage = "fugitive_edit.aspx" & "?fug=" & ReleasePointID

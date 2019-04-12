@@ -77,7 +77,7 @@ Partial Class FacilityHome
 #Region " Load data "
 
     Protected Sub LoadFacilityContact()
-        Dim phonenumber As String = ""
+        Dim phonenumber As String
         Dim dr As DataRow = GetAPBContactInformation(hidContactKey.Value)
 
         If dr IsNot Nothing Then
@@ -122,14 +122,14 @@ Partial Class FacilityHome
         '        4 - If facility not enrolled - message indicating that the EI is not applicable is displayed
         Dim CurrentEIYear As Integer = Now.Year - 1
         Dim EISMaxYear As Integer = 0
-        Dim EIDeadlineDate As String = ""
-        Dim enrolled As String = ""
-        Dim eisStatus As String = ""
-        Dim accesscode As String = ""
-        Dim eisStatusMessage As String = ""
-        Dim optout As String = ""
-        Dim dateFinalize As String = ""
-        Dim confirmationnumber As String = ""
+        Dim EIDeadlineDate As String
+        Dim enrolled As String
+        Dim eisStatus As String
+        Dim accesscode As String
+        Dim eisStatusMessage As String
+        Dim optout As String
+        Dim dateFinalize As String
+        Dim confirmationnumber As String
         Dim eisAirsNumber As String = currentAirs.ShortString
         Dim EISCookies As New HttpCookie("EISAccessInfo")
 

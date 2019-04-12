@@ -21,7 +21,7 @@ Partial Class eis_Default
         Dim EIYear As String = ""
         Dim FacilityName As String = GetFacilityName(FacilitySiteID)
         Dim EISStatus As String = ""
-        Dim Enrollment As String = ""
+        Dim Enrollment As String
         Dim OptOut As String = "NULL"
         Dim DateFinalize As String = ""
         Dim ConfNumber As String = ""
@@ -468,12 +468,12 @@ Partial Class eis_Default
     Private Sub ResetCookies(fsid As String)
         Dim EISCookies As New HttpCookie("EISAccessInfo")
         Dim EISMaxYear As Integer
-        Dim enrolled As String = ""
-        Dim eisStatus As String = ""
-        Dim accesscode As String = ""
-        Dim optout As String = ""
-        Dim dateFinalize As String = ""
-        Dim confirmationnumber As String = ""
+        Dim enrolled As String
+        Dim eisStatus As String
+        Dim accesscode As String
+        Dim optout As String
+        Dim dateFinalize As String
+        Dim confirmationnumber As String
         Dim CurrentEIYear As Integer = Now.Year - 1
 
         Try
