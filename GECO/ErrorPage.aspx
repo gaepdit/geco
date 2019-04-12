@@ -27,7 +27,7 @@
             at 404-363-7000 or email <a href="mailto:epd_it@dnr.ga.gov">epd_it@dnr.ga.gov</a>.
         </p>
         <ul>
-            <li><a href="<%= Page.ResolveUrl("~/Home/") %>">Return to the homepage</a></li>
+            <li><a href="<%= Page.ResolveUrl("~") %>">Return to the homepage</a></li>
         </ul>
     </div>
 
