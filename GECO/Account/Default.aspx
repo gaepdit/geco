@@ -10,7 +10,7 @@
     </p>
 
     <p>
-        <asp:Button ID="hlSignOut" runat="server" Text="Sign Out" PostBackUrl="~/Default.aspx?do=SignOut"></asp:Button>
+        <asp:Button ID="hlSignOut" runat="server" Text="Sign Out" PostBackUrl="~/Default.aspx?do=SignOut" CssClass="button-large"></asp:Button>
     </p>
 
     <ul class="menu-list-horizontal">
