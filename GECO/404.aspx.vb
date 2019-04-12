@@ -1,7 +1,7 @@
 Partial Class Http404Page
     Inherits Page
 
-    Private GecoEmailSender As String = ConfigurationManager.AppSettings("GecoEmailSender")
+    Private ReadOnly GecoEmailSender As String = ConfigurationManager.AppSettings("GecoEmailSender")
 
     Private Sub Http404Page_Load(sender As Object, e As EventArgs) Handles Me.Load
         Response.TrySkipIisCustomErrors = True
