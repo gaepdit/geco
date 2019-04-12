@@ -1,4 +1,5 @@
 <%@ Page Language="VB" MasterPageFile="~/AnnualFees/AnnualFees.master" AutoEventWireup="false" Inherits="GECO.AnnualFees_Default" Title="GECO Emissions Fees" CodeBehind="Default.aspx.vb" %>
+<%@ Import Namespace="GECO" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="FullContent" runat="Server">
     <acs:ModalUpdateProgress ID="ModalUpdateProgress1" runat="server" DisplayAfter="1500"
@@ -809,10 +810,10 @@
                         <asp:TemplateField HeaderText="Annual Emissions Fees">
                             <ItemTemplate>
                                 Fee&nbsp;Rate:&nbsp;<b><%# String.Format("{0:c}", Eval("NUMPERTONRATE")) %></b><br />
-                                Fee&nbsp;for&nbsp;VOC:&nbsp;<b><%# String.Format("{0:c}", NullableFeeProduct(Eval("INTVOCTONS"), Eval("NUMPERTONRATE"))) %></b><br />
-                                Fee&nbsp;for&nbsp;NO<sub>x</sub>:&nbsp;<b><%# String.Format("{0:c}", NullableFeeProduct(Eval("INTNOXTONS"), Eval("NUMPERTONRATE"))) %></b><br />
-                                Fee&nbsp;for&nbsp;PM:&nbsp;<b><%# String.Format("{0:c}", NullableFeeProduct(Eval("INTPMTONS"), Eval("NUMPERTONRATE"))) %></b><br />
-                                Fee&nbsp;for&nbsp;SO<sub>2</sub>:&nbsp;<b><%# String.Format("{0:c}", NullableFeeProduct(Eval("INTSO2TONS"), Eval("NUMPERTONRATE"))) %></b><br />
+                                Fee&nbsp;for&nbsp;VOC:&nbsp;<b><%# String.Format("{0:c}", NullableDecimalProduct(Eval("INTVOCTONS"), Eval("NUMPERTONRATE"))) %></b><br />
+                                Fee&nbsp;for&nbsp;NO<sub>x</sub>:&nbsp;<b><%# String.Format("{0:c}", NullableDecimalProduct(Eval("INTNOXTONS"), Eval("NUMPERTONRATE"))) %></b><br />
+                                Fee&nbsp;for&nbsp;PM:&nbsp;<b><%# String.Format("{0:c}", NullableDecimalProduct(Eval("INTPMTONS"), Eval("NUMPERTONRATE"))) %></b><br />
+                                Fee&nbsp;for&nbsp;SO<sub>2</sub>:&nbsp;<b><%# String.Format("{0:c}", NullableDecimalProduct(Eval("INTSO2TONS"), Eval("NUMPERTONRATE"))) %></b><br />
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="Total Fees">

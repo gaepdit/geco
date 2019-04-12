@@ -764,7 +764,6 @@ Partial Class eis_facility_edit
         Dim contactMobileNo As String = txtTelephoneNumber_Mobile.Text
         Dim contactFax As String = txtTelephoneNumber_Fax.Text
         Dim contactComment As String = txtAddressComment_Contact.Text
-        Dim IAIPUserID As String = GecoUserID
         Dim FacilitySiteID As String = "0413" & GetCookie(Cookie.AirsNumber)
         Dim ContactKey As String = FacilitySiteID & EIKey
         contactComment = "Contact info updated from the GECO EIS Application on " & Now.Date.ToString & ". Comments from GECO:" & contactComment
@@ -863,7 +862,7 @@ Partial Class eis_facility_edit
                 New SqlParameter("@ContactCity", ContactCity),
                 New SqlParameter("@ContactState", ContactState),
                 New SqlParameter("@ContactZipCode", Replace(ContactZipCode, "-", "")),
-                New SqlParameter("@IAIPUserID", IAIPUserID),
+                New SqlParameter("@IAIPUserID", GecoUserID),
                 New SqlParameter("@contactComment", contactComment)
             }
 
@@ -957,26 +956,12 @@ Partial Class eis_facility_edit
 
     Protected Sub gvwNAICS_PageIndexChanging(sender As Object, e As Web.UI.WebControls.GridViewPageEventArgs) Handles gvwNAICS.PageIndexChanging
 
-        gvwNAICS.DataSource = SortDataTable(Session("MyNAICSView"))
+        gvwNAICS.DataSource = Session("MyNAICSView")
         gvwNAICS.PageIndex = e.NewPageIndex
         gvwNAICS.DataBind()
         lblRowCount.Text = "No. of NAICS Codes: " & Session("MyNAICSView").Rows.Count
 
     End Sub
-
-#Region " Sorting "
-
-    Protected Function SortDataTable(pdataTable As DataTable) As DataView
-
-        If Not pdataTable Is Nothing Then
-            Return New DataView(pdataTable)
-        Else
-            Return New DataView()
-        End If
-
-    End Function
-
-#End Region
 
     Protected Sub btnNAICSLoopup_Click(sender As Object, e As EventArgs) Handles btnNAICSLoopup.Click
 

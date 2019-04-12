@@ -24,7 +24,7 @@ Partial Class EIS_rp_details
         lblRPEmissions.Visible = False
 
         If Not IsPostBack Then
-            Dim InventoryYear As String = GetRPYear(QYear, CkYear)
+            Dim InventoryYear As String = If(QYear, CkYear)
             txtEISYear.Text = InventoryYear
 
             LoadRPDetails(InventoryYear, FacilitySiteID, EmissionsUnitID, ProcessID, RptPeriodTypeCode)
@@ -42,14 +42,6 @@ Partial Class EIS_rp_details
         End If
 
     End Sub
-
-    Function GetRPYear(ByVal qyear As String, ByVal cyear As String) As String
-        If qyear = "" Then
-            Return cyear
-        Else
-            Return qyear
-        End If
-    End Function
 
     Private Sub SetEIAccess(ByVal acc As String, ByVal eiyear As String)
         Select Case acc

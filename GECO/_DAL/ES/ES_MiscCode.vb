@@ -89,4 +89,14 @@ Public Module ES_MiscCode
         Return DB.ValueExists(query, param)
     End Function
 
+    Public Function CheckFirstConfirm(ByVal ay As String) As Boolean
+        Dim query = "SELECT convert(bit,count(*)) FROM ESSCHEMA
+            where STRDATEFIRSTCONFIRM is not null
+            and STRAIRSYEAR = @ay"
+
+        Dim param As New SqlParameter("@ay", ay)
+
+        Return DB.GetBoolean(query, param)
+    End Function
+
 End Module

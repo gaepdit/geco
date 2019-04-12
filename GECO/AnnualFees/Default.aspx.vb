@@ -1185,17 +1185,6 @@ Partial Class AnnualFees_Default
         grdFeeHistory.DataBind()
     End Sub
 
-    Protected Function NullableFeeProduct(a As Object, b As Object) As Decimal?
-        Dim aNull As Decimal? = GetNullable(Of Decimal?)(a)
-        Dim bNull As Decimal? = GetNullable(Of Decimal?)(b)
-
-        If aNull.HasValue AndAlso bNull.HasValue Then
-            Return aNull.Value * bNull.Value
-        End If
-
-        Return Nothing
-    End Function
-
 #End Region
 
 #Region "Save and Update to Database"
@@ -1518,65 +1507,11 @@ Partial Class AnnualFees_Default
                 DB.RunCommand(qList, pList)
 
                 If ddlFacilityInfoChange.SelectedIndex = 1 Then
-                    SaveTempFacInfo()
+                    SaveTempFacInfo(GetCookie(Cookie.AirsNumber), txtfacName.Text, txtfacStreet.Text, txtfacCity.Text)
                 Else
-                    RemoveTempFacInfo()
+                    RemoveTempFacInfo(GetCookie(Cookie.AirsNumber))
                 End If
             End If
-
-        Catch exThreadAbort As System.Threading.ThreadAbortException
-        Catch ex As Exception
-            ErrorReport(ex)
-        End Try
-
-    End Sub
-
-    Private Sub SaveTempFacInfo()
-
-        Try
-            Dim query As String = "Select * FROM apbfacilityinfotemp " _
-                            + "where strairsnumber = @Airs"
-
-            Dim param As New SqlParameter("@Airs", "0413" & GetCookie(Cookie.AirsNumber))
-
-            Dim dr As DataRow = DB.GetDataRow(query, param)
-
-            If dr IsNot Nothing Then
-                query = "Update apbfacilityinfotemp set " _
-               + "strfacilityname = @FacName, " _
-               + "strfacilitystreet1 = @FacStr, " _
-               + "strfacilitycity = @FacCity " _
-               + "where strairsnumber = @Airs"
-            Else
-                query = "Insert into apbfacilityinfotemp( " _
-                + "strairsnumber, strfacilityname, strfacilitystreet1, strfacilitycity) " _
-                + "values(@Airs , @FacName, @FacStr, @FacCity)"
-            End If
-
-            Dim param2 As SqlParameter() = {
-                    New SqlParameter("@FacName", txtfacName.Text),
-                    New SqlParameter("@FacStr", txtfacStreet.Text),
-                    New SqlParameter("@FacCity", txtfacCity.Text),
-                    param
-                }
-
-            DB.RunCommand(query, param2)
-
-        Catch exThreadAbort As System.Threading.ThreadAbortException
-        Catch ex As Exception
-            ErrorReport(ex)
-        End Try
-
-    End Sub
-
-    Private Sub RemoveTempFacInfo()
-
-        Try
-            Dim SQL As String = "Delete FROM apbfacilityinfotemp where strairsnumber = @airs"
-
-            Dim param As SqlParameter = New SqlParameter("@airs", "0413" & GetCookie(Cookie.AirsNumber))
-
-            DB.RunCommand(SQL, param)
 
         Catch exThreadAbort As System.Threading.ThreadAbortException
         Catch ex As Exception

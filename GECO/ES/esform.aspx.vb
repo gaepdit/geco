@@ -1021,15 +1021,6 @@ Partial Class es_esform
 
 #Region "Check Routines "
 
-    Private Function CheckFirstConfirm(ByVal ay As String) As Boolean
-
-        Dim query = "Select strDateFirstConfirm FROM esSchema Where strAirsYear = @ay "
-        Dim param As New SqlParameter("@ay", ay)
-
-        Return DB.ValueExists(query, param)
-
-    End Function
-
     Private Function ContactExistAPB() As Boolean
 
         Dim key As String = Session("esAirsNumber") & "42"
