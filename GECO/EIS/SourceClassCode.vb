@@ -11,6 +11,7 @@ Public Class SourceClassCode
 
     <CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId:="knownCategoryValues")>
     <CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId:="category")>
+    <CodeAnalysis.SuppressMessage("Style", "IDE0060:Remove unused parameter", MessageId:="category")>
     <WebMethod()>
     Public Function GetLevel1(knownCategoryValues As String, category As String) As CascadingDropDownNameValue()
         Dim vals As New List(Of CascadingDropDownNameValue)
@@ -25,6 +26,7 @@ Public Class SourceClassCode
     End Function
 
     <CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId:="category")>
+    <CodeAnalysis.SuppressMessage("Style", "IDE0060:Remove unused parameter", MessageId:="category")>
     <WebMethod()>
     Public Function GetLevel2(knownCategoryValues As String, category As String) As CascadingDropDownNameValue()
         Dim sd As StringDictionary = ParseKnownCategoryValuesString(knownCategoryValues)
@@ -45,6 +47,7 @@ Public Class SourceClassCode
     End Function
 
     <CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId:="category")>
+    <CodeAnalysis.SuppressMessage("Style", "IDE0060:Remove unused parameter", MessageId:="category")>
     <WebMethod()>
     Public Function GetLevel3(knownCategoryValues As String, category As String) As CascadingDropDownNameValue()
         Dim sd As StringDictionary = ParseKnownCategoryValuesString(knownCategoryValues)
@@ -65,6 +68,7 @@ Public Class SourceClassCode
     End Function
 
     <CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId:="category")>
+    <CodeAnalysis.SuppressMessage("Style", "IDE0060:Remove unused parameter", MessageId:="category")>
     <WebMethod()>
     Public Function GetLevel4(knownCategoryValues As String, category As String) As CascadingDropDownNameValue()
         Dim sd As StringDictionary = ParseKnownCategoryValuesString(knownCategoryValues)

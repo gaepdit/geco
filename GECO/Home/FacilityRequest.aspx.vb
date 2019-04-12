@@ -186,6 +186,7 @@ Partial Class Home_FacilityRequest
     End Sub
 
     <CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId:="count")>
+    <CodeAnalysis.SuppressMessage("Style", "IDE0060:Remove unused parameter", MessageId:="count")>
     <Services.WebMethod()>
     <Script.Services.ScriptMethod()>
     Public Shared Function AutoCompleteAirs(prefixText As String, count As Integer) As String()
@@ -202,6 +203,7 @@ Partial Class Home_FacilityRequest
     End Function
 
     <CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId:="count")>
+    <CodeAnalysis.SuppressMessage("Style", "IDE0060:Remove unused parameter", MessageId:="count")>
     <Services.WebMethod()>
     <Script.Services.ScriptMethod()>
     Public Shared Function AutoCompleteFacility(prefixText As String, count As Integer) As String()
