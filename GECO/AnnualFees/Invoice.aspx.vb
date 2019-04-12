@@ -4,13 +4,13 @@ Imports CrystalDecisions.CrystalReports.Engine
 Partial Class AnnualFees_Invoice
     Inherits Page
 
+    Dim CrReportDocument As ReportDocument
+
     Protected Sub Page_Init(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Init
         ConfigureCrystalReports()
     End Sub
 
     Private Sub ConfigureCrystalReports()
-        Dim CrReportDocument As New ReportDocument()
-
         Dim crConnectionInfo As ConnectionInfo
 
         Dim reportPath As String
@@ -48,6 +48,7 @@ Partial Class AnnualFees_Invoice
             myCrystalReportViewer.ParameterFieldInfo = p
 
             'Create an instance of the strongly-typed report object
+            CrReportDocument = New ReportDocument()
             CrReportDocument.Load(reportPath)
 
             'Create the Conection Info object to hold the logon information for the report
@@ -77,8 +78,6 @@ Partial Class AnnualFees_Invoice
             myCrystalReportViewer.ToolPanelView = CrystalDecisions.Web.ToolPanelViewType.None
         Catch ex As Exception
             ErrorReport(ex)
-        Finally
-            CrReportDocument.Dispose()
         End Try
 
     End Sub
@@ -93,6 +92,11 @@ Partial Class AnnualFees_Invoice
             easymenu.MenuRoot.AddSubMenuItem("Back to Fees Form", "Default.aspx")
         End If
 
+    End Sub
+
+    Protected Overrides Sub OnUnload(e As EventArgs)
+        If CrReportDocument IsNot Nothing Then CrReportDocument.Dispose()
+        MyBase.OnUnload(e)
     End Sub
 
 End Class
