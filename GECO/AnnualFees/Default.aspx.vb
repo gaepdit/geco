@@ -1,5 +1,4 @@
 Imports System.Data.SqlClient
-Imports EpdIt.DBUtilities
 Imports GECO.GecoModels
 
 Partial Class AnnualFees_Default
@@ -798,7 +797,7 @@ Partial Class AnnualFees_Default
                 End If
 
                 If IsDBNull(dr.Item("strcontactemail")) OrElse dr.Item("strcontactemail") = "N/A" Then
-                    txtEmail.Text = GetCookie(GecoCookie.UserEmail)
+                    txtEmail.Text = currentUser.Email
                 Else
                     txtEmail.Text = dr.Item("strcontactemail")
                 End If
@@ -1231,7 +1230,7 @@ Partial Class AnnualFees_Default
         'Facility Information panel.
         Try
             Dim phone As String = txtPhone.Text & txtPhoneExt.Text
-            Dim contactDescription As String = "Fee Contact updated from GECO Fee application page by " & GetCookie(GecoCookie.UserName) & " on " & Format$(Now, "dd-MMM-yyyy")
+            Dim contactDescription As String = "Fee Contact updated from GECO Fee application page by " & currentUser.FullName & " on " & Format$(Now, "dd-MMM-yyyy")
 
             If ddlFeeYear.SelectedItem.Text = "-Select Year-" Then
 
@@ -1302,7 +1301,7 @@ Partial Class AnnualFees_Default
                     New SqlParameter("@State", txtState.Text),
                     New SqlParameter("@Zip", txtZip.Text),
                     New SqlParameter("@Company", txtCoName.Text),
-                    New SqlParameter("@User", "GECO||" & GetCookie(GecoCookie.UserEmail)),
+                    New SqlParameter("@User", "GECO||" & currentUser.Email),
                     New SqlParameter("@Airs", "0413" & GetCookie(Cookie.AirsNumber)),
                     New SqlParameter("@FeeYear", ddlFeeYear.SelectedItem.Text)
                 }
@@ -1311,7 +1310,7 @@ Partial Class AnnualFees_Default
                 qList.Add(SQL2)
                 pList.Add(params2)
 
-                contactDescription = "Fee Contact updated during " & ddlFeeYear.SelectedItem.Text & " by " & GetCookie(GecoCookie.UserName) & " on " & Format$(Now, "dd-MMM-yyyy")
+                contactDescription = "Fee Contact updated during " & ddlFeeYear.SelectedItem.Text & " by " & currentUser.FullName & " on " & Format$(Now, "dd-MMM-yyyy")
 
                 Dim Sql3 As String = "Update apbcontactinformation set " _
                     + "strcontactfirstname = @FirstName, " _
@@ -1359,7 +1358,7 @@ Partial Class AnnualFees_Default
                     + "and numcurrentstatus < 5"
 
                 Dim params4 As SqlParameter() = {
-                    New SqlParameter("@UpdUser", "GECO||" & GetCookie(GecoCookie.UserEmail)),
+                    New SqlParameter("@UpdUser", "GECO||" & currentUser.Email),
                     New SqlParameter("@Airs", "0413" & GetCookie(Cookie.AirsNumber)),
                     New SqlParameter("@FeeYear", ddlFeeYear.SelectedItem.Text)
                 }
@@ -1385,7 +1384,7 @@ Partial Class AnnualFees_Default
             Dim SQL As String
             Dim FirstName As String = txtFName.Text
             Dim LastName As String = txtLName.Text
-            Dim User As String = "GECO||" & GetCookie(GecoCookie.UserEmail)
+            Dim User As String = "GECO||" & currentUser.Email
             Dim Title As String = txtTitle.Text
             Dim Phone As String = txtPhone.Text & txtPhoneExt.Text
             Dim Fax As String = txtFax.Text
@@ -1397,7 +1396,7 @@ Partial Class AnnualFees_Default
             Dim CompName As String = txtCoName.Text
             Dim AirsNo As String = "0413" & GetCookie(Cookie.AirsNumber)
             Dim Key As String = "0413" & GetCookie(Cookie.AirsNumber) & "40"
-            Dim ContactDescription As String = "Fee Contact updated from GECO Fee application page by " & GetCookie(GecoCookie.UserName) & " on " & Format$(Now, "dd-MMM-yyyy")
+            Dim ContactDescription As String = "Fee Contact updated from GECO Fee application page by " & currentUser.FullName & " on " & Format$(Now, "dd-MMM-yyyy")
             Dim FeeYear As String = ddlFeeYear.SelectedItem.Text
 
             If ddlFeeYear.SelectedItem.Text = "-Select Year-" Then
@@ -1967,7 +1966,7 @@ Partial Class AnnualFees_Default
                 New SqlParameter("@OwnerTitle", txtOwnerTitle.Text),
                 New SqlParameter("@Comments", txtComments.Text),
                 New SqlParameter("@Date", lblDate.Text),
-                New SqlParameter("@UEmail", "GECO||" & GetCookie(GecoCookie.UserEmail)),
+                New SqlParameter("@UEmail", "GECO||" & currentUser.Email),
                 New SqlParameter("@Airs", "0413" & GetCookie(Cookie.AirsNumber)),
                 New SqlParameter("@FeeYear", feeyear.Text)
             }
@@ -1985,7 +1984,7 @@ Partial Class AnnualFees_Default
                 + "And numcurrentstatus < 7"
 
             Dim params2 As SqlParameter() = {
-                New SqlParameter("@UEmail", "GECO||" & GetCookie(GecoCookie.UserEmail)),
+                New SqlParameter("@UEmail", "GECO||" & currentUser.Email),
                 New SqlParameter("@Airs", "0413" & GetCookie(Cookie.AirsNumber)),
                 New SqlParameter("@FeeYear", ddlFeeYear.SelectedItem.Text)
             }
@@ -2006,7 +2005,7 @@ Partial Class AnnualFees_Default
     Private Sub SaveFinalSubmit()
 
         Try
-            Dim UpdUser As String = "GECO||" & GetCookie(GecoCookie.UserEmail)
+            Dim UpdUser As String = "GECO||" & currentUser.Email
             Dim AirsNo As String = "0413" & GetCookie(Cookie.AirsNumber)
             Dim FY As String = ddlFeeYear.SelectedItem.Text
 
@@ -2158,9 +2157,9 @@ Partial Class AnnualFees_Default
 
         Try
             Dim confirmation As String = GetCookie(Cookie.AirsNumber) & "-" & Format(Now, "yyyyMMddhhmm")
-            Dim UID As String = GetCookie(GecoCookie.UserID)
+            Dim UID As String = currentUser.UserId
             Dim updDT As String = lblDate.Text
-            Dim Uemail As String = "GECO||" & GetCookie(GecoCookie.UserEmail)
+            Dim Uemail As String = "GECO||" & currentUser.Email
             Dim AIRSno As String = "0413" & GetCookie(Cookie.AirsNumber)
             Dim FY As String = feeyear.Text
 
