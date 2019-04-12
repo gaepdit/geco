@@ -1,5 +1,4 @@
-﻿Imports System.Diagnostics
-Imports GECO.GecoModels
+﻿Imports GECO.GecoModels
 
 <DebuggerStepThrough()>
 Public Module CookieHelper
@@ -47,7 +46,7 @@ Public Module CookieHelper
             Return Nothing
         End If
 
-        Return EncryptDecrypt.DecryptText(c.Value)
+        Return DecryptText(c.Value)
     End Function
 
     Public Function GetCookie(cookie As EisCookie) As String
@@ -70,7 +69,7 @@ Public Module CookieHelper
             Return Nothing
         End If
 
-        Return EncryptDecrypt.DecryptText(collection(item))
+        Return DecryptText(collection(item))
     End Function
 
     Private Function GetCookieCollection(name As String) As NameValueCollection
@@ -97,8 +96,8 @@ Public Module CookieHelper
         Dim response = HttpContext.Current.Response
 
         Dim c As New HttpCookie(cookie.ToString) With {
-            .Value = EncryptDecrypt.EncryptText(value),
-            .Expires = DateTime.Now.AddDays(COOKIE_EXPIRATION_DAYS)
+            .Value = EncryptText(value),
+            .Expires = Date.Now.AddDays(COOKIE_EXPIRATION_DAYS)
         }
 
         response.Cookies.Add(c)
@@ -114,7 +113,7 @@ Public Module CookieHelper
 
     Private Sub ClearCookie(cookieName As String)
         If GetHttpCookie(cookieName) IsNot Nothing Then
-            HttpContext.Current.Response.Cookies.Add(New HttpCookie(cookieName) With {.Expires = DateTime.Now.AddDays(-1D)})
+            HttpContext.Current.Response.Cookies.Add(New HttpCookie(cookieName) With {.Expires = Date.Now.AddDays(-1D)})
         End If
     End Sub
 
@@ -123,7 +122,7 @@ Public Module CookieHelper
         Dim response = HttpContext.Current.Response
 
         For i = 0 To request.Cookies.Count - 1
-            response.Cookies.Add(New HttpCookie(request.Cookies(i).Name) With {.Expires = DateTime.Now.AddDays(-1)})
+            response.Cookies.Add(New HttpCookie(request.Cookies(i).Name) With {.Expires = Date.Now.AddDays(-1)})
         Next
     End Sub
 
@@ -131,9 +130,12 @@ Public Module CookieHelper
         Dim response = HttpContext.Current.Response
 
         Dim c As New HttpCookie(CookieCollection.SessionCookie.ToString)
-        c.Values(SessionCookie.Series.ToString) = EncryptDecrypt.EncryptText(userSession.Series)
-        c.Values(SessionCookie.Token.ToString) = EncryptDecrypt.EncryptText(userSession.Token)
-        c.Expires = Now.AddDays(COOKIE_EXPIRATION_LONGTERM)
+
+        With c
+            .Values(SessionCookie.Series.ToString) = EncryptText(userSession.Series)
+            .Values(SessionCookie.Token.ToString) = EncryptText(userSession.Token)
+            .Expires = Now.AddDays(COOKIE_EXPIRATION_LONGTERM)
+        End With
 
         response.Cookies.Add(c)
     End Sub
@@ -143,10 +145,13 @@ Public Module CookieHelper
         Dim response = HttpContext.Current.Response
 
         Dim c As New HttpCookie(CookieCollection.GECOUserInfo.ToString)
-        c.Values(GecoCookie.UserID.ToString) = EncryptDecrypt.EncryptText(user.UserId)
-        c.Values(GecoCookie.UserEmail.ToString) = EncryptDecrypt.EncryptText(user.Email)
-        c.Values(GecoCookie.UserName.ToString) = EncryptDecrypt.EncryptText(user.FullName)
-        c.Expires = Now.AddDays(COOKIE_EXPIRATION_DAYS)
+
+        With c
+            .Values(GecoCookie.UserID.ToString) = EncryptText(user.UserId)
+            .Values(GecoCookie.UserEmail.ToString) = EncryptText(user.Email)
+            .Values(GecoCookie.UserName.ToString) = EncryptText(user.FullName)
+            .Expires = Now.AddDays(COOKIE_EXPIRATION_DAYS)
+        End With
 
         response.Cookies.Add(c)
     End Sub
