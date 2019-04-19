@@ -1,7 +1,31 @@
 ﻿Imports System.Data.SqlClient
 Imports GECO.GecoModels
+Imports GECO.GecoModels.ApbFacilityId
 
 Public Module FacilityInfo
+
+    ''' <summary>
+    ''' Returns whether an AIRS number already exists in the database
+    ''' </summary>
+    ''' <param name="airsNumber">The AIRS number to test.</param>
+    ''' <returns>True if the AIRS number exists; otherwise false.</returns>
+    ''' <remarks>Looks for value in APBMASTERAIRS table. Does not make any judgments about state of facility otherwise.</remarks>
+    Public Function AirsNumberExists(airsNumber As ApbFacilityId) As Boolean
+        Dim spName As String = "iaip_facility.AirsNumberExists"
+        Dim parameter As New SqlParameter("@AirsNumber", airsNumber.DbFormattedString)
+        Return DB.SPGetBoolean(spName, parameter)
+    End Function
+
+    ''' <summary>
+    ''' Returns whether an AIRS number already exists in the database
+    ''' </summary>
+    ''' <param name="airsNumber">The AIRS number to test.</param>
+    ''' <returns>True if the AIRS number exists; otherwise false.</returns>
+    ''' <remarks>Looks for value in APBMASTERAIRS table. Does not make any judgments about state of facility otherwise.</remarks>
+    Public Function AirsNumberExists(airsNumber As String) As Boolean
+        If Not IsValidAirsNumberFormat(airsNumber) Then Return False
+        Return AirsNumberExists(New ApbFacilityId(airsNumber))
+    End Function
 
     Public Function GetFacilityName(airs As String) As String
         If airs Is Nothing OrElse Not ApbFacilityId.IsValidAirsNumberFormat(airs) Then

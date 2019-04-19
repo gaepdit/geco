@@ -26,6 +26,10 @@ Public Class PermitDefault
             Master.IsFacilitySubpage = True
         End If
 
+        If Not AirsNumberExists(currentAirs) Then
+            Throw New HttpException(404, "Not found")
+        End If
+
         LoadFacilityInfo()
         LoadPermitApplications()
         LoadPermits()

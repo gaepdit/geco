@@ -69,7 +69,7 @@
                     </asp:TableCell>
                 </asp:TableRow>
 
-                <asp:TableRow ID="AppsPermitFees" runat="server">
+                <asp:TableRow ID="AppsFeesSummary" runat="server">
                     <asp:TableHeaderCell runat="server" CssClass="table-cell-link">
                         <asp:HyperLink ID="PFLink" runat="server" NavigateUrl="~/Fees/">Fees Summary</asp:HyperLink>
                     </asp:TableHeaderCell>

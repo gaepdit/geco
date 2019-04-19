@@ -1,8 +1,7 @@
 Imports System.Data.SqlClient
 Imports EpdIt.DBUtilities
-Imports GECO.FeeBusinessEntity
-Imports GECO.GecoModels
 Imports GECO.DAL
+Imports GECO.GecoModels
 
 Partial Class FacilityHome
     Inherits Page
@@ -277,7 +276,7 @@ Partial Class FacilityHome
     Protected Sub GetFeesStatus()
         If Not facilityAccess.FeeAccess Then
             AppsEmissionFees.Visible = False
-            AppsPermitFees.Visible = False
+            AppsFeesSummary.Visible = False
             Exit Sub
         End If
 
@@ -380,6 +379,10 @@ Partial Class FacilityHome
             Dim openCount As Integer = CInt(dr.Item("OpenApplications"))
             PAText.Text = openCount & " open permit application" & If(openCount = 1, "", "s") & "."
         End If
+
+        If Not (facilityAccess.FeeAccess Or facilityAccess.AdminAccess) Then
+            PAContact.Enabled = False
+        End If
     End Sub
 
     Protected Sub GetCurrentContacts()
@@ -409,7 +412,7 @@ Partial Class FacilityHome
                             lbtnEFContact.Text = name
                         End If
 
-                        If AppsPermitFees.Visible Then
+                        If AppsFeesSummary.Visible Then
                             lbtnPFContact.Text = name
                         End If
 

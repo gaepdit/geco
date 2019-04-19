@@ -595,6 +595,11 @@ textarea {
                 text-decoration: underline;
             }
 
+.table-simple a[disabled] {
+    color: #313175;
+    pointer-events: none;
+}
+
 .table-simple .table-cell-checkbox {
     text-align: center;
     vertical-align: middle;
@@ -695,7 +700,8 @@ ul.menu-list-horizontal {
         }
 
         ul.menu-list-horizontal .selected-menu-item,
-        ul.menu-list-horizontal a:disabled {
+        ul.menu-list-horizontal a:disabled,
+        ul.menu-list-horizontal a[disabled] {
             color: #313175;
             background: #c3e7ff;
             pointer-events: none;
