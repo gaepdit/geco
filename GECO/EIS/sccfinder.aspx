@@ -11,7 +11,7 @@
     <link rel="mask-icon" href="~/assets/epd-favicons/safari-pinned-tab.svg?v=69kRrvbXdL" color="#5bbad5" />
     <link rel="shortcut icon" href="~/favicon.ico?v=69kRrvbXdL" />
     <meta name="theme-color" content="#e5f6fa" />
-    <link href="~/assets/css/site.css?v=20190312" rel="stylesheet" type="text/css" />
+    <link href="~/assets/css/site.css?v=20190419" rel="stylesheet" type="text/css" />
     <script type="text/javascript">
         function PassSCCCode() {
             window.opener.document.getElementById("ctl00_ContentPlaceHolder3_txtSourceClassCode").value = document.getElementById('<%=lblSCC.ClientID%>').innerText;
