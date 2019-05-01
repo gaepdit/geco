@@ -177,7 +177,8 @@
                         <td>
                             <asp:Label ID="lbl20PercentNote" runat="server" Font-Size="Small" CssClass="highlight-normal">
                                 ** If total emissions have increased or decreased by more than 20 percent over previously reported emissions, 
-                                then supporting documentation must be submitted to the Air Protection Branch by email.<br /><br />
+                                then supporting documentation must be submitted by email to 
+                                <a href="mailto:GeorgiaAirProtectionBranch@dnr.ga.gov">GeorgiaAirProtectionBranch@dnr.ga.gov</a>.<br /><br />
                             </asp:Label>
                         </td>
                     </tr>
