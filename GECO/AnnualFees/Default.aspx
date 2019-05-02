@@ -294,9 +294,7 @@
                         <td>Fax Number:
                         </td>
                         <td>
-                            <asp:TextBox ID="txtFax" runat="server" CssClass="unwatermarked" MaxLength="10" ValidationGroup="Contact"></asp:TextBox><asp:RequiredFieldValidator
-                                ID="RequiredFieldValidator6" runat="server" ControlToValidate="txtFax" ErrorMessage="10-digit Fax Number"
-                                Font-Size="Small" ValidationGroup="Contact"></asp:RequiredFieldValidator>
+                            <asp:TextBox ID="txtFax" runat="server" CssClass="unwatermarked" MaxLength="10" ValidationGroup="Contact"></asp:TextBox>
                             <act:FilteredTextBoxExtender ID="FilteredTextBoxExtender4" runat="server" TargetControlID="txtFax"
                                 FilterType="Numbers">
                             </act:FilteredTextBoxExtender>
