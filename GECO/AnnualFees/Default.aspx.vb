@@ -146,8 +146,8 @@ Partial Class AnnualFees_Default
                 Dim i As Integer = ValidateFacilityInfoChange()
                 If i = -1 Then 'No Changes
                     lblContactMsg.Visible = True
-                    lblContactMsg.Text = "You have indicated that the Facility Information is incorrect, " _
-                        + "however, you have not made any changes to the exisiting information."
+                    lblContactMsg.Text = "You have indicated that the Facility Information is incorrect, " &
+                        "but you have not made any changes to the existing information."
                     Exit Sub
                 Else
                     'Changes Detected, Continue
@@ -1186,15 +1186,15 @@ Partial Class AnnualFees_Default
             Dim SQL As String
 
             If ddlFeeYear.SelectedItem.Text = "-Select Year-" Then
-                SQL = "Select strairsnumber " _
-                + "FROM apbcontactinformation " _
-                + "where strairsnumber = @airs " _
-                + "and strkey = '40'"
+                SQL = "Select strairsnumber " &
+                    "FROM apbcontactinformation " &
+                    "where strairsnumber = @airs " &
+                    "and strkey = '40'"
             Else
-                SQL = "Select strairsnumber " _
-                + "FROM fs_contactinfo " _
-                + "where strairsnumber = @airs " _
-                + "and numfeeyear = @feeyear"
+                SQL = "Select strairsnumber " &
+                    "FROM fs_contactinfo " &
+                    "where strairsnumber = @airs " &
+                    "and numfeeyear = @feeyear"
             End If
 
             Dim params As SqlParameter() = {
@@ -1225,21 +1225,21 @@ Partial Class AnnualFees_Default
 
             If ddlFeeYear.SelectedItem.Text = "-Select Year-" Then
 
-                Dim SQL As String = "Update apbcontactinformation set " _
-                    + "strcontactfirstname = @FirstName, " _
-                    + "strcontactlastname = @LastName, " _
-                    + "strcontacttitle = @Title, " _
-                    + "strcontactphonenumber1 = @Phone, " _
-                    + "strcontactfaxnumber = @Fax, " _
-                    + "strcontactemail = @Email, " _
-                    + "strcontactcity = @City, " _
-                    + "strcontactstate = @State, " _
-                    + "strcontactzipcode = @Zip, " _
-                    + "strcontactcompanyname = @Company, " _
-                    + "strcontactdescription = @ContDesc, " _
-                    + "datmodifingdate = getdate(), " _
-                    + "strmodifingperson = '0' " _
-                    + "where strcontactkey = @ContKey"
+                Dim SQL As String = "Update apbcontactinformation set " &
+                    "strcontactfirstname = @FirstName, " &
+                    "strcontactlastname = @LastName, " &
+                    "strcontacttitle = @Title, " &
+                    "strcontactphonenumber1 = @Phone, " &
+                    "strcontactfaxnumber = @Fax, " &
+                    "strcontactemail = @Email, " &
+                    "strcontactcity = @City, " &
+                    "strcontactstate = @State, " &
+                    "strcontactzipcode = @Zip, " &
+                    "strcontactcompanyname = @Company, " &
+                    "strcontactdescription = @ContDesc, " &
+                    "datmodifingdate = getdate(), " &
+                    "strmodifingperson = '0' " &
+                    "where strcontactkey = @ContKey"
 
                 Dim params As SqlParameter() = {
                     New SqlParameter("@FirstName", txtFName.Text),
@@ -1263,22 +1263,22 @@ Partial Class AnnualFees_Default
                 Dim qList As New List(Of String)
                 Dim pList As New List(Of SqlParameter())
 
-                Dim SQL2 As String = "Update fs_contactinfo set " _
-                    + "strcontactfirstname = @FirstName, " _
-                    + "strcontactlastname = @LastName, " _
-                    + "strcontacttitle = @Title, " _
-                    + "strcontactphonenumber = @Phone, " _
-                    + "strcontactfaxnumber = @Fax, " _
-                    + "strcontactemail = @Email, " _
-                    + "strcontactaddress = @Street, " _
-                    + "strcontactcity = @City, " _
-                    + "strcontactstate = @State, " _
-                    + "strcontactzipcode = @Zip, " _
-                    + "strcontactcompanyname = @Company, " _
-                    + "updatedatetime = getdate(), " _
-                    + "updateuser = @User " _
-                    + "where strairsnumber = @Airs " _
-                    + "and numfeeyear = @FeeYear"
+                Dim SQL2 As String = "Update fs_contactinfo set " &
+                    "strcontactfirstname = @FirstName, " &
+                    "strcontactlastname = @LastName, " &
+                    "strcontacttitle = @Title, " &
+                    "strcontactphonenumber = @Phone, " &
+                    "strcontactfaxnumber = @Fax, " &
+                    "strcontactemail = @Email, " &
+                    "strcontactaddress = @Street, " &
+                    "strcontactcity = @City, " &
+                    "strcontactstate = @State, " &
+                    "strcontactzipcode = @Zip, " &
+                    "strcontactcompanyname = @Company, " &
+                    "updatedatetime = getdate(), " &
+                    "updateuser = @User " &
+                    "where strairsnumber = @Airs " &
+                    "and numfeeyear = @FeeYear"
 
                 Dim params2 As SqlParameter() = {
                     New SqlParameter("@FirstName", txtFName.Text),
@@ -1303,22 +1303,22 @@ Partial Class AnnualFees_Default
 
                 contactDescription = "Fee Contact updated during " & ddlFeeYear.SelectedItem.Text & " by " & currentUser.FullName & " on " & Format$(Now, "dd-MMM-yyyy")
 
-                Dim Sql3 As String = "Update apbcontactinformation set " _
-                    + "strcontactfirstname = @FirstName, " _
-                    + "strcontactlastname = @LastName, " _
-                    + "strcontacttitle = @Title, " _
-                    + "strcontactphonenumber1 = @Phone, " _
-                    + "strcontactfaxnumber = @Fax, " _
-                    + "strcontactemail = @Email, " _
-                    + "strcontactaddress1 = @Street, " _
-                    + "strcontactcity = @City, " _
-                    + "strcontactstate = @State, " _
-                    + "strcontactzipcode = @Zip,             " _
-                    + "strcontactcompanyname = @Company, " _
-                    + "strcontactdescription = @ContDesc, " _
-                    + "datmodifingdate = getdate(), " _
-                    + "strmodifingperson = '0' " _
-                    + "where strcontactkey = @ContKey"
+                Dim Sql3 As String = "Update apbcontactinformation set " &
+                    "strcontactfirstname = @FirstName, " &
+                    "strcontactlastname = @LastName, " &
+                    "strcontacttitle = @Title, " &
+                    "strcontactphonenumber1 = @Phone, " &
+                    "strcontactfaxnumber = @Fax, " &
+                    "strcontactemail = @Email, " &
+                    "strcontactaddress1 = @Street, " &
+                    "strcontactcity = @City, " &
+                    "strcontactstate = @State, " &
+                    "strcontactzipcode = @Zip,             " &
+                    "strcontactcompanyname = @Company, " &
+                    "strcontactdescription = @ContDesc, " &
+                    "datmodifingdate = getdate(), " &
+                    "strmodifingperson = '0' " &
+                    "where strcontactkey = @ContKey"
 
                 Dim params3 As SqlParameter() = {
                     New SqlParameter("@FirstName", txtFName.Text),
@@ -1340,13 +1340,13 @@ Partial Class AnnualFees_Default
                 qList.Add(Sql3)
                 pList.Add(params3)
 
-                Dim SQL4 As String = "Update fs_admin set numcurrentstatus = 5, " _
-                    + "updatedatetime = getdate(), " _
-                    + "DATSTATUSDATE = getdate(), " _
-                    + "updateuser = @UpdUser " _
-                    + "where strairsnumber = @Airs " _
-                    + "and numfeeyear = @FeeYear " _
-                    + "and numcurrentstatus < 5"
+                Dim SQL4 As String = "Update fs_admin set numcurrentstatus = 5, " &
+                    "updatedatetime = getdate(), " &
+                    "DATSTATUSDATE = getdate(), " &
+                    "updateuser = @UpdUser " &
+                    "where strairsnumber = @Airs " &
+                    "and numfeeyear = @FeeYear " &
+                    "and numcurrentstatus < 5"
 
                 Dim params4 As SqlParameter() = {
                     New SqlParameter("@UpdUser", "GECO||" & currentUser.Email),
@@ -1391,28 +1391,28 @@ Partial Class AnnualFees_Default
             Dim FeeYear As String = ddlFeeYear.SelectedItem.Text
 
             If ddlFeeYear.SelectedItem.Text = "-Select Year-" Then
-                SQL = "Insert into apbcontactinformation ( " _
-                    + "strcontactfirstname, strcontactlastname, strcontacttitle, " _
-                    + "strcontactphonenumber1, strcontactfaxnumber, strcontactemail, strcontactaddress1, " _
-                    + "strcontactcity, strcontactstate, strcontactzipcode, strcontactcompanyname, " _
-                    + "STRMODIFINGPERSON, DATMODIFINGDATE, strairsnumber, strkey, strcontactkey, strcontactdescription) " _
-                    + "values(@FirstName, " _
-                    + "@LastName, " _
-                    + "@Title, " _
-                    + "@Phone, " _
-                    + "@Fax, " _
-                    + "@Email, " _
-                    + "@Street, " _
-                    + "@City, " _
-                    + "@State, " _
-                    + "@Zip, " _
-                    + "@CompName, " _
-                    + "'0', " _
-                    + "getdate(), " _
-                    + "@Airs, " _
-                    + "'40', " _
-                    + "@Key, " _
-                    + "@ContDesc)"
+                SQL = "Insert into apbcontactinformation ( " &
+                    "strcontactfirstname, strcontactlastname, strcontacttitle, " &
+                    "strcontactphonenumber1, strcontactfaxnumber, strcontactemail, strcontactaddress1, " &
+                    "strcontactcity, strcontactstate, strcontactzipcode, strcontactcompanyname, " &
+                    "STRMODIFINGPERSON, DATMODIFINGDATE, strairsnumber, strkey, strcontactkey, strcontactdescription) " &
+                    "values(@FirstName, " &
+                    "@LastName, " &
+                    "@Title, " &
+                    "@Phone, " &
+                    "@Fax, " &
+                    "@Email, " &
+                    "@Street, " &
+                    "@City, " &
+                    "@State, " &
+                    "@Zip, " &
+                    "@CompName, " &
+                    "'0', " &
+                    "getdate(), " &
+                    "@Airs, " &
+                    "'40', " &
+                    "@Key, " &
+                    "@ContDesc)"
 
                 Dim params As SqlParameter() = {
                     New SqlParameter("@FirstName", FirstName),
@@ -1437,24 +1437,24 @@ Partial Class AnnualFees_Default
                 Dim qList As New List(Of String)
                 Dim pList As New List(Of SqlParameter())
 
-                SQL = "Insert into fs_contactinfo ( " _
-                    + "strcontactfirstname, strcontactlastname, strcontacttitle, " _
-                    + "strcontactphonenumber, strcontactfaxnumber, strcontactemail, strcontactaddress, " _
-                    + "strcontactcity, strcontactstate, strcontactzipcode, strcontactcompanyname, " _
-                    + "strairsnumber, numfeeyear) " _
-                    + "values(@FirstName, " _
-                    + "@LastName, " _
-                    + "@Title, " _
-                    + "@Phone, " _
-                    + "@Fax, " _
-                    + "@Email, " _
-                    + "@Street, " _
-                    + "@City, " _
-                    + "@State, " _
-                    + "@Zip, " _
-                    + "@CompName, " _
-                    + "@Airs, " _
-                    + "@FeeYear)"
+                SQL = "Insert into fs_contactinfo ( " &
+                    "strcontactfirstname, strcontactlastname, strcontacttitle, " &
+                    "strcontactphonenumber, strcontactfaxnumber, strcontactemail, strcontactaddress, " &
+                    "strcontactcity, strcontactstate, strcontactzipcode, strcontactcompanyname, " &
+                    "strairsnumber, numfeeyear) " &
+                    "values(@FirstName, " &
+                    "@LastName, " &
+                    "@Title, " &
+                    "@Phone, " &
+                    "@Fax, " &
+                    "@Email, " &
+                    "@Street, " &
+                    "@City, " &
+                    "@State, " &
+                    "@Zip, " &
+                    "@CompName, " &
+                    "@Airs, " &
+                    "@FeeYear)"
 
                 Dim params1 As SqlParameter() = {
                     New SqlParameter("@FirstName", FirstName),
@@ -1476,13 +1476,13 @@ Partial Class AnnualFees_Default
                 qList.Add(SQL)
                 pList.Add(params1)
 
-                Dim SQL1 As String = "Update fs_admin set numcurrentstatus = 5, " _
-                    + "updatedatetime = getdate(), " _
-                    + "DATSTATUSDATE = getdate(), " _
-                    + "updateuser = @User " _
-                    + "where strairsnumber = @Airs " _
-                    + "and numfeeyear = @FeeYear " _
-                    + "And numcurrentstatus < 5"
+                Dim SQL1 As String = "Update fs_admin set numcurrentstatus = 5, " &
+                    "updatedatetime = getdate(), " &
+                    "DATSTATUSDATE = getdate(), " &
+                    "updateuser = @User " &
+                    "where strairsnumber = @Airs " &
+                    "and numfeeyear = @FeeYear " &
+                    "And numcurrentstatus < 5"
 
                 Dim params2 As SqlParameter() = {
                     New SqlParameter("@User", User),
@@ -1518,10 +1518,10 @@ Partial Class AnnualFees_Default
         'facility in the table
 
         Try
-            Dim SQL As String = "Select strairsnumber " _
-                + "FROM fs_feedata " _
-                + "where strairsnumber = @airsno " _
-                + "and numfeeyear = @feeyear"
+            Dim SQL As String = "Select strairsnumber " &
+                "FROM fs_feedata " &
+                "where strairsnumber = @airsno " &
+                "and numfeeyear = @feeyear"
 
             Dim params As SqlParameter() = {
                 New SqlParameter("@airsno", "0413" & GetCookie(Cookie.AirsNumber)),
@@ -1611,29 +1611,29 @@ Partial Class AnnualFees_Default
             Dim airs As String = "0413" & GetCookie(Cookie.AirsNumber)
             Dim feeyr As String = feeyear.Text
 
-            SQL = "Update fs_feedata set " _
-                + "intvoctons = @voctons, " _
-                + "intnoxtons = @noxtons, " _
-                + "intpmtons = @pmtons, " _
-                + "intso2tons = @so2tons, " _
-                + "numpart70fee = @part70fee, " _
-                + "numsmfee = @smfee, " _
-                + "numnspsfee = @nspsfee, " _
-                + "numtotalfee = @totalfee, " _
-                + "strnspsexempt = @nspsexempt, " _
-                + "strnspsexemptreason = @nspsreason, " _
-                + "stroperate = @operate, " _
-                + "strclass = @sclass, " _
-                + "strnsps = @nsps, " _
-                + "strpart70 = @part70, " _
-                + "numfeerate = @feerate, " _
-                + "strsyntheticminor = @synminor, " _
-                + "numcalculatedfee = @calcfee, " _
-                + "numadminfee = @adminfee, " _
-                + "updatedatetime = getdate(), " _
-                + "updateuser = @upduser " _
-                + "where strairsnumber = @AIRS " _
-                + "and numfeeyear = @feeyear "
+            SQL = "Update fs_feedata set " &
+                "intvoctons = @voctons, " &
+                "intnoxtons = @noxtons, " &
+                "intpmtons = @pmtons, " &
+                "intso2tons = @so2tons, " &
+                "numpart70fee = @part70fee, " &
+                "numsmfee = @smfee, " &
+                "numnspsfee = @nspsfee, " &
+                "numtotalfee = @totalfee, " &
+                "strnspsexempt = @nspsexempt, " &
+                "strnspsexemptreason = @nspsreason, " &
+                "stroperate = @operate, " &
+                "strclass = @sclass, " &
+                "strnsps = @nsps, " &
+                "strpart70 = @part70, " &
+                "numfeerate = @feerate, " &
+                "strsyntheticminor = @synminor, " &
+                "numcalculatedfee = @calcfee, " &
+                "numadminfee = @adminfee, " &
+                "updatedatetime = getdate(), " &
+                "updateuser = @upduser " &
+                "where strairsnumber = @AIRS " &
+                "and numfeeyear = @feeyear "
 
             Dim conn As New SqlConnection(DBConnectionString)
             Dim cmd As New SqlCommand(SQL, conn)
@@ -1674,13 +1674,13 @@ Partial Class AnnualFees_Default
             cmd.Parameters.Clear()
 
             'Second SQL command within the transaction
-            SQL = "Update fs_admin set numcurrentstatus = 6, " _
-                + "updatedatetime = getdate(), " _
-                + "DATSTATUSDATE = getdate(), " _
-                + "updateuser = @UpdUsr " _
-                + "where strairsnumber = @AIRS " _
-                + "and numfeeyear = @feeyear " _
-                + "and numcurrentstatus < 6"
+            SQL = "Update fs_admin set numcurrentstatus = 6, " &
+                "updatedatetime = getdate(), " &
+                "DATSTATUSDATE = getdate(), " &
+                "updateuser = @UpdUsr " &
+                "where strairsnumber = @AIRS " &
+                "and numfeeyear = @feeyear " &
+                "and numcurrentstatus < 6"
 
             cmd.CommandText = SQL  ' = New SqlCommand(SQL, conn)
             cmd.CommandType = CommandType.Text
@@ -1804,37 +1804,37 @@ Partial Class AnnualFees_Default
             Dim airs As String = "0413" & GetCookie(Cookie.AirsNumber)
             Dim feeyr As String = feeyear.Text
 
-            SQL = "Insert into fs_feedata " _
-            + "(strairsnumber, numfeeyear, " _
-            + "intvoctons, intpmtons, intso2tons, intnoxtons, " _
-            + "numpart70fee, numsmfee, numnspsfee, " _
-            + "numtotalfee, strnspsexempt, strnspsexemptreason, stroperate, " _
-            + "strclass, strnsps, strpart70, numfeerate, " _
-            + "strsyntheticminor, numcalculatedfee, numadminfee, " _
-            + "updatedatetime, createdatetime, updateuser) " _
-            + "values(@AIRS, " _
-            + "@feeyear, " _
-            + "@voctons" _
-            + "@pmtons, " _
-            + "@so2tons, " _
-            + "@noxtons, " _
-            + "@part70fee, " _
-            + "@smfee, " _
-            + "@nspsfee, " _
-            + "@totalfee, " _
-            + "@nspsexempt, " _
-            + "@nspsreason, " _
-            + "@operate, " _
-            + "@sclass, " _
-            + "@nsps, " _
-            + "@part70, " _
-            + "@feerate, " _
-            + "@synminor, " _
-            + "@calcfee, " _
-            + "@adminfee, " _
-            + "getdate(), " _
-            + "getdate(), " _
-            + "@upduser)"
+            SQL = "Insert into fs_feedata " &
+                "(strairsnumber, numfeeyear, " &
+                "intvoctons, intpmtons, intso2tons, intnoxtons, " &
+                "numpart70fee, numsmfee, numnspsfee, " &
+                "numtotalfee, strnspsexempt, strnspsexemptreason, stroperate, " &
+                "strclass, strnsps, strpart70, numfeerate, " &
+                "strsyntheticminor, numcalculatedfee, numadminfee, " &
+                "updatedatetime, createdatetime, updateuser) " &
+                "values(@AIRS, " &
+                "@feeyear, " &
+                "@voctons" &
+                "@pmtons, " &
+                "@so2tons, " &
+                "@noxtons, " &
+                "@part70fee, " &
+                "@smfee, " &
+                "@nspsfee, " &
+                "@totalfee, " &
+                "@nspsexempt, " &
+                "@nspsreason, " &
+                "@operate, " &
+                "@sclass, " &
+                "@nsps, " &
+                "@part70, " &
+                "@feerate, " &
+                "@synminor, " &
+                "@calcfee, " &
+                "@adminfee, " &
+                "getdate(), " &
+                "getdate(), " &
+                "@upduser)"
 
             Dim conn As New SqlConnection(DBConnectionString)
             Dim cmd As New SqlCommand(SQL, conn)
@@ -1876,13 +1876,13 @@ Partial Class AnnualFees_Default
             cmd.Parameters.Clear()
 
             'Second SQL command within the transaction
-            SQL = "Update fs_admin set numcurrentstatus = 6, " _
-                + "updatedatetime = getdate(), " _
-                + "DATSTATUSDATE = getdate(), " _
-                + "updateuser = @UpdUsr " _
-                + "where strairsnumber = @AIRS " _
-                + "and numfeeyear = @feeyear " _
-                + "and numcurrentstatus < 6"
+            SQL = "Update fs_admin set numcurrentstatus = 6, " &
+                "updatedatetime = getdate(), " &
+                "DATSTATUSDATE = getdate(), " &
+                "updateuser = @UpdUsr " &
+                "where strairsnumber = @AIRS " &
+                "and numfeeyear = @feeyear " &
+                "and numcurrentstatus < 6"
 
             cmd.CommandText = SQL  ' = New SqlCommand(SQL, conn)
             cmd.CommandType = CommandType.Text
@@ -1941,15 +1941,15 @@ Partial Class AnnualFees_Default
             Dim qList As New List(Of String)
             Dim pList As New List(Of SqlParameter())
 
-            Dim SQL1 As String = "Update fs_feedata set " _
-                + "STRPAYMENTPLAN = @PayType, " _
-                + "strofficialname = @Owner, " _
-                + "strofficialtitle = @OwnerTitle, " _
-                + "strcomment = @Comments, " _
-                + "updatedatetime = @Date, " _
-                + "updateuser = @UEmail " _
-                + "where strairsnumber = @Airs " _
-                + "and numfeeyear = @FeeYear "
+            Dim SQL1 As String = "Update fs_feedata set " &
+                "STRPAYMENTPLAN = @PayType, " &
+                "strofficialname = @Owner, " &
+                "strofficialtitle = @OwnerTitle, " &
+                "strcomment = @Comments, " &
+                "updatedatetime = @Date, " &
+                "updateuser = @UEmail " &
+                "where strairsnumber = @Airs " &
+                "and numfeeyear = @FeeYear "
 
             Dim params1 As SqlParameter() = {
                 New SqlParameter("@PayType", txtPayType.Text),
@@ -1966,13 +1966,13 @@ Partial Class AnnualFees_Default
             qList.Add(SQL1)
             pList.Add(params1)
 
-            Dim Sql2 As String = "Update fs_admin set numcurrentstatus = 7, " _
-                + "updatedatetime = getdate(), " _
-                + "DATSTATUSDATE = getdate(), " _
-                + "updateuser = @UEmail " _
-                + "where strairsnumber = @Airs " _
-                + "And numfeeyear = @FeeYear " _
-                + "And numcurrentstatus < 7"
+            Dim Sql2 As String = "Update fs_admin set numcurrentstatus = 7, " &
+                "updatedatetime = getdate(), " &
+                "DATSTATUSDATE = getdate(), " &
+                "updateuser = @UEmail " &
+                "where strairsnumber = @Airs " &
+                "And numfeeyear = @FeeYear " &
+                "And numcurrentstatus < 7"
 
             Dim params2 As SqlParameter() = {
                 New SqlParameter("@UEmail", "GECO||" & currentUser.Email),
@@ -2000,15 +2000,15 @@ Partial Class AnnualFees_Default
             Dim AirsNo As String = "0413" & GetCookie(Cookie.AirsNumber)
             Dim FY As String = ddlFeeYear.SelectedItem.Text
 
-            Dim SQL As String = "Update fs_admin Set " _
-                + "numcurrentstatus = 8, " _
-                + "intsubmittal = 1, " _
-                + "updatedatetime = getdate(), " _
-                + "DATSTATUSDATE = getdate(), " _
-                + "datsubmittal = getdate(), " _
-                + "updateuser = @UpdUser " _
-                + "where strairsnumber = @airs " _
-                + "and numfeeyear = @FY"
+            Dim SQL As String = "Update fs_admin Set " &
+                "numcurrentstatus = 8, " &
+                "intsubmittal = 1, " &
+                "updatedatetime = getdate(), " &
+                "DATSTATUSDATE = getdate(), " &
+                "datsubmittal = getdate(), " &
+                "updateuser = @UpdUser " &
+                "where strairsnumber = @airs " &
+                "and numfeeyear = @FY"
 
             Dim params As SqlParameter() = {
                 New SqlParameter("@UpdUser", UpdUser),
@@ -2076,19 +2076,19 @@ Partial Class AnnualFees_Default
                     strInvoiceStatus = "0"
                 End If
 
-                SQL = "Insert into fs_feeinvoice " _
-                    + "(invoiceid, numfeeyear, strairsnumber, numamount, datinvoicedate, updatedatetime, " _
-                    + "createdatetime, updateuser, strpaytype, strinvoicestatus, active) " _
-                    + "values(Next Value for feeinvoice_id, " _
-                    + "@feeYear, " _
-                    + "@AirsNo, " _
-                    + "@AmtDue, " _
-                    + "@InvDate, " _
-                    + "getdate(), " _
-                    + "getdate(), " _
-                    + "@UpdUser, " _
-                    + "@PayType, " _
-                    + "@InvStatus, '1')"
+                SQL = "Insert into fs_feeinvoice " &
+                    "(invoiceid, numfeeyear, strairsnumber, numamount, datinvoicedate, updatedatetime, " &
+                    "createdatetime, updateuser, strpaytype, strinvoicestatus, active) " &
+                    "values(Next Value for feeinvoice_id, " &
+                    "@feeYear, " &
+                    "@AirsNo, " &
+                    "@AmtDue, " &
+                    "@InvDate, " &
+                    "getdate(), " &
+                    "getdate(), " &
+                    "@UpdUser, " &
+                    "@PayType, " &
+                    "@InvStatus, '1')"
 
                 Dim params As SqlParameter() = {
                     New SqlParameter("@feeYear", intfeeyear),
@@ -2154,13 +2154,13 @@ Partial Class AnnualFees_Default
             Dim AIRSno As String = "0413" & GetCookie(Cookie.AirsNumber)
             Dim FY As String = feeyear.Text
 
-            Dim SQL As String = "Update fs_feedata set " _
-            + "strconfirmationnumber = @conf, " _
-            + "strconfirmationuser = @UID, " _
-            + "updatedatetime = @UpdDT, " _
-            + "updateuser = @Uemail " _
-            + "where strairsnumber = @AIRSno " _
-            + "and numfeeyear = @FY"
+            Dim SQL As String = "Update fs_feedata set " &
+                "strconfirmationnumber = @conf, " &
+                "strconfirmationuser = @UID, " &
+                "updatedatetime = @UpdDT, " &
+                "updateuser = @Uemail " &
+                "where strairsnumber = @AIRSno " &
+                "and numfeeyear = @FY"
 
             Dim params As SqlParameter() = {
                 New SqlParameter("@conf", confirmation),
