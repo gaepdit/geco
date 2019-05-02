@@ -283,7 +283,7 @@
                         ValidationExpression="^[+]?[0-9]\d{0,4}(\.\d{1,2})?%?$"
                         ValidationGroup="vgRPDetailsEdit">*</asp:RegularExpressionValidator>
                     <asp:RangeValidator ID="rngvHeatContent" runat="server" Type="Double" ControlToValidate="txtHeatContent"
-                        ErrorMessage="The Heat Content must be between 0.00 and 99,999.99" ValidationGroup="vgRPDetailsEdit"
+                        ErrorMessage="The Heat Content must be between 0.01 and 99,999.99" ValidationGroup="vgRPDetailsEdit"
                         MaximumValue="99999.99" MinimumValue="0.01">Must be between 0.01 and 99,999.99</asp:RangeValidator>
                 </div>
                 <div class="fieldwrapper">
