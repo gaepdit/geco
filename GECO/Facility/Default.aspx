@@ -204,24 +204,16 @@
                     <tr>
                         <th>Telephone Number</th>
                         <td>
-                            <asp:TextBox ID="txtPhone" runat="server" MaxLength="10" ValidationGroup="Contact"></asp:TextBox>
-                            &nbsp; Ext:
-                            <asp:TextBox ID="txtPhoneExt" runat="server" MaxLength="5"
-                                Width="64px" ValidationGroup="Contact"></asp:TextBox><asp:RequiredFieldValidator
-                                    ID="RequiredFieldValidator5" runat="server" ControlToValidate="txtPhone" ErrorMessage="10-digit Phone Number"
-                                    Font-Size="Small" ValidationGroup="Contact"></asp:RequiredFieldValidator>
-                            <act:FilteredTextBoxExtender ID="FilteredTextBoxExtender2" runat="server" TargetControlID="txtPhone"
-                                FilterType="Numbers" Enabled="True">
-                            </act:FilteredTextBoxExtender>
-                            <act:FilteredTextBoxExtender ID="FilteredTextBoxExtender3" runat="server" TargetControlID="txtPhoneExt"
-                                FilterType="Numbers" Enabled="True">
-                            </act:FilteredTextBoxExtender>
+                            <asp:TextBox ID="txtPhone" runat="server" MaxLength="30" ValidationGroup="Contact"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" 
+                                ControlToValidate="txtPhone" ErrorMessage="Phone Number is required" 
+                                Font-Size="Small" ValidationGroup="Contact" />
                         </td>
                     </tr>
                     <tr>
                         <th>Fax Number</th>
                         <td>
-                            <asp:TextBox ID="txtFax" runat="server" MaxLength="10" ValidationGroup="Contact"></asp:TextBox>
+                            <asp:TextBox ID="txtFax" runat="server" MaxLength="10" ValidationGroup="Contact"></asp:TextBox> (numbers only)
                             <act:FilteredTextBoxExtender ID="FilteredTextBoxExtender4" runat="server" TargetControlID="txtFax"
                                 FilterType="Numbers" Enabled="True">
                             </act:FilteredTextBoxExtender>

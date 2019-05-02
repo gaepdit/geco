@@ -287,19 +287,7 @@
                         <td width="25%">Telephone Number:
                         </td>
                         <td>
-                            <asp:TextBox ID="txtPhone" runat="server" CssClass="unwatermarked" MaxLength="10"
-                                ValidationGroup="Contact"></asp:TextBox>
-                            &nbsp; Ext:
-                            <asp:TextBox ID="txtPhoneExt" runat="server" CssClass="unwatermarked" MaxLength="5"
-                                Width="64px" ValidationGroup="Contact"></asp:TextBox><asp:RequiredFieldValidator
-                                    ID="RequiredFieldValidator5" runat="server" ControlToValidate="txtPhone" ErrorMessage="10-digit Phone Number"
-                                    Font-Size="Small" ValidationGroup="Contact"></asp:RequiredFieldValidator>
-                            <act:FilteredTextBoxExtender ID="FilteredTextBoxExtender2" runat="server" TargetControlID="txtPhone"
-                                FilterType="Numbers">
-                            </act:FilteredTextBoxExtender>
-                            <act:FilteredTextBoxExtender ID="FilteredTextBoxExtender3" runat="server" TargetControlID="txtPhoneExt"
-                                FilterType="Numbers">
-                            </act:FilteredTextBoxExtender>
+                            <asp:TextBox ID="txtPhone" runat="server" CssClass="unwatermarked" MaxLength="30" ValidationGroup="Contact" />
                         </td>
                     </tr>
                     <tr>

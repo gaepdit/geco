@@ -281,8 +281,7 @@ Partial Class EIS_rp_entry
         Dim FacilitySiteID As String = GetCookie(Cookie.AirsNumber)
         Try
             Dim query As String = "select TELEPHONENUMBERTYPECODE, " &
-                " STRTELEPHONENUMBERTEXT, " &
-                " STRTELEPHONENUMBEREXT " &
+                " STRTELEPHONENUMBERTEXT " &
                 " FROM EIS_TELEPHONECOMM " &
                 " where FACILITYSITEID = @FacilitySiteID "
 
@@ -295,7 +294,6 @@ Partial Class EIS_rp_entry
                     Select Case dr.Item("TELEPHONENUMBERTYPECODE")
                         Case "W"
                             txtTelephoneNumberText.Text = GetNullableString(dr.Item("STRTELEPHONENUMBERTEXT"))
-                            txtTelephoneExtensionNumberText.Text = GetNullableString(dr.Item("STRTELEPHONENUMBEREXT"))
                         Case "F"
                             txtTelephoneNumber_Fax.Text = GetNullableString(dr.Item("STRTELEPHONENUMBERTEXT"))
                         Case "M"
@@ -758,7 +756,6 @@ Partial Class EIS_rp_entry
         Dim query As String
 
         Dim phoneNumber As String = txtTelephoneNumberText.Text
-        Dim phoneExtension As String = txtTelephoneExtensionNumberText.Text
         Dim mobilePhone As String = txtTelephoneNumber_Mobile.Text
         Dim FaxNumber As String = txtTelephoneNumber_Fax.Text
         Dim UpdateUserID As String = GetCookie(GecoCookie.UserID)
@@ -781,7 +778,6 @@ Partial Class EIS_rp_entry
                 If DB.ValueExists(query, facParam) Then
                     query = "Update EIS_TELEPHONECOMM Set " &
                             " STRTELEPHONENUMBERTEXT = @phoneNumber, " &
-                            " STRTELEPHONENUMBEREXT = @phoneExtension, " &
                             " updateUser = @UpdateUser, " &
                             " UPDATEDATETIME = getdate() " &
                             " where FACILITYSITEID = @FacilitySiteID " &
@@ -800,7 +796,6 @@ Partial Class EIS_rp_entry
                             " (@FACILITYSITEID, " &
                             " 'W', " &
                             " @phoneNumber, " &
-                            " @phoneExtension, " &
                             " '1', " &
                             " @UpdateUser, " &
                             " getdate(), " &
@@ -810,7 +805,6 @@ Partial Class EIS_rp_entry
                 params = {
                     New SqlParameter("@FacilitySiteID", FacilitySiteID),
                     New SqlParameter("@phoneNumber", phoneNumber),
-                    New SqlParameter("@phoneExtension", phoneExtension),
                     New SqlParameter("@UpdateUser", UpdateUser)
                 }
 

@@ -76,7 +76,6 @@ Partial Class FacilityHome
 #Region " Load data "
 
     Protected Sub LoadFacilityContact()
-        Dim phonenumber As String
         Dim dr As DataRow = GetAPBContactInformation(hidContactKey.Value)
 
         If dr IsNot Nothing Then
@@ -87,21 +86,13 @@ Partial Class FacilityHome
             txtLName.Text = GetNullableString(dr.Item("strcontactlastname"))
             txtTitle.Text = GetNullableString(dr.Item("strcontacttitle"))
             txtCoName.Text = GetNullableString(dr.Item("strcontactcompanyname"))
-            phonenumber = GetNullableString(dr.Item("strcontactphonenumber"))
+            txtPhone.Text = GetNullableString(dr.Item("strcontactphonenumber"))
             txtFax.Text = GetNullableString(dr.Item("strcontactfaxnumber"))
             txtEmailContact.Text = GetNullableString(dr.Item("strcontactemail"))
             txtAddress.Text = GetNullableString(dr.Item("strcontactaddress"))
             txtCity.Text = GetNullableString(dr.Item("strcontactcity"))
             txtState.Text = GetNullableString(dr.Item("strcontactstate"))
             txtZip.Text = GetNullableString(dr.Item("strcontactzipcode"))
-
-            If phonenumber.Length > 10 Then
-                txtPhone.Text = Mid(phonenumber, 1, 10)
-                txtPhoneExt.Text = Mid(phonenumber, 11)
-            Else
-                txtPhone.Text = phonenumber
-                txtPhoneExt.Text = ""
-            End If
         Else
             ClearContact()
         End If
@@ -481,17 +472,14 @@ Partial Class FacilityHome
 
     Protected Sub btnUpdateContact_Click(sender As Object, e As EventArgs) Handles btnUpdateContact.Click
         Try
-            Dim phone, contactDescription As String
-            phone = txtPhone.Text & txtPhoneExt.Text
-
-            contactDescription = "Contact updated from GECO Facility Home page by " & currentUser.FullName &
+            Dim contactDescription As String = "Contact updated from GECO Facility Home page by " & currentUser.FullName &
                 " on " & Now.ToShortDateString()
 
             Dim params As SqlParameter() = {
                 New SqlParameter("@strcontactfirstname", txtFName.Text),
                 New SqlParameter("@strcontactlastname", txtLName.Text),
                 New SqlParameter("@strcontacttitle", txtTitle.Text),
-                New SqlParameter("@strcontactphonenumber1", phone),
+                New SqlParameter("@strcontactphonenumber1", txtPhone.Text),
                 New SqlParameter("@strcontactfaxnumber", txtFax.Text),
                 New SqlParameter("@strcontactemail", txtEmailContact.Text),
                 New SqlParameter("@strcontactaddress1", txtAddress.Text),
@@ -760,14 +748,7 @@ Partial Class FacilityHome
                 txtCity.Text = currentUser.Address.City
                 txtState.Text = currentUser.Address.State
                 txtZip.Text = currentUser.Address.PostalCode
-
-                If currentUser.PhoneNumber.Length > 10 Then
-                    txtPhone.Text = Mid(currentUser.PhoneNumber, 1, 10)
-                    txtPhoneExt.Text = Mid(currentUser.PhoneNumber, 11)
-                Else
-                    txtPhone.Text = currentUser.PhoneNumber
-                    txtPhoneExt.Text = ""
-                End If
+                txtPhone.Text = currentUser.PhoneNumber
             End If
         End If
     End Sub
@@ -784,7 +765,6 @@ Partial Class FacilityHome
         txtState.Text = ""
         txtZip.Text = ""
         txtPhone.Text = ""
-        txtPhoneExt.Text = ""
     End Sub
 
 #End Region

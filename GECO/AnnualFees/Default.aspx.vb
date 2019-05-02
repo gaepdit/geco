@@ -745,7 +745,6 @@ Partial Class AnnualFees_Default
 
     Protected Sub LoadFacilityContact()
         Try
-            Dim phonenumber As String = ""
             Dim dr As DataRow
 
             If ddlFeeYear.SelectedItem.Text <> "-Select Year-" Then
@@ -788,7 +787,7 @@ Partial Class AnnualFees_Default
 
                 If IsDBNull(dr.Item("strcontactphonenumber")) Then
                 Else
-                    phonenumber = dr.Item("strcontactphonenumber")
+                    txtPhone.Text = dr.Item("strcontactphonenumber")
                 End If
 
                 If IsDBNull(dr.Item("strcontactfaxnumber")) Then
@@ -825,13 +824,6 @@ Partial Class AnnualFees_Default
                 Else
                     txtZip.Text = dr.Item("strcontactzipcode")
                 End If
-            End If
-
-            If phonenumber.Length > 10 Then
-                txtPhone.Text = Mid(phonenumber, 1, 10)
-                txtPhoneExt.Text = Mid(phonenumber, 11)
-            Else
-                txtPhone.Text = phonenumber
             End If
 
         Catch exThreadAbort As System.Threading.ThreadAbortException
@@ -1229,7 +1221,6 @@ Partial Class AnnualFees_Default
         'This sub will save the nformation entered or changed in the
         'Facility Information panel.
         Try
-            Dim phone As String = txtPhone.Text & txtPhoneExt.Text
             Dim contactDescription As String = "Fee Contact updated from GECO Fee application page by " & currentUser.FullName & " on " & Format$(Now, "dd-MMM-yyyy")
 
             If ddlFeeYear.SelectedItem.Text = "-Select Year-" Then
@@ -1254,7 +1245,7 @@ Partial Class AnnualFees_Default
                     New SqlParameter("@FirstName", txtFName.Text),
                     New SqlParameter("@LastName", txtLName.Text),
                     New SqlParameter("@Title", txtTitle.Text),
-                    New SqlParameter("@Phone", phone),
+                    New SqlParameter("@Phone", txtPhone.Text),
                     New SqlParameter("@Fax", txtFax.Text),
                     New SqlParameter("@Email", txtEmail.Text),
                     New SqlParameter("@Street", txtAddress.Text),
@@ -1293,7 +1284,7 @@ Partial Class AnnualFees_Default
                     New SqlParameter("@FirstName", txtFName.Text),
                     New SqlParameter("@LastName", txtLName.Text),
                     New SqlParameter("@Title", txtTitle.Text),
-                    New SqlParameter("@Phone", phone),
+                    New SqlParameter("@Phone", txtPhone.Text),
                     New SqlParameter("@Fax", txtFax.Text),
                     New SqlParameter("@Email", txtEmail.Text),
                     New SqlParameter("@Street", txtAddress.Text),
@@ -1333,7 +1324,7 @@ Partial Class AnnualFees_Default
                     New SqlParameter("@FirstName", txtFName.Text),
                     New SqlParameter("@LastName", txtLName.Text),
                     New SqlParameter("@Title", txtTitle.Text),
-                    New SqlParameter("@Phone", phone),
+                    New SqlParameter("@Phone", txtPhone.Text),
                     New SqlParameter("@Fax", txtFax.Text),
                     New SqlParameter("@Email", txtEmail.Text),
                     New SqlParameter("@Street", txtAddress.Text),
@@ -1386,7 +1377,7 @@ Partial Class AnnualFees_Default
             Dim LastName As String = txtLName.Text
             Dim User As String = "GECO||" & currentUser.Email
             Dim Title As String = txtTitle.Text
-            Dim Phone As String = txtPhone.Text & txtPhoneExt.Text
+            Dim Phone As String = txtPhone.Text
             Dim Fax As String = txtFax.Text
             Dim Email As String = txtEmail.Text
             Dim Street As String = txtAddress.Text
@@ -2341,14 +2332,7 @@ Partial Class AnnualFees_Default
                 txtCity.Text = user.Address.City
                 txtState.Text = user.Address.State
                 txtZip.Text = user.Address.PostalCode
-
-                If user.PhoneNumber.Length > 10 Then
-                    txtPhone.Text = Mid(user.PhoneNumber, 1, 10)
-                    txtPhoneExt.Text = Mid(user.PhoneNumber, 11)
-                Else
-                    txtPhone.Text = user.PhoneNumber
-                    txtPhoneExt.Text = ""
-                End If
+                txtPhone.Text = user.PhoneNumber
             End If
         End If
     End Sub

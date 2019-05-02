@@ -256,13 +256,7 @@
     <div class="fieldwrapper">
         <asp:Label ID="lblTelephoneNumberText" class="styled" runat="server" Text="Contact Phone Number: "></asp:Label>
         <asp:TextBox ID="txtTelephoneNumberText" class="readonly" runat="server"
-            Text="" ReadOnly="True" Width="100px"></asp:TextBox>
-        <act:MaskedEditExtender ID="meeTelephoneNumberText"
-            runat="server" TargetControlID="txtTelephoneNumberText"
-            Mask="999-999-9999" ClearMaskOnLostFocus="False">
-        </act:MaskedEditExtender>
-        <asp:TextBox ID="txtTelephoneExtensionNumberText" class="readonly" runat="server"
-            Text="" ReadOnly="True" Width="50px"></asp:TextBox>
+            Text="" ReadOnly="True" Width="150px"></asp:TextBox>
     </div>
     <div class="fieldwrapper">
         <asp:Label ID="lblTelephoneNumberText_mobile" class="styled" runat="server" Text="Contact Mobile Number: "></asp:Label>

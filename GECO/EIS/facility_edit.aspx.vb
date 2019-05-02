@@ -1,9 +1,8 @@
 Imports System.Data.SqlClient
-Imports System.Data
+Imports EpdIt.DBUtilities
+Imports GECO.MapHelper
 Imports Reimers.Core.Maps
 Imports Reimers.Google.Map
-Imports GECO.MapHelper
-Imports EpdIt.DBUtilities
 
 Partial Class eis_facility_edit
     Inherits Page
@@ -293,8 +292,7 @@ Partial Class eis_facility_edit
         Dim FacilitySiteID As String = GetCookie(Cookie.AirsNumber)
         Try
             Dim query As String = "select TELEPHONENUMBERTYPECODE, " &
-                " STRTELEPHONENUMBERTEXT, " &
-                " STRTELEPHONENUMBEREXT " &
+                " STRTELEPHONENUMBERTEXT " &
                 " FROM EIS_TELEPHONECOMM " &
                 " where FACILITYSITEID = @FacilitySiteID "
 
@@ -307,7 +305,6 @@ Partial Class eis_facility_edit
                     Select Case dr.Item("TELEPHONENUMBERTYPECODE")
                         Case "W"
                             txtTelephoneNumberText.Text = GetNullableString(dr.Item("STRTELEPHONENUMBERTEXT"))
-                            txtTelephoneExtensionNumberText.Text = GetNullableString(dr.Item("STRTELEPHONENUMBEREXT"))
                         Case "F"
                             txtTelephoneNumber_Fax.Text = GetNullableString(dr.Item("STRTELEPHONENUMBERTEXT"))
                         Case "M"
@@ -596,7 +593,6 @@ Partial Class eis_facility_edit
         Dim query As String
 
         Dim phoneNumber As String = txtTelephoneNumberText.Text
-        Dim phoneExtension As String = txtTelephoneExtensionNumberText.Text
         Dim mobilePhone As String = txtTelephoneNumber_Mobile.Text
         Dim FaxNumber As String = txtTelephoneNumber_Fax.Text
         Dim UpdateUserID As String = GetCookie(GecoCookie.UserID)
@@ -619,7 +615,6 @@ Partial Class eis_facility_edit
                 If DB.ValueExists(query, facParam) Then
                     query = "Update EIS_TELEPHONECOMM Set " &
                             " STRTELEPHONENUMBERTEXT = @phoneNumber, " &
-                            " STRTELEPHONENUMBEREXT = @phoneExtension, " &
                             " updateUser = @UpdateUser, " &
                             " UPDATEDATETIME = getdate() " &
                             " where FACILITYSITEID = @FacilitySiteID " &
@@ -638,7 +633,6 @@ Partial Class eis_facility_edit
                             " (@FACILITYSITEID, " &
                             " 'W', " &
                             " @phoneNumber, " &
-                            " @phoneExtension, " &
                             " '1', " &
                             " @UpdateUser, " &
                             " getdate(), " &
@@ -648,7 +642,6 @@ Partial Class eis_facility_edit
                 params = {
                     New SqlParameter("@FacilitySiteID", FacilitySiteID),
                     New SqlParameter("@phoneNumber", phoneNumber),
-                    New SqlParameter("@phoneExtension", phoneExtension),
                     New SqlParameter("@UpdateUser", UpdateUser)
                 }
 

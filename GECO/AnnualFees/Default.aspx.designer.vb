@@ -401,42 +401,6 @@ Partial Public Class AnnualFees_Default
     Protected WithEvents txtPhone As Global.System.Web.UI.WebControls.TextBox
     
     '''<summary>
-    '''txtPhoneExt control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtPhoneExt As Global.System.Web.UI.WebControls.TextBox
-    
-    '''<summary>
-    '''RequiredFieldValidator5 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents RequiredFieldValidator5 As Global.System.Web.UI.WebControls.RequiredFieldValidator
-    
-    '''<summary>
-    '''FilteredTextBoxExtender2 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents FilteredTextBoxExtender2 As Global.AjaxControlToolkit.FilteredTextBoxExtender
-    
-    '''<summary>
-    '''FilteredTextBoxExtender3 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents FilteredTextBoxExtender3 As Global.AjaxControlToolkit.FilteredTextBoxExtender
-    
-    '''<summary>
     '''txtFax control.
     '''</summary>
     '''<remarks>

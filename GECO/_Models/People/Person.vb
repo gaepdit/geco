@@ -16,11 +16,13 @@
         ' (Phone numbers)
         Public Property PhoneNumber As String
 
-        Public Sub SetUnformattedPhoneNumber(value As String)
-            If Not String.IsNullOrEmpty(value) AndAlso Not String.IsNullOrEmpty(PhoneNumber) Then
-                PhoneNumber = FormatPhoneNumber(value)
+        Public Shared Function ResolvePhoneNumbers(formattedPhone As String, unformattedPhone As String) As String
+            If Not String.IsNullOrEmpty(formattedPhone) Then
+                Return formattedPhone
             End If
-        End Sub
+
+            Return FormatPhoneNumber(unformattedPhone)
+        End Function
 
         Public Shared Function FormatPhoneNumber(unformattedPhone As String) As String
             If String.IsNullOrEmpty(unformattedPhone) OrElse unformattedPhone.Length < 10 OrElse Not IsNumeric(unformattedPhone) Then

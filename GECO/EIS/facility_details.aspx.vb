@@ -396,11 +396,6 @@ Partial Class eis_facility_details
                     Select Case dr.Item("TELEPHONENUMBERTYPECODE")
                         Case "W"
                             txtTelephoneNumberText.Text = dr.Item("STRTELEPHONENUMBERTEXT")
-                            If IsDBNull(dr("STRTELEPHONENUMBEREXT")) Then
-                                txtTelephoneExtensionNumberText.Text = ""
-                            Else
-                                txtTelephoneExtensionNumberText.Text = dr.Item("STRTELEPHONENUMBEREXT")
-                            End If
                         Case "F"
                             txtTelephoneNumber_Fax.Text = dr.Item("STRTELEPHONENUMBERTEXT")
                         Case "M"

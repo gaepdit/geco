@@ -1139,15 +1139,6 @@ Partial Public Class eis_facility_edit
     Protected WithEvents txtTelephoneNumberText As Global.System.Web.UI.WebControls.TextBox
     
     '''<summary>
-    '''txtTelephoneNumberText_FilteredTextBoxExtender control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtTelephoneNumberText_FilteredTextBoxExtender As Global.AjaxControlToolkit.FilteredTextBoxExtender
-    
-    '''<summary>
     '''reqvTelephoneNumberText control.
     '''</summary>
     '''<remarks>
@@ -1155,33 +1146,6 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents reqvTelephoneNumberText As Global.System.Web.UI.WebControls.RequiredFieldValidator
-    
-    '''<summary>
-    '''lblTelephoneExtensionNumberText control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblTelephoneExtensionNumberText As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''txtTelephoneExtensionNumberText control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtTelephoneExtensionNumberText As Global.System.Web.UI.WebControls.TextBox
-    
-    '''<summary>
-    '''tbwTelephoneExtensionNumberText control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents tbwTelephoneExtensionNumberText As Global.AjaxControlToolkit.TextBoxWatermarkExtender
     
     '''<summary>
     '''lblTelephoneNumberText_mobile control.

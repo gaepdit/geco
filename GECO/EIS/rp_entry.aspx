@@ -340,26 +340,9 @@
         <div class="fieldwrapper">
             <asp:Label ID="lblTelephoneNumberText" class="styled" runat="server" Text="Contact Phone Number: "></asp:Label>
             <asp:TextBox ID="txtTelephoneNumberText" runat="server" class="editable" Text=""
-                Width="150px" MaxLength="10"></asp:TextBox>
-            <act:FilteredTextBoxExtender ID="txtTelephoneNumberText_FilteredTextBoxExtender"
-                runat="server" Enabled="True" FilterType="Numbers"
-                TargetControlID="txtTelephoneNumberText">
-            </act:FilteredTextBoxExtender>
+                Width="150px" MaxLength="30"></asp:TextBox>
             <asp:RequiredFieldValidator ID="reqvTelephoneNumberText" runat="server" ControlToValidate="txtTelephoneNumberText"
                 ErrorMessage="The Emission Inventory contact phone number is required.">*</asp:RequiredFieldValidator>
-        </div>
-        <div class="fieldwrapper">
-            <asp:Label ID="lblTelephoneExtensionNumberText" class="styled" runat="server" Text="Extension: "></asp:Label>
-            <asp:TextBox ID="txtTelephoneExtensionNumberText" runat="server" class="editable"
-                Text="" Width="150px" MaxLength="10"></asp:TextBox>
-            <act:FilteredTextBoxExtender ID="txtTelephoneExtensionNumberText_FilteredTextBoxExtender"
-                runat="server" Enabled="True" FilterType="Numbers"
-                TargetControlID="txtTelephoneExtensionNumberText">
-            </act:FilteredTextBoxExtender>
-            <act:TextBoxWatermarkExtender ID="tbwTelephoneExtensionNumberText" runat="server"
-                Enabled="True" TargetControlID="txtTelephoneExtensionNumberText" WatermarkText="OPTIONAL"
-                WatermarkCssClass="watermarked">
-            </act:TextBoxWatermarkExtender>
         </div>
         <div class="fieldwrapper">
             <asp:Label ID="lblTelephoneNumberText_mobile" class="styled" runat="server" Text="Contact Mobile Number: "></asp:Label>

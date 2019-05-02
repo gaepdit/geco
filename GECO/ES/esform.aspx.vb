@@ -193,7 +193,6 @@ Partial Class es_esform
         Dim FacilityZip As String
         Dim AirsNumber As String = Session("esAirsNumber")
         Dim AirsYear As String = AirsNumber & Session("ESYear")
-        Dim ContactPhoneNumber As String
         Dim ContactFaxNumber As String
         Dim ContactZip As String
         Dim YesNo As String
@@ -332,17 +331,8 @@ Partial Class es_esform
                 txtContactCompanyName.Text = dr.Item("strContactCompany")
             End If
             If Not IsDBNull(dr("strContactPhoneNumber")) Then
-                ContactPhoneNumber = dr.Item("strContactPhoneNumber")
-                If Len(ContactPhoneNumber) <= 10 Then
-                    txtOfficePhoneNbr.Text = ContactPhoneNumber
-                Else
-                    txtOfficePhoneNbr.Text = Mid(ContactPhoneNumber, 1, 10)
-                End If
-                If Len(ContactPhoneNumber) > 10 Then
-                    txtOfficePhoneExt.Text = Mid(ContactPhoneNumber, 11)
-                End If
+                txtOfficePhoneNbr.Text = dr.Item("strContactPhoneNumber")
             End If
-
             If Not IsDBNull(dr("strContactFaxNumber")) Then
                 ContactFaxNumber = dr.Item("strContactFaxNumber")
                 txtFaxNbr.Text = Mid(ContactFaxNumber, 1, 10)
@@ -547,7 +537,6 @@ Partial Class es_esform
 
         'Load contact info FROM  apbContactInformation table
 
-        Dim ContactPhoneNumber1 As String
         Dim ContactFaxNumber As String
         Dim ContactZip As String
         Dim ContactKey = Session("esAirsNumber") & "42"
@@ -606,17 +595,8 @@ Partial Class es_esform
                     txtContactCompanyName.Text = dr.Item("strContactCompanyName")
                 End If
                 If Not IsDBNull(dr("strContactPhoneNumber1")) Then
-                    ContactPhoneNumber1 = dr.Item("strContactPhoneNumber1")
-                    If Len(ContactPhoneNumber1) <= 10 Then
-                        txtOfficePhoneNbr.Text = ContactPhoneNumber1
-                    Else
-                        txtOfficePhoneNbr.Text = Mid(ContactPhoneNumber1, 1, 10)
-                    End If
-                    If Len(ContactPhoneNumber1) > 10 Then
-                        txtOfficePhoneExt.Text = Mid(ContactPhoneNumber1, 11)
-                    End If
+                    txtOfficePhoneNbr.Text = dr.Item("strContactPhoneNumber1")
                 End If
-
                 If Not IsDBNull(dr("strContactFaxNumber")) Then
                     ContactFaxNumber = dr.Item("strContactFaxNumber")
                     txtFaxNbr.Text = Mid(ContactFaxNumber, 1, 10)
@@ -747,7 +727,7 @@ Partial Class es_esform
         ContactPrefix = txtContactPrefix.Text
         ContactTitle = txtContactTitle.Text
         ContactCompanyName = txtContactCompanyName.Text
-        ContactPhoneNumber1 = txtOfficePhoneNbr.Text & txtOfficePhoneExt.Text
+        ContactPhoneNumber1 = txtOfficePhoneNbr.Text
         ContactFaxNumber = txtFaxNbr.Text
         ContactEmail = txtContactEmail.Text
         ContactAddress1 = txtContactAddress1.Text
@@ -898,7 +878,7 @@ Partial Class es_esform
         Dim ContactLastName As String = txtContactLastName.Text
         Dim ContactTitle As String = txtContactTitle.Text
         Dim ContactEmail As String = txtContactEmail.Text
-        Dim OfficePhone As String = txtOfficePhoneNbr.Text & txtOfficePhoneExt.Text
+        Dim OfficePhone As String = txtOfficePhoneNbr.Text
         Dim Fax As String = txtFaxNbr.Text
         Dim ContactCompanyName As String = txtContactCompanyName.Text
         Dim ContactAddress1 As String = txtContactAddress1.Text

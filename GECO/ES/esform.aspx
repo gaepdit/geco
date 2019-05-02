@@ -375,10 +375,8 @@
                                 <td valign="middle">
                                     <span><span style="font-size: 9pt"></span>
                                         <asp:TextBox ID="txtOfficePhoneNbr" runat="server" BorderColor="CornflowerBlue" BorderStyle="Solid"
-                                            BorderWidth="1px" Font-Names="Verdana" Font-Size="Small" MaxLength="10" Width="180px"></asp:TextBox><span
+                                            BorderWidth="1px" Font-Names="Verdana" Font-Size="Small" MaxLength="30" Width="180px"></asp:TextBox><span
                                                 style="font-size: 9pt"> Ext: </span>
-                                        <asp:TextBox ID="txtOfficePhoneExt" runat="server" BorderColor="CornflowerBlue" BorderStyle="Solid"
-                                            BorderWidth="1px" Font-Names="Verdana" Font-Size="Small" MaxLength="5" Width="75px"></asp:TextBox>
                                         <span style="font-size: 7pt">(ext optional)<span></span></span></span>
                                 </td>
                             </tr>
