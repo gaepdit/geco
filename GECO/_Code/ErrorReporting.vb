@@ -45,7 +45,7 @@ Public Module ErrorReporting
                 exc.Data.Add("Stack Trace", exc.StackTrace)
             End If
 
-            If exc.TargetSite.Name IsNot Nothing Then
+            If exc.TargetSite IsNot Nothing AndAlso exc.TargetSite.Name IsNot Nothing Then
                 exc.Data.Add("Target Method", exc.TargetSite.Name)
             End If
 
