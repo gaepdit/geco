@@ -33,7 +33,7 @@ Public Module ErrorReporting
 
             Dim currentUser As GecoUser = GetCurrentUser()
             If currentUser IsNot Nothing Then
-                exc.Data.Add("Current User", currentUser)
+                exc.Data.Add("Current User ID", currentUser.UserId)
             End If
 
             Dim airsCookie As String = GetCookie(Cookie.AirsNumber)
