@@ -1,5 +1,5 @@
 <%@ Page Language="VB" MaintainScrollPositionOnPostback="true" MasterPageFile="es.master" AutoEventWireup="false"
-    Inherits="GECO.es_esform" Title="GECO - Emissions Statement" Codebehind="esform.aspx.vb" %>
+    Inherits="GECO.es_esform" Title="GECO - Emissions Statement" CodeBehind="esform.aspx.vb" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 
@@ -373,28 +373,16 @@
                                     <span style="font-size: 9pt;">Phone:</span>
                                 </td>
                                 <td valign="middle">
-                                    <span><span style="font-size: 9pt"></span>
-                                        <asp:TextBox ID="txtOfficePhoneNbr" runat="server" BorderColor="CornflowerBlue" BorderStyle="Solid"
-                                            BorderWidth="1px" Font-Names="Verdana" Font-Size="Small" MaxLength="30" Width="180px"></asp:TextBox><span
-                                                style="font-size: 9pt"> Ext: </span>
-                                        <span style="font-size: 7pt">(ext optional)<span></span></span></span>
+                                    <asp:TextBox ID="txtOfficePhoneNbr" runat="server" BorderColor="CornflowerBlue" BorderStyle="Solid"
+                                        BorderWidth="1px" Font-Names="Verdana" Font-Size="Small" MaxLength="30" Width="180px"></asp:TextBox>
                                 </td>
                             </tr>
                             <tr>
                                 <td align="right" valign="middle"></td>
                                 <td valign="middle">
-                                    <act:FilteredTextBoxExtender ID="FilteredTextBoxExtender12" runat="server"
-                                        FilterType="Numbers" TargetControlID="txtOfficePhoneNbr">
-                                    </act:FilteredTextBoxExtender>
-                                    <act:FilteredTextBoxExtender ID="FilteredTextBoxExtender13" runat="server"
-                                        FilterType="Numbers" TargetControlID="txtOfficePhoneExt">
-                                    </act:FilteredTextBoxExtender>
                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="txtOfficePhoneNbr"
                                         Display="Dynamic" ErrorMessage="Phone number is required." Font-Names="Arial"
                                         Font-Size="Small" Width="100%"></asp:RequiredFieldValidator>
-                                    <asp:RegularExpressionValidator ID="RegularExpressionValidator3" runat="server" ControlToValidate="txtOfficePhoneNbr"
-                                        Display="Dynamic" ErrorMessage="Phone number must be 10 digits; no dashes, parentheses or spaces allowed."
-                                        Font-Names="Arial" Font-Size="Small" ValidationExpression="\d{10}" Width="100%"></asp:RegularExpressionValidator>
                                 </td>
                             </tr>
                             <tr>

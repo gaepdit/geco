@@ -410,24 +410,6 @@ Partial Public Class es_esform
     Protected WithEvents txtOfficePhoneNbr As Global.System.Web.UI.WebControls.TextBox
     
     '''<summary>
-    '''FilteredTextBoxExtender12 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents FilteredTextBoxExtender12 As Global.AjaxControlToolkit.FilteredTextBoxExtender
-    
-    '''<summary>
-    '''FilteredTextBoxExtender13 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents FilteredTextBoxExtender13 As Global.AjaxControlToolkit.FilteredTextBoxExtender
-    
-    '''<summary>
     '''RequiredFieldValidator5 control.
     '''</summary>
     '''<remarks>
@@ -435,15 +417,6 @@ Partial Public Class es_esform
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RequiredFieldValidator5 As Global.System.Web.UI.WebControls.RequiredFieldValidator
-    
-    '''<summary>
-    '''RegularExpressionValidator3 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents RegularExpressionValidator3 As Global.System.Web.UI.WebControls.RegularExpressionValidator
     
     '''<summary>
     '''txtFaxNbr control.
