@@ -166,7 +166,7 @@ Public Module FeeBusinessEntity
         Dim query As String = " select " &
         "     a.STRAIRSNUMBER, " &
         "     a.NUMFEEYEAR, " &
-        "     convert(bit, INTSUBMITTAL) as INTSUBMITTAL, " &
+        "     convert(bit, isnull(INTSUBMITTAL, 0)) as INTSUBMITTAL, " &
         "     DATSUBMITTAL, " &
         "     STRGECODESC, " &
         "     DATFEEDUEDATE " &
