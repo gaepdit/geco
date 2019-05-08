@@ -914,6 +914,15 @@ Partial Public Class EIS_rp_operscp_edit
     Protected WithEvents lblHeatContentNumUoM As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
+    '''ddlHeatContentNumUoM control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ddlHeatContentNumUoM As Global.System.Web.UI.WebControls.DropDownList
+    
+    '''<summary>
     '''ddlHeatContentDenUoM control.
     '''</summary>
     '''<remarks>

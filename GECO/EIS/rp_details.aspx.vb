@@ -1,4 +1,5 @@
 ﻿Imports System.Data.SqlClient
+Imports EpdIt.DBUtilities
 
 Partial Class EIS_rp_details
     Inherits Page
@@ -354,26 +355,18 @@ Partial Class EIS_rp_details
                 End If
 
                 'SCP Parameter Details
-                If (HeatContent = "") And (SulfurContent = "") And (AshContent = "") Then
+                If String.IsNullOrEmpty(HeatContent) And String.IsNullOrEmpty(SulfurContent) And String.IsNullOrEmpty(AshContent) Then
                     txtFuelUsage.Text = "No"
                     pnlFuelBurning.Visible = False
                 Else
                     txtFuelUsage.Text = "Yes"
                     txtHeatContent.Text = HeatContent
                     txtSulfurPct.Text = SulfurContent
-                    If SulfurContent = "" Then txtSulfurPct.Text = Negligible
+                    If String.IsNullOrEmpty(SulfurContent) Then txtSulfurPct.Text = Negligible
                     txtAshPct.Text = AshContent
-                    If AshContent = "" Then txtAshPct.Text = Negligible
-                    If IsDBNull(dr("HCNUMER")) Then
-                        txtHeatContentNumUoM.Text = ""
-                    Else
-                        txtHeatContentNumUoM.Text = dr.Item("HCNUMER")
-                    End If
-                    If IsDBNull(dr("HCDENOM")) Then
-                        txtHeatContentDenUoM.Text = ""
-                    Else
-                        txtHeatContentDenUoM.Text = dr.Item("HCDENOM")
-                    End If
+                    If String.IsNullOrEmpty(AshContent) Then txtAshPct.Text = Negligible
+                    txtHeatContentNumUoM.Text = GetNullableString(dr.Item("HCNUMER"))
+                    txtHeatContentDenUoM.Text = GetNullableString(dr.Item("HCDENOM"))
                     pnlFuelBurning.Visible = True
                 End If
             End If

@@ -6,6 +6,7 @@ Partial Class EIS_rp_operscp_edit
     Private Property SelectedSCC As String = Nothing
     Private Property SelectedCalcParamUom As String = Nothing
     Private Property SelectedCalcMaterial As String = Nothing
+    Private Property SelectedScpNumer As String = Nothing
     Private Property SelectedScpDenom As String = Nothing
     Private Property SelectedIsFuelBurning As Boolean = False
     Private Property SelectedHeatContent As Decimal? = Nothing
@@ -119,6 +120,17 @@ Partial Class EIS_rp_operscp_edit
     End Sub
 
     Private Sub LoadFuelBurningInfo()
+        With ddlHeatContentNumUoM
+            .DataSource = New Dictionary(Of String, String) From {
+                {"E6BTU", "MILLION BTU"},
+                {"BTU", "BTU"}
+            }
+            .DataValueField = "Key"
+            .DataTextField = "Value"
+            .DataBind()
+            .SelectedIndex = 0
+        End With
+
         Dim ScpDenomCodeTable As DataTable = Nothing
 
         If Not String.IsNullOrEmpty(SelectedSCC) Then
@@ -156,6 +168,12 @@ Partial Class EIS_rp_operscp_edit
                 End If
             End If
 
+            If Not String.IsNullOrEmpty(SelectedScpNumer) AndAlso
+                    CType(ddlHeatContentNumUoM.DataSource, Dictionary(Of String, String)).ContainsValue(SelectedScpNumer) Then
+
+                ddlHeatContentNumUoM.SelectedValue = SelectedScpNumer
+            End If
+
             If SelectedIsFuelBurning Then
                 txtHeatContent.Text = SelectedHeatContent
 
@@ -184,22 +202,22 @@ Partial Class EIS_rp_operscp_edit
         Dim Fall As Decimal
         Dim TotalSeasons As Decimal
 
-        If txtWinterPct.Text = "" Then
+        If String.IsNullOrEmpty(txtWinterPct.Text) Then
             Winter = 0
         Else
             Winter = CDec(txtWinterPct.Text)
         End If
-        If txtSpringPct.Text = "" Then
+        If String.IsNullOrEmpty(txtSpringPct.Text) Then
             Spring = 0
         Else
             Spring = CDec(txtSpringPct.Text)
         End If
-        If txtSummerPct.Text = "" Then
+        If String.IsNullOrEmpty(txtSummerPct.Text) Then
             Summer = 0
         Else
             Summer = CDec(txtSummerPct.Text)
         End If
-        If txtFallPct.Text = "" Then
+        If String.IsNullOrEmpty(txtFallPct.Text) Then
             Fall = 0
         Else
             Fall = CDec(txtFallPct.Text)
@@ -335,6 +353,7 @@ Partial Class EIS_rp_operscp_edit
 
             If SelectedHeatContent.HasValue Then
                 SelectedIsFuelBurning = True
+                SelectedScpNumer = GetNullableString(dr.Item("HCNUMER"))
                 SelectedScpDenom = GetNullableString(dr.Item("HCDENOM"))
                 SelectedAshContent = GetNullable(Of Decimal?)(dr.Item("ASHCONTENT"))
                 SelectedSulfurContent = GetNullable(Of Decimal?)(dr.Item("SULFURCONTENT"))
@@ -377,7 +396,7 @@ Partial Class EIS_rp_operscp_edit
     Private Sub SaveHeatContent(eiyear As Integer, fsid As String, euid As String, epid As String, uuser As String)
         Dim HCType As String = "Heat Content"
         Dim HCValue As Double? = txtHeatContent.Text.ParseAsNullableDouble()
-        Dim HCNum As String = "E6BTU"
+        Dim HCNum As String = ddlHeatContentNumUoM.SelectedValue
         Dim HCDen As String = ddlHeatContentDenUoM.SelectedValue
 
         SaveRptPeriodScp(eiyear, fsid, euid, epid, uuser, HCType, HCValue, HCNum, HCDen)

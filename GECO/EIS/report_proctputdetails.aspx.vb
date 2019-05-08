@@ -78,15 +78,21 @@ Partial Class EIS_report_proctputdetails
             "NUMPERCENTSUMMERACTIVITY, " &
             "NUMPERCENTFALLACTIVITY, " &
             "HEATCONTENT, " &
-            "HCNUMER, " &
-            "HCDENOM, " &
+            "     case " &
+            "     when HCNUMER = 'E6BTU' " &
+            "         then 'MILLION BTU' " &
+            "     else HCNUMER " &
+            "     end                                   as HCNUMER, " &
+            "     c.STRDESC                             as HCDenom, " &
             "ASHCONTENT, " &
             "SULFURCONTENT " &
-            "FROM VW_EIS_RPDetails " &
+            " FROM VW_EIS_RPDETAILS d " &
+            "     left join EISLK_SCPDENOMUOMCODE c " &
+            "         on d.HCDENOM = c.SCPDENOMUOMCODE " &
             "where FacilitySiteID = @FacilitySiteID " &
             "and intInventoryYear = @EIYear " &
-            "and vw_eis_RPDetails.EmissionUnitActive = '1' " &
-            "and vw_eis_RPDetails.ProcessActive = '1' " &
+            "and d.EmissionUnitActive = '1' " &
+            "and d.ProcessActive = '1' " &
             "order by EMISSIONSUNITID, PROCESSID"
 
             Dim params As SqlParameter() = {

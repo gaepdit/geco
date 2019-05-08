@@ -288,7 +288,7 @@
                 </div>
                 <div class="fieldwrapper">
                     <asp:Label ID="lblHeatContentNumUoM" CssClass="styled" runat="server" Text="Heat Content Units:"></asp:Label>
-                    Million BTUs / 
+                    <asp:DropDownList ID="ddlHeatContentNumUoM" runat="server" ValidationGroup="vgRPDetailsEdit" /> / 
                     <asp:DropDownList ID="ddlHeatContentDenUoM" runat="server" ValidationGroup="vgRPDetailsEdit" />
                     <asp:RequiredFieldValidator ID="reqvHeatContentDenUoM" runat="server" ControlToValidate="ddlHeatContentDenUoM"
                         ErrorMessage="The Heat Content Units are required." InitialValue="-- Select a Value --"
