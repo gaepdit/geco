@@ -1,14 +1,19 @@
+---
+title: GECO info and instructions
+URL: https://epd.georgia.gov/air/geco-info-and-instructions
+---
+
 # GECO Information and Instructions
 
 The Georgia Air Protection Branch has developed an online facility information system called Georgia Environmental Connections Online or GECO. GECO displays facility information, permit application status, and performance test notifications. GECO is used by facilities to generate permit fee invoices, submit emissions inventories and emissions statements, and register for events hosted by the Georgia Environmental Protection Division.
 
 ## How to create a GECO account
 
-Go to the GECO homepage at [`https://geco.gaepd.org/`](https://geco.gaepd.org/), select "Register", and follow the instructions for creating an account.
+Go to the GECO homepage at `https://geco.gaepd.org/`, select "Register", and follow the instructions for creating an account.
 
 Once you have registered, a confirmation email with an activation link will be sent to your email address. You must confirm your email before you will be able to sign into GECO. 
 
-<em>If you do not receive a confirmation email, check your junk mail/spam/quarantine folder and ensure that you can receive emails from `GeorgiaAirProtectionBranch@dnr.ga.gov`.</em>
+*If you do not receive a confirmation email, check your junk mail/spam/quarantine folder and ensure that you can receive emails from `GeorgiaAirProtectionBranch@dnr.ga.gov`.*
 
 After logging into GECO, you can select "Account" in the menu to update your profile or change your email address or password.
 
@@ -20,4 +25,4 @@ Once you have access to the facility you need, select it on the home page to acc
 
 ## How to get help
 
-If you need any further assistance with GECO registration or facility access for your account, please contact ??? at ???.
+If you need any further assistance with GECO registration or facility access for your account, please contact Jing Wang at 404-363-7137.
