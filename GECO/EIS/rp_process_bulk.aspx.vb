@@ -43,7 +43,7 @@ Partial Class EIS_rp_process_bulk
         "     else convert(bit, 1) " &
         "     end        as InvalidUnitOfMeasure " &
         " from VW_EIS_YEARLY_PROCESS p " &
-        "     inner join EISLK_CALCPARAMUOMCODE u1 " &
+        "     left join EISLK_CALCPARAMUOMCODE u1 " &
         "         on u1.CALCPARAMUOMCODE = p.PREV_CALCPARAMUOMCODE " &
         "     inner join EISLK_CALCPARAMUOMCODE u2 " &
         "         on u2.CALCPARAMUOMCODE = p.CURR_CALCPARAMUOMCODE " &
