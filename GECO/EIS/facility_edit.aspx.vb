@@ -604,15 +604,14 @@ Partial Class eis_facility_edit
         Dim params As SqlParameter()
 
         Try
-            If phoneNumber <> "" Then
-                query = "Select " &
-                        " STRTELEPHONENUMBERTEXT " &
+            If Not String.IsNullOrEmpty(phoneNumber) Then
+                query = "select convert(bit, count(*)) " &
                         " FROM EIS_TELEPHONECOMM " &
                         " where EIS_TELEPHONECOMM.FACILITYSITEID = @FacilitySiteID " &
                         " and TelephoneNumberTypeCode = 'W' " &
                         " and active = '1' "
 
-                If DB.ValueExists(query, facParam) Then
+                If DB.GetBoolean(query, facParam) Then
                     query = "Update EIS_TELEPHONECOMM Set " &
                             " STRTELEPHONENUMBERTEXT = @phoneNumber, " &
                             " updateUser = @UpdateUser, " &
@@ -624,7 +623,6 @@ Partial Class eis_facility_edit
                             " (FACILITYSITEID, " &
                             " TELEPHONENUMBERTYPECODE, " &
                             " STRTELEPHONENUMBERTEXT, " &
-                            " STRTELEPHONENUMBEREXT, " &
                             " ACTIVE, " &
                             " UPDATEUSER, " &
                             " UPDATEDATETIME, " &
@@ -648,15 +646,14 @@ Partial Class eis_facility_edit
                 DB.RunCommand(query, params)
             End If
 
-            If mobilePhone <> "" Then
-                query = "Select " &
-                        " STRTELEPHONENUMBERTEXT " &
+            If Not String.IsNullOrEmpty(mobilePhone) Then
+                query = "select convert(bit, count(*)) " &
                         " FROM EIS_TELEPHONECOMM " &
                         " where EIS_TELEPHONECOMM.FACILITYSITEID = @FacilitySiteID " &
                         " and TelephoneNumberTypeCode = 'M' " &
                         " and active = '1' "
 
-                If DB.ValueExists(query, facParam) Then
+                If DB.GetBoolean(query, facParam) Then
                     query = "Update EIS_TELEPHONECOMM Set " &
                             " STRTELEPHONENUMBERTEXT = @mobilePhone, " &
                             " UPDATEUSER = @UpdateUser, " &
@@ -691,15 +688,14 @@ Partial Class eis_facility_edit
                 DB.RunCommand(query, params)
             End If
 
-            If FaxNumber <> "" Then
-                query = "Select " &
-                        " STRTELEPHONENUMBERTEXT " &
+            If Not String.IsNullOrEmpty(FaxNumber) Then
+                query = "select convert(bit, count(*)) " &
                         " FROM EIS_TELEPHONECOMM " &
                         " where EIS_TELEPHONECOMM.FACILITYSITEID = @FacilitySiteID " &
                         " and TelephoneNumberTypeCode = 'F' " &
                         " and active = '1' "
 
-                If DB.ValueExists(query, facParam) Then
+                If DB.GetBoolean(query, facParam) Then
                     query = "Update EIS_TELEPHONECOMM Set " &
                             " STRTELEPHONENUMBERTEXT = @FaxNumber, " &
                             " UPDATEUSER = @UpdateUser, " &
