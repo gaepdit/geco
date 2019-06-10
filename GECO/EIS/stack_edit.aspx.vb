@@ -504,6 +504,7 @@ Partial Class eis_stack_edit
         Dim query As String
         Dim RPDescription As String = txtRPDescription.Text
         Dim RPTypeCode As String = ddlRPtypeCode.SelectedItem.Value
+        Dim RPStatusCode As String = ddlStackStatusCode.SelectedItem.Value
         Dim RPFenceLineDistanceMeasure As String = txtRPFenceLineDistanceMeasure.Text
         Dim RPStackHeightMeasure As String = txtRPStackHeightMeasure.Text
         Dim RPStackDiameterMeasure As String = txtRPStackDiameterMeasure.Text
@@ -575,6 +576,8 @@ Partial Class eis_stack_edit
                     New SqlParameter("@RPExitGasTempMeasure", If(Not String.IsNullOrEmpty(RPExitGasTempMeasure), RPExitGasTempMeasure, Nothing)),
                     New SqlParameter("@RPStackHeightMeasure", If(Not String.IsNullOrEmpty(RPStackHeightMeasure), RPStackHeightMeasure, Nothing)),
                     New SqlParameter("@RPStackDiameterMeasure", If(Not String.IsNullOrEmpty(RPStackDiameterMeasure), RPStackDiameterMeasure, Nothing)),
+                    New SqlParameter("@RPStatusCode", RPStatusCode),
+                    New SqlParameter("@StackStatusCodeYear", Now.Year),
                     New SqlParameter("@RPComment", RPComment),
                     New SqlParameter("@Active", Active),
                     New SqlParameter("@UpdateUser", UpdateUser),
