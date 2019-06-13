@@ -1482,6 +1482,9 @@
     <Compile Include="Controls\PreventRePost.ascx.designer.vb">
       <DependentUpon>PreventRePost.ascx</DependentUpon>
     </Compile>
+    <Compile Include="IP.ashx.vb">
+      <DependentUpon>IP.ashx</DependentUpon>
+    </Compile>
     <Compile Include="Login.aspx.designer.vb">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
@@ -2107,6 +2110,7 @@
     <Content Include="AnnualFees\AnnualFees.master" />
     <Content Include="MainMaster.master" />
     <Content Include="EIS\files\qachecks.csv" />
+    <Content Include="IP.ashx" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
