@@ -1,4 +1,5 @@
 Imports System.Data.SqlClient
+Imports EpdIt.DBUtilities
 
 Partial Class eis_rpapportionment_edit
     Inherits Page
@@ -81,24 +82,17 @@ Partial Class eis_rpapportionment_edit
 
     Private Sub LoadRPApportionDetails(ByVal fsid As String, ByVal euid As String, ByVal prid As String)
         Try
-            Dim query As String = "select FacilitySiteID, EmissionsUnitID, " &
-                        "(Select strUnitDescription FROM eis_EmissionsUnit where " &
-                        "eis_EmissionsUnit.FacilitySiteID = @fsid and " &
-                        "eis_EmissionsUnit.EmissionsUnitID = @euid ) As strUnitDescription, " &
-                        "ProcessID, " &
-                        "(Select strProcessDescription FROM eis_Process where " &
-                        "eis_Process.FacilitySiteID = @fsid and " &
-                        "eis_Process.EmissionsUnitID = @euid and " &
-                        "eis_Process.ProcessID = @prid) As strProcessDescription, " &
-                        "ReleasePointID, " &
-                        "intAveragepercentEmissions, " &
-                        "strRPApportionmentComment " &
-                        "FROM eis_RPApportionment " &
-                        "where " &
-                        "FacilitySiteID = @fsid " &
-                        "and EmissionsUnitID = @euid " &
-                        "and ProcessID = @prid " &
-                        "and Active = '1'"
+            Dim query As String = "select e.EMISSIONSUNITID,
+                       e.STRUNITDESCRIPTION,
+                       PROCESSID,
+                       STRPROCESSDESCRIPTION
+                from  EIS_PROCESS p
+                inner join EIS_EMISSIONSUNIT e
+                on e.EMISSIONSUNITID = p.EMISSIONSUNITID
+                       and e.FACILITYSITEID = p.FACILITYSITEID
+                where p.FACILITYSITEID = @fsid
+                  and p.EMISSIONSUNITID = @euid
+                  and p.PROCESSID = @prid"
 
             Dim params As SqlParameter() = {
                 New SqlParameter("@fsid", fsid),
@@ -109,36 +103,12 @@ Partial Class eis_rpapportionment_edit
             Dim dr1 As DataRow = DB.GetDataRow(query, params)
 
             If dr1 IsNot Nothing Then
-                If IsDBNull(dr1("EmissionsUnitID")) Then
-                    txtEmissionsUnitID.Text = ""
-                Else
-                    txtEmissionsUnitID.Text = dr1.Item("EmissionsUnitID")
-                End If
-                If IsDBNull(dr1("strUnitDescription")) Then
-                    txtEmissionsUnitDesc.Text = ""
-                Else
-                    txtEmissionsUnitDesc.Text = dr1.Item("strUnitDescription")
-                End If
-                If IsDBNull(dr1("ProcessID")) Then
-                    txtProcessID.Text = ""
-                Else
-                    txtProcessID.Text = dr1.Item("ProcessID")
-                End If
-                If IsDBNull(dr1("strProcessDescription")) Then
-                    txtProcessDesc.Text = ""
-                Else
-                    txtProcessDesc.Text = dr1.Item("strProcessDescription")
-                End If
-                If IsDBNull(dr1("strRPApportionmentComment")) Then
-                    txtRPApportionmentComment.Text = ""
-                Else
-                    txtRPApportionmentComment.Text = dr1.Item("strRPApportionmentComment")
-                End If
+                txtEmissionsUnitID.Text = GetNullableString(dr1.Item("EMISSIONSUNITID"))
+                txtEmissionsUnitDesc.Text = GetNullableString(dr1.Item("strUnitDescription"))
+                txtProcessID.Text = GetNullableString(dr1.Item("ProcessID"))
+                txtProcessDesc.Text = GetNullableString(dr1.Item("strProcessDescription"))
             Else
-                txtEmissionsUnitID.Text = euid.ToUpper
-                txtEmissionsUnitDesc.Text = GetEmissionUnitDesc(fsid, euid)
-                txtProcessID.Text = prid.ToUpper
-                txtProcessDesc.Text = GetProcessDesc(fsid, euid, prid)
+                Throw New HttpException(404, "Not found")
             End If
 
         Catch ex As Exception
