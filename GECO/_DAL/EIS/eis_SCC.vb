@@ -140,6 +140,10 @@ Public Module eis_SCC
     End Function
 
     Private Function SccDetailsFromDataRow(dr As DataRow) As SccDetails
+        If dr Is Nothing Then
+            Return Nothing
+        End If
+
         Return New SccDetails With {
             .SCC = dr("SCC").ToString(),
             .Level1 = dr("scc level one").ToString(),

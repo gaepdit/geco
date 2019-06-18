@@ -17,8 +17,7 @@
             lTier2.Text = SccDetails.Tier2
             lTier3.Text = SccDetails.Tier3
         Else
-            lblSCC.Visible = False
-            btnUseSCC.Visible = False
+            dSccDetails.Visible = False
         End If
     End Sub
 
