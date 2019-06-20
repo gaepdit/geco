@@ -196,51 +196,34 @@ Partial Class eis_releasepoint_summary
 
         Dim btnText As String = Left(btnShowDeletedRP.Text, 4)
 
-        If btnText = "Show" Then
-            LoadGVWDeletedRP()
-            btnShowDeletedRP.Text = "Hide Deleted Release Points"
-        Else
-            UnloadGVWDeletedRP()
-            btnShowDeletedRP.Text = "Show Deleted Release Points"
+        Dim FacilitySiteID As String = GetCookie(Cookie.AirsNumber)
+        sqldsDeletedRP.ConnectionString = DBConnectionString
+
+        If sqldsDeletedRP.SelectParameters.Count = 0 Then
+            sqldsDeletedRP.SelectParameters.Add("FacilitySiteID", FacilitySiteID)
         End If
 
-    End Sub
+        If btnText = "Show" Then
+            sqldsDeletedRP.SelectCommand = "select eis_ReleasePoint.ReleasePointID, eis_ReleasePoint.strRPDescription, " &
+                "(select eislk_RPTypeCode.strDesc FROM eislk_RPTypeCode where eislk_RPTypeCode.RPTypeCode = eis_ReleasePoint.strRPTypeCode) as strRPType " &
+                "FROM eis_ReleasePoint " &
+                "where " &
+                "FacilitySiteID = @FacilitySiteID " &
+                "and Active = '0' " &
+                "order by eis_ReleasePoint.ReleasePointID"
 
-    Private Sub LoadGVWDeletedRP()
+            btnShowDeletedRP.Text = "Hide Deleted Release Points"
+        Else
+            sqldsDeletedRP.SelectCommand = "select eis_ReleasePoint.ReleasePointID, eis_ReleasePoint.strRPDescription, " &
+                "(select eislk_RPTypeCode.strDesc FROM eislk_RPTypeCode where eislk_RPTypeCode.RPTypeCode = eis_ReleasePoint.strRPTypeCode) as strRPType " &
+                "FROM eis_ReleasePoint " &
+                "where " &
+                "FacilitySiteID = @FacilitySiteID " &
+                "and Active = '999' " &
+                "order by eis_ReleasePoint.ReleasePointID"
 
-        Dim FacilitySiteID As String = GetCookie(Cookie.AirsNumber)
-
-        sqldsDeletedRP.ConnectionString = DBConnectionString
-
-        sqldsDeletedRP.SelectCommand = "select eis_ReleasePoint.ReleasePointID, eis_ReleasePoint.strRPDescription, " &
-                            "(select eislk_RPTypeCode.strDesc FROM eislk_RPTypeCode where eislk_RPTypeCode.RPTypeCode = eis_ReleasePoint.strRPTypeCode) as strRPType " &
-                            "FROM eis_ReleasePoint " &
-                            "where " &
-                            "FacilitySiteID = @FacilitySiteID " &
-                            "and Active = '0' " &
-                            "order by eis_ReleasePoint.ReleasePointID"
-
-        sqldsDeletedRP.SelectParameters.Add("FacilitySiteID", FacilitySiteID)
-
-        gvwDeletedRP.DataBind()
-
-    End Sub
-
-    Private Sub UnloadGVWDeletedRP()
-
-        Dim FacilitySiteID As String = GetCookie(Cookie.AirsNumber)
-
-        sqldsDeletedRP.ConnectionString = DBConnectionString
-
-        sqldsDeletedRP.SelectCommand = "select eis_ReleasePoint.ReleasePointID, eis_ReleasePoint.strRPDescription, " &
-                            "(select eislk_RPTypeCode.strDesc FROM eislk_RPTypeCode where eislk_RPTypeCode.RPTypeCode = eis_ReleasePoint.strRPTypeCode) as strRPType " &
-                            "FROM eis_ReleasePoint " &
-                            "where " &
-                            "FacilitySiteID = @FacilitySiteID " &
-                            "and Active = '999' " &
-                            "order by eis_ReleasePoint.ReleasePointID"
-
-        sqldsDeletedRP.SelectParameters.Add("FacilitySiteID", FacilitySiteID)
+            btnShowDeletedRP.Text = "Show Deleted Release Points"
+        End If
 
         gvwDeletedRP.DataBind()
 
