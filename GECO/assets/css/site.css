@@ -770,7 +770,7 @@ button,
     border-radius: 3px;
     color: #474761;
     text-decoration: none;
-    background: #eee;
+    background: #ddd;
     background: linear-gradient(0deg, #ddd 0%, #eee 100%);
     box-shadow: 0 1px 1px -1px #2e3646;
 }
@@ -785,7 +785,7 @@ button,
     [type="button"]:focus,
     [type="reset"]:focus,
     [type="submit"]:focus {
-        background: #ccf;
+        background: #c2d3f3;
         background: linear-gradient(0deg, #c2d3f3 0%, #e5edfb 100%);
         box-shadow: 0 1px 3px -1px #2e3646;
     }
@@ -797,19 +797,9 @@ button,
     [type="submit"]:active {
         position: relative;
         top: 1px;
-        background: #ccf;
+        background: #bbcff3;
         background: linear-gradient(0deg, ##bbcff3 0%, #e5edfb 100%);
         box-shadow: 0 1px 3px -2px #2e3646;
-    }
-
-    a.button:disabled,
-    button:disabled,
-    [type="button"]:disabled,
-    [type="reset"]:disabled,
-    [type="submit"]:disabled {
-        background: #ddd;
-        color: #777;
-        box-shadow: none;
     }
 
     a.button.button-large,
@@ -834,6 +824,53 @@ button,
         padding: 2px 8px;
         box-shadow: 0 1px 1px -1px #2e3646;
     }
+
+/* Button intents */
+.button-proceed {
+    color: #293021;
+    background: #98d035;
+    background: linear-gradient(0deg, #c3ee90 0%, #ddf9c7 100%);
+    box-shadow: 0 1px 1px -1px #293021;
+}
+
+    .button-proceed:hover,
+    .button-proceed:focus {
+        background: #98d035;
+        background: linear-gradient(0deg, #98d035 0%, #c3ee90 100%);
+        box-shadow: 0 1px 3px -1px #293021;
+    }
+    .button-proceed:active {
+        box-shadow: 0 1px 3px -2px #293021;
+    }
+
+.button-cancel {
+    color: #3e2927;
+    background: #f7bbb1;
+    background: linear-gradient(0deg, #f7bbb1 0%, #f8e1de 100%);
+    box-shadow: 0 1px 1px -1px #3e2927;
+}
+
+    .button-cancel:hover,
+    .button-cancel:focus {
+        background: #f2938c;
+        background: linear-gradient(0deg, #f2938c 0%, #f7bbb1 100%);
+        box-shadow: 0 1px 3px -1px #3e2927;
+    }
+
+    .button-cancel:active {
+        box-shadow: 0 1px 3px -2px #3e2927;
+    }
+
+a.button:disabled,
+button:disabled,
+[type="button"]:disabled,
+[type="reset"]:disabled,
+[type="submit"]:disabled {
+    background: #ddd;
+    color: #777;
+    box-shadow: none;
+}
+
 
 /* Deprecated layout */
 .ajax__tab_header {

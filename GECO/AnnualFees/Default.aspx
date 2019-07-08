@@ -1,4 +1,5 @@
-<%@ Page Language="VB" MasterPageFile="~/AnnualFees/AnnualFees.master" AutoEventWireup="false" Inherits="GECO.AnnualFees_Default" Title="GECO Emissions Fees" CodeBehind="Default.aspx.vb" %>
+Ôªø<%@ Page Language="VB" MasterPageFile="~/AnnualFees/AnnualFees.master" AutoEventWireup="false" Inherits="GECO.AnnualFees_Default" Title="GECO Emissions Fees" CodeBehind="Default.aspx.vb" %>
+
 <%@ Import Namespace="GECO" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="FullContent" runat="Server">
@@ -59,8 +60,8 @@
         <act:TabPanel runat="Server" ID="Welcome" HeaderText="Welcome">
             <ContentTemplate>
                 <div align="right">
-                    <asp:Button ID="btnProceed" runat="server" BackColor="#80FF80" Font-Bold="True" ForeColor="#004040"
-                        Text="Proceed ->" CausesValidation="False" Visible="false" />
+                    <asp:Button ID="btnProceed" runat="server" Font-Bold="True"
+                        Text="Begin ‚Üí" CausesValidation="False" Visible="false" />
                 </div>
                 Welcome to the Georgia Air Protection Branch's online Annual Permit/Emissions Fees Reporting Form.<br />
                 <br />
@@ -72,7 +73,7 @@
                     <br />
                 </strong>
                 <p>
-                    - The Georgia Air Protection Branchís Emission Fee Reports are now on-line.
+                    - The Georgia Air Protection Branch‚Äôs Emission Fee Reports are now on-line.
                 Therefore, your facility is required to complete the on-line fee form and submit
                 your fee data electronically no matter the amount of fees the facility may owe.
                 If your facility does not owe a fee, you are still required to complete the on-line
@@ -96,7 +97,7 @@
                         Emission Fees: </strong>
                 </p>
                 <p>
-                    (1) For major Part 70 sources paying the ìcalculated feesî, the cost per ton of
+                    (1) For major Part 70 sources paying the ‚Äúcalculated fees‚Äù, the cost per ton of
                     pollutant is <strong>
                         <% =pertonrate.Text%>
                     </strong>. If a stationary source with a Part 70 permit permanently ceases operation
@@ -143,7 +144,7 @@
                     - If your calculated emissions are below the thresholds listed in Section 3.16 of
                     the procedures manual, and the facility is either not subject to or is exempt from
                     the NSPS, synthetic minor, and Part 70 fees as described in Section 2.0, then you
-                    do not owe any fees. For example, if the facilityís emissions were only one ton
+                    do not owe any fees. For example, if the facility‚Äôs emissions were only one ton
                     and the facility is a minor (B) source and is not subject to any NSPS standards,
                     you would pay zero rather than $28.50 for one ton of emissions. However, you are
                     still required to submit the Georgia Air Emissions Fee Reporting Form on-line.
@@ -164,10 +165,10 @@
                 <p>
                     If you have questions regarding:
                     <br />
-                    1. Calculations ñ Call the compliance engineer assigned to your facility or dial
+                    1. Calculations ‚Äì Call the compliance engineer assigned to your facility or dial
                     404-363-7000.
                     <br />
-                    2. Other fees questions (due dates, deadline extensions, etc.) ñ Call Sakina Strozier
+                    2. Other fees questions (due dates, deadline extensions, etc.) ‚Äì Call Sakina Strozier
                     at 404-363-7000.
                 </p>
             </ContentTemplate>
@@ -691,23 +692,18 @@
                     </p>
                 </asp:Panel>
                 <asp:Panel ID="pnlSubmit" runat="server" Visible="False">
+                    <p><strong>Final Submission</strong></p>
                     <p align="left">
-                        <strong>Final Submission</strong>
-                    </p>
-                    <p align="left">
-                        You are about to make a final submission. Once the Fee form is submitted, you will
-                        not be able to make any changes. However, you will be able to log in and print
-                        the submitted data for this year and the past years(s) by going to the Past Reports
-                        tab at the top. Click Final Submit to make the final submission or Cancel to go
-                        back.
+                        You are about to make a final submission. Once submitted, you will
+                        not be able to make any changes. However, you will be able to view
+                        the submitted data for this and past years using the History tab above.
+
                         <p align="left">
-                            <asp:Button ID="btnSubmit" runat="server" Width="112px" BackColor="#00C000" CausesValidation="False"
-                                ForeColor="White" Font-Bold="True" Text="Final Submit"></asp:Button>&nbsp;
+                            <asp:Button ID="btnSubmit" runat="server" Width="130px" CausesValidation="False" CssClass="button-large button-proceed"
+                                Font-Bold="True" Text="Final Submit"></asp:Button>
                         </p>
                         <p align="left">
-                            <asp:Button ID="btnCancelSubmit" runat="server" Width="112px" BackColor="Red" CausesValidation="False"
-                                ForeColor="White" Font-Bold="True" Text="Cancel"></asp:Button>
-                            </FONT>
+                            <asp:Button ID="btnCancelSubmit" runat="server" Width="130px" CausesValidation="False" Text="Cancel"></asp:Button>
                         </p>
                 </asp:Panel>
             </ContentTemplate>
@@ -720,12 +716,12 @@
                 </p>
                 <p align="left">
                     The Permit Fee Manual specifies the methods used to calculate the permit fees required
-                    under Georgia Air Quality Control Rule 391-3-1-.03(9), ìPermit Fees.î These procedures
+                    under Georgia Air Quality Control Rule 391-3-1-.03(9), ‚ÄúPermit Fees.‚Äù These procedures
                     are to be used for calculating fees due for the calendar year ending December&nbsp;31,
                     <% =feeyear.Text%>
                 </p>
                 <p align="left">
-                    The ìFee Calculation Worksheetsî are for your facility records. Do not submit the
+                    The ‚ÄúFee Calculation Worksheets‚Äù are for your facility records. Do not submit the
                     worksheets with your fee invoice. These forms are also used by the Air Protection
                     Branch to perform internal audits of our fee information. If you keep these in your
                     records, it will assist you if you are ever contacted for an audit. The worksheet
