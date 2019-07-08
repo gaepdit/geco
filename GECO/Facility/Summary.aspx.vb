@@ -181,105 +181,97 @@ Partial Class FacilitySummary
 
     Protected Sub LoadStateContactInformation()
         Try
-            Dim query As String =
-            " SELECT PermittingStaff.strAIRSNumber, " &
-            "        SSCPEngineer, " &
-            "        SSCPUnit, " &
-            "        SSCPEmailAddress, " &
-            "        SSCPPhone, " &
-            "        ISMPEngineer, " &
-            "        ISMPUnit, " &
-            "        ISMPEmailAddress, " &
-            "        ISMPPhone, " &
-            "        SSPPEngineer, " &
-            "        SSPPUnit, " &
-            "        SSPPEmailAddress, " &
-            "        SSPPPhone, " &
-            "        DistrictOffice " &
-            " FROM " &
-            " ( " &
-            "     SELECT DISTINCT " &
-            "            ((strLastName+', '+strFirstName)) AS SSPPEngineer, " &
-            "            SSPPApplicationMaster.strAIRSnumber, " &
-            "            strEmailAddress AS SSPPEmailAddress, " &
-            "            strPhone AS SSPPPhone, " &
-            "            strUnitDesc AS SSPPUnit " &
-            "     FROM EPDUserProfiles " &
-            "          LEFT JOIN LookUpEPDUnits  " &
-            " 	    ON EPDUserProfiles.numUnit = LookUpEPDUnits.numUnitCode " &
-            "          LEFT JOIN SSPPApplicationMaster  " &
-            " 	    ON EPDUserProfiles.numUserID = strStaffResponsible " &
-            "                                             AND SSPPApplicationMaster.strApplicationNumber = " &
-            "     ( " &
-            "         SELECT DISTINCT " &
-            "                (MAX(CAST(strApplicationNumber AS INT))) AS GreatestApplication " &
-            "         FROM SSPPApplicationMaster " &
-            "         WHERE SSPPApplicationMaster.strAIRSNumber = @airs " &
-            "     ) " &
-            "     WHERE SSPPApplicationMaster.strAIRSnumber = @airs " &
-            " ) PermittingStaff " &
-            "  " &
-            " LEFT JOIN " &
-            " ( " &
-            "     SELECT(strLastName+', '+strFirstName) AS SSCPEngineer, " &
-            "           strEmailAddress AS SSCPEmailAddress, " &
-            "           strPhone AS SSCPPhone, " &
-            "           SSCPFacilityAssignment.strAIRSNumber, " &
-            "           strUnitDesc AS SSCPUnit " &
-            "     FROM EPDUserProfiles " &
-            "          LEFT JOIN LookUpEPDUnits  " &
-            " 	    ON EPDUserProfiles.numUnit = LookUpEPDUnits.numUnitCode " &
-            "          LEFT JOIN SSCPFacilityAssignment  " &
-            " 	    ON EPDUserProfiles.numUserID = SSCPFacilityAssignment.strSSCPEngineer " &
-            "     WHERE SSCPFacilityAssignment.[strAIRSNumber] = @airs " &
-            " ) ComplianceStaff ON PermittingStaff.strairsnumber = ComplianceStaff.strairsnumber " &
-            "  " &
-            " LEFT JOIN " &
-            " ( " &
-            "     SELECT DISTINCT " &
-            "            ((strLastName+', '+strFirstName)) AS ISMPEngineer, " &
-            "            ISMPMaster.strAIRSNumber, " &
-            "            strEmailAddress AS ISMPEmailAddress, " &
-            "            strPhone AS ISMPPhone, " &
-            "            strUnitDesc AS ISMPUnit " &
-            "     FROM EPDUserProfiles " &
-            "          LEFT JOIN LookUpEPDUnits  " &
-            " 	    ON EPDUserProfiles.numUnit = LookUpEPDunits.numunitCode " &
-            "          LEFT JOIN ISMPReportInformation  " &
-            " 	    ON EPDUserProfiles.numUserID = strReviewingEngineer " &
-            "          INNER JOIN ISMPMaster  " &
-            " 	    ON ISMPMaster.strReferenceNumber = ISMPReportInformation.strReferenceNumber " &
-            "                                   AND strClosed = 'True' " &
-            "     WHERE ISMPReportInformation.datCompleteDate = " &
-            "     ( " &
-            "         SELECT DISTINCT " &
-            "                (MAX(datCompleteDate)) AS CompleteDate " &
-            "         FROM ISMPReportInformation, " &
-            "              ISMPMaster " &
-            "         WHERE ISMPReportInformation.strReferenceNumber = ISMPMaster.strReferenceNumber " &
-            "               AND ISMPMaster.strAIRSNumber = @airs " &
-            "               AND strClosed = 'True' " &
-            "     ) " &
-            "           AND ISMPMaster.strAIRSNumber = @airs " &
-            " ) MonitoringStaff  " &
-            " ON PermittingStaff.strairsnumber = monitoringstaff.strairsnumber " &
-            "  " &
-            " LEFT JOIN " &
-            " ( " &
-            "     SELECT SSCPDistrictResponsible.strAIRSNumber, " &
-            "            CASE " &
-            "                WHEN strDistrictResponsible = 'True' " &
-            "                THEN strOfficeName " &
-            "                ELSE '' " &
-            "            END DistrictOffice " &
-            "     FROM SSCPDistrictResponsible, " &
-            "          LookUpDistrictInformation, " &
-            "          LookUpDistrictOffice " &
-            "     WHERE LookUpDistrictOffice.strDistrictCode = LookUpDistrictInformation.strDistrictCode " &
-            "           AND LookUpDistrictInformation.strDistrictCounty = SUBSTRING(SSCPDistrictResponsible.strAIRSNumber, 5, 3) " &
-            "           AND SSCPDistrictResponsible.strAIRSNumber = @airs " &
-            " ) DistrictStaff  " &
-            " ON PermittingStaff.strairsnumber = DistrictStaff.strairsnumber"
+            Dim query As String = "SELECT allAirs.strAIRSNumber,
+                       SSCPEngineer,
+                       SSCPUnit,
+                       SSCPEmailAddress,
+                       SSCPPhone,
+                       ISMPEngineer,
+                       ISMPUnit,
+                       ISMPEmailAddress,
+                       ISMPPhone,
+                       SSPPEngineer,
+                       SSPPUnit,
+                       SSPPEmailAddress,
+                       SSPPPhone,
+                       DistrictOffice
+                FROM (select STRAIRSNUMBER from APBMASTERAIRS where STRAIRSNUMBER = @airs) allAirs
+                     left join
+                     (
+                         SELECT ((strLastName + ', ' + strFirstName)) AS SSPPEngineer,
+                                SSPPApplicationMaster.strAIRSnumber,
+                                strEmailAddress                       AS SSPPEmailAddress,
+                                strPhone                              AS SSPPPhone,
+                                strUnitDesc                           AS SSPPUnit
+                         FROM EPDUserProfiles
+                              LEFT JOIN LookUpEPDUnits
+                                        ON EPDUserProfiles.numUnit = LookUpEPDUnits.numUnitCode
+                              inner JOIN SSPPApplicationMaster
+                                         ON EPDUserProfiles.numUserID = strStaffResponsible
+                                             AND SSPPApplicationMaster.strApplicationNumber =
+                                                 (SELECT MAX(CAST(strApplicationNumber AS int))
+                                                  FROM SSPPApplicationMaster
+                                                  WHERE SSPPApplicationMaster.strAIRSNumber = @airs)
+                         WHERE SSPPApplicationMaster.strAIRSnumber = @airs
+                     ) PermittingStaff
+                     on allAirs.STRAIRSNUMBER = PermittingStaff.STRAIRSNUMBER
+                     LEFT JOIN
+                     (
+                         SELECT (strLastName + ', ' + strFirstName) AS SSCPEngineer,
+                                strEmailAddress                     AS SSCPEmailAddress,
+                                strPhone                            AS SSCPPhone,
+                                SSCPFacilityAssignment.strAIRSNumber,
+                                strUnitDesc                         AS SSCPUnit
+                         FROM EPDUserProfiles
+                              LEFT JOIN LookUpEPDUnits
+                                        ON EPDUserProfiles.numUnit = LookUpEPDUnits.numUnitCode
+                              LEFT JOIN SSCPFacilityAssignment
+                                        ON EPDUserProfiles.numUserID = SSCPFacilityAssignment.strSSCPEngineer
+                         WHERE SSCPFacilityAssignment.strAIRSNumber = @airs
+                     ) ComplianceStaff
+                     ON PermittingStaff.strairsnumber = ComplianceStaff.strairsnumber
+                     LEFT JOIN
+                     (
+                         SELECT top 1 ((strLastName + ', ' + strFirstName)) AS ISMPEngineer,
+                                      m.strAIRSNumber,
+                                      strEmailAddress                       AS ISMPEmailAddress,
+                                      strPhone                              AS ISMPPhone,
+                                      strUnitDesc                           AS ISMPUnit
+                         FROM EPDUSERPROFILES e
+                              LEFT JOIN LookUpEPDUnits u
+                                        ON e.numUnit = u.numunitCode
+                              inner JOIN ISMPREPORTINFORMATION i
+                                         ON e.numUserID = strReviewingEngineer
+                              INNER JOIN ISMPMASTER m
+                                         ON m.strReferenceNumber = i.strReferenceNumber
+                                             AND strClosed = 'True'
+                         WHERE i.datCompleteDate =
+                               (SELECT MAX(datCompleteDate)
+                                FROM ISMPREPORTINFORMATION r
+                                     inner join ISMPMASTER m
+                                                on r.strReferenceNumber = m.strReferenceNumber
+                                where m.strAIRSNumber = @airs
+                                  AND strClosed = 'True')
+                           AND m.strAIRSNumber = @airs
+                         order by m.STRREFERENCENUMBER desc
+                     ) MonitoringStaff
+                     ON PermittingStaff.strairsnumber = monitoringstaff.strairsnumber
+                     LEFT JOIN
+                     (
+                         SELECT SSCPDistrictResponsible.strAIRSNumber,
+                                CASE
+                                    WHEN strDistrictResponsible = 'True'
+                                        THEN strOfficeName
+                                    ELSE ''
+                                END AS DistrictOffice
+                         FROM SSCPDistrictResponsible,
+                              LookUpDistrictInformation,
+                              LookUpDistrictOffice
+                         WHERE LookUpDistrictOffice.strDistrictCode = LookUpDistrictInformation.strDistrictCode
+                           AND LookUpDistrictInformation.strDistrictCounty = SUBSTRING(SSCPDistrictResponsible.strAIRSNumber, 5, 3)
+                           AND SSCPDistrictResponsible.strAIRSNumber = @airs
+                     ) DistrictStaff
+                     ON PermittingStaff.strairsnumber = DistrictStaff.strairsnumber"
 
             Dim param As New SqlParameter("@airs", currentAirs.DbFormattedString)
 
