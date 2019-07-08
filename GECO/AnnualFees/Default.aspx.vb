@@ -816,7 +816,7 @@ Partial Class AnnualFees_Default
                 If IsDBNull(dr.Item("strcontactstate")) Then
                     txtState.Text = ""
                 Else
-                    txtState.Text = dr.Item("strcontactstate")
+                    txtState.Text = Address.ProbableStateCode(dr.Item("strcontactstate"))
                 End If
 
                 If IsDBNull(dr.Item("strcontactzipcode")) Then
@@ -1104,7 +1104,7 @@ Partial Class AnnualFees_Default
 
             If dt IsNot Nothing Then
                 txtCity.Text = dt.Rows(0)("city")
-                txtState.Text = dt.Rows(0)("state")
+                txtState.Text = Address.ProbableStateCode(dt.Rows(0)("state"))
             End If
         Catch ex As Exception
             lblZipError.Text = "Please make sure the zip code entered is correct"
@@ -2330,7 +2330,7 @@ Partial Class AnnualFees_Default
                 txtFax.Text = ""
                 txtAddress.Text = user.Address.Street
                 txtCity.Text = user.Address.City
-                txtState.Text = user.Address.State
+                txtState.Text = Address.ProbableStateCode(user.Address.State)
                 txtZip.Text = user.Address.PostalCode
                 txtPhone.Text = user.PhoneNumber
             End If
