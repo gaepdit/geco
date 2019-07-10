@@ -84,6 +84,6 @@
     <asp:Table ID="tContact" runat="server" CssClass="table-simple table-list"></asp:Table>
 
     <h2>History</h2>
-    <p><em>Approximate application processing timeline.</em></p>
+    <p><em>Approximate application processing time line.</em></p>
     <asp:Table ID="tTracking" runat="server" CssClass="table-simple table-list"></asp:Table>
 </asp:Content>

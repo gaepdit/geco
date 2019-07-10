@@ -55,14 +55,14 @@
                 The Facility Description should be a brief depiction of the facility operations,
                 e.g. Power Plant; Car Manufacturing.<br />
                 <br />
-                <b>Description: </b>Brief comment on the operationg of your facility. The field
+                <b>Description: </b>Brief comment on the operation of your facility. The field
                 is limited to 100 characters.<br />
                 <br />
                 <b>Operating Status:</b> The facility status (for purposes of the EI only) is no
                 longer editable on this form. The facility status may be changed in the Emissions
                 Inventory System only when beginning the EI process. It can be changed on the Facility
                 Operational Status form that is available only during the applicability determination
-                part ofthe EI process each year. That form is not accessible after that point. To
+                part of the EI process each year. That form is not accessible after that point. To
                 access the form after this point it is necessary to reset the EI and start over.<br />
                 <br />
                 If a facility operated during the calendar year for which data is being collected
@@ -156,11 +156,11 @@
                 The Emission Inventory System (EIS) separates Release Points into two categories,
                 (1) Stacks and (2) Fugitives.&nbsp; Each category has its own set of required information
                 and as such there are two distinct editing areas in the EIS application.&nbsp; Each
-                release point category has a set of release point details and georgraphical information
-                tha tis required to be submitted.<br />
+                release point category has a set of release point details and geographical information
+                that is required to be submitted.<br />
                 <br />
                 Additionally, release points are used in the <b>Process Release Point Apportionment
-                </b>to define the quanity of pollutants coming from the release point for that process.
+                </b>to define the quantity of pollutants coming from the release point for that process.
                 Note that if only one release point is left in the release point apportionment for
                 a process, that apportionment cannot be deleted unless another release point is
                 added or the process itself is deleted.<br />
@@ -169,8 +169,8 @@
                 the release point in the system.&nbsp; This is limited to 6 characters.<br />
                 <br />
                 <b>Stack/Fugitive Descriptions</b>:Describes the point or area at which emissions
-                are released into the environment, via a stack of fugitve release.&nbsp; A release
-                point can define the area over which fugitve emissions occur<br />
+                are released into the environment, via a stack of fugitive release.&nbsp; A release
+                point can define the area over which fugitive emissions occur<br />
                 <br />
                 <b>Stack/Fugitive Operating Status</b>: The operational status of the stack/emission
                 release point. The possible selections are:
@@ -247,8 +247,8 @@
                 <b>Exit Gas Velocity</b>: The exit velocity of the exhaust stream in feet per second
                 (fps)<br />
                 <br />
-                <b>Exit Gas Flow Rate</b>: Numeric value of the stack exit gas flow rate is in in
-                actual cubc feet per second (acfs).&nbsp; Two checks are performed on the number
+                <b>Exit Gas Flow Rate</b>: Numeric value of the stack exit gas flow rate is in
+                actual cubic feet per second (acfs).&nbsp; Two checks are performed on the number
                 to make sure it is within the following ranges:<br />
                 <b>1. The reported value must be within 5% of the calculated value using the diameter
                     and exit gas velocity entered.
@@ -310,7 +310,7 @@
                         <td style="text-align: center" valign="top">&deg;F</td>
                     </tr>
                     <tr>
-                        <td style="width: 149px" valign="top">Fenceline Distance</td>
+                        <td style="width: 149px" valign="top">Fence Line Distance</td>
                         <td valign="top">Optional, but if entered must be 1 to 99999</td>
                         <td style="text-align: center" valign="top">&nbsp;feet</td>
                     </tr>
@@ -411,9 +411,9 @@
                 <br />
             </div>
             <div class="fieldguidewrapper">
-                <b>Emisison Unit ID</b>: Unique code for the point of generation of emissions, typically
+                <b>Emission Unit ID</b>: Unique code for the point of generation of emissions, typically
                 a physical piece of equipment. This can be a maximum of 6 characters made up of
-                lettes and numbers (A-Z, a-z, 0-9). If an emission unit is loaded into the form,
+                letters and numbers (A-Z, a-z, 0-9). If an emission unit is loaded into the form,
                 and a new Emission Unit ID is entered and saved, a new emission unit will be created
                 in the emission inventory for the facility. If the Emission Unit ID is changed to
                 an existing Emission Unit ID, then the data in the form will save over the previous
@@ -449,7 +449,7 @@
                 </div>
                 <br />
                 <b>Date Unit Placed in Operation</b>: The date on which unit activity became operational.&nbsp;
-                This was intentionally left balnk on all emission units migrated from a past emissions
+                This was intentionally left blank on all emission units migrated from a past emissions
                 inventory.
                 <br />
                 <br />
@@ -481,7 +481,7 @@
                 included in the duplication; only the emission unit information is duplicated and
                 the new emission unit ID and description are included.<br />
                 <br />
-                <b>Emission Unit Delete</b>: An emisison unit can only be deleted from the Edit
+                <b>Emission Unit Delete</b>: An emission unit can only be deleted from the Edit
                 page.&nbsp; If the emission unit has been submitted to EPA and has associated processes,
                 then it cannot be deleted.&nbsp; Deleting an Emission Unit deletes any associated
                 Emission Unit Control Approach, Control Measures, and Control Pollutants.
@@ -524,7 +524,7 @@
                 <b>Process Description</b>: Brief description of the process, e.g. Natural Gas Fuel
                 in B001. The description is limited to 100 characters.<br />
                 <br />
-                <b>Source Classification Code(SCC)</b>: The EPA Source Classificaiton Code describes
+                <b>Source Classification Code(SCC)</b>: The EPA Source Classification Code describes
                 an emissions process or activity.&nbsp; A search tool has been provided to assist
                 in determining an SCC for a process.<br />
                 <br />
@@ -585,7 +585,7 @@
                 and vice versa.<br />
                 <br />
                 A control approach is a strategy of control measures (devices) to control a single
-                or group of pollutants.&nbsp; The EIS does not ask for how much each measure (decive)
+                or group of pollutants.&nbsp; The EIS does not ask for how much each measure (device)
                 controls a particular pollutant, just how much does the entire approach control
                 the pollutant.
             </div>

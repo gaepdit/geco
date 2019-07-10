@@ -31,7 +31,7 @@ Namespace GoogleGeocoder
         Private Function GetGeocodeUri(ByVal address As String) As Uri
             Dim googleKey As String = ConfigurationManager.AppSettings("MapKey").ToString
             address = HttpUtility.UrlEncode(address)
-            Return New Uri(String.Format("{0}{1}&output={2}&key={3}", googleUri, address, outputType, googleKey))
+            Return New Uri($"{googleUri}{address}&output={outputType}&key={googleKey}")
         End Function
 
         Public Function GetCoordinates(ByVal address As String) As Coordinate

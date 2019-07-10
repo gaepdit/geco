@@ -146,7 +146,7 @@
     <p>
         If you need to make an amendment to any past fee submittal, please select the appropriate
         facility above, navigate to the Annual Permit Fees application, and select the
-        Supporting Documents tab. The Fee Admentment form is available for download as a
+        Supporting Documents tab. The Fee Amendment form is available for download as a
         Microsoft Excel file. The Fee Calculation worksheets are there also.
     </p>
 

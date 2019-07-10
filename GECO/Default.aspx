@@ -74,6 +74,6 @@
 
     <h2>Test Notifications</h2>
     <p>
-        This tool displays a list of test notifcations submitted by your facility to the Air Protection Branch.
+        This tool displays a list of test notifications submitted by your facility to the Air Protection Branch.
     </p>
 </asp:Content>

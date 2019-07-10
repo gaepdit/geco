@@ -334,7 +334,7 @@
                 </P>
                 <asp:Panel ID="pnlfacInfo" runat="server" Visible="False">
                     <p>
-                        <strong>Please provde the correct facility information below:</strong>
+                        <strong>Please provide the correct facility information below:</strong>
                         <table id="Table3" class="sample">
                             <tr>
                                 <td width="25%">Facility Name

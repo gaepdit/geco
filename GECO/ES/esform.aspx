@@ -110,7 +110,7 @@
                                 </td>
                                 <td valign="top">
                                     <span style="font-size: 9pt">The fields above are not editable. If any information is
-                                        incorrect, click the button button below to request a change.</span>
+                                        incorrect, click the button below to request a change.</span>
                                 </td>
                             </tr>
                             <tr>

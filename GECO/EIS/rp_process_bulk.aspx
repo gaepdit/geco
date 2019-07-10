@@ -30,7 +30,7 @@
                                 page.
                             <br />
                             <br />
-                            <span style="color: #AA0000"><b>Note</b>: If any changes are made to the thoughput numbers
+                            <span style="color: #AA0000"><b>Note</b>: If any changes are made to the throughput numbers
                                 on this page, you must click one of the <b><i>Update Changes</i></b> buttons above
                                 or below the table <b>before</b> going to the next page or leaving this form.</span>
                         </td>

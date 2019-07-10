@@ -68,7 +68,7 @@
                 <b>Processes in the Annual Reporting Period:</b>&nbsp; Lists those Processes that are
                 already in the Reporting Period from the pre-population or that have already
                 been added. You may remove a Process from the current Reporting Period by
-                choosing the Processs, going to the <b>Emission Inventory Detail</b>s page then
+                choosing the Process, going to the <b>Emission Inventory Details</b> page then
                 clicking the <b>Edit</b> button for the <i>Process Operating Details</i> and,
                 lastly, clicking the <b>Delete</b> button on the <b>Edit Process Operating
                 Details</b> page.
@@ -114,20 +114,21 @@
                 Process Operating Details
             </div>
             <div class="fieldguidewrapper">
-                <b>Calculation Paramter Type:</b> Selects the type of process information the
-                annual throughput represents.&nbsp; the three possible choices are <i>Input</i>, <i>Output</i>, or <i>Existing</i>.&nbsp; All informaiton that was migrated from the old
+                <b>Calculation Parameter Type:</b> Selects the type of process information the
+                annual throughput represents.&nbsp; the three possible choices are <i>Input</i>, 
+                <i>Output</i>, or <i>Existing</i>.&nbsp; All information that was migrated from the old
                 emission inventory was given a value of Existing.<br />
                 <br />
                 <b>Actual Annual Throughput/Activity:</b>&nbsp; The quantity of throughput/activity
                 for the process in units per year.&nbsp; This value can also be entered on the
                 Process Bulk Entry pages.<br />
                 <br />
-                <b>Annual Throughput/Activity Units:</b>&nbsp; Describes the proces annual throughput
+                <b>Annual Throughput/Activity Units:</b>&nbsp; Describes the process annual throughput
                 number based on the options available.<br />
                 <br />
                 <b>Material Processed or Fuel Used:</b>&nbsp; Select the best product or fuel
-                description from the drop-down list that best represents the process meterial
-                input/ourput or fuel consumed.<br />
+                description from the drop-down list that best represents the process material
+                input/output or fuel consumed.<br />
                 <br />
             </div>
             <div class="fieldguideseparator">
@@ -143,7 +144,7 @@
                 <b>Average Weeks Per Year:</b> Typical weeks per year that the emitting process
                 operates during the inventory period.<br />
                 <br />
-                <b>A<span id="ctl00_ContentPlaceHolder3_lblActualHoursPerYear" class="styled">ctual
+                <b><span id="ctl00_ContentPlaceHolder3_lblActualHoursPerYear" class="styled">Actual
                 Hours Per Year</span>:</b> Represents the total actual hours the process
                 operated during the calendar year for which the emissions inventory is being
                 submitted.<br />
@@ -197,7 +198,7 @@
                     <span style="color: #FF0000; font-weight: bold">numerator is always million BTU
                     (E6BTU)</span>. Choose the a combination of heat content value and denominator
                     to make the heat content value correct. For example, the heat content of natural
-                    gas ia about 1000 BTU/SCF. The units cannot be entered in that form. On the form
+                    gas is about 1000 BTU/SCF. The units cannot be entered in that form. On the form
                     one would enter &quot;1000 E6BTU/MILLION STANDARD CUBIC FEET,&quot; which is the same as
                     1000 BTU/SCF.<br />
                     <br />
@@ -240,13 +241,13 @@
                 <br />
                 <b>Sulfur %:</b> Percent Sulfur, by weight, in the process fuel. Enter sulfur
                 percentage if the percentage is 0.01% or greater. For fuels with sulfur content
-                below 0.01% place a checkmark in the &quot;Negligible&quot; checkbox. This will clear any
+                below 0.01% place a check mark in the &quot;Negligible&quot; checkbox. This will clear any
                 value entered for the sulfur content and allow the operating details to be
                 submitted without a value for sulfur content.<br />
                 <br />
                 <b>Ash %:</b> Percent Ash, by weight, in the process fuel. Enter ash content
                 percentage if the percentage is 0.01% or greater. For fuels with ash content
-                below 0.01% place a checkmark in the &quot;Negligible&quot; checkbox. This will clear any
+                below 0.01% place a check mark in the &quot;Negligible&quot; checkbox. This will clear any
                 value entered for the ash content and allow the operating details to be
                 submitted without a value for ash content.
             </div>

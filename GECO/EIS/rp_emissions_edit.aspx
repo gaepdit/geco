@@ -298,7 +298,7 @@
                             <td align="left">
                                 <b>NOTE</b>: If the facility is in the ozone non-attainment area and VOC or NOx
                                     is being deleted then both the annual and the summer day emissions will be
-                                    deleted. If VOC or NOx emissions exist without summer day emissionss, then those
+                                    deleted. If VOC or NOx emissions exist without summer day emissions, then those
                                     emissions must be re-entered without the summer day component.</td>
                         </tr>
                         <tr>

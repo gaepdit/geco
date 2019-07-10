@@ -27,7 +27,7 @@
     <img src="<%= Page.ResolveUrl("~/assets/images/prev.gif") %>" />
     <img src="<%= Page.ResolveUrl("~/assets/images/next.gif") %>" />
     <img src="<%= Page.ResolveUrl("~/assets/images/last.gif") %>" />
-    buttons to navigate thorugh various pages of the report itself.<br />
+    buttons to navigate through various pages of the report itself.<br />
     - You may be able to go to a specific page of the report by typing in the page number
                     and clicking on
                     <img src="<%= Page.ResolveUrl("~/assets/images/gotopage.gif") %>" />

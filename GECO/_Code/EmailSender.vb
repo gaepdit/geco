@@ -15,7 +15,7 @@ Public Module EmailSender
     ''' </summary>
     ''' <param name="toAddresses">The email recipients, separated by commas.</param>
     ''' <param name="mailSubject">The email subject line.</param>
-    ''' <param name="plainTextBody">The plaintext body of the email.</param>
+    ''' <param name="plainTextBody">The plain text body of the email.</param>
     ''' <param name="htmlBody">The optional HTML formatted body of the email.</param>
     ''' <param name="ccAddresses">The email cc recipients, separated by commas.</param>
     ''' <param name="mailPriority">MailPriority of the email.</param>

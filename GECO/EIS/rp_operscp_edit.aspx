@@ -234,7 +234,7 @@
     <div class="fieldwrapper">
         <asp:Label ID="lblFallPct" CssClass="styled" runat="server" Text="Fall Percent (%):"></asp:Label>
         <asp:TextBox ID="txtFallPct" runat="server" CssClass="editable" Text="" Width="75px"
-            MaxLength="4" ReadOnly="false" ToolTip="Months: September, Ocotber, & November"></asp:TextBox>
+            MaxLength="4" ReadOnly="false" ToolTip="Months: September, October, & November"></asp:TextBox>
         <act:FilteredTextBoxExtender ID="filtxtFallPct" runat="server" Enabled="True" TargetControlID="txtFallPct"
             FilterType="Custom, Numbers" ValidChars=".">
         </act:FilteredTextBoxExtender>
@@ -249,9 +249,9 @@
             <div class="fieldwrapper">
                 <asp:Label ID="lblTotalPct" CssClass="styled" runat="server" Text="Total Seasonal Percent (%):"></asp:Label>
                 <asp:TextBox ID="txtTotalPct" runat="server" CssClass="editable" Text="" Width="75px"
-                    MaxLength="4" ReadOnly="True" Font-Bold="True"></asp:TextBox>&nbsp
+                    MaxLength="4" ReadOnly="True" Font-Bold="True"></asp:TextBox>&nbsp;
                 <asp:Button ID="btnSumSeasonalPct" runat="server" Text="Calculate"
-                    CausesValidation="False" />&nbsp
+                    CausesValidation="False" />&nbsp;
                 <asp:Label ID="lblTotalSeasonValidate" runat="server" ForeColor="Red" Text="Must total 100%"></asp:Label>
             </div>
         </ContentTemplate>

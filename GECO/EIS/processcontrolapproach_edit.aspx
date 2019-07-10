@@ -275,7 +275,7 @@
                         <strong><span style="color: #4169e1; font-size: 12pt; font-family: Verdana;">Delete Control Approach</span></strong></td>
                 </tr>
                 <tr>
-                    <td>&nbsp
+                    <td>&nbsp;
                     </td>
                 </tr>
                 <tr>
@@ -286,7 +286,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>&nbsp
+                    <td>&nbsp;
                     </td>
                 </tr>
                 <tr>
