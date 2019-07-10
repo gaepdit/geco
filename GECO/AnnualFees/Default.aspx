@@ -1,4 +1,4 @@
-﻿<%@ Page Language="VB" MasterPageFile="~/AnnualFees/AnnualFees.master" AutoEventWireup="false" Inherits="GECO.AnnualFees_Default" Title="GECO Emissions Fees" CodeBehind="Default.aspx.vb" %>
+<%@ Page Language="VB" MasterPageFile="~/AnnualFees/AnnualFees.master" AutoEventWireup="false" Inherits="GECO.AnnualFees_Default" Title="GECO Emissions Fees" CodeBehind="Default.aspx.vb" %>
 
 <%@ Import Namespace="GECO" %>
 
@@ -164,13 +164,11 @@
                 </p>
                 <p>
                     If you have questions regarding:
-                    <br />
-                    1. Calculations – Call the compliance engineer assigned to your facility or dial
-                    404-363-7000.
-                    <br />
-                    2. Other fees questions (due dates, deadline extensions, etc.) – Call Sakina Strozier
-                    at 404-363-7000.
                 </p>
+                <ul>
+                    <li>Calculations: Call the compliance engineer assigned to your facility or call 404-363-7000.</li>
+                    <li>Other fees questions (due dates, deadline extensions, etc.): Call Tammy Tucker at 404-362-2521.</li>
+                </ul>
             </ContentTemplate>
         </act:TabPanel>
 
