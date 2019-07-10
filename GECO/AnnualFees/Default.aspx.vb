@@ -1369,7 +1369,7 @@ Partial Class AnnualFees_Default
     End Sub
 
     Private Sub InsertContactInfo()
-        'This sub will save the nformation entered or changed in the
+        'This sub will save the information entered or changed in the
         'Facility Information panel.
         Try
             Dim SQL As String
@@ -2304,9 +2304,11 @@ Partial Class AnnualFees_Default
                 UserTabs.Tabs(3).Enabled = False
                 lbtInvoice.Visible = False
                 btnProceed.Visible = False
+                feeRatesSection.Visible = False
             Else
                 txtFName.Text = ""
                 cblNSPSExempt.Items.Clear()
+                feeRatesSection.Visible = True
                 GetInitialFeeRates()
             End If
         Catch exThreadAbort As System.Threading.ThreadAbortException

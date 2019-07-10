@@ -185,6 +185,15 @@ Partial Public Class AnnualFees_Default
     Protected WithEvents btnProceed As Global.System.Web.UI.WebControls.Button
     
     '''<summary>
+    '''feeRatesSection control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents feeRatesSection As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+    
+    '''<summary>
     '''Contact control.
     '''</summary>
     '''<remarks>

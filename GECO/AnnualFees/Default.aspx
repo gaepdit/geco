@@ -1,4 +1,4 @@
-<%@ Page Language="VB" MasterPageFile="~/AnnualFees/AnnualFees.master" AutoEventWireup="false" Inherits="GECO.AnnualFees_Default" Title="GECO Emissions Fees" CodeBehind="Default.aspx.vb" %>
+﻿<%@ Page Language="VB" MasterPageFile="~/AnnualFees/AnnualFees.master" AutoEventWireup="false" Inherits="GECO.AnnualFees_Default" Title="GECO Emissions Fees" CodeBehind="Default.aspx.vb" %>
 
 <%@ Import Namespace="GECO" %>
 
@@ -63,85 +63,73 @@
                     <asp:Button ID="btnProceed" runat="server" Font-Bold="True"
                         Text="Begin →" CausesValidation="False" Visible="false" />
                 </div>
-                Welcome to the Georgia Air Protection Branch's online Annual Permit/Emissions Fees Reporting Form.<br />
-                <br />
-                <strong>IMPORTANT INFORMATION</strong>
-                <br />
-                <strong>To assist with the submission of Calendar Year
-                    <% =feeyear.Text%>
-                    Fees<br />
-                    <br />
-                </strong>
+                <p>Welcome to the Georgia Air Protection Branch's online Annual Permit/Emissions Fees Reporting Form.</p>
+                <p><strong>IMPORTANT INFORMATION</strong></p>
                 <p>
-                    - The Georgia Air Protection Branch’s Emission Fee Reports are now on-line.
-                Therefore, your facility is required to complete the on-line fee form and submit
-                your fee data electronically no matter the amount of fees the facility may owe.
-                If your facility does not owe a fee, you are still required to complete the on-line
-                fee form and submit the Georgia Air Emissions data electronically. However, you
-                will not be required to mail in any forms or coupons if you do not owe a fee.
+                    The Georgia Air Protection Branch’s Emission Fee Reports are now on-line.
+                    Therefore, your facility is required to complete the on-line fee form and submit
+                    your fee data electronically no matter the amount of fees the facility may owe.
+                    If your facility does not owe a fee, you are still required to complete the on-line
+                    fee form and submit the Georgia Air Emissions data electronically. However, you
+                    will not be required to mail in any forms or coupons if you do not owe a fee.
                 </p>
 
-                <strong>Options:</strong>
+                <p><strong>Options:</strong></p>
                 <ul>
                     <li>Fee Contact - Allows the user to update the Fee Contact at any time, not just during the fee submission.</li>
                     <li>Fee Calculations - Available only when fees have not yet been submitted for the selected year.</li>
                     <li>Sign & Pay - Available only when fees have not yet been submitted for the selected year.</li>
                     <li>Supporting Documents - Provides access to the most recent fee manual.</li>
-                    <li>Annual Fee History - Provides historical permit fee information.</li>
+                    <li>History - Provides historical permit fee information.</li>
                     <li>Print Invoice - Available for completed fee years only. Prints the fee invoice for the selected fee year.</li>
                 </ul>
+                <div runat="server" id="feeRatesSection" visible="false">
+                    <p><strong>Calendar Year <% =feeyear.Text %> Emission Fees:</strong></p>
+                    <p>
+                        (1) For major Part 70 sources paying the “calculated fees”, the cost per ton of
+                        pollutant is <strong><% =pertonrate.Text %></strong>. If a stationary source with 
+                        a Part 70 permit permanently ceases operation
+                        prior to the calendar year in which the fees are based and requests that the Part
+                        70 permit for that facility be revoked and the Division revokes the Part 70 permit
+                        for the facility during or prior to the calendar year in which fees are based, the
+                        Part 70 fee does not apply.
+                    </p>
+                    <p>
+                        (2) Any source for which a Part 70 (Title V) permit application is or will be required
+                        to be submitted for the purpose of obtaining a Part 70 permit is required to pay
+                        Part 70 Fees once a construction (SIP) permit is required under 391-3-1-.03(1) has
+                        been issued for the construction of a new Part 70 source or the modification of
+                        an existing source which results in the source becoming a Part 70 source.
+                    </p>
+                    <p>
+                        Synthetic Minor (SM) sources that are not also Part 70 sources owe a Synthetic Minor
+                        Fee of <strong><% =smfee.Text %></strong>. True Minor (B) and Permit-by-Rule (PR) 
+                        sources that are not also
+                        Part 70 sources do not have to pay either the Part 70 or Synthetic Minor Fee. If
+                        a stationary source with a synthetic minor permit permanently ceases operation and
+                        requests that the synthetic minor operating permit for that facility be revoked
+                        and the Division revokes the synthetic minor operating permit for the facility during
+                        or prior to the calendar year in which the fees are based, the synthetic minor permit
+                        fee does not apply.
+                    </p>
+                    <p>
+                        (3) Sources that are subject to at least one NSPS standard must pay the NSPS fee
+                        of <strong><% =nspsfee.Text %></strong>, unless all of the NSPS standards the source 
+                        is subject to are listed in section 2.1 of the Fee Manual.
+                    </p>
+                    <p>
+                        (4) The NSPS Fee is due in <strong><em>addition</em></strong> to any Part 70 or synthetic minor
+                        fee that may be due.
+                    </p>
+                    <p>
+                        (5) If the total amount due for a facility is $10,000 or greater, the fee may be
+                        paid in four equal quarterly payments.
+                    </p>
+                </div>
 
+                <p><strong>Notes:</strong></p>
                 <p>
-                    <strong>- Calendar Year
-                        <% =feeyear.Text%>
-                        Emission Fees: </strong>
-                </p>
-                <p>
-                    (1) For major Part 70 sources paying the “calculated fees”, the cost per ton of
-                    pollutant is <strong>
-                        <% =pertonrate.Text%>
-                    </strong>. If a stationary source with a Part 70 permit permanently ceases operation
-                    prior to the calendar year in which the fees are based and requests that the Part
-                    70 permit for that facility be revoked and the Division revokes the Part 70 permit
-                    for the facility during or prior to the calendar year in which fees are based, the
-                    Part 70 fee does not apply.
-                </p>
-                <p>
-                    (2) Any source for which a Part 70 (Title V) permit application is or will be required
-                    to be submitted for the purpose of obtaining a Part 70 permit is required to pay
-                    Part 70 Fees once a construction (SIP) permit is required under 391-3-1-.03(1) has
-                    been issued for the construction of a new Part 70 source or the modification of
-                    an existing source which results in the source becoming a Part 70 source.
-                </p>
-                <p>
-                    Synthetic Minor (SM) sources that are not also Part 70 sources owe a Synthetic Minor
-                    Fee of <strong>
-                        <% =smfee.Text%>
-                    </strong>. True Minor (B) and and Permit-by-Rule (PR) sources that are not also
-                    Part 70 sources do not have to pay either the Part 70 or Synthetic Minor Fee. If
-                    a stationary source with a synthetic minor permit permanently ceases operation and
-                    requests that the synthetic minor operating permit for that facility be revoked
-                    and the Division revokes the synthetic minor operating permit for the facility during
-                    or prior to the calendar year in which the fees are based, the synthetic minor permit
-                    fee does not apply.
-                </p>
-                <p>
-                    (3) Sources that are subject to at least one NSPS standard must pay the NSPS fee
-                    of <strong>
-                        <% =nspsfee.Text%>
-                    </strong>, unless all of the NSPS standards the source is subject to are listed
-                    in section 2.1 of the Fee Manual.
-                </p>
-                <p>
-                    (4) The NSPS Fee is due in <b><u>addition</u></b> to any Part 70 or synthetic minor
-                    fee that may be due.
-                </p>
-                <p>
-                    (5) If the total amount due for a facility is $10,000 or greater, the fee may be
-                    paid in four equal quarterly payments.
-                </p>
-                <p>
-                    - If your calculated emissions are below the thresholds listed in Section 3.16 of
+                    If your calculated emissions are below the thresholds listed in Section 3.16 of
                     the procedures manual, and the facility is either not subject to or is exempt from
                     the NSPS, synthetic minor, and Part 70 fees as described in Section 2.0, then you
                     do not owe any fees. For example, if the facility’s emissions were only one ton
@@ -150,16 +138,16 @@
                     still required to submit the Georgia Air Emissions Fee Reporting Form on-line.
                 </p>
                 <p>
-                    - Please <u>DO NOT</u> send copies of your calculations with the payment coupon
+                    Please <strong>DO NOT</strong> send copies of your calculations with the payment coupon
                     and check. They will only be discarded. Keep the calculations information in your
                     files for a period of five years. Cover letters are required only in the event an
                     explanation is required to clear up discrepancies.
                 </p>
                 <p>
-                    - Please send the payment and the Ga. Air Emission Fee Coupon in the same envelope.
+                    Please send the payment and the invoice in the same envelope.
                     Checks are frequently written without indication to which AIRS number they apply,
                     leading to double billing. We suggest that you have checks (that must be issued
-                    from a different location than your own) be mailed to your location, then mailed
+                    from a different location than your own) mailed to your location, then mailed
                     to the Air Fees lockbox along with the appropriate form.
                 </p>
                 <p>
