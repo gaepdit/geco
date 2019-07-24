@@ -484,7 +484,7 @@ Partial Class FacilityHome
                 New SqlParameter("@strcontactemail", txtEmailContact.Text),
                 New SqlParameter("@strcontactaddress1", txtAddress.Text),
                 New SqlParameter("@strcontactcity", txtCity.Text),
-                New SqlParameter("@strcontactstate", txtState.Text),
+                New SqlParameter("@strcontactstate", Address.ProbableStateCode(txtState.Text)),
                 New SqlParameter("@strcontactzipcode", txtZip.Text),
                 New SqlParameter("@strcontactcompanyname", txtCoName.Text),
                 New SqlParameter("@strcontactdescription", contactDescription),
