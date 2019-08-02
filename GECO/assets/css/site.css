@@ -509,6 +509,15 @@ textarea {
         border: none;
     }
 
+    .announcement.announcement-severe {
+        background: #ffd9df;
+        border: 3px solid #ac3e3e;
+    }
+
+        .announcement.announcement-severe h2 {
+            color: #8e1e1e;
+        }
+
 /* Simple tables */
 
 .table-full-width {
@@ -839,6 +848,7 @@ button,
         background: linear-gradient(0deg, #98d035 0%, #c3ee90 100%);
         box-shadow: 0 1px 3px -1px #293021;
     }
+
     .button-proceed:active {
         box-shadow: 0 1px 3px -2px #293021;
     }
