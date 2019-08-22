@@ -41,15 +41,6 @@ Partial Public Class Memo
     Protected WithEvents pnlToolbar As Global.System.Web.UI.WebControls.Panel
     
     '''<summary>
-    '''btnPdf control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnPdf As Global.System.Web.UI.WebControls.Button
-    
-    '''<summary>
     '''lblDirector control.
     '''</summary>
     '''<remarks>

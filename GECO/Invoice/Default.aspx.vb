@@ -26,7 +26,6 @@ Public Class InvoiceDefault
     Private Sub DisplayInvoice()
         Dim docName As String = "Invoice #" & thisInvoice.InvoiceID.ToString()
 
-        Master.PdfTitle = docName
         Title = docName
         lblInvoiceId.Text = docName
 

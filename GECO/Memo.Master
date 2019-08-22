@@ -21,7 +21,6 @@
         <asp:Panel ID="pnlToolbar" runat="server">
             <div class="toolbar">
                 <input type="submit" value="Print" onclick="window.print(); return false;" id="btnPrint" />
-                <asp:Button ID="btnPdf" runat="server" Text="Print/PDF" visible="false" />
             </div>
         </asp:Panel>
 
