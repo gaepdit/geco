@@ -18,36 +18,11 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <asp:Panel ID="pnlToolbar" runat="server">
-            <div class="toolbar">
-                <input type="submit" value="Print" onclick="window.print(); return false;" id="btnPrint" />
-            </div>
-        </asp:Panel>
-
-        <div class="wrapper">
-            <header class="grid">
-                <div class="grid__item">
-                    <asp:Image runat="server" CssClass="logo" ImageUrl="~/assets/images/epd-logo.png" />
-                </div>
-                <div class="grid__item grid__item_right">
-                    <address class="inside-address">
-                        <div class="director">
-                            <asp:Label runat="server" ID="lblDirector"></asp:Label>
-                        </div>
-                        <div class="branch">
-                            Air Protection Branch
-                        </div>
-                        <div>
-                            4244 International Parkway, Suite 120<br />
-                            Atlanta, Georgia 30354<br />
-                            (404) 363-7000
-                        </div>
-                    </address>
-                </div>
-            </header>
-
-            <asp:ContentPlaceHolder ID="MainContent" runat="server"></asp:ContentPlaceHolder>
+        <div class="toolbar" runat="server" visible="<%# MemoPageCount > 0 %>">
+            <button onclick="window.print(); return false;">Print</button> <%= PageCountDisplay() %>
         </div>
+
+        <asp:ContentPlaceHolder ID="MainContent" runat="server"></asp:ContentPlaceHolder>
     </form>
 </body>
 </html>
