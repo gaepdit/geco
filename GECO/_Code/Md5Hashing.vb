@@ -8,25 +8,26 @@ Public Module Md5Hashing
     <DebuggerStepThrough()>
     Function GetMd5Hash(input As String) As String
         ' Create a new instance of the MD5CryptoServiceProvider object.
-        Dim md5Hasher As New MD5CryptoServiceProvider()
+        Using md5Hasher As New MD5CryptoServiceProvider()
 
-        ' Convert the input string to a byte array and compute the hash.
-        Dim data As Byte() = md5Hasher.ComputeHash(Encoding.Default.GetBytes(input))
+            ' Convert the input string to a byte array and compute the hash.
+            Dim data As Byte() = md5Hasher.ComputeHash(Encoding.Default.GetBytes(input))
 
-        ' Create a new Stringbuilder to collect the bytes
-        ' and create a string.
-        Dim sBuilder As New StringBuilder()
+            ' Create a new Stringbuilder to collect the bytes
+            ' and create a string.
+            Dim sBuilder As New StringBuilder()
 
-        ' Loop through each byte of the hashed data
-        ' and format each one as a hexadecimal string.
-        Dim i As Integer
-        For i = 0 To data.Length - 1
-            sBuilder.Append(data(i).ToString("x2"))
-        Next i
+            ' Loop through each byte of the hashed data
+            ' and format each one as a hexadecimal string.
+            Dim i As Integer
+            For i = 0 To data.Length - 1
+                sBuilder.Append(data(i).ToString("x2"))
+            Next i
 
-        ' Return the hexadecimal string.
-        Return sBuilder.ToString()
+            ' Return the hexadecimal string.
+            Return sBuilder.ToString()
 
+        End Using
     End Function
 
     ' Verify a hash against a string.

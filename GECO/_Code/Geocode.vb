@@ -35,10 +35,11 @@ Namespace GoogleGeocoder
         End Function
 
         Public Function GetCoordinates(ByVal address As String) As Coordinate
-            Dim client As WebClient = New WebClient
-            Dim uri As Uri = GetGeocodeUri(address)
-            Dim geocodeInfo As String() = client.DownloadString(uri).Split(","c)
-            Return New Coordinate(Convert.ToDecimal(geocodeInfo(2)), Convert.ToDecimal(geocodeInfo(3)))
+            Using client As WebClient = New WebClient
+                Dim uri As Uri = GetGeocodeUri(address)
+                Dim geocodeInfo As String() = client.DownloadString(uri).Split(","c)
+                Return New Coordinate(Convert.ToDecimal(geocodeInfo(2)), Convert.ToDecimal(geocodeInfo(3)))
+            End Using
         End Function
     End Module
 
