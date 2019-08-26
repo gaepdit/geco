@@ -4,24 +4,41 @@ Imports GECO.GecoModels
 Public Class InvoiceDefault
     Inherits Page
 
-    Private Property InvoiceGuid As Guid
+    ' Annual Emissions Fees
+    Private InvoiceGuid As Guid
+
+    ' Application Fees
+    Private FeeYear As Integer
+    Private FacilityID As ApbFacilityId
+    Private InvoiceId As Integer = 0
+
+    Private InvoiceCategory As InvoiceCategory
     Private Invoices As New List(Of Invoice)
 
     Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
         If Not IsPostBack Then
-            If Not Guid.TryParse(Request.QueryString("id"), InvoiceGuid) Then
-                Throw New HttpException(404, "Invoice not found.")
+
+            If Request.QueryString("id") IsNot Nothing AndAlso
+                Guid.TryParse(Request.QueryString("id"), InvoiceGuid) Then
+
+                Invoices.Add(GetInvoiceByGuid(InvoiceGuid))
+                InvoiceCategory = InvoiceCategory.PermitApplicationFees
+
+            ElseIf Request.QueryString("FeeYear") IsNot Nothing AndAlso
+                Request.QueryString("Facility") IsNot Nothing AndAlso
+                Integer.TryParse(Request.QueryString("FeeYear"), FeeYear) AndAlso
+                ApbFacilityId.TryParse(Request.QueryString("Facility"), FacilityID) Then
+
+                If Request.QueryString("InvoiceId") IsNot Nothing Then
+                    Dim unused = Integer.TryParse(Request.QueryString("InvoiceId"), InvoiceId)
+                End If
+
+                Invoices = GetEmissionFeeInvoices(FeeYear, FacilityID, InvoiceId)
+                InvoiceCategory = InvoiceCategory.EmissionsFees
             End If
-
-            Dim thisInvoice As Invoice = GetInvoiceByGuid(InvoiceGuid)
-
-            If thisInvoice Is Nothing Then
-                Throw New HttpException(404, "Invoice ID not found.")
-            End If
-
-            Invoices.Add(thisInvoice)
 
             DisplayInvoices()
+
         End If
     End Sub
 
@@ -53,12 +70,16 @@ Public Class InvoiceDefault
 
     Protected Sub gridView_DataBound(sender As Object, e As EventArgs)
         Dim gridView As GridView = CType(sender, GridView)
+        ' EmptyDataText property of the GridView is only used to pass in an aggregate 
+        ' value from the Repeater data item. It is reset here to prevent the value from 
+        ' being displayed in empty cells.
 
         If gridView.Rows.Count > 0 Then
             gridView.FooterRow.Cells(0).Text = "Total"
             gridView.FooterRow.Cells(0).CssClass = "table-cell-alignright"
-            gridView.FooterRow.Cells(1).Text = CInt(gridView.EmptyDataText).ToString("c")
+            gridView.FooterRow.Cells(1).Text = CDec(gridView.EmptyDataText).ToString("c")
             gridView.FooterRow.Cells(1).CssClass = "table-cell-alignright"
+            gridView.EmptyDataText = Nothing
 
             gridView.HeaderRow.TableSection = TableRowSection.TableHeader
             gridView.FooterRow.TableSection = TableRowSection.TableFooter
@@ -87,18 +108,12 @@ Public Class InvoiceDefault
 
     Protected Shared Function DisplayWhatFor(invoice As Invoice) As String
         If invoice.InvoiceCategory = InvoiceCategory.EmissionsFees Then
-            Return invoice.FeeYear.ToString & " Annual Permit Fees"
+            Return "<b>" & invoice.FeeYear.ToString & " Emission Fees</b><br />" &
+                "Total emission fees: " & invoice.FeeYearTotalEmissionFees?.ToString("c") & "<br />" &
+                "Administrative fee: " & invoice.FeeYearTotalAdminFee?.ToString("c")
         End If
 
         Return "Permit Application #" & invoice.ApplicationID.ToString()
-    End Function
-
-    Protected Shared Function DisplayInvoiceTypeDescription(invoice As Invoice) As String
-        If invoice.InvoiceCategory = InvoiceCategory.EmissionsFees Then
-            Return invoice.InvoiceType.Description
-        End If
-
-        Return ""
     End Function
 
 End Class

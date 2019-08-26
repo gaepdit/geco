@@ -1,4 +1,4 @@
-﻿<%@ Page Language="vb" MasterPageFile="~/Memo.master" AutoEventWireup="false" CodeBehind="Default.aspx.vb" Inherits="GECO.InvoiceDefault" %>
+<%@ Page Language="vb" MasterPageFile="~/Memo.master" AutoEventWireup="false" CodeBehind="Default.aspx.vb" Inherits="GECO.InvoiceDefault" %>
 
 <%@ MasterType VirtualPath="~/Memo.Master" %>
 <%@ Import Namespace="GECO.GecoModels" %>
@@ -54,7 +54,6 @@
                                 <th scope="row">For</th>
                                 <td>
                                     <%# DisplayWhatFor(Container.DataItem) %><br />
-                                    <%# DisplayInvoiceTypeDescription(Container.DataItem) %>
                                 </td>
                             </tr>
                         </table>
@@ -77,10 +76,10 @@
 
                 <h2>Invoice Items</h2>
                 <asp:GridView ID="grdInvoiceItems" runat="server" CssClass="table-simple table-full-width table-accounting"
-                    AutoGenerateColumns="False" ShowFooter="true" RowHeaderColumn="RateCategoryDisplay" UseAccessibleHeader="true"
+                    AutoGenerateColumns="False" ShowFooter="true" RowHeaderColumn="InvoiceItemDescription" UseAccessibleHeader="true"
                     OnDataBound="gridView_DataBound" EmptyDataText="<%# DirectCast(Container.DataItem, Invoice).TotalAmountDue %>">
                     <Columns>
-                        <asp:BoundField DataField="RateCategoryDisplay" HeaderText="Item" />
+                        <asp:BoundField DataField="InvoiceItemDescription" HeaderText="Item" />
                         <asp:BoundField DataField="Amount" HeaderText="Amount" DataFormatString="{0:c}" ItemStyle-CssClass="table-cell-alignright" />
                     </Columns>
                 </asp:GridView>
@@ -90,7 +89,7 @@
                     <h2>Payments Applied</h2>
                     <asp:GridView ID="grdPayments" runat="server" CssClass="table-simple table-full-width table-accounting"
                         AutoGenerateColumns="False" ShowFooter="true" RowHeaderColumn="Description" UseAccessibleHeader="true"
-                        OnDataBound="gridView_DataBound" EmptyDataText="99.9">
+                        OnDataBound="gridView_DataBound" EmptyDataText="<%# DirectCast(Container.DataItem, Invoice).DepositsApplied.Sum(Function(i) i.AmountApplied) %>">
                         <Columns>
                             <asp:BoundField DataField="Description" HeaderText="Payment" />
                             <asp:BoundField DataField="AmountApplied" HeaderText="Amount Applied" DataFormatString="{0:c}" ItemStyle-CssClass="table-cell-alignright" />

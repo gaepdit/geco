@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="..\packages\Microsoft.CodeAnalysis.FxCopAnalyzers.2.9.1\build\Microsoft.CodeAnalysis.FxCopAnalyzers.props" Condition="Exists('..\packages\Microsoft.CodeAnalysis.FxCopAnalyzers.2.9.1\build\Microsoft.CodeAnalysis.FxCopAnalyzers.props')" />
   <Import Project="..\packages\Microsoft.NetFramework.Analyzers.2.9.1\build\Microsoft.NetFramework.Analyzers.props" Condition="Exists('..\packages\Microsoft.NetFramework.Analyzers.2.9.1\build\Microsoft.NetFramework.Analyzers.props')" />
@@ -1405,7 +1405,6 @@
     <Content Include="FacilityMap.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="AnnualFees\Default.aspx" />
-    <Content Include="AnnualFees\Invoice.aspx" />
     <Content Include="Fees\Deposits.aspx" />
     <Content Include="Fees\Invoices.aspx" />
     <Content Include="Fees\Default.aspx" />
@@ -1687,9 +1686,6 @@
     </Compile>
     <Compile Include="AnnualFees\AnnualFees.master.designer.vb">
       <DependentUpon>AnnualFees.master</DependentUpon>
-    </Compile>
-    <Compile Include="AnnualFees\Invoice.aspx.designer.vb">
-      <DependentUpon>Invoice.aspx</DependentUpon>
     </Compile>
     <Compile Include="Fees\Deposits.aspx.designer.vb">
       <DependentUpon>Deposits.aspx</DependentUpon>
@@ -2067,10 +2063,6 @@
       <DependentUpon>AnnualFees.master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AnnualFees\Invoice.aspx.vb">
-      <DependentUpon>Invoice.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -2103,7 +2095,6 @@
     <Content Include="EIS\eismaster.master" />
     <Content Include="ES\es.master" />
     <Content Include="AnnualFees\FeeAmendment.xls" />
-    <Content Include="AnnualFees\FeeInvoice.rpt" />
     <Content Include="AnnualFees\AnnualFees.master" />
     <Content Include="MainMaster.master" />
     <Content Include="EIS\files\qachecks.csv" />

@@ -216,7 +216,7 @@ Partial Class AnnualFees_Default
                 SaveConfirmation()
                 Page.Dispose()
                 Response.BufferOutput = True
-                Response.Redirect("~/AnnualFees/Invoice.aspx?FeeYear=" & feeyear.Text)
+                Response.Redirect(String.Format("~/Invoice/?FeeYear={0}&Facility={1}", feeyear.Text, currentAirs.ShortString))
             Else
                 pnlSignandPay.Visible = True
                 pnlSubmit.Visible = False
@@ -255,7 +255,7 @@ Partial Class AnnualFees_Default
 
     Protected Sub lbtInvoice_Click(ByVal sender As Object, ByVal e As System.EventArgs)
         Try
-            Response.Redirect("~/AnnualFees/Invoice.aspx?FeeYear=" & feeyear.Text)
+            Response.Redirect(String.Format("~/Invoice/?FeeYear={0}&Facility={1}", feeyear.Text, currentAirs.ShortString))
         Catch exThreadAbort As System.Threading.ThreadAbortException
         Catch ex As Exception
             ErrorReport(ex)
