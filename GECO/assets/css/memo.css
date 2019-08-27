@@ -77,7 +77,7 @@ h2 {
 .toolbar {
     background: #eee;
     text-align: right;
-    padding: .5em 1em;
+    padding: .5em 1.5em;
     position: sticky;
     top: 0;
     box-shadow: 0px -2px 6px #777;
@@ -85,6 +85,7 @@ h2 {
 
     .toolbar button {
         padding: 4px 16px;
+        margin-left: .5em;
     }
 
 @media print {
