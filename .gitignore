@@ -262,12 +262,11 @@ __pycache__/
 
 # GECO-specific
 
-GECO_deploy*/
 _DeadLetterOffice/
 Web.*.config
 Web.configBuilder.Debug.xml
 Web.configBuilder.Release.xml
 Web.configBuilder.Staging.xml
 Web.config
-
 docs/GECO Instructions\.html
+GECO/Deploy/
