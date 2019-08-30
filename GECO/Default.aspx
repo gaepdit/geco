@@ -3,7 +3,7 @@
 <%@ MasterType VirtualPath="~/MainMaster.master" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="Server">
-    <h2>Welcome to GECO!</h2>
+    <h1>Welcome to GECO</h1>
 
     <p>
         Georgia Environmental Connections Online ("GECO")
