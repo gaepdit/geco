@@ -12,8 +12,8 @@
     </p>
 
     <p>
-        <asp:HyperLink ID="SignIn" runat="server" Text="Sign In" CausesValidation="False" NavigateUrl="~/Login.aspx" CssClass="button button-large" />
-        <asp:HyperLink ID="Register" runat="server" Text="Register" CausesValidation="False" NavigateUrl="~/Register.aspx" CssClass="button button-large" />
+        <asp:HyperLink ID="SignIn" runat="server" Text="Sign In" NavigateUrl="~/Login.aspx" CssClass="button button-large" />
+        <asp:HyperLink ID="Register" runat="server" Text="Register" NavigateUrl="~/Register.aspx" CssClass="button button-large" />
     </p>
 
     <%--<p><a href="#">Instructions for creating a GECO account</a></p>--%>
