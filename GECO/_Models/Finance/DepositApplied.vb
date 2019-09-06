@@ -39,7 +39,8 @@ Namespace GecoModels
                             {
                                 If(String.IsNullOrEmpty(DepositNumber), Nothing, "Deposit #" & DepositNumber),
                                 If(String.IsNullOrEmpty(CheckNumber), Nothing, "Check #" & CheckNumber),
-                                If(String.IsNullOrEmpty(CreditCardConf), Nothing, "Credit Card Conf #" & CreditCardConf)
+                                If(String.IsNullOrEmpty(CreditCardConf), Nothing, "Credit Card Conf #" & CreditCardConf),
+                                If(String.IsNullOrEmpty(InvoiceID), Nothing, "Invoice #" & InvoiceID)
                             })
                     })
             End Get

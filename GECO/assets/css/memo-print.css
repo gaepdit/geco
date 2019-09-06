@@ -5,3 +5,9 @@ body {
 .toolbar {
     display: none;
 }
+
+.wrapper {
+    margin: 1em;
+    padding: 0;
+    box-shadow: none;
+}

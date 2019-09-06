@@ -153,6 +153,26 @@ Namespace GecoModels
             End If
         End Function
 
+        ''' <summary>
+        ''' Converts the string representation of an ApbFacilityId to its ApbFacilityId equivalent.
+        ''' A return value indicates whether the conversion succeeded.
+        ''' </summary>
+        ''' <param name="s">A string containing a ApbFacilityId to convert.</param>
+        ''' <param name="result">When this method returns, contains the ApbFacilityId equivalent of the number 
+        ''' contained in s, if the conversion succeeded, or Nothing if the conversion failed. The conversion 
+        ''' fails if the s parameter is not a valid ApbFacilityId.  This parameter is passed uninitialized; 
+        ''' any value originally supplied in result will be overwritten.</param>
+        ''' <returns>true if s was converted successfully; otherwise, false.</returns>
+        Public Shared Function TryParse(s As String, ByRef result As ApbFacilityId) As Boolean
+            If IsValidAirsNumberFormat(s) Then
+                result = New ApbFacilityId(s)
+                Return True
+            End If
+
+            result = Nothing
+            Return False
+        End Function
+
 #End Region
 
     End Class

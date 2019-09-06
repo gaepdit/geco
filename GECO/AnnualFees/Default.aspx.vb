@@ -158,14 +158,12 @@ Partial Class AnnualFees_Default
             lblContactMsg.Visible = True
             lblContactMsg.Text = "Contact information saved! "
 
-            If lbtInvoice.Visible = True Then
-            Else
+            If Not linkInvoice.Visible Then
                 If lblTotalFee.Text = "" And feeyear.Text <> "" Then
                     'Load Data from database
                     LoadFeeCalculations()
                     ClassCalculate()
                     UserTabs.ActiveTabIndex = 2
-                Else
                 End If
             End If
 
@@ -216,7 +214,7 @@ Partial Class AnnualFees_Default
                 SaveConfirmation()
                 Page.Dispose()
                 Response.BufferOutput = True
-                Response.Redirect("~/AnnualFees/Invoice.aspx?FeeYear=" & feeyear.Text)
+                Response.Redirect(String.Format("~/Invoice/?FeeYear={0}&Facility={1}", feeyear.Text, currentAirs.ShortString))
             Else
                 pnlSignandPay.Visible = True
                 pnlSubmit.Visible = False
@@ -247,15 +245,6 @@ Partial Class AnnualFees_Default
             End If
 
             UserTabs.ActiveTabIndex = 1
-        Catch exThreadAbort As System.Threading.ThreadAbortException
-        Catch ex As Exception
-            ErrorReport(ex)
-        End Try
-    End Sub
-
-    Protected Sub lbtInvoice_Click(ByVal sender As Object, ByVal e As System.EventArgs)
-        Try
-            Response.Redirect("~/AnnualFees/Invoice.aspx?FeeYear=" & feeyear.Text)
         Catch exThreadAbort As System.Threading.ThreadAbortException
         Catch ex As Exception
             ErrorReport(ex)
@@ -719,14 +708,14 @@ Partial Class AnnualFees_Default
                 'UserTabs.Tabs(1).Enabled = True
                 UserTabs.Tabs(2).Enabled = False
                 UserTabs.Tabs(3).Enabled = False
-                lbtInvoice.Visible = True
+                linkInvoice.Visible = True
                 btnProceed.Visible = False
                 btnUpdateContact.Text = "Save Fee Contact"
             Else
                 'UserTabs.Tabs(1).Enabled = True
                 UserTabs.Tabs(2).Enabled = True
                 UserTabs.Tabs(3).Enabled = True
-                lbtInvoice.Visible = False
+                linkInvoice.Visible = False
                 btnProceed.Visible = True
                 btnUpdateContact.Text = "Save and Continue"
             End If
@@ -2302,13 +2291,15 @@ Partial Class AnnualFees_Default
             If ddlFeeYear.SelectedItem.Text = "-Select Year-" Then
                 UserTabs.Tabs(2).Enabled = False
                 UserTabs.Tabs(3).Enabled = False
-                lbtInvoice.Visible = False
+                linkInvoice.Visible = False
+                linkInvoice.NavigateUrl = Nothing
                 btnProceed.Visible = False
                 feeRatesSection.Visible = False
             Else
                 txtFName.Text = ""
                 cblNSPSExempt.Items.Clear()
                 feeRatesSection.Visible = True
+                linkInvoice.NavigateUrl = String.Format("~/Invoice/?FeeYear={0}&Facility={1}", ddlFeeYear.SelectedItem.Text, currentAirs.ShortString)
                 GetInitialFeeRates()
             End If
         Catch exThreadAbort As System.Threading.ThreadAbortException

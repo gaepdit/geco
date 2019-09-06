@@ -12,43 +12,18 @@
     <link rel="shortcut icon" href="~/favicon.ico?v=69kRrvbXdL" />
     <meta name="theme-color" content="#e5f6fa" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/8.0.0/sanitize.min.css" integrity="sha256-gk3z+XTkT2rjrvAxcKDA15OH4w1FssyEwnSC3WnKbWU=" crossorigin="anonymous" />
-    <link rel="stylesheet" href="assets/css/memo.css?v=20190312" />
-    <link rel="stylesheet" href="assets/css/memo-print.css?v=20190312" media="print" />
+    <link rel="stylesheet" href="assets/css/memo.css?v=20190827" />
+    <link rel="stylesheet" href="assets/css/memo-print.css?v=20190827" media="print" />
     <asp:ContentPlaceHolder ID="head" runat="server"></asp:ContentPlaceHolder>
 </head>
 <body>
     <form id="form1" runat="server">
-        <asp:Panel ID="pnlToolbar" runat="server">
-            <div class="toolbar">
-                <input type="submit" value="Print" onclick="window.print(); return false;" id="btnPrint" />
-                <asp:Button ID="btnPdf" runat="server" Text="Print/PDF" visible="false" />
-            </div>
-        </asp:Panel>
-
-        <div class="wrapper">
-            <header class="grid">
-                <div class="grid__item">
-                    <asp:Image runat="server" CssClass="logo" ImageUrl="~/assets/images/epd-logo.png" />
-                </div>
-                <div class="grid__item grid__item_right">
-                    <address class="inside-address">
-                        <div class="director">
-                            <asp:Label runat="server" ID="lblDirector"></asp:Label>
-                        </div>
-                        <div class="branch">
-                            Air Protection Branch
-                        </div>
-                        <div>
-                            4244 International Parkway, Suite 120<br />
-                            Atlanta, Georgia 30354<br />
-                            (404) 363-7000
-                        </div>
-                    </address>
-                </div>
-            </header>
-
-            <asp:ContentPlaceHolder ID="MainContent" runat="server"></asp:ContentPlaceHolder>
+        <div class="toolbar" runat="server" visible="<%# MemoPageCount > 0 %>">
+            <%= PageCountDisplay() %>
+            <button onclick="window.print(); return false;">🖨️ Print</button>
         </div>
+
+        <asp:ContentPlaceHolder ID="MainContent" runat="server"></asp:ContentPlaceHolder>
     </form>
 </body>
 </html>

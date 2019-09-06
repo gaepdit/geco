@@ -6,7 +6,11 @@ body {
 }
 
 .wrapper {
-    margin: 1em;
+    margin: 1em 1.5em 2em 1.5em;
+    padding: 1em;
+    box-shadow: 0 3px 8px #777;
+    break-after: always;
+    page-break-after: always;
 }
 
 #MainContent {
@@ -73,8 +77,16 @@ h2 {
 .toolbar {
     background: #eee;
     text-align: right;
-    padding: .5em 1em;
+    padding: .5em 1.5em;
+    position: sticky;
+    top: 0;
+    box-shadow: 0px -2px 6px #777;
 }
+
+    .toolbar button {
+        padding: 4px 16px;
+        margin-left: .5em;
+    }
 
 @media print {
     .toolbar {
@@ -91,7 +103,7 @@ h2 {
 }
 
 blockquote {
-    font-size: 1.5em;
+    font-size: 1.4em;
     font-style: italic;
     margin: 0 1em;
 }
@@ -137,6 +149,10 @@ blockquote {
             vertical-align: middle;
             text-align: right;
         }
+
+.table-list tr {
+    vertical-align: baseline;
+}
 
 .table-list tbody th {
     text-align: left;

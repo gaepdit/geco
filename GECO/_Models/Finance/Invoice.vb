@@ -47,6 +47,8 @@ Namespace GecoModels
         Public Property ApplicationID As Integer?
         <DisplayName("Emissions Fee Year")>
         Public Property FeeYear As Integer?
+        Public Property FeeYearTotalEmissionFees As Decimal?
+        Public Property FeeYearTotalAdminFee As Decimal?
         <Browsable(False)>
         Public Property InvoiceCategoryID As Char
             Get
@@ -83,7 +85,7 @@ Namespace GecoModels
     End Class
 
     Public Enum InvoiceCategory
-        <Description("Annual Fees")>
+        <Description("Emission Fees")>
         EmissionsFees
         <Description("Application Fees")>
         PermitApplicationFees
@@ -100,6 +102,8 @@ Namespace GecoModels
         PermitApplication = 0
         <Description("Expedited Review Fee")>
         ExpeditedReview = 1
+        <Description("Emission Fee")>
+        Other = 2
     End Enum
 
 End Namespace

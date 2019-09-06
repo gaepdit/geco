@@ -14,130 +14,22 @@ Option Explicit On
 Partial Public Class InvoiceDefault
     
     '''<summary>
-    '''pnlVoidedInvoice control.
+    '''pnlNotFound control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents pnlVoidedInvoice As Global.System.Web.UI.WebControls.Panel
+    Protected WithEvents pnlNotFound As Global.System.Web.UI.WebControls.Panel
     
     '''<summary>
-    '''pnlVoidedDate control.
+    '''invoicePages control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents pnlVoidedDate As Global.System.Web.UI.WebControls.Panel
-    
-    '''<summary>
-    '''lblVoidedDate control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblVoidedDate As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''lblInvoiceId control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblInvoiceId As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''lblInvoiceDate control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblInvoiceDate As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''lblDueDate control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblDueDate As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''lblWhatFor control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblWhatFor As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''lblInvoiceType control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblInvoiceType As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''lblAirsNo control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblAirsNo As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''lblCompany control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblCompany As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''grdInvoiceItems control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents grdInvoiceItems As Global.System.Web.UI.WebControls.GridView
-    
-    '''<summary>
-    '''pnlPayments control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents pnlPayments As Global.System.Web.UI.WebControls.Panel
-    
-    '''<summary>
-    '''grdPayments control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents grdPayments As Global.System.Web.UI.WebControls.GridView
-    
-    '''<summary>
-    '''lblBalance control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblBalance As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents invoicePages As Global.System.Web.UI.WebControls.Repeater
     
     '''<summary>
     '''Master property.
