@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+  DO NOT EDIT "Web.config"!!!
+
+  Web.config is automatically generated on build. Edit Web.configBuilder.xml instead.
+-->
 
 <!--
-  For more information on how to configure your ASP.NET application, please visit
-  https://go.microsoft.com/fwlink/?LinkId=169433
-  -->
+  For more information on how to configure your ASP.NET application, please visit https://go.microsoft.com/fwlink/?LinkId=169433
+-->
 <configuration>
   <configSections>
     <sectionGroup name="businessObjects">
@@ -93,6 +97,15 @@
           <action type="Redirect" redirectType="Permanent" url="https://{HTTP_HOST}/{R:1}" />
         </rule>
       </rules>
+      <outboundRules>
+        <rule name="Add STS header when HTTPS" enabled="true">
+          <match serverVariable="RESPONSE_Strict_Transport_Security" pattern=".*" />
+          <conditions>
+            <add input="{HTTPS}" pattern="on" ignoreCase="true" />
+          </conditions>
+          <action type="Rewrite" value="max-age=604800" />
+        </rule>
+      </outboundRules>
     </rewrite>
     <httpErrors errorMode="Custom">
       <clear />
