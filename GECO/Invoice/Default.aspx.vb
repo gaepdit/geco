@@ -47,13 +47,14 @@ Public Class InvoiceDefault
             Master.MemoPageCount = 0
             pnlNotFound.Visible = True
             invoicePages.Visible = False
+            Title = "Not found"
         Else
             Master.MemoPageCount = Invoices.Count
             invoicePages.DataSource = Invoices
             invoicePages.DataBind()
+            Title = "Invoice #" & ConcatNonEmptyStrings(", ", Invoices.[Select](Function(x) x.InvoiceID.ToString()).ToArray())
         End If
 
-        Title = "Invoice #" & ConcatNonEmptyStrings(", ", Invoices.[Select](Function(x) x.InvoiceID.ToString()).ToArray())
     End Sub
 
     Protected Sub invoicePages_ItemDataBound(sender As Object, e As RepeaterItemEventArgs) Handles invoicePages.ItemDataBound
