@@ -5,23 +5,12 @@
   https://go.microsoft.com/fwlink/?LinkId=169433
   -->
 <configuration>
-  <configSections>
-    <sectionGroup name="businessObjects">
-      <sectionGroup name="crystalReports">
-        <section name="rptBuildProvider" type="CrystalDecisions.Shared.RptBuildProviderHandler, CrystalDecisions.Shared, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, Custom=null" />
-      </sectionGroup>
-    </sectionGroup>
-  </configSections>
-
   <appSettings>
     <add key="GECO_VERSION" value="2019.7.25" />
     <add key="GECO_ENVIRONMENT" value="Development" />
     <add key="UndeliverableEmailFolder" value="..\_DeadLetterOffice" />
     <add key="LoggingFolder" value="..\_DeadLetterOffice" />
     <add key="LogExceptionsToFile" value="false" />
-    <add key="database_uid" value="" />
-    <add key="database_service" value="" />
-    <add key="database_pwd" value="" />
     <add key="GecoEmailSender" value="GeorgiaAirProtectionBranch@dnr.ga.gov" />
     <add key="GecoContactEmail" value="GeorgiaAirProtectionBranch@dnr.ga.gov" />
     <add key="GecoContactName" value="GECO" />
@@ -29,9 +18,6 @@
     <add key="SaveAllEmails" value="false" />
     <add key="GoogleMapsAPIKey" value="" />
     <add key="SENTRY_DSN" value="" />
-    <add key="CrystalImageCleaner-AutoStart" value="true" />
-    <add key="CrystalImageCleaner-Sleep" value="60000" />
-    <add key="CrystalImageCleaner-Age" value="120000" />
     <add key="ValidationSettings:UnobtrusiveValidationMode" value="None" />
   </appSettings>
 
@@ -46,11 +32,7 @@
           affects performance, set this value to true only
           during development.
     -->
-    <compilation debug="true" strict="false" explicit="true" targetFramework="4.6.1">
-      <buildProviders>
-        <add extension=".rpt" type="CrystalDecisions.Web.Compilation.RptBuildProvider, CrystalDecisions.Web, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
-      </buildProviders>
-    </compilation>
+    <compilation debug="true" strict="false" explicit="true" targetFramework="4.6.1" />
     <httpRuntime targetFramework="4.6.1" />
     <pages controlRenderingCompatibilityVersion="3.5" clientIDMode="AutoID">
       <controls>
@@ -63,7 +45,6 @@
     </pages>
     <httpHandlers>
       <add verb="GET" path="CaptchaImage.axd" type="MSCaptcha.CaptchaImageHandler, MSCaptcha" />
-      <add verb="GET" path="CrystalImageHandler.aspx" type="CrystalDecisions.Web.CrystalImageHandler, CrystalDecisions.Web, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
     </httpHandlers>
     <customErrors mode="RemoteOnly" defaultRedirect="~/ErrorPage.aspx" />
     <httpCookies requireSSL="true" httpOnlyCookies="true" />
@@ -80,7 +61,6 @@
     <validation validateIntegratedModeConfiguration="false" />
     <handlers>
       <add name="MSCaptcha" verb="GET" path="CaptchaImage.axd" type="MSCaptcha.CaptchaImageHandler, MSCaptcha" />
-      <add name="CrystalImageHandler.aspx_GET" verb="GET" path="CrystalImageHandler.aspx" type="CrystalDecisions.Web.CrystalImageHandler, CrystalDecisions.Web, Version=10.5.3700.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" preCondition="integratedMode" />
     </handlers>
     <rewrite>
       <rules>
@@ -116,13 +96,4 @@
       </dependentAssembly>
     </assemblyBinding>
   </runtime>
-
-  <businessObjects>
-    <crystalReports>
-      <rptBuildProvider>
-        <add embedRptInResource="true" />
-      </rptBuildProvider>
-    </crystalReports>
-  </businessObjects>
-
 </configuration>
