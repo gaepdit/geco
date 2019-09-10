@@ -92,7 +92,7 @@
         The Emissions Inventory System (EIS) will soon be available for use to submit data for the
         <asp:Label ID="lblEIYear2" runat="server" Text=""></asp:Label>
         calendar year. Look out for correspondence in the mail advising if EPD believes your facility needs to participate. 
-        Visit the <a href="https://epd.georgia.gov/air/emissions-inventory-system-eis" target="_blank">EIS Information</a> page 
+        Visit the <a href="https://epd.georgia.gov/submit-emissions-inventory" target="_blank">EIS Information</a> page 
         and EPA's <a href="https://www.epa.gov/air-emissions-inventories/air-emissions-reporting-requirements-aerr"
             target="_blank">Air Emissions Reporting Requirements</a> page for more information.
     </p>
@@ -102,7 +102,7 @@
                 Participation in the emissions inventory is based on a facility's Potential
                 to Emit (PTE) equaling or exceeding the defined thresholds.
                 For assistance with calculating PTE, please use the 
-                <a href="https://epd.georgia.gov/air/documents/potential-emit-guidelines" target="_blank">PTE Guidelines</a>.
+                <a href="https://epd.georgia.gov/documents/potential-emit-guidelines" target="_blank">PTE Guidelines</a>.
             </p>
         </li>
         <li>

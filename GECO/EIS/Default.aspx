@@ -9,7 +9,7 @@
             <p>
                 Facilities whose potential emissions exceed the thresholds must report their actual emissions.
                 For assistance with calculating PTE, please use the 
-                <a href="https://epd.georgia.gov/air/documents/potential-emit-guidelines" target="_blank">PTE Guidelines</a>.
+                <a href="https://epd.georgia.gov/documents/potential-emit-guidelines" target="_blank">PTE Guidelines</a>.
             </p>
         </li>
         <li>

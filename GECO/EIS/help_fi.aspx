@@ -33,7 +33,7 @@
                 page and verify the facility information. If the GECO Facility Summary information
                 is incorrect, then you may need to complete the
                 <asp:HyperLink ID="HyperLink2" runat="server"
-                    NavigateUrl="https://epd.georgia.gov/air/documents/ssppsip-app-change-ownership-form"
+                    NavigateUrl="https://epd.georgia.gov/documents/ssppsip-app-name-change-form"
                     Target="_blank">Name/Ownership Change document</asp:HyperLink>
                 and follow the instructions provided in the document.
             </div>

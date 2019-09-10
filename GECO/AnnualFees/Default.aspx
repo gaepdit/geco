@@ -368,7 +368,7 @@
                         <font size="2"><strong>Please NOTE that this change will be made upon review and approval
                             by our staff. If you also need to change this information on your permit, you must
                             submit&nbsp;the
-                            <asp:HyperLink ID="HyperLink4" runat="server" Target="_blank" NavigateUrl="https://epd.georgia.gov/air/documents/ssppsip-app-name-change-form">Facility Name Change Form</asp:HyperLink>.</strong></font>
+                            <asp:HyperLink ID="HyperLink4" runat="server" Target="_blank" NavigateUrl="https://epd.georgia.gov/documents/ssppsip-app-name-change-form">Facility Name Change Form</asp:HyperLink>.</strong></font>
                     </p>
                 </asp:Panel>
                 <br />
@@ -721,12 +721,8 @@
                 <p align="center">
                 </p>
                 <p align="center">
-                    <a href="https://epd.georgia.gov/air/procedures-calculating-air-permit-fees" target="_blank">List
+                    <a href="https://epd.georgia.gov/air-permit-fees" target="_blank">List
                         of past Air Permit Fee Manuals</a>
-                    <br />
-                    <br />
-                    <a href="https://epd.georgia.gov/air/documents/air-permit-fee-calculation-forms"
-                        target="_blank">Fee Calculation Worksheets (zip file)</a>
                 </p>
                 <br />
                 <p>
