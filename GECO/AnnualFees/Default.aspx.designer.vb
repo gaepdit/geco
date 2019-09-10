@@ -140,24 +140,6 @@ Partial Public Class AnnualFees_Default
     Protected WithEvents lblMessage As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
-    '''lblBulletHeading control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblBulletHeading As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''blNotes control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents blNotes As Global.System.Web.UI.WebControls.BulletedList
-    
-    '''<summary>
     '''UserTabs control.
     '''</summary>
     '''<remarks>
@@ -1164,15 +1146,6 @@ Partial Public Class AnnualFees_Default
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnCancelSubmit As Global.System.Web.UI.WebControls.Button
-    
-    '''<summary>
-    '''SupDoc control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents SupDoc As Global.AjaxControlToolkit.TabPanel
     
     '''<summary>
     '''Reports control.

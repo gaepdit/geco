@@ -29,9 +29,6 @@ Partial Class AnnualFees_Default
             lblMessage.Visible = True
 
             Try
-                lblBulletHeading.Visible = False
-                blNotes.Visible = False
-
                 'Use FindControl to get the controls from the master page
                 'Add the User data in the Top Header
                 Dim mpUserLabel, mpFacilityLabel As Label
@@ -90,7 +87,7 @@ Partial Class AnnualFees_Default
                 Next
                 If chkNSPSReason = False Then
                     lblcblnspsreason.Visible = True
-                    lblcblnspsreason.Text = "Please select the reason for being NSPS Exempt from the choices below. "
+                    lblcblnspsreason.Text = "Please select all the NSPS exemptions that apply to your facility."
                     Exit Sub
                 Else
                     lblcblnspsreason.Visible = False
@@ -121,7 +118,7 @@ Partial Class AnnualFees_Default
             If txtOwner.Text = "" Then
                 'Load Data from database
                 LoadSignandPay()
-                lblDate.Text = Format$(Now, "dd-MMM-yyyy hh:mm:ss")
+                lblDate.Text = Format$(Now, "dd-MMM-yyyy hh:mm")
                 If txtPayType.Text = "Four Quarterly Payments" Then
                     rblPaymentType.SelectedIndex = 1
                 Else
@@ -2485,8 +2482,6 @@ Partial Class AnnualFees_Default
             'Based on which tab is clicked the following will be executed
             Select Case UserTabs.ActiveTab.ID
                 Case "Welcome" 'Facility Access
-                    lblBulletHeading.Visible = False
-                    blNotes.Visible = False
 
                 Case "Contact"
                     'If Facility Contact is already loaded, then do not re-load
@@ -2503,13 +2498,6 @@ Partial Class AnnualFees_Default
                         btnUpdateContact.Enabled = True
                     End If
 
-                    lblBulletHeading.Visible = True
-                    blNotes.Visible = True
-                    xmldatasource.DataFile = "~/XML/FeesNotes/FeesContact.xml"
-                    blNotes.DataSource = xmldatasource
-                    blNotes.DataTextField = "text"
-                    blNotes.DataBind()
-
                 Case "Calculation"
                     'If Emissions data is already loaded, then do not re-load
                     If lblTotalFee.Text = "" Then
@@ -2518,19 +2506,12 @@ Partial Class AnnualFees_Default
                         ClassCalculate()
                     End If
 
-                    lblBulletHeading.Visible = True
-                    blNotes.Visible = True
-                    xmldatasource.DataFile = "~/XML/FeesNotes/FeesCalculation.xml"
-                    blNotes.DataSource = xmldatasource
-                    blNotes.DataTextField = "text"
-                    blNotes.DataBind()
-
                 Case "SignPay"
                     'If Signature data is already loaded, then do not re-load
                     If txtOwner.Text = "" Then
                         'Load Data from database
                         LoadSignandPay()
-                        lblDate.Text = Format$(Now, "dd-MMM-yyyy hh:mm:ss")
+                        lblDate.Text = Format$(Now, "dd-MMM-yyyy hh:mm")
                         If txtPayType.Text = "Four Quarterly Payments" Then
                             rblPaymentType.SelectedIndex = 1
                         Else
@@ -2538,20 +2519,9 @@ Partial Class AnnualFees_Default
                         End If
                     End If
 
-                    lblBulletHeading.Visible = True
-                    blNotes.Visible = True
-                    xmldatasource.DataFile = "~/XML/FeesNotes/FeesSignature.xml"
-                    blNotes.DataSource = xmldatasource
-                    blNotes.DataTextField = "text"
-                    blNotes.DataBind()
-
                 Case "SupDoc"
-                    lblBulletHeading.Visible = False
-                    blNotes.Visible = False
 
                 Case "Reports"
-                    lblBulletHeading.Visible = False
-                    blNotes.Visible = False
                     LoadAnnualFeesHistory()
 
             End Select
