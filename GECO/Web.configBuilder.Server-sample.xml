@@ -17,8 +17,6 @@
 
   <appSettings>
     <add key="GECO_ENVIRONMENT" value="" xdt:Transform="SetAttributes" xdt:Locator="Match(key)"/>
-    <add key="database_service" value="" xdt:Transform="SetAttributes" xdt:Locator="Match(key)"/>
-    <add key="database_pwd" value="" xdt:Transform="SetAttributes" xdt:Locator="Match(key)"/>
     <add key="GecoContactEmail" value="" xdt:Transform="SetAttributes" xdt:Locator="Match(key)"/>
     <add key="GecoContactName" value="" xdt:Transform="SetAttributes" xdt:Locator="Match(key)"/>
     <add key="GoogleMapsAPIKey" value="" xdt:Transform="SetAttributes" xdt:Locator="Match(key)"/>

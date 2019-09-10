@@ -53,7 +53,9 @@ Namespace DAL
                 .Voided = CBool(dr("Voided")),
                 .VoidedDate = GetNullableDateTime(dr.Item("VoidedDate")),
                 .ApplicationID = GetNullable(Of Integer)(dr("ApplicationID")),
-                .FeeYear = GetNullable(Of Integer)(dr("FeeYear"))
+                .FeeYear = GetNullable(Of Integer)(dr("FeeYear")),
+                .FeeYearTotalAdminFee = GetNullable(Of Decimal?)(dr("FeeYearTotalAdminFee")),
+                .FeeYearTotalEmissionFees = GetNullable(Of Decimal?)(dr("FeeYearTotalEmissionFees"))
             }
         End Function
 
@@ -67,7 +69,12 @@ Namespace DAL
                 .ApplicationID = GetNullable(Of Integer?)(dr("ApplicationID")),
                 .FacilityID = New ApbFacilityId(CStr(dr("FacilityID"))),
                 .FeeYear = GetNullable(Of Integer?)(dr("FeeYear")),
-                .InvoiceCategoryID = CChar(dr("InvoiceCategoryID"))
+                .InvoiceCategoryID = CChar(dr("InvoiceCategoryID")),
+                .InvoiceType = New InvoiceType With {
+                    .Active = CBool(dr("InvoiceTypeActive")),
+                    .Description = GetNullableString(dr("InvoiceTypeDescription")),
+                    .InvoiceTypeID = CInt(dr("InvoiceTypeID"))
+                }
             }
         End Function
 
@@ -86,6 +93,37 @@ Namespace DAL
                 .CreditCardConf = GetNullableString(dr("CreditCardConf")),
                 .DepositNumber = GetNullableString(dr("DepositNumber"))
             }
+        End Function
+
+        Public Function GetEmissionFeeInvoices(feeYear As Integer, facilityID As ApbFacilityId, invoiceId As Integer) As List(Of Invoice)
+            Dim params As SqlParameter() = {
+                New SqlParameter("@FacilityID", facilityID.DbFormattedString),
+                New SqlParameter("@FeeYear", feeYear),
+                New SqlParameter("@InvoiceId", invoiceId)
+            }
+            Dim ds As DataSet = DB.SPGetDataSet("fees.GetEmissionFeeInvoices", params)
+
+            If ds Is Nothing OrElse ds.Tables.Count <> 3 OrElse ds.Tables(0).Rows.Count < 1 Then Return Nothing
+
+            Dim invoices As New List(Of Invoice)
+
+            For Each row As DataRow In ds.Tables(0).Rows
+                Dim invoice As Invoice = InvoiceFromDataRow(row)
+
+                For Each dr As DataRow In ds.Tables(1).Rows
+                    If CInt(dr("InvoiceID")) = CInt(row("InvoiceID")) Then
+                        invoice.InvoiceItems.Add(InvoiceItemFromDataRow(dr))
+                    End If
+                Next
+
+                For Each dr As DataRow In ds.Tables(2).Rows
+                    invoice.DepositsApplied.Add(DepositAppliedFromDataRow(dr))
+                Next
+
+                invoices.Add(invoice)
+            Next
+
+            Return invoices
         End Function
 
     End Module

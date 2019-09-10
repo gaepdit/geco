@@ -41,13 +41,11 @@
         <br />
         <strong>Fee Year:</strong>
         <asp:DropDownList ID="ddlFeeYear" runat="server" CausesValidation="False" AutoPostBack="true"
-            ForeColor="DarkRed" Font-Bold="true">
-        </asp:DropDownList>
+            ForeColor="DarkRed" Font-Bold="true" />
         <br />
         <br />
-        <asp:LinkButton ID="lbtInvoice" Text="PRINT INVOICE" Visible="false" runat="server"
-            CausesValidation="False" CssClass="linkHighlightButton"
-            Font-Bold="True" OnClick="lbtInvoice_Click"></asp:LinkButton><br />
+        <asp:HyperLink ID="linkInvoice" Text="PRINT INVOICE" Visible="false" runat="server"
+            Target="_blank" CssClass="linkHighlightButton" Font-Bold="true" /><br />
     </div>
     <p>
         <asp:Label ID="lblMessage" runat="server" ForeColor="#C00000" Visible="False"></asp:Label>

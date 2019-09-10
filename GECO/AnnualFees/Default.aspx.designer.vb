@@ -122,13 +122,13 @@ Partial Public Class AnnualFees_Default
     Protected WithEvents ddlFeeYear As Global.System.Web.UI.WebControls.DropDownList
     
     '''<summary>
-    '''lbtInvoice control.
+    '''linkInvoice control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lbtInvoice As Global.System.Web.UI.WebControls.LinkButton
+    Protected WithEvents linkInvoice As Global.System.Web.UI.WebControls.HyperLink
     
     '''<summary>
     '''lblMessage control.
