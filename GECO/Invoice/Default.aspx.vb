@@ -1,4 +1,4 @@
-﻿Imports GECO.DAL
+Imports GECO.DAL
 Imports GECO.GecoModels
 
 Public Class InvoiceDefault
@@ -21,8 +21,11 @@ Public Class InvoiceDefault
             If Request.QueryString("id") IsNot Nothing AndAlso
                 Guid.TryParse(Request.QueryString("id"), InvoiceGuid) Then
 
-                Invoices.Add(GetInvoiceByGuid(InvoiceGuid))
-                InvoiceCategory = InvoiceCategory.PermitApplicationFees
+                Dim invoice As Invoice = GetInvoiceByGuid(InvoiceGuid)
+
+                If invoice IsNot Nothing Then
+                    Invoices.Add(invoice)
+                End If
 
             ElseIf Request.QueryString("FeeYear") IsNot Nothing AndAlso
                 Request.QueryString("Facility") IsNot Nothing AndAlso
