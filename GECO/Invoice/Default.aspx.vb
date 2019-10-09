@@ -1,4 +1,4 @@
-Imports GECO.DAL
+﻿Imports GECO.DAL
 Imports GECO.GecoModels
 
 Public Class InvoiceDefault
@@ -12,7 +12,7 @@ Public Class InvoiceDefault
     Private FacilityID As ApbFacilityId
     Private InvoiceId As Integer = 0
 
-    Private InvoiceCategory As InvoiceCategory
+    'Private InvoiceCategory As InvoiceCategory
     Private Invoices As New List(Of Invoice)
 
     Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
@@ -27,6 +27,7 @@ Public Class InvoiceDefault
                     Invoices.Add(invoice)
                 End If
 
+                'InvoiceCategory = InvoiceCategory.PermitApplicationFees
             ElseIf Request.QueryString("FeeYear") IsNot Nothing AndAlso
                 Request.QueryString("Facility") IsNot Nothing AndAlso
                 Integer.TryParse(Request.QueryString("FeeYear"), FeeYear) AndAlso
@@ -37,7 +38,7 @@ Public Class InvoiceDefault
                 End If
 
                 Invoices = GetEmissionFeeInvoices(FeeYear, FacilityID, InvoiceId)
-                InvoiceCategory = InvoiceCategory.EmissionsFees
+                'InvoiceCategory = InvoiceCategory.EmissionsFees
             End If
 
             DisplayInvoices()
