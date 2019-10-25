@@ -15,14 +15,6 @@
         </ProgressTemplate>
     </asp:UpdateProgress>
 
-    <div class="announcement announcement-severe announcement-centered">
-        <h2>Notice</h2>
-        <p>
-            There will be a scheduled maintenance outage of this web site from Friday, November&nbsp;1, at 2&nbsp;pm 
-            until Monday, November&nbsp;4, at 6&nbsp;am. Thank you for your patience!
-        </p>
-    </div>
-
     <div class="login-page">
         <div class="login-form">
             <asp:UpdatePanel ID="LoginUpdatePanel" runat="server" UpdateMode="Conditional">
