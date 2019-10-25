@@ -503,6 +503,12 @@ textarea {
     border-radius: 5px;
 }
 
+    .announcement.announcement-centered {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
     .announcement h2 {
         margin-top: 0;
         padding-top: 0;
