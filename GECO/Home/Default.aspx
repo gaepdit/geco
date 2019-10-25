@@ -4,6 +4,14 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="Server">
     <asp:UpdatePanel ID="UpdatePanel_top" runat="server">
         <ContentTemplate>
+            <div class="announcement announcement-severe announcement-centered">
+                <h2>Notice</h2>
+                <p>
+                    There will be a scheduled maintenance outage of this web site from Friday, November&nbsp;1, at 2&nbsp;pm
+                    until Monday, November&nbsp;4, at 6&nbsp;am. Thank you for your patience!
+                </p>
+            </div>
+
             <h1>GECO Home</h1>
 
             <p>Georgia Environmental Connections Online ("GECO") is an online service allowing public access to various Georgia Air Protection Branch applications.</p>

@@ -3,6 +3,14 @@
 <%@ MasterType VirtualPath="~/MainMaster.master" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="Server">
+    <div class="announcement announcement-severe announcement-centered">
+        <h2>Notice</h2>
+        <p>
+            There will be a scheduled maintenance outage of this web site from Friday, November&nbsp;1, at 2&nbsp;pm 
+            until Monday, November&nbsp;4, at 6&nbsp;am. Thank you for your patience!
+        </p>
+    </div>
+
     <h1>Welcome to GECO</h1>
 
     <p>
