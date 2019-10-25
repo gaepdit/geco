@@ -15,6 +15,13 @@
         </ProgressTemplate>
     </asp:UpdateProgress>
 
+    <div class="announcement announcement-severe announcement-centered">
+        <p>
+            There will be a scheduled maintenance outage of this web site from Wednesday afternoon 7/8/2020 at 4&nbsp;PM 
+            until Thursday morning 7/9/2020 at 6&nbsp;AM. Thank you for your patience!
+        </p>
+    </div>
+
     <div class="login-page">
         <div class="login-form">
             <asp:UpdatePanel ID="LoginUpdatePanel" runat="server" UpdateMode="Conditional">

@@ -4,6 +4,13 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="Server">
     <asp:UpdatePanel ID="UpdatePanel_top" runat="server">
         <ContentTemplate>
+            <div class="announcement announcement-severe announcement-centered">
+                <p>
+                    There will be a scheduled maintenance outage of this web site from Wednesday afternoon 7/8/2020 at 4&nbsp;PM 
+                    until Thursday morning 7/9/2020 at 6&nbsp;AM. Thank you for your patience!
+                </p>
+            </div>
+
             <h1>GECO Home</h1>
 
             <p>Georgia Environmental Connections Online ("GECO") is an online service allowing public access to various Georgia Air Protection Branch applications.</p>
