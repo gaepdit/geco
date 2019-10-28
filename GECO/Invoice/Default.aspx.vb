@@ -4,90 +4,121 @@ Imports GECO.GecoModels
 Public Class InvoiceDefault
     Inherits Page
 
-    Private Property InvoiceGuid As Guid
-    Private thisInvoice As Invoice
+    ' Annual Emissions Fees
+    Private InvoiceGuid As Guid
+
+    ' Application Fees
+    Private FeeYear As Integer
+    Private FacilityID As ApbFacilityId
+    Private InvoiceId As Integer = 0
+
+    'Private InvoiceCategory As InvoiceCategory
+    Private Invoices As New List(Of Invoice)
 
     Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
-        If Not Guid.TryParse(Request.QueryString("id"), InvoiceGuid) Then
-            Throw New HttpException(404, "Invoice not found.")
-        End If
-
-        thisInvoice = GetInvoiceByGuid(InvoiceGuid)
-
-        If thisInvoice Is Nothing Then
-            Throw New HttpException(404, "Invoice ID not found.")
-        End If
-
         If Not IsPostBack Then
-            DisplayInvoice()
+
+            If Request.QueryString("id") IsNot Nothing AndAlso
+                Guid.TryParse(Request.QueryString("id"), InvoiceGuid) Then
+
+                Dim invoice As Invoice = GetInvoiceByGuid(InvoiceGuid)
+
+                If invoice IsNot Nothing Then
+                    Invoices.Add(invoice)
+                End If
+
+                'InvoiceCategory = InvoiceCategory.PermitApplicationFees
+            ElseIf Request.QueryString("FeeYear") IsNot Nothing AndAlso
+                Request.QueryString("Facility") IsNot Nothing AndAlso
+                Integer.TryParse(Request.QueryString("FeeYear"), FeeYear) AndAlso
+                ApbFacilityId.TryParse(Request.QueryString("Facility"), FacilityID) Then
+
+                If Request.QueryString("InvoiceId") IsNot Nothing Then
+                    Dim unused = Integer.TryParse(Request.QueryString("InvoiceId"), InvoiceId)
+                End If
+
+                Invoices = GetEmissionFeeInvoices(FeeYear, FacilityID, InvoiceId)
+                'InvoiceCategory = InvoiceCategory.EmissionsFees
+            End If
+
+            DisplayInvoices()
+
         End If
     End Sub
 
-    Private Sub DisplayInvoice()
-        Dim docName As String = "Invoice #" & thisInvoice.InvoiceID.ToString()
+    Private Sub DisplayInvoices()
+        If Invoices Is Nothing OrElse Invoices.Count = 0 Then
+            Master.MemoPageCount = 0
+            pnlNotFound.Visible = True
+            invoicePages.Visible = False
+            Title = "Not found"
+        Else
+            Master.MemoPageCount = Invoices.Count
+            invoicePages.DataSource = Invoices
+            invoicePages.DataBind()
+            Title = "Invoice #" & ConcatNonEmptyStrings(", ", Invoices.[Select](Function(x) x.InvoiceID.ToString()).ToArray())
+        End If
 
-        Master.PdfTitle = docName
-        Title = docName
-        lblInvoiceId.Text = docName
+    End Sub
 
-        lblInvoiceDate.Text = thisInvoice.InvoiceDate.ToString(LongishDateFormat)
-        lblDueDate.Text = thisInvoice.DueDate.ToString(LongishDateFormat)
-        lblAirsNo.Text = thisInvoice.FacilityID.FormattedString()
-        lblCompany.Text = thisInvoice.FacilityName
+    Protected Sub invoicePages_ItemDataBound(sender As Object, e As RepeaterItemEventArgs) Handles invoicePages.ItemDataBound
+        Dim currentInvoice As Invoice = CType(e.Item.DataItem, Invoice)
 
-        Select Case thisInvoice.InvoiceCategory
-            Case InvoiceCategory.EmissionsFees
-                lblWhatFor.Text = thisInvoice.FeeYear.Value.ToString & " Annual Permit Fees"
-                lblInvoiceType.Text = thisInvoice.InvoiceType.Description
-
-            Case InvoiceCategory.PermitApplicationFees
-                lblWhatFor.Text = "Permit Application #" & thisInvoice.ApplicationID.ToString()
-                lblInvoiceType.Visible = False
-
-        End Select
-
-        grdInvoiceItems.DataSource = thisInvoice.InvoiceItems
+        Dim grdInvoiceItems As GridView = CType(e.Item.FindControl("grdInvoiceItems"), GridView)
+        grdInvoiceItems.DataSource = currentInvoice.InvoiceItems
         grdInvoiceItems.DataBind()
 
-        grdPayments.DataSource = thisInvoice.DepositsApplied
+        Dim grdPayments As GridView = CType(e.Item.FindControl("grdPayments"), GridView)
+        grdPayments.DataSource = currentInvoice.DepositsApplied
         grdPayments.DataBind()
+    End Sub
 
-        If thisInvoice.Voided Then
-            pnlVoidedInvoice.Visible = True
+    Protected Sub gridView_DataBound(sender As Object, e As EventArgs)
+        Dim gridView As GridView = CType(sender, GridView)
+        ' EmptyDataText property of the GridView is only used to pass in an aggregate 
+        ' value from the Repeater data item. It is reset here to prevent the value from 
+        ' being displayed in empty cells.
 
-            If thisInvoice.VoidedDate.HasValue Then
-                pnlVoidedDate.Visible = True
-                lblVoidedDate.Text = "Voided on " & thisInvoice.VoidedDate.Value.ToString(LongishDateFormat)
-            End If
+        If gridView.Rows.Count > 0 Then
+            gridView.FooterRow.Cells(0).Text = "Total"
+            gridView.FooterRow.Cells(0).CssClass = "table-cell-alignright"
+            gridView.FooterRow.Cells(1).Text = CDec(gridView.EmptyDataText).ToString("c")
+            gridView.FooterRow.Cells(1).CssClass = "table-cell-alignright"
+            gridView.EmptyDataText = Nothing
+
+            gridView.HeaderRow.TableSection = TableRowSection.TableHeader
+            gridView.FooterRow.TableSection = TableRowSection.TableFooter
         End If
     End Sub
 
-    Protected Sub grdInvoiceItems_DataBound() Handles grdInvoiceItems.DataBound
-        If grdInvoiceItems.Rows.Count > 0 Then
-            grdInvoiceItems.FooterRow.Cells(0).Text = "Total"
-            grdInvoiceItems.FooterRow.Cells(0).CssClass = "table-cell-alignright"
-            grdInvoiceItems.FooterRow.Cells(1).Text = thisInvoice.TotalAmountDue.ToString("c")
-            grdInvoiceItems.FooterRow.Cells(1).CssClass = "table-cell-alignright"
-
-            grdInvoiceItems.HeaderRow.TableSection = TableRowSection.TableHeader
-            grdInvoiceItems.FooterRow.TableSection = TableRowSection.TableFooter
+    Protected Shared Function DisplayObject(o As Object, Optional format As String = "{0}") As String
+        If o Is Nothing Then
+            Return ""
         End If
-    End Sub
 
-    Protected Sub grdPayments_DataBound() Handles grdPayments.DataBound
-        If grdPayments.Rows.Count = 0 Then
-            pnlPayments.Visible = False
-        Else
-            grdPayments.FooterRow.Cells(0).Text = "Total"
-            grdPayments.FooterRow.Cells(0).CssClass = "table-cell-alignright"
-            grdPayments.FooterRow.Cells(1).Text = thisInvoice.PaymentsApplied.ToString("c")
-            grdPayments.FooterRow.Cells(1).CssClass = "table-cell-alignright"
+        Return String.Format(format, o.ToString)
+    End Function
 
-            grdPayments.HeaderRow.TableSection = TableRowSection.TableHeader
-            grdPayments.FooterRow.TableSection = TableRowSection.TableFooter
+    Protected Shared Function DisplayDate(d As Date, Optional format As String = "{0}") As String
+        Return String.Format(format, d.ToString(LongishDateFormat))
+    End Function
 
-            lblBalance.Text = thisInvoice.CurrentBalance.ToString("c")
+    Protected Shared Function DisplayNullableDate(d As Date?, Optional format As String = "{0}") As String
+        If Not d.HasValue Then
+            Return ""
         End If
-    End Sub
+
+        Return String.Format(format, d.Value.ToString(LongishDateFormat))
+    End Function
+
+    Protected Shared Function DisplayWhatFor(invoice As Invoice) As String
+        If invoice.InvoiceCategory = InvoiceCategory.EmissionsFees Then
+            Return "<b>" & invoice.FeeYear.ToString & " Emission Fees</b><br />" &
+                "Total emission fees: " & invoice.FeeYearTotalEmissionFees?.ToString("c") & "<br />" &
+                "Administrative fee: " & invoice.FeeYearTotalAdminFee?.ToString("c")
+        End If
+
+        Return "Permit Application #" & invoice.ApplicationID.ToString()
+    End Function
 
 End Class

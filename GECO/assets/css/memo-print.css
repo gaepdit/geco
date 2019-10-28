@@ -5,3 +5,11 @@ body {
 .toolbar {
     display: none;
 }
+
+.wrapper {
+    margin: 1em;
+    padding: 0;
+    box-shadow: none;
+    break-after: always;
+    page-break-after: always;
+}

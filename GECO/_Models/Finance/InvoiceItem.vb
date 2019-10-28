@@ -16,17 +16,25 @@ Namespace GecoModels
         Public Property ItemStatus As InvoiceItemStatus
         <Browsable(False)>
         Public Property RateCategory As FeeRateCategory
-        <DisplayName("Category")>
-        Public ReadOnly Property RateCategoryDisplay As String
+        <DisplayName("Description")>
+        Public ReadOnly Property InvoiceItemDescription As String
             Get
-                Return RateCategory.GetDescription
+                Select Case InvoiceCategory
+                    Case InvoiceCategory.EmissionsFees
+                        Return FeeYear.ToString & " " & InvoiceCategory.GetDescription & ", " & InvoiceType.Description
+
+                    Case InvoiceCategory.PermitApplicationFees
+                        Return RateCategory.GetDescription
+
+                    Case Else
+                        Return "Unknown"
+                End Select
             End Get
         End Property
         <DisplayName("Application #")>
         Public Property ApplicationID As Integer?
         <DisplayName("Fee Year")>
         Public Property FeeYear As Integer?
-
         <Browsable(False)>
         Public Property InvoiceCategoryID As Char
             Get
@@ -49,6 +57,7 @@ Namespace GecoModels
                 End Select
             End Set
         End Property
+        Public Property InvoiceType As InvoiceType
 
     End Class
 End Namespace
