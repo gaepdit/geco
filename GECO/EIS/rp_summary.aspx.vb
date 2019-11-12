@@ -137,10 +137,9 @@ Partial Class EIS_rp_summary
     Protected Sub gvwRPSummary_NoRP_RowDataBound(ByVal sender As Object, ByVal e As System.Web.UI.WebControls.GridViewRowEventArgs) Handles gvwRPSummary_NoRP.RowDataBound
         'Hide command button in gridview
         Try
-            If e.Row.RowType = DataControlRowType.DataRow Then
-                If e.Row.Cells(4).Text.ToString = "Not Submitted" Or e.Row.Cells(4).Text.ToString = "" Then
-                    e.Row.Cells(6).Enabled = False
-                End If
+            If e.Row.RowType = DataControlRowType.DataRow AndAlso
+                (e.Row.Cells(4).Text.ToString = "Not Submitted" OrElse e.Row.Cells(4).Text.ToString = "") Then
+                e.Row.Cells(6).Enabled = False
             End If
 
         Catch ex As Exception

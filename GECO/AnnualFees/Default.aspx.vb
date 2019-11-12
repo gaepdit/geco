@@ -155,13 +155,11 @@ Partial Class AnnualFees_Default
             lblContactMsg.Visible = True
             lblContactMsg.Text = "Contact information saved! "
 
-            If Not linkInvoice.Visible Then
-                If lblTotalFee.Text = "" And feeyear.Text <> "" Then
-                    'Load Data from database
-                    LoadFeeCalculations()
-                    ClassCalculate()
-                    UserTabs.ActiveTabIndex = 2
-                End If
+            If Not linkInvoice.Visible AndAlso lblTotalFee.Text = "" AndAlso feeyear.Text <> "" Then
+                'Load Data from database
+                LoadFeeCalculations()
+                ClassCalculate()
+                UserTabs.ActiveTabIndex = 2
             End If
 
         Catch exThreadAbort As System.Threading.ThreadAbortException
@@ -2438,14 +2436,13 @@ Partial Class AnnualFees_Default
 
     Protected Function ValidateFacilityInfoChange() As Integer
         Try
-            If UCase(lblFacilityName.Text) = UCase(txtfacName.Text) Then
-                If UCase(lblFacilityStreet.Text) = UCase(txtfacStreet.Text) Then
-                    If UCase(lblFacilityCity.Text) = UCase(txtfacCity.Text) Then
-                        'No change in Facility Info
-                        Return -1
-                    End If
-                End If
+            If UCase(lblFacilityName.Text) = UCase(txtfacName.Text) AndAlso
+                UCase(lblFacilityStreet.Text) = UCase(txtfacStreet.Text) AndAlso
+                UCase(lblFacilityCity.Text) = UCase(txtfacCity.Text) Then
+                'No change in Facility Info
+                Return -1
             End If
+
             Return 1
         Catch exThreadAbort As System.Threading.ThreadAbortException
             Return -1

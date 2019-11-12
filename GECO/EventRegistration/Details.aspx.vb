@@ -40,11 +40,9 @@ Partial Class EventRegistration_EventDetails
                     pUpdateRequired.Visible = True
                 End If
 
-                If CheckRegistration() Then
-                    If currentUser.ProfileUpdateRequired Then
-                        pUpdateRequired.Visible = False
-                        pUpdateRequiredRegistered.Visible = True
-                    End If
+                If CheckRegistration() AndAlso currentUser.ProfileUpdateRequired Then
+                    pUpdateRequired.Visible = False
+                    pUpdateRequiredRegistered.Visible = True
                 End If
             End If
         End If
