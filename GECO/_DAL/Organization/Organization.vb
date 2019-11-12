@@ -4,7 +4,7 @@ Namespace DAL
         Public Function GetEpdManagersAsDataTable() As DataTable
             Dim query As String = "SELECT STRKEY AS Role, STRMANAGEMENTNAME AS Name FROM LOOKUPAPBMANAGEMENTTYPE WHERE STRCURRENTCONTACT = 'C'"
             Dim dt As DataTable = DB.GetDataTable(query)
-            dt.PrimaryKey = New DataColumn() {dt.Columns("Role")}
+            dt.PrimaryKey = {dt.Columns("Role")}
             Return dt
         End Function
 
