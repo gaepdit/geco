@@ -26,7 +26,7 @@ Partial Class eis_process_edit
             Else
                 btnDeleteProcess.Visible = True
             End If
-            lblConfirmDelete1.Text = "Do you want to delete Process " + processid + " for Emission Unit " + emissionunitID + "?"
+            lblConfirmDelete1.Text = "Do you want to delete Process " & processid & " for Emission Unit " & emissionunitID & "?"
             btnDeleteSummary.Visible = False
         End If
 
@@ -199,7 +199,7 @@ Partial Class eis_process_edit
         DeleteAllProcessControlMeasures(FacilitySiteID, EmissionsUnitID, ProcessID)
         DeleteProcessControlApproach(FacilitySiteID, EmissionsUnitID, ProcessID)
         DeleteProcess(FacilitySiteID, EmissionsUnitID, ProcessID, UpdateUser)
-        lblConfirmDelete1.Text = "Process " + ProcessID + " for Emission Unit " + EmissionsUnitID + " has been deleted."
+        lblConfirmDelete1.Text = "Process " & ProcessID & " for Emission Unit " & EmissionsUnitID & " has been deleted."
         btnNoDelete.Visible = False
         btnDeleteProcessOK.Visible = False
         btnDeleteSummary.Visible = True

@@ -134,7 +134,7 @@ Partial Class eis_releasepoint_summary
                 Response.Redirect(targetpage)
             Case "1"
                 args.IsValid = False
-                cusvFugitiveID.ErrorMessage = " Release Point " + Fugitiveid + " is already in use.  Please enter another."
+                cusvFugitiveID.ErrorMessage = " Release Point " & Fugitiveid & " is already in use.  Please enter another."
                 txtNewFugitiveRP.Text = ""
                 btnAddFugitiveRP_ModalPopupExtender.Show()
             Case "n"
@@ -166,7 +166,7 @@ Partial Class eis_releasepoint_summary
                 Response.Redirect(Targetpage)
             Case "1"
                 args.IsValid = False
-                cusvStackID.ErrorMessage = " Stack " + StackID + " is already in use.  Please enter another."
+                cusvStackID.ErrorMessage = " Stack " & StackID & " is already in use.  Please enter another."
                 txtNewStackID.Text = ""
                 btnAddStack_ModalPopupExtender.Show()
             Case "n"

@@ -70,7 +70,7 @@ Partial Class EIS_rp_details
                     btnAddPollutant.Visible = True
                     btnEditRPEmissions.Visible = False
                     lblRPEmissions.Visible = True
-                    lblRPEmissions.Text = "A Pollutant must be added to this " + eiyear + " Reporting Period Process."
+                    lblRPEmissions.Text = "A Pollutant must be added to this " & eiyear & " Reporting Period Process."
                 Else
                     btnAddPollutant.Visible = False
                     btnEditRPEmissions.Visible = True

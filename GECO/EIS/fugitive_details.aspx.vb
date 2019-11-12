@@ -352,7 +352,7 @@ Partial Class eis_fugitive_details
                 Response.Redirect(targetpage)
             Case "1"
                 args.IsValid = False
-                cusvFugitiveID.ErrorMessage = " Release Point " + Fugitiveid + " is already in use.  Please enter another."
+                cusvFugitiveID.ErrorMessage = " Release Point " & Fugitiveid & " is already in use.  Please enter another."
                 txtNewFugitiveRP.Text = ""
                 btnAddFugitiveRP_ModalPopupExtender.Show()
             Case "n"
@@ -374,22 +374,22 @@ Partial Class eis_fugitive_details
         Select Case RPIDActive
             Case "DFUG"
                 args.IsValid = False
-                cusvDuplicate.ErrorMessage = " Release Point " + RPID + " already exists and is a deleted fugitive release point. Enter another ID."
+                cusvDuplicate.ErrorMessage = " Release Point " & RPID & " already exists and is a deleted fugitive release point. Enter another ID."
                 txtDupFugitiveID.Text = ""
                 btnDuplicate_ModalPopupExtender.Show()
             Case "AFUG"
                 args.IsValid = False
-                cusvDuplicate.ErrorMessage = " Release Point " + RPID + " already exists and is a fugitive release point. Enter another ID."
+                cusvDuplicate.ErrorMessage = " Release Point " & RPID & " already exists and is a fugitive release point. Enter another ID."
                 txtDupFugitiveID.Text = ""
                 btnDuplicate_ModalPopupExtender.Show()
             Case "DSTK"
                 args.IsValid = False
-                cusvDuplicate.ErrorMessage = " Stack " + RPID + " is already in use by a deleted stack.  Please enter another ID."
+                cusvDuplicate.ErrorMessage = " Stack " & RPID & " is already in use by a deleted stack.  Please enter another ID."
                 txtDupFugitiveID.Text = ""
                 btnDuplicate_ModalPopupExtender.Show()
             Case "ASTK"
                 args.IsValid = False
-                cusvDuplicate.ErrorMessage = " Stack " + RPID + " is already in use.  Please enter another ID."
+                cusvDuplicate.ErrorMessage = " Stack " & RPID & " is already in use.  Please enter another ID."
                 txtDupFugitiveID.Text = ""
                 btnDuplicate_ModalPopupExtender.Show()
             Case "DNE"

@@ -484,7 +484,7 @@ Partial Class eis_emissionunit_details
                 Response.Redirect(targetpage)
             Case UnitActiveStatus.Active
                 args.IsValid = False
-                cusvEmissionUnitID.ErrorMessage = " Emission Unit " + EmissionsUnitID + " is already in use.  Please enter another."
+                cusvEmissionUnitID.ErrorMessage = " Emission Unit " & EmissionsUnitID & " is already in use.  Please enter another."
                 txtNewEmissionsUnitID.Text = ""
                 btnAddEmissionUnit_ModalPopupExtender.Show()
             Case UnitActiveStatus.DoesNotExist
@@ -506,12 +506,12 @@ Partial Class eis_emissionunit_details
         Select Case EUIDActive
             Case UnitActiveStatus.Inactive
                 args.IsValid = False
-                cusvDuplicate.ErrorMessage = " Emission Unit " + EmissionsUnitID + " already exists but is in a deleted state. Enter another ID or go to the Summary page to undelete."
+                cusvDuplicate.ErrorMessage = " Emission Unit " & EmissionsUnitID & " already exists but is in a deleted state. Enter another ID or go to the Summary page to undelete."
                 txtDupEmissionsUnitID.Text = ""
                 btnDuplicate_ModalPopupExtender.Show()
             Case UnitActiveStatus.Active
                 args.IsValid = False
-                cusvDuplicate.ErrorMessage = " Emission Unit " + EmissionsUnitID + " is already in use.  Please enter another."
+                cusvDuplicate.ErrorMessage = " Emission Unit " & EmissionsUnitID & " is already in use.  Please enter another."
                 txtDupEmissionsUnitID.Text = ""
                 btnDuplicate_ModalPopupExtender.Show()
             Case UnitActiveStatus.DoesNotExist
@@ -814,7 +814,7 @@ Partial Class eis_emissionunit_details
                 Response.Redirect(Targetpage)
             Case UnitActiveStatus.Active
                 args.IsValid = False
-                cusvNewProcessID.ErrorMessage = " Process ID " + ProcessID + " is already in use.  Please enter another."
+                cusvNewProcessID.ErrorMessage = " Process ID " & ProcessID & " is already in use.  Please enter another."
                 txtNewProcessID.Text = ""
                 btnAddprocess_ModalPopupExtender.Show()
             Case UnitActiveStatus.DoesNotExist

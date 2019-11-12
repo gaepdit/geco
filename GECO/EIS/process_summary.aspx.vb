@@ -294,7 +294,7 @@ Partial Class eis_process_summary
                 Response.Redirect(targetpage)
             Case UnitActiveStatus.Active
                 args.IsValid = False
-                cusvProcessID.ErrorMessage = " Process " + ProcessID + " is already in use.  Please enter another."
+                cusvProcessID.ErrorMessage = " Process " & ProcessID & " is already in use.  Please enter another."
                 txtNewProcessID.Text = ""
                 btnAdd_ModalPopupExtender.Show()
             Case UnitActiveStatus.DoesNotExist

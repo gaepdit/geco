@@ -173,7 +173,7 @@ Partial Class eis_emissionunit_summary
                 Response.Redirect(targetpage)
             Case UnitActiveStatus.Active
                 args.IsValid = False
-                cusvEmissionUnitID.ErrorMessage = " Emission Unit " + EmissionsUnitID + " is already in use.  Please enter another."
+                cusvEmissionUnitID.ErrorMessage = " Emission Unit " & EmissionsUnitID & " is already in use.  Please enter another."
                 txtNewEmissionsUnitID.Text = ""
                 btnAdd_ModalPopupExtender.Show()
             Case UnitActiveStatus.DoesNotExist

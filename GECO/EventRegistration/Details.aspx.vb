@@ -219,7 +219,7 @@ Partial Class EventRegistration_EventDetails
         Dim subject As String = "GA EPD Event Registration Confirmed"
 
         Dim linkPath As String = Page.ResolveUrl("~/EventRegistration/Details.aspx") & "?eventid=" & eventId.ToString
-        Dim linkUri As Uri = New Uri(New Uri(Request.Url.GetLeftPart(UriPartial.Authority) + Request.ApplicationPath), linkPath)
+        Dim linkUri As Uri = New Uri(New Uri(Request.Url.GetLeftPart(UriPartial.Authority) & Request.ApplicationPath), linkPath)
 
         Dim htmlBody As String = "<p>Dear " & currentUser.FullName & ",</p>" &
             "<p>Thank you for registering for the following event. </p>"
@@ -261,7 +261,7 @@ Partial Class EventRegistration_EventDetails
         Dim subject As String = "GA EPD Event Registration Cancelled"
 
         Dim linkPath As String = Page.ResolveUrl("~/EventRegistration/Details.aspx") & "?eventid=" & eventId.ToString
-        Dim linkUri As Uri = New Uri(New Uri(Request.Url.GetLeftPart(UriPartial.Authority) + Request.ApplicationPath), linkPath)
+        Dim linkUri As Uri = New Uri(New Uri(Request.Url.GetLeftPart(UriPartial.Authority) & Request.ApplicationPath), linkPath)
 
         Dim htmlBody As String = "<p>Dear " & currentUser.FullName & ",</p>" &
             "<p>Your registration for the following event has been <b>canceled.</b></p>" &
@@ -279,7 +279,7 @@ Partial Class EventRegistration_EventDetails
 
         If user IsNot Nothing Then
             Dim linkPath As String = Page.ResolveUrl("~/EventRegistration/Details.aspx") & "?eventid=" & eventId.ToString
-            Dim linkUri As Uri = New Uri(New Uri(Request.Url.GetLeftPart(UriPartial.Authority) + Request.ApplicationPath), linkPath)
+            Dim linkUri As Uri = New Uri(New Uri(Request.Url.GetLeftPart(UriPartial.Authority) & Request.ApplicationPath), linkPath)
 
             Dim htmlBody As String = "<p>Dear " & user.FullName & ",</p>" &
             "<p>Thank you for registering for the following event. You have been moved off the waiting list, and your registration is now <b>confirmed.</b></p>"
