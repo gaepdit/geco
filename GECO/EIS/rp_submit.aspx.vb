@@ -969,32 +969,32 @@ Partial Class EIS_rp_submit
             Dim airsNumber As String = Left(FacilitySiteID, 3) & "-" & Right(FacilitySiteID, 5)
             Dim facilityName As String = GetFacilityName(FacilitySiteID)
 
-            Dim plainBody As String = "The following facility has completed a submission to the Emission Inventory System. " &
+            Dim plainBody As New StringBuilder("The following facility has completed a submission to the Emission Inventory System. " &
                 "One or more processes at the facility (listed below) have reported emissions that have increased or decreased " &
                 "by at least 20 percent compared to previously reported values. " & vbNewLine &
                 vbNewLine &
                 airsNumber & ": " & facilityName & vbNewLine &
                 vbNewLine &
-                "Emission Unit ID, Process ID, Process Description" & vbNewLine
+                "Emission Unit ID, Process ID, Process Description" & vbNewLine)
 
             For Each row As DataRow In dt.Rows
-                plainBody &= row("EMISSIONSUNITID").ToString & ", " & row("PROCESSID").ToString & ", " & row("STRPROCESSDESCRIPTION").ToString & vbNewLine
+                plainBody.AppendLine(row("EMISSIONSUNITID").ToString & ", " & row("PROCESSID").ToString & ", " & row("STRPROCESSDESCRIPTION").ToString)
             Next
 
-            Dim htmlBody As String = "<p>The following facility has completed a submission to the Emission Inventory System. " &
+            Dim htmlBody As New StringBuilder("<p>The following facility has completed a submission to the Emission Inventory System. " &
                 "One or more processes at the facility (listed below) have reported emissions that have increased or decreased " &
                 "by at least 20 percent compared to previously reported values. </p>" &
                 "<p><b>" & airsNumber & "</b>: " & facilityName & "</p>" &
                 "<table><thead><tr><th style='text-align:left'>Emission Unit ID</th><th style='text-align:left'>Process ID</th>" &
-                "<th style='text-align:left'>Process Description</th></tr></thead><tbody>"
+                "<th style='text-align:left'>Process Description</th></tr></thead><tbody>")
 
             For Each row As DataRow In dt.Rows
-                htmlBody &= "<tr><td>" & row("EMISSIONSUNITID").ToString & "</td><td>" & row("PROCESSID").ToString & "</td><td>" & row("STRPROCESSDESCRIPTION").ToString & "</td></tr>"
+                htmlBody.Append("<tr><td>" & row("EMISSIONSUNITID").ToString & "</td><td>" & row("PROCESSID").ToString & "</td><td>" & row("STRPROCESSDESCRIPTION").ToString & "</td></tr>")
             Next
 
-            htmlBody &= "</tbody></table>"
+            htmlBody.Append("</tbody></table>")
 
-            SendEmail(GecoContactEmail, "GECO EIS - Notice of large changes in reported emissions", plainBody, htmlBody,
+            SendEmail(GecoContactEmail, "GECO EIS - Notice of large changes in reported emissions", plainBody.ToString, htmlBody.ToString,
                       caller:="EIS_rp_submit.EmailIf20PercentChange")
         End If
 
@@ -1030,36 +1030,36 @@ Partial Class EIS_rp_submit
             Dim airsNumber As String = Left(FacilitySiteID, 3) & "-" & Right(FacilitySiteID, 5)
             Dim facilityName As String = GetFacilityName(FacilitySiteID)
 
-            Dim plainBody As String = "The following facility has completed a submission to the Emission Inventory System. " &
+            Dim plainBody As New StringBuilder("The following facility has completed a submission to the Emission Inventory System. " &
                 "One or more processes at the facility (listed below) have reported emissions using ""Engineering Judgment"" " &
                 "or an ""Other"" emission factor. " & vbNewLine &
                 vbNewLine &
                 airsNumber & ": " & facilityName & vbNewLine &
                 vbNewLine &
-                "Emission Unit ID, Process ID, Process Description, Emission Calculation Method" & vbNewLine
+                "Emission Unit ID, Process ID, Process Description, Emission Calculation Method" & vbNewLine)
 
             For Each row As DataRow In dt.Rows
-                plainBody &= row("EMISSIONSUNITID").ToString & ", " & row("PROCESSID").ToString & ", " &
-                    row("STRPROCESSDESCRIPTION").ToString & ", " & row("STRDESC").ToString & vbNewLine
+                plainBody.AppendLine(row("EMISSIONSUNITID").ToString & ", " & row("PROCESSID").ToString & ", " &
+                    row("STRPROCESSDESCRIPTION").ToString & ", " & row("STRDESC").ToString)
             Next
 
-            Dim htmlBody As String = "<p>The following facility has completed a submission to the Emission Inventory System. " &
+            Dim htmlBody As New StringBuilder("<p>The following facility has completed a submission to the Emission Inventory System. " &
                 "One or more processes at the facility (listed below) have reported emissions using &ldquo;Engineering Judgment&rdquo; " &
                 "or an &ldquo;Other&rdquo; emission factor.</p>" &
                 "<p><b>" & airsNumber & "</b>: " & facilityName & "</p>" &
                 "<table><thead><tr>" &
                 "<th style='text-align:left'>Emission Unit ID</th><th style='text-align:left'>Process ID</th>" &
                 "<th style='text-align:left'>Process Description</th><th style='text-align:left'>Emission Calculation Method</th>" &
-                "</tr></thead><tbody>"
+                "</tr></thead><tbody>")
 
             For Each row As DataRow In dt.Rows
-                htmlBody &= "<tr><td>" & row("EMISSIONSUNITID").ToString & "</td><td>" & row("PROCESSID").ToString & "</td><td>" &
-                    row("STRPROCESSDESCRIPTION").ToString & "</td><td>" & row("STRDESC").ToString & "</td></tr>"
+                htmlBody.Append("<tr><td>" & row("EMISSIONSUNITID").ToString & "</td><td>" & row("PROCESSID").ToString & "</td><td>" &
+                    row("STRPROCESSDESCRIPTION").ToString & "</td><td>" & row("STRDESC").ToString & "</td></tr>")
             Next
 
-            htmlBody &= "</tbody></table>"
+            htmlBody.Append("</tbody></table>")
 
-            SendEmail(GecoContactEmail, "GECO EIS - Notice of emission calculation method", plainBody, htmlBody,
+            SendEmail(GecoContactEmail, "GECO EIS - Notice of emission calculation method", plainBody.ToString, htmlBody.ToString,
                       caller:="EIS_rp_submit.EmailIfEmissionCalcMethodIsVague")
         End If
 
