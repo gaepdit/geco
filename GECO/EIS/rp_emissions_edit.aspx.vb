@@ -580,7 +580,7 @@ Partial Class EIS_rp_emissions_edit
         'If no summer day emissions exist for process/pollutant then this routine saves annual emissions ('A') AND also deletes any summer day data if present.
         'This is possible if summer day existed and user chooses "No" for summer day and saves the annual only.
 
-        If pnlSummerDayPollutant.Visible = False Then
+        If Not pnlSummerDayPollutant.Visible Then
 
             'Save annual emissions only ('A')
             SaveEmissions()

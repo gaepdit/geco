@@ -469,7 +469,7 @@ Partial Class EIS_rp_entry
 #Region " Save Routines "
 
     Protected Sub btnSave_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnSave.Click
-        If NAICSExists = False Then
+        If Not NAICSExists Then
             'Do nothing - enables display of custom validator message
         Else
             SaveFacilityMailingAddress()

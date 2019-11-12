@@ -42,7 +42,7 @@ Partial Class eis_stack_edit
                 lblStackGCDataMissing.Text = ""
             End If
 
-            If StackEISSubmit = False And StackUsedInRPA = False Then
+            If Not StackEISSubmit AndAlso Not StackUsedInRPA Then
                 btnDelete.Visible = True
             Else
                 btnDelete.Visible = False
@@ -762,7 +762,7 @@ Partial Class eis_stack_edit
     End Sub
 
     Protected Sub btnSaveStack1_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnSaveStack1.Click, btnSaveStack2.Click
-        If RPFlowRateInRange = False Or RPGASRateAndFlowPresent = False Then
+        If Not RPFlowRateInRange OrElse Not RPGASRateAndFlowPresent Then
             'Do Nothing
         Else
             lblStackMessage.Visible = False

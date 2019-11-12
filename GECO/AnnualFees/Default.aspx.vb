@@ -76,7 +76,7 @@ Partial Class AnnualFees_Default
 
     Private Sub btnSavePnlFeeCalc_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSavePnlFeeCalc.Click
         Try
-            If chkNSPSExempt.Checked = True Then
+            If chkNSPSExempt.Checked Then
                 Dim chkNSPSReason As Boolean
                 Dim i As Integer
                 For i = 0 To (cblNSPSExempt.Items.Count - 1)
@@ -85,7 +85,7 @@ Partial Class AnnualFees_Default
                         Exit For
                     End If
                 Next
-                If chkNSPSReason = False Then
+                If Not chkNSPSReason Then
                     lblcblnspsreason.Visible = True
                     lblcblnspsreason.Text = "Please select all the NSPS exemptions that apply to your facility."
                     Exit Sub
@@ -94,7 +94,7 @@ Partial Class AnnualFees_Default
                 End If
             End If
 
-            If chkDidNotOperate.Checked = True Then
+            If chkDidNotOperate.Checked Then
                 Dim chkNoOperate As Boolean
                 Dim i As Integer
                 For i = 0 To (rblNoOperateReason.Items.Count - 1)
@@ -103,7 +103,7 @@ Partial Class AnnualFees_Default
                         Exit For
                     End If
                 Next
-                If chkNoOperate = False Then
+                If Not chkNoOperate Then
                     lblNoOperateReason.Visible = True
                     lblNoOperateReason.Text = "You must select at least one checkbox"
                     Exit Sub
@@ -205,7 +205,7 @@ Partial Class AnnualFees_Default
         Try
             Dim pagevalid As Boolean = UpdateDatabase()
 
-            If pagevalid = True Then
+            If pagevalid Then
                 SaveConfirmation()
                 Page.Dispose()
                 Response.BufferOutput = True
@@ -354,7 +354,7 @@ Partial Class AnnualFees_Default
             'For 1-hour zone non-attainment counties, the VOC/NOx emissions
             'threshold is 25 tons
 
-            If chkNonAttainment.Checked = True Then
+            If chkNonAttainment.Checked Then
                 If tons <= CDbl(numnathres.Text) Then
                     fee = 0.0
                 Else
@@ -392,7 +392,7 @@ Partial Class AnnualFees_Default
             End If
             Dim fee As Double
 
-            If chkNonAttainment.Checked = True Then
+            If chkNonAttainment.Checked Then
                 If tons <= CDbl(numnathres.Text) Then
                     fee = 0.0
                 Else
@@ -461,7 +461,7 @@ Partial Class AnnualFees_Default
 
     Private Sub CalculateFees()
         Try
-            If CInt(feeyear.Text) < 2006 And chkDidNotOperate.Checked = True Then
+            If CInt(feeyear.Text) < 2006 AndAlso chkDidNotOperate.Checked Then
                 DidNotOperate()
                 Exit Sub
             End If
@@ -483,7 +483,7 @@ Partial Class AnnualFees_Default
 
             lblPart70Fee.Text = String.Format("{0:C}", feecalculated)
 
-            If chkPart70SM.Items.FindByValue("Part 70 Fee").Selected = True Then
+            If chkPart70SM.Items.FindByValue("Part 70 Fee").Selected Then
                 If feecalculated < CDbl(titlevfee.Text) Then
                     feepart70 = CDbl(titlevfee.Text)
                 Else
@@ -491,7 +491,7 @@ Partial Class AnnualFees_Default
                 End If
             End If
 
-            If chkPart70SM.Items.FindByValue("Synthetic Minor Fee").Selected = True Then
+            If chkPart70SM.Items.FindByValue("Synthetic Minor Fee").Selected Then
                 If feepart70 < CDbl(smfee.Text) Then
                     feesm = CDbl(smfee.Text)
                 Else
@@ -499,8 +499,8 @@ Partial Class AnnualFees_Default
                 End If
             End If
 
-            If chkPart70SM.Items.FindByValue("Part 70 Fee").Selected = True And
-                chkPart70SM.Items.FindByValue("Synthetic Minor Fee").Selected = True Then
+            If chkPart70SM.Items.FindByValue("Part 70 Fee").Selected AndAlso
+                chkPart70SM.Items.FindByValue("Synthetic Minor Fee").Selected Then
                 If feecalculated < CDbl(titlevfee.Text) Then
                     feepart70 = CDbl(titlevfee.Text)
                 Else
@@ -514,7 +514,7 @@ Partial Class AnnualFees_Default
                 lblpart70SMFee.Text = String.Format("{0:C}", feepart70)
             End If
 
-            If chkNSPS1.Checked = True Then
+            If chkNSPS1.Checked Then
                 feensps = CDbl(nspsfee.Text)
             Else
                 chkNSPSExempt.Checked = False
@@ -522,7 +522,7 @@ Partial Class AnnualFees_Default
                 feensps = 0
             End If
 
-            If chkNSPSExempt.Checked = True Then
+            If chkNSPSExempt.Checked Then
                 chkNSPS1.Checked = True
                 If cblNSPSExempt.Items.Count < 1 Then
                     LoadNSPSExemptList()
@@ -1545,7 +1545,7 @@ Partial Class AnnualFees_Default
                 ddlClass.SelectedValue = txtClass.Text
             End If
 
-            If chkNSPS1.Checked = True Then
+            If chkNSPS1.Checked Then
                 nsps1 = "1"
             End If
 
@@ -1557,7 +1557,7 @@ Partial Class AnnualFees_Default
                 syntheticminor = "1"
             End If
 
-            If chkNSPSExempt.Checked = True Then
+            If chkNSPSExempt.Checked Then
                 exemptnsps = "1"
                 Dim sb As StringBuilder = New StringBuilder()
                 For i = 0 To cblNSPSExempt.Items.Count - 1
@@ -1571,7 +1571,7 @@ Partial Class AnnualFees_Default
                 nspsreason = "0"
             End If
 
-            If chkDidNotOperate.Checked = True Then
+            If chkDidNotOperate.Checked Then
                 operate = rblNoOperateReason.SelectedIndex
             End If
 
@@ -1728,7 +1728,7 @@ Partial Class AnnualFees_Default
                 ddlClass.SelectedValue = txtClass.Text
             End If
 
-            If chkNSPS1.Checked = True Then
+            If chkNSPS1.Checked Then
                 nsps1 = "1"
             End If
 
@@ -1740,7 +1740,7 @@ Partial Class AnnualFees_Default
                 syntheticminor = "1"
             End If
 
-            If chkNSPSExempt.Checked = True Then
+            If chkNSPSExempt.Checked Then
                 exemptnsps = "1"
                 Dim sb As StringBuilder = New StringBuilder()
                 'Dim sb1 As StringBuilder = New StringBuilder()
@@ -1764,7 +1764,7 @@ Partial Class AnnualFees_Default
                 'Next
             End If
 
-            If chkDidNotOperate.Checked = True Then
+            If chkDidNotOperate.Checked Then
                 operate = rblNoOperateReason.SelectedIndex
             End If
 
@@ -2191,7 +2191,7 @@ Partial Class AnnualFees_Default
             btnSavePnlFeeCalc.CausesValidation = True
             chkPart70SM.Visible = True
             chkNSPSExempt.Visible = True
-            If chkNSPSExempt.Checked = True Then
+            If chkNSPSExempt.Checked Then
                 If cblNSPSExempt.Items.Count < 1 Then
                     LoadNSPSExemptList()
                 End If
@@ -2215,7 +2215,7 @@ Partial Class AnnualFees_Default
 
     Private Sub chkNSPSExempt_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkNSPSExempt.CheckedChanged
         Try
-            If chkNSPSExempt.Checked = True Then
+            If chkNSPSExempt.Checked Then
                 If cblNSPSExempt.Items.Count < 1 Then
                     LoadNSPSExemptList()
                 End If
@@ -2233,7 +2233,7 @@ Partial Class AnnualFees_Default
 
     Protected Sub chkDidNotOperate_CheckedChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles chkDidNotOperate.CheckedChanged
         Try
-            If chkDidNotOperate.Checked = True Then
+            If chkDidNotOperate.Checked Then
                 DidNotOperate()
             Else
                 If rblNoOperateReason.SelectedValue <> "" Then
@@ -2245,7 +2245,7 @@ Partial Class AnnualFees_Default
                 btnCalculate.Visible = True
                 chkPart70SM.Visible = True
                 chkNSPSExempt.Visible = True
-                If chkNSPSExempt.Checked = True Then
+                If chkNSPSExempt.Checked Then
                     If cblNSPSExempt.Items.Count < 1 Then
                         LoadNSPSExemptList()
                     End If

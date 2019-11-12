@@ -458,13 +458,13 @@ Partial Class EIS_rp_operscp_edit
             If ddlFuelBurning.SelectedValue = "Yes" Then
                 SaveHeatContent(InventoryYear, FacilitySiteID, EmissionsUnitID, ProcessID, UpdateUser)
 
-                If cbxSulfurNegligible.Checked = False Then
+                If Not cbxSulfurNegligible.Checked Then
                     SaveSulfurContent(InventoryYear, FacilitySiteID, EmissionsUnitID, ProcessID, UpdateUser)
                 Else
                     DeleteSulfurAsh(InventoryYear, FacilitySiteID, EmissionsUnitID, ProcessID, "SULFUR")
                 End If
 
-                If cbxAshNegligible.Checked = False Then
+                If Not cbxAshNegligible.Checked Then
                     SaveAshContent(InventoryYear, FacilitySiteID, EmissionsUnitID, ProcessID, UpdateUser)
                 Else
                     DeleteSulfurAsh(InventoryYear, FacilitySiteID, EmissionsUnitID, ProcessID, "ASH")

@@ -21,7 +21,7 @@ Partial Class eis_process_edit
             pnlProcess.Visible = True
             Dim ProcessUsedInProcessReportingPeriod As Boolean = CheckProcessReportingPeriod(FacilitySiteID, emissionunitID, processid)
 
-            If ProcessEISSubmit = True Or ProcessUsedInProcessReportingPeriod = True Then
+            If ProcessEISSubmit OrElse ProcessUsedInProcessReportingPeriod Then
                 btnDeleteProcess.Visible = False
             Else
                 btnDeleteProcess.Visible = True

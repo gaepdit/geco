@@ -871,7 +871,7 @@ Partial Class eis_facility_edit
 
     Private Sub SaveAll()
 
-        If NAICSExists = False Then
+        If Not NAICSExists Then
             'Do nothing - enables display of custom validator message
         Else
             SaveFacilityMailingAddress()

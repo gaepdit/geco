@@ -31,7 +31,7 @@ Partial Class es_confirm
                 lblESYear3.Text = Session("ESYear")
                 ESExist = CheckESExist(AirsYear)
 
-                If ESExist = False Then
+                If Not ESExist Then
                     CreateConfNum()
                 End If
 

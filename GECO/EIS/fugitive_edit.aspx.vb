@@ -44,7 +44,7 @@ Partial Class eis_fugitive_edit
                 lblFugitiveGCDataMissing.Text = ""
             End If
 
-            If FugitiveEISSubmit = False And FugitiveUsedInRPA = False Then
+            If Not FugitiveEISSubmit AndAlso Not FugitiveUsedInRPA Then
                 btnDelete.Visible = True
             Else
                 btnDelete.Visible = False

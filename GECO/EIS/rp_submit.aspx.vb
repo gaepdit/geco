@@ -693,7 +693,7 @@ Partial Class EIS_rp_submit
 
     Private Sub CheckE30(dtList As DataTable)
         Try
-            If dtList IsNot Nothing AndAlso dtList.Rows.Count > 0 AndAlso dtList.Rows(0)(0) = True Then
+            If dtList IsNot Nothing AndAlso dtList.Rows.Count > 0 AndAlso CBool(dtList.Rows(0)(0)) Then
                 lblBadNaics.Text = ""
                 hlBadNaics.Visible = False
             Else
@@ -755,7 +755,7 @@ Partial Class EIS_rp_submit
 
     Private Sub CheckE35(dtList As DataTable)
         Try
-            If dtList IsNot Nothing AndAlso dtList.Rows.Count > 0 AndAlso dtList.Rows(0)(0) = True Then
+            If dtList IsNot Nothing AndAlso dtList.Rows.Count > 0 AndAlso CBool(dtList.Rows(0)(0)) Then
                 lblInvalidSiteStatus.Text = "Invalid Facility Site Status or missing Site Status Code Year. Please contact the APB to correct."
                 lblInvalidSiteStatus.Visible = True
 
@@ -773,7 +773,7 @@ Partial Class EIS_rp_submit
 
     Private Sub CheckE36(dtList As DataTable)
         Try
-            If dtList IsNot Nothing AndAlso dtList.Rows.Count > 0 AndAlso dtList.Rows(0)(0) = True Then
+            If dtList IsNot Nothing AndAlso dtList.Rows.Count > 0 AndAlso CBool(dtList.Rows(0)(0)) Then
                 lblMissingSiteAddress.Text = ""
                 lblMissingSiteAddress.Visible = False
             Else
@@ -791,7 +791,7 @@ Partial Class EIS_rp_submit
 
     Private Sub CheckE37(dtList As DataTable)
         Try
-            If dtList IsNot Nothing AndAlso dtList.Rows.Count > 0 AndAlso dtList.Rows(0)(0) = True Then
+            If dtList IsNot Nothing AndAlso dtList.Rows.Count > 0 AndAlso CBool(dtList.Rows(0)(0)) Then
                 lblMissingFacilityGeo.Text = ""
                 lblMissingFacilityGeo.Visible = False
             Else
