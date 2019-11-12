@@ -142,15 +142,7 @@ Partial Class es_confirm
 
 #Region " Button Routines "
 
-    Protected Sub btnOptOutChange1_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnOptOutChange1.Click
-
-        Session("eschanges") = "TRUE"
-
-        Response.Redirect("esform.aspx")
-
-    End Sub
-
-    Protected Sub btnConfFinal_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnConfFinal.Click
+    Protected Sub btnOptOutChange1_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnOptOutChange1.Click, btnConfFinal.Click
 
         Session("eschanges") = "TRUE"
 

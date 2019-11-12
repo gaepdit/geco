@@ -153,17 +153,7 @@ Partial Class eis_rpapportionment_edit
         End Try
     End Sub
 
-    Protected Sub btnCancel1_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnProcessSummary.Click
-
-        Dim eu As String = txtEmissionsUnitID.Text.ToUpper
-        Dim ep As String = txtProcessID.Text.ToUpper
-        Dim targetpage As String = "process_details.aspx" & "?eu=" & eu & "&ep=" & ep
-
-        Response.Redirect(targetpage)
-
-    End Sub
-
-    Protected Sub btnCancel2_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnCancel2.Click
+    Protected Sub btnCancel1_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnProcessSummary.Click, btnCancel2.Click
 
         Dim eu As String = txtEmissionsUnitID.Text.ToUpper
         Dim ep As String = txtProcessID.Text.ToUpper

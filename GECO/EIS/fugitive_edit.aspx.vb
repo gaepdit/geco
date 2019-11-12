@@ -686,27 +686,14 @@ Partial Class eis_fugitive_edit
 
     End Sub
 
-    Protected Sub btnCancel_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnCancel.Click
+    Protected Sub btnCancel_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnCancel.Click, btnCancel3.Click
         Dim FugitiveId As String = txtReleasePointID.Text
         Dim targetpage As String = "fugitive_details.aspx" & "?fug=" & FugitiveId
 
         Response.Redirect(targetpage)
     End Sub
 
-    Protected Sub btnCancel3_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnCancel3.Click
-        Dim FugitiveId As String = txtReleasePointID.Text
-        Dim targetpage As String = "fugitive_details.aspx" & "?fug=" & FugitiveId
-
-        Response.Redirect(targetpage)
-    End Sub
-
-    Protected Sub btnReturnToSummary_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnReturnToSummary.Click
-        Dim targetpage As String = "releasepoint_summary.aspx"
-
-        Response.Redirect(targetpage)
-    End Sub
-
-    Protected Sub btnReturnSummary2_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnReturnSummary2.Click
+    Protected Sub btnReturnToSummary_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnReturnToSummary.Click, btnReturnSummary2.Click
         Dim targetpage As String = "releasepoint_summary.aspx"
 
         Response.Redirect(targetpage)

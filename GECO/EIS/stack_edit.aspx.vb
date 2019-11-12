@@ -775,14 +775,7 @@ Partial Class eis_stack_edit
     End Sub
 
 
-    Protected Sub btnCancel_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnCancel.Click
-        Dim StackId As String = txtReleasePointID.Text
-        Dim targetpage As String = "Stack_details.aspx" & "?stk=" & StackId
-
-        Response.Redirect(targetpage)
-    End Sub
-
-    Protected Sub btnCancel3_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnCancel3.Click
+    Protected Sub btnCancel_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnCancel.Click, btnCancel3.Click
         Dim StackId As String = txtReleasePointID.Text
         Dim targetpage As String = "Stack_details.aspx" & "?stk=" & StackId
 

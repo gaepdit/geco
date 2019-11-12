@@ -497,13 +497,7 @@ Partial Class eis_eucontrolapproach_edit
         Response.Redirect(targetpage)
     End Sub
 
-    Protected Sub btnCancel2_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnCancel2.Click
-        Dim EmissionsUnitID As String = txtEmissionUnitID.Text.ToUpper
-        Dim targetpage As String = "~/EIS/emissionunit_details.aspx?eu=" & EmissionsUnitID
-        Response.Redirect(targetpage)
-    End Sub
-
-    Protected Sub btnDeleteDetails_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnDeleteDetails.Click
+    Protected Sub btnCancel2_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnCancel2.Click, btnDeleteDetails.Click
         Dim EmissionsUnitID As String = txtEmissionUnitID.Text.ToUpper
         Dim targetpage As String = "~/EIS/emissionunit_details.aspx?eu=" & EmissionsUnitID
         Response.Redirect(targetpage)

@@ -438,15 +438,6 @@ Partial Class eis_emissionunit_edit
 
     End Sub
 
-    Protected Sub btnCancel2_Click(ByVal sender As Object, ByVal e As System.EventArgs)
-
-        Dim EmissionsUnitID As String = txtEmissionsUnitID.Text
-        Dim targetpage As String = "~/EIS/emissionunit_details.aspx" & "?eu=" & EmissionsUnitID
-
-        Response.Redirect(targetpage)
-
-    End Sub
-
     Protected Sub btnSummary1_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnSummary1.Click
 
         Response.Redirect("~/EIS/emissionunit_summary.aspx")

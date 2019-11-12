@@ -486,14 +486,7 @@ Partial Class eis_processcontrolapproach_edit
     End Sub
 
     'Re-direct to Process Details
-    Protected Sub btnCancel_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnCancel.Click
-        Dim eu As String = txtEmissionUnitID.Text
-        Dim ep As String = txtProcessID.Text
-        Dim targetpage As String = "process_details.aspx" & "?eu=" & eu & "&ep=" & ep
-        Response.Redirect(targetpage)
-    End Sub
-    'Re-direct to Process Details
-    Protected Sub btnCancel2_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnCancel2.Click
+    Protected Sub btnCancel_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnCancel.Click, btnCancel2.Click, btnDeleteDetails.Click
         Dim eu As String = txtEmissionUnitID.Text
         Dim ep As String = txtProcessID.Text
         Dim targetpage As String = "process_details.aspx" & "?eu=" & eu & "&ep=" & ep
@@ -513,13 +506,6 @@ Partial Class eis_processcontrolapproach_edit
         btnDeleteOK.Visible = False
         btnDeleteDetails.Visible = True
         mpeDelete.Show()
-    End Sub
-
-    Protected Sub btnDeleteDetails_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnDeleteDetails.Click
-        Dim eu As String = txtEmissionUnitID.Text
-        Dim ep As String = txtProcessID.Text
-        Dim targetpage As String = "process_details.aspx" & "?eu=" & eu & "&ep=" & ep
-        Response.Redirect(targetpage)
     End Sub
 
     'Edit the Control Pollutant Efficiency

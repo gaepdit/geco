@@ -433,14 +433,7 @@ Partial Class EIS_rp_details
         Dim targetpage As String = "~/EIS/rp_operscp_edit.aspx" & "?eu=" & eu & "&ep=" & ep
         Response.Redirect(targetpage)
     End Sub
-    Protected Sub btnProcess1_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnProcess1.Click
-        Dim eu As String = txtEmissionsUnitID.Text.ToUpper
-        Dim ep As String = txtProcessID.Text.ToUpper
-        Dim targetpage As String = "~/EIS/process_details.aspx" & "?eu=" & eu & "&ep=" & ep
-        Response.Redirect(targetpage)
-    End Sub
-
-    Protected Sub btnProcess2_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnProcess2.Click
+    Protected Sub btnProcess1_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnProcess1.Click, btnProcess2.Click
         Dim eu As String = txtEmissionsUnitID.Text.ToUpper
         Dim ep As String = txtProcessID.Text.ToUpper
         Dim targetpage As String = "~/EIS/process_details.aspx" & "?eu=" & eu & "&ep=" & ep
