@@ -24,7 +24,7 @@ Partial Class eis_emissionunit_edit
             EUProcessExist = CheckProcessExistAny(FacilitySiteID, EmissionsUnitID)
             btnSummary.Visible = False
 
-            If EISSubmitStatus Or EUProcessExist Then
+            If EISSubmitStatus OrElse EUProcessExist Then
                 btnDeleteEmissionUnit.Visible = False
             End If
 
@@ -190,7 +190,7 @@ Partial Class eis_emissionunit_edit
                     txtUnitDesignCapacity.Text = ""
                 Else
                     UnitDesignCapacity = dr.Item("fltUnitDesignCapacity")
-                    If UnitDesignCapacity = -1 Or UnitDesignCapacity = 0 Then
+                    If UnitDesignCapacity = -1 OrElse UnitDesignCapacity = 0 Then
                         txtUnitDesignCapacity.Text = ""
                     Else
                         txtUnitDesignCapacity.Text = UnitDesignCapacity
@@ -205,7 +205,7 @@ Partial Class eis_emissionunit_edit
                     txtMaximumNameplateCapacity.Text = ""
                 Else
                     MaxNameplateCapacity = dr.Item("numMaximumNameplateCapacity")
-                    If MaxNameplateCapacity = -1 Or MaxNameplateCapacity = 0 Then
+                    If MaxNameplateCapacity = -1 OrElse MaxNameplateCapacity = 0 Then
                         txtMaximumNameplateCapacity.Text = ""
                     Else
                         txtMaximumNameplateCapacity.Text = MaxNameplateCapacity
@@ -264,7 +264,7 @@ Partial Class eis_emissionunit_edit
         Dim StatusCodeOnLoad As String = txtUnitStatusCodeOnLoad.Text
         Dim StatusCodeChanged As String = txtUnitStatusCodeChanged.Text
 
-        If StatusCodeOnLoad = "OP" And (StatusCodeChanged = "PS" Or StatusCodeChanged = "TS") Then
+        If StatusCodeOnLoad = "OP" AndAlso (StatusCodeChanged = "PS" OrElse StatusCodeChanged = "TS") Then
             'Open Unit Status warning
             mpeUnitStatusShutdown.Show()
         Else
@@ -338,7 +338,7 @@ Partial Class eis_emissionunit_edit
                 New SqlParameter("@UnitStatusCodeYear", UnitStatusCodeYear)
             }
 
-            If StatusCodeOnLoad = StatusCodeChanged Or StatusCodeChanged = "" Then
+            If StatusCodeOnLoad = StatusCodeChanged OrElse StatusCodeChanged = "" Then
                 'DON'T update Unit Status and Unit Status Code year
                 query = "Update eis_EmissionsUnit Set " &
                     "strUnitDescription = @UnitDescription, " &

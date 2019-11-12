@@ -209,7 +209,7 @@ Partial Class EIS_rp_entry
                 TxtLatitudeMeasure.Text = GetNullableString(dr.Item("numLatitudeMeasure"))
                 TxtLongitudeMeasure.Text = GetNullableString(dr.Item("numLongitudeMeasure"))
 
-                If TxtLatitudeMeasure.Text <> "" And TxtLongitudeMeasure.Text <> "" Then
+                If TxtLatitudeMeasure.Text <> "" AndAlso TxtLongitudeMeasure.Text <> "" Then
                     imgGoogleStaticMap.ImageUrl = GoogleMaps.GetStaticMapUrl(New Coordinate(TxtLatitudeMeasure.Text, TxtLongitudeMeasure.Text))
                     lnkGoogleMap.NavigateUrl = GoogleMaps.GetMapLinkUrl(New Coordinate(TxtLatitudeMeasure.Text, TxtLongitudeMeasure.Text))
                 Else
@@ -356,22 +356,22 @@ Partial Class EIS_rp_entry
         }
 
         'No search text in any field
-        If txtLookupNAICSCode.Text = "" And txtLookupNAICSDesc.Text = "" Then
+        If txtLookupNAICSCode.Text = "" AndAlso txtLookupNAICSDesc.Text = "" Then
             dview.RowFilter = ""
         End If
 
         'Search text only in NAICS Code
-        If txtLookupNAICSCode.Text <> "" And txtLookupNAICSDesc.Text = "" Then
+        If txtLookupNAICSCode.Text <> "" AndAlso txtLookupNAICSDesc.Text = "" Then
             dview.RowFilter = "NAICSCode LIKE '%" & txtLookupNAICSCode.Text & "%'"
         End If
 
         'Search text only in NAICS Description
-        If txtLookupNAICSCode.Text = "" And txtLookupNAICSDesc.Text <> "" Then
+        If txtLookupNAICSCode.Text = "" AndAlso txtLookupNAICSDesc.Text <> "" Then
             dview.RowFilter = "strDesc LIKE '%" & txtLookupNAICSDesc.Text & "%'"
         End If
 
         'Search text in both fields
-        If txtLookupNAICSCode.Text <> "" And txtLookupNAICSDesc.Text <> "" Then
+        If txtLookupNAICSCode.Text <> "" AndAlso txtLookupNAICSDesc.Text <> "" Then
             dview.RowFilter = "NAICSCode LIKE '%" & txtLookupNAICSCode.Text & "%' or strDesc LIKE '%" & txtLookupNAICSDesc.Text & "%'"
         End If
 
@@ -1088,7 +1088,7 @@ Partial Class EIS_rp_entry
         TxtHorizontalAccuracyMeasure.Text = "25"
         ddlHorReferenceDatCode.SelectedValue = "002"
 
-        If TxtLatitudeMeasure.Text <> "" And TxtLongitudeMeasure.Text <> "" Then
+        If TxtLatitudeMeasure.Text <> "" AndAlso TxtLongitudeMeasure.Text <> "" Then
             imgGoogleStaticMap.ImageUrl = GoogleMaps.GetStaticMapUrl(New Coordinate(TxtLatitudeMeasure.Text, TxtLongitudeMeasure.Text))
             lnkGoogleMap.NavigateUrl = GoogleMaps.GetMapLinkUrl(New Coordinate(TxtLatitudeMeasure.Text, TxtLongitudeMeasure.Text))
         Else

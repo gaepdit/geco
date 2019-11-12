@@ -12,7 +12,7 @@ Partial Class Account_Default
 
         Title = "GECO Account - " & currentUser.FullName
 
-        If Request.QueryString("action") = "updateprofile" Or currentUser.ProfileUpdateRequired Then
+        If Request.QueryString("action") = "updateprofile" OrElse currentUser.ProfileUpdateRequired Then
             pUpdateRequired.Visible = True
         End If
 

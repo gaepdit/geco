@@ -33,7 +33,7 @@ Partial Class es_esform
             ESExist = CheckESExist(AirsYear)
             EntryBegan = CheckESEntry(AirsYear)
 
-            If ESExist And EntryBegan Then
+            If ESExist AndAlso EntryBegan Then
                 LoadESSchema()
             Else
                 LoadFacilityLocation()
@@ -647,7 +647,7 @@ Partial Class es_esform
 
     Protected Sub btnSave_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnSave.Click
 
-        If txtNOx.Text = "0" And txtVOC.Text = "0" Then
+        If txtNOx.Text = "0" AndAlso txtVOC.Text = "0" Then
             lblVOCNOXZero.Text = "VOC and NOx cannot both be zero."
         Else
             SaveES()
@@ -655,7 +655,7 @@ Partial Class es_esform
             UpdateAPBFacilityInfo()
         End If
 
-        If SavedES And SavedAPB Then
+        If SavedES AndAlso SavedAPB Then
 
             If cboYesNo.SelectedValue = "YES" Then
                 Session("ESOptOut") = "YES"
@@ -1096,7 +1096,7 @@ Partial Class es_esform
 
         lblDecLatLongEmpty.Text = ""
 
-        If txtLongDec.Text = "" Or txtLatDec.Text = "" Then
+        If txtLongDec.Text = "" OrElse txtLatDec.Text = "" Then
             lblDecLatLongEmpty.Text = "No Longitude or Latitude values were converted to use. Perform a conversion first."
             lblDecLatLongEmpty.Visible = True
         Else

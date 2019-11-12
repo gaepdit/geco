@@ -267,7 +267,7 @@ Partial Class eis_facility_details
                 Else
                     TxtGeographicComment.Text = dr.Item("strGeographicComment")
                 End If
-                If TxtLatitudeMeasure.Text <> "" And TxtLongitudeMeasure.Text <> "" Then
+                If TxtLatitudeMeasure.Text <> "" AndAlso TxtLongitudeMeasure.Text <> "" Then
                     imgGoogleStaticMap.ImageUrl = GoogleMaps.GetStaticMapUrl(New Coordinate(TxtLatitudeMeasure.Text, TxtLongitudeMeasure.Text))
                     lnkGoogleMap.NavigateUrl = GoogleMaps.GetMapLinkUrl(New Coordinate(TxtLatitudeMeasure.Text, TxtLongitudeMeasure.Text))
                 Else

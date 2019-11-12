@@ -221,7 +221,7 @@ Partial Class eis_fugitive_details
                 End If
 
                 'Render Google map
-                If TxtLatitudeMeasure.Text <> "" And TxtLongitudeMeasure.Text <> "" Then
+                If TxtLatitudeMeasure.Text <> "" AndAlso TxtLongitudeMeasure.Text <> "" Then
                     FacilityLatitude = TxtLatitudeMeasure.Text
                     FacilityLongitude = TxtLongitudeMeasure.Text
                 Else

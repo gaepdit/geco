@@ -63,7 +63,7 @@ Partial Class EIS_report_fw_emsummary
         loadEmissionsSummarygvw()
         gvwEmissionsSummarySize = gvwEmissionsSummary.Rows.Count
 
-        If gvwEmissionsSummarySize <= 0 Or ddlInventoryYear_fwemSummary.SelectedValue = "No Data" Then
+        If gvwEmissionsSummarySize <= 0 OrElse ddlInventoryYear_fwemSummary.SelectedValue = "No Data" Then
             lblEmptygvwEmissionsSummary.Visible = True
             lblFWSummary.Visible = False
             btnExport_fwemSummary.Visible = False

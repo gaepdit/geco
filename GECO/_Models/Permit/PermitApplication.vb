@@ -72,11 +72,11 @@
                 Return ConcatNonEmptyStrings("-", {Mid(value, 1, 3), Mid(value, 4)})
             End If
 
-            If Not Char.IsDigit(value(0)) Or value.Contains(" ") Then
+            If Not Char.IsDigit(value(0)) OrElse value.Contains(" ") Then
                 Return value
             End If
 
-            If Len(value) = 15 And IsNumeric(Left(value, 11)) And Not IsNumeric(Mid(value, 12, 1)) Then
+            If Len(value) = 15 AndAlso IsNumeric(Left(value, 11)) AndAlso Not IsNumeric(Mid(value, 12, 1)) Then
                 Return ConcatNonEmptyStrings("-", {Mid(value, 1, 4), Mid(value, 5, 3), Mid(value, 8, 4), Mid(value, 12, 1), Mid(value, 13, 2), Mid(value, 15)})
             End If
 

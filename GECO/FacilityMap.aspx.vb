@@ -13,11 +13,11 @@ Partial Class FacilityMap
         Dim longitude = CDbl(Request.QueryString("lon"))
 
         If Not Page.IsPostBack Then
-            If String.IsNullOrWhiteSpace(address) And latitude = 0 And longitude = 0 Then
+            If String.IsNullOrWhiteSpace(address) AndAlso latitude = 0 AndAlso longitude = 0 Then
                 HttpContext.Current.Response.Redirect("~/Default.aspx", True)
             End If
 
-            If latitude <> 0 And longitude <> 0 Then
+            If latitude <> 0 AndAlso longitude <> 0 Then
                 GMap.Center = LatLng.Create(latitude, longitude)
             Else
                 Dim geocoder = New Geocoding.GoogleGeocoder()

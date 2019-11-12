@@ -336,9 +336,9 @@ Partial Class AnnualFees_Default
         Try
             Dim county = Mid(GetCookie(Cookie.AirsNumber), 1, 3)
 
-            If county = "057" Or county = "063" Or county = "067" Or county = "077" Or county = "089" _
-                Or county = "097" Or county = "113" Or county = "117" Or county = "121" _
-                Or county = "135" Or county = "151" Or county = "223" Or county = "247" Then
+            If county = "057" OrElse county = "063" OrElse county = "067" OrElse county = "077" OrElse county = "089" _
+                OrElse county = "097" OrElse county = "113" OrElse county = "117" OrElse county = "121" _
+                OrElse county = "135" OrElse county = "151" OrElse county = "223" OrElse county = "247" Then
                 chkNonAttainment.Checked = True
             Else
                 chkNonAttainment.Checked = False
@@ -377,9 +377,9 @@ Partial Class AnnualFees_Default
         Try
             Dim county = Mid(GetCookie(Cookie.AirsNumber), 1, 3)
 
-            If county = "057" Or county = "063" Or county = "067" Or county = "077" Or county = "089" _
-                Or county = "097" Or county = "113" Or county = "117" Or county = "121" _
-                Or county = "135" Or county = "151" Or county = "223" Or county = "247" Then
+            If county = "057" OrElse county = "063" OrElse county = "067" OrElse county = "077" OrElse county = "089" _
+                OrElse county = "097" OrElse county = "113" OrElse county = "117" OrElse county = "121" _
+                OrElse county = "135" OrElse county = "151" OrElse county = "223" OrElse county = "247" Then
                 chkNonAttainment.Checked = True
             Else
                 chkNonAttainment.Checked = False

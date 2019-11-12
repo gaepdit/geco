@@ -371,7 +371,7 @@ Partial Class eis_stack_edit
                 Dim MapLatitude As Decimal
                 Dim MapLongitude As Decimal
 
-                If TxtLatitudeMeasure.Text <> "" And TxtLongitudeMeasure.Text <> "" Then
+                If TxtLatitudeMeasure.Text <> "" AndAlso TxtLongitudeMeasure.Text <> "" Then
                     MapLatitude = TxtLatitudeMeasure.Text
                     MapLongitude = TxtLongitudeMeasure.Text
                 Else
@@ -451,7 +451,7 @@ Partial Class eis_stack_edit
     ' Custom validators
 
     Protected Sub FlowRateRangeAndGasVelocityCheck(ByVal Sender As Object, ByVal args As ServerValidateEventArgs) Handles custRPExitGASVelocityMeasure.ServerValidate
-        If txtRPExitGasVelocityMeasure.Text = "" And txtRPExitGasFlowRateMeasure.Text = "" Then
+        If txtRPExitGasVelocityMeasure.Text = "" AndAlso txtRPExitGasFlowRateMeasure.Text = "" Then
             RPGASRateAndFlowPresent = False
             args.IsValid = False
             custRPExitGASVelocityMeasure.ErrorMessage = "Either exit gas velocity or exit gas flow rate is required."
@@ -470,7 +470,7 @@ Partial Class eis_stack_edit
 
         lblStackMessage.Visible = False
 
-        If StackDiameter = "" Or StackVelocity = "" Then
+        If StackDiameter = "" OrElse StackVelocity = "" Then
             Exit Sub
         End If
 
@@ -480,15 +480,15 @@ Partial Class eis_stack_edit
         RPFlowRateInRange = False
         args.IsValid = False
 
-        If StackFlowRate < StackFlowRateMinMax.MinValue Or StackFlowRate > StackFlowRateMinMax.MaxValue Then
+        If StackFlowRate < StackFlowRateMinMax.MinValue OrElse StackFlowRate > StackFlowRateMinMax.MaxValue Then
             cusvRPExitGasFlowRateMeasure.ErrorMessage = "Stack flow rate is outside of expected range based on stack diameter and velocity: " & StackFlowRateMinMax.MinValue & " acfs to " & StackFlowRateMinMax.MaxValue & " acfs."
             cusvRPExitGasFlowRateMeasure.Text = "Stack flow rate is outside of expected range: " & StackFlowRateMinMax.MinValue & " to " & StackFlowRateMinMax.MaxValue & " acfs."
             sumvStack.ShowSummary = True
-        ElseIf StackFlowRate < 0.00000001 Or StackFlowRate > 200000 Then
+        ElseIf StackFlowRate < 0.00000001 OrElse StackFlowRate > 200000 Then
             cusvRPExitGasFlowRateMeasure.ErrorMessage = "Stack flow rate is outside of the allowed range of 0.00000001 to 200,000 acfs."
             cusvRPExitGasFlowRateMeasure.Text = "Stack flow rate is outside of allowed range of 0.1 to 200,000 acfs."
             sumvStack.ShowSummary = True
-        ElseIf CalculatedExitGasVelocity < 0.001 Or CalculatedExitGasVelocity > 1000 Then
+        ElseIf CalculatedExitGasVelocity < 0.001 OrElse  CalculatedExitGasVelocity > 1000 Then
             cusvRPExitGasFlowRateMeasure.ErrorMessage = "Based on the stack diameter and flow rate entered, the calculated exit " &
                 "gas velocity (" & CalculatedExitGasVelocity.ToString & ") is outside of the allowed range of 0.001 to 1000 FPS."
             cusvRPExitGasFlowRateMeasure.Text = "Calculated exit gas velocity is outside of the allowed range of 0.001 to 1000 FPS."
@@ -529,7 +529,7 @@ Partial Class eis_stack_edit
 
         Try
             If RPFlowRateInRange Then
-                If StatusCodeOnLoad = StatusCodeChanged Or StatusCodeChanged = "" Then
+                If StatusCodeOnLoad = StatusCodeChanged OrElse StatusCodeChanged = "" Then
                     'Does not update Stack Status and Stack Status Code year
                     query = "Update EIS_RELEASEPOINT Set " &
                         "STRRPTYPECODE = @RPTypeCode, " &
@@ -845,7 +845,7 @@ Partial Class eis_stack_edit
             GMap.ApiKey = ConfigurationManager.AppSettings("GoogleMapsAPIKey")
             Dim latitude, longitude As Double
 
-            If TxtLatitudeMeasure.Text = "" Or TxtLongitudeMeasure.Text = "" Then
+            If TxtLatitudeMeasure.Text = "" OrElse TxtLongitudeMeasure.Text = "" Then
                 'Get Co-ordinates from facility for showing Google map
                 GetFacilityCoordinates()
                 latitude = CDbl(hidLatitude.Value)
@@ -855,7 +855,7 @@ Partial Class eis_stack_edit
                 longitude = CDbl(TxtLongitudeMeasure.Text)
             End If
 
-            If latitude <> 0 And longitude <> 0 Then
+            If latitude <> 0 AndAlso longitude <> 0 Then
                 GMap.Center = LatLng.Create(latitude, longitude)
                 txtMapLat.Text = Left(latitude.ToString(), 8)
                 txtMapLon.Text = Left(longitude.ToString(), 9)
@@ -899,7 +899,7 @@ Partial Class eis_stack_edit
             Dim MapLatitude As Decimal
             Dim MapLongitude As Decimal
 
-            If TxtLatitudeMeasure.Text <> "" And TxtLongitudeMeasure.Text <> "" Then
+            If TxtLatitudeMeasure.Text <> "" AndAlso TxtLongitudeMeasure.Text <> "" Then
                 MapLatitude = TxtLatitudeMeasure.Text
                 MapLongitude = TxtLongitudeMeasure.Text
             Else

@@ -178,7 +178,7 @@ Public Class Permit_Application
                 Exit Sub
             End If
 
-            If Not (.ExpeditedFeeApplies Or .ApplicationFeeApplies) Then
+            If Not (.ExpeditedFeeApplies OrElse .ApplicationFeeApplies) Then
                 pFeesNotApplicable.Visible = True
                 Exit Sub
             End If

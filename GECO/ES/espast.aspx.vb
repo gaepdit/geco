@@ -14,7 +14,7 @@ Partial Class ES_espast
             lblNOx.Text = Session("nox")
             lblVOC.Text = Session("voc")
 
-            If (lblNOx.Text = "0") And (lblVOC.Text = "0") Then
+            If (lblNOx.Text = "0") AndAlso (lblVOC.Text = "0") Then
                 ShowOptedOut()
             Else
                 ShowOptedIn()

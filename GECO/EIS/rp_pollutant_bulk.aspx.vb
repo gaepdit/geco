@@ -147,7 +147,7 @@ Partial Class EIS_rp_pollutant_bulk
                 End If
             Next
 
-            If SummerDayErrors > 0 Or NumBlanks > 0 Then
+            If SummerDayErrors > 0 OrElse NumBlanks > 0 Then
 
                 lblUpdateStatusTop.Text = "Updates in red not completed."
                 lblUpdateStatusBottom.Text = "Updates in red not completed. See error message above the table."

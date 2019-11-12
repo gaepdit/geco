@@ -8,7 +8,7 @@ Public Module ES_MiscCode
 
         If CheckESExist(ayr) Then
             Dim OptOut As String = CheckESOptOut(ayr)
-            If OptOut = "YES" Or OptOut = "NO" Then
+            If OptOut = "YES" OrElse OptOut = "NO" Then
                 Dim esSubmitted As String = GetESSubmit(ayr)
 
                 If OptOut = "YES" Then

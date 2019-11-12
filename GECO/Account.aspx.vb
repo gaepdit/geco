@@ -40,7 +40,7 @@ Partial Class Account
                 Case "change-email"
                     ' Used by IAIP for sending new email confirmation email
                     ' (IAIP can't directly send email)
-                    If String.IsNullOrEmpty(token) Or String.IsNullOrEmpty(email) Then
+                    If String.IsNullOrEmpty(token) OrElse String.IsNullOrEmpty(email) Then
                         Throw New HttpException(404, "Not found")
                     End If
 
@@ -53,7 +53,7 @@ Partial Class Account
 
                 Case "confirm"
                     ' Used for confirming a new GECO account
-                    If String.IsNullOrEmpty(token) Or String.IsNullOrEmpty(email) Then
+                    If String.IsNullOrEmpty(token) OrElse String.IsNullOrEmpty(email) Then
                         Throw New HttpException(404, "Not found")
                     End If
 
@@ -73,7 +73,7 @@ Partial Class Account
                     ' Used for resetting a forgotten password
                     ' (Password reset confirmation and new account
                     ' confirmation are identical on the database)
-                    If String.IsNullOrEmpty(token) Or String.IsNullOrEmpty(email) Then
+                    If String.IsNullOrEmpty(token) OrElse String.IsNullOrEmpty(email) Then
                         Throw New HttpException(404, "Not found")
                     End If
 
@@ -92,7 +92,7 @@ Partial Class Account
 
                 Case "update"
                     ' Used for changing the email address on the account
-                    If String.IsNullOrEmpty(token) Or String.IsNullOrEmpty(email) Then
+                    If String.IsNullOrEmpty(token) OrElse String.IsNullOrEmpty(email) Then
                         Throw New HttpException(404, "Not found")
                     End If
 

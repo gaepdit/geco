@@ -340,7 +340,7 @@ Partial Class eis_fugitive_edit
                 Dim MapLatitude As Decimal
                 Dim MapLongitude As Decimal
 
-                If TxtLatitudeMeasure.Text <> "" And TxtLongitudeMeasure.Text <> "" Then
+                If TxtLatitudeMeasure.Text <> "" AndAlso TxtLongitudeMeasure.Text <> "" Then
                     MapLatitude = TxtLatitudeMeasure.Text
                     MapLongitude = TxtLongitudeMeasure.Text
                 Else
@@ -445,7 +445,7 @@ Partial Class eis_fugitive_edit
         FugitiveID = FugitiveID.ToUpper
 
         Try
-            If StatusCodeOnLoad = StatusCodeChanged Or StatusCodeChanged = "" Then
+            If StatusCodeOnLoad = StatusCodeChanged OrElse StatusCodeChanged = "" Then
                 'Does not update Fugitive Status and Unit Status Code year
                 SQL = "Update EIS_RELEASEPOINT Set STRRPDESCRIPTION = @RPDescription , " &
                                      "NUMRPFENCELINEDISTMEASURE = @RPFenceLineDistanceMeasure , " &
@@ -768,7 +768,7 @@ Partial Class eis_fugitive_edit
             GMap.ApiKey = ConfigurationManager.AppSettings("GoogleMapsAPIKey")
             Dim latitude, longitude As Double
 
-            If TxtLatitudeMeasure.Text = "" Or TxtLongitudeMeasure.Text = "" Then
+            If TxtLatitudeMeasure.Text = "" OrElse TxtLongitudeMeasure.Text = "" Then
                 'Get Co-ordinates from facility for showing Google map
                 GetFacilityCoordinates()
                 latitude = CDbl(hidLatitude.Value)
@@ -778,7 +778,7 @@ Partial Class eis_fugitive_edit
                 longitude = CDbl(TxtLongitudeMeasure.Text)
             End If
 
-            If latitude <> 0 And longitude <> 0 Then
+            If latitude <> 0 AndAlso longitude <> 0 Then
                 GMap.Center = LatLng.Create(latitude, longitude)
                 txtMapLat.Text = Left(latitude.ToString(), 8)
                 txtMapLon.Text = Left(longitude.ToString(), 9)
@@ -834,7 +834,7 @@ Partial Class eis_fugitive_edit
             TxtHorizontalAccuracyMeasure.Text = "25"
             ddlHorReferenceDatCode.SelectedValue = "002"
 
-            If TxtLatitudeMeasure.Text <> "" And TxtLongitudeMeasure.Text <> "" Then
+            If TxtLatitudeMeasure.Text <> "" AndAlso TxtLongitudeMeasure.Text <> "" Then
                 FacilityLatitude = TxtLatitudeMeasure.Text
                 FacilityLongitude = TxtLongitudeMeasure.Text
             Else

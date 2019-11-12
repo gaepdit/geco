@@ -157,7 +157,8 @@ Partial Class EIS_rp_threshold
             Pb = rblPb.SelectedValue
         End If
 
-        If SOX = "Yes" And VOC = "Yes" And NOX = "Yes" And CO = "Yes" And PM10 = "Yes" And PM25 = "Yes" And NH3 = "Yes" And Pb = "Yes" Then
+        If SOX = "Yes" AndAlso VOC = "Yes" AndAlso NOX = "Yes" AndAlso CO = "Yes" AndAlso
+            PM10 = "Yes" AndAlso PM25 = "Yes" AndAlso NH3 = "Yes" AndAlso Pb = "Yes" Then
             'Facility will be opted out of the EI
             Dim colocated As Boolean = (rblIsColocated.SelectedValue = "Yes")
             Dim colocation As String = Nothing
@@ -202,7 +203,8 @@ Partial Class EIS_rp_threshold
 
         DisableRbls()
 
-        If SOX = "Yes" And VOC = "Yes" And NOX = "Yes" And CO = "Yes" And PM10 = "Yes" And PM25 = "Yes" And NH3 = "Yes" And Pb = "Yes" Then
+        If SOX = "Yes" AndAlso VOC = "Yes" AndAlso NOX = "Yes" AndAlso CO = "Yes" AndAlso
+            PM10 = "Yes" AndAlso PM25 = "Yes" AndAlso NH3 = "Yes" AndAlso Pb = "Yes" Then
             'Facility will be opted out of the EI - show opt OUT status message and submit button
             lblOptOutStatus1.Text = "The facility will not participate in the Emissions Inventory process for " & eiYear & "."
             pnlColocate.Visible = True

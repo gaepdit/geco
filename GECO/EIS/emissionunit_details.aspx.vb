@@ -184,7 +184,7 @@ Partial Class eis_emissionunit_details
                     txtUnitDesignCapacity.Text = ""
                 Else
                     UnitDesignCapacity = dr.Item("fltUnitDesignCapacity")
-                    If UnitDesignCapacity = -1 Or UnitDesignCapacity = 0 Then
+                    If UnitDesignCapacity = -1 OrElse UnitDesignCapacity = 0 Then
                         txtUnitDesignCapacity.Text = ""
                     Else
                         txtUnitDesignCapacity.Text = UnitDesignCapacity
@@ -206,7 +206,7 @@ Partial Class eis_emissionunit_details
                     ElecGen = False
                 Else
                     MaxNameplateCapacity = dr.Item("numMaximumNameplateCapacity")
-                    If MaxNameplateCapacity = -1 Or MaxNameplateCapacity = 0 Then
+                    If MaxNameplateCapacity = -1 OrElse MaxNameplateCapacity = 0 Then
                         txtMaxNameplateCapacity.Text = ""
                         ElecGen = False
                     Else

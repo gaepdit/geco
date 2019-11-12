@@ -37,7 +37,7 @@ Partial Class EIS_rp_emissions_edit
                 LoadPollutantDetails(FacilitySiteID, EmissionsUnitID, ProcessID, PollutantCode, EIYEar)
 
                 'Minimum value for Summer Day pollutant is 0.001 tpy; hide Summer Day panel if Actual Emissions < 0.300 tpy
-                If SummerDayRequired And (PollutantCode = "VOC" Or PollutantCode = "NOX") And EmissionTotal >= 0.3 Then
+                If SummerDayRequired AndAlso (PollutantCode = "VOC" OrElse PollutantCode = "NOX") AndAlso EmissionTotal >= 0.3 Then
                     pnlSummerDay.Visible = True
                     LoadSummerDay(FacilitySiteID, EmissionsUnitID, ProcessID, PollutantCode, EIYEar)
                 Else
@@ -257,12 +257,12 @@ Partial Class EIS_rp_emissions_edit
                 Else
                     txtEmissionFactor.Text = dr.Item("fltEmissionFactor")
                 End If
-                If IsDBNull(dr("EFNumUomCode")) Or txtEmissionFactor.Text = "" Then
+                If IsDBNull(dr("EFNumUomCode")) OrElse txtEmissionFactor.Text = "" Then
                     ddlEFNumUoM.SelectedIndex = 0
                 Else
                     ddlEFNumUoM.SelectedValue = dr.Item("EFNumUomCode")
                 End If
-                If IsDBNull(dr("EFDenUomCode")) Or txtEmissionFactor.Text = "" Then
+                If IsDBNull(dr("EFDenUomCode")) OrElse txtEmissionFactor.Text = "" Then
                     ddlEFDenUoM.SelectedIndex = 0
                 Else
                     ddlEFDenUoM.SelectedValue = dr.Item("EFDenUomCode")
@@ -406,7 +406,7 @@ Partial Class EIS_rp_emissions_edit
         DeleteReportingPeriodEmissions(EIYear, FacilitySiteID, EmissionsUnitID, ProcessID, PollutantCode, "A")
 
         'If summer day emissions exist delete in 1 OR 3 tables.
-        If (SummerDayCode = "VOC" Or SummerDayCode = "NOX") And SummerDayRequired Then
+        If (SummerDayCode = "VOC" OrElse SummerDayCode = "NOX") AndAlso SummerDayRequired Then
             'get summer day pollutant count for process BEFORE deleting in eis_reportingperiodemissions
             DeleteReportingPeriodEmissions(EIYear, FacilitySiteID, EmissionsUnitID, ProcessID, PollutantCode, "O3D")
             SummerDayPollutantCount = CountSummerDayPollutants(FacilitySiteID, EmissionsUnitID, ProcessID, EIYear)
@@ -457,7 +457,7 @@ Partial Class EIS_rp_emissions_edit
                 LoadPollutantDetails(FacilitySiteID, EmissionsUnitID, ProcessID, PollutantCode, EIYEar)
                 txtPollutantToDelete.Text = ddlPollutant.SelectedItem.Text
 
-                If SummerDayRequired And (PollutantCode = "VOC" Or PollutantCode = "NOX") And EmissionTotal >= 0.3 Then
+                If SummerDayRequired AndAlso (PollutantCode = "VOC" OrElse PollutantCode = "NOX") AndAlso EmissionTotal >= 0.3 Then
                     LoadSummerDay(FacilitySiteID, EmissionsUnitID, ProcessID, PollutantCode, EIYEar)
                     pnlSummerDay.Visible = True
                 Else
@@ -469,7 +469,7 @@ Partial Class EIS_rp_emissions_edit
                 ClearForm()
                 txtPollutantToDelete.Text = ""
 
-                If SummerDayRequired And (PollutantCode = "VOC" Or PollutantCode = "NOX") Then
+                If SummerDayRequired AndAlso (PollutantCode = "VOC" OrElse PollutantCode = "NOX") Then
                     pnlSummerDay.Visible = True
                     ddlSummerDay.SelectedIndex = 0
                     txtSummerDayPollutant.Text = ""
@@ -551,7 +551,7 @@ Partial Class EIS_rp_emissions_edit
             End If
 
             SaveEmissions()
-            If SummerDayEntered And (PollutantCode = "VOC" Or PollutantCode = "NOX") Then
+            If SummerDayEntered AndAlso (PollutantCode = "VOC" OrElse PollutantCode = "NOX") Then
                 SaveSummerDay(FacilitySiteID, EmissionsUnitID, ProcessID, PollutantCode, EIYear)
             End If
             LoadPollutantsGVW(FacilitySiteID, EmissionsUnitID, ProcessID)
@@ -585,7 +585,7 @@ Partial Class EIS_rp_emissions_edit
             'Save annual emissions only ('A')
             SaveEmissions()
 
-            If SummerDayRequired And (PollutantCode = "VOC" Or PollutantCode = "NOX") Then
+            If SummerDayRequired AndAlso (PollutantCode = "VOC" OrElse PollutantCode = "NOX") Then
                 'If summer day pollutant existed and user changed answer to "No" for summer day pollutant
                 'this routine deletes the summer day pollutant from ReportingPeriodEmissions, ProcessOperatingDetails, ProcessReportingPeriod
 
@@ -601,7 +601,7 @@ Partial Class EIS_rp_emissions_edit
 
                 EmissionTotal = GetEmissionTotal(FacilitySiteID, EmissionsUnitID, ProcessID, PollutantCode, "A", EIYear)
 
-                If SummerDayRequired And EmissionTotal > 0.3 Then
+                If SummerDayRequired AndAlso EmissionTotal > 0.3 Then
                     pnlSummerDay.Visible = True
                 End If
             End If
@@ -890,7 +890,7 @@ Partial Class EIS_rp_emissions_edit
         txtPollutantToDelete.Text = ddlPollutant.SelectedItem.Text
         ClearSaveMessages()
 
-        If SummerDayRequired And (PollutantCode = "VOC" Or PollutantCode = "NOX") And EmissionTotal > 0.3 Then
+        If SummerDayRequired AndAlso (PollutantCode = "VOC" OrElse PollutantCode = "NOX") AndAlso EmissionTotal > 0.3 Then
             pnlSummerDay.Visible = True
             LoadSummerDay(FacilitySiteID, EmissionsUnitID, ProcessID, PollutantCode, EIYear)
         Else
@@ -955,12 +955,12 @@ Partial Class EIS_rp_emissions_edit
 
         Dim Pollutant As String = ddlPollutant.SelectedValue
 
-        If ddlSummerDay.SelectedValue = "Yes" And Pollutant = "VOC" Then
+        If ddlSummerDay.SelectedValue = "Yes" AndAlso Pollutant = "VOC" Then
             lblSummerDayPollutant.Text = "Summer Day VOC Emissions (tons/day):"
             lblSummerDayPollutant.ToolTip = "Average daily summer emissions of VOC (Summer Day emissions)"
             pnlSummerDayPollutant.Visible = True
 
-        ElseIf ddlSummerDay.SelectedValue = "Yes" And Pollutant = "NOX" Then
+        ElseIf ddlSummerDay.SelectedValue = "Yes" AndAlso Pollutant = "NOX" Then
             lblSummerDayPollutant.Text = "Summer Day NOx Emissions (tons/day):"
             lblSummerDayPollutant.ToolTip = "Average daily summer emissions of NOx (Summer Day emissions)"
             pnlSummerDayPollutant.Visible = True

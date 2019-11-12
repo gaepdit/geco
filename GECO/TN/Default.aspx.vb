@@ -174,7 +174,7 @@ Partial Class TN_Default
 
             lblEmail.Text = GetNullableString(dr.Item("strContactEmail"))
 
-            If StaffResponsible = "" Or StaffResponsible = "000" Then
+            If StaffResponsible = "" OrElse StaffResponsible = "000" Then
                 lblEPDContact.Text = "** Not Assigned **"
                 lblEPDContact.ForeColor = Drawing.Color.Red
                 lblEPDTelephone.Text = "404-363-7000 (ask for Source Monitoring Unit)"

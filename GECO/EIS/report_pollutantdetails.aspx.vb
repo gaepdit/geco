@@ -109,7 +109,7 @@ Partial Class EIS_report_pollutantdetails
         loadReportgvw()
         gvwPollutantDetailsSize = gvwPollutantDetails.Rows.Count
 
-        If gvwPollutantDetailsSize <= 0 Or ddlInventoryYear_Pollutant.SelectedValue = "No Data" Then
+        If gvwPollutantDetailsSize <= 0 OrElse ddlInventoryYear_Pollutant.SelectedValue = "No Data" Then
             lblEmptygvwPollutantDetails.Text = "No data exists for the year selected or the facility has no data in the EI"
             lblEmptygvwPollutantDetails.Visible = True
             lblPollutantDetails.Text = ""

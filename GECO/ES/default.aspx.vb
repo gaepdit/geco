@@ -132,7 +132,7 @@ Partial Class es_default
                 lblNOx.Text = NOxAmt
                 lblVOC.Text = VOCAmt
 
-                If (NOxAmt = "0") And (VOCAmt = "0") Then
+                If (NOxAmt = "0") AndAlso (VOCAmt = "0") Then
                     ShowOptedOut()
                 Else
                     ShowOptedIn()

@@ -344,7 +344,7 @@ Partial Class EIS_rp_details
                 End If
 
                 'SCP Parameter Details
-                If String.IsNullOrEmpty(HeatContent) And String.IsNullOrEmpty(SulfurContent) And String.IsNullOrEmpty(AshContent) Then
+                If String.IsNullOrEmpty(HeatContent) AndAlso String.IsNullOrEmpty(SulfurContent) AndAlso String.IsNullOrEmpty(AshContent) Then
                     txtFuelUsage.Text = "No"
                     pnlFuelBurning.Visible = False
                 Else

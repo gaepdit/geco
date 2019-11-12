@@ -15,7 +15,7 @@ Public Module UserAccounts
 
         Select Case result
             Case 0
-                If ds IsNot Nothing And ds.Tables.Count > 1 Then
+                If ds IsNot Nothing AndAlso ds.Tables.Count > 1 Then
                     user = ParseUserFromDataRow(ds.Tables(0).Rows(0))
 
                     ds.Tables(1).PrimaryKey = {ds.Tables(1).Columns(0)}

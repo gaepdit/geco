@@ -56,7 +56,7 @@ Public Module HtmlTableFunctions
 
     <Extension()>
     Public Sub AddTableRow(table As Table, label As String, dateValue As Date?, Optional skipIfNull As Boolean = True, Optional labelIsHeader As Boolean = True, Optional classList As String() = Nothing)
-        If Not dateValue.HasValue And skipIfNull Then
+        If Not dateValue.HasValue AndAlso skipIfNull Then
             Exit Sub
         End If
 

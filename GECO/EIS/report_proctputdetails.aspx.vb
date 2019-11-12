@@ -126,7 +126,7 @@ Partial Class EIS_report_proctputdetails
         loadReportgvw()
         gvwEmissionsSummarySize = gvwProcessDetails.Rows.Count
 
-        If gvwEmissionsSummarySize <= 0 Or ddlInventoryYear_Process.SelectedValue = "No Data" Then
+        If gvwEmissionsSummarySize <= 0 OrElse ddlInventoryYear_Process.SelectedValue = "No Data" Then
             lblEmptygvwReportDetails.Text = "No data exists for the year selected or the facility has no data in the EI"
             lblEmptygvwReportDetails.Visible = True
             btnExportProcess.Visible = False

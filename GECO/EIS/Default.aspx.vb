@@ -51,7 +51,7 @@ Partial Class eis_Default
 
             Select Case EISAccessCode
                 Case "0"
-                    If OptOut = "0" And EISStatus = "5" Then
+                    If OptOut = "0" AndAlso EISStatus = "5" Then
                         'Facility opted in, data submitted and sent to EPA - No EI access, FI access allowed
                         ShowFacilityInventoryMenu()
                         HideEmissionInventoryMenu()
@@ -75,7 +75,7 @@ Partial Class eis_Default
                         btnAction2.Text = "Facility Home"
                         btnAction1.Visible = False
                         btnAction2.Visible = True
-                    ElseIf OptOut = "1" And EISStatus = "5" Then
+                    ElseIf OptOut = "1" AndAlso EISStatus = "5" Then
                         'Facility opted out and the bulk complete process was run - No EI access, FI access allowed
                         ShowFacilityInventoryMenu()
                         HideEmissionInventoryMenu()
@@ -101,7 +101,7 @@ Partial Class eis_Default
                         btnAction2.Text = "Facility Home"
                         btnAction1.Visible = False
                         btnAction2.Visible = True
-                    ElseIf OptOut = "NULL" And EISStatus = "0" Then
+                    ElseIf OptOut = "NULL" AndAlso EISStatus = "0" Then
                         'Facility not in current EI - No EI access, FI access allowed
                         ShowFacilityInventoryMenu()
                         HideEmissionInventoryMenu()
@@ -134,7 +134,7 @@ Partial Class eis_Default
                         DisplayEIError(facilityAIRS, "A1")
                     End If
                 Case "1"
-                    If OptOut = "NULL" And EISStatus = "1" Then
+                    If OptOut = "NULL" AndAlso EISStatus = "1" Then
                         'If null, EI not started - show panel to begin - EI and FI menus not yet available
                         HideFacilityInventoryMenu()
                         HideEmissionInventoryMenu()
@@ -162,7 +162,7 @@ Partial Class eis_Default
                         btnAction2.Text = "Facility Home"
                         btnAction1.Visible = True
                         btnAction2.Visible = True
-                    ElseIf OptOut = "0" And EISStatus = "2" Then
+                    ElseIf OptOut = "0" AndAlso EISStatus = "2" Then
                         'Facility opted in and is in progress - FI and EI menus available
                         ShowFacilityInventoryMenu()
                         ShowEmissionInventoryMenu()
@@ -193,7 +193,7 @@ Partial Class eis_Default
                         DisplayEIError(facilityAIRS, "A2")
                     End If
                 Case "2"
-                    If OptOut = "0" And EISStatus = "3" Then
+                    If OptOut = "0" AndAlso EISStatus = "3" Then
                         'Facility opted in, submitted but data not yet sent to EPA. Change allowed - FI and EI menus not available
                         HideFacilityInventoryMenu()
                         HideEmissionInventoryMenu()
@@ -217,7 +217,7 @@ Partial Class eis_Default
                         btnAction2.Text = "Facility Home"
                         btnAction1.Visible = True
                         btnAction2.Visible = True
-                    ElseIf OptOut = "1" And EISStatus = "3" Then
+                    ElseIf OptOut = "1" AndAlso EISStatus = "3" Then
                         'Facility opted out of EI but not yet "complete." May choose to opt in - FI and EI menus not available
                         HideFacilityInventoryMenu()
                         HideEmissionInventoryMenu()
@@ -243,7 +243,7 @@ Partial Class eis_Default
                         btnAction2.Text = "Facility Home"
                         btnAction1.Visible = True
                         btnAction2.Visible = True
-                    ElseIf OptOut = "0" And EISStatus = "4" Then
+                    ElseIf OptOut = "0" AndAlso EISStatus = "4" Then
                         'Facility opted in, submitted data and is in QA process. No option to make changes. FI and EI menus not available
                         HideFacilityInventoryMenu()
                         HideEmissionInventoryMenu()
@@ -358,7 +358,7 @@ Partial Class eis_Default
 
         Select Case EISAccessCode
             Case "1"
-                If OptOut = "NULL" And EISStatus = "1" Then
+                If OptOut = "NULL" AndAlso EISStatus = "1" Then
                     'If null, EI not started - show panel to begin - EI and FI menus not yet available
                     'Send to EI reporting period entry
                     Response.Redirect("rp_entry.aspx")
@@ -367,7 +367,7 @@ Partial Class eis_Default
                     DisplayEIError(FacilitySiteID, "B1")
                 End If
             Case "2"
-                If OptOut = "0" And EISStatus = "3" Then
+                If OptOut = "0" AndAlso EISStatus = "3" Then
                     'Facility opted in and submitted but data not yet n QA or to EPA. Change allowed - FI and EI menus not available
                     'Procedure to make changes
                     lblChangeText.Text = "Withdraw  " & EIYear & " Emissions Inventory submission to make changes. " &
@@ -375,7 +375,7 @@ Partial Class eis_Default
                     pnlStatus_Inner.Visible = False
                     pnlChange_Inner.Visible = True
                     pnlEISNotAvailable.Visible = False
-                ElseIf OptOut = "1" And EISStatus = "3" Then
+                ElseIf OptOut = "1" AndAlso EISStatus = "3" Then
                     'Facility opted out of EI but not yet "complete." May choose to opt in - FI and EI menus not available
                     'Procedure to make changes
                     lblChangeText.Text = "Change status for " & EIYear & " Emissions Inventory. " &

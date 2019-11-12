@@ -371,7 +371,7 @@ Partial Class FacilityHome
             PAText.Text = openCount & " open permit application" & If(openCount = 1, "", "s") & "."
         End If
 
-        If Not (facilityAccess.FeeAccess Or facilityAccess.AdminAccess) Then
+        If Not (facilityAccess.FeeAccess OrElse facilityAccess.AdminAccess) Then
             PAContact.Enabled = False
         End If
     End Sub
@@ -392,7 +392,7 @@ Partial Class FacilityHome
 
             For Each dr As DataRow In dt.Rows
                 Dim name As String = GetNullableString(dr.Item("STRCONTACTFIRSTNAME")) & " " & GetNullableString(dr.Item("STRCONTACTLASTNAME"))
-                If String.IsNullOrWhiteSpace(name) Or name = "N/A N/A" Then
+                If String.IsNullOrWhiteSpace(name) OrElse name = "N/A N/A" Then
                     name = "None"
                 End If
 
