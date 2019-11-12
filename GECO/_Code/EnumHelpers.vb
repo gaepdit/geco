@@ -32,7 +32,7 @@ Public Module EnumHelpers
         ' Find the value of the Description attribute on this enum value
         Dim members As MemberInfo() = enumType.GetMember(name)
         If members IsNot Nothing AndAlso members.Length > 0 Then
-            Dim descriptions() As Object = members(0).GetCustomAttributes(GetType(DescriptionAttribute), False)
+            Dim descriptions As Object() = members(0).GetCustomAttributes(GetType(DescriptionAttribute), False)
             If descriptions IsNot Nothing AndAlso descriptions.Length > 0 Then
                 ' Set name to description found
                 name = DirectCast(descriptions(0), DescriptionAttribute).Description

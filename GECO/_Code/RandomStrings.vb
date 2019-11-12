@@ -4,7 +4,7 @@ Public Module RandomStrings
 
     Public Function RandomString(ByVal intLength As Integer, Optional ByVal strAllowedCharacters As String = UnambiguousCharacters) As String
         Randomize()
-        Dim chrChars() As Char = strAllowedCharacters.ToCharArray
+        Dim chrChars As Char() = strAllowedCharacters.ToCharArray
         Dim strReturn As New StringBuilder
 
         Do Until Len(strReturn.ToString) = intLength
