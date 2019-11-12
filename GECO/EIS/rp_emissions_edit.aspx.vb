@@ -965,10 +965,6 @@ Partial Class EIS_rp_emissions_edit
             lblSummerDayPollutant.ToolTip = "Average daily summer emissions of NOx (Summer Day emissions)"
             pnlSummerDayPollutant.Visible = True
 
-        ElseIf ddlSummerDay.SelectedValue = "No" Then
-            txtSummerDayPollutant.Text = ""
-            pnlSummerDayPollutant.Visible = False
-
         Else
             txtSummerDayPollutant.Text = ""
             pnlSummerDayPollutant.Visible = False

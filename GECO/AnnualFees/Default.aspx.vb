@@ -268,7 +268,7 @@ Partial Class AnnualFees_Default
 
                     'lblpart70SMFee.Text = String.Format("{0:C}", part70smfee)
 
-                Case "B"
+                Case "B", "PR"
 
                     pnlEmissions.Visible = False
                     btnCalculate.Visible = True
@@ -285,12 +285,6 @@ Partial Class AnnualFees_Default
                         feesm = 0
                     End If
 
-                    ResetFees()
-
-                Case "PR"
-
-                    pnlEmissions.Visible = False
-                    btnCalculate.Visible = True
                     ResetFees()
 
                 Case Else

@@ -46,17 +46,6 @@ Partial Class EIS_rp_details
 
     Private Sub SetEIAccess(ByVal acc As String, ByVal eiyear As String)
         Select Case acc
-            Case 0, 2
-                'Hide Add/Edit/Summary buttons
-                btnEditRPEmissions.Visible = False
-                btnAddPollutant.Visible = False
-                btnEditRPDetails.Visible = False
-                btnSummary1.Visible = False
-                btnSummary2.Visible = False
-                gvwPollutants.Columns(3).Visible = False
-                gvwPollutants.Columns(4).Visible = True
-                btnProcess1.Visible = True
-                btnProcess2.Visible = True
             Case 1
                 'Show Add/Edit/Summary buttons
                 btnEditRPDetails.Visible = True
