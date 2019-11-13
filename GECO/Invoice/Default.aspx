@@ -113,7 +113,7 @@
                         Post Office Box 101713<br />
                         Atlanta, Georgia 30392
                     </blockquote>
-                    <p>To pay by credit card, please contact Sakina Strozier at (404) 362-2749.</p>
+                    <p>To pay by credit card, please contact Susie Kocsis at (470) 628-8378.</p>
                 </div>
             </div>
         </ItemTemplate>
