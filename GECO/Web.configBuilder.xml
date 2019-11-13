@@ -10,7 +10,7 @@
 -->
 <configuration>
   <appSettings>
-    <add key="GECO_VERSION" value="2019.10.28" />
+    <add key="GECO_VERSION" value="2019.11.13" />
     <add key="GECO_ENVIRONMENT" value="Development" />
     <add key="UndeliverableEmailFolder" value="..\_UnsentEmail" />
     <add key="LoggingFolder" value="..\_Logs" />
