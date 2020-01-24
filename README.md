@@ -10,11 +10,11 @@ GECO is a Web Forms Application targeting the .NET Framework version 4.6.2.
 
 ## Prerequisites for developing
 
-+ [Visual Studio](https://www.visualstudio.com/)
+* [Visual Studio](https://www.visualstudio.com/)
 
-+ SAP Crystal Reports, developer version for Microsoft Visual Studio is required if one of the Crystal Reports documents needs to be edited.
+* Copy `Web.configBuilder.Server-sample.xml` to `Web.configBuilder.Debug.xml` and add the connection string and API keys.
 
-    **Important:** See the IAIP repo for more instructions on setting up for Crystal Reports development.
+* When deploying, create `Web.configBuilder.Staging.xml` and `Web.configBuilder.Release.xml` files as needed.
 
 ## History
 
