@@ -7,6 +7,8 @@ Public Module eis_SCC
             FROM EISLK_SCC
             where [data category] = 'Point'
               and [status] = 'Active'
+              and ([last inventory year] = ''
+                  or [last inventory year] is null)
               and SCC = @SCC"
 
         Return DB.GetBoolean(query, New SqlParameter("@SCC", SCC))
@@ -17,6 +19,8 @@ Public Module eis_SCC
                 from EISLK_SCC
                 where [data category] = 'Point'
                   and [status] = 'Active'
+                  and ([last inventory year] = ''
+                      or [last inventory year] is null)
                   order by [scc level one] "
 
         Return DB.GetDataTable(query)
@@ -27,6 +31,8 @@ Public Module eis_SCC
                 from EISLK_SCC
                 where [data category] = 'Point'
                   and [status] = 'Active'
+                  and ([last inventory year] = ''
+                      or [last inventory year] is null)
                   and [scc level one] = @desc1
                   order by [scc level two] "
 
@@ -42,6 +48,8 @@ Public Module eis_SCC
                 from EISLK_SCC
                 where [data category] = 'Point'
                   and [status] = 'Active'
+                  and ([last inventory year] = ''
+                      or [last inventory year] is null)
                   and [scc level one] = @desc1
                   and [scc level two] = @desc2
                   order by [scc level three] "
@@ -59,6 +67,8 @@ Public Module eis_SCC
                 from EISLK_SCC
                 where [data category] = 'Point'
                   and [status] = 'Active'
+                  and ([last inventory year] = ''
+                      or [last inventory year] is null)
                   and [scc level one] = @desc1
                   and [scc level two] = @desc2
                   and [scc level three] = @desc3
@@ -94,6 +104,8 @@ Public Module eis_SCC
         from EISLK_SCC
         where [data category] = 'Point'
           and [status] = 'Active'
+          and ([last inventory year] = ''
+              or [last inventory year] is null)
           and [scc level one] = @desc1
           and [scc level two] = @desc2
           and [scc level three] = @desc3
@@ -132,6 +144,8 @@ Public Module eis_SCC
         from EISLK_SCC
         where [data category] = 'Point'
           and [status] = 'Active'
+          and ([last inventory year] = ''
+              or [last inventory year] is null)
           and [scc] = @scc"
 
         Dim dr As DataRow = DB.GetDataRow(query, New SqlParameter("@scc", scc))
