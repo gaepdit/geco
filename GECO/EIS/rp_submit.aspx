@@ -692,7 +692,7 @@
             </asp:GridView>
 
             <asp:Label ID="lblEmissionFactors" runat="server" Font-Bold="True"></asp:Label>
-            <asp:GridView ID="gvwEmissionFactors" runat="server" s
+            <asp:GridView ID="gvwEmissionFactors" runat="server"
                 DataKeyNames="EmissionsUnitID,ProcessID,PollutantCode" CellPadding="4" Font-Names="Arial"
                 Font-Size="Small" ForeColor="#333333" GridLines="None" AutoGenerateColumns="False"
                 class="gridview" PageSize="20" CssClass="gridview_errorlist">
@@ -1076,6 +1076,68 @@
                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                         <ItemStyle HorizontalAlign="Left" VerticalAlign="Top" />
                     </asp:HyperLinkField>
+                </Columns>
+                <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
+                <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
+                <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+                <EditRowStyle BackColor="#2461BF" />
+                <AlternatingRowStyle BackColor="White" />
+            </asp:GridView>
+
+            <asp:Label ID="lblE40" runat="server" Font-Bold="True"></asp:Label>
+            <asp:GridView ID="gvwE40" runat="server"
+                DataKeyNames="RELEASEPOINTID" CellPadding="4" Font-Names="Arial" Font-Size="Small"
+                ForeColor="#333333" GridLines="None" AutoGenerateColumns="False"
+                class="gridview" PageSize="20" CssClass="gridview_errorlist">
+                <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+                <RowStyle BackColor="#EFF3FB" />
+                <Columns>
+                    <asp:HyperLinkField DataNavigateUrlFields="RELEASEPOINTID" DataNavigateUrlFormatString="stack_edit.aspx?stk={0}"
+                        DataTextField="RELEASEPOINTID" HeaderText="Stack ID" NavigateUrl="~/eis/stack_edit.aspx">
+                        <HeaderStyle HorizontalAlign="Left" VerticalAlign="Middle" />
+                        <ItemStyle HorizontalAlign="Left" VerticalAlign="Top" />
+                    </asp:HyperLinkField>
+                    <asp:HyperLinkField DataNavigateUrlFields="RELEASEPOINTID" DataNavigateUrlFormatString="stack_edit.aspx?stk={0}"
+                        DataTextField="STRRPDESCRIPTION" HeaderText="Description" NavigateUrl="~/eis/stack_edit.aspx">
+                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                        <ItemStyle HorizontalAlign="Left" VerticalAlign="Top" />
+                    </asp:HyperLinkField>
+                    <asp:BoundField DataField="FacilLatLon" HeaderText="Facility coordinates" />
+                    <asp:BoundField DataField="RPLatLon" HeaderText="Stack coordinates" />
+                    <asp:BoundField DataField="LatDiff" HeaderText="Latitude difference" />
+                    <asp:BoundField DataField="LonDiff" HeaderText="Longitude difference" />
+                    <asp:BoundField DataField="Threshold" HeaderText="Error threshold" />
+                </Columns>
+                <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
+                <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
+                <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+                <EditRowStyle BackColor="#2461BF" />
+                <AlternatingRowStyle BackColor="White" />
+            </asp:GridView>
+
+            <asp:Label ID="lblE41" runat="server" Font-Bold="True"></asp:Label>
+            <asp:GridView ID="gvwE41" runat="server"
+                DataKeyNames="RELEASEPOINTID" CellPadding="4" Font-Names="Arial" Font-Size="Small"
+                ForeColor="#333333" GridLines="None" AutoGenerateColumns="False"
+                class="gridview" PageSize="20" CssClass="gridview_errorlist">
+                <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+                <RowStyle BackColor="#EFF3FB" />
+                <Columns>
+                    <asp:HyperLinkField DataNavigateUrlFields="RELEASEPOINTID" DataNavigateUrlFormatString="fugitive_edit.aspx?stk={0}"
+                        DataTextField="RELEASEPOINTID" HeaderText="Stack ID" NavigateUrl="~/eis/fugitive_edit.aspx">
+                        <HeaderStyle HorizontalAlign="Left" VerticalAlign="Middle" />
+                        <ItemStyle HorizontalAlign="Left" VerticalAlign="Top" />
+                    </asp:HyperLinkField>
+                    <asp:HyperLinkField DataNavigateUrlFields="RELEASEPOINTID" DataNavigateUrlFormatString="fugitive_edit.aspx?stk={0}"
+                        DataTextField="STRRPDESCRIPTION" HeaderText="Description" NavigateUrl="~/eis/fugitive_edit.aspx">
+                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                        <ItemStyle HorizontalAlign="Left" VerticalAlign="Top" />
+                    </asp:HyperLinkField>
+                    <asp:BoundField DataField="FacilLatLon" HeaderText="Facility coordinates" />
+                    <asp:BoundField DataField="RPLatLon" HeaderText="Fugitive coordinates" />
+                    <asp:BoundField DataField="LatDiff" HeaderText="Latitude difference" />
+                    <asp:BoundField DataField="LonDiff" HeaderText="Longitude difference" />
+                    <asp:BoundField DataField="Threshold" HeaderText="Error threshold" />
                 </Columns>
                 <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
                 <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />

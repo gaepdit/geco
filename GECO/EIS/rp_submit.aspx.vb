@@ -375,6 +375,12 @@ Partial Class EIS_rp_submit
             ' Recordset 39 - E39 - Process has invalid throughput units for the selected Source Classification Code.
             CheckE39(ds.Tables(39))
 
+            ' Recordset 40 - E40 - Stack RP and Facility lat/lon values must not differ by more than the threshold.
+            CheckE40(ds.Tables(40))
+
+            ' Recordset 41 - E41 - Fugitive RP And Facility lat/lon values must Not differ by more than the threshold.
+            CheckE41(ds.Tables(41))
+
             'Check Warnings
             CheckPMTotalEmissionsWarning(ds.Tables(36))
             CheckFugitiveRPWarnings(ds.Tables(37))
@@ -837,6 +843,28 @@ Partial Class EIS_rp_submit
             ErrorsExist = True
         Else
             lblE39.Text = ""
+        End If
+    End Sub
+
+    Private Sub CheckE40(dtList As DataTable)
+        If dtList IsNot Nothing AndAlso dtList.Rows.Count > 0 Then
+            lblE40.Text = "E40 - Stack release point latitude and longitude values must not differ from facility latitude and longitude by more than the threshold."
+            gvwE40.DataSource = dtList
+            gvwE40.DataBind()
+            ErrorsExist = True
+        Else
+            lblE40.Text = ""
+        End If
+    End Sub
+
+    Private Sub CheckE41(dtList As DataTable)
+        If dtList IsNot Nothing AndAlso dtList.Rows.Count > 0 Then
+            lblE41.Text = "E41 - Fugitive release point latitude and longitude values must not differ from facility latitude and longitude by more than the threshold."
+            gvwE41.DataSource = dtList
+            gvwE41.DataBind()
+            ErrorsExist = True
+        Else
+            lblE41.Text = ""
         End If
     End Sub
 
