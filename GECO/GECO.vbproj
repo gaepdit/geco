@@ -1057,12 +1057,12 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
-    <Error Condition="!Exists('..\packages\Microsoft.VisualStudio.SlowCheetah.3.2.20\build\Microsoft.VisualStudio.SlowCheetah.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.VisualStudio.SlowCheetah.3.2.20\build\Microsoft.VisualStudio.SlowCheetah.targets'))" />
     <Error Condition="!Exists('..\packages\Microsoft.CodeAnalysis.VersionCheckAnalyzer.2.9.7\build\Microsoft.CodeAnalysis.VersionCheckAnalyzer.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeAnalysis.VersionCheckAnalyzer.2.9.7\build\Microsoft.CodeAnalysis.VersionCheckAnalyzer.props'))" />
     <Error Condition="!Exists('..\packages\Microsoft.CodeQuality.Analyzers.2.9.7\build\Microsoft.CodeQuality.Analyzers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeQuality.Analyzers.2.9.7\build\Microsoft.CodeQuality.Analyzers.props'))" />
     <Error Condition="!Exists('..\packages\Microsoft.NetCore.Analyzers.2.9.7\build\Microsoft.NetCore.Analyzers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.NetCore.Analyzers.2.9.7\build\Microsoft.NetCore.Analyzers.props'))" />
     <Error Condition="!Exists('..\packages\Microsoft.NetFramework.Analyzers.2.9.7\build\Microsoft.NetFramework.Analyzers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.NetFramework.Analyzers.2.9.7\build\Microsoft.NetFramework.Analyzers.props'))" />
     <Error Condition="!Exists('..\packages\Microsoft.CodeAnalysis.FxCopAnalyzers.2.9.7\build\Microsoft.CodeAnalysis.FxCopAnalyzers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeAnalysis.FxCopAnalyzers.2.9.7\build\Microsoft.CodeAnalysis.FxCopAnalyzers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.VisualStudio.SlowCheetah.3.2.26\build\Microsoft.VisualStudio.SlowCheetah.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.VisualStudio.SlowCheetah.3.2.26\build\Microsoft.VisualStudio.SlowCheetah.targets'))" />
   </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
@@ -1074,5 +1074,5 @@
   <Target Name="BeforeBuild">
     <TransformXml Source="Web.configBuilder.xml" Destination="Web.config" Transform="Web.configBuilder.$(Configuration).xml" />
   </Target>
-  <Import Project="..\packages\Microsoft.VisualStudio.SlowCheetah.3.2.20\build\Microsoft.VisualStudio.SlowCheetah.targets" Condition="Exists('..\packages\Microsoft.VisualStudio.SlowCheetah.3.2.20\build\Microsoft.VisualStudio.SlowCheetah.targets')" />
+  <Import Project="..\packages\Microsoft.VisualStudio.SlowCheetah.3.2.26\build\Microsoft.VisualStudio.SlowCheetah.targets" Condition="Exists('..\packages\Microsoft.VisualStudio.SlowCheetah.3.2.26\build\Microsoft.VisualStudio.SlowCheetah.targets')" />
 </Project>
