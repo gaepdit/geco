@@ -106,22 +106,18 @@
             </p>
         </li>
         <li>
-            <asp:Label ID="lblAnnualEIText" runat="server">
-                <p>
-                    The
+            <p>
+                <asp:Label ID="lblAnnualEIText" runat="server">The
                     <asp:Label ID="lblEIYear5" runat="server" Text=""></asp:Label>
                     EI is an <b>annual</b> data collection year; therefore the number of facilities
                     required to submit EI data is greatly reduced as the PTE thresholds are higher.
-                </p>
-            </asp:Label>
-            <asp:Label ID="lblTriennialEIText" runat="server" Visible="false">
-                <p>
-                    The
+                </asp:Label>
+                <asp:Label ID="lblTriennialEIText" runat="server" Visible="false">The
                     <asp:Label ID="lblEIYear6" runat="server" Text=""></asp:Label>
                     EI is a <b>triennial</b> data collection year; therefore most facilities in the 
                     EI system are required to submit EI data as the PTE thresholds are lower.
-                </p>
-            </asp:Label>
+                </asp:Label>
+            </p>
         </li>
         <li>
             <p>
