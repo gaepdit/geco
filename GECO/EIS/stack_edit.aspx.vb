@@ -488,10 +488,10 @@ Partial Class eis_stack_edit
             cusvRPExitGasFlowRateMeasure.ErrorMessage = "Stack flow rate is outside of the allowed range of 0.00000001 to 200,000 acfs."
             cusvRPExitGasFlowRateMeasure.Text = "Stack flow rate is outside of allowed range of 0.1 to 200,000 acfs."
             sumvStack.ShowSummary = True
-        ElseIf CalculatedExitGasVelocity < 0.001 OrElse  CalculatedExitGasVelocity > 1000 Then
+        ElseIf CalculatedExitGasVelocity < 0.001 OrElse CalculatedExitGasVelocity > 1500 Then
             cusvRPExitGasFlowRateMeasure.ErrorMessage = "Based on the stack diameter and flow rate entered, the calculated exit " &
-                "gas velocity (" & CalculatedExitGasVelocity.ToString & ") is outside of the allowed range of 0.001 to 1000 FPS."
-            cusvRPExitGasFlowRateMeasure.Text = "Calculated exit gas velocity is outside of the allowed range of 0.001 to 1000 FPS."
+                "gas velocity (" & CalculatedExitGasVelocity.ToString & ") is outside of the allowed range of 0.001 to 1500 FPS."
+            cusvRPExitGasFlowRateMeasure.Text = "Calculated exit gas velocity is outside of the allowed range of 0.001 to 1500 FPS."
             sumvStack.ShowSummary = True
         Else
             RPFlowRateInRange = True

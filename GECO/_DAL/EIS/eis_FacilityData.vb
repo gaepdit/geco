@@ -1,4 +1,5 @@
 ﻿Imports System.Data.SqlClient
+Imports GECO.GecoModels
 
 Public Module eis_FacilityData
 
@@ -105,5 +106,14 @@ Public Module eis_FacilityData
         DB.RunCommand(query, params)
     End Sub
 
+    Public Function IsFacilityLatLonLocked(facilityId As ApbFacilityId) As Boolean
+        Dim query = "select convert(bit, iif(CoordinatesProtected = 'Yes', 1, 0))
+            from EIS_EpaFacilityGeoCoord
+            where FACILITYSITEID = @FacilitySiteID "
+
+        Dim param As New SqlParameter("@FacilitySiteID", facilityId.ShortString)
+
+        Return DB.GetBoolean(query, param)
+    End Function
 
 End Module

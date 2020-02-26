@@ -44,7 +44,7 @@ Check #,Check Name,Check Description,Error Level,Check Type,NCD
 83,Effective Date Range for Unit Identification,The effective date range must be between 01/01/1900 to 12/31/2050.,Critical,Range,no
 85,End Date Range for Unit Identification,The end date must be between 01/01/1900 to 12/31/2050.,Critical,Range,no
 87,Effective Date and End Date Order for  Unit Identification,The effective date must be before the end date for an unit identification.,Critical,Range,no
-90,SCC Valid,Must match value in code list.,Critical,Code,no
+90,SCC Valid for all future years,SCC must exist in code list and have a null Last Inventory Year,Critical,Code,no
 94,Last Emissions Year for Process Range,The year reported should be between 1900 to 2050.,Critical,Range,no
 99,EIS Emission Release Point Identifier Exists,Must match an EIS emission release point identifier.,Critical,Conditional,no
 100,Release Point Type Code Valid,Must match value in code list.,Critical,Code,no
@@ -92,7 +92,7 @@ Check #,Check Name,Check Description,Error Level,Check Type,NCD
 185,Unit Status Code Present,The unit status code is required when reporting the EmissionsUnit component. The component and all dependent data will not be stored if there are missing required data.,Critical,Present,no
 187,SCC Present for Process,A source classification code is required when reporting the emissions process component. The component and all dependent data will not be stored if there are missing required data.,Critical,Present,no
 188,Average Percent Emissions Required,The average percent emissions is required.,Critical,Conditional,no
-191,Release Point velocity calculated from Flow and Diameter is out of range (0.001 to 1000 FPS),"If Exit Gas Flow Rate and Diameter are submitted, the following formula is used to calculate the release point exit gas velocity measure. Exit Gas Velocity = Flow Rate / Area (assuming a circular stack). If the exit gas velocity is within 0.001-1000 FPS, then the data is considered valid.",Critical,Calculation,no
+191,Release Point velocity calculated from Flow and Diameter is out of range (0.001 to 1500 FPS),"If Exit Gas Flow Rate and Diameter are submitted, the following formula is used to calculate the release point exit gas velocity measure. Exit Gas Velocity = Flow Rate / Area (assuming a circular stack). If the exit gas velocity is within 0.001-1500 FPS, then the data is considered valid.",Critical,Calculation,no
 192,Consistency of Release Point Exit Gas Flow Rate and Velocity,"If all three data elements are reported, the following formula is used to calculate the release point exit gas flow rate measure. If this value and the reported exit gas flow rate are within 5% of each other then the reported data is considered valid. Flow Rate =  {Pi} * (Stack Diameter /2) ^ 2) * Velocity.",Critical,Calculation,no
 193,Release Point Stack Diameter Greater than Height,The release point stack diameter should usually be less than the release point stack height measure.,Warning,Calculation,no
 194,Release Point Fugitive Height Measure Range,"Should be between 0 to 500, inclusive.",Critical,Range,no
@@ -223,7 +223,7 @@ Check #,Check Name,Check Description,Error Level,Check Type,NCD
 457,Percent Ash Content Range,"If the supplemental calculation parameter type code is percent ash content, the value must be between 0.01 and 30, inclusive.",Critical,Range,no
 458,Supplemental Calculation Parameter Comment Data Type,Maximum allowable width of 400 characters. Longer submissions will be truncated.,Warning,Format,no
 460,Supplemental Calculation Parameter Accepted for Fuel Combustion SCCs,The Supplemental Calculations Parameter component must be associated with a fuel combustion SCC.,Critical,Conditional,no
-470,Pollutant Code Valid,Must match value in code list.,Critical,Code,no
+470,Active Pollutant Code Valid,Must match active value in code list.,Critical,Code,no
 471,Pollutant Code Present for Emissions,Required when reporting the Emissions component. The component and all dependent data will not be stored if there are missing required data.,Critical,Present,no
 473,Total Emissions Present,Required when reporting the Emissions component. The component and all dependent data will not be stored if there are missing required data.,Critical,Present,no
 474,Total Emissions Critical Range,"Must be inside the critical outlier range when the reporting period type code is ""A"" (Annual).",Warning,Range,no
@@ -239,8 +239,8 @@ Check #,Check Name,Check Description,Error Level,Check Type,NCD
 487,Emissions Comment Data Type,Maximum allowable width of 400 characters. Longer submissions will be truncated.,Warning,Format,no
 510,Release Point Stack Diameter Measure Range,"Must be between 0.001 to 300 FT, inclusive.",Critical,Range,no
 511,Release Point Exit Gas Temperature Measure Outer Range,"Must be between -30 to 4000 F, inclusive",Critical,Range,no
-512,Release Point Exit Gas Velocity Measure Range for FPS for Stacks,"For stacks, release point exit gas velocity measure must be 0.001 to 1000, inclusive, if in FPS",Critical,Range,no
-517,Release Point Exit Gas Velocity Measure Range for FPM for Stacks,"If the release point exit gas velocity unit of measure is FPM and the release point type is not fugitive, release point exit gas velocity measure must be 0.060 to 60,000; inclusive.",Critical,Range,no
+512,Release Point Exit Gas Velocity Measure Range for FPS for Stacks,"For stacks, release point exit gas velocity measure must be 0.001 to 1500, inclusive, if in FPS",Critical,Range,no
+517,Release Point Exit Gas Velocity Measure Range for FPM for Stacks,"If the release point exit gas velocity unit of measure is FPM and the release point type is not fugitive, release point exit gas velocity measure must be 0.060 to 90,000; inclusive.",Critical,Range,no
 518,Release Point Exit Gas Flow Rate Measure Range for ACFM for Stacks,"For stacks, release point exit gas flow measure must be 0.00000001 to 12,000,000 ACFM, inclusive",Critical,Range,no
 519,Release Point Exit Gas Flow Rate Measure Range for ACFS for Stacks,"For stacks, release point exit gas flow measure must be 0.00000001 to 200,000 ACFS, inclusive",Critical,Range,no
 522,Location Type Code for Excluded Location Valid,Must match value in code list.,Critical,Code,no
@@ -265,6 +265,9 @@ Check #,Check Name,Check Description,Error Level,Check Type,NCD
 578,Shape Identifier for Location Valid,Must match a shapefile identifier that is in the EIS shape library on the EIS Gateway.,Critical,Code,no
 592,Latitude Measure Range,Must be greater than or equal to 17 and less than or equal to 71.5.,Critical,Range,no
 593,Longitude Measure Range,Must be greater than or equal to -177 and less than or equal to -64.,Critical,Range,no
+594,Release Point latitude coordinate tolerance check,Release point latitude coordinates within facility coordinate tolerance.,Critical,Range,no
+595,Release Point longitude coordinate tolerance check,Release point longitude coordinates within facility coordinate tolerance.,Critical,Range,no
+596,Coordinate Tolerance Present,"The coordinate tolerance is required. The tolerance data will not be stored if there are missing required data.",Critical,Present,no
 611,Emission Factor Range,Must be greater than zero.,Critical,Range,no
 613,Emissions Type Code Present,Required when reporting the process component for nonroad. The component and all dependent data will not be stored if there are missing required data.,Critical,Present,no
 614,Emissions Type Code Valid,Must match value in code list.,Critical,Code,no
@@ -685,7 +688,7 @@ Check #,Check Name,Check Description,Error Level,Check Type,NCD
 2344,Unit Permit Status End Year Data Type,This element must be reported as an integer.,Critical,Format,no
 2345,Unit Permit Status Code and End Year,"If Unit Permit Status Code is not ""operating"" (O) an end year must be provided.",Critical,Conditional,no
 2346,Facility Site County Protected,"If the data in the EIS for facility site county is protected, the data will not be stored. A request to unprotect the data can be made through the Gateway.",Critical,Conditional,no
-2347,Facility Site Mailing Address Protected,"If the data in the EIS for facility site mailing address is protected, the data will not be stored. A request to unprotect the data can be made through the Gateway.",Critical,Conditional,no
+2347,Facility Physical Address Protected,"If the data in the EIS for facility physical address is protected, the data will not be stored. A request to unprotect the data can be made through the Gateway.",Critical,Conditional,no
 2348,Facility Site Locality Protected,"If the data in the EIS for facility site locality is protected, the data will not be stored. A request to unprotect the data can be made through the Gateway.",Critical,Conditional,no
 2349,Facility Site Postal Code Protected,"If the data in the EIS for facility site postal code is protected, the data will not be stored. A request to unprotect the data can be made through the Gateway.",Critical,Conditional,no
 2350,Facility Site Name Protected,"If the data in the EIS for facility site name is protected, the data will not be stored. A request to unprotect the data can be made through the Gateway.",Critical,Conditional,no
