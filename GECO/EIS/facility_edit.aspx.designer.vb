@@ -12,7 +12,7 @@ Option Explicit On
 
 
 Partial Public Class eis_facility_edit
-    
+
     '''<summary>
     '''ToolkitScriptManager1 control.
     '''</summary>
@@ -21,7 +21,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ToolkitScriptManager1 As Global.AjaxControlToolkit.ToolkitScriptManager
-    
+
     '''<summary>
     '''ModalUpdateProgress1 control.
     '''</summary>
@@ -30,7 +30,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ModalUpdateProgress1 As Global.AjaxControls.ModalUpdateProgress
-    
+
     '''<summary>
     '''pnlFacilityEdit control.
     '''</summary>
@@ -39,7 +39,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents pnlFacilityEdit As Global.System.Web.UI.WebControls.Panel
-    
+
     '''<summary>
     '''btnReturnToDetails control.
     '''</summary>
@@ -48,7 +48,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnReturnToDetails As Global.System.Web.UI.WebControls.Button
-    
+
     '''<summary>
     '''btnSave control.
     '''</summary>
@@ -57,7 +57,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnSave As Global.System.Web.UI.WebControls.Button
-    
+
     '''<summary>
     '''lblFacilityMessage control.
     '''</summary>
@@ -66,7 +66,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblFacilityMessage As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''ValidationSummary1 control.
     '''</summary>
@@ -75,7 +75,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ValidationSummary1 As Global.System.Web.UI.WebControls.ValidationSummary
-    
+
     '''<summary>
     '''lblFacilitySiteName control.
     '''</summary>
@@ -84,7 +84,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblFacilitySiteName As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''txtFacilitySiteName control.
     '''</summary>
@@ -93,7 +93,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtFacilitySiteName As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''LblLocationAddressText control.
     '''</summary>
@@ -102,7 +102,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents LblLocationAddressText As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''TxtLocationAddressText control.
     '''</summary>
@@ -111,7 +111,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents TxtLocationAddressText As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''LblSupplementalLocationText2 control.
     '''</summary>
@@ -120,7 +120,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents LblSupplementalLocationText2 As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''TxtSupplementalLocationText2 control.
     '''</summary>
@@ -129,7 +129,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents TxtSupplementalLocationText2 As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''lblLocalityName control.
     '''</summary>
@@ -138,7 +138,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblLocalityName As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''TxtLocalityName control.
     '''</summary>
@@ -147,7 +147,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents TxtLocalityName As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''LblLocationAddressStateCode control.
     '''</summary>
@@ -156,7 +156,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents LblLocationAddressStateCode As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''TxtLocationAddressStateCode control.
     '''</summary>
@@ -165,7 +165,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents TxtLocationAddressStateCode As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''lblLocationAddressPostalCode control.
     '''</summary>
@@ -174,7 +174,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblLocationAddressPostalCode As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''TxtLocationAddressPostalCode control.
     '''</summary>
@@ -183,7 +183,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents TxtLocationAddressPostalCode As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''lblSeparator2 control.
     '''</summary>
@@ -192,7 +192,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblSeparator2 As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''lblMailingAddressText control.
     '''</summary>
@@ -201,7 +201,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblMailingAddressText As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''txtMailingAddressText control.
     '''</summary>
@@ -210,7 +210,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtMailingAddressText As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''reqvMailingAddressText control.
     '''</summary>
@@ -219,7 +219,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents reqvMailingAddressText As Global.System.Web.UI.WebControls.RequiredFieldValidator
-    
+
     '''<summary>
     '''lblSupplementalAddressText control.
     '''</summary>
@@ -228,7 +228,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblSupplementalAddressText As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''TxtSupplementalAddressText control.
     '''</summary>
@@ -237,7 +237,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents TxtSupplementalAddressText As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''tbwSupplementalAddressText control.
     '''</summary>
@@ -246,7 +246,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents tbwSupplementalAddressText As Global.AjaxControlToolkit.TextBoxWatermarkExtender
-    
+
     '''<summary>
     '''lblMailingAddressCityName control.
     '''</summary>
@@ -255,7 +255,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblMailingAddressCityName As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''txtMailingAddressCityName control.
     '''</summary>
@@ -264,7 +264,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtMailingAddressCityName As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''reqvMailingAddressCityName control.
     '''</summary>
@@ -273,7 +273,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents reqvMailingAddressCityName As Global.System.Web.UI.WebControls.RequiredFieldValidator
-    
+
     '''<summary>
     '''lblMailingAddressStateCode control.
     '''</summary>
@@ -282,7 +282,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblMailingAddressStateCode As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''ddlContact_MailState control.
     '''</summary>
@@ -291,7 +291,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ddlContact_MailState As Global.System.Web.UI.WebControls.DropDownList
-    
+
     '''<summary>
     '''reqvMailingAddressStateCode control.
     '''</summary>
@@ -300,7 +300,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents reqvMailingAddressStateCode As Global.System.Web.UI.WebControls.RequiredFieldValidator
-    
+
     '''<summary>
     '''lblMailingAddressPostalCode control.
     '''</summary>
@@ -309,7 +309,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblMailingAddressPostalCode As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''txtMailingAddressPostalCode control.
     '''</summary>
@@ -318,7 +318,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtMailingAddressPostalCode As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''reqvMailingAddressPostalCode control.
     '''</summary>
@@ -327,7 +327,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents reqvMailingAddressPostalCode As Global.System.Web.UI.WebControls.RequiredFieldValidator
-    
+
     '''<summary>
     '''rgxvMailingAddressPostalCode control.
     '''</summary>
@@ -336,7 +336,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rgxvMailingAddressPostalCode As Global.System.Web.UI.WebControls.RegularExpressionValidator
-    
+
     '''<summary>
     '''filttxtMailingAddressPostalCode control.
     '''</summary>
@@ -345,7 +345,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents filttxtMailingAddressPostalCode As Global.AjaxControlToolkit.FilteredTextBoxExtender
-    
+
     '''<summary>
     '''LblMailingAddressComment control.
     '''</summary>
@@ -354,7 +354,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents LblMailingAddressComment As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''TxtMailingAddressComment control.
     '''</summary>
@@ -363,7 +363,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents TxtMailingAddressComment As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''lblSeparator3 control.
     '''</summary>
@@ -372,7 +372,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblSeparator3 As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''lblFacilitySiteDescription control.
     '''</summary>
@@ -381,7 +381,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblFacilitySiteDescription As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''TxtFacilitySiteDescription control.
     '''</summary>
@@ -390,7 +390,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents TxtFacilitySiteDescription As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''reqvFacilitySiteDescription control.
     '''</summary>
@@ -399,7 +399,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents reqvFacilitySiteDescription As Global.System.Web.UI.WebControls.RequiredFieldValidator
-    
+
     '''<summary>
     '''lblFacilitySiteStatusCode control.
     '''</summary>
@@ -408,7 +408,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblFacilitySiteStatusCode As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''txtFacilityStatusCode control.
     '''</summary>
@@ -417,7 +417,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtFacilityStatusCode As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''lblStatusCodeNote control.
     '''</summary>
@@ -426,7 +426,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblStatusCodeNote As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''lblNAICSCode control.
     '''</summary>
@@ -435,7 +435,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblNAICSCode As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''txtNAICSCode control.
     '''</summary>
@@ -444,7 +444,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtNAICSCode As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''mpeNAICSCode control.
     '''</summary>
@@ -453,7 +453,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents mpeNAICSCode As Global.AjaxControlToolkit.FilteredTextBoxExtender
-    
+
     '''<summary>
     '''reqvNAICSCode control.
     '''</summary>
@@ -462,7 +462,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents reqvNAICSCode As Global.System.Web.UI.WebControls.RequiredFieldValidator
-    
+
     '''<summary>
     '''rgxvNAICSCode control.
     '''</summary>
@@ -471,7 +471,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rgxvNAICSCode As Global.System.Web.UI.WebControls.RegularExpressionValidator
-    
+
     '''<summary>
     '''CustomValidator1 control.
     '''</summary>
@@ -480,7 +480,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents CustomValidator1 As Global.System.Web.UI.WebControls.CustomValidator
-    
+
     '''<summary>
     '''btnNAICSLoopup control.
     '''</summary>
@@ -489,7 +489,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnNAICSLoopup As Global.System.Web.UI.WebControls.Button
-    
+
     '''<summary>
     '''lblFacilitySiteComment control.
     '''</summary>
@@ -498,7 +498,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblFacilitySiteComment As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''txtFacilitySiteComment control.
     '''</summary>
@@ -507,7 +507,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtFacilitySiteComment As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''upLatLon control.
     '''</summary>
@@ -516,7 +516,25 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents upLatLon As Global.System.Web.UI.UpdatePanel
-    
+
+    '''<summary>
+    '''pLatLonLocked control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents pLatLonLocked As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
+    '''pGeoInfo control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents pGeoInfo As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
     '''<summary>
     '''LblLatitudeMeasure control.
     '''</summary>
@@ -525,7 +543,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents LblLatitudeMeasure As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''TxtLatitudeMeasure control.
     '''</summary>
@@ -534,7 +552,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents TxtLatitudeMeasure As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''filtxtLatitudeMeasure control.
     '''</summary>
@@ -543,7 +561,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents filtxtLatitudeMeasure As Global.AjaxControlToolkit.FilteredTextBoxExtender
-    
+
     '''<summary>
     '''reqvLatitudeMeasure control.
     '''</summary>
@@ -552,7 +570,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents reqvLatitudeMeasure As Global.System.Web.UI.WebControls.RequiredFieldValidator
-    
+
     '''<summary>
     '''rngvLatitudeMeasure control.
     '''</summary>
@@ -561,7 +579,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rngvLatitudeMeasure As Global.System.Web.UI.WebControls.RangeValidator
-    
+
     '''<summary>
     '''LblLongitudeMeasure control.
     '''</summary>
@@ -570,7 +588,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents LblLongitudeMeasure As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''TxtLongitudeMeasure control.
     '''</summary>
@@ -579,7 +597,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents TxtLongitudeMeasure As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''filtxtLongitudeMeasure control.
     '''</summary>
@@ -588,7 +606,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents filtxtLongitudeMeasure As Global.AjaxControlToolkit.FilteredTextBoxExtender
-    
+
     '''<summary>
     '''reqvLongitudeMeasure control.
     '''</summary>
@@ -597,7 +615,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents reqvLongitudeMeasure As Global.System.Web.UI.WebControls.RequiredFieldValidator
-    
+
     '''<summary>
     '''rngvLongitudeMeasure control.
     '''</summary>
@@ -606,7 +624,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rngvLongitudeMeasure As Global.System.Web.UI.WebControls.RangeValidator
-    
+
     '''<summary>
     '''lnkGoogleMap control.
     '''</summary>
@@ -615,7 +633,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lnkGoogleMap As Global.System.Web.UI.WebControls.HyperLink
-    
+
     '''<summary>
     '''imgGoogleStaticMap control.
     '''</summary>
@@ -624,7 +642,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents imgGoogleStaticMap As Global.System.Web.UI.WebControls.Image
-    
+
     '''<summary>
     '''pnlLocationMap control.
     '''</summary>
@@ -633,7 +651,16 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents pnlLocationMap As Global.System.Web.UI.WebControls.Panel
-    
+
+    '''<summary>
+    '''pPickLatLon control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents pPickLatLon As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
     '''<summary>
     '''lbtnGetLatLon control.
     '''</summary>
@@ -642,7 +669,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lbtnGetLatLon As Global.System.Web.UI.WebControls.Button
-    
+
     '''<summary>
     '''LblHorCollectionMetCode control.
     '''</summary>
@@ -651,7 +678,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents LblHorCollectionMetCode As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''ddlHorCollectionMetCode control.
     '''</summary>
@@ -660,7 +687,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ddlHorCollectionMetCode As Global.System.Web.UI.WebControls.DropDownList
-    
+
     '''<summary>
     '''reqvHorCollectionMetCode control.
     '''</summary>
@@ -669,7 +696,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents reqvHorCollectionMetCode As Global.System.Web.UI.WebControls.RequiredFieldValidator
-    
+
     '''<summary>
     '''LblHorizontalAccuracyMeasure control.
     '''</summary>
@@ -678,7 +705,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents LblHorizontalAccuracyMeasure As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''TxtHorizontalAccuracyMeasure control.
     '''</summary>
@@ -687,7 +714,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents TxtHorizontalAccuracyMeasure As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''filtxtHorizontalAccuracyMeasure control.
     '''</summary>
@@ -696,7 +723,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents filtxtHorizontalAccuracyMeasure As Global.AjaxControlToolkit.FilteredTextBoxExtender
-    
+
     '''<summary>
     '''reqvHorizontalAccuracyMeasure control.
     '''</summary>
@@ -705,7 +732,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents reqvHorizontalAccuracyMeasure As Global.System.Web.UI.WebControls.RequiredFieldValidator
-    
+
     '''<summary>
     '''rngvHorizontalAccuracyMeasure control.
     '''</summary>
@@ -714,7 +741,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rngvHorizontalAccuracyMeasure As Global.System.Web.UI.WebControls.RangeValidator
-    
+
     '''<summary>
     '''lblHorReferenceDatCode control.
     '''</summary>
@@ -723,7 +750,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblHorReferenceDatCode As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''ddlHorReferenceDatCode control.
     '''</summary>
@@ -732,7 +759,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ddlHorReferenceDatCode As Global.System.Web.UI.WebControls.DropDownList
-    
+
     '''<summary>
     '''reqvHorReferenceDatCode control.
     '''</summary>
@@ -741,7 +768,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents reqvHorReferenceDatCode As Global.System.Web.UI.WebControls.RequiredFieldValidator
-    
+
     '''<summary>
     '''lblGeographicComment control.
     '''</summary>
@@ -750,7 +777,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblGeographicComment As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''txtGeographicComment control.
     '''</summary>
@@ -759,7 +786,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtGeographicComment As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''regexpName control.
     '''</summary>
@@ -768,7 +795,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents regexpName As Global.System.Web.UI.WebControls.RegularExpressionValidator
-    
+
     '''<summary>
     '''hidLatitude control.
     '''</summary>
@@ -777,7 +804,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents hidLatitude As Global.System.Web.UI.WebControls.HiddenField
-    
+
     '''<summary>
     '''hidLongitude control.
     '''</summary>
@@ -786,7 +813,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents hidLongitude As Global.System.Web.UI.WebControls.HiddenField
-    
+
     '''<summary>
     '''hidHorCollectionMetCode control.
     '''</summary>
@@ -795,7 +822,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents hidHorCollectionMetCode As Global.System.Web.UI.WebControls.HiddenField
-    
+
     '''<summary>
     '''hidHorCollectionMetDesc control.
     '''</summary>
@@ -804,7 +831,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents hidHorCollectionMetDesc As Global.System.Web.UI.WebControls.HiddenField
-    
+
     '''<summary>
     '''hidHorizontalAccuracyMeasure control.
     '''</summary>
@@ -813,7 +840,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents hidHorizontalAccuracyMeasure As Global.System.Web.UI.WebControls.HiddenField
-    
+
     '''<summary>
     '''hidHorReferenceDatCode control.
     '''</summary>
@@ -822,7 +849,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents hidHorReferenceDatCode As Global.System.Web.UI.WebControls.HiddenField
-    
+
     '''<summary>
     '''hidHorReferenceDatDesc control.
     '''</summary>
@@ -831,7 +858,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents hidHorReferenceDatDesc As Global.System.Web.UI.WebControls.HiddenField
-    
+
     '''<summary>
     '''hidGeographicComment control.
     '''</summary>
@@ -840,7 +867,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents hidGeographicComment As Global.System.Web.UI.WebControls.HiddenField
-    
+
     '''<summary>
     '''lblSeparator5 control.
     '''</summary>
@@ -849,7 +876,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblSeparator5 As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''Label1 control.
     '''</summary>
@@ -858,7 +885,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents Label1 As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''lblNamePrefix control.
     '''</summary>
@@ -867,7 +894,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblNamePrefix As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''txtPrefix control.
     '''</summary>
@@ -876,7 +903,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtPrefix As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''tbwPrefix control.
     '''</summary>
@@ -885,7 +912,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents tbwPrefix As Global.AjaxControlToolkit.TextBoxWatermarkExtender
-    
+
     '''<summary>
     '''lblfirstname control.
     '''</summary>
@@ -894,7 +921,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblfirstname As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''txtFirstName control.
     '''</summary>
@@ -903,7 +930,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtFirstName As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''reqvFirstName control.
     '''</summary>
@@ -912,7 +939,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents reqvFirstName As Global.System.Web.UI.WebControls.RequiredFieldValidator
-    
+
     '''<summary>
     '''lblLastName control.
     '''</summary>
@@ -921,7 +948,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblLastName As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''txtLastName control.
     '''</summary>
@@ -930,7 +957,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtLastName As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''reqvLastName control.
     '''</summary>
@@ -939,7 +966,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents reqvLastName As Global.System.Web.UI.WebControls.RequiredFieldValidator
-    
+
     '''<summary>
     '''lblIndividualTitleText control.
     '''</summary>
@@ -948,7 +975,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblIndividualTitleText As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''txtIndividualTitleText control.
     '''</summary>
@@ -957,7 +984,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtIndividualTitleText As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''reqvIndividualTitleText control.
     '''</summary>
@@ -966,7 +993,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents reqvIndividualTitleText As Global.System.Web.UI.WebControls.RequiredFieldValidator
-    
+
     '''<summary>
     '''lblMailingAddressText_Contact control.
     '''</summary>
@@ -975,7 +1002,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblMailingAddressText_Contact As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''txtMailingAddressText_Contact control.
     '''</summary>
@@ -984,7 +1011,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtMailingAddressText_Contact As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''reqvMailingAddressText_Contact control.
     '''</summary>
@@ -993,7 +1020,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents reqvMailingAddressText_Contact As Global.System.Web.UI.WebControls.RequiredFieldValidator
-    
+
     '''<summary>
     '''lblSupplementalAddressText_Contact control.
     '''</summary>
@@ -1002,7 +1029,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblSupplementalAddressText_Contact As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''txtSupplementalAddressText_Contact control.
     '''</summary>
@@ -1011,7 +1038,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtSupplementalAddressText_Contact As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''tbwSupplementalAddressText_Contact control.
     '''</summary>
@@ -1020,7 +1047,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents tbwSupplementalAddressText_Contact As Global.AjaxControlToolkit.TextBoxWatermarkExtender
-    
+
     '''<summary>
     '''lblMailingAddressCityName_Contact control.
     '''</summary>
@@ -1029,7 +1056,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblMailingAddressCityName_Contact As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''txtMailingAddressCityName_Contact control.
     '''</summary>
@@ -1038,7 +1065,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtMailingAddressCityName_Contact As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''reqvMailingAddressCityName_Contact control.
     '''</summary>
@@ -1047,7 +1074,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents reqvMailingAddressCityName_Contact As Global.System.Web.UI.WebControls.RequiredFieldValidator
-    
+
     '''<summary>
     '''lblMailingAddressStateCode_Contact control.
     '''</summary>
@@ -1056,7 +1083,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblMailingAddressStateCode_Contact As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''ddlFacility_StateMail control.
     '''</summary>
@@ -1065,7 +1092,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ddlFacility_StateMail As Global.System.Web.UI.WebControls.DropDownList
-    
+
     '''<summary>
     '''reqvMailingAddressStateCode_Contact control.
     '''</summary>
@@ -1074,7 +1101,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents reqvMailingAddressStateCode_Contact As Global.System.Web.UI.WebControls.RequiredFieldValidator
-    
+
     '''<summary>
     '''lblMailingAddressPostalCode_Contact control.
     '''</summary>
@@ -1083,7 +1110,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblMailingAddressPostalCode_Contact As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''txtMailingAddressPostalCode_Contact control.
     '''</summary>
@@ -1092,7 +1119,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtMailingAddressPostalCode_Contact As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''reqvMailingAddressPostalCode_Contact control.
     '''</summary>
@@ -1101,7 +1128,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents reqvMailingAddressPostalCode_Contact As Global.System.Web.UI.WebControls.RequiredFieldValidator
-    
+
     '''<summary>
     '''rgxvMailingAddressPostalCode_Contact control.
     '''</summary>
@@ -1110,7 +1137,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rgxvMailingAddressPostalCode_Contact As Global.System.Web.UI.WebControls.RegularExpressionValidator
-    
+
     '''<summary>
     '''filtxtMailingAddressPostalCode_Contact control.
     '''</summary>
@@ -1119,7 +1146,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents filtxtMailingAddressPostalCode_Contact As Global.AjaxControlToolkit.FilteredTextBoxExtender
-    
+
     '''<summary>
     '''lblTelephoneNumberText control.
     '''</summary>
@@ -1128,7 +1155,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblTelephoneNumberText As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''txtTelephoneNumberText control.
     '''</summary>
@@ -1137,7 +1164,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtTelephoneNumberText As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''reqvTelephoneNumberText control.
     '''</summary>
@@ -1146,7 +1173,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents reqvTelephoneNumberText As Global.System.Web.UI.WebControls.RequiredFieldValidator
-    
+
     '''<summary>
     '''lblTelephoneNumberText_mobile control.
     '''</summary>
@@ -1155,7 +1182,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblTelephoneNumberText_mobile As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''txtTelephoneNumber_Mobile control.
     '''</summary>
@@ -1164,7 +1191,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtTelephoneNumber_Mobile As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''txtTelephoneNumber_Mobile_FilteredTextBoxExtender control.
     '''</summary>
@@ -1173,7 +1200,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtTelephoneNumber_Mobile_FilteredTextBoxExtender As Global.AjaxControlToolkit.FilteredTextBoxExtender
-    
+
     '''<summary>
     '''lblTelephoneNumberText_fax control.
     '''</summary>
@@ -1182,7 +1209,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblTelephoneNumberText_fax As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''txtTelephoneNumber_Fax control.
     '''</summary>
@@ -1191,7 +1218,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtTelephoneNumber_Fax As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''txtTelephoneNumber_Fax_FilteredTextBoxExtender control.
     '''</summary>
@@ -1200,7 +1227,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtTelephoneNumber_Fax_FilteredTextBoxExtender As Global.AjaxControlToolkit.FilteredTextBoxExtender
-    
+
     '''<summary>
     '''lblElectronicAddress control.
     '''</summary>
@@ -1209,7 +1236,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblElectronicAddress As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''txtElectronicAddressText control.
     '''</summary>
@@ -1218,7 +1245,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtElectronicAddressText As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''reqvElectronicAddressText control.
     '''</summary>
@@ -1227,7 +1254,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents reqvElectronicAddressText As Global.System.Web.UI.WebControls.RequiredFieldValidator
-    
+
     '''<summary>
     '''rgxvElectronicAddress control.
     '''</summary>
@@ -1236,7 +1263,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rgxvElectronicAddress As Global.System.Web.UI.WebControls.RegularExpressionValidator
-    
+
     '''<summary>
     '''lblContactAddressComment_Contact control.
     '''</summary>
@@ -1245,7 +1272,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblContactAddressComment_Contact As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''txtAddressComment_Contact control.
     '''</summary>
@@ -1254,7 +1281,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtAddressComment_Contact As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''btnSave2 control.
     '''</summary>
@@ -1263,7 +1290,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnSave2 As Global.System.Web.UI.WebControls.Button
-    
+
     '''<summary>
     '''btnCancel control.
     '''</summary>
@@ -1272,7 +1299,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnCancel As Global.System.Web.UI.WebControls.Button
-    
+
     '''<summary>
     '''lblFacilityMessage2 control.
     '''</summary>
@@ -1281,7 +1308,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblFacilityMessage2 As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''pnlNAICSCodeLookup control.
     '''</summary>
@@ -1290,7 +1317,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents pnlNAICSCodeLookup As Global.System.Web.UI.WebControls.Panel
-    
+
     '''<summary>
     '''lbllookupNAICSCode control.
     '''</summary>
@@ -1299,7 +1326,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lbllookupNAICSCode As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''txtLookupNAICSCode control.
     '''</summary>
@@ -1308,7 +1335,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtLookupNAICSCode As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''txtLookupNAICSCode_FilteredTextBoxExtender control.
     '''</summary>
@@ -1317,7 +1344,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtLookupNAICSCode_FilteredTextBoxExtender As Global.AjaxControlToolkit.FilteredTextBoxExtender
-    
+
     '''<summary>
     '''lbllookupNAICSCodeDesc control.
     '''</summary>
@@ -1326,7 +1353,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lbllookupNAICSCodeDesc As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''txtLookupNAICSDesc control.
     '''</summary>
@@ -1335,7 +1362,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtLookupNAICSDesc As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''btnSearchNAICS control.
     '''</summary>
@@ -1344,7 +1371,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnSearchNAICS As Global.System.Web.UI.WebControls.Button
-    
+
     '''<summary>
     '''btnCancelNAICS control.
     '''</summary>
@@ -1353,7 +1380,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnCancelNAICS As Global.System.Web.UI.WebControls.Button
-    
+
     '''<summary>
     '''btnUseNAICSCode control.
     '''</summary>
@@ -1362,7 +1389,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnUseNAICSCode As Global.System.Web.UI.WebControls.Button
-    
+
     '''<summary>
     '''lblNAICSMessage control.
     '''</summary>
@@ -1371,7 +1398,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblNAICSMessage As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''lblSelectedNAICSCode control.
     '''</summary>
@@ -1380,7 +1407,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblSelectedNAICSCode As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''txtSelectedNAICSCode control.
     '''</summary>
@@ -1389,7 +1416,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtSelectedNAICSCode As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''reqvNAICS control.
     '''</summary>
@@ -1398,7 +1425,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents reqvNAICS As Global.System.Web.UI.WebControls.RequiredFieldValidator
-    
+
     '''<summary>
     '''lblRowCount control.
     '''</summary>
@@ -1407,7 +1434,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblRowCount As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''gvwNAICS control.
     '''</summary>
@@ -1416,7 +1443,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents gvwNAICS As Global.System.Web.UI.WebControls.GridView
-    
+
     '''<summary>
     '''pnlMap control.
     '''</summary>
@@ -1425,7 +1452,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents pnlMap As Global.System.Web.UI.WebControls.Panel
-    
+
     '''<summary>
     '''btnPopupDisplay control.
     '''</summary>
@@ -1434,7 +1461,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnPopupDisplay As Global.System.Web.UI.WebControls.Button
-    
+
     '''<summary>
     '''GMap control.
     '''</summary>
@@ -1443,7 +1470,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents GMap As Global.Reimers.Google.Map.Map
-    
+
     '''<summary>
     '''lblMapLat control.
     '''</summary>
@@ -1452,7 +1479,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblMapLat As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''txtMapLat control.
     '''</summary>
@@ -1461,7 +1488,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtMapLat As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''rfvMapLat control.
     '''</summary>
@@ -1470,7 +1497,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rfvMapLat As Global.System.Web.UI.WebControls.RequiredFieldValidator
-    
+
     '''<summary>
     '''lblMapLon control.
     '''</summary>
@@ -1479,7 +1506,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblMapLon As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''txtMapLon control.
     '''</summary>
@@ -1488,7 +1515,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtMapLon As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''rfvMapLon control.
     '''</summary>
@@ -1497,7 +1524,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rfvMapLon As Global.System.Web.UI.WebControls.RequiredFieldValidator
-    
+
     '''<summary>
     '''btnCloseMap control.
     '''</summary>
@@ -1506,7 +1533,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnCloseMap As Global.System.Web.UI.WebControls.Button
-    
+
     '''<summary>
     '''btnUseLatLon control.
     '''</summary>
@@ -1515,7 +1542,7 @@ Partial Public Class eis_facility_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnUseLatLon As Global.System.Web.UI.WebControls.Button
-    
+
     '''<summary>
     '''lbtnGetLatLon_ModalPopupExtender control.
     '''</summary>

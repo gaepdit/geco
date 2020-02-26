@@ -8,6 +8,7 @@ Partial Class EIS_rp_entry
     Inherits Page
 
     Private NAICSExists As Boolean
+    Private ReadOnly FacilitySiteID As String = GetCookie(Cookie.AirsNumber)
 
 #Region " Load Routines "
 
@@ -35,10 +36,28 @@ Partial Class EIS_rp_entry
             txtMapLon.Attributes.Add("readonly", "readonly")
         End If
 
+        CheckIfFacilityLatLonIsLocked()
+
         HideFacilityInventoryMenu()
         HideEmissionInventoryMenu()
         ShowEISHelpMenu()
         HideTextBoxBorders(Me)
+    End Sub
+
+    Private Sub CheckIfFacilityLatLonIsLocked()
+        If IsFacilityLatLonLocked(FacilitySiteID) Then
+            TxtLatitudeMeasure.Enabled = False
+            TxtLongitudeMeasure.Enabled = False
+            ddlHorCollectionMetCode.Enabled = False
+            TxtHorizontalAccuracyMeasure.Enabled = False
+            ddlHorReferenceDatCode.Enabled = False
+            txtGeographicComment.Enabled = False
+
+            lbtnGetLatLon.Visible = False
+            pPickLatLon.Visible = False
+            pGeoInfo.Visible = False
+            pLatLonLocked.Visible = True
+        End If
     End Sub
 
     Private Sub LoadHorCollectDDL()
@@ -139,7 +158,6 @@ Partial Class EIS_rp_entry
     End Sub
 
     Private Sub LoadFacilityDetails()
-        Dim FacilitySiteID As String = GetCookie(Cookie.AirsNumber)
         TxtLocationAddressStateCode.Text = "GA"
 
         Try
@@ -278,7 +296,6 @@ Partial Class EIS_rp_entry
     End Sub
 
     Private Sub LoadPhoneNumbers()
-        Dim FacilitySiteID As String = GetCookie(Cookie.AirsNumber)
         Try
             Dim query As String = "select TELEPHONENUMBERTYPECODE, " &
                 " STRTELEPHONENUMBERTEXT " &
@@ -491,7 +508,6 @@ Partial Class EIS_rp_entry
         Dim UpdateUserID As String = GetCookie(GecoCookie.UserID)
         Dim UpdateUserName As String = GetCookie(GecoCookie.UserName)
         Dim UpdateUser As String = UpdateUserID & "-" & UpdateUserName
-        Dim FacilitySiteID As String = GetCookie(Cookie.AirsNumber)
 
         'Truncate comment if >400 chars
         facilityComment = Left(facilityComment, 400)
@@ -527,7 +543,6 @@ Partial Class EIS_rp_entry
         Dim UpdateUserID As String = GetCookie(GecoCookie.UserID)
         Dim UpdateUserName As String = GetCookie(GecoCookie.UserName)
         Dim UpdateUser As String = UpdateUserID & "-" & UpdateUserName
-        Dim FacilitySiteID As String = GetCookie(Cookie.AirsNumber)
         Dim FacilityMailingAddressZip As String = txtMailingAddressPostalCode.Text
         Dim FacilityMailingAddressComment = TxtMailingAddressComment.Text
 
@@ -564,11 +579,14 @@ Partial Class EIS_rp_entry
     End Sub
 
     Private Sub SaveFacilityGCInfo()
+        If IsFacilityLatLonLocked(FacilitySiteID) Then
+            Return
+        End If
+
         Try
             Dim UpdateUserID As String = GetCookie(GecoCookie.UserID)
             Dim UpdateUserName As String = GetCookie(GecoCookie.UserName)
             Dim UpdateUser As String = UpdateUserID & "-" & UpdateUserName
-            Dim FacilitySiteID As String = GetCookie(Cookie.AirsNumber)
 
             Dim curGoogleMapLink As String = "none"
             If Decimal.TryParse(hidLatitude.Value, Nothing) AndAlso Decimal.TryParse(hidLongitude.Value, Nothing) Then
@@ -732,7 +750,6 @@ Partial Class EIS_rp_entry
         Dim UpdateUserID As String = GetCookie(GecoCookie.UserID)
         Dim UpdateUserName As String = GetCookie(GecoCookie.UserName)
         Dim UpdateUser As String = UpdateUserID & "-" & UpdateUserName
-        Dim FacilitySiteID As String = GetCookie(Cookie.AirsNumber)
 
         eis_FacilityData.SaveFacilityContact(
             ContactPrefix,
@@ -761,7 +778,6 @@ Partial Class EIS_rp_entry
         Dim UpdateUserID As String = GetCookie(GecoCookie.UserID)
         Dim UpdateUserName As String = GetCookie(GecoCookie.UserName)
         Dim UpdateUser As String = UpdateUserID & "-" & UpdateUserName
-        Dim FacilitySiteID As String = GetCookie(Cookie.AirsNumber)
 
         Dim facParam As New SqlParameter("@FacilitySiteID", FacilitySiteID)
         Dim params As SqlParameter()

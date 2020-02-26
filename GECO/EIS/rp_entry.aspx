@@ -172,7 +172,8 @@
                 <div class="fieldwrapperseparator">
                     <p class="styledseparator">Facility Geographic Coordinate Information:</p>
                     <p class="label">Facility latitude/longitude must be located at the center of the production area.</p>
-                    <p class="label">
+                    <p class="label" id="pLatLonLocked" runat="server" visible="false"><i>Coordinates are locked for this facility.</i></p>
+                    <p class="label" id="pGeoInfo" runat="server">
                         <em>Geographic information updates must be reviewed by APB staff.</em>
                         If the existing values are incorrect, enter your corrections below and include a comment in the 
                         Comment box explaining your changes. Geographic data will not be modified in the EIS system until 
@@ -213,8 +214,10 @@
                             <asp:Image ID="imgGoogleStaticMap" runat="server" />
                         </asp:HyperLink><br />
                         <asp:Panel ID="pnlLocationMap" runat="server" Width="610px"></asp:Panel>
-                        <p>The facility latitude/longitude is centered in the map above. If the location is incorrect, 
-                        use the &quot;Pick Latitude/Longitude&quot; button to select the correct location.</p>
+                        <p id="pPickLatLon" runat="server">
+                            The facility latitude/longitude is centered in the map above. If the location is incorrect, 
+                            use the &quot;Pick Latitude/Longitude&quot; button to select the correct location.
+                        </p>
                         <asp:Button ID="lbtnGetLatLon" runat="server" CausesValidation="false" Text="Pick Latitude/Longitude" />
                     </div>
                 </div>
