@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="..\packages\Microsoft.CodeAnalysis.FxCopAnalyzers.2.9.7\build\Microsoft.CodeAnalysis.FxCopAnalyzers.props" Condition="Exists('..\packages\Microsoft.CodeAnalysis.FxCopAnalyzers.2.9.7\build\Microsoft.CodeAnalysis.FxCopAnalyzers.props')" />
   <Import Project="..\packages\Microsoft.NetFramework.Analyzers.2.9.7\build\Microsoft.NetFramework.Analyzers.props" Condition="Exists('..\packages\Microsoft.NetFramework.Analyzers.2.9.7\build\Microsoft.NetFramework.Analyzers.props')" />
@@ -247,7 +247,6 @@
     <Content Include="EIS\sccfinder.aspx" />
     <Content Include="EIS\SourceClassCode.asmx" />
     <Content Include="EIS\stack_details.aspx" />
-    <Content Include="EIS\stack_edit.aspx" />
     <Content Include="ErrorPage.aspx" />
     <Content Include="ES\confirm.aspx" />
     <Content Include="ES\default.aspx" />
@@ -464,9 +463,6 @@
     </Compile>
     <Compile Include="EIS\stack_details.aspx.designer.vb">
       <DependentUpon>stack_details.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="EIS\stack_edit.aspx.designer.vb">
-      <DependentUpon>stack_edit.aspx</DependentUpon>
     </Compile>
     <Compile Include="ErrorPage.aspx.designer.vb">
       <DependentUpon>ErrorPage.aspx</DependentUpon>
@@ -854,10 +850,6 @@
     </Compile>
     <Compile Include="EIS\stack_details.aspx.vb">
       <DependentUpon>stack_details.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="EIS\stack_edit.aspx.vb">
-      <DependentUpon>stack_edit.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="ES\confirm.aspx.vb">

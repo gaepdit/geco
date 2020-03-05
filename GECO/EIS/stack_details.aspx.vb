@@ -9,7 +9,6 @@ Partial Class eis_stack_details
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
         Dim FacilitySiteID As String = GetCookie(Cookie.AirsNumber)
-        Dim EISStatus As String = GetCookie(EisCookie.EISStatus)
         Dim EISAccessCode As String = GetCookie(EisCookie.EISAccess)
         Dim StackID As String = Request.QueryString("stk")
 
@@ -22,32 +21,10 @@ Partial Class eis_stack_details
         If Not IsPostBack Then
             LoadStackDetails(StackID)
             LoadRPApportionment(FacilitySiteID, StackID)
-            loadStackTypeDDL()
         End If
 
         HideTextBoxBorders(Me)
 
-    End Sub
-
-    Private Sub loadStackTypeDDL()
-        ddlRPTypeCode.Items.Add("--Select Stack Type--")
-        Try
-            Dim query As String = "select strdesc, RPTypeCode FROM EISLK_RPTYPECODE " &
-                "where EISLK_RPTYPECODE.active = '1' " &
-                "and EISLK_RPTYPECODE.strdesc <> 'Fugitive' order by strdesc"
-
-            Dim dt As DataTable = DB.GetDataTable(query)
-
-            For Each dr As DataRow In dt.Rows
-                Dim newListItem As New ListItem With {
-                    .Text = dr.Item("strdesc"),
-                    .Value = dr.Item("RPTypeCode")
-                }
-                ddlRPTypeCode.Items.Add(newListItem)
-            Next
-        Catch ex As Exception
-            ErrorReport(ex)
-        End Try
     End Sub
 
     Private Sub LoadStackDetails(ByVal Stkid As String)
@@ -355,229 +332,18 @@ Partial Class eis_stack_details
         gvwRPApportionment.DataBind()
 
         If gvwRPApportionment.Rows.Count = 0 Then
-            lblReleasePointAppMessage.Text = "Release Point not used in Process Release Point Apportionments. It can be deleted on the Edit page."
+            lblReleasePointAppMessage.Text = "Release Point not used in Process Release Point Apportionments."
             lblReleasePointAppMessage.Visible = True
         Else
-            lblReleasePointAppMessage.Text = "Release Point cannot be deleted. Delete process or add another release point to apportionment before deleting."
-            lblReleasePointAppMessage.Visible = True
+            lblReleasePointAppMessage.Visible = False
         End If
+
         If RPStatusCode <> "OP" Then
-            lblRPShutdownMessage.Text = "Release point is shutdown; it cannot be added to new release point apportionments."
+            lblRPShutdownMessage.Text = "Release point is shutdown."
             lblRPShutdownMessage.Visible = True
         Else
-            lblRPShutdownMessage.Text = ""
             lblRPShutdownMessage.Visible = False
         End If
-
-    End Sub
-
-    Protected Sub btnEdit_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnEdit.Click
-        Dim stackID = txtReleasePointID.Text
-        Dim targetpage As String = "stack_edit.aspx" & "?stk=" & stackID
-        Response.Redirect(targetpage)
-    End Sub
-
-    Sub StackIDCheck(ByVal Sender As Object, ByVal args As ServerValidateEventArgs)
-
-        Dim FacilitySiteID As String = GetCookie(Cookie.AirsNumber)
-        Dim stackID As String = args.Value.ToUpper
-        Dim stackActive As String = CheckReleasePointIDexist(FacilitySiteID, stackID)
-        Dim targetpage As String = "stack_edit.aspx" & "?stk=" & stackID
-
-        Select Case stackActive
-            Case "0"
-                args.IsValid = True
-                Response.Redirect(targetpage)
-            Case "1"
-                args.IsValid = False
-                cusvStackID.ErrorMessage = "Stack " & stackID & " is already in use.  Please enter another."
-                txtNewStackID.Text = ""
-                btnAddStack_ModalPopupExtender.Show()
-            Case "n"
-                args.IsValid = True
-                InsertStack()
-                Response.Redirect(targetpage)
-        End Select
-
-    End Sub
-
-    Sub StackDupIDCheck(ByVal Sender As Object, ByVal args As ServerValidateEventArgs)
-        'Checks Release Point ID when duplicating release point
-
-        Dim FacilitySiteID As String = GetCookie(Cookie.AirsNumber)
-        Dim RPID As String = args.Value.ToUpper
-        Dim targetpage As String = "stack_edit.aspx" & "?stk=" & RPID
-        Dim RPIDActive As String = CheckRPIDExist_Dup(FacilitySiteID, RPID)
-
-        Select Case RPIDActive
-            Case "DFUG"
-                args.IsValid = False
-                cusvDuplicate.ErrorMessage = " Release Point " & RPID & " already exists and is a deleted fugitive release point. Enter another ID."
-                txtDupStackID.Text = ""
-                btnDuplicate_ModalPopupExtender.Show()
-            Case "AFUG"
-                args.IsValid = False
-                cusvDuplicate.ErrorMessage = " Release Point " & RPID & " already exists and is a fugitive release point. Enter another ID."
-                txtDupStackID.Text = ""
-                btnDuplicate_ModalPopupExtender.Show()
-            Case "DSTK"
-                args.IsValid = False
-                cusvDuplicate.ErrorMessage = " Stack " & RPID & " is already in use by a deleted stack.  Please enter another ID."
-                txtDupStackID.Text = ""
-                btnDuplicate_ModalPopupExtender.Show()
-            Case "ASTK"
-                args.IsValid = False
-                cusvDuplicate.ErrorMessage = " Stack " & RPID & " is already in use.  Please enter another ID."
-                txtDupStackID.Text = ""
-                btnDuplicate_ModalPopupExtender.Show()
-            Case "DNE"
-                args.IsValid = True
-                DuplicateStack(FacilitySiteID, txtDupStackID.Text.ToUpper)
-                Response.Redirect(targetpage)
-        End Select
-
-    End Sub
-
-    Private Sub InsertStack()
-
-        InsertReleasePoint(GetCookie(Cookie.AirsNumber), txtNewStackID.Text.ToUpper, txtNewStackDesc.Text, ddlRPTypeCode.SelectedValue)
-
-    End Sub
-
-    Private Sub DuplicateStack(ByVal fsid As String, ByVal stkid As String)
-
-        Dim SourceStackID As String = txtReleasePointID.Text.ToUpper
-        Dim DupStackID As String = stkid.ToUpper
-        Dim RPDescription As String = txtDupStackDescription.Text
-        Dim RPTypeCode As String
-        Dim RPStackHeightMeasure As String
-        Dim RPStackDiameterMeasure As String
-        Dim RPExitGasVelocityMeasure As String
-        Dim RPExitGasFlowRateMeasure As String
-        Dim RPExitGasTempMeasure As String
-        Dim RPFenceLineDistMeasure As String
-        Dim RPStatusCode As String = "OP"
-        Dim RPStatusCodeYear As Integer = Now.Year
-        Dim Active As String = "1"
-        Dim UpdateUserID As String = GetCookie(GecoCookie.UserID)
-        Dim UpdateUserName As String = GetCookie(GecoCookie.UserName)
-        Dim UpdateUser As String = UpdateUserID & "-" & UpdateUserName
-
-        'Truncate description if > 100
-        If Len(RPDescription) > 100 Then
-            RPDescription = Left(RPDescription, 100)
-        End If
-
-        Try
-            'Get data for source unit
-            Dim query As String = "select * FROM eis_ReleasePoint " &
-                "where " &
-                "FacilitySiteID = @fsid and " &
-                "ReleasePointID = @SourceStackID "
-
-            Dim params As SqlParameter() = {
-                New SqlParameter("@fsid", fsid),
-                New SqlParameter("@SourceStackID", SourceStackID)
-            }
-
-            Dim dr1 As DataRow = DB.GetDataRow(query, params)
-
-            If dr1 IsNot Nothing Then
-
-                If IsDBNull(dr1("strRPTypeCode")) Then
-                    RPTypeCode = ""
-                Else
-                    RPTypeCode = dr1.Item("strRPTypeCode")
-                End If
-                If IsDBNull(dr1("numRPStackHeightMeasure")) Then
-                    RPStackHeightMeasure = ""
-                Else
-                    RPStackHeightMeasure = dr1.Item("numRPStackHeightMeasure")
-                End If
-                If IsDBNull(dr1("numRPStackDiameterMeasure")) Then
-                    RPStackDiameterMeasure = ""
-                Else
-                    RPStackDiameterMeasure = dr1.Item("numRPStackDiameterMeasure")
-                End If
-                If IsDBNull(dr1("numRPExitGasVelocityMeasure")) Then
-                    RPExitGasVelocityMeasure = ""
-                Else
-                    RPExitGasVelocityMeasure = dr1.Item("numRPExitGasVelocityMeasure")
-                End If
-                If IsDBNull(dr1("numRPExitGasFlowRateMeasure")) Then
-                    RPExitGasFlowRateMeasure = ""
-                Else
-                    RPExitGasFlowRateMeasure = dr1.Item("numRPExitGasFlowRateMeasure")
-                End If
-                If IsDBNull(dr1("numRPExitGasTempMeasure")) Then
-                    RPExitGasTempMeasure = ""
-                Else
-                    RPExitGasTempMeasure = dr1.Item("numRPExitGasTempMeasure")
-                End If
-                If IsDBNull(dr1("numRPFenceLineDistMeasure")) Then
-                    RPFenceLineDistMeasure = ""
-                Else
-                    RPFenceLineDistMeasure = dr1.Item("numRPFenceLineDistMeasure")
-                End If
-
-                Dim query2 As String = "Insert into eis_ReleasePoint (" &
-                        "FacilitySiteID, " &
-                        "ReleasePointID, " &
-                        "strRPTypeCode, " &
-                        "strRPDescription, " &
-                        "numRPStackHeightMeasure, " &
-                        "numRPStackDiameterMeasure, " &
-                        "numRPExitGasVelocityMeasure, " &
-                        "numRPExitGasFlowRateMeasure, " &
-                        "numRPExitGasTempMeasure, " &
-                        "numRPFenceLineDistMeasure, " &
-                        "strRPStatusCode, " &
-                        "numRPStatusCodeYear, " &
-                        "Active, " &
-                        "UpdateUser, " &
-                        "UpdateDateTime, " &
-                        "CreateDateTime) " &
-                "Values (" &
-                        "@fsid, " &
-                        "@DupStackID, " &
-                        "@RPTypeCode, " &
-                        "@RPDescription, " &
-                        "@RPStackHeightMeasure, " &
-                        "@RPStackDiameterMeasure, " &
-                        "@RPExitGasVelocityMeasure, " &
-                        "@RPExitGasFlowRateMeasure, " &
-                        "@RPExitGasTempMeasure, " &
-                        "@RPFenceLineDistMeasure, " &
-                        "@RPStatusCode, " &
-                        "@RPStatusCodeYear, " &
-                        "@Active, " &
-                        "@UpdateUser, " &
-                        "getdate(), " &
-                        "getdate()) "
-
-                Dim params2 As SqlParameter() = {
-                    New SqlParameter("@fsid", fsid),
-                    New SqlParameter("@DupStackID", DupStackID),
-                    New SqlParameter("@RPTypeCode", RPTypeCode),
-                    New SqlParameter("@RPDescription", RPDescription),
-                    New SqlParameter("@RPStackHeightMeasure", If(Not String.IsNullOrEmpty(RPStackHeightMeasure), RPStackHeightMeasure, Nothing)),
-                    New SqlParameter("@RPStackDiameterMeasure", If(Not String.IsNullOrEmpty(RPStackDiameterMeasure), RPStackDiameterMeasure, Nothing)),
-                    New SqlParameter("@RPExitGasVelocityMeasure", If(Not String.IsNullOrEmpty(RPExitGasVelocityMeasure), RPExitGasVelocityMeasure, Nothing)),
-                    New SqlParameter("@RPExitGasFlowRateMeasure", If(Not String.IsNullOrEmpty(RPExitGasFlowRateMeasure), RPExitGasFlowRateMeasure, Nothing)),
-                    New SqlParameter("@RPExitGasTempMeasure", If(Not String.IsNullOrEmpty(RPExitGasTempMeasure), RPExitGasTempMeasure, Nothing)),
-                    New SqlParameter("@RPFenceLineDistMeasure", If(Not String.IsNullOrEmpty(RPFenceLineDistMeasure), RPFenceLineDistMeasure, Nothing)),
-                    New SqlParameter("@RPStatusCode", RPStatusCode),
-                    New SqlParameter("@RPStatusCodeYear", RPStatusCodeYear),
-                    New SqlParameter("@Active", Active),
-                    New SqlParameter("@UpdateUser", UpdateUser)
-                }
-
-                DB.RunCommand(query2, params2)
-            End If
-
-        Catch ex As Exception
-            ErrorReport(ex)
-        End Try
 
     End Sub
 

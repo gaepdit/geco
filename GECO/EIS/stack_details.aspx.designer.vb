@@ -12,7 +12,7 @@ Option Explicit On
 
 
 Partial Public Class eis_stack_details
-    
+
     '''<summary>
     '''ToolkitScriptManager1 control.
     '''</summary>
@@ -21,7 +21,7 @@ Partial Public Class eis_stack_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ToolkitScriptManager1 As Global.AjaxControlToolkit.ToolkitScriptManager
-    
+
     '''<summary>
     '''btnReturnToSummary control.
     '''</summary>
@@ -30,7 +30,7 @@ Partial Public Class eis_stack_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnReturnToSummary As Global.System.Web.UI.WebControls.Button
-    
+
     '''<summary>
     '''lblStackDetails control.
     '''</summary>
@@ -39,52 +39,7 @@ Partial Public Class eis_stack_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblStackDetails As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''btnAddStack control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnAddStack As Global.System.Web.UI.WebControls.Button
-    
-    '''<summary>
-    '''btnAddStack_ModalPopupExtender control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnAddStack_ModalPopupExtender As Global.AjaxControlToolkit.ModalPopupExtender
-    
-    '''<summary>
-    '''btnDuplicate control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnDuplicate As Global.System.Web.UI.WebControls.Button
-    
-    '''<summary>
-    '''btnDuplicate_ModalPopupExtender control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnDuplicate_ModalPopupExtender As Global.AjaxControlToolkit.ModalPopupExtender
-    
-    '''<summary>
-    '''btnEdit control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnEdit As Global.System.Web.UI.WebControls.Button
-    
+
     '''<summary>
     '''lblReleasePointID control.
     '''</summary>
@@ -93,7 +48,7 @@ Partial Public Class eis_stack_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblReleasePointID As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''txtReleasePointID control.
     '''</summary>
@@ -102,7 +57,7 @@ Partial Public Class eis_stack_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtReleasePointID As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''lblRPDescription control.
     '''</summary>
@@ -111,7 +66,7 @@ Partial Public Class eis_stack_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblRPDescription As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''txtRPDescription control.
     '''</summary>
@@ -120,7 +75,7 @@ Partial Public Class eis_stack_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtRPDescription As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''lblRPTypeCode control.
     '''</summary>
@@ -129,7 +84,7 @@ Partial Public Class eis_stack_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblRPTypeCode As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''txtRPTypeCode control.
     '''</summary>
@@ -138,7 +93,7 @@ Partial Public Class eis_stack_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtRPTypeCode As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''lblRPStatusCode control.
     '''</summary>
@@ -147,7 +102,7 @@ Partial Public Class eis_stack_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblRPStatusCode As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''txtRPStatusCode control.
     '''</summary>
@@ -156,7 +111,7 @@ Partial Public Class eis_stack_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtRPStatusCode As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''lblRPStackHeightMeasure control.
     '''</summary>
@@ -165,7 +120,7 @@ Partial Public Class eis_stack_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblRPStackHeightMeasure As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''txtRPStackHeightMeasure control.
     '''</summary>
@@ -174,7 +129,7 @@ Partial Public Class eis_stack_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtRPStackHeightMeasure As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''lblRPStackDiameterMeasure control.
     '''</summary>
@@ -183,7 +138,7 @@ Partial Public Class eis_stack_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblRPStackDiameterMeasure As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''txtRPStackDiameterMeasure control.
     '''</summary>
@@ -192,7 +147,7 @@ Partial Public Class eis_stack_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtRPStackDiameterMeasure As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''lblRPExitGasVelocityMeasure control.
     '''</summary>
@@ -201,7 +156,7 @@ Partial Public Class eis_stack_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblRPExitGasVelocityMeasure As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''txtRPExitGasVelocityMeasure control.
     '''</summary>
@@ -210,7 +165,7 @@ Partial Public Class eis_stack_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtRPExitGasVelocityMeasure As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''lblRPExitGasFlowRateMeasure control.
     '''</summary>
@@ -219,7 +174,7 @@ Partial Public Class eis_stack_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblRPExitGasFlowRateMeasure As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''txtRPExitGasFlowRateMeasure control.
     '''</summary>
@@ -228,7 +183,7 @@ Partial Public Class eis_stack_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtRPExitGasFlowRateMeasure As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''lblRPExitGasTemperatureMeasure control.
     '''</summary>
@@ -237,7 +192,7 @@ Partial Public Class eis_stack_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblRPExitGasTemperatureMeasure As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''txtRPExitGasTemperatureMeasure control.
     '''</summary>
@@ -246,7 +201,7 @@ Partial Public Class eis_stack_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtRPExitGasTemperatureMeasure As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''lblRPFenceLineDistanceMeasure control.
     '''</summary>
@@ -255,7 +210,7 @@ Partial Public Class eis_stack_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblRPFenceLineDistanceMeasure As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''txtRPFenceLineDistanceMeasure control.
     '''</summary>
@@ -264,7 +219,7 @@ Partial Public Class eis_stack_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtRPFenceLineDistanceMeasure As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''lblRPComment control.
     '''</summary>
@@ -273,7 +228,7 @@ Partial Public Class eis_stack_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblRPComment As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''txtRPComment control.
     '''</summary>
@@ -282,7 +237,7 @@ Partial Public Class eis_stack_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtRPComment As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''lblLastEISSubmit control.
     '''</summary>
@@ -291,7 +246,7 @@ Partial Public Class eis_stack_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblLastEISSubmit As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''txtLastEISSubmit control.
     '''</summary>
@@ -300,7 +255,7 @@ Partial Public Class eis_stack_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtLastEISSubmit As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''lblLastUpdated control.
     '''</summary>
@@ -309,7 +264,7 @@ Partial Public Class eis_stack_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblLastUpdated As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''txtLastUpdate control.
     '''</summary>
@@ -318,7 +273,7 @@ Partial Public Class eis_stack_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtLastUpdate As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''lblSeparator2 control.
     '''</summary>
@@ -327,7 +282,7 @@ Partial Public Class eis_stack_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblSeparator2 As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''lblNoRPGeoCoordInfo control.
     '''</summary>
@@ -336,7 +291,7 @@ Partial Public Class eis_stack_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblNoRPGeoCoordInfo As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''LblLatitudeMeasure control.
     '''</summary>
@@ -345,7 +300,7 @@ Partial Public Class eis_stack_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents LblLatitudeMeasure As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''TxtLatitudeMeasure control.
     '''</summary>
@@ -354,7 +309,7 @@ Partial Public Class eis_stack_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents TxtLatitudeMeasure As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''LblLongitudeMeasure control.
     '''</summary>
@@ -363,7 +318,7 @@ Partial Public Class eis_stack_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents LblLongitudeMeasure As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''TxtLongitudeMeasure control.
     '''</summary>
@@ -372,7 +327,7 @@ Partial Public Class eis_stack_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents TxtLongitudeMeasure As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''pnlLocationMap control.
     '''</summary>
@@ -381,7 +336,7 @@ Partial Public Class eis_stack_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents pnlLocationMap As Global.System.Web.UI.WebControls.Panel
-    
+
     '''<summary>
     '''imgGoogleStaticMap control.
     '''</summary>
@@ -390,7 +345,7 @@ Partial Public Class eis_stack_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents imgGoogleStaticMap As Global.System.Web.UI.WebControls.Image
-    
+
     '''<summary>
     '''LblHorCollectionMetCode control.
     '''</summary>
@@ -399,7 +354,7 @@ Partial Public Class eis_stack_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents LblHorCollectionMetCode As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''TxtHorCollectionMetCode control.
     '''</summary>
@@ -408,7 +363,7 @@ Partial Public Class eis_stack_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents TxtHorCollectionMetCode As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''LblHorizontalAccuracyMeasure control.
     '''</summary>
@@ -417,7 +372,7 @@ Partial Public Class eis_stack_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents LblHorizontalAccuracyMeasure As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''TxtHorizontalAccuracyMeasure control.
     '''</summary>
@@ -426,7 +381,7 @@ Partial Public Class eis_stack_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents TxtHorizontalAccuracyMeasure As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''LblHorReferenceDatCode control.
     '''</summary>
@@ -435,7 +390,7 @@ Partial Public Class eis_stack_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents LblHorReferenceDatCode As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''TxtHorReferenceDatCode control.
     '''</summary>
@@ -444,7 +399,7 @@ Partial Public Class eis_stack_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents TxtHorReferenceDatCode As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''LblGeographicComment control.
     '''</summary>
@@ -453,7 +408,7 @@ Partial Public Class eis_stack_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents LblGeographicComment As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''TxtGeographicComment control.
     '''</summary>
@@ -462,7 +417,7 @@ Partial Public Class eis_stack_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents TxtGeographicComment As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''lblLastEISSubmit_SGC control.
     '''</summary>
@@ -471,7 +426,7 @@ Partial Public Class eis_stack_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblLastEISSubmit_SGC As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''txtlastEISSubmit_SGC control.
     '''</summary>
@@ -480,7 +435,7 @@ Partial Public Class eis_stack_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtlastEISSubmit_SGC As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''lblLastUpdate_SGC control.
     '''</summary>
@@ -489,7 +444,7 @@ Partial Public Class eis_stack_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblLastUpdate_SGC As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''txtLastUpdate_SGC control.
     '''</summary>
@@ -498,7 +453,7 @@ Partial Public Class eis_stack_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtLastUpdate_SGC As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''lblSeparator control.
     '''</summary>
@@ -507,7 +462,7 @@ Partial Public Class eis_stack_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblSeparator As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''lblReleasePointAppMessage control.
     '''</summary>
@@ -516,7 +471,7 @@ Partial Public Class eis_stack_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblReleasePointAppMessage As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''lblRPShutdownMessage control.
     '''</summary>
@@ -525,7 +480,7 @@ Partial Public Class eis_stack_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblRPShutdownMessage As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''gvwRPApportionment control.
     '''</summary>
@@ -534,7 +489,7 @@ Partial Public Class eis_stack_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents gvwRPApportionment As Global.System.Web.UI.WebControls.GridView
-    
+
     '''<summary>
     '''SqlDataSourceRPApp control.
     '''</summary>
@@ -543,7 +498,7 @@ Partial Public Class eis_stack_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents SqlDataSourceRPApp As Global.System.Web.UI.WebControls.SqlDataSource
-    
+
     '''<summary>
     '''lblSeparatorOnly control.
     '''</summary>
@@ -552,7 +507,7 @@ Partial Public Class eis_stack_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblSeparatorOnly As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''btnSummary2 control.
     '''</summary>
@@ -561,211 +516,4 @@ Partial Public Class eis_stack_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnSummary2 As Global.System.Web.UI.WebControls.Button
-    
-    '''<summary>
-    '''pnlPopUpAddStack control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents pnlPopUpAddStack As Global.System.Web.UI.WebControls.Panel
-    
-    '''<summary>
-    '''txtNewStackID control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtNewStackID As Global.System.Web.UI.WebControls.TextBox
-    
-    '''<summary>
-    '''filtxtNewStackID control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents filtxtNewStackID As Global.AjaxControlToolkit.FilteredTextBoxExtender
-    
-    '''<summary>
-    '''reqvNewStackID control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents reqvNewStackID As Global.System.Web.UI.WebControls.RequiredFieldValidator
-    
-    '''<summary>
-    '''cusvStackID control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents cusvStackID As Global.System.Web.UI.WebControls.CustomValidator
-    
-    '''<summary>
-    '''ddlRPTypeCode control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents ddlRPTypeCode As Global.System.Web.UI.WebControls.DropDownList
-    
-    '''<summary>
-    '''reqvRPtypeCode control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents reqvRPtypeCode As Global.System.Web.UI.WebControls.RequiredFieldValidator
-    
-    '''<summary>
-    '''txtNewStackDesc control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtNewStackDesc As Global.System.Web.UI.WebControls.TextBox
-    
-    '''<summary>
-    '''reqvNewStackDesc control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents reqvNewStackDesc As Global.System.Web.UI.WebControls.RequiredFieldValidator
-    
-    '''<summary>
-    '''btnInsertStack control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnInsertStack As Global.System.Web.UI.WebControls.Button
-    
-    '''<summary>
-    '''btnCancelStack control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnCancelStack As Global.System.Web.UI.WebControls.Button
-    
-    '''<summary>
-    '''pnlDuplicate control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents pnlDuplicate As Global.System.Web.UI.WebControls.Panel
-    
-    '''<summary>
-    '''lblStackID control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblStackID As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''txtDupStackID control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtDupStackID As Global.System.Web.UI.WebControls.TextBox
-    
-    '''<summary>
-    '''txtDupStackID_FilteredTextBoxExtender control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtDupStackID_FilteredTextBoxExtender As Global.AjaxControlToolkit.FilteredTextBoxExtender
-    
-    '''<summary>
-    '''cusvDuplicate control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents cusvDuplicate As Global.System.Web.UI.WebControls.CustomValidator
-    
-    '''<summary>
-    '''reqvDupStackID control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents reqvDupStackID As Global.System.Web.UI.WebControls.RequiredFieldValidator
-    
-    '''<summary>
-    '''lblStackDesc control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblStackDesc As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''txtDupStackDescription control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtDupStackDescription As Global.System.Web.UI.WebControls.TextBox
-    
-    '''<summary>
-    '''reqvDupStackDesc control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents reqvDupStackDesc As Global.System.Web.UI.WebControls.RequiredFieldValidator
-    
-    '''<summary>
-    '''Label7 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents Label7 As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''btnDupInsertStack control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnDupInsertStack As Global.System.Web.UI.WebControls.Button
-    
-    '''<summary>
-    '''btnCancelDupStack control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnCancelDupStack As Global.System.Web.UI.WebControls.Button
 End Class
