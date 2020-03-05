@@ -12,7 +12,7 @@ Option Explicit On
 
 
 Partial Public Class eis_releasepoint_summary
-    
+
     '''<summary>
     '''ToolkitScriptManager1 control.
     '''</summary>
@@ -21,7 +21,7 @@ Partial Public Class eis_releasepoint_summary
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ToolkitScriptManager1 As Global.AjaxControlToolkit.ToolkitScriptManager
-    
+
     '''<summary>
     '''Label4 control.
     '''</summary>
@@ -30,25 +30,7 @@ Partial Public Class eis_releasepoint_summary
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents Label4 As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''btnAddFugitiveRP control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnAddFugitiveRP As Global.System.Web.UI.WebControls.Button
-    
-    '''<summary>
-    '''btnAddFugitiveRP_ModalPopupExtender control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnAddFugitiveRP_ModalPopupExtender As Global.AjaxControlToolkit.ModalPopupExtender
-    
+
     '''<summary>
     '''gvwFugRPSummary control.
     '''</summary>
@@ -57,7 +39,7 @@ Partial Public Class eis_releasepoint_summary
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents gvwFugRPSummary As Global.System.Web.UI.WebControls.GridView
-    
+
     '''<summary>
     '''SqlDataSourceID1 control.
     '''</summary>
@@ -66,7 +48,7 @@ Partial Public Class eis_releasepoint_summary
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents SqlDataSourceID1 As Global.System.Web.UI.WebControls.SqlDataSource
-    
+
     '''<summary>
     '''Label1 control.
     '''</summary>
@@ -75,25 +57,7 @@ Partial Public Class eis_releasepoint_summary
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents Label1 As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''btnAddStack control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnAddStack As Global.System.Web.UI.WebControls.Button
-    
-    '''<summary>
-    '''btnAddStack_ModalPopupExtender control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnAddStack_ModalPopupExtender As Global.AjaxControlToolkit.ModalPopupExtender
-    
+
     '''<summary>
     '''gvwRPSummary control.
     '''</summary>
@@ -102,7 +66,7 @@ Partial Public Class eis_releasepoint_summary
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents gvwRPSummary As Global.System.Web.UI.WebControls.GridView
-    
+
     '''<summary>
     '''SqlDataSourceID2 control.
     '''</summary>
@@ -111,7 +75,7 @@ Partial Public Class eis_releasepoint_summary
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents SqlDataSourceID2 As Global.System.Web.UI.WebControls.SqlDataSource
-    
+
     '''<summary>
     '''pnlDeletedRP control.
     '''</summary>
@@ -120,7 +84,7 @@ Partial Public Class eis_releasepoint_summary
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents pnlDeletedRP As Global.System.Web.UI.WebControls.Panel
-    
+
     '''<summary>
     '''btnShowDeletedRP control.
     '''</summary>
@@ -129,7 +93,7 @@ Partial Public Class eis_releasepoint_summary
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnShowDeletedRP As Global.System.Web.UI.WebControls.Button
-    
+
     '''<summary>
     '''gvwDeletedRP control.
     '''</summary>
@@ -138,7 +102,7 @@ Partial Public Class eis_releasepoint_summary
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents gvwDeletedRP As Global.System.Web.UI.WebControls.GridView
-    
+
     '''<summary>
     '''sqldsDeletedRP control.
     '''</summary>
@@ -147,184 +111,4 @@ Partial Public Class eis_releasepoint_summary
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents sqldsDeletedRP As Global.System.Web.UI.WebControls.SqlDataSource
-    
-    '''<summary>
-    '''pnlPopUpAddFugitiveRP control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents pnlPopUpAddFugitiveRP As Global.System.Web.UI.WebControls.Panel
-    
-    '''<summary>
-    '''txtNewFugitiveRP control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtNewFugitiveRP As Global.System.Web.UI.WebControls.TextBox
-    
-    '''<summary>
-    '''filtxtNewFugitiveRP control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents filtxtNewFugitiveRP As Global.AjaxControlToolkit.FilteredTextBoxExtender
-    
-    '''<summary>
-    '''reqvNewFugitiveRP control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents reqvNewFugitiveRP As Global.System.Web.UI.WebControls.RequiredFieldValidator
-    
-    '''<summary>
-    '''cusvFugitiveID control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents cusvFugitiveID As Global.System.Web.UI.WebControls.CustomValidator
-    
-    '''<summary>
-    '''txtNewFugitiveRPDesc control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtNewFugitiveRPDesc As Global.System.Web.UI.WebControls.TextBox
-    
-    '''<summary>
-    '''reqvNewFugitiveRPDesc control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents reqvNewFugitiveRPDesc As Global.System.Web.UI.WebControls.RequiredFieldValidator
-    
-    '''<summary>
-    '''btnInsertFugitiveID control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnInsertFugitiveID As Global.System.Web.UI.WebControls.Button
-    
-    '''<summary>
-    '''btnCancelNEWFugitiveRP control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnCancelNEWFugitiveRP As Global.System.Web.UI.WebControls.Button
-    
-    '''<summary>
-    '''pnlPopUpAddStack control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents pnlPopUpAddStack As Global.System.Web.UI.WebControls.Panel
-    
-    '''<summary>
-    '''txtNewStackID control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtNewStackID As Global.System.Web.UI.WebControls.TextBox
-    
-    '''<summary>
-    '''filtxtNewStackID control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents filtxtNewStackID As Global.AjaxControlToolkit.FilteredTextBoxExtender
-    
-    '''<summary>
-    '''cusvStackID control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents cusvStackID As Global.System.Web.UI.WebControls.CustomValidator
-    
-    '''<summary>
-    '''reqvNewStackID control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents reqvNewStackID As Global.System.Web.UI.WebControls.RequiredFieldValidator
-    
-    '''<summary>
-    '''ddlRPtypeCode control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents ddlRPtypeCode As Global.System.Web.UI.WebControls.DropDownList
-    
-    '''<summary>
-    '''reqvRPtypeCode control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents reqvRPtypeCode As Global.System.Web.UI.WebControls.RequiredFieldValidator
-    
-    '''<summary>
-    '''txtNewStackDesc control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtNewStackDesc As Global.System.Web.UI.WebControls.TextBox
-    
-    '''<summary>
-    '''reqvNewStackDesc control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents reqvNewStackDesc As Global.System.Web.UI.WebControls.RequiredFieldValidator
-    
-    '''<summary>
-    '''btnInsertStack control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnInsertStack As Global.System.Web.UI.WebControls.Button
-    
-    '''<summary>
-    '''btnCancelNewStack control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnCancelNewStack As Global.System.Web.UI.WebControls.Button
 End Class
