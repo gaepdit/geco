@@ -1,4 +1,4 @@
-﻿<%@ Master Language="VB" Inherits="GECO.APB_eismaster" CodeBehind="eismaster.master.vb" %>
+<%@ Master Language="VB" Inherits="GECO.APB_eismaster" CodeBehind="eismaster.master.vb" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang="en-us" xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
@@ -102,10 +102,6 @@
                     <asp:Menu ID="mnuEISHelp" runat="server" BackColor="#CAEAFF" Font-Names="Verdana"
                         Font-Size="Small" Width="100%">
                         <Items>
-                            <asp:MenuItem Text="Facility Inventory Help" Value="Facility Inventory "
-                                NavigateUrl="~/EIS/help_fi.aspx"></asp:MenuItem>
-                            <asp:MenuItem Text="Emission Inventory Help" Value="Emission Inventory"
-                                NavigateUrl="~/EIS/help_ei.aspx"></asp:MenuItem>
                             <asp:MenuItem Text="Reports" Value="Reports" NavigateUrl="~/EIS/reports.aspx"></asp:MenuItem>
                         </Items>
                     </asp:Menu>
