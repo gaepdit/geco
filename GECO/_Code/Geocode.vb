@@ -25,7 +25,9 @@ Namespace GoogleGeocoder
     End Class
 
     Public Module Geocode
+#Disable Warning S1075 ' URIs should not be hardcoded
         Private Const googleUri As String = "https://maps.google.com/maps/geo?q="
+#Enable Warning S1075 ' URIs should not be hardcoded
         Private Const outputType As String = "csv"
 
         Private Function GetGeocodeUri(ByVal address As String) As Uri
