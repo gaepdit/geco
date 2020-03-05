@@ -7,7 +7,6 @@ Partial Class eis_rpapportionment_edit
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
         Dim FacilitySiteID As String = GetCookie(Cookie.AirsNumber)
-        Dim EISStatus As String = GetCookie(EisCookie.EISStatus)
         Dim EISAccessCode As String = GetCookie(EisCookie.EISAccess)
         Dim EmissionsUnitID As String = Request.QueryString("eu").ToUpper
         Dim ProcessID As String = Request.QueryString("ep").ToUpper
@@ -17,14 +16,13 @@ Partial Class eis_rpapportionment_edit
         If Not IsPostBack Then
 
             Dim RPApportionmentExists As Boolean = CheckAnyRPApportionment(FacilitySiteID, EmissionsUnitID, ProcessID)
-            LoadReleasePoints(FacilitySiteID, EmissionsUnitID)
             LoadRPApportionDetails(FacilitySiteID, EmissionsUnitID, ProcessID)
 
             If RPApportionmentExists Then
                 LoadRPApportionmentGridView(FacilitySiteID, EmissionsUnitID, ProcessID)
                 CheckRPApportionmentTotal(FacilitySiteID, EmissionsUnitID, ProcessID)
             Else
-                lblRPApportionmentWarning.Text = "No release points added for this process as yet. Please add a release point before continuing."
+                lblRPApportionmentWarning.Text = "No release points added for this process."
                 lblRPApportionmentTotal.Visible = False
                 txtRPApportionmentTotal.Visible = False
             End If
@@ -32,45 +30,6 @@ Partial Class eis_rpapportionment_edit
         End If
 
         HideTextBoxBorders(Me)
-    End Sub
-
-    Private Sub LoadReleasePoints(ByVal fsid As String, ByVal euid As String)
-        Dim ProcessID As String = Request.QueryString("ep")
-
-        ddlReleasePointID.Items.Clear()
-        ddlReleasePointID.Items.Add("--Select a Release Point --")
-
-        'sql statement to select Release Point IDs that are in eis_ReleasePoint and not in eis_RPApprotionment
-        Try
-            Dim query As String = "select ReleasePointID FROM eis_ReleasePoint " &
-                "where " &
-                "eis_ReleasePoint.FacilitySiteID = @fsid and " &
-                "eis_ReleasePoint.Active = '1' and " &
-                "eis_ReleasePoint.strRPStatusCode = 'OP' and " &
-                "not exists " &
-                "(select ReleasePointID FROM eis_RPApportionment " &
-                "where " &
-                "eis_RPApportionment.FacilitySiteID = @fsid and " &
-                "eis_RPApportionment.EmissionsUnitID = @euid and " &
-                "eis_RPApportionment.ProcessID = @ProcessID and " &
-                " EIS_RPAPPORTIONMENT.ACTIVE = '1' and " &
-                "eis_RPApportionment.ReleasePointID = eis_ReleasePoint.ReleasePointID) " &
-                "Order by ReleasePointID"
-
-            Dim params As SqlParameter() = {
-                New SqlParameter("@fsid", fsid),
-                New SqlParameter("@euid", euid),
-                New SqlParameter("@ProcessID", ProcessID)
-            }
-
-            Dim dt As DataTable = DB.GetDataTable(query, params)
-
-            For Each dr As DataRow In dt.Rows
-                ddlReleasePointID.Items.Add(dr.Item("ReleasePointID"))
-            Next
-        Catch ex As Exception
-            ErrorReport(ex)
-        End Try
     End Sub
 
     Private Sub LoadRPApportionDetails(ByVal fsid As String, ByVal euid As String, ByVal prid As String)
@@ -155,88 +114,6 @@ Partial Class eis_rpapportionment_edit
 
     End Sub
 
-    Protected Sub btnAddRPApportionment_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnAddRPApportionment.Click
-
-        Dim FacilitySiteID As String = GetCookie(Cookie.AirsNumber)
-        Dim EmissionsUnitID As String = txtEmissionsUnitID.Text.ToUpper
-        Dim ProcessID As String = txtProcessID.Text.ToUpper
-
-        lblRPApportionmentDeleteWarning.Text = ""
-        lblRPApportionmentDeleteWarning.Visible = True
-
-        InsertRPApportionment(FacilitySiteID, EmissionsUnitID, ProcessID)
-        LoadReleasePoints(FacilitySiteID, EmissionsUnitID)
-        CheckRPApportionmentTotal(FacilitySiteID, EmissionsUnitID, ProcessID)
-        ClearRPApportionmentDetails()
-
-    End Sub
-
-    Private Sub InsertRPApportionment(ByVal fsid As String, ByVal euid As String, ByVal prid As String)
-
-        'Code to insert a new RPApportion
-        'Reminder: insert only FacilitySiteID, process ID, description, UpdateUser, CreateDateTime, UpdateDateTime (same as Create)
-        'and any other fields that are required for the insert before going to edit page for more details.
-        'Edit pages perform only updates.
-
-        Dim ReleasePointID As String = ddlReleasePointID.SelectedValue
-        Dim AveragePctEmissions As Integer = CInt(txtAvgPctEmissions.Text)
-        Dim RPApportioncomment As String = txtRPApportionmentComment.Text
-        Dim UpdateUserID As String = GetCookie(GecoCookie.UserID)
-        Dim UpdateUserName As String = GetCookie(GecoCookie.UserName)
-        Dim UpdateUser As String = UpdateUserID & "-" & UpdateUserName
-        Dim Active As String = "1"
-
-        'Truncate comment if >400 chars
-        RPApportioncomment = Left(RPApportioncomment, 400)
-
-        Try
-
-            Dim query As String = "Insert into eis_RPApportionment (" &
-                "FacilitySiteID, " &
-                "EmissionsUnitID, " &
-                "ProcessID, " &
-                "ReleasePointID, " &
-                "RPApportionmentID, " &
-                "intAveragePercentEmissions, " &
-                "strRPApportionmentComment, " &
-                "Active, " &
-                "UpdateUser, " &
-                "UpdateDateTime, " &
-                "CreateDateTime) " &
-                "Values (" &
-                "@fsid, " &
-                "@euid, " &
-                "@prid, " &
-                "@ReleasePointID, " &
-                "Next Value for EIS_SEQ_RPAPPID, " &
-                "@AveragePctEmissions, " &
-                "@RPApportioncomment, " &
-                "@Active, " &
-                "@UpdateUser, " &
-                "getdate(), " &
-                "getdate()) "
-
-            Dim params As SqlParameter() = {
-                New SqlParameter("@fsid", fsid),
-                New SqlParameter("@euid", euid),
-                New SqlParameter("@prid", prid),
-                New SqlParameter("@ReleasePointID", ReleasePointID),
-                New SqlParameter("@AveragePctEmissions", AveragePctEmissions),
-                New SqlParameter("@RPApportioncomment", RPApportioncomment),
-                New SqlParameter("@Active", Active),
-                New SqlParameter("@UpdateUser", UpdateUser)
-            }
-            DB.RunCommand(query, params)
-
-            'Populate gridview
-            LoadRPApportionmentGridView(fsid, euid, prid)
-
-        Catch ex As Exception
-            ErrorReport(ex)
-        End Try
-
-    End Sub
-
     Private Sub RPApportionmentCheck(ByVal rptotal As Integer)
 
         If rptotal <> 100 Then
@@ -253,110 +130,6 @@ Partial Class eis_rpapportionment_edit
 
     End Sub
 
-    Protected Sub gvwRPApportionment_RowDeleting(ByVal sender As Object, ByVal e As System.Web.UI.WebControls.GridViewDeleteEventArgs) Handles gvwRPApportionment.RowDeleting
-
-        Try
-            If gvwRPApportionment.Rows.Count = 1 Then
-                lblRPApportionmentDeleteWarning.Text = "At least one apportionment must exist. Add another before deleting the only one existing."
-                lblRPApportionmentDeleteWarning.Visible = True
-                Exit Sub
-            Else
-                Dim FacilitySiteID As String = gvwRPApportionment.DataKeys(e.RowIndex).Values(0).ToString
-                Dim EmissionsUnitID As String = gvwRPApportionment.DataKeys(e.RowIndex).Values(1).ToString
-                Dim ProcessID As String = gvwRPApportionment.DataKeys(e.RowIndex).Values(2).ToString
-                Dim ReleasePointID As String = gvwRPApportionment.DataKeys(e.RowIndex).Values(3).ToString
-
-                lblRPApportionmentDeleteWarning.Text = ""
-                lblRPApportionmentDeleteWarning.Visible = True
-
-                Dim query As String = "Delete FROM  eis_RPApportionment " &
-                    "where FacilitySiteID = @FacilitySiteID and " &
-                    "EmissionsUnitID = @EmissionsUnitID and " &
-                    "ProcessID = @ProcessID and " &
-                    "ReleasePointID = @ReleasePointID "
-
-                Dim params As SqlParameter() = {
-                    New SqlParameter("@FacilitySiteID", FacilitySiteID),
-                    New SqlParameter("@EmissionsUnitID", EmissionsUnitID),
-                    New SqlParameter("@ProcessID", ProcessID),
-                    New SqlParameter("@ReleasePointID", ReleasePointID)
-                }
-
-                DB.RunCommand(query, params)
-
-                LoadRPApportionmentGridView(FacilitySiteID, EmissionsUnitID, ProcessID)
-                LoadReleasePoints(FacilitySiteID, EmissionsUnitID)
-                CheckRPApportionmentTotal(FacilitySiteID, EmissionsUnitID, ProcessID)
-                ClearRPApportionmentDetails()
-
-            End If
-        Catch ex As Exception
-            ErrorReport(ex)
-        End Try
-
-    End Sub
-
-    Protected Sub gvwRPApportionment_RowCancelingEdit(ByVal sender As Object, ByVal e As System.Web.UI.WebControls.GridViewCancelEditEventArgs) Handles gvwRPApportionment.RowCancelingEdit
-
-        Dim FacilitySiteID As String = GetCookie(Cookie.AirsNumber)
-        Dim EmissionsUnitID As String = txtEmissionsUnitID.Text.ToUpper
-        Dim ProcessID As String = txtProcessID.Text.ToUpper
-        gvwRPApportionment.EditIndex = -1
-        LoadRPApportionmentGridView(FacilitySiteID, EmissionsUnitID, ProcessID)
-
-    End Sub
-
-    Protected Sub gvwRPApportionment_RowEditing(ByVal sender As Object, ByVal e As System.Web.UI.WebControls.GridViewEditEventArgs) Handles gvwRPApportionment.RowEditing
-
-        Dim FacilitySiteID As String = GetCookie(Cookie.AirsNumber)
-        Dim EmissionsUnitID As String = txtEmissionsUnitID.Text.ToUpper
-        Dim ProcessID As String = txtProcessID.Text.ToUpper
-        gvwRPApportionment.EditIndex = e.NewEditIndex
-        LoadRPApportionmentGridView(FacilitySiteID, EmissionsUnitID, ProcessID)
-
-    End Sub
-
-    Protected Sub gvwRPApportionment_RowUpdating(ByVal sender As Object, ByVal e As System.Web.UI.WebControls.GridViewUpdateEventArgs) Handles gvwRPApportionment.RowUpdating
-        Try
-            Dim AvgPctEmissions As String = DirectCast(gvwRPApportionment.Rows(e.RowIndex).FindControl("txtAvgPctEmissions"), TextBox).Text
-            Dim RPApportionmentComment As String = DirectCast(gvwRPApportionment.Rows(e.RowIndex).FindControl("txtRPApportionmentComment"), TextBox).Text
-            Dim FacilitySiteID As String = gvwRPApportionment.DataKeys(e.RowIndex).Values(0).ToString
-            Dim EmissionsUnitID As String = gvwRPApportionment.DataKeys(e.RowIndex).Values(1).ToString
-            Dim ProcessID As String = gvwRPApportionment.DataKeys(e.RowIndex).Values(2).ToString
-            Dim ReleasePointID As String = gvwRPApportionment.DataKeys(e.RowIndex).Values(3).ToString
-
-            RPApportionmentComment = Left(RPApportionmentComment, 400)
-
-            Dim query As String = "Update eis_RPApportionment Set " &
-                "eis_RPApportionment.intAveragepercentEmissions = @AvgPctEmissions, " &
-                "eis_RPApportionment.strRPApportionmentComment = @RPApportionmentComment " &
-                "where " &
-                "eis_RPApportionment.FacilitySiteID = @FacilitySiteID and " &
-                "eis_RPApportionment.EmissionsUnitID = @EmissionsUnitID and " &
-                "eis_RPApportionment.ProcessID = @ProcessID and " &
-                "eis_RPApportionment.ReleasePointID = @ReleasePointID "
-
-            Dim params As SqlParameter() = {
-                New SqlParameter("@AvgPctEmissions", If(Not String.IsNullOrEmpty(AvgPctEmissions), AvgPctEmissions, Nothing)),
-                New SqlParameter("@RPApportionmentComment", RPApportionmentComment),
-                New SqlParameter("@FacilitySiteID", FacilitySiteID),
-                New SqlParameter("@EmissionsUnitID", EmissionsUnitID),
-                New SqlParameter("@ProcessID", ProcessID),
-                New SqlParameter("@ReleasePointID", ReleasePointID)
-            }
-
-            DB.RunCommand(query, params)
-
-            gvwRPApportionment.EditIndex = -1
-            LoadRPApportionmentGridView(FacilitySiteID, EmissionsUnitID, ProcessID)
-            CheckRPApportionmentTotal(FacilitySiteID, EmissionsUnitID, ProcessID)
-            ClearRPApportionmentDetails()
-
-        Catch ex As Exception
-            ErrorReport(ex)
-        End Try
-    End Sub
-
     Private Sub CheckRPApportionmentTotal(ByVal fsid As String, ByVal euid As String, ByVal prid As String)
 
         Dim RPApportionmentSum As Integer
@@ -364,22 +137,6 @@ Partial Class eis_rpapportionment_edit
         RPApportionmentSum = GetRPApportionmentTotal(fsid, euid, prid)
         txtRPApportionmentTotal.Text = RPApportionmentSum & "%"
         RPApportionmentCheck(RPApportionmentSum)
-
-    End Sub
-
-    Private Sub ClearRPApportionmentDetails()
-
-        ddlReleasePointID.SelectedIndex = 0
-        txtAvgPctEmissions.Text = ""
-        txtRPApportionmentComment.Text = ""
-
-    End Sub
-
-    Protected Sub btnClearRPApportionment_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnClearRPApportionment.Click
-        ClearRPApportionmentDetails()
-    End Sub
-
-    Protected Sub gvwRPApportionment_RowCommand(ByVal sender As Object, ByVal e As System.Web.UI.WebControls.GridViewCommandEventArgs) Handles gvwRPApportionment.RowCommand
 
     End Sub
 

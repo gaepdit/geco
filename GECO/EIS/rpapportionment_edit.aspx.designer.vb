@@ -12,7 +12,7 @@ Option Explicit On
 
 
 Partial Public Class eis_rpapportionment_edit
-    
+
     '''<summary>
     '''ToolkitScriptManager1 control.
     '''</summary>
@@ -21,7 +21,7 @@ Partial Public Class eis_rpapportionment_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ToolkitScriptManager1 As Global.AjaxControlToolkit.ToolkitScriptManager
-    
+
     '''<summary>
     '''lblSeparator control.
     '''</summary>
@@ -30,7 +30,7 @@ Partial Public Class eis_rpapportionment_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblSeparator As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''btnProcessSummary control.
     '''</summary>
@@ -39,7 +39,7 @@ Partial Public Class eis_rpapportionment_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnProcessSummary As Global.System.Web.UI.WebControls.Button
-    
+
     '''<summary>
     '''lblEmissionsUnitID control.
     '''</summary>
@@ -48,7 +48,7 @@ Partial Public Class eis_rpapportionment_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblEmissionsUnitID As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''txtEmissionsUnitID control.
     '''</summary>
@@ -57,7 +57,7 @@ Partial Public Class eis_rpapportionment_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtEmissionsUnitID As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''lblEmissionsUnitDesc control.
     '''</summary>
@@ -66,7 +66,7 @@ Partial Public Class eis_rpapportionment_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblEmissionsUnitDesc As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''txtEmissionsUnitDesc control.
     '''</summary>
@@ -75,7 +75,7 @@ Partial Public Class eis_rpapportionment_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtEmissionsUnitDesc As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''lblProcessID control.
     '''</summary>
@@ -84,7 +84,7 @@ Partial Public Class eis_rpapportionment_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblProcessID As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''txtProcessID control.
     '''</summary>
@@ -93,7 +93,7 @@ Partial Public Class eis_rpapportionment_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtProcessID As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''lblProcessDesc control.
     '''</summary>
@@ -102,7 +102,7 @@ Partial Public Class eis_rpapportionment_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblProcessDesc As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''txtProcessDesc control.
     '''</summary>
@@ -111,7 +111,7 @@ Partial Public Class eis_rpapportionment_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtProcessDesc As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''lblRPApportionmentDeleteWarning control.
     '''</summary>
@@ -120,7 +120,7 @@ Partial Public Class eis_rpapportionment_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblRPApportionmentDeleteWarning As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''gvwRPApportionment control.
     '''</summary>
@@ -129,7 +129,7 @@ Partial Public Class eis_rpapportionment_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents gvwRPApportionment As Global.System.Web.UI.WebControls.GridView
-    
+
     '''<summary>
     '''lblRPApportionmentTotal control.
     '''</summary>
@@ -138,7 +138,7 @@ Partial Public Class eis_rpapportionment_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblRPApportionmentTotal As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''txtRPApportionmentTotal control.
     '''</summary>
@@ -147,7 +147,7 @@ Partial Public Class eis_rpapportionment_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtRPApportionmentTotal As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''lblRPApportionmentWarning control.
     '''</summary>
@@ -156,7 +156,7 @@ Partial Public Class eis_rpapportionment_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblRPApportionmentWarning As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''lblRPApportionmentWarning_RoundedCornersExtender control.
     '''</summary>
@@ -165,142 +165,7 @@ Partial Public Class eis_rpapportionment_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblRPApportionmentWarning_RoundedCornersExtender As Global.AjaxControlToolkit.RoundedCornersExtender
-    
-    '''<summary>
-    '''vgApportionmentGVW control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents vgApportionmentGVW As Global.System.Web.UI.WebControls.ValidationSummary
-    
-    '''<summary>
-    '''vgRPApportionmentaDD control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents vgRPApportionmentaDD As Global.System.Web.UI.WebControls.ValidationSummary
-    
-    '''<summary>
-    '''lblddlReleasePoint control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblddlReleasePoint As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''ddlReleasePointID control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents ddlReleasePointID As Global.System.Web.UI.WebControls.DropDownList
-    
-    '''<summary>
-    '''reqvReleasePointID control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents reqvReleasePointID As Global.System.Web.UI.WebControls.RequiredFieldValidator
-    
-    '''<summary>
-    '''lblPctAverageEmissions control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblPctAverageEmissions As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''txtAvgPctEmissions control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtAvgPctEmissions As Global.System.Web.UI.WebControls.TextBox
-    
-    '''<summary>
-    '''ftbeAveragePercentEmissions control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents ftbeAveragePercentEmissions As Global.AjaxControlToolkit.FilteredTextBoxExtender
-    
-    '''<summary>
-    '''reqvAvgPctEmissions control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents reqvAvgPctEmissions As Global.System.Web.UI.WebControls.RequiredFieldValidator
-    
-    '''<summary>
-    '''rngvRPApportionment control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents rngvRPApportionment As Global.System.Web.UI.WebControls.RangeValidator
-    
-    '''<summary>
-    '''lblRPApportionmentComment control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblRPApportionmentComment As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''txtRPApportionmentComment control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtRPApportionmentComment As Global.System.Web.UI.WebControls.TextBox
-    
-    '''<summary>
-    '''regexpName control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents regexpName As Global.System.Web.UI.WebControls.RegularExpressionValidator
-    
-    '''<summary>
-    '''btnAddRPApportionment control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnAddRPApportionment As Global.System.Web.UI.WebControls.Button
-    
-    '''<summary>
-    '''btnClearRPApportionment control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnClearRPApportionment As Global.System.Web.UI.WebControls.Button
-    
+
     '''<summary>
     '''btnCancel2 control.
     '''</summary>
@@ -309,7 +174,7 @@ Partial Public Class eis_rpapportionment_edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnCancel2 As Global.System.Web.UI.WebControls.Button
-    
+
     '''<summary>
     '''PreventRePost1 control.
     '''</summary>
