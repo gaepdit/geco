@@ -13,11 +13,6 @@ Partial Class EIS_report_releasepoints
         FacilitySiteID = GetCookie(Cookie.AirsNumber)
 
         If Not IsPostBack Then
-
-            HideFacilityInventoryMenu()
-            HideEmissionInventoryMenu()
-            HideSubmitMenu()
-
             txtFacilityName_ReleasePoints.Text = GetFacilityName(FacilitySiteID)
             txtFacilitySiteID_ReleasePoints.Text = FacilitySiteID
 
@@ -160,41 +155,5 @@ Partial Class EIS_report_releasepoints
         Response.Redirect("reports.aspx")
 
     End Sub
-
-#Region "  Menu Routines  "
-
-    Private Sub HideFacilityInventoryMenu()
-
-        Dim menu = CType(Master.FindControl("pnlFacilityInventory"), Panel)
-        If menu IsNot Nothing Then
-            menu.Visible = False
-        End If
-
-    End Sub
-
-    Private Sub HideEmissionInventoryMenu()
-
-        Dim menu = CType(Master.FindControl("pnlEmissionInventory"), Panel)
-        If menu IsNot Nothing Then
-            menu.Visible = False
-        End If
-
-    End Sub
-
-    Private Sub HideSubmitMenu()
-
-        Dim menu = CType(Master.FindControl("pnlSubmit"), Panel)
-        If menu IsNot Nothing Then
-            menu.Visible = False
-        End If
-
-        menu = CType(Master.FindControl("pnlReset"), Panel)
-        If menu IsNot Nothing Then
-            menu.Visible = False
-        End If
-
-    End Sub
-
-#End Region
 
 End Class

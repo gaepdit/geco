@@ -7,11 +7,8 @@ Partial Class eis_Default
     Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
         If Not IsPostBack Then
             EISPanel()
-            ShowEISHelpMenu()
         End If
     End Sub
-
-#Region "  Intro page panel routines   "
 
     Private Sub EISPanel()
 
@@ -53,8 +50,6 @@ Partial Class eis_Default
                 Case "0"
                     If OptOut = "0" AndAlso EISStatus = "5" Then
                         'Facility opted in, data submitted and sent to EPA - No EI access, FI access allowed
-                        ShowFacilityInventoryMenu()
-                        HideEmissionInventoryMenu()
                         pnlStatus_Inner.BackColor = GecoColors.CompletedPanel.BackColor
                         lblHeading.Text = EIYear & " Emissions Inventory Complete - Submitted to EPA"
                         lblMainMessage.Text = "The facility's EI data has been successfully submitted to " &
@@ -77,8 +72,6 @@ Partial Class eis_Default
                         btnAction2.Visible = True
                     ElseIf OptOut = "1" AndAlso EISStatus = "5" Then
                         'Facility opted out and the bulk complete process was run - No EI access, FI access allowed
-                        ShowFacilityInventoryMenu()
-                        HideEmissionInventoryMenu()
                         pnlStatus_Inner.BackColor = GecoColors.CompletedPanel.BackColor
                         lblHeading.Text = EIYear & "Emissions Inventory Complete - Facility Did Not Participate"
                         lblMainMessage.Text = "The facility opted out of the EI process on " & DateFinalize & ". " &
@@ -103,8 +96,6 @@ Partial Class eis_Default
                         btnAction2.Visible = True
                     ElseIf OptOut = "NULL" AndAlso EISStatus = "0" Then
                         'Facility not in current EI - No EI access, FI access allowed
-                        ShowFacilityInventoryMenu()
-                        HideEmissionInventoryMenu()
                         pnlStatus_Inner.BackColor = GecoColors.CompletedPanel.BackColor
                         lblHeading.Text = "Facility Inventory Only Available"
                         lblMainMessage.Text = "Either Emissions Inventory enrollment has not yet occurred for the current " &
@@ -136,8 +127,6 @@ Partial Class eis_Default
                 Case "1"
                     If OptOut = "NULL" AndAlso EISStatus = "1" Then
                         'If null, EI not started - show panel to begin - EI and FI menus not yet available
-                        HideFacilityInventoryMenu()
-                        HideEmissionInventoryMenu()
                         pnlStatus_Inner.BackColor = GecoColors.InProgressPanel.BackColor
                         lblHeading.Text = "Begin " & EIYear & " EI Process"
                         lblMainMessage.Text = "EPD's Air Protection Branch has determined that this facility needs " &
@@ -164,8 +153,6 @@ Partial Class eis_Default
                         btnAction2.Visible = True
                     ElseIf OptOut = "0" AndAlso EISStatus = "2" Then
                         'Facility opted in and is in progress - FI and EI menus available
-                        ShowFacilityInventoryMenu()
-                        ShowEmissionInventoryMenu()
                         pnlStatus_Inner.BackColor = GecoColors.InProgressPanel.BackColor
                         lblHeading.Text = EIYear & " Emission Inventory - In Progess"
                         lblMainMessage.Text = "The facility is currently in the process of completing the " &
@@ -195,8 +182,6 @@ Partial Class eis_Default
                 Case "2"
                     If OptOut = "0" AndAlso EISStatus = "3" Then
                         'Facility opted in, submitted but data not yet sent to EPA. Change allowed - FI and EI menus not available
-                        HideFacilityInventoryMenu()
-                        HideEmissionInventoryMenu()
                         pnlStatus_Inner.BackColor = GecoColors.CompletedPanel.BackColor
                         lblHeading.Text = EIYear & " Emission Inventory Submitted to Georgia EPD"
                         lblMainMessage.Text = "The facility " & EIYear & " EI data has been submitted to Georgia EPD, " &
@@ -219,8 +204,6 @@ Partial Class eis_Default
                         btnAction2.Visible = True
                     ElseIf OptOut = "1" AndAlso EISStatus = "3" Then
                         'Facility opted out of EI but not yet "complete." May choose to opt in - FI and EI menus not available
-                        HideFacilityInventoryMenu()
-                        HideEmissionInventoryMenu()
                         pnlStatus_Inner.BackColor = GecoColors.ErrorPanel.BackColor
                         lblHeading.Text = "Facility Not Participating In " & EIYear & " Emission Inventory"
                         lblMainMessage.Text = "It has been determined that the facility does not need to participate in the " &
@@ -245,8 +228,6 @@ Partial Class eis_Default
                         btnAction2.Visible = True
                     ElseIf OptOut = "0" AndAlso EISStatus = "4" Then
                         'Facility opted in, submitted data and is in QA process. No option to make changes. FI and EI menus not available
-                        HideFacilityInventoryMenu()
-                        HideEmissionInventoryMenu()
                         pnlStatus_Inner.BackColor = GecoColors.ErrorPanel.BackColor
                         lblHeading.Text = EIYear & " Emission Inventory Data Being Reviewed by Georgia EPD"
                         lblMainMessage.Text = "The facility's submitted " & EIYear & " EI data is in the review process and " &
@@ -274,8 +255,6 @@ Partial Class eis_Default
                     End If
                 Case "3"
                     'Facility not in EIS admin table. Contact APB
-                    HideFacilityInventoryMenu()
-                    HideEmissionInventoryMenu()
                     pnlStatus_Inner.BackColor = GecoColors.ErrorPanel.BackColor
                     lblHeading.Text = "Facility Not In Emission Inventory System"
                     lblMainMessage.Text = "This facility is not in the Emission Inventory System. Contact the " &
@@ -297,8 +276,6 @@ Partial Class eis_Default
                     btnAction2.Visible = True
                 Case "4"
                     'EIS not available to the facility
-                    HideFacilityInventoryMenu()
-                    HideEmissionInventoryMenu()
                     pnlStatus_Outer.Visible = True
                     pnlStatus_Inner.Visible = False
                     pnlChange_Inner.Visible = False
@@ -319,8 +296,6 @@ Partial Class eis_Default
 
         Dim FacilityName As String = GetFacilityName(fsid)
 
-        HideFacilityInventoryMenu()
-        HideEmissionInventoryMenu()
         pnlStatus_Inner.BackColor = GecoColors.ErrorPanel.BackColor
         lblHeading.Text = "Contact the Air Protection Branch"
         lblMainMessage.Text = "There seems to be a data error. Please contact the Air Protection Branch using the contact link above. (Error " & errorId & ".)"
@@ -389,8 +364,6 @@ Partial Class eis_Default
                 End If
             Case "4"
                 'EIS not available to the facility
-                HideFacilityInventoryMenu()
-                HideEmissionInventoryMenu()
                 pnlStatus_Outer.Visible = True
                 pnlStatus_Inner.Visible = False
                 pnlChange_Inner.Visible = False
@@ -587,71 +560,5 @@ Partial Class eis_Default
         Response.Redirect("~/Facility/")
 
     End Sub
-
-#End Region
-
-#Region "  Menu Routines  "
-
-    Private Sub ShowFacilityInventoryMenu()
-
-        Dim menuFacilityInventory As Panel
-
-        menuFacilityInventory = CType(Master.FindControl("pnlFacilityInventory"), Panel)
-
-        If Not menuFacilityInventory Is Nothing Then
-            menuFacilityInventory.Visible = True
-        End If
-
-    End Sub
-
-    Private Sub HideFacilityInventoryMenu()
-
-        Dim menuFacilityInventory As Panel
-
-        menuFacilityInventory = CType(Master.FindControl("pnlFacilityInventory"), Panel)
-
-        If Not menuFacilityInventory Is Nothing Then
-            menuFacilityInventory.Visible = False
-        End If
-
-    End Sub
-
-    Private Sub ShowEmissionInventoryMenu()
-
-        Dim menuEmissionInventory As Panel
-
-        menuEmissionInventory = CType(Master.FindControl("pnlEmissionInventory"), Panel)
-
-        If Not menuEmissionInventory Is Nothing Then
-            menuEmissionInventory.Visible = True
-        End If
-
-    End Sub
-
-    Private Sub HideEmissionInventoryMenu()
-
-        Dim menuEmissionInventory As Panel
-
-        menuEmissionInventory = CType(Master.FindControl("pnlEmissionInventory"), Panel)
-
-        If Not menuEmissionInventory Is Nothing Then
-            menuEmissionInventory.Visible = False
-        End If
-
-    End Sub
-
-    Private Sub ShowEISHelpMenu()
-
-        Dim menuEISHelp As Panel
-
-        menuEISHelp = CType(Master.FindControl("pnlEISHelp"), Panel)
-
-        If Not menuEISHelp Is Nothing Then
-            menuEISHelp.Visible = True
-        End If
-
-    End Sub
-
-#End Region
 
 End Class

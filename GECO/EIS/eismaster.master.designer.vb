@@ -12,7 +12,7 @@ Option Explicit On
 
 
 Partial Public Class APB_eismaster
-    
+
     '''<summary>
     '''form1 control.
     '''</summary>
@@ -21,7 +21,7 @@ Partial Public Class APB_eismaster
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents form1 As Global.System.Web.UI.HtmlControls.HtmlForm
-    
+
     '''<summary>
     '''lblUserName control.
     '''</summary>
@@ -30,7 +30,7 @@ Partial Public Class APB_eismaster
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblUserName As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''lblEISAirsNumber control.
     '''</summary>
@@ -39,7 +39,7 @@ Partial Public Class APB_eismaster
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblEISAirsNumber As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''lblFacilityName control.
     '''</summary>
@@ -48,7 +48,7 @@ Partial Public Class APB_eismaster
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblFacilityName As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''EasyMenu1 control.
     '''</summary>
@@ -57,7 +57,7 @@ Partial Public Class APB_eismaster
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents EasyMenu1 As Global.Sequentum.EasyMenu
-    
+
     '''<summary>
     '''lbtnHome control.
     '''</summary>
@@ -66,7 +66,7 @@ Partial Public Class APB_eismaster
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lbtnHome As Global.System.Web.UI.WebControls.HyperLink
-    
+
     '''<summary>
     '''pnlFacilityInventory control.
     '''</summary>
@@ -75,16 +75,7 @@ Partial Public Class APB_eismaster
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents pnlFacilityInventory As Global.System.Web.UI.WebControls.Panel
-    
-    '''<summary>
-    '''lblFacilityInventory control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblFacilityInventory As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''mnuFacilityInventory control.
     '''</summary>
@@ -93,106 +84,7 @@ Partial Public Class APB_eismaster
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents mnuFacilityInventory As Global.System.Web.UI.WebControls.Menu
-    
-    '''<summary>
-    '''pnlEmissionInventory control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents pnlEmissionInventory As Global.System.Web.UI.WebControls.Panel
-    
-    '''<summary>
-    '''lblEmissionInventory control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblEmissionInventory As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''mnuEmissionInventroy control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents mnuEmissionInventroy As Global.System.Web.UI.WebControls.Menu
-    
-    '''<summary>
-    '''pnlSubmit control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents pnlSubmit As Global.System.Web.UI.WebControls.Panel
-    
-    '''<summary>
-    '''lblSubmit control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblSubmit As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''mnuSubmit control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents mnuSubmit As Global.System.Web.UI.WebControls.Menu
-    
-    '''<summary>
-    '''pnlReset control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents pnlReset As Global.System.Web.UI.WebControls.Panel
-    
-    '''<summary>
-    '''mnuReset control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents mnuReset As Global.System.Web.UI.WebControls.Menu
-    
-    '''<summary>
-    '''pnlEISHelp control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents pnlEISHelp As Global.System.Web.UI.WebControls.Panel
-    
-    '''<summary>
-    '''lblEISHelp control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblEISHelp As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''mnuEISHelp control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents mnuEISHelp As Global.System.Web.UI.WebControls.Menu
-    
+
     '''<summary>
     '''ContentPlaceHolder3 control.
     '''</summary>

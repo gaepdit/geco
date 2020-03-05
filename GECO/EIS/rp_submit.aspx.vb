@@ -88,9 +88,6 @@ Partial Class EIS_rp_submit
         btnContinue.Visible = True
         btnConfSubmit.Visible = False
 
-        HideFacilityInventoryMenu()
-        HideEmissionInventoryMenu()
-
         EmailNotificationsToECSU()
 
     End Sub
@@ -929,34 +926,6 @@ Partial Class EIS_rp_submit
 
         gvwEISWarnings.DataSource = DB.GetDataTable(query2)
         gvwEISWarnings.DataBind()
-    End Sub
-
-#End Region
-
-#Region "  Menu Routines  "
-
-    Private Sub HideFacilityInventoryMenu()
-
-        Dim menuFacilityInventory As Panel
-
-        menuFacilityInventory = CType(Master.FindControl("pnlFacilityInventory"), Panel)
-
-        If Not menuFacilityInventory Is Nothing Then
-            menuFacilityInventory.Visible = False
-        End If
-
-    End Sub
-
-    Private Sub HideEmissionInventoryMenu()
-
-        Dim menuEmissionInventory As Panel
-
-        menuEmissionInventory = CType(Master.FindControl("pnlEmissionInventory"), Panel)
-
-        If Not menuEmissionInventory Is Nothing Then
-            menuEmissionInventory.Visible = False
-        End If
-
     End Sub
 
 #End Region

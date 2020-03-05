@@ -82,17 +82,7 @@ Partial Class eis_process_details
                 lblEmissionUnitStatusWarning.Text = "Emission Unit is in a shutdown state. All actions for this unit are disabled."
             End If
 
-            ShowFacilityInventoryMenu()
-            ShowEISHelpMenu()
-
-            If EISStatus = "2" Then
-                ShowEmissionInventoryMenu()
-            Else
-                HideEmissionInventoryMenu()
-            End If
-
             HideTextBoxBorders(Me)
-
         End If
     End Sub
 
@@ -730,54 +720,5 @@ Partial Class eis_process_details
         Dim targetpage As String = "rpapportionment_edit.aspx" & "?eu=" & eu & "&ep=" & ep
         Response.Redirect(targetpage)
     End Sub
-
-#Region "  Menu Routines  "
-
-    Private Sub ShowFacilityInventoryMenu()
-        Dim menuFacilityInventory As Panel
-        menuFacilityInventory = CType(Master.FindControl("pnlFacilityInventory"), Panel)
-        If Not menuFacilityInventory Is Nothing Then
-            menuFacilityInventory.Visible = True
-        End If
-
-    End Sub
-
-    Private Sub ShowEmissionInventoryMenu()
-
-        Dim menuEmissionInventory As Panel
-
-        menuEmissionInventory = CType(Master.FindControl("pnlEmissionInventory"), Panel)
-
-        If Not menuEmissionInventory Is Nothing Then
-            menuEmissionInventory.Visible = True
-        End If
-
-    End Sub
-
-    Private Sub HideEmissionInventoryMenu()
-
-        Dim menuEmissionInventory As Panel
-
-        menuEmissionInventory = CType(Master.FindControl("pnlEmissionInventory"), Panel)
-
-        If Not menuEmissionInventory Is Nothing Then
-            menuEmissionInventory.Visible = False
-        End If
-
-    End Sub
-
-    Private Sub ShowEISHelpMenu()
-
-        Dim menuEISHelp As Panel
-
-        menuEISHelp = CType(Master.FindControl("pnlEISHelp"), Panel)
-
-        If Not menuEISHelp Is Nothing Then
-            menuEISHelp.Visible = True
-        End If
-
-    End Sub
-
-#End Region
 
 End Class
