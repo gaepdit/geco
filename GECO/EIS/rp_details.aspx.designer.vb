@@ -12,7 +12,7 @@ Option Explicit On
 
 
 Partial Public Class EIS_rp_details
-    
+
     '''<summary>
     '''ToolkitScriptManager1 control.
     '''</summary>
@@ -21,7 +21,7 @@ Partial Public Class EIS_rp_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ToolkitScriptManager1 As Global.AjaxControlToolkit.ToolkitScriptManager
-    
+
     '''<summary>
     '''btnSummary1 control.
     '''</summary>
@@ -30,7 +30,7 @@ Partial Public Class EIS_rp_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnSummary1 As Global.System.Web.UI.WebControls.Button
-    
+
     '''<summary>
     '''btnProcess1 control.
     '''</summary>
@@ -39,7 +39,7 @@ Partial Public Class EIS_rp_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnProcess1 As Global.System.Web.UI.WebControls.Button
-    
+
     '''<summary>
     '''lblSeparatorOnly control.
     '''</summary>
@@ -48,7 +48,7 @@ Partial Public Class EIS_rp_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblSeparatorOnly As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''lblEIYear control.
     '''</summary>
@@ -57,7 +57,7 @@ Partial Public Class EIS_rp_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblEIYear As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''txtEISYear control.
     '''</summary>
@@ -66,7 +66,7 @@ Partial Public Class EIS_rp_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtEISYear As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''lblEmissionUnitID control.
     '''</summary>
@@ -75,7 +75,7 @@ Partial Public Class EIS_rp_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblEmissionUnitID As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''txtEmissionsUnitID control.
     '''</summary>
@@ -84,7 +84,7 @@ Partial Public Class EIS_rp_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtEmissionsUnitID As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''lblEmissionUnitDescription control.
     '''</summary>
@@ -93,7 +93,7 @@ Partial Public Class EIS_rp_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblEmissionUnitDescription As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''txtUnitDescription control.
     '''</summary>
@@ -102,7 +102,7 @@ Partial Public Class EIS_rp_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtUnitDescription As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''lblProcessID control.
     '''</summary>
@@ -111,7 +111,7 @@ Partial Public Class EIS_rp_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblProcessID As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''txtProcessID control.
     '''</summary>
@@ -120,7 +120,7 @@ Partial Public Class EIS_rp_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtProcessID As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''lblProcessDescription control.
     '''</summary>
@@ -129,7 +129,7 @@ Partial Public Class EIS_rp_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblProcessDescription As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''txtProcessDescription control.
     '''</summary>
@@ -138,7 +138,7 @@ Partial Public Class EIS_rp_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtProcessDescription As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''lblSourceClassCode control.
     '''</summary>
@@ -147,7 +147,7 @@ Partial Public Class EIS_rp_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblSourceClassCode As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''txtSourceClassCode control.
     '''</summary>
@@ -156,7 +156,7 @@ Partial Public Class EIS_rp_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtSourceClassCode As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''lblSccDescLabel control.
     '''</summary>
@@ -165,7 +165,7 @@ Partial Public Class EIS_rp_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblSccDescLabel As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''lblSccDesc control.
     '''</summary>
@@ -174,7 +174,7 @@ Partial Public Class EIS_rp_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblSccDesc As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''lblEmissionDetails control.
     '''</summary>
@@ -183,43 +183,7 @@ Partial Public Class EIS_rp_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblEmissionDetails As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''btnAddPollutant control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnAddPollutant As Global.System.Web.UI.WebControls.Button
-    
-    '''<summary>
-    '''btnAddPollutant_ModalPopupExtender control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnAddPollutant_ModalPopupExtender As Global.AjaxControlToolkit.ModalPopupExtender
-    
-    '''<summary>
-    '''btnEditRPEmissions control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnEditRPEmissions As Global.System.Web.UI.WebControls.Button
-    
-    '''<summary>
-    '''lblRPEmissions control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblRPEmissions As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''gvwPollutants control.
     '''</summary>
@@ -228,7 +192,7 @@ Partial Public Class EIS_rp_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents gvwPollutants As Global.System.Web.UI.WebControls.GridView
-    
+
     '''<summary>
     '''lblSummerDayNote control.
     '''</summary>
@@ -237,7 +201,7 @@ Partial Public Class EIS_rp_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblSummerDayNote As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''Label1 control.
     '''</summary>
@@ -246,16 +210,7 @@ Partial Public Class EIS_rp_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents Label1 As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''btnEditRPDetails control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnEditRPDetails As Global.System.Web.UI.WebControls.Button
-    
+
     '''<summary>
     '''lblLastEISSubmit control.
     '''</summary>
@@ -264,7 +219,7 @@ Partial Public Class EIS_rp_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblLastEISSubmit As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''txtLastEISSubmit control.
     '''</summary>
@@ -273,7 +228,7 @@ Partial Public Class EIS_rp_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtLastEISSubmit As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''lblLastUpdated control.
     '''</summary>
@@ -282,7 +237,7 @@ Partial Public Class EIS_rp_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblLastUpdated As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''txtLastUpdated control.
     '''</summary>
@@ -291,7 +246,7 @@ Partial Public Class EIS_rp_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtLastUpdated As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''lblProcessOperatingDetails control.
     '''</summary>
@@ -300,7 +255,7 @@ Partial Public Class EIS_rp_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblProcessOperatingDetails As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''lblCalcParamTypeCode control.
     '''</summary>
@@ -309,7 +264,7 @@ Partial Public Class EIS_rp_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblCalcParamTypeCode As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''txtCalcParamType control.
     '''</summary>
@@ -318,7 +273,7 @@ Partial Public Class EIS_rp_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtCalcParamType As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''lblCalcParamValue control.
     '''</summary>
@@ -327,7 +282,7 @@ Partial Public Class EIS_rp_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblCalcParamValue As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''txtCalcParamValue control.
     '''</summary>
@@ -336,7 +291,7 @@ Partial Public Class EIS_rp_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtCalcParamValue As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''lblCalcParamUoM control.
     '''</summary>
@@ -345,7 +300,7 @@ Partial Public Class EIS_rp_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblCalcParamUoM As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''txtCalcParamUoM control.
     '''</summary>
@@ -354,7 +309,7 @@ Partial Public Class EIS_rp_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtCalcParamUoM As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''lblMaterialCode control.
     '''</summary>
@@ -363,7 +318,7 @@ Partial Public Class EIS_rp_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblMaterialCode As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''txtCalcMaterial control.
     '''</summary>
@@ -372,7 +327,7 @@ Partial Public Class EIS_rp_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtCalcMaterial As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''lblRPComment control.
     '''</summary>
@@ -381,7 +336,7 @@ Partial Public Class EIS_rp_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblRPComment As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''txtRPComment control.
     '''</summary>
@@ -390,7 +345,7 @@ Partial Public Class EIS_rp_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtRPComment As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''lblSeparator control.
     '''</summary>
@@ -399,7 +354,7 @@ Partial Public Class EIS_rp_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblSeparator As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''lblAvgHoursPerDay control.
     '''</summary>
@@ -408,7 +363,7 @@ Partial Public Class EIS_rp_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblAvgHoursPerDay As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''txtAvgHoursPerDay control.
     '''</summary>
@@ -417,7 +372,7 @@ Partial Public Class EIS_rp_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtAvgHoursPerDay As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''lblAvgDaysPerWeek control.
     '''</summary>
@@ -426,7 +381,7 @@ Partial Public Class EIS_rp_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblAvgDaysPerWeek As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''txtAvgDaysPerWeek control.
     '''</summary>
@@ -435,7 +390,7 @@ Partial Public Class EIS_rp_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtAvgDaysPerWeek As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''lblAvgWeeksPerYear control.
     '''</summary>
@@ -444,7 +399,7 @@ Partial Public Class EIS_rp_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblAvgWeeksPerYear As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''txtAvgWeeksPerYear control.
     '''</summary>
@@ -453,7 +408,7 @@ Partial Public Class EIS_rp_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtAvgWeeksPerYear As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''lblActualHoursPerYear control.
     '''</summary>
@@ -462,7 +417,7 @@ Partial Public Class EIS_rp_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblActualHoursPerYear As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''txtActualHoursPerYear control.
     '''</summary>
@@ -471,7 +426,7 @@ Partial Public Class EIS_rp_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtActualHoursPerYear As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''lblSeasonalInfo control.
     '''</summary>
@@ -480,7 +435,7 @@ Partial Public Class EIS_rp_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblSeasonalInfo As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''lblWinterPct control.
     '''</summary>
@@ -489,7 +444,7 @@ Partial Public Class EIS_rp_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblWinterPct As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''txtWinterPct control.
     '''</summary>
@@ -498,7 +453,7 @@ Partial Public Class EIS_rp_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtWinterPct As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''lblSpringPct control.
     '''</summary>
@@ -507,7 +462,7 @@ Partial Public Class EIS_rp_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblSpringPct As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''txtSpringPct control.
     '''</summary>
@@ -516,7 +471,7 @@ Partial Public Class EIS_rp_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtSpringPct As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''lblSummerPct control.
     '''</summary>
@@ -525,7 +480,7 @@ Partial Public Class EIS_rp_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblSummerPct As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''txtSummerPct control.
     '''</summary>
@@ -534,7 +489,7 @@ Partial Public Class EIS_rp_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtSummerPct As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''lblFallPct control.
     '''</summary>
@@ -543,7 +498,7 @@ Partial Public Class EIS_rp_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblFallPct As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''txtFallPct control.
     '''</summary>
@@ -552,7 +507,7 @@ Partial Public Class EIS_rp_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtFallPct As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''lblFuelBurning control.
     '''</summary>
@@ -561,7 +516,7 @@ Partial Public Class EIS_rp_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblFuelBurning As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''lblFuelUsage control.
     '''</summary>
@@ -570,7 +525,7 @@ Partial Public Class EIS_rp_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblFuelUsage As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''txtFuelUsage control.
     '''</summary>
@@ -579,7 +534,7 @@ Partial Public Class EIS_rp_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtFuelUsage As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''pnlFuelBurning control.
     '''</summary>
@@ -588,7 +543,7 @@ Partial Public Class EIS_rp_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents pnlFuelBurning As Global.System.Web.UI.WebControls.Panel
-    
+
     '''<summary>
     '''lblHeatContent control.
     '''</summary>
@@ -597,7 +552,7 @@ Partial Public Class EIS_rp_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblHeatContent As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''txtHeatContent control.
     '''</summary>
@@ -606,7 +561,7 @@ Partial Public Class EIS_rp_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtHeatContent As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''lblHeatContentNumUoM control.
     '''</summary>
@@ -615,7 +570,7 @@ Partial Public Class EIS_rp_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblHeatContentNumUoM As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''txtHeatContentNumUoM control.
     '''</summary>
@@ -624,7 +579,7 @@ Partial Public Class EIS_rp_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtHeatContentNumUoM As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''lblPer control.
     '''</summary>
@@ -633,7 +588,7 @@ Partial Public Class EIS_rp_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblPer As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''txtHeatContentDenUoM control.
     '''</summary>
@@ -642,7 +597,7 @@ Partial Public Class EIS_rp_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtHeatContentDenUoM As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''lblSulfurPct control.
     '''</summary>
@@ -651,7 +606,7 @@ Partial Public Class EIS_rp_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblSulfurPct As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''txtSulfurPct control.
     '''</summary>
@@ -660,7 +615,7 @@ Partial Public Class EIS_rp_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtSulfurPct As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''lblAshPct control.
     '''</summary>
@@ -669,7 +624,7 @@ Partial Public Class EIS_rp_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblAshPct As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''txtAshPct control.
     '''</summary>
@@ -678,7 +633,7 @@ Partial Public Class EIS_rp_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtAshPct As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''lblSummary control.
     '''</summary>
@@ -687,7 +642,7 @@ Partial Public Class EIS_rp_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblSummary As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''btnSummary2 control.
     '''</summary>
@@ -696,7 +651,7 @@ Partial Public Class EIS_rp_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnSummary2 As Global.System.Web.UI.WebControls.Button
-    
+
     '''<summary>
     '''btnProcess2 control.
     '''</summary>
@@ -705,103 +660,4 @@ Partial Public Class EIS_rp_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnProcess2 As Global.System.Web.UI.WebControls.Button
-    
-    '''<summary>
-    '''pnlAddPollutant control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents pnlAddPollutant As Global.System.Web.UI.WebControls.Panel
-    
-    '''<summary>
-    '''Label2 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents Label2 As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''txtEmissionsUnitID_Add control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtEmissionsUnitID_Add As Global.System.Web.UI.WebControls.TextBox
-    
-    '''<summary>
-    '''lblNewProcessID control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblNewProcessID As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''txtProcessID_Add control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtProcessID_Add As Global.System.Web.UI.WebControls.TextBox
-    
-    '''<summary>
-    '''lblPollutant control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblPollutant As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''ddlPollutant control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents ddlPollutant As Global.System.Web.UI.WebControls.DropDownList
-    
-    '''<summary>
-    '''reqvPollutant control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents reqvPollutant As Global.System.Web.UI.WebControls.RequiredFieldValidator
-    
-    '''<summary>
-    '''lbl control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lbl As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''btnSavePollutant control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnSavePollutant As Global.System.Web.UI.WebControls.Button
-    
-    '''<summary>
-    '''btnCancel control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnCancel As Global.System.Web.UI.WebControls.Button
 End Class

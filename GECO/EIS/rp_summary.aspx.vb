@@ -17,7 +17,7 @@ Partial Class EIS_rp_summary
                 LoadRPSummary_RP(FacilitySiteID, InventoryYear)
                 LoadRPSummary_NoRP(FacilitySiteID, InventoryYear)
                 lblRPSummary.Text = "Processes in the " & InventoryYear & " Reporting Period"
-            Else : End If
+            End If
         End If
 
     End Sub
@@ -73,57 +73,6 @@ Partial Class EIS_rp_summary
         gvwReportingPeriodSummary.DataBind()
     End Sub
 
-    Protected Sub gvwRPSummary_NoRP_RowCommand(ByVal sender As Object, ByVal e As GridViewCommandEventArgs) Handles gvwRPSummary_NoRP.RowCommand
-
-        Dim FacilitySiteID As String = GetCookie(Cookie.AirsNumber)
-        Dim InventoryYear As String = GetCookie(EisCookie.EISMaxYear)
-        Dim index As Integer = Convert.ToInt32(e.CommandArgument)
-        Dim row As GridViewRow = gvwRPSummary_NoRP.Rows(index)
-        Dim EmissionsUnitID As String = Server.HtmlDecode(row.Cells(0).Text)
-        Dim ProcessID As String = Server.HtmlDecode(row.Cells(1).Text)
-        Dim RPTPeriodTypeCode As String = "A"
-        Dim UpdateUserID As String = GetCookie(GecoCookie.UserID)
-        Dim UpdateUserName As String = GetCookie(GecoCookie.UserName)
-        Dim UpdateUser As String = UpdateUserID & "-" & UpdateUserName
-        Dim targetpage As String = "~/EIS/rp_operscp_edit.aspx" & "?eu=" & EmissionsUnitID & "&ep=" & ProcessID
-
-        If e.CommandName = "Add" Then
-
-            Try
-                InsertRPProcess(InventoryYear, FacilitySiteID, EmissionsUnitID, ProcessID, RPTPeriodTypeCode, UpdateUser)
-                Response.Redirect(targetpage, False)
-            Catch ex As Exception
-                ex.Data.Add("CommandName", "Add")
-                ErrorReport(ex)
-            End Try
-
-        ElseIf e.CommandName = "PrePop" Then
-
-            ' Use stored procedure to populate reporting period for this process
-            Dim sp = "geco.PD_EIS_Process"
-
-            Dim params = {
-                    New SqlParameter("FACILITYID", FacilitySiteID),
-                    New SqlParameter("PROCID", ProcessID),
-                    New SqlParameter("EMISSUNITID", EmissionsUnitID),
-                    New SqlParameter("INVENTORYYEAR", InventoryYear),
-                    New SqlParameter("USERUPDATER", UpdateUser)
-                }
-
-            Try
-                DB.SPRunCommand(sp, params)
-            Catch ex As Exception
-                ex.Data.Add("CommandName", "PrePop")
-                ErrorReport(ex)
-            End Try
-
-            LoadRPSummary_RP(FacilitySiteID, InventoryYear)
-            LoadRPSummary_NoRP(FacilitySiteID, InventoryYear)
-
-        End If
-
-    End Sub
-
     Protected Sub gvwRPSummary_NoRP_PageIndexChanging(ByVal sender As Object, ByVal e As System.Web.UI.WebControls.GridViewPageEventArgs) Handles gvwRPSummary_NoRP.PageIndexChanging
 
         Dim FacilitySiteID As String = GetCookie(Cookie.AirsNumber)
@@ -145,22 +94,6 @@ Partial Class EIS_rp_summary
         Catch ex As Exception
             ErrorReport(ex)
         End Try
-    End Sub
-
-    Protected Sub gvwReportingPeriodSummary_RowCommand(ByVal sender As Object, ByVal e As System.Web.UI.WebControls.GridViewCommandEventArgs) Handles gvwReportingPeriodSummary.RowCommand
-
-        Dim FacilitySiteID As String = GetCookie(Cookie.AirsNumber)
-        Dim InventoryYear As String = GetCookie(EisCookie.EISMaxYear)
-        Dim index As Integer = Convert.ToInt32(e.CommandArgument)
-        Dim row As GridViewRow = gvwReportingPeriodSummary.Rows(index)
-        Dim EmissionsUnitID As String = Server.HtmlDecode(row.Cells(0).Text)
-        Dim ProcessID As String = DirectCast((row.Cells(1).Controls(0)), HyperLink).Text
-
-        DeleteRPProcessAndEmissions(InventoryYear, FacilitySiteID, EmissionsUnitID, ProcessID)
-
-        LoadRPSummary_RP(FacilitySiteID, InventoryYear)
-        LoadRPSummary_NoRP(FacilitySiteID, InventoryYear)
-
     End Sub
 
 End Class

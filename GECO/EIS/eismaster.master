@@ -66,6 +66,7 @@
                             <asp:MenuItem Text="Release Points" Value="Release Points" NavigateUrl="~/EIS/releasepoint_summary.aspx"></asp:MenuItem>
                             <asp:MenuItem Text="Emission Units" Value="Emission Units" NavigateUrl="~/EIS/emissionunit_summary.aspx"></asp:MenuItem>
                             <asp:MenuItem Text="Processes" Value="Processes" NavigateUrl="~/EIS/process_summary.aspx"></asp:MenuItem>
+                            <asp:MenuItem Text="Emissions Reporting" Value="Emissions Reporting" NavigateUrl="~/EIS/rp_summary.aspx"></asp:MenuItem>
                         </Items>
                     </asp:Menu>
                 </asp:Panel>

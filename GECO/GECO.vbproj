@@ -229,11 +229,9 @@
     <Content Include="EIS\report_releasepoints.aspx" />
     <Content Include="EIS\rpapportionment_view.aspx" />
     <Content Include="EIS\rp_details.aspx" />
-    <Content Include="EIS\rp_emissions_edit.aspx" />
     <Content Include="EIS\rp_entry.aspx" />
     <Content Include="EIS\rp_facilitystatus.aspx" />
     <Content Include="EIS\rp_facilitythreshold.aspx" />
-    <Content Include="EIS\rp_operscp_edit.aspx" />
     <Content Include="EIS\rp_pollutant_bulk.aspx" />
     <Content Include="EIS\rp_prepop.aspx" />
     <Content Include="EIS\rp_process_bulk.aspx" />
@@ -405,9 +403,6 @@
     <Compile Include="EIS\rp_details.aspx.designer.vb">
       <DependentUpon>rp_details.aspx</DependentUpon>
     </Compile>
-    <Compile Include="EIS\rp_emissions_edit.aspx.designer.vb">
-      <DependentUpon>rp_emissions_edit.aspx</DependentUpon>
-    </Compile>
     <Compile Include="EIS\rp_entry.aspx.designer.vb">
       <DependentUpon>rp_entry.aspx</DependentUpon>
     </Compile>
@@ -416,9 +411,6 @@
     </Compile>
     <Compile Include="EIS\rp_facilitythreshold.aspx.designer.vb">
       <DependentUpon>rp_facilitythreshold.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="EIS\rp_operscp_edit.aspx.designer.vb">
-      <DependentUpon>rp_operscp_edit.aspx</DependentUpon>
     </Compile>
     <Compile Include="EIS\rp_pollutant_bulk.aspx.designer.vb">
       <DependentUpon>rp_pollutant_bulk.aspx</DependentUpon>
@@ -768,10 +760,6 @@
       <DependentUpon>rp_details.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="EIS\rp_emissions_edit.aspx.vb">
-      <DependentUpon>rp_emissions_edit.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
     <Compile Include="EIS\rp_entry.aspx.vb">
       <DependentUpon>rp_entry.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -782,10 +770,6 @@
     </Compile>
     <Compile Include="EIS\rp_facilitythreshold.aspx.vb">
       <DependentUpon>rp_facilitythreshold.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="EIS\rp_operscp_edit.aspx.vb">
-      <DependentUpon>rp_operscp_edit.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="EIS\rp_pollutant_bulk.aspx.vb">

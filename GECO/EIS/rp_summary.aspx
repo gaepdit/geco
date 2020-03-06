@@ -47,7 +47,6 @@
                     <HeaderStyle HorizontalAlign="Center" />
                     <ItemStyle Width="100px" HorizontalAlign="Center" />
                 </asp:BoundField>
-                <asp:ButtonField CommandName="Remove" Text="Remove" ButtonType="Button" />
             </Columns>
             <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
             <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
@@ -93,8 +92,6 @@
                     <HeaderStyle HorizontalAlign="Center" />
                     <ItemStyle Width="100px" HorizontalAlign="Center" />
                 </asp:BoundField>
-                <asp:ButtonField CommandName="Add" Text="Add" ButtonType="Button" />
-                <asp:ButtonField CommandName="PrePop" Text="Prepopulate" ButtonType="Button" />
             </Columns>
             <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
             <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />

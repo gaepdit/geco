@@ -51,16 +51,6 @@
     </div>
     <div class="fieldwrapperseparator">
         <asp:Label ID="lblEmissionDetails" class="styledseparator" runat="server" Text="Emission Details"></asp:Label>
-        <div class="sepbuttons">
-            <asp:Button ID="btnAddPollutant" runat="server" Text="Add" ToolTip="" Font-Size="Small" />
-            <act:ModalPopupExtender ID="btnAddPollutant_ModalPopupExtender" runat="server" BackgroundCssClass="modalProgressGreyBackground"
-                CancelControlID="btnCancel" Enabled="True" OkControlID="btnCancel"
-                PopupControlID="pnlAddPollutant" TargetControlID="btnAddPollutant">
-            </act:ModalPopupExtender>
-            <asp:Button ID="btnEditRPEmissions" runat="server" Text="Edit" ToolTip="" Font-Size="Small" />
-        </div>
-        <asp:Label ID="lblRPEmissions" runat="server" Font-Size="Small" ForeColor="#CA0000"
-            CssClass="labelwarningleft"></asp:Label>
     </div>
     <div class="gridview">
         <asp:GridView ID="gvwPollutants" runat="server"
@@ -72,11 +62,6 @@
                 <asp:BoundField DataField="EMISSIONSUNITID" HeaderText="EmissionsUnitID" Visible="False" />
                 <asp:BoundField DataField="PROCESSID" HeaderText="ProcessID" Visible="False" />
                 <asp:BoundField DataField="PollutantCode" HeaderText="PollutantCode" Visible="False" />
-                <asp:HyperLinkField DataTextField="strPollutant" DataNavigateUrlFields="EmissionsUnitID,ProcessID,PollutantCode"
-                    DataNavigateUrlFormatString="~/EIS/rp_emissions_edit.aspx?eu={0}&amp;ep={1}&amp;em={2}"
-                    HeaderText="Pollutant" NavigateUrl="~/EIS/rp_emissions_edit.aspx">
-                    <ItemStyle HorizontalAlign="Left" />
-                </asp:HyperLinkField>
                 <asp:BoundField DataField="strPollutant" HeaderText="Pollutant" Visible="False">
                     <HeaderStyle HorizontalAlign="Left" />
                     <ItemStyle HorizontalAlign="Left" />
@@ -112,8 +97,7 @@
             BackColor="#ffffff" ForeColor="#ffffff"></asp:Label>
     </div>
     <div class="pageheader">
-        Process Operating Details<asp:Button ID="btnEditRPDetails" runat="server" Text="Edit"
-            CausesValidation="False" CssClass="summarybutton" Font-Size="Small" />
+        Process Operating Details
     </div>
     <div class="fieldwrapper">
         <asp:Label ID="lblLastEISSubmit" CssClass="styled" runat="server" Text="Last Submitted to EPA on:"></asp:Label>
@@ -236,74 +220,4 @@
         <asp:Button ID="btnProcess2" runat="server" Text="Return to Process Details" CssClass="summarybutton"
             Width="175px" />
     </div>
-    <asp:Panel ID="pnlAddPollutant" BackColor="#ffffff" runat="server" BorderColor="#333399"
-        BorderStyle="Ridge" ScrollBars="Auto" Width="450px" Style="display: none;">
-        <table border="0" cellpadding="2" cellspacing="1" width="100%">
-            <tr>
-                <td align="center" colspan="2">
-                    <strong><span style="color: #4169e1; font-size: 12pt; font-family: Verdana;">Add Emission</span></strong>
-                </td>
-            </tr>
-            <tr>
-                <td align="center" width="30%" colspan="2">&nbsp;
-                </td>
-            </tr>
-            <tr>
-                <td align="right" width="30%" valign="top">&nbsp;<asp:Label ID="Label2" runat="server" CssClass="label" Text="Emission Unit ID:"></asp:Label>
-                </td>
-                <td valign="top">
-                    <asp:TextBox ID="txtEmissionsUnitID_Add" runat="server" class="readonly" ReadOnly="true"
-                        Width="100px"></asp:TextBox>
-                </td>
-            </tr>
-            <tr>
-                <td align="right" width="30%" valign="top">&nbsp;<asp:Label ID="lblNewProcessID" runat="server" CssClass="label" Text="Process ID:"></asp:Label>
-                </td>
-                <td valign="top">
-                    <asp:TextBox ID="txtProcessID_Add" runat="server" class="readonly" ReadOnly="true"
-                        Width="100px"></asp:TextBox>
-                </td>
-            </tr>
-            <tr>
-                <td align="right" valign="top" width="30%">&nbsp;
-                </td>
-                <td valign="top">&nbsp;
-                </td>
-            </tr>
-            <tr>
-                <td align="right" width="30%" valign="top">&nbsp;<asp:Label ID="lblPollutant" runat="server" CssClass="label" Text="Pollutant:"
-                    BorderStyle="None"></asp:Label>
-                </td>
-                <td valign="top">
-                    <asp:DropDownList ID="ddlPollutant" runat="server">
-                    </asp:DropDownList>
-                    <asp:RequiredFieldValidator ID="reqvPollutant" ControlToValidate="ddlPollutant" InitialValue="--Select a Pollutant--"
-                        runat="server" ErrorMessage="* A pollutant is required." Display="Dynamic" ValidationGroup="vgAddPollutant"></asp:RequiredFieldValidator>
-                </td>
-            </tr>
-            <tr>
-                <td align="right" valign="top" width="30%">&nbsp;
-                </td>
-            </tr>
-            <tr>
-                <td align="center" class="style4" colspan="2">&nbsp;<asp:Label ID="lbl" runat="server" CssClass="label" Text="After saving you will enter more details on the form that appears."></asp:Label>
-                </td>
-                <tr>
-                    <td align="center" colspan="2">&nbsp;&nbsp;
-                    </td>
-                </tr>
-                <tr>
-                    <td align="center" colspan="2">
-                        <asp:Button ID="btnSavePollutant" runat="server" Text="Save" ValidationGroup="vgAddPollutant"
-                            Width="75px" />
-                        &nbsp;&nbsp;
-                        <asp:Button ID="btnCancel" runat="server" Text="Cancel" Width="75px" />
-                    </td>
-                </tr>
-                <tr>
-                    <td align="center" colspan="2">&nbsp;&nbsp;
-                    </td>
-                </tr>
-        </table>
-    </asp:Panel>
 </asp:Content>

@@ -21,9 +21,6 @@ Partial Class EIS_rp_details
             HttpContext.Current.Response.Redirect("~/EIS/rp_summary.aspx")
         End If
 
-        LoadPollutantsDDL()
-        lblRPEmissions.Visible = False
-
         If Not IsPostBack Then
             Dim InventoryYear As String = If(QYear, CkYear)
             txtEISYear.Text = InventoryYear
@@ -39,67 +36,25 @@ Partial Class EIS_rp_details
                 lblSummerDayNote.Visible = False
             End If
 
-            SetEIAccess(EISAccessCode, InventoryYear)
+            SetEIAccess(EISAccessCode)
         End If
 
     End Sub
 
-    Private Sub SetEIAccess(ByVal acc As String, ByVal eiyear As String)
+    Private Sub SetEIAccess(ByVal acc As String)
         Select Case acc
             Case 1
-                'Show Add/Edit/Summary buttons
-                btnEditRPDetails.Visible = True
                 btnSummary1.Visible = True
                 btnSummary2.Visible = True
-                gvwPollutants.Columns(3).Visible = True
-                gvwPollutants.Columns(4).Visible = False
                 btnProcess1.Visible = False
                 btnProcess2.Visible = False
-                If gvwPollutants.Rows.Count = 0 Then
-                    btnAddPollutant.Visible = True
-                    btnEditRPEmissions.Visible = False
-                    lblRPEmissions.Visible = True
-                    lblRPEmissions.Text = "A Pollutant must be added to this " & eiyear & " Reporting Period Process."
-                Else
-                    btnAddPollutant.Visible = False
-                    btnEditRPEmissions.Visible = True
-                End If
             Case Else
-                'Hide Add/Edit/Summary buttons
-                btnEditRPEmissions.Visible = False
-                btnAddPollutant.Visible = False
-                btnEditRPDetails.Visible = False
                 btnSummary1.Visible = False
                 btnSummary2.Visible = False
-                gvwPollutants.Columns(3).Visible = False
-                gvwPollutants.Columns(4).Visible = True
                 btnProcess1.Visible = True
                 btnProcess2.Visible = True
         End Select
 
-    End Sub
-
-    Private Sub LoadPollutantsDDL()
-        ddlPollutant.Items.Add("--Select a Pollutant--")
-
-        Try
-            Dim query = "select PollutantCode, strDesc FROM eislk_PollutantCode " &
-                " where strPollutantType = 'CAP' and Active = '1' order by strDesc "
-
-            Dim dt = DB.GetDataTable(query)
-
-            If dt IsNot Nothing Then
-                For Each dr In dt.Rows
-                    Dim newListItem As New ListItem With {
-                        .Text = dr.Item("strdesc"),
-                        .Value = dr.Item("PollutantCode")
-                    }
-                    ddlPollutant.Items.Add(newListItem)
-                Next
-            End If
-        Catch ex As Exception
-            ErrorReport(ex)
-        End Try
     End Sub
 
     Private Sub LoadPollutantsGVW(ByVal EIYR As String, ByVal FSID As String, ByVal EUID As String, ByVal EPID As String)
@@ -202,10 +157,8 @@ Partial Class EIS_rp_details
                 'Emission Unit and Process Descriptions
                 If IsDBNull(dr("EmissionsUnitID")) Then
                     txtEmissionsUnitID.Text = ""
-                    txtEmissionsUnitID_Add.Text = ""
                 Else
                     txtEmissionsUnitID.Text = dr.Item("EmissionsUnitID")
-                    txtEmissionsUnitID_Add.Text = dr.Item("EmissionsUnitID")
                 End If
                 If IsDBNull(dr("strUnitDescription")) Then
                     txtUnitDescription.Text = ""
@@ -214,10 +167,8 @@ Partial Class EIS_rp_details
                 End If
                 If IsDBNull(dr("PROCESSID")) Then
                     txtProcessID.Text = ""
-                    txtProcessID_Add.Text = ""
                 Else
                     txtProcessID.Text = dr.Item("PROCESSID")
-                    txtProcessID_Add.Text = dr.Item("PROCESSID")
                 End If
                 If IsDBNull(dr("strProcessDescription")) Then
                     txtProcessDescription.Text = ""
@@ -366,86 +317,10 @@ Partial Class EIS_rp_details
 
     End Sub
 
-    Private Sub AddPollutant(ByVal EUID As String, ByVal EPID As String, ByVal PCode As String)
-        Dim EIYear As String = txtEISYear.Text
-        Dim FSID As String = GetCookie(Cookie.AirsNumber)
-        Dim RPTypeCode = "A"
-        Dim Active As String = "1"
-        Dim UpdateUserID As String = GetCookie(GecoCookie.UserID)
-        Dim UpdateUserName As String = GetCookie(GecoCookie.UserName)
-        Dim UpdateUser As String = UpdateUserID & "-" & UpdateUserName
-
-        Try
-            Dim query = "Select PollutantCode FROM EIS_ReportingPeriodEmissions " &
-                " where FacilitySiteID = @FSID and " &
-                " EmissionsUnitID = @EUID and " &
-                " ProcessID = @EPID and " &
-                " PollutantCode = @PCode and " &
-                " intInventoryYear = @EIYear and " &
-                " Active = '1'"
-
-            Dim params = {
-                New SqlParameter("@FSID", FSID),
-                New SqlParameter("@EUID", EUID),
-                New SqlParameter("@EPID", EPID),
-                New SqlParameter("@Pcode", PCode),
-                New SqlParameter("@EIYear", EIYear),
-                New SqlParameter("@RPTypeCode", RPTypeCode),
-                New SqlParameter("@Active", Active),
-                New SqlParameter("@UpdateUser", UpdateUser)
-            }
-
-            If Not DB.ValueExists(query, params) Then
-                query = "insert into eis_ReportingPeriodEmissions " &
-                    " (intInventoryYear, FacilitySiteID, EmissionsUnitID, ProcessID, PollutantCode, " &
-                    " RptPeriodTypeCode, Active, UpdateUser, UpdateDatetime, CreateDateTime) " &
-                    " values (" &
-                    " @EIYear, " &
-                    " @FSID, " &
-                    " @EUID, " &
-                    " @EPID, " &
-                    " @PCode, " &
-                    " @RPTypeCode, " &
-                    " @Active, " &
-                    " @UpdateUser, " &
-                    " getdate(), " &
-                    " getdate() ) "
-
-                DB.RunCommand(query, params)
-            End If
-
-        Catch ex As Exception
-            ErrorReport(ex)
-        End Try
-
-    End Sub
-
-    Protected Sub btnEditRPEmissions_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnEditRPEmissions.Click
-        Dim eu As String = txtEmissionsUnitID.Text.ToUpper
-        Dim ep As String = txtProcessID.Text.ToUpper
-        Dim targetpage As String = "~/EIS/rp_emissions_edit.aspx" & "?eu=" & eu & "&ep=" & ep & "&em="
-        Response.Redirect(targetpage)
-    End Sub
-
-    Protected Sub btnEditRPDetails_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnEditRPDetails.Click
-        Dim eu As String = txtEmissionsUnitID.Text.ToUpper
-        Dim ep As String = txtProcessID.Text.ToUpper
-        Dim targetpage As String = "~/EIS/rp_operscp_edit.aspx" & "?eu=" & eu & "&ep=" & ep
-        Response.Redirect(targetpage)
-    End Sub
     Protected Sub btnProcess1_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnProcess1.Click, btnProcess2.Click
         Dim eu As String = txtEmissionsUnitID.Text.ToUpper
         Dim ep As String = txtProcessID.Text.ToUpper
         Dim targetpage As String = "~/EIS/process_details.aspx" & "?eu=" & eu & "&ep=" & ep
-        Response.Redirect(targetpage)
-    End Sub
-
-    Protected Sub btnSavePollutant_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnSavePollutant.Click
-        Dim eu As String = txtEmissionsUnitID.Text.ToUpper
-        Dim ep As String = txtProcessID.Text.ToUpper
-        Dim Pollutant As String = ddlPollutant.SelectedValue
-        Dim targetpage As String = "~/EIS/rp_emissions_edit.aspx" & "?eu=" & eu & "&ep=" & ep & "&em=" & Pollutant
-        AddPollutant(eu, ep, Pollutant)
         Response.Redirect(targetpage)
     End Sub
 
