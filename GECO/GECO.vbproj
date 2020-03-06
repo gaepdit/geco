@@ -231,7 +231,7 @@
     <Content Include="EIS\report_processes.aspx" />
     <Content Include="EIS\report_proctputdetails.aspx" />
     <Content Include="EIS\report_releasepoints.aspx" />
-    <Content Include="EIS\rpapportionment_edit.aspx" />
+    <Content Include="EIS\rpapportionment_view.aspx" />
     <Content Include="EIS\rp_details.aspx" />
     <Content Include="EIS\rp_emissions_edit.aspx" />
     <Content Include="EIS\rp_entry.aspx" />
@@ -415,8 +415,8 @@
     <Compile Include="EIS\report_releasepoints.aspx.designer.vb">
       <DependentUpon>report_releasepoints.aspx</DependentUpon>
     </Compile>
-    <Compile Include="EIS\rpapportionment_edit.aspx.designer.vb">
-      <DependentUpon>rpapportionment_edit.aspx</DependentUpon>
+    <Compile Include="EIS\rpapportionment_view.aspx.designer.vb">
+      <DependentUpon>rpapportionment_view.aspx</DependentUpon>
     </Compile>
     <Compile Include="EIS\rp_details.aspx.designer.vb">
       <DependentUpon>rp_details.aspx</DependentUpon>
@@ -792,8 +792,8 @@
       <DependentUpon>report_releasepoints.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="EIS\rpapportionment_edit.aspx.vb">
-      <DependentUpon>rpapportionment_edit.aspx</DependentUpon>
+    <Compile Include="EIS\rpapportionment_view.aspx.vb">
+      <DependentUpon>rpapportionment_view.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="EIS\rp_details.aspx.vb">

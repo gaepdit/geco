@@ -1,7 +1,7 @@
 Imports System.Data.SqlClient
 Imports EpdIt.DBUtilities
 
-Partial Class eis_rpapportionment_edit
+Partial Class eis_rpapportionment_view
     Inherits Page
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load

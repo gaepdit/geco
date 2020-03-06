@@ -256,13 +256,13 @@
                         <ItemStyle HorizontalAlign="Left" VerticalAlign="Top" />
                     </asp:BoundField>
                     <asp:HyperLinkField DataTextField="ProcessID" DataNavigateUrlFields="EmissionsUnitID,ProcessID"
-                        DataNavigateUrlFormatString="~/EIS/rpapportionment_edit.aspx?eu={0}&amp;ep={1}"
-                        HeaderText="Process ID" NavigateUrl="~/EIS/rpapportionment_edit.aspx">
+                        DataNavigateUrlFormatString="~/EIS/rpapportionment_view.aspx?eu={0}&amp;ep={1}"
+                        HeaderText="Process ID" NavigateUrl="~/EIS/rpapportionment_view.aspx">
                         <ItemStyle HorizontalAlign="Left" />
                     </asp:HyperLinkField>
                     <asp:HyperLinkField DataTextField="strProcessDescription" DataNavigateUrlFields="EmissionsUnitID,ProcessID"
-                        DataNavigateUrlFormatString="~/EIS/rpapportionment_edit.aspx?eu={0}&amp;ep={1}"
-                        HeaderText="Process Description" NavigateUrl="~/EIS/rpapportionment_edit.aspx">
+                        DataNavigateUrlFormatString="~/EIS/rpapportionment_view.aspx?eu={0}&amp;ep={1}"
+                        HeaderText="Process Description" NavigateUrl="~/EIS/rpapportionment_view.aspx">
                         <ItemStyle HorizontalAlign="Left" />
                     </asp:HyperLinkField>
                     <asp:BoundField DataField="TotalApportionment" HeaderText="Apportionment Total">

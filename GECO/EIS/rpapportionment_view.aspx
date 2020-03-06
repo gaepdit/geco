@@ -1,5 +1,5 @@
 <%@ Page Title="Edit Release Point Apportionment" Language="VB" MasterPageFile="eismaster.master"
-    AutoEventWireup="false" Inherits="GECO.eis_rpapportionment_edit" Codebehind="rpapportionment_edit.aspx.vb" %>
+    AutoEventWireup="false" Inherits="GECO.eis_rpapportionment_view" Codebehind="rpapportionment_view.aspx.vb" %>
 <%@ Register src="../Controls/PreventRePost.ascx" tagname="PreventRePost" tagprefix="uc1" %>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder3" runat="Server">

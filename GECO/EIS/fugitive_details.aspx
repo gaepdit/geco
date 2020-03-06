@@ -145,10 +145,10 @@
             <RowStyle BackColor="#EFF3FB" />
             <Columns>
                 <asp:BoundField DataField="EmissionsUnitID" HeaderText="Emission Unit ID" />
-                <asp:HyperLinkField DataNavigateUrlFields="ProcessID,EmissionsUnitID" DataNavigateUrlFormatString="~/eis/rpapportionment_edit.aspx?ep={0}&amp;eu={1}"
-                    DataTextField="ProcessID" HeaderText="Process ID" NavigateUrl="~/eis/rpapportionment_edit.aspx" />
-                <asp:HyperLinkField DataNavigateUrlFields="ProcessID,EmissionsUnitID" DataNavigateUrlFormatString="~/eis/rpapportionment_edit.aspx?ep={0}&amp;eu={1}"
-                    DataTextField="strprocessdescription" HeaderText="Process Description" NavigateUrl="~/eis/rpapportionment_edit.aspx">
+                <asp:HyperLinkField DataNavigateUrlFields="ProcessID,EmissionsUnitID" DataNavigateUrlFormatString="~/eis/rpapportionment_view.aspx?ep={0}&amp;eu={1}"
+                    DataTextField="ProcessID" HeaderText="Process ID" NavigateUrl="~/eis/rpapportionment_view.aspx" />
+                <asp:HyperLinkField DataNavigateUrlFields="ProcessID,EmissionsUnitID" DataNavigateUrlFormatString="~/eis/rpapportionment_view.aspx?ep={0}&amp;eu={1}"
+                    DataTextField="strprocessdescription" HeaderText="Process Description" NavigateUrl="~/eis/rpapportionment_view.aspx">
                     <ItemStyle HorizontalAlign="Left" VerticalAlign="Top" />
                 </asp:HyperLinkField>
                 <asp:BoundField DataField="ReleasePointID" HeaderText="Release Point ID" />

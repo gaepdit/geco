@@ -717,7 +717,7 @@ Partial Class eis_process_details
     Protected Sub btnEditRPApportion_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnEditRPApportion.Click
         Dim ep As String = txtProcessID.Text.ToUpper
         Dim eu As String = txtEmissionUnitID.Text.ToUpper
-        Dim targetpage As String = "rpapportionment_edit.aspx" & "?eu=" & eu & "&ep=" & ep
+        Dim targetpage As String = "rpapportionment_view.aspx" & "?eu=" & eu & "&ep=" & ep
         Response.Redirect(targetpage)
     End Sub
 

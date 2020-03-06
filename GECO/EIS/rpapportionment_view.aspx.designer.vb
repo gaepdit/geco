@@ -11,7 +11,7 @@ Option Strict On
 Option Explicit On
 
 
-Partial Public Class eis_rpapportionment_edit
+Partial Public Class eis_rpapportionment_view
 
     '''<summary>
     '''ToolkitScriptManager1 control.
