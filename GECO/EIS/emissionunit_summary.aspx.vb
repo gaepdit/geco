@@ -6,18 +6,11 @@ Partial Class eis_emissionunit_summary
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
         Dim FacilitySiteID As String = GetCookie(Cookie.AirsNumber)
-        Dim EISStatus As String = GetCookie(EisCookie.EISStatus)
         Dim EISAccessCode As String = GetCookie(EisCookie.EISAccess)
-        Dim DeletedEUExist As Boolean
 
         FIAccessCheck(EISAccessCode)
 
-        DeletedEUExist = CheckDeletedEUExist(FacilitySiteID)
-        If DeletedEUExist Then
-            pnlDeletedEmissionUnits.Visible = True
-        Else
-            pnlDeletedEmissionUnits.Visible = False
-        End If
+        pnlDeletedEmissionUnits.Visible = CheckDeletedEUExist(FacilitySiteID)
 
         LoadGVWEmissionUnitSummary(FacilitySiteID)
 
@@ -63,56 +56,6 @@ Partial Class eis_emissionunit_summary
         gvwEmissionUnitSummary.DataBind()
     End Sub
 
-    Private Sub InsertEmissionUnit(ByVal fsid As String, ByVal euid As String)
-
-        'Code to insert a new emission unit
-        'Reminder: insert only FacilitySiteID, Unit/Stack/Etc ID, description, UpdateUser, CreateDateTime, UpdateDateTime (same as Create)
-        'and any other fields that are required for the insert before going to edit page for more details.
-        'Edit pages perform only updates.
-
-        Dim UnitDescription As String = Left(txtNewEmissionUnitDesc.Text, 100)
-        Dim UnitStatusCode As String = "OP"
-        Dim UpdateUserID As String = GetCookie(GecoCookie.UserID)
-        Dim UpdateUserName As String = GetCookie(GecoCookie.UserName)
-        Dim UpdateUser As String = UpdateUserID & "-" & UpdateUserName
-
-        Try
-            Dim query = "Insert into eis_EmissionsUnit (" &
-                "FacilitySiteID, " &
-                "EmissionsUnitID, " &
-                "strUnitDescription, " &
-                "strUnitStatusCode, " &
-                "fltUnitDesignCapacity, " &
-                "Active, " &
-                "UpdateUser, " &
-                "UpdateDateTime, " &
-                "CreateDateTime) " &
-                "Values (" &
-                "@fsid, " &
-                "@euid, " &
-                "@UnitDescription, " &
-                "@UnitStatusCode, " &
-                "null, " &
-                "'1', " &
-                "@UpdateUser, " &
-                "getdate(), " &
-                "getdate()) "
-
-            Dim params = {
-                New SqlParameter("@fsid", fsid),
-                New SqlParameter("@euid", euid),
-                New SqlParameter("@UnitDescription", UnitDescription),
-                New SqlParameter("@UnitStatusCode", UnitStatusCode),
-                New SqlParameter("@UpdateUser", UpdateUser)
-            }
-
-            DB.RunCommand(query, params)
-        Catch ex As Exception
-            ErrorReport(ex)
-        End Try
-
-    End Sub
-
     Protected Sub btnShowDeletedEU_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnShowDeletedEU.Click
 
         Dim btnText As String = Left(btnShowDeletedEU.Text, 4)
@@ -151,102 +94,5 @@ Partial Class eis_emissionunit_summary
 
         gvwDeletedEU.DataBind()
     End Sub
-
-    Protected Sub EmissionsUnitIDCheck(ByVal Sender As Object, ByVal args As ServerValidateEventArgs)
-
-        Dim FacilitySiteID As String = GetCookie(Cookie.AirsNumber)
-        Dim EmissionsUnitID As String = args.Value.ToUpper
-        Dim targetpage As String = "~/EIS/emissionunit_edit.aspx" & "?eu=" & EmissionsUnitID
-        Dim EUIDActive = CheckEUIDExist(FacilitySiteID, EmissionsUnitID)
-
-        Select Case EUIDActive
-            Case UnitActiveStatus.Inactive
-                args.IsValid = True
-                Response.Redirect(targetpage)
-            Case UnitActiveStatus.Active
-                args.IsValid = False
-                cusvEmissionUnitID.ErrorMessage = " Emission Unit " & EmissionsUnitID & " is already in use.  Please enter another."
-                txtNewEmissionsUnitID.Text = ""
-                btnAdd_ModalPopupExtender.Show()
-            Case UnitActiveStatus.DoesNotExist
-                args.IsValid = True
-                InsertEmissionUnit(FacilitySiteID, EmissionsUnitID)
-                Response.Redirect(targetpage)
-        End Select
-
-    End Sub
-
-    Protected Sub btnCancel_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnCancel.Click
-
-        txtNewEmissionsUnitID.Text = ""
-        txtNewEmissionUnitDesc.Text = ""
-
-    End Sub
-
-#Region " Undelete Routines "
-
-    Protected Sub gvwDeletedEU_RowCommand(ByVal sender As Object, ByVal e As System.Web.UI.WebControls.GridViewCommandEventArgs) Handles gvwDeletedEU.RowCommand
-
-        If e.CommandName = "Undelete" Then
-            Dim FacilitySiteID As String = GetCookie(Cookie.AirsNumber)
-            Dim index As Integer = Convert.ToInt32(e.CommandArgument)
-            Dim row As GridViewRow = gvwDeletedEU.Rows(index)
-            Dim EmissionsUnitID As String = Server.HtmlDecode(row.Cells(0).Text)
-            Dim UpdateUserID As String = GetCookie(GecoCookie.UserID)
-            Dim UpdateUserName As String = GetCookie(GecoCookie.UserName)
-            Dim UpdateUser As String = UpdateUserID & "-" & UpdateUserName
-            Dim targetpage As String = "~/EIS/emissionunit_edit.aspx" & "?eu=" & EmissionsUnitID
-
-            UndeleteEU(FacilitySiteID, EmissionsUnitID, UpdateUser)
-            UndeleteEUProcesses(FacilitySiteID, EmissionsUnitID, UpdateUser)
-            Response.Redirect(targetpage)
-
-        End If
-
-    End Sub
-
-    Private Sub UndeleteEU(ByVal fsid As String, ByVal euid As String, ByVal uuser As String)
-        Try
-            Dim query = "Update eis_EmissionsUnit Set " &
-                "Active = '1', " &
-                "UpdateUser = @uuser, " &
-                "UpdateDateTime = getdate() " &
-                "where FacilitySiteID = @fsid " &
-                "and EmissionsUnitID = @euid "
-
-            Dim params = {
-                New SqlParameter("@uuser", uuser),
-                New SqlParameter("@fsid", fsid),
-                New SqlParameter("@euid", euid)
-            }
-
-            DB.RunCommand(query, params)
-        Catch ex As Exception
-            ErrorReport(ex)
-        End Try
-    End Sub
-
-    Private Sub UndeleteEUProcesses(ByVal fsid As String, ByVal euid As String, ByVal uuser As String)
-        Try
-            Dim query = "Update eis_Process Set " &
-                "Active = '1', " &
-                "UpdateUser = @uuser, " &
-                "UpdateDateTime = getdate() " &
-                "where FacilitySiteID = @fsid " &
-                "and EmissionsUnitID = @euid "
-
-            Dim params = {
-                New SqlParameter("@uuser", uuser),
-                New SqlParameter("@fsid", fsid),
-                New SqlParameter("@euid", euid)
-            }
-
-            DB.RunCommand(query, params)
-        Catch ex As Exception
-            ErrorReport(ex)
-        End Try
-    End Sub
-
-#End Region
 
 End Class

@@ -12,7 +12,7 @@ Option Explicit On
 
 
 Partial Public Class eis_emissionunit_summary
-    
+
     '''<summary>
     '''ToolkitScriptManager1 control.
     '''</summary>
@@ -21,7 +21,7 @@ Partial Public Class eis_emissionunit_summary
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ToolkitScriptManager1 As Global.AjaxControlToolkit.ToolkitScriptManager
-    
+
     '''<summary>
     '''lblAdd control.
     '''</summary>
@@ -30,25 +30,7 @@ Partial Public Class eis_emissionunit_summary
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblAdd As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''btnAdd control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnAdd As Global.System.Web.UI.WebControls.Button
-    
-    '''<summary>
-    '''btnAdd_ModalPopupExtender control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnAdd_ModalPopupExtender As Global.AjaxControlToolkit.ModalPopupExtender
-    
+
     '''<summary>
     '''gvwEmissionUnitSummary control.
     '''</summary>
@@ -57,7 +39,7 @@ Partial Public Class eis_emissionunit_summary
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents gvwEmissionUnitSummary As Global.System.Web.UI.WebControls.GridView
-    
+
     '''<summary>
     '''pnlDeletedEmissionUnits control.
     '''</summary>
@@ -66,7 +48,7 @@ Partial Public Class eis_emissionunit_summary
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents pnlDeletedEmissionUnits As Global.System.Web.UI.WebControls.Panel
-    
+
     '''<summary>
     '''btnShowDeletedEU control.
     '''</summary>
@@ -75,7 +57,7 @@ Partial Public Class eis_emissionunit_summary
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnShowDeletedEU As Global.System.Web.UI.WebControls.Button
-    
+
     '''<summary>
     '''gvwDeletedEU control.
     '''</summary>
@@ -84,112 +66,4 @@ Partial Public Class eis_emissionunit_summary
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents gvwDeletedEU As Global.System.Web.UI.WebControls.GridView
-    
-    '''<summary>
-    '''pnlPopUpAddUnit control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents pnlPopUpAddUnit As Global.System.Web.UI.WebControls.Panel
-    
-    '''<summary>
-    '''lblNewEmissionsUnitID control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblNewEmissionsUnitID As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''txtNewEmissionsUnitID control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtNewEmissionsUnitID As Global.System.Web.UI.WebControls.TextBox
-    
-    '''<summary>
-    '''txtNewEmissionsUnitID_FilteredTextBoxExtender control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtNewEmissionsUnitID_FilteredTextBoxExtender As Global.AjaxControlToolkit.FilteredTextBoxExtender
-    
-    '''<summary>
-    '''reqvEmissionsUnitID control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents reqvEmissionsUnitID As Global.System.Web.UI.WebControls.RequiredFieldValidator
-    
-    '''<summary>
-    '''cusvEmissionUnitID control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents cusvEmissionUnitID As Global.System.Web.UI.WebControls.CustomValidator
-    
-    '''<summary>
-    '''lblNewEmissionUnitDesc control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblNewEmissionUnitDesc As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''txtNewEmissionUnitDesc control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtNewEmissionUnitDesc As Global.System.Web.UI.WebControls.TextBox
-    
-    '''<summary>
-    '''reqvEmissionsUnitDesc control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents reqvEmissionsUnitDesc As Global.System.Web.UI.WebControls.RequiredFieldValidator
-    
-    '''<summary>
-    '''lbl control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lbl As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''btnInsertEmissionUnit control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnInsertEmissionUnit As Global.System.Web.UI.WebControls.Button
-    
-    '''<summary>
-    '''btnCancel control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnCancel As Global.System.Web.UI.WebControls.Button
 End Class

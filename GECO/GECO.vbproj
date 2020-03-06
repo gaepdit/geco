@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="..\packages\Microsoft.CodeAnalysis.FxCopAnalyzers.2.9.7\build\Microsoft.CodeAnalysis.FxCopAnalyzers.props" Condition="Exists('..\packages\Microsoft.CodeAnalysis.FxCopAnalyzers.2.9.7\build\Microsoft.CodeAnalysis.FxCopAnalyzers.props')" />
   <Import Project="..\packages\Microsoft.NetFramework.Analyzers.2.9.7\build\Microsoft.NetFramework.Analyzers.props" Condition="Exists('..\packages\Microsoft.NetFramework.Analyzers.2.9.7\build\Microsoft.NetFramework.Analyzers.props')" />
@@ -212,9 +212,7 @@
     <Content Include="Default.aspx" />
     <Content Include="EIS\Default.aspx" />
     <Content Include="EIS\emissionunit_details.aspx" />
-    <Content Include="EIS\emissionunit_edit.aspx" />
     <Content Include="EIS\emissionunit_summary.aspx" />
-    <Content Include="EIS\eucontrolapproach_edit.aspx" />
     <Content Include="EIS\facility_details.aspx" />
     <Content Include="EIS\facility_edit.aspx" />
     <Content Include="EIS\fugitive_details.aspx" />
@@ -358,14 +356,8 @@
     <Compile Include="EIS\emissionunit_details.aspx.designer.vb">
       <DependentUpon>emissionunit_details.aspx</DependentUpon>
     </Compile>
-    <Compile Include="EIS\emissionunit_edit.aspx.designer.vb">
-      <DependentUpon>emissionunit_edit.aspx</DependentUpon>
-    </Compile>
     <Compile Include="EIS\emissionunit_summary.aspx.designer.vb">
       <DependentUpon>emissionunit_summary.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="EIS\eucontrolapproach_edit.aspx.designer.vb">
-      <DependentUpon>eucontrolapproach_edit.aspx</DependentUpon>
     </Compile>
     <Compile Include="EIS\facility_details.aspx.designer.vb">
       <DependentUpon>facility_details.aspx</DependentUpon>
@@ -716,16 +708,8 @@
       <DependentUpon>emissionunit_details.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="EIS\emissionunit_edit.aspx.vb">
-      <DependentUpon>emissionunit_edit.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
     <Compile Include="EIS\emissionunit_summary.aspx.vb">
       <DependentUpon>emissionunit_summary.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="EIS\eucontrolapproach_edit.aspx.vb">
-      <DependentUpon>eucontrolapproach_edit.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="EIS\facility_details.aspx.vb">
