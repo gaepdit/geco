@@ -10,7 +10,6 @@ Partial Class eis_fugitive_details
 
         Dim FugitiveID As String = Request.QueryString("fug")
         Dim FacilitySiteID As String = GetCookie(Cookie.AirsNumber)
-        Dim EISStatus As String = GetCookie(EisCookie.EISStatus)
         Dim EISAccessCode As String = GetCookie(EisCookie.EISAccess)
 
         FIAccessCheck(EISAccessCode)
@@ -308,223 +307,17 @@ Partial Class eis_fugitive_details
         gvwRPApportionment.DataBind()
 
         If gvwRPApportionment.Rows.Count = 0 Then
-            lblReleasePointAppMessage.Text = "The Release Point is not used in any Process Release Point Apportionments and can be deleted on the Edit page."
-            lblReleasePointAppMessage.Visible = True
-        Else
-            lblReleasePointAppMessage.Text = "The Release Point cannot be deleted. Either delete the process or add another release point to the apportionment " &
-                                    "before deleting the remaining release point. See Help for more details."
+            lblReleasePointAppMessage.Text = "The Release Point is not used in any Process Release Point Apportionments."
             lblReleasePointAppMessage.Visible = True
         End If
+
         If RPStatusCode <> "OP" Then
-            lblRPShutdownMessage.Text = "Release point is shutdown; it cannot be added to new release point apportionments."
+            lblRPShutdownMessage.Text = "Release point is shutdown."
             lblRPShutdownMessage.Visible = True
         Else
             lblRPShutdownMessage.Text = ""
             lblRPShutdownMessage.Visible = False
         End If
-
-    End Sub
-
-    Protected Sub btnEdit_Click(sender As Object, e As EventArgs) Handles btnEdit.Click
-
-        Dim FugitiveId As String = txtReleasePointID.Text
-        Dim targetpage As String = "fugitive_edit.aspx" & "?fug=" & FugitiveId
-        Response.Redirect(targetpage)
-
-    End Sub
-
-    Protected Sub FugitiveRPIDCheck(Sender As Object, args As ServerValidateEventArgs)
-
-        Dim FacilitySiteID As String = GetCookie(Cookie.AirsNumber)
-        Dim Fugitiveid As String = args.Value.ToUpper
-        Dim targetpage As String = "fugitive_edit.aspx" & "?fug=" & Fugitiveid
-        Dim FugitiveActive As String = CheckReleasePointIDexist(FacilitySiteID, Fugitiveid)
-        Select Case FugitiveActive
-            Case "0"
-                args.IsValid = True
-                Response.Redirect(targetpage)
-            Case "1"
-                args.IsValid = False
-                cusvFugitiveID.ErrorMessage = " Release Point " & Fugitiveid & " is already in use.  Please enter another."
-                txtNewFugitiveRP.Text = ""
-                btnAddFugitiveRP_ModalPopupExtender.Show()
-            Case "n"
-                args.IsValid = True
-                InsertFugitiveRP()
-                Response.Redirect(targetpage)
-        End Select
-
-    End Sub
-
-    Protected Sub FugitiveDupIDCheck(Sender As Object, args As ServerValidateEventArgs)
-        'Checks Release Point ID when duplicating release point
-
-        Dim FacilitySiteID As String = GetCookie(Cookie.AirsNumber)
-        Dim RPID As String = args.Value.ToUpper
-        Dim targetpage As String = "fugitive_edit.aspx" & "?fug=" & RPID
-        Dim RPIDActive As String = CheckRPIDExist_Dup(FacilitySiteID, RPID)
-
-        Select Case RPIDActive
-            Case "DFUG"
-                args.IsValid = False
-                cusvDuplicate.ErrorMessage = " Release Point " & RPID & " already exists and is a deleted fugitive release point. Enter another ID."
-                txtDupFugitiveID.Text = ""
-                btnDuplicate_ModalPopupExtender.Show()
-            Case "AFUG"
-                args.IsValid = False
-                cusvDuplicate.ErrorMessage = " Release Point " & RPID & " already exists and is a fugitive release point. Enter another ID."
-                txtDupFugitiveID.Text = ""
-                btnDuplicate_ModalPopupExtender.Show()
-            Case "DSTK"
-                args.IsValid = False
-                cusvDuplicate.ErrorMessage = " Stack " & RPID & " is already in use by a deleted stack.  Please enter another ID."
-                txtDupFugitiveID.Text = ""
-                btnDuplicate_ModalPopupExtender.Show()
-            Case "ASTK"
-                args.IsValid = False
-                cusvDuplicate.ErrorMessage = " Stack " & RPID & " is already in use.  Please enter another ID."
-                txtDupFugitiveID.Text = ""
-                btnDuplicate_ModalPopupExtender.Show()
-            Case "DNE"
-                args.IsValid = True
-                DuplicateFugitive(FacilitySiteID, txtDupFugitiveID.Text.ToUpper)
-                Response.Redirect(targetpage)
-        End Select
-
-    End Sub
-
-    Private Sub InsertFugitiveRP()
-
-        InsertReleasePoint(GetCookie(Cookie.AirsNumber), txtNewFugitiveRP.Text.ToUpper, txtNewFugitiveRPDesc.Text, "1")
-
-    End Sub
-
-    Private Sub DuplicateFugitive(fsid As String, stkid As String)
-
-        Dim SourceFugitiveID As String = txtReleasePointID.Text.ToUpper
-        Dim DupFugitiveID As String = stkid.ToUpper
-        Dim RPDescription As String = txtDupFugitiveDescription.Text
-        Dim RPTypeCode As String
-        Dim RPFenceLineDistMeasure As String
-        Dim RPFugitiveHeightMeasure As String
-        Dim RPFugitiveWidthMeasure As String
-        Dim RPFugitiveLengthMeasure As String
-        Dim RPFugitiveAngleMeasure As String
-        Dim RPStatusCode As String = "OP"
-        Dim RPStatusCodeYear As Integer = Now.Year
-        Dim Active As String = "1"
-        Dim UpdateUserID As String = GetCookie(GecoCookie.UserID)
-        Dim UpdateUserName As String = GetCookie(GecoCookie.UserName)
-        Dim UpdateUser As String = UpdateUserID & "-" & UpdateUserName
-
-        'Truncate description if > 100
-        If Len(RPDescription) > 100 Then
-            RPDescription = Left(RPDescription, 100)
-        End If
-
-        Try
-            'Get data for source unit
-            Dim query As String = "select * FROM eis_ReleasePoint " &
-                "where " &
-                "FacilitySiteID = @fsid and " &
-                "ReleasePointID = @SourceFugitiveID "
-
-            Dim params As SqlParameter() = {
-                New SqlParameter("@fsid", fsid),
-                New SqlParameter("@SourceFugitiveID", SourceFugitiveID)
-            }
-
-            Dim dr1 As DataRow = DB.GetDataRow(query, params)
-
-            If dr1 IsNot Nothing Then
-
-                If IsDBNull(dr1("strRPTypeCode")) Then
-                    RPTypeCode = ""
-                Else
-                    RPTypeCode = dr1.Item("strRPTypeCode")
-                End If
-                If IsDBNull(dr1("numRPFugitiveHeightMeasure")) Then
-                    RPFugitiveHeightMeasure = ""
-                Else
-                    RPFugitiveHeightMeasure = dr1.Item("numRPFugitiveHeightMeasure")
-                End If
-                If IsDBNull(dr1("numRPFugitiveWidthMeasure")) Then
-                    RPFugitiveWidthMeasure = ""
-                Else
-                    RPFugitiveWidthMeasure = dr1.Item("numRPFugitiveWidthMeasure")
-                End If
-                If IsDBNull(dr1("numRPFugitiveLengthMeasure")) Then
-                    RPFugitiveLengthMeasure = ""
-                Else
-                    RPFugitiveLengthMeasure = dr1.Item("numRPFugitiveLengthMeasure")
-                End If
-                If IsDBNull(dr1("numRPFugitiveAngleMeasure")) Then
-                    RPFugitiveAngleMeasure = ""
-                Else
-                    RPFugitiveAngleMeasure = dr1.Item("numRPFugitiveAngleMeasure")
-                End If
-                If IsDBNull(dr1("numRPFenceLineDistMeasure")) Then
-                    RPFenceLineDistMeasure = ""
-                Else
-                    RPFenceLineDistMeasure = dr1.Item("numRPFenceLineDistMeasure")
-                End If
-
-                Dim query2 As String = "Insert into eis_ReleasePoint (" &
-                "FacilitySiteID, " &
-                "ReleasePointID, " &
-                "strRPTypeCode, " &
-                "strRPDescription, " &
-                "numRPFugitiveHeightMeasure, " &
-                "numRPFugitiveWidthMeasure, " &
-                "numRPFugitiveLengthMeasure, " &
-                "numRPFugitiveAngleMeasure, " &
-                "numRPFenceLineDistMeasure, " &
-                "strRPStatusCode, " &
-                "numRPStatusCodeYear, " &
-                "Active, " &
-                "UpdateUser, " &
-                "UpdateDateTime, " &
-                "CreateDateTime) " &
-                "Values (" &
-                "@fsid, " &
-                "@DupFugitiveID, " &
-                "@RPTypeCode, " &
-                "@RPDescription, " &
-                "@RPFugitiveHeightMeasure, " &
-                "@RPFugitiveWidthMeasure, " &
-                "@RPFugitiveLengthMeasure, " &
-                "@RPFugitiveAngleMeasure, " &
-                "@RPFenceLineDistMeasure, " &
-                "@RPStatusCode, " &
-                "@RPStatusCodeYear, " &
-                "@Active, " &
-                "@UpdateUser, " &
-                "getdate(), " &
-                "getdate()) "
-
-                Dim params2 As SqlParameter() = {
-                    New SqlParameter("@fsid", fsid),
-                    New SqlParameter("@DupFugitiveID", DupFugitiveID),
-                    New SqlParameter("@RPTypeCode", RPTypeCode),
-                    New SqlParameter("@RPDescription", RPDescription),
-                    New SqlParameter("@RPFugitiveHeightMeasure", If(Not String.IsNullOrEmpty(RPFugitiveHeightMeasure), RPFugitiveHeightMeasure, Nothing)),
-                    New SqlParameter("@RPFugitiveWidthMeasure", If(Not String.IsNullOrEmpty(RPFugitiveWidthMeasure), RPFugitiveWidthMeasure, Nothing)),
-                    New SqlParameter("@RPFugitiveLengthMeasure", If(Not String.IsNullOrEmpty(RPFugitiveLengthMeasure), RPFugitiveLengthMeasure, Nothing)),
-                    New SqlParameter("@RPFugitiveAngleMeasure", If(Not String.IsNullOrEmpty(RPFugitiveAngleMeasure), RPFugitiveAngleMeasure, Nothing)),
-                    New SqlParameter("@RPFenceLineDistMeasure", If(Not String.IsNullOrEmpty(RPFenceLineDistMeasure), RPFenceLineDistMeasure, Nothing)),
-                    New SqlParameter("@RPStatusCode", RPStatusCode),
-                    New SqlParameter("@RPStatusCodeYear", RPStatusCodeYear),
-                    New SqlParameter("@Active", Active),
-                    New SqlParameter("@UpdateUser", UpdateUser)
-                }
-
-                DB.RunCommand(query2, params2)
-            End If
-
-        Catch ex As Exception
-            ErrorReport(ex)
-        End Try
-
     End Sub
 
 End Class

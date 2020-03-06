@@ -12,7 +12,7 @@ Option Explicit On
 
 
 Partial Public Class eis_fugitive_details
-    
+
     '''<summary>
     '''ToolkitScriptManager1 control.
     '''</summary>
@@ -21,7 +21,7 @@ Partial Public Class eis_fugitive_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ToolkitScriptManager1 As Global.AjaxControlToolkit.ToolkitScriptManager
-    
+
     '''<summary>
     '''btnReturntoSummary control.
     '''</summary>
@@ -30,7 +30,7 @@ Partial Public Class eis_fugitive_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnReturntoSummary As Global.System.Web.UI.WebControls.Button
-    
+
     '''<summary>
     '''lblFugitiveStacks control.
     '''</summary>
@@ -39,52 +39,7 @@ Partial Public Class eis_fugitive_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblFugitiveStacks As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''btnAddFugitiveRP control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnAddFugitiveRP As Global.System.Web.UI.WebControls.Button
-    
-    '''<summary>
-    '''btnAddFugitiveRP_ModalPopupExtender control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnAddFugitiveRP_ModalPopupExtender As Global.AjaxControlToolkit.ModalPopupExtender
-    
-    '''<summary>
-    '''btnDuplicate control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnDuplicate As Global.System.Web.UI.WebControls.Button
-    
-    '''<summary>
-    '''btnDuplicate_ModalPopupExtender control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnDuplicate_ModalPopupExtender As Global.AjaxControlToolkit.ModalPopupExtender
-    
-    '''<summary>
-    '''btnEdit control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnEdit As Global.System.Web.UI.WebControls.Button
-    
+
     '''<summary>
     '''lblReleasePointID control.
     '''</summary>
@@ -93,7 +48,7 @@ Partial Public Class eis_fugitive_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblReleasePointID As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''txtReleasePointID control.
     '''</summary>
@@ -102,7 +57,7 @@ Partial Public Class eis_fugitive_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtReleasePointID As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''lblRPDescription control.
     '''</summary>
@@ -111,7 +66,7 @@ Partial Public Class eis_fugitive_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblRPDescription As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''txtRPDescription control.
     '''</summary>
@@ -120,7 +75,7 @@ Partial Public Class eis_fugitive_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtRPDescription As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''lblRPStatusCode control.
     '''</summary>
@@ -129,7 +84,7 @@ Partial Public Class eis_fugitive_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblRPStatusCode As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''txtRPStatusCode control.
     '''</summary>
@@ -138,7 +93,7 @@ Partial Public Class eis_fugitive_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtRPStatusCode As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''lblRPFenceLineDistanceMeasure control.
     '''</summary>
@@ -147,7 +102,7 @@ Partial Public Class eis_fugitive_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblRPFenceLineDistanceMeasure As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''txtRPFenceLineDistanceMeasure control.
     '''</summary>
@@ -156,7 +111,7 @@ Partial Public Class eis_fugitive_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtRPFenceLineDistanceMeasure As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''lblRPFugitiveHeightMeasure control.
     '''</summary>
@@ -165,7 +120,7 @@ Partial Public Class eis_fugitive_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblRPFugitiveHeightMeasure As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''txtRPFugitiveHeightMeasure control.
     '''</summary>
@@ -174,7 +129,7 @@ Partial Public Class eis_fugitive_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtRPFugitiveHeightMeasure As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''lblRPFugitiveWidthMeasure control.
     '''</summary>
@@ -183,7 +138,7 @@ Partial Public Class eis_fugitive_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblRPFugitiveWidthMeasure As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''txtRPFugitiveWidthMeasure control.
     '''</summary>
@@ -192,7 +147,7 @@ Partial Public Class eis_fugitive_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtRPFugitiveWidthMeasure As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''lblRPFugitiveLengthMeasure control.
     '''</summary>
@@ -201,7 +156,7 @@ Partial Public Class eis_fugitive_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblRPFugitiveLengthMeasure As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''txtRPFugitiveLengthMeasure control.
     '''</summary>
@@ -210,7 +165,7 @@ Partial Public Class eis_fugitive_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtRPFugitiveLengthMeasure As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''lblRPFugitiveAngleMeasure control.
     '''</summary>
@@ -219,7 +174,7 @@ Partial Public Class eis_fugitive_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblRPFugitiveAngleMeasure As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''txtRPFugitiveAngleMeasure control.
     '''</summary>
@@ -228,7 +183,7 @@ Partial Public Class eis_fugitive_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtRPFugitiveAngleMeasure As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''lblRPComment control.
     '''</summary>
@@ -237,7 +192,7 @@ Partial Public Class eis_fugitive_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblRPComment As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''txtRPComment control.
     '''</summary>
@@ -246,7 +201,7 @@ Partial Public Class eis_fugitive_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtRPComment As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''lblLastEISSubmit control.
     '''</summary>
@@ -255,7 +210,7 @@ Partial Public Class eis_fugitive_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblLastEISSubmit As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''txtLastEISSubmit control.
     '''</summary>
@@ -264,7 +219,7 @@ Partial Public Class eis_fugitive_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtLastEISSubmit As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''lblLastUpdated control.
     '''</summary>
@@ -273,7 +228,7 @@ Partial Public Class eis_fugitive_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblLastUpdated As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''txtLastUpdate control.
     '''</summary>
@@ -282,7 +237,7 @@ Partial Public Class eis_fugitive_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtLastUpdate As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''Label3 control.
     '''</summary>
@@ -291,7 +246,7 @@ Partial Public Class eis_fugitive_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents Label3 As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''lblNoRPGeoCoordInfo control.
     '''</summary>
@@ -300,7 +255,7 @@ Partial Public Class eis_fugitive_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblNoRPGeoCoordInfo As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''LblLatitudeMeasure control.
     '''</summary>
@@ -309,7 +264,7 @@ Partial Public Class eis_fugitive_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents LblLatitudeMeasure As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''TxtLatitudeMeasure control.
     '''</summary>
@@ -318,7 +273,7 @@ Partial Public Class eis_fugitive_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents TxtLatitudeMeasure As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''LblLongitudeMeasure control.
     '''</summary>
@@ -327,7 +282,7 @@ Partial Public Class eis_fugitive_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents LblLongitudeMeasure As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''TxtLongitudeMeasure control.
     '''</summary>
@@ -336,7 +291,7 @@ Partial Public Class eis_fugitive_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents TxtLongitudeMeasure As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''pnlLocationMap control.
     '''</summary>
@@ -345,7 +300,7 @@ Partial Public Class eis_fugitive_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents pnlLocationMap As Global.System.Web.UI.WebControls.Panel
-    
+
     '''<summary>
     '''imgGoogleStaticMap control.
     '''</summary>
@@ -354,7 +309,7 @@ Partial Public Class eis_fugitive_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents imgGoogleStaticMap As Global.System.Web.UI.WebControls.Image
-    
+
     '''<summary>
     '''LblHorCollectionMetCode control.
     '''</summary>
@@ -363,7 +318,7 @@ Partial Public Class eis_fugitive_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents LblHorCollectionMetCode As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''TxtHorCollectionMetCode control.
     '''</summary>
@@ -372,7 +327,7 @@ Partial Public Class eis_fugitive_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents TxtHorCollectionMetCode As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''LblHorizontalAccuracyMeasure control.
     '''</summary>
@@ -381,7 +336,7 @@ Partial Public Class eis_fugitive_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents LblHorizontalAccuracyMeasure As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''TxtHorizontalAccuracyMeasure control.
     '''</summary>
@@ -390,7 +345,7 @@ Partial Public Class eis_fugitive_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents TxtHorizontalAccuracyMeasure As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''LblHorReferenceDatCode control.
     '''</summary>
@@ -399,7 +354,7 @@ Partial Public Class eis_fugitive_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents LblHorReferenceDatCode As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''TxtHorReferenceDatCode control.
     '''</summary>
@@ -408,7 +363,7 @@ Partial Public Class eis_fugitive_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents TxtHorReferenceDatCode As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''LblGeographicComment control.
     '''</summary>
@@ -417,7 +372,7 @@ Partial Public Class eis_fugitive_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents LblGeographicComment As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''TxtGeographicComment control.
     '''</summary>
@@ -426,7 +381,7 @@ Partial Public Class eis_fugitive_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents TxtGeographicComment As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''lblLastEISSubmit_FGC control.
     '''</summary>
@@ -435,7 +390,7 @@ Partial Public Class eis_fugitive_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblLastEISSubmit_FGC As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''txtLastEISSubmit_FGC control.
     '''</summary>
@@ -444,7 +399,7 @@ Partial Public Class eis_fugitive_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtLastEISSubmit_FGC As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''lblLastUpdate_FGC control.
     '''</summary>
@@ -453,7 +408,7 @@ Partial Public Class eis_fugitive_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblLastUpdate_FGC As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''txtLastUpdate_FGC control.
     '''</summary>
@@ -462,7 +417,7 @@ Partial Public Class eis_fugitive_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtLastUpdate_FGC As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''lblSeparator control.
     '''</summary>
@@ -471,7 +426,7 @@ Partial Public Class eis_fugitive_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblSeparator As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''lblReleasePointAppMessage control.
     '''</summary>
@@ -480,7 +435,7 @@ Partial Public Class eis_fugitive_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblReleasePointAppMessage As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''lblRPShutdownMessage control.
     '''</summary>
@@ -489,7 +444,7 @@ Partial Public Class eis_fugitive_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblRPShutdownMessage As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''gvwRPApportionment control.
     '''</summary>
@@ -498,7 +453,7 @@ Partial Public Class eis_fugitive_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents gvwRPApportionment As Global.System.Web.UI.WebControls.GridView
-    
+
     '''<summary>
     '''SqlDataSourceRPApp control.
     '''</summary>
@@ -507,7 +462,7 @@ Partial Public Class eis_fugitive_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents SqlDataSourceRPApp As Global.System.Web.UI.WebControls.SqlDataSource
-    
+
     '''<summary>
     '''lblSeparatorOnly control.
     '''</summary>
@@ -516,7 +471,7 @@ Partial Public Class eis_fugitive_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblSeparatorOnly As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''btnSummary2 control.
     '''</summary>
@@ -525,211 +480,4 @@ Partial Public Class eis_fugitive_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnSummary2 As Global.System.Web.UI.WebControls.Button
-    
-    '''<summary>
-    '''pnlPopUpAddFugitiveRP control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents pnlPopUpAddFugitiveRP As Global.System.Web.UI.WebControls.Panel
-    
-    '''<summary>
-    '''txtNewFugitiveRP control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtNewFugitiveRP As Global.System.Web.UI.WebControls.TextBox
-    
-    '''<summary>
-    '''filtxtNewFugitiveRP control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents filtxtNewFugitiveRP As Global.AjaxControlToolkit.FilteredTextBoxExtender
-    
-    '''<summary>
-    '''cusvFugitiveID control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents cusvFugitiveID As Global.System.Web.UI.WebControls.CustomValidator
-    
-    '''<summary>
-    '''reqvNewFugitiveRP control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents reqvNewFugitiveRP As Global.System.Web.UI.WebControls.RequiredFieldValidator
-    
-    '''<summary>
-    '''txtNewFugitiveRPDesc control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtNewFugitiveRPDesc As Global.System.Web.UI.WebControls.TextBox
-    
-    '''<summary>
-    '''reqvNewFugitiveRPDesc control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents reqvNewFugitiveRPDesc As Global.System.Web.UI.WebControls.RequiredFieldValidator
-    
-    '''<summary>
-    '''btnInsertFugitiveID control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnInsertFugitiveID As Global.System.Web.UI.WebControls.Button
-    
-    '''<summary>
-    '''btnCancelFugitiveRP control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnCancelFugitiveRP As Global.System.Web.UI.WebControls.Button
-    
-    '''<summary>
-    '''pnlDuplicate control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents pnlDuplicate As Global.System.Web.UI.WebControls.Panel
-    
-    '''<summary>
-    '''Label4 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents Label4 As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''txtDupFugitiveID control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtDupFugitiveID As Global.System.Web.UI.WebControls.TextBox
-    
-    '''<summary>
-    '''txtDupFugitiveID_FilteredTextBoxExtender control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtDupFugitiveID_FilteredTextBoxExtender As Global.AjaxControlToolkit.FilteredTextBoxExtender
-    
-    '''<summary>
-    '''cusvDuplicate control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents cusvDuplicate As Global.System.Web.UI.WebControls.CustomValidator
-    
-    '''<summary>
-    '''reqvDupEUID control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents reqvDupEUID As Global.System.Web.UI.WebControls.RequiredFieldValidator
-    
-    '''<summary>
-    '''Label6 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents Label6 As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''txtDupFugitiveDescription control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtDupFugitiveDescription As Global.System.Web.UI.WebControls.TextBox
-    
-    '''<summary>
-    '''reqvDupFugitiveDesc control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents reqvDupFugitiveDesc As Global.System.Web.UI.WebControls.RequiredFieldValidator
-    
-    '''<summary>
-    '''Label7 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents Label7 As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''btnDupInsertFugitiveRP control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnDupInsertFugitiveRP As Global.System.Web.UI.WebControls.Button
-    
-    '''<summary>
-    '''btnCancelDupFugitiveRP control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnCancelDupFugitiveRP As Global.System.Web.UI.WebControls.Button
-    
-    '''<summary>
-    '''hiddenFacilityLatitude control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents hiddenFacilityLatitude As Global.System.Web.UI.WebControls.HiddenField
-    
-    '''<summary>
-    '''hiddenFacilityLongitude control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents hiddenFacilityLongitude As Global.System.Web.UI.WebControls.HiddenField
 End Class
