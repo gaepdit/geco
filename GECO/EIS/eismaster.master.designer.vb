@@ -68,22 +68,58 @@ Partial Public Class APB_eismaster
     Protected WithEvents lbtnHome As Global.System.Web.UI.WebControls.HyperLink
 
     '''<summary>
-    '''pnlFacilityInventory control.
+    '''pnlFacility control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents pnlFacilityInventory As Global.System.Web.UI.WebControls.Panel
+    Protected WithEvents pnlFacility As Global.System.Web.UI.WebControls.Panel
 
     '''<summary>
-    '''mnuFacilityInventory control.
+    '''lblFacility control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents mnuFacilityInventory As Global.System.Web.UI.WebControls.Menu
+    Protected WithEvents lblFacility As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''mnuFacility control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents mnuFacility As Global.System.Web.UI.WebControls.Menu
+
+    '''<summary>
+    '''pnlHistory control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents pnlHistory As Global.System.Web.UI.WebControls.Panel
+
+    '''<summary>
+    '''lblHistory control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblHistory As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''mnuHistory control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents mnuHistory As Global.System.Web.UI.WebControls.Menu
 
     '''<summary>
     '''ContentPlaceHolder3 control.

@@ -1,8 +1,8 @@
 <%@ Master Language="VB" Inherits="GECO.APB_eismaster" CodeBehind="eismaster.master.vb" %>
-<!DOCTYPE html>
-<html lang="en-us">
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-us" xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <meta charset="utf-8" />
     <title>GECO Emission Inventory System</title>
     <link rel="apple-touch-icon" sizes="180x180" href="~/assets/epd-favicons/apple-touch-icon.png?v=69kRrvbXdL" />
     <link rel="icon" type="image/png" href="~/assets/epd-favicons/favicon-32x32.png?v=69kRrvbXdL" sizes="32x32" />
@@ -27,10 +27,11 @@
                     <tr>
                         <td align="left" valign="bottom" height="12px" class="style1">
                             <div id="userinfo">
-                                Welcome,
-                            <asp:Label ID="lblUserName" runat="server"></asp:Label>
-                                &nbsp;| Airs No.:<asp:Label ID="lblEISAirsNumber" runat="server" Text=""></asp:Label><br />
-                                Facility:
+                                Welcome,                                  
+                                <asp:Label ID="lblUserName" runat="server"></asp:Label>
+                                &nbsp;| Airs No.:
+                                <asp:Label ID="lblEISAirsNumber" runat="server" Text=""></asp:Label><br />
+                                Facility:                                                              
                                 <asp:Label ID="lblFacilityName" runat="server" Text=""></asp:Label>
                             </div>
                         </td>
@@ -44,31 +45,38 @@
                 <div class="homeButton">
                     <asp:HyperLink ID="lbtnHome" runat="server" CssClass="navButton" NavigateUrl="~/EIS/">EIS Home</asp:HyperLink>
                 </div>
-                <asp:Panel ID="pnlFacilityInventory" runat="server" CssClass="leftNavMenu">
-                    <asp:Menu ID="mnuFacilityInventory" runat="server" Width="100%" BackColor="#CAEAFF"
-                        Font-Names="Verdana" Font-Size="Small">
+
+                <asp:Panel ID="pnlFacility" runat="server" CssClass="leftNavMenu">
+                    <asp:Label ID="lblFacility" runat="server" Text="Current Facility Info" BackColor="#000084"
+                        Font-Names="Verdana" Font-Size="Small" ForeColor="#E7ECFF" Width="100%" Font-Bold="True"></asp:Label>
+                    <asp:Menu ID="mnuFacility" runat="server" Width="100%" BackColor="#CAEAFF" Font-Names="Verdana" Font-Size="Small">
                         <Items>
-                            <asp:MenuItem Text="Facility &amp; Contact Info"
-                                Value="Facility &amp; Contact Info" NavigateUrl="~/eis/facility_details.aspx"></asp:MenuItem>
-                            <asp:MenuItem Text="Release Points" Value="Release Points"
-                                NavigateUrl="~/eis/releasepoint_summary.aspx"></asp:MenuItem>
-                            <asp:MenuItem Text="Emission Units" Value="Emission Units"
-                                NavigateUrl="~/EIS/emissionunit_summary.aspx"></asp:MenuItem>
-                            <asp:MenuItem Text="Processes" Value="Processes"
-                                NavigateUrl="~/eis/process_summary.aspx"></asp:MenuItem>
+                            <asp:MenuItem Text="Facility &amp; Contact Info" Value="Facility &amp; Contact Info"
+                                NavigateUrl="~/eis/facility_details.aspx"></asp:MenuItem>
+                        </Items>
+                    </asp:Menu>
+                </asp:Panel>
+
+                <asp:Panel ID="pnlHistory" runat="server" CssClass="leftNavMenu">
+                    <asp:Label ID="lblHistory" runat="server" Text="Historical EI Data" BackColor="#000084"
+                        Font-Names="Verdana" Font-Size="Small" ForeColor="#E7ECFF" Width="100%" Font-Bold="True"></asp:Label>
+                    <asp:Menu ID="mnuHistory" runat="server" Width="100%" BackColor="#CAEAFF" Font-Names="Verdana" Font-Size="Small">
+                        <Items>
                             <asp:MenuItem Text="Reports" Value="Reports" NavigateUrl="~/EIS/reports.aspx"></asp:MenuItem>
+                            <asp:MenuItem Text="Release Points" Value="Release Points" NavigateUrl="~/EIS/releasepoint_summary.aspx"></asp:MenuItem>
+                            <asp:MenuItem Text="Emission Units" Value="Emission Units" NavigateUrl="~/EIS/emissionunit_summary.aspx"></asp:MenuItem>
+                            <asp:MenuItem Text="Processes" Value="Processes" NavigateUrl="~/EIS/process_summary.aspx"></asp:MenuItem>
                         </Items>
                     </asp:Menu>
                 </asp:Panel>
             </div>
             <div id="content">
-                <asp:ContentPlaceHolder ID="ContentPlaceHolder3" runat="server">
-                </asp:ContentPlaceHolder>
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder3" runat="server"></asp:ContentPlaceHolder>
             </div>
             <div id="footer">
                 ©<%= Now.Year %> <a href="https://epd.georgia.gov/">Georgia Environmental Protection Division</a>, 
-                <a href="https://epd.georgia.gov/air-protection-branch">Air Protection Branch</a> 
-                • All rights reserved
+                <a href="https://epd.georgia.gov/air-protection-branch">Air Protection Branch</a>
+                • All rights reserved           
             </div>
         </div>
     </form>
