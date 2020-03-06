@@ -1,5 +1,4 @@
 Imports System.Data.SqlClient
-Imports EpdIt.DBUtilities
 
 Partial Class eis_process_details
     Inherits Page
@@ -11,7 +10,6 @@ Partial Class eis_process_details
         Dim EUCtrlApproachExist As Boolean
         Dim ProcCtrlApproachExist As Boolean
         Dim FacilitySiteID As String = GetCookie(Cookie.AirsNumber)
-        Dim EISStatus As String = GetCookie(EisCookie.EISStatus)
         Dim EISAccessCode As String = GetCookie(EisCookie.EISAccess)
         Dim EIYear As Integer = CInt(GetCookie(EisCookie.EISMaxYear))
         Dim EmissionsUnitID As String = Request.QueryString("eu")
@@ -20,19 +18,15 @@ Partial Class eis_process_details
         FIAccessCheck(EISAccessCode)
 
         If Not IsPostBack Then
-            LoadReleasePointDDL(FacilitySiteID)
             LoadProcessDetails(FacilitySiteID, EmissionsUnitID, ProcessID)
             LoadRPApportionment(FacilitySiteID, EmissionsUnitID, ProcessID)
             LoadReportingPeriodGVW(EIYear, FacilitySiteID, EmissionsUnitID, ProcessID)
 
             'Hide and Display the Release Point Apportionment Information
             If gvwRPApportionment.Rows.Count = 0 Then
-                btnEditRPApportion.Text = "Add"
-                btnEditRPApportion.Visible = True
+                lblRPApportionInfoWarning.Visible = True
             Else
                 lblRPApportionInfoWarning.Visible = False
-                btnEditRPApportion.Text = "Edit"
-                btnEditRPApportion.Visible = True
             End If
 
             'Hide and Display the Process Control Approach, Load Process Control Approach if needed.
@@ -40,46 +34,35 @@ Partial Class eis_process_details
             ProcCtrlApproachExist = CheckProcCtrlApproachSpec(FacilitySiteID, EmissionsUnitID, ProcessID)
 
             If EUCtrlApproachExist Then
-                lblProcessControlApproachWarning.Text = "An Emission Unit Control Approach exists, no Process Control Approach can be added."
+                lblProcessControlApproachWarning.Text = "An Emission Unit Control Approach exists."
                 lblProcessControlApproachWarning.ForeColor = Drawing.Color.ForestGreen
                 pnlProcessControlApproach.Visible = False
-                btnAddControlApproach.Visible = False
-                btnEditControlApproach.Visible = False
             Else
                 If ProcCtrlApproachExist Then
                     LoadProcessControlApproach(FacilitySiteID, EmissionsUnitID, ProcessID)
                     pnlProcessControlApproach.Visible = True
-                    btnAddControlApproach.Visible = False
-                    btnEditControlApproach.Visible = True
                     LoadProcessControlMeasure(FacilitySiteID, EmissionsUnitID, ProcessID)
                     LoadProcessControlPollutant(FacilitySiteID, EmissionsUnitID, ProcessID)
+
                     If gvwProcessControlMeasure.Rows.Count = 0 Then
-                        lblProcessControlMeasureWarning.Text = "At least one Process Control Measure must be added to the Process Control Approach."
-                    End If
-                    If gvwProcessControlPollutant.Rows.Count = 0 Then
-                        lblProcessControlPollutantWarning.Text = "At least one Process Control Pollutant must be added to the Process Control Approach."
+                        lblProcessControlMeasureWarning.Text = "No Process Control Measures."
                     End If
 
+                    If gvwProcessControlPollutant.Rows.Count = 0 Then
+                        lblProcessControlPollutantWarning.Text = "No Process Control Pollutants."
+                    End If
                 Else
-                    lblProcessControlApproachWarning.Text = "No Process Control Approach Exists. Click Add to create one for this Process."
+                    lblProcessControlApproachWarning.Text = "No Process Control Approach Exists ."
                     lblProcessControlApproachWarning.ForeColor = Drawing.Color.ForestGreen
                     pnlProcessControlApproach.Visible = False
-                    btnAddControlApproach.Visible = True
-                    btnEditControlApproach.Visible = False
                 End If
             End If
 
             'Hide all buttons if Emission Unit is shutdown
             If EmissionUnitStatus = "Operating" Then
-                'Do nothing
                 lblEmissionUnitStatusWarning.Text = ""
             Else
-                btnEdit.Visible = False
-                btnEditControlApproach.Visible = False
-                btnAddProcess.Visible = False
-                btnAddControlApproach.Visible = False
-                btnEditRPApportion.Visible = False
-                lblEmissionUnitStatusWarning.Text = "Emission Unit is in a shutdown state. All actions for this unit are disabled."
+                lblEmissionUnitStatusWarning.Text = "Emission Unit is in a shutdown state."
             End If
 
             HideTextBoxBorders(Me)
@@ -220,26 +203,6 @@ Partial Class eis_process_details
 
     End Sub
 
-    'Load the Add Process Release Point dropdown list.
-    Private Sub LoadReleasePointDDL(ByVal fsid As String)
-        ddlexistReleasePointID.Items.Add("--Select Release Point ID--")
-
-        Dim query As String = "select RELEASEPOINTID " &
-            " From EIS_RELEASEPOINT " &
-            " where FacilitySiteID = @fsid " &
-            " and strRPStatusCode = 'OP' " &
-            " and Active = '1' " &
-            " Order by RELEASEPOINTID "
-
-        Dim dt As DataTable = DB.GetDataTable(query, New SqlParameter("@fsid", fsid))
-
-        If dt IsNot Nothing Then
-            For Each dr As DataRow In dt.Rows
-                ddlexistReleasePointID.Items.Add(GetNullableString(dr.Item("RELEASEPOINTID")))
-            Next
-        End If
-    End Sub
-
     'Load the Process details
     Private Sub LoadProcessDetails(ByVal fsid As String, ByVal euid As String, ByVal epid As String)
 
@@ -282,8 +245,8 @@ Partial Class eis_process_details
                     txtProcessID.Text = ""
                 Else
                     txtProcessID.Text = dr.Item("PROCESSID")
-                    txtExistProcessID.Text = dr.Item("PROCESSID")
                 End If
+
                 If IsDBNull(dr("strEmissionsUnitStatus")) Then
                     EmissionUnitStatus = ""
                     txtEmissionUnitStatus.Text = EmissionUnitStatus
@@ -297,8 +260,6 @@ Partial Class eis_process_details
                 Else
                     EmissionsUnitID = dr.Item("EMISSIONSUNITID")
                     txtEmissionUnitID.Text = EmissionsUnitID
-                    txtExistEmissionUnitID.Text = EmissionsUnitID
-                    txtExistEmissionUnitID2.Text = EmissionsUnitID
                     hlinkEmissionUnitID.NavigateUrl = "emissionunit_details.aspx?eu=" & EmissionsUnitID
                     hlinkEmissionUnitID.Text = EmissionsUnitID
                     txtEmissionUnitDesc.Text = GetEmissionUnitDesc(fsid, euid)
@@ -449,276 +410,6 @@ Partial Class eis_process_details
             ErrorReport(ex)
         End Try
 
-    End Sub
-
-    Protected Sub btnEdit_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnEdit.Click
-        Dim ep As String = txtProcessID.Text
-        Dim eu As String = txtEmissionUnitID.Text
-        Dim targetpage As String = "process_edit.aspx" & "?ep=" & ep & "&eu=" & eu
-        Response.Redirect(targetpage)
-    End Sub
-
-    Protected Sub btnEditControlApproach_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnEditControlApproach.Click
-        Dim ep As String = txtProcessID.Text.ToUpper
-        Dim eu As String = txtEmissionUnitID.Text.ToUpper
-        Dim targetpage As String = "processcontrolapproach_edit.aspx" & "?eu=" & eu & "&ep=" & ep
-        Response.Redirect(targetpage)
-    End Sub
-
-    Private Sub InsertProcess(ByVal fsid As String)
-
-        'Code to insert a new Process
-        'Reminder: insert only FacilitySiteID, Process ID, description, UpdateUser, CreateDateTime, UpdateDateTime (same as Create)
-        'and any other fields that are required for the insert before going to edit page for more details.
-        'Edit pages perform only updates.
-
-        Dim NewEmissionUnitID As String = txtEmissionUnitID.Text.ToUpper
-        Dim NewProcessID As String = txtNewProcessID.Text.ToUpper
-        Dim ReleasePointID As String = ddlexistReleasePointID.SelectedValue.ToUpper
-        Dim ProcessDescription As String = txtNewProcessDesc.Text
-        Dim UpdateUserID As String = GetCookie(GecoCookie.UserID)
-        Dim UpdateUserName As String = GetCookie(GecoCookie.UserName)
-        Dim UpdateUser As String = UpdateUserID & "-" & UpdateUserName
-        Dim Active As String = "1"
-
-        Dim sqlList As New List(Of String)
-        Dim paramList As New List(Of SqlParameter())
-
-        'Insert new process into talbe EIS_PROCESS
-        sqlList.Add("Insert into EIS_PROCESS (" &
-                    "FacilitySiteID, " &
-                    "EmissionsUnitID, " &
-                    "PROCESSID, " &
-                    "STRPROCESSDESCRIPTION, " &
-                    "Active, " &
-                    "UpdateUser, " &
-                    "UpdateDateTime, " &
-                    "CreateDateTime) " &
-                    "Values (" &
-                    "@FacilitySiteID, " &
-                    "@NewEmissionUnitID, " &
-                    "@NewProcessID, " &
-                    "@ProcessDescription, " &
-                    "@Active, " &
-                    "@UpdateUser, " &
-                    "getdate(), " &
-                    "getdate()) ")
-
-        Dim params As SqlParameter() = {
-            New SqlParameter("@FacilitySiteID", fsid),
-            New SqlParameter("@NewEmissionUnitID", NewEmissionUnitID),
-            New SqlParameter("@NewProcessID", NewProcessID),
-            New SqlParameter("@ProcessDescription", ProcessDescription),
-            New SqlParameter("@Active", Active),
-            New SqlParameter("@UpdateUser", UpdateUser),
-            New SqlParameter("@ReleasePointID", ReleasePointID)
-        }
-
-        paramList.Add(params)
-
-        'Insert new Release point apportionment into table EIS_RPAPPORTIONMENT
-        sqlList.Add("Insert into EIS_RPAPPORTIONMENT (" &
-                    "FacilitySiteID, " &
-                    "EmissionsUnitID, " &
-                    "PROCESSID, " &
-                    "RELEASEPOINTID, " &
-                    "INTAVERAGEPERCENTEMISSIONS, " &
-                    "Active, " &
-                    "RPAPPORTIONMENTID, " &
-                    "UpdateUser, " &
-                    "UpdateDateTime, " &
-                    "CreateDateTime) " &
-                    "Values (" &
-                    "@FacilitySiteID, " &
-                    "@NewEmissionUnitID, " &
-                    "@NewProcessID, " &
-                    "@ReleasePointID, " &
-                    "100, " &
-                    "@Active, " &
-                    "(select " &
-                    "case " &
-                    "when max(RPAPPORTIONMENTID) is null then 1 " &
-                    "else max(RPAPPORTIONMENTID) + 1 " &
-                    "End RPAPPORTIONMENTID " &
-                    "FROM EIS_RPAPPORTIONMENT), " &
-                    "@UpdateUser, " &
-                    "getdate(), " &
-                    "getdate()) ")
-
-        paramList.Add(params)
-
-        DB.RunCommand(sqlList, paramList)
-
-    End Sub
-
-    Private Sub UpdateProcess(ByVal fsid As String)
-
-        'Code to update a deleted Process that is being re-used
-        'Reminder: insert only FacilitySiteID, Process ID, description, UpdateUser, CreateDateTime, UpdateDateTime (same as Create)
-        'and any other fields that are required for the insert before going to edit page for more details.
-        'Edit pages perform only updates.
-
-        Dim EmissionunitID As String = txtEmissionUnitID.Text.ToUpper
-        Dim ProcessID As String = txtNewProcessID.Text.ToUpper
-        Dim ReleasePointID As String = ddlexistReleasePointID.SelectedValue.ToUpper
-        Dim ProcessDescription As String = txtNewProcessDesc.Text
-        Dim UpdateUser As String = GetCookie(GecoCookie.UserID) & "-" & GetCookie(GecoCookie.UserName)
-        Dim Active As String = "1"
-
-        Dim sqlList As New List(Of String)
-        Dim paramList As New List(Of SqlParameter())
-
-        'Update process in table EIS_PROCESS, change Active = 1
-        sqlList.Add("Update EIS_PROCESS " &
-                " Set Active = @Active, " &
-                " UPDATEUSER = @UpdateUser, " &
-                " UpdateDateTime = getdate() " &
-                " where EIS_PROCESS.FACILITYSITEID = @FacilitySiteID and " &
-                " EIS_PROCESS.EmissionsUnitID = @EmissionunitID and " &
-                " EIS_PROCESS.PROCESSID = @ProcessID ")
-
-        Dim params As SqlParameter() = {
-            New SqlParameter("@FacilitySiteID", fsid),
-            New SqlParameter("@EmissionunitID", EmissionunitID),
-            New SqlParameter("@ProcessID", ProcessID),
-            New SqlParameter("@ProcessDescription", ProcessDescription),
-            New SqlParameter("@Active", Active),
-            New SqlParameter("@UpdateUser", UpdateUser),
-            New SqlParameter("@ReleasePointID", ReleasePointID)
-        }
-
-        paramList.Add(params)
-
-        'insert new Release point apportionment into table EIS_RPAPPORTIONMENT
-        sqlList.Add("Insert into EIS_RPAPPORTIONMENT (" &
-                    "FacilitySiteID, " &
-                    "EmissionsUnitID, " &
-                    "PROCESSID, " &
-                    "RELEASEPOINTID, " &
-                    "INTAVERAGEPERCENTEMISSIONS, " &
-                    "Active, " &
-                    "RPAPPORTIONMENTID, " &
-                    "UpdateUser, " &
-                    "UpdateDateTime, " &
-                    "CreateDateTime) " &
-                    "Values (" &
-                    "@FacilitySiteID, " &
-                    "@EmissionunitID, " &
-                    "@ProcessID, " &
-                    "@ReleasePointID, " &
-                    "100, " &
-                    "@Active, " &
-                    "(select " &
-                    "case " &
-                    "when max(RPAPPORTIONMENTID) is null then 1 " &
-                    "else max(RPAPPORTIONMENTID) + 1 " &
-                    "End RPAPPORTIONMENTID " &
-                    "FROM EIS_RPAPPORTIONMENT), " &
-                    "@UpdateUser, " &
-                    "getdate(), " &
-                    "getdate()) ")
-
-        paramList.Add(params)
-
-        DB.RunCommand(sqlList, paramList)
-
-    End Sub
-
-    'Custom Validator checks for valid Active Process ID
-
-    Sub ProcessIDCheck(ByVal Sender As Object, ByVal args As ServerValidateEventArgs)
-        Dim FacilitySiteID As String = GetCookie(Cookie.AirsNumber)
-        Dim EmissionsUnitID As String = txtExistEmissionUnitID.Text.ToUpper
-        Dim ProcessID As String = args.Value.ToUpper
-        Dim targetpage As String = "Process_edit.aspx" & "?ep=" & ProcessID & "&eu=" & EmissionsUnitID
-        Dim ProcessActive = CheckProcessExist(FacilitySiteID, EmissionsUnitID, ProcessID)
-
-        Select Case ProcessActive
-            Case UnitActiveStatus.Inactive
-                args.IsValid = True
-                UpdateProcess(FacilitySiteID)
-                Response.Redirect(targetpage)
-            Case UnitActiveStatus.Active
-                args.IsValid = False
-                cusvProcessID.ErrorMessage = " Process " & ProcessID & " is already in use.  Please enter another."
-                txtNewProcessID.Text = ""
-                btnAddProcess_ModalPopupExtender.Show()
-            Case UnitActiveStatus.DoesNotExist
-                args.IsValid = True
-                InsertProcess(FacilitySiteID)
-                Response.Redirect(targetpage)
-        End Select
-
-    End Sub
-
-    Private Sub InsertProcessControlApproach()
-
-        'Code to insert a new process control approach
-        'Reminder: insert only FacilitySiteID, Control approach description, UpdateUser, CreateDateTime, UpdateDateTime (same as Create)
-        'and any other fields that are required for the insert before going to edit page for more details.
-        'Edit pages perform only updates.
-
-        Dim FacilitySiteID As String = GetCookie(Cookie.AirsNumber)
-        Dim eu As String = txtEmissionUnitID.Text.ToUpper
-        Dim ep As String = txtProcessID.Text.ToUpper
-        Dim ProcessControlApproachDesc As String = txtNewProcessControlApproachDesc.Text
-        Dim ProcCtrlApproachCapEffic As String = txtProcessCACaptureEffic.Text
-        Dim ProcCtrlApproachEffect As String = txtProcessCAControlEffect.Text
-        Dim UpdateUserID As String = GetCookie(GecoCookie.UserID)
-        Dim UpdateUserName As String = GetCookie(GecoCookie.UserName)
-        Dim UpdateUser As String = UpdateUserID & "-" & UpdateUserName
-
-        Dim query = "Insert into EIS_PROCESSCONTROLAPPROACH (" &
-                    "FacilitySiteID, " &
-                    "EmissionsUnitID, " &
-                    "PROCESSID, " &
-                    "STRCONTROLAPPROACHDESC, " &
-                    "NUMPCTCTRLAPPROACHCAPEFFIC, " &
-                    "NUMPCTCTRLAPPROACHEFFECT, " &
-                    "Active, " &
-                    "UpdateUser, " &
-                    "UpdateDateTime, " &
-                    "CreateDateTime) " &
-                    "Values (" &
-                    "@FacilitySiteID, " &
-                    "@eu, " &
-                    "@ep, " &
-                    "@ProcessControlApproachDesc, " &
-                    "@ProcCtrlApproachCapEffic, " &
-                    "@ProcCtrlApproachEffect, " &
-                    "'1', " &
-                    "@UpdateUser, " &
-                    "getdate(), " &
-                    "getdate()) "
-
-        Dim params As SqlParameter() = {
-            New SqlParameter("@FacilitySiteID", FacilitySiteID),
-            New SqlParameter("@eu", eu),
-            New SqlParameter("@ep", ep),
-            New SqlParameter("@ProcessControlApproachDesc", ProcessControlApproachDesc),
-            New SqlParameter("@ProcCtrlApproachCapEffic", If(String.IsNullOrEmpty(ProcCtrlApproachCapEffic), ProcCtrlApproachCapEffic, Nothing)),
-            New SqlParameter("@ProcCtrlApproachEffect", If(String.IsNullOrEmpty(ProcCtrlApproachEffect), ProcCtrlApproachEffect, Nothing)),
-            New SqlParameter("@UpdateUser", UpdateUser)
-        }
-
-        DB.RunCommand(query, params)
-
-    End Sub
-
-    Protected Sub btnInsertProcessControlApproach_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnInsertProcessControlApproach.Click
-        Dim Processid As String = txtExistProcessID.Text.ToUpper
-        Dim EmissionUnitId As String = txtEmissionUnitID.Text.ToUpper
-        Dim targetpage As String = "Processcontrolapproach_edit.aspx" & "?eu=" & EmissionUnitId & "&ep=" & Processid
-
-        InsertProcessControlApproach()
-        Response.Redirect(targetpage)
-    End Sub
-
-    Protected Sub btnEditRPApportion_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnEditRPApportion.Click
-        Dim ep As String = txtProcessID.Text.ToUpper
-        Dim eu As String = txtEmissionUnitID.Text.ToUpper
-        Dim targetpage As String = "rpapportionment_view.aspx" & "?eu=" & eu & "&ep=" & ep
-        Response.Redirect(targetpage)
     End Sub
 
 End Class

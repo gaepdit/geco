@@ -12,7 +12,7 @@ Option Explicit On
 
 
 Partial Public Class eis_process_summary
-    
+
     '''<summary>
     '''ToolkitScriptManager1 control.
     '''</summary>
@@ -21,7 +21,7 @@ Partial Public Class eis_process_summary
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ToolkitScriptManager1 As Global.AjaxControlToolkit.ToolkitScriptManager
-    
+
     '''<summary>
     '''lblAdd control.
     '''</summary>
@@ -30,25 +30,7 @@ Partial Public Class eis_process_summary
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblAdd As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''btnAdd control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnAdd As Global.System.Web.UI.WebControls.Button
-    
-    '''<summary>
-    '''btnAdd_ModalPopupExtender control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnAdd_ModalPopupExtender As Global.AjaxControlToolkit.ModalPopupExtender
-    
+
     '''<summary>
     '''gvwProcessSummary control.
     '''</summary>
@@ -57,7 +39,7 @@ Partial Public Class eis_process_summary
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents gvwProcessSummary As Global.System.Web.UI.WebControls.GridView
-    
+
     '''<summary>
     '''SqlDataSourceID1 control.
     '''</summary>
@@ -66,175 +48,4 @@ Partial Public Class eis_process_summary
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents SqlDataSourceID1 As Global.System.Web.UI.WebControls.SqlDataSource
-    
-    '''<summary>
-    '''pnlPopUpAddProcess control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents pnlPopUpAddProcess As Global.System.Web.UI.WebControls.Panel
-    
-    '''<summary>
-    '''sumvAddProcessModalpopup control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents sumvAddProcessModalpopup As Global.System.Web.UI.WebControls.ValidationSummary
-    
-    '''<summary>
-    '''lblEmissionUnitID control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblEmissionUnitID As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''ddlExistEmissionUnitID control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents ddlExistEmissionUnitID As Global.System.Web.UI.WebControls.DropDownList
-    
-    '''<summary>
-    '''reqvexistEmissionUnitID control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents reqvexistEmissionUnitID As Global.System.Web.UI.WebControls.RequiredFieldValidator
-    
-    '''<summary>
-    '''lblNewProcessID control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblNewProcessID As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''txtNewProcessID control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtNewProcessID As Global.System.Web.UI.WebControls.TextBox
-    
-    '''<summary>
-    '''txtNewProcessID_FilteredTextBoxExtender control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtNewProcessID_FilteredTextBoxExtender As Global.AjaxControlToolkit.FilteredTextBoxExtender
-    
-    '''<summary>
-    '''reqvNewProcessID control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents reqvNewProcessID As Global.System.Web.UI.WebControls.RequiredFieldValidator
-    
-    '''<summary>
-    '''cusvProcessID control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents cusvProcessID As Global.System.Web.UI.WebControls.CustomValidator
-    
-    '''<summary>
-    '''lblexistReleasePointID control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblexistReleasePointID As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''ddlexistReleasePointID control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents ddlexistReleasePointID As Global.System.Web.UI.WebControls.DropDownList
-    
-    '''<summary>
-    '''reqvexistReleasePointID control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents reqvexistReleasePointID As Global.System.Web.UI.WebControls.RequiredFieldValidator
-    
-    '''<summary>
-    '''lblNewProcessDesc control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblNewProcessDesc As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''txtNewProcessDesc control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtNewProcessDesc As Global.System.Web.UI.WebControls.TextBox
-    
-    '''<summary>
-    '''reqvNewProcessID0 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents reqvNewProcessID0 As Global.System.Web.UI.WebControls.RequiredFieldValidator
-    
-    '''<summary>
-    '''lbl control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lbl As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''btnInsertProcess control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnInsertProcess As Global.System.Web.UI.WebControls.Button
-    
-    '''<summary>
-    '''btnCancel control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnCancel As Global.System.Web.UI.WebControls.Button
 End Class

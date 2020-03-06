@@ -12,7 +12,7 @@ Option Explicit On
 
 
 Partial Public Class eis_process_details
-    
+
     '''<summary>
     '''ToolkitScriptManager1 control.
     '''</summary>
@@ -21,7 +21,7 @@ Partial Public Class eis_process_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ToolkitScriptManager1 As Global.AjaxControlToolkit.ToolkitScriptManager
-    
+
     '''<summary>
     '''txtEmissionUnitID control.
     '''</summary>
@@ -30,7 +30,7 @@ Partial Public Class eis_process_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtEmissionUnitID As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''btnReturnToSummary control.
     '''</summary>
@@ -39,7 +39,7 @@ Partial Public Class eis_process_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnReturnToSummary As Global.System.Web.UI.WebControls.Button
-    
+
     '''<summary>
     '''lblSeparatorNoText1 control.
     '''</summary>
@@ -48,34 +48,7 @@ Partial Public Class eis_process_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblSeparatorNoText1 As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''btnAddProcess control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnAddProcess As Global.System.Web.UI.WebControls.Button
-    
-    '''<summary>
-    '''btnAddProcess_ModalPopupExtender control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnAddProcess_ModalPopupExtender As Global.AjaxControlToolkit.ModalPopupExtender
-    
-    '''<summary>
-    '''btnEdit control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnEdit As Global.System.Web.UI.WebControls.Button
-    
+
     '''<summary>
     '''lblEmissionUnitStatusWarning control.
     '''</summary>
@@ -84,7 +57,7 @@ Partial Public Class eis_process_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblEmissionUnitStatusWarning As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''lblEmissionUnitID control.
     '''</summary>
@@ -93,7 +66,7 @@ Partial Public Class eis_process_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblEmissionUnitID As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''hlinkEmissionUnitID control.
     '''</summary>
@@ -102,7 +75,7 @@ Partial Public Class eis_process_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents hlinkEmissionUnitID As Global.System.Web.UI.WebControls.HyperLink
-    
+
     '''<summary>
     '''lblEmissionUnitStatus control.
     '''</summary>
@@ -111,7 +84,7 @@ Partial Public Class eis_process_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblEmissionUnitStatus As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''txtEmissionUnitStatus control.
     '''</summary>
@@ -120,7 +93,7 @@ Partial Public Class eis_process_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtEmissionUnitStatus As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''lblEmissionUnitDesc control.
     '''</summary>
@@ -129,7 +102,7 @@ Partial Public Class eis_process_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblEmissionUnitDesc As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''txtEmissionUnitDesc control.
     '''</summary>
@@ -138,7 +111,7 @@ Partial Public Class eis_process_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtEmissionUnitDesc As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''lblProcessID control.
     '''</summary>
@@ -147,7 +120,7 @@ Partial Public Class eis_process_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblProcessID As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''txtProcessID control.
     '''</summary>
@@ -156,7 +129,7 @@ Partial Public Class eis_process_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtProcessID As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''lblProcessDescription control.
     '''</summary>
@@ -165,7 +138,7 @@ Partial Public Class eis_process_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblProcessDescription As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''txtProcessDescription control.
     '''</summary>
@@ -174,7 +147,7 @@ Partial Public Class eis_process_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtProcessDescription As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''lblSourceClassCode control.
     '''</summary>
@@ -183,7 +156,7 @@ Partial Public Class eis_process_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblSourceClassCode As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''txtSourceClassCode control.
     '''</summary>
@@ -192,7 +165,7 @@ Partial Public Class eis_process_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtSourceClassCode As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''lblSccDescLabel control.
     '''</summary>
@@ -201,7 +174,7 @@ Partial Public Class eis_process_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblSccDescLabel As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''lblSccDesc control.
     '''</summary>
@@ -210,7 +183,7 @@ Partial Public Class eis_process_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblSccDesc As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''lblProcessComment control.
     '''</summary>
@@ -219,7 +192,7 @@ Partial Public Class eis_process_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblProcessComment As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''txtProcessComment control.
     '''</summary>
@@ -228,7 +201,7 @@ Partial Public Class eis_process_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtProcessComment As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''lblLastEISSubmit control.
     '''</summary>
@@ -237,7 +210,7 @@ Partial Public Class eis_process_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblLastEISSubmit As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''txtLastEISSubmit control.
     '''</summary>
@@ -246,7 +219,7 @@ Partial Public Class eis_process_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtLastEISSubmit As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''lblLastUpdated control.
     '''</summary>
@@ -255,7 +228,7 @@ Partial Public Class eis_process_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblLastUpdated As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''txtLastUpdate control.
     '''</summary>
@@ -264,7 +237,7 @@ Partial Public Class eis_process_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtLastUpdate As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''lblSeparator control.
     '''</summary>
@@ -273,16 +246,7 @@ Partial Public Class eis_process_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblSeparator As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''btnEditRPApportion control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnEditRPApportion As Global.System.Web.UI.WebControls.Button
-    
+
     '''<summary>
     '''lblRPApportionInfoWarning control.
     '''</summary>
@@ -291,7 +255,7 @@ Partial Public Class eis_process_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblRPApportionInfoWarning As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''gvwRPApportionment control.
     '''</summary>
@@ -300,7 +264,7 @@ Partial Public Class eis_process_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents gvwRPApportionment As Global.System.Web.UI.WebControls.GridView
-    
+
     '''<summary>
     '''sqldsRPApportionment control.
     '''</summary>
@@ -309,7 +273,7 @@ Partial Public Class eis_process_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents sqldsRPApportionment As Global.System.Web.UI.WebControls.SqlDataSource
-    
+
     '''<summary>
     '''lblProcessControlApproach control.
     '''</summary>
@@ -318,7 +282,7 @@ Partial Public Class eis_process_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblProcessControlApproach As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''lblProcessControlApproachWarning control.
     '''</summary>
@@ -327,34 +291,7 @@ Partial Public Class eis_process_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblProcessControlApproachWarning As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''btnAddControlApproach control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnAddControlApproach As Global.System.Web.UI.WebControls.Button
-    
-    '''<summary>
-    '''btnAddControlApproach_ModalPopupExtender control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnAddControlApproach_ModalPopupExtender As Global.AjaxControlToolkit.ModalPopupExtender
-    
-    '''<summary>
-    '''btnEditControlApproach control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnEditControlApproach As Global.System.Web.UI.WebControls.Button
-    
+
     '''<summary>
     '''pnlProcessControlApproach control.
     '''</summary>
@@ -363,7 +300,7 @@ Partial Public Class eis_process_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents pnlProcessControlApproach As Global.System.Web.UI.WebControls.Panel
-    
+
     '''<summary>
     '''lblControlApproachDescription control.
     '''</summary>
@@ -372,7 +309,7 @@ Partial Public Class eis_process_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblControlApproachDescription As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''txtControlApproachDescription control.
     '''</summary>
@@ -381,7 +318,7 @@ Partial Public Class eis_process_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtControlApproachDescription As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''lblPctCtrlApproachCapEffic control.
     '''</summary>
@@ -390,7 +327,7 @@ Partial Public Class eis_process_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblPctCtrlApproachCapEffic As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''txtPctCtrlApproachCapEffic control.
     '''</summary>
@@ -399,7 +336,7 @@ Partial Public Class eis_process_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtPctCtrlApproachCapEffic As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''lblPctCtrlApproachEffect control.
     '''</summary>
@@ -408,7 +345,7 @@ Partial Public Class eis_process_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblPctCtrlApproachEffect As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''txtPctCtrlApproachEffect control.
     '''</summary>
@@ -417,7 +354,7 @@ Partial Public Class eis_process_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtPctCtrlApproachEffect As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''lblFirstInventoryYear control.
     '''</summary>
@@ -426,7 +363,7 @@ Partial Public Class eis_process_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblFirstInventoryYear As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''txtFirstInventoryYear control.
     '''</summary>
@@ -435,7 +372,7 @@ Partial Public Class eis_process_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtFirstInventoryYear As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''lblLastInventoryYear control.
     '''</summary>
@@ -444,7 +381,7 @@ Partial Public Class eis_process_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblLastInventoryYear As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''txtLastInventoryYear control.
     '''</summary>
@@ -453,7 +390,7 @@ Partial Public Class eis_process_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtLastInventoryYear As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''lblControlApproachComment control.
     '''</summary>
@@ -462,7 +399,7 @@ Partial Public Class eis_process_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblControlApproachComment As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''txtControlApproachComment control.
     '''</summary>
@@ -471,7 +408,7 @@ Partial Public Class eis_process_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtControlApproachComment As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''lbllastsubmitEPA_CP control.
     '''</summary>
@@ -480,7 +417,7 @@ Partial Public Class eis_process_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lbllastsubmitEPA_CP As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''txtLastSubmitEPA_CP control.
     '''</summary>
@@ -489,7 +426,7 @@ Partial Public Class eis_process_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtLastSubmitEPA_CP As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''lbllastupdate_CP control.
     '''</summary>
@@ -498,7 +435,7 @@ Partial Public Class eis_process_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lbllastupdate_CP As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''txtLastUpdate_CP control.
     '''</summary>
@@ -507,7 +444,7 @@ Partial Public Class eis_process_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtLastUpdate_CP As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''Label3 control.
     '''</summary>
@@ -516,7 +453,7 @@ Partial Public Class eis_process_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents Label3 As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''lblProcessControlMeasureWarning control.
     '''</summary>
@@ -525,7 +462,7 @@ Partial Public Class eis_process_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblProcessControlMeasureWarning As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''gvwProcessControlMeasure control.
     '''</summary>
@@ -534,7 +471,7 @@ Partial Public Class eis_process_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents gvwProcessControlMeasure As Global.System.Web.UI.WebControls.GridView
-    
+
     '''<summary>
     '''SqlDataSourceID1 control.
     '''</summary>
@@ -543,7 +480,7 @@ Partial Public Class eis_process_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents SqlDataSourceID1 As Global.System.Web.UI.WebControls.SqlDataSource
-    
+
     '''<summary>
     '''Label1 control.
     '''</summary>
@@ -552,7 +489,7 @@ Partial Public Class eis_process_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents Label1 As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''lblProcessControlPollutantWarning control.
     '''</summary>
@@ -561,7 +498,7 @@ Partial Public Class eis_process_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblProcessControlPollutantWarning As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''gvwProcessControlPollutant control.
     '''</summary>
@@ -570,7 +507,7 @@ Partial Public Class eis_process_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents gvwProcessControlPollutant As Global.System.Web.UI.WebControls.GridView
-    
+
     '''<summary>
     '''SqlDataSourceID2 control.
     '''</summary>
@@ -579,7 +516,7 @@ Partial Public Class eis_process_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents SqlDataSourceID2 As Global.System.Web.UI.WebControls.SqlDataSource
-    
+
     '''<summary>
     '''lblRPEmissions control.
     '''</summary>
@@ -588,7 +525,7 @@ Partial Public Class eis_process_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblRPEmissions As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''lblGVWReportingPeriodEmpty control.
     '''</summary>
@@ -597,7 +534,7 @@ Partial Public Class eis_process_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblGVWReportingPeriodEmpty As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''gvwReportingPeriods control.
     '''</summary>
@@ -606,7 +543,7 @@ Partial Public Class eis_process_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents gvwReportingPeriods As Global.System.Web.UI.WebControls.GridView
-    
+
     '''<summary>
     '''sqldsReportingPeriod control.
     '''</summary>
@@ -615,7 +552,7 @@ Partial Public Class eis_process_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents sqldsReportingPeriod As Global.System.Web.UI.WebControls.SqlDataSource
-    
+
     '''<summary>
     '''lblSeparatorOnly control.
     '''</summary>
@@ -624,7 +561,7 @@ Partial Public Class eis_process_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblSeparatorOnly As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''btnSummary2 control.
     '''</summary>
@@ -633,355 +570,4 @@ Partial Public Class eis_process_details
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnSummary2 As Global.System.Web.UI.WebControls.Button
-    
-    '''<summary>
-    '''pnlPopUpAddProcess control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents pnlPopUpAddProcess As Global.System.Web.UI.WebControls.Panel
-    
-    '''<summary>
-    '''sumvAddProcessModalpopup control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents sumvAddProcessModalpopup As Global.System.Web.UI.WebControls.ValidationSummary
-    
-    '''<summary>
-    '''lblexistEmissionUnitID control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblexistEmissionUnitID As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''txtExistEmissionUnitID control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtExistEmissionUnitID As Global.System.Web.UI.WebControls.TextBox
-    
-    '''<summary>
-    '''txtExistEmissionUnitID_FilteredTextBoxExtender control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtExistEmissionUnitID_FilteredTextBoxExtender As Global.AjaxControlToolkit.FilteredTextBoxExtender
-    
-    '''<summary>
-    '''lblNewProcessID control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblNewProcessID As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''txtNewProcessID control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtNewProcessID As Global.System.Web.UI.WebControls.TextBox
-    
-    '''<summary>
-    '''txtNewProcessID_FilteredTextBoxExtender control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtNewProcessID_FilteredTextBoxExtender As Global.AjaxControlToolkit.FilteredTextBoxExtender
-    
-    '''<summary>
-    '''reqvNewProcessID control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents reqvNewProcessID As Global.System.Web.UI.WebControls.RequiredFieldValidator
-    
-    '''<summary>
-    '''cusvProcessID control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents cusvProcessID As Global.System.Web.UI.WebControls.CustomValidator
-    
-    '''<summary>
-    '''lblexistReleasePointID control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblexistReleasePointID As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''ddlexistReleasePointID control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents ddlexistReleasePointID As Global.System.Web.UI.WebControls.DropDownList
-    
-    '''<summary>
-    '''reqvexistReleasePointID control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents reqvexistReleasePointID As Global.System.Web.UI.WebControls.RequiredFieldValidator
-    
-    '''<summary>
-    '''lblNewProcessDesc control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblNewProcessDesc As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''txtNewProcessDesc control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtNewProcessDesc As Global.System.Web.UI.WebControls.TextBox
-    
-    '''<summary>
-    '''reqvNewProcessID0 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents reqvNewProcessID0 As Global.System.Web.UI.WebControls.RequiredFieldValidator
-    
-    '''<summary>
-    '''lbl control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lbl As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''btnInsertProcess control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnInsertProcess As Global.System.Web.UI.WebControls.Button
-    
-    '''<summary>
-    '''btnCancel control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnCancel As Global.System.Web.UI.WebControls.Button
-    
-    '''<summary>
-    '''pnlPopUpAddProcessControlApproach control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents pnlPopUpAddProcessControlApproach As Global.System.Web.UI.WebControls.Panel
-    
-    '''<summary>
-    '''sumvAddProcessConAppModalPopup control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents sumvAddProcessConAppModalPopup As Global.System.Web.UI.WebControls.ValidationSummary
-    
-    '''<summary>
-    '''lblexistemissionUnitID2 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblexistemissionUnitID2 As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''txtExistEmissionUnitID2 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtExistEmissionUnitID2 As Global.System.Web.UI.WebControls.TextBox
-    
-    '''<summary>
-    '''lblexistProcessID2 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblexistProcessID2 As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''txtExistProcessID control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtExistProcessID As Global.System.Web.UI.WebControls.TextBox
-    
-    '''<summary>
-    '''lblNewProcessControlApproachDesc control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblNewProcessControlApproachDesc As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''txtNewProcessControlApproachDesc control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtNewProcessControlApproachDesc As Global.System.Web.UI.WebControls.TextBox
-    
-    '''<summary>
-    '''reqvNewProcessControlApproachDesc control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents reqvNewProcessControlApproachDesc As Global.System.Web.UI.WebControls.RequiredFieldValidator
-    
-    '''<summary>
-    '''lblProcessCACaptureEffic control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblProcessCACaptureEffic As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''txtProcessCACaptureEffic control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtProcessCACaptureEffic As Global.System.Web.UI.WebControls.TextBox
-    
-    '''<summary>
-    '''rqvProcessCACaptureEffic control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents rqvProcessCACaptureEffic As Global.System.Web.UI.WebControls.RequiredFieldValidator
-    
-    '''<summary>
-    '''rngvProcessCACaptureEffic control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents rngvProcessCACaptureEffic As Global.System.Web.UI.WebControls.RangeValidator
-    
-    '''<summary>
-    '''lblProcessCAControlEffect control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblProcessCAControlEffect As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''txtProcessCAControlEffect control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtProcessCAControlEffect As Global.System.Web.UI.WebControls.TextBox
-    
-    '''<summary>
-    '''rqvProcessCAControlEffect control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents rqvProcessCAControlEffect As Global.System.Web.UI.WebControls.RequiredFieldValidator
-    
-    '''<summary>
-    '''rngvProcessCAControlEffect control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents rngvProcessCAControlEffect As Global.System.Web.UI.WebControls.RangeValidator
-    
-    '''<summary>
-    '''lblAddProcessControlAppMsg control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblAddProcessControlAppMsg As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''btnInsertProcessControlApproach control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnInsertProcessControlApproach As Global.System.Web.UI.WebControls.Button
-    
-    '''<summary>
-    '''btnCancelNewProcessControlApproach control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnCancelNewProcessControlApproach As Global.System.Web.UI.WebControls.Button
 End Class
