@@ -227,14 +227,11 @@
     <Content Include="EIS\report_proctputdetails.aspx" />
     <Content Include="EIS\report_releasepoints.aspx" />
     <Content Include="EIS\rpapportionment_view.aspx" />
-    <Content Include="EIS\rp_details.aspx" />
     <Content Include="EIS\rp_entry.aspx" />
     <Content Include="EIS\rp_facilitystatus.aspx" />
     <Content Include="EIS\rp_facilitythreshold.aspx" />
     <Content Include="EIS\rp_prepop.aspx" />
     <Content Include="EIS\rp_reset.aspx" />
-    <Content Include="EIS\rp_submit.aspx" />
-    <Content Include="EIS\rp_summary.aspx" />
     <Content Include="EIS\stack_details.aspx" />
     <Content Include="ErrorPage.aspx" />
     <Content Include="ES\confirm.aspx" />
@@ -392,9 +389,6 @@
     <Compile Include="EIS\rpapportionment_view.aspx.designer.vb">
       <DependentUpon>rpapportionment_view.aspx</DependentUpon>
     </Compile>
-    <Compile Include="EIS\rp_details.aspx.designer.vb">
-      <DependentUpon>rp_details.aspx</DependentUpon>
-    </Compile>
     <Compile Include="EIS\rp_entry.aspx.designer.vb">
       <DependentUpon>rp_entry.aspx</DependentUpon>
     </Compile>
@@ -409,12 +403,6 @@
     </Compile>
     <Compile Include="EIS\rp_reset.aspx.designer.vb">
       <DependentUpon>rp_reset.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="EIS\rp_submit.aspx.designer.vb">
-      <DependentUpon>rp_submit.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="EIS\rp_summary.aspx.designer.vb">
-      <DependentUpon>rp_summary.aspx</DependentUpon>
     </Compile>
     <Compile Include="EIS\stack_details.aspx.designer.vb">
       <DependentUpon>stack_details.aspx</DependentUpon>
@@ -731,10 +719,6 @@
       <DependentUpon>rpapportionment_view.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="EIS\rp_details.aspx.vb">
-      <DependentUpon>rp_details.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
     <Compile Include="EIS\rp_entry.aspx.vb">
       <DependentUpon>rp_entry.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -753,14 +737,6 @@
     </Compile>
     <Compile Include="EIS\rp_reset.aspx.vb">
       <DependentUpon>rp_reset.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="EIS\rp_submit.aspx.vb">
-      <DependentUpon>rp_submit.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="EIS\rp_summary.aspx.vb">
-      <DependentUpon>rp_summary.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="EIS\stack_details.aspx.vb">
@@ -845,7 +821,6 @@
     <Content Include="AnnualFees\FeeAmendment.xls" />
     <Content Include="AnnualFees\AnnualFees.master" />
     <Content Include="MainMaster.master" />
-    <Content Include="EIS\files\qachecks.csv" />
     <Content Include="IP.ashx" />
     <Content Include="GECO.vbproj.vsspell" />
     <None Include="My Project\Application.myapp">
