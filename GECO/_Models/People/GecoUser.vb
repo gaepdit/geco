@@ -16,6 +16,13 @@ Namespace GecoModels
         Public Property FacilityAccessTable As DataTable
         Public Property ProfileUpdateRequired As Boolean
 
+        ' Generated properties
+        Public ReadOnly Property DbUpdateUser As String
+            Get
+                Return UserId & "-" & FullName
+            End Get
+        End Property
+
         ' Facility Access
         Public Function GetFacilityAccess(airsNumber As ApbFacilityId) As FacilityAccess
             Dim dr As DataRow = FacilityAccessTable.Rows.Find(airsNumber)

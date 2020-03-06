@@ -23,6 +23,7 @@
     <add key="GoogleMapsAPIKey" value="" />
     <add key="SENTRY_DSN" value="" />
     <add key="ValidationSettings:UnobtrusiveValidationMode" value="None" />
+    <add key="EpaCefUrl" value="" />
   </appSettings>
 
   <connectionStrings>

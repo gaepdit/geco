@@ -1,6 +1,6 @@
 <%@ Page Title="Facility Details Edit - GECO Emissions Inventory" Language="VB" MaintainScrollPositionOnPostback="true"
     MasterPageFile="eismaster.master" AutoEventWireup="false"
-    Inherits="GECO.EIS_rp_entry" Codebehind="rp_entry.aspx.vb" %>
+    Inherits="GECO.EIS_rp_entry" CodeBehind="rp_entry.aspx.vb" %>
 
 <%@ Register Assembly="Reimers.Google.Map" Namespace="Reimers.Google.Map" TagPrefix="Reimers" %>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder3" runat="Server">
@@ -30,9 +30,8 @@
         </ProgressTemplate>
     </acs:ModalUpdateProgress>
     <asp:Panel ID="pnlFacilityEdit" runat="server">
-        <div class="pageheader">
-            Edit Facility Details
-        </div>
+        <h1>Edit Facility Details</h1>
+
         <asp:ValidationSummary ID="ValidationSummary1" runat="server" HeaderText="You received the following errors:"></asp:ValidationSummary>
         <div style="text-align: center; width: 580px; margin-left: 200px; font-size: medium; color: #ff0000; font-weight: bold">
             Verify and correct the information below before clicking<br />
@@ -203,13 +202,13 @@
                     <asp:RequiredFieldValidator ID="reqvLongitudeMeasure" ControlToValidate="TxtLongitudeMeasure"
                         runat="server" ErrorMessage="The facility longitude is required.">*</asp:RequiredFieldValidator>
                     <asp:RangeValidator ID="rngvLongitudeMeasure" runat="server" ControlToValidate="TxtLongitudeMeasure"
-                        MinimumValue="-85.60889" MaximumValue="-80.84417" type="Double"
+                        MinimumValue="-85.60889" MaximumValue="-80.84417" Type="Double"
                         ErrorMessage="The facility longitude must be between -85.60889° and -80.84417°.">
                         Must be between -85.60889° and -80.84417°</asp:RangeValidator>
                 </div>
                 <div class="fieldwrapper">
                     <asp:Label class="styled" runat="server" Text="Map:"></asp:Label>
-                    <div style="display:inline-block; width: 610px">
+                    <div style="display: inline-block; width: 610px">
                         <asp:HyperLink ID="lnkGoogleMap" runat="server" Text="View in Google Maps" Target="_blank">
                             <asp:Image ID="imgGoogleStaticMap" runat="server" />
                         </asp:HyperLink><br />
@@ -251,7 +250,7 @@
         </div>
         <div class="fieldwrapper">
             <asp:Label ID="lblGeographicComment" runat="server" CssClass="styled" Text="Comment:"></asp:Label>
-            <asp:TextBox ID="txtGeographicComment" runat="server" class="editable" TextMode="MultiLine" Rows="4" 
+            <asp:TextBox ID="txtGeographicComment" runat="server" class="editable" TextMode="MultiLine" Rows="4"
                 Text="" Width="400px"></asp:TextBox>
         </div>
         <asp:HiddenField ID="hidLatitude" runat="server" Visible="false" />
@@ -382,8 +381,8 @@
                 Text="" Width="400px"></asp:TextBox>
         </div>
         <div class="buttonwrapper">
-            <asp:Button runat="server" ID="btnSave" CssClass="buttondiv"
-                Text="Save &amp; Continue" Width="169px" Font-Bold="True" Font-Size="Medium" />
+            <asp:Button runat="server" ID="btnSave" CssClass="button button-large"
+                Text="Save &amp; Continue" />
             <br />
         </div>
     </asp:Panel>

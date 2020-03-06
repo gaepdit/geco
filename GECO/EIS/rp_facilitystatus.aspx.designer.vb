@@ -12,7 +12,7 @@ Option Explicit On
 
 
 Partial Public Class EIS_rp_facilitystatus
-    
+
     '''<summary>
     '''ToolkitScriptManager1 control.
     '''</summary>
@@ -21,7 +21,7 @@ Partial Public Class EIS_rp_facilitystatus
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ToolkitScriptManager1 As Global.AjaxControlToolkit.ToolkitScriptManager
-    
+
     '''<summary>
     '''UpdatePanel1 control.
     '''</summary>
@@ -30,25 +30,16 @@ Partial Public Class EIS_rp_facilitystatus
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents UpdatePanel1 As Global.System.Web.UI.UpdatePanel
-    
+
     '''<summary>
-    '''pnlStatusQuery_Outer control.
+    '''pnlStatusQuery control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents pnlStatusQuery_Outer As Global.System.Web.UI.WebControls.Panel
-    
-    '''<summary>
-    '''pnlStatusQuery_Inner control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents pnlStatusQuery_Inner As Global.System.Web.UI.WebControls.Panel
-    
+    Protected WithEvents pnlStatusQuery As Global.System.Web.UI.WebControls.Panel
+
     '''<summary>
     '''lblEIYear1 control.
     '''</summary>
@@ -57,7 +48,7 @@ Partial Public Class EIS_rp_facilitystatus
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblEIYear1 As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''rblOperate control.
     '''</summary>
@@ -66,7 +57,7 @@ Partial Public Class EIS_rp_facilitystatus
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rblOperate As Global.System.Web.UI.WebControls.RadioButtonList
-    
+
     '''<summary>
     '''reqvOperateYesNo control.
     '''</summary>
@@ -75,7 +66,7 @@ Partial Public Class EIS_rp_facilitystatus
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents reqvOperateYesNo As Global.System.Web.UI.WebControls.RequiredFieldValidator
-    
+
     '''<summary>
     '''txtComment control.
     '''</summary>
@@ -84,7 +75,7 @@ Partial Public Class EIS_rp_facilitystatus
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtComment As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''txtComment_TextBoxWatermarkExtender control.
     '''</summary>
@@ -93,7 +84,7 @@ Partial Public Class EIS_rp_facilitystatus
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtComment_TextBoxWatermarkExtender As Global.AjaxControlToolkit.TextBoxWatermarkExtender
-    
+
     '''<summary>
     '''pnlShutdownStatus control.
     '''</summary>
@@ -102,7 +93,7 @@ Partial Public Class EIS_rp_facilitystatus
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents pnlShutdownStatus As Global.System.Web.UI.WebControls.Panel
-    
+
     '''<summary>
     '''lblEIYear2 control.
     '''</summary>
@@ -111,7 +102,7 @@ Partial Public Class EIS_rp_facilitystatus
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblEIYear2 As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''rblIsColocated control.
     '''</summary>
@@ -120,7 +111,7 @@ Partial Public Class EIS_rp_facilitystatus
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rblIsColocated As Global.System.Web.UI.WebControls.RadioButtonList
-    
+
     '''<summary>
     '''reqIsColocated control.
     '''</summary>
@@ -129,7 +120,7 @@ Partial Public Class EIS_rp_facilitystatus
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents reqIsColocated As Global.System.Web.UI.WebControls.RequiredFieldValidator
-    
+
     '''<summary>
     '''pnlColocation control.
     '''</summary>
@@ -138,7 +129,7 @@ Partial Public Class EIS_rp_facilitystatus
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents pnlColocation As Global.System.Web.UI.WebControls.Panel
-    
+
     '''<summary>
     '''txtColocatedWith control.
     '''</summary>
@@ -147,7 +138,7 @@ Partial Public Class EIS_rp_facilitystatus
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtColocatedWith As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''btnContinue control.
     '''</summary>
@@ -156,13 +147,4 @@ Partial Public Class EIS_rp_facilitystatus
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnContinue As Global.System.Web.UI.WebControls.Button
-    
-    '''<summary>
-    '''pnlStatusQuery_rce control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents pnlStatusQuery_rce As Global.AjaxControlToolkit.RoundedCornersExtender
 End Class

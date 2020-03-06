@@ -90,15 +90,23 @@ Public Module eis_getcodedescriptions
         Return DB.GetString(query, param)
     End Function
 
-    Function GetEISStatusMessage(ByVal statuscode As String) As String
-        Dim query As String = "Select strDesc " &
-            " FROM eislk_EISStatusCode " &
-            " Where EISStatusCode = @statuscode " &
-            " and Active = '1' "
-
-        Dim param As New SqlParameter("@statuscode", statuscode)
-
-        Return DB.GetString(query, param)
+    Function GetEISStatusMessage(statuscode As String) As String
+        Select Case statuscode
+            Case 0
+                Return "Not applicable"
+            Case 1
+                Return "Applicable—not started"
+            Case 2
+                Return "In progress"
+            Case 3
+                Return "Submitted"
+            Case 4
+                Return "QA Process"
+            Case 5
+                Return "Complete"
+            Case Else
+                Return "Error"
+        End Select
     End Function
 
     Function GetOptOutReason(ByVal fsid As String, ByVal eiyr As Integer) As String

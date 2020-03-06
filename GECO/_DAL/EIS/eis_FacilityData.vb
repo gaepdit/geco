@@ -116,4 +116,31 @@ Public Module eis_FacilityData
         Return DB.GetBoolean(query, param)
     End Function
 
+    Public Enum FacilitySiteStatusCode
+        OP 'Operating
+        PS 'Permanently Shutdown
+        TS 'Temporarily Shutdown
+        UNK 'Unknown
+    End Enum
+
+    Public Sub SaveEisFacilityStatus(fsid As ApbFacilityId, facstatus As FacilitySiteStatusCode, UpdUser As String, eiyr As Integer)
+        Dim query = "update eis_FacilitySite " &
+            " set strFacilitySiteStatusCode = @facstatus, " &
+            " intFacilitySiteStatusCodeYear = @eiyr, " &
+            " UpdateUser = @UpdUser, " &
+            " UpdateDateTime = getdate() " &
+            " where " &
+            " FacilitySiteID = @fsid "
+
+        Dim params = {
+            New SqlParameter("@facstatus", facstatus.ToString),
+            New SqlParameter("@eiyr", eiyr),
+            New SqlParameter("@UpdUser", UpdUser),
+            New SqlParameter("@fsid", fsid.ShortString)
+        }
+
+        DB.RunCommand(query, params)
+    End Sub
+
+
 End Module

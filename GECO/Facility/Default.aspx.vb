@@ -101,7 +101,7 @@ Partial Class FacilityHome
     Protected Sub GetEisStatus()
         If Not facilityAccess.EisAccess Then
             AppsEmissionInventory.Visible = False
-            Exit Sub
+            Return
         End If
 
         ' This procedure obtains variable values from the EIS_Admin table and saves values in cookies
@@ -110,158 +110,49 @@ Partial Class FacilityHome
         '        3 - If facility is enrolled for current EI year, EISStatus, OptOut, date finalized and conf number cookies are created
         '            Based on values of above, EI status message is created and displayed on Facility Home page
         '        4 - If facility not enrolled - message indicating that the EI is not applicable is displayed
-        Dim CurrentEIYear As Integer = Now.Year - 1
-        Dim EISMaxYear As Integer = 0
-        Dim EIDeadlineDate As String
-        Dim enrolled As String
-        Dim eisStatus As String
-        Dim accesscode As String
-        Dim eisStatusMessage As String
-        Dim optout As String
-        Dim dateFinalize As String
-        Dim confirmationnumber As String
-        Dim eisAirsNumber As String = currentAirs.ShortString
-        Dim EISCookies As New HttpCookie("EISAccessInfo")
+        Dim EIYear As Integer = Now.Year - 1
 
-        Try
-            Dim query As String = "Select eis_admin.FacilitySiteID, eis_admin.InventoryYear, " &
-                    "EIS_Admin.EISStatusCode, EIS_Admin.datEISStatus, " &
-                    "EIS_Admin.EISAccessCode, EIS_Admin.strOptOut, " &
-                    "EIS_Admin.strEnrollment, EIS_Admin.datFinalize, " &
-                    "EIS_Admin.strConfirmationNumber FROM EIS_Admin, " &
-                    "(select max(inventoryYear) as MaxYear, " &
-                    "EIS_Admin.FacilitySiteID " &
-                    "FROM EIS_Admin GROUP BY EIS_Admin.FacilitySiteID ) MaxResults  " &
-                    "where EIS_Admin.FacilitySiteID = @eisAirsNumber " &
-                    "and EIS_Admin.inventoryYear = maxresults.maxyear " &
-                    "and EIS_Admin.FacilitySiteID = maxresults.FacilitySiteID " &
-                    "group by EIS_Admin.FacilitySiteID, " &
-                    "EIS_Admin.inventoryYear, " &
-                    "EIS_Admin.EISStatusCode, EIS_Admin.datEISStatus, " &
-                    "EIS_Admin.EISAccessCode, EIS_Admin.strOptOut, " &
-                    "EIS_Admin.strEnrollment, EIS_Admin.datFinalize, " &
-                    "EIS_Admin.strConfirmationNumber"
+        Dim eiStatus As EiStatus = LoadEiStatusCookies(currentAirs, Response)
 
-            Dim param As New SqlParameter("@eisAirsNumber", eisAirsNumber)
+        If eiStatus.Access = "3" Then
+            AppsEmissionInventory.Visible = False
+            Return
+        End If
 
-            Dim dr As DataRow = DB.GetDataRow(query, param)
+        ' enrollment status: 0 = not enrolled; 1 = enrolled for EI year
+        If eiStatus.Enrolled <> "1" Then
+            lblEIText.Text = "Not enrolled in " & EIYear & " EI."
+            lblEIDate.Text = ""
+            Return
+        End If
 
-            If dr Is Nothing Then
-                'Set EISAccess cookie to "3" if facility does not exist in EIS Admin table
-                EISCookies.Values("EISAccess") = EncryptDecrypt.EncryptText("3")
-                AppsEmissionInventory.Visible = False
-            Else
-                'get max year from EIS Admin table
-                If IsDBNull(dr("InventoryYear")) Then
-                    'Do nothing - leave EISMaxYear null
-                Else
-                    EISMaxYear = dr.Item("InventoryYear")
-                End If
-                EISCookies.Values("EISMaxYear") = EncryptDecrypt.EncryptText(EISMaxYear)
+        lblEIDate.Text = GetEIDeadline(eiStatus.EIMaxYear)
 
-                If EISMaxYear = CurrentEIYear Then
+        ' | EISSTATUSCODE | STRDESC                  |
+        ' |---------------|--------------------------|
+        ' | 0             | Not applicable           |
+        ' | 1             | Applicable - not started |
+        ' | 2             | In progress              |
+        ' | 3             | Submitted                |
+        ' | 4             | QA Process               |
+        ' | 5             | Complete                 |
 
-                    'getEISStatus for EISMaxYear
-                    If IsDBNull(dr("EISStatusCode")) Then
-                        eisStatus = "NULL"
-                    Else
-                        eisStatus = dr.Item("EISStatusCode")
-                    End If
-                    EISCookies.Values("EISStatus") = EncryptDecrypt.EncryptText(eisStatus)
-
-                    'get EIS Access Code from database
-                    If IsDBNull(dr("EISAccessCode")) Then
-                        accesscode = "NULL"
-                    Else
-                        accesscode = dr.Item("EISAccessCode")
-                    End If
-                    EISCookies.Values("EISAccess") = EncryptDecrypt.EncryptText(accesscode)
-
-                    'Check enrollment
-                    'get enrollment status: 0 = not enrolled; 1 = enrolled for EI year
-                    If IsDBNull(dr("strEnrollment")) Then
-                        enrolled = "NULL"
-                    Else
-                        enrolled = dr.Item("strEnrollment")
-                    End If
-                    EISCookies.Values("Enrollment") = EncryptDecrypt.EncryptText(enrolled)
-
-                    If enrolled = "1" Then
-                        If IsDBNull(dr("strOptOut")) OrElse String.IsNullOrEmpty(dr("stroptout")) Then
-                            optout = "NULL"
-                        Else
-                            optout = dr.Item("strOptOut")
-                        End If
-                        EISCookies.Values("OptOut") = EncryptDecrypt.EncryptText(optout)
-
-                        If IsDBNull(dr("datFinalize")) Then
-                            dateFinalize = "NULL"
-                        Else
-                            dateFinalize = GetNullableDateTime(dr.Item("datFinalize")).Value.ToShortDateString
-                        End If
-                        EISCookies.Values("DateFinalize") = EncryptDecrypt.EncryptText(dateFinalize)
-
-                        If IsDBNull(dr("strConfirmationNumber")) Then
-                            confirmationnumber = "NULL"
-                        Else
-                            confirmationnumber = dr.Item("strConfirmationNumber")
-                        End If
-                        EISCookies.Values("ConfNumber") = EncryptDecrypt.EncryptText(confirmationnumber)
-
-                        EIDeadlineDate = GetEIDeadline(EISMaxYear)
-                        lblEIDate.Text = EIDeadlineDate
-
-                        Select Case eisStatus
-                            Case "0"
-                                eisStatusMessage = "Not applicable for " & CurrentEIYear & "."
-                                lblEIDate.Text = ""
-                            Case "1"
-                                eisStatusMessage = "Applicable; not started."
-                            Case "2"
-                                eisStatusMessage = "EI in progress."
-                            Case "3"
-                                If optout = "1" Then
-                                    eisStatusMessage = "Completed & submitted on " & dateFinalize & "."
-                                Else
-                                    eisStatusMessage = "EI data submitted on " & dateFinalize & "."
-                                End If
-                            Case "4"
-                                eisStatusMessage = "In review; submitted on " & dateFinalize & "."
-                            Case "5"
-                                If optout = "1" Then
-                                    eisStatusMessage = "Completed on " & dateFinalize & " (no EI data submitted)."
-                                Else
-                                    eisStatusMessage = "EI data submitted on " & dateFinalize & "."
-                                End If
-                            Case Else
-                                eisStatusMessage = "To be determined."
-                                lblEIDate.Text = ""
-                        End Select
-
-                        lblEIText.Text = eisStatusMessage
-
-                    Else
-                        lblEIText.Text = "Not enrolled for " & CurrentEIYear & "*."
-                        lblEIDate.Text = ""
-                    End If
-                Else
-                    lblEIText.Text = "Facility not in " & CurrentEIYear & " EI*."
-                    lblEIDate.Text = ""
-                    'Set EISAccessCode = "0" for Facility Inventory Access only
-                    EISCookies.Values("EISAccess") = EncryptDecrypt.EncryptText("0")
-                    EISCookies.Values("EISStatus") = EncryptDecrypt.EncryptText("0")
-                    EISCookies.Values("Enrollment") = EncryptDecrypt.EncryptText("0")
-                End If
-
-            End If
-
-            EISCookies.Expires = DateTime.Now.AddHours(8)
-            Response.Cookies.Add(EISCookies)
-
-        Catch ex As Exception
-            ErrorReport(ex)
-        End Try
-
+        Select Case eiStatus.Status
+            Case "0"
+                lblEIText.Text = EIYear & " EI not applicable."
+                lblEIDate.Text = ""
+            Case "1"
+                lblEIText.Text = "Ready for " & EIYear & " EI."
+            Case "2"
+                lblEIText.Text = EIYear & " EI in progress."
+            Case "3", "4"
+                lblEIText.Text = EIYear & " EI submitted on " & eiStatus.DateFinalized & "."
+            Case "5"
+                lblEIText.Text = EIYear & " EI completed on " & eiStatus.DateFinalized & "."
+            Case Else
+                lblEIText.Text = "To be determined."
+                lblEIDate.Text = ""
+        End Select
     End Sub
 
     Protected Sub GetFeesStatus()

@@ -39,7 +39,13 @@ Public Module GecoColors
     }
 
     ' https://webaim.org/resources/contrastchecker/?fcolor=FFFFFF&bcolor=0000FF
-    Public Property CompletedPanel As New GecoColor With {
+    Public Property NoActionPanel As New GecoColor With {
+        .HtmlForeColor = "#FFFFFF",
+        .HtmlBackColor = "#525260"
+    }
+
+    ' https://webaim.org/resources/contrastchecker/?fcolor=FFFFFF&bcolor=0000FF
+    Public Property ActionCompletePanel As New GecoColor With {
         .HtmlForeColor = "#FFFFFF",
         .HtmlBackColor = "#0000FF"
     }

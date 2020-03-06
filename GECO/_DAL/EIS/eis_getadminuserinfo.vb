@@ -1,4 +1,5 @@
 ﻿Imports System.Data.SqlClient
+Imports GECO.GecoModels
 
 Public Module eis_getadminuserinfo
 
@@ -36,7 +37,7 @@ Public Module eis_getadminuserinfo
         Return DB.GetString(query, params)
     End Function
 
-    Public Function SaveAdminComment(fsid As String, eiyr As Integer, aComment As String) As Boolean
+    Public Function SaveAdminComment(fsid As ApbFacilityId, eiyr As Integer, aComment As String) As Boolean
         'Truncate comment if greater than 4000 characters
         Dim query = "update eis_Admin " &
             " set strComment = @aComment " &
@@ -45,7 +46,7 @@ Public Module eis_getadminuserinfo
 
         Dim params = {
             New SqlParameter("@aComment", Left(aComment, 4000)),
-            New SqlParameter("@fsid", fsid),
+            New SqlParameter("@fsid", fsid.ShortString),
             New SqlParameter("@eiyr", eiyr)
         }
 

@@ -1,5 +1,6 @@
-﻿Imports System.Data.SqlClient
+Imports System.Data.SqlClient
 Imports EpdIt.DBUtilities
+Imports GECO.GecoModels
 
 Public Module eis_reportingperiod
 
@@ -545,84 +546,70 @@ Public Module eis_reportingperiod
 
 #End Region
 
-    Public Sub SaveOption(fsid As String, opt As String, uuser As String, eiyr As String,
-                               Optional ooreason As String = Nothing,
-                               Optional colocated As Boolean? = Nothing,
-                               Optional colocation As String = Nothing)
-        Dim eisAccessCode As String
-        Dim eisStatusCode As String
+#Region " Opt in/out routines "
 
-        If opt = "1" Then
-            eisAccessCode = "2"
-            eisStatusCode = "3"
-        Else
-            eisAccessCode = "1"
-            eisStatusCode = "2"
+    Public Sub SaveEisOptOut(
+            fsid As ApbFacilityId,
+            optOut As Boolean,
+            uuser As String,
+            eiyr As String,
+            Optional ooreason As String = Nothing,
+            Optional colocated As Boolean? = Nothing,
+            Optional colocation As String = Nothing)
+
+        If Not optOut Then
+            ' Following only needed for opt out = true
+            ooreason = Nothing
+            colocated = Nothing
+            colocation = Nothing
         End If
 
         Dim query As String
 
         Dim params As SqlParameter() = {
-            New SqlParameter("@opt", opt),
-            New SqlParameter("@eisAccessCode", eisAccessCode),
-            New SqlParameter("@eisStatusCode", eisStatusCode),
+            New SqlParameter("@opt", If(optOut, "1", "0")),
+            New SqlParameter("@eisAccessCode", "2"), ' FI and EI access allowed, both no edit
+            New SqlParameter("@eisStatusCode", "3"), ' Submitted
             New SqlParameter("@ooreason", ooreason),
             New SqlParameter("@uuser", uuser),
-            New SqlParameter("@fsid", fsid),
+            New SqlParameter("@fsid", fsid.ShortString),
             New SqlParameter("@eiyr", eiyr),
             New SqlParameter("@colocated", colocated),
             New SqlParameter("@colocation", colocation)
         }
 
-        If opt = "1" Then
-            'facility not participating in EI
-            Dim query0 As String = "select datFinalize " &
-                " FROM eis_Admin " &
-                " where FacilitySiteID = @fsid " &
-                " and InventoryYear = @eiyr " &
-                " and datInitialFinalize is not null "
+        query = "select datInitialFinalize " &
+            " FROM eis_Admin " &
+            " where FacilitySiteID = @fsid " &
+            " and InventoryYear = @eiyr " &
+            " and datInitialFinalize is not null "
 
-            If DB.ValueExists(query0, params) Then
-                'facility not participating in EI
-                'If datInitialFinalize is null
-                query = "update eis_Admin set " &
-                    " strOptOut = @opt, " &
-                    " eisAccessCode = @eisAccessCode, " &
-                    " eisStatusCode = @eisStatusCode, " &
-                    " datEISStatus = getdate(), " &
-                    " strOptOutReason = @ooreason, " &
-                    " strConfirmationNumber = Next Value for EIS_SEQ_ConfNum, " &
-                    " datInitialFinalize = getdate(), " &
-                    " datFinalize = getdate(), " &
-                    " IsColocated = @colocated, " &
-                    " ColocatedWith = @colocation, " &
-                    " UpdateUser = @uuser, " &
-                    " UpdateDateTime = getdate() " &
-                    " where FacilitySiteID = @fsid " &
-                    " and InventoryYear = @eiyr "
-            Else
-                'facility not participating in EI
-                'If datInitialFinalize is not null
-                query = "update eis_Admin set " &
-                    " strOptOut = @opt, " &
-                    " eisAccessCode = @eisAccessCode, " &
-                    " eisStatusCode = @eisStatusCode, " &
-                    " strOptOutReason = @ooreason, " &
-                    " strConfirmationNumber = Next Value for EIS_SEQ_ConfNum, " &
-                    " datFinalize = getdate(), " &
-                    " IsColocated = @colocated, " &
-                    " ColocatedWith = @colocation, " &
-                    " UpdateUser = @uuser, " &
-                    " UpdateDateTime = getdate() " &
-                    " where FacilitySiteID = @fsid " &
-                    " and InventoryYear = @eiyr "
-            End If
-        Else
-            'OptOut = '0' - facility participating
+        If DB.ValueExists(query, params) Then
+            ' Don't update datInitialFinalize if it already exists
             query = "update eis_Admin set " &
                 " strOptOut = @opt, " &
                 " eisAccessCode = @eisAccessCode, " &
                 " eisStatusCode = @eisStatusCode, " &
+                " strOptOutReason = @ooreason, " &
+                " strConfirmationNumber = Next Value for EIS_SEQ_ConfNum, " &
+                " datFinalize = getdate(), " &
+                " IsColocated = @colocated, " &
+                " ColocatedWith = @colocation, " &
+                " UpdateUser = @uuser, " &
+                " UpdateDateTime = getdate() " &
+                " where FacilitySiteID = @fsid " &
+                " and InventoryYear = @eiyr "
+        Else
+            ' Update datInitialFinalize if null
+            query = "update eis_Admin set " &
+                " strOptOut = @opt, " &
+                " eisAccessCode = @eisAccessCode, " &
+                " eisStatusCode = @eisStatusCode, " &
+                " datEISStatus = getdate(), " &
+                " strOptOutReason = @ooreason, " &
+                " strConfirmationNumber = Next Value for EIS_SEQ_ConfNum, " &
+                " datInitialFinalize = getdate(), " &
+                " datFinalize = getdate(), " &
                 " IsColocated = @colocated, " &
                 " ColocatedWith = @colocation, " &
                 " UpdateUser = @uuser, " &
@@ -659,7 +646,48 @@ Public Module eis_reportingperiod
         End If
     End Sub
 
-#Region " Get Values "
+    Public Sub ResetEiStatus(fsid As ApbFacilityId, uuser As String, eiyr As String)
+
+        'Facility needs to start over; make optout null
+        Dim EISAccessCode As String = "1"
+        Dim EISStatus As String = "1"
+        Dim OptOut As String = Nothing
+
+        Dim query = "Update eis_Admin set " &
+            " eisStatusCode = @EISStatus, " &
+            " eisAccessCode = @EISAccessCode, " &
+            " strOptout = @OptOut, " &
+            " strOptOutReason = null, " &
+            " strConfirmationNumber = null, " &
+            " datFinalize = null, " &
+            " datEISStatus = getdate(), " &
+            " IsColocated = null, " &
+            " ColocatedWith = null, " &
+            " UpdateUser = @UpdateUser, " &
+            " UpdateDateTime = getdate() " &
+            " where FacilitySiteID = @fsid and " &
+            " InventoryYear = @eiyr "
+
+        Dim params = {
+            New SqlParameter("@EISStatus", EISStatus),
+            New SqlParameter("@EISAccessCode", EISAccessCode),
+            New SqlParameter("@OptOut", OptOut),
+            New SqlParameter("@UpdateUser", uuser),
+            New SqlParameter("@fsid", fsid.ShortString),
+            New SqlParameter("@eiyr", eiyr)
+        }
+
+        Try
+            DB.RunCommand(query, params)
+        Catch ex As Exception
+            ErrorReport(ex)
+        End Try
+
+    End Sub
+
+#End Region
+
+#Region " Get Emission Values "
 
     Public Function GetEmissionTotal(fsid As String,
                                       euid As String,

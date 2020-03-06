@@ -3,8 +3,8 @@
 <DebuggerStepThrough()>
 Public Module CookieHelper
 
-    Public Const COOKIE_EXPIRATION_DAYS = 1D
-    Public Const COOKIE_EXPIRATION_LONGTERM = 14D
+    Public Const COOKIE_EXPIRATION_DAYS As Decimal = 1D
+    Public Const COOKIE_EXPIRATION_LONGTERM As Decimal = 14D
 
     Public Enum Cookie
         AirsNumber

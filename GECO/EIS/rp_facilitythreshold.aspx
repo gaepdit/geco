@@ -4,21 +4,22 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder3" runat="Server">
     <act:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server"></act:ToolkitScriptManager>
     <div class="pageheader">
-        <b>Facility Emissions Thresholds (Potential Emissions</b>)
+        Facility Emissions Thresholds (Potential Emissions)
     </div>
     <div style="font-size: small" align="left">
         <p>
             According to the facility's AIRS Number, the facility is
-        <em>
-            <asp:Label ID="lblLocation" runat="server" Text=""></asp:Label></em>
+            <em>
+                <asp:Label ID="lblLocation" runat="server" Text=""></asp:Label></em>
         </p>
         <p>
             The thresholds in the questions below pertain to the facility's location. Participation
-        in the Emissions Inventory process depends on the responses to the threshold questions below.
+            in the Emissions Inventory process depends on the responses to the threshold questions below.
         </p>
         <p>
             Remember that the numbers pertain to <b>potential emissions,</b> except for lead.
-        <span style="color: #990000; font-weight: bold;">The threshold for lead (Pb) is now based on actual emissions</span>.
+            <br />
+            <span style="color: #990000; font-weight: bold;">The threshold for lead (Pb) is now based on actual emissions.</span>
         </p>
         <p align="center">Select a response for all pollutants.</p>
     </div>
@@ -208,7 +209,8 @@
                     Branch about possible EI submittal.
                     <br />
                     <asp:TextBox ID="txtColocatedWith" runat="server" BackColor="White"
-                        TextMode="MultiLine" Width="350px" MaxLength="4000" Rows="4"></asp:TextBox><br />
+                        TextMode="MultiLine" Width="350px" MaxLength="4000" Rows="4"></asp:TextBox>
+                    <br />
                 </div>
             </asp:Panel>
         </asp:Panel>
@@ -217,9 +219,9 @@
     </div>
 
     <div class="buttonwrapper" style="text-align: center;">
-        <asp:Button runat="server" ID="btnContinue" CssClass="buttondiv" Text="Continue" Font-Size="Large" ValidationGroup="vgThreshold" />
-        <asp:Button runat="server" ID="btnSubmit" CssClass="buttondiv" Text="Submit" Font-Size="Large" ValidationGroup="vgOptOut" Visible="False" />
-        <asp:Button runat="server" ID="btnCancel" CssClass="buttondiv" Text="Cancel" Font-Size="Large" CausesValidation="False" Visible="False" />
+        <asp:Button runat="server" ID="btnContinue" CssClass="button button-large" Text="Continue" ValidationGroup="vgThreshold" />
+        <asp:Button runat="server" ID="btnSubmit" CssClass="button button-large" Text="Submit" ValidationGroup="vgOptOut" Visible="False" />
+        <asp:Button runat="server" ID="btnCancel" CssClass="button button-large button-cancel" Text="Cancel" CausesValidation="False" Visible="False" />
     </div>
     <br />
     <br />

@@ -1,5 +1,6 @@
-﻿Imports System.Data.SqlClient
+Imports System.Data.SqlClient
 Imports EpdIt.DBUtilities
+Imports GECO.GecoModels
 
 Partial Class EIS_rp_threshold
     Inherits Page
@@ -130,10 +131,10 @@ Partial Class EIS_rp_threshold
     Protected Sub btnSubmit_Click(sender As Object, e As EventArgs) Handles btnSubmit.Click
 
         Dim FacilitySiteID As String = GetCookie(Cookie.AirsNumber)
-        Dim UpdateUserID As String = GetCookie(GecoCookie.UserID)
-        Dim UpdateUserName As String = GetCookie(GecoCookie.UserName)
-        Dim UpdateUser As String = UpdateUserID & "-" & UpdateUserName
+        Dim airs As New ApbFacilityId(FacilitySiteID)
+        Dim currentUser = GetCurrentUser()
         Dim eiYear As String = GetCookie(EisCookie.EISMaxYear)
+
         Dim SOX As String = rblSOx.SelectedValue
         Dim VOC As String = rblVOC.SelectedValue
         Dim NOX As String = rblNOx.SelectedValue
@@ -141,20 +142,19 @@ Partial Class EIS_rp_threshold
         Dim PM10 As String = rblPM10.SelectedValue
         Dim PM25 As String = rblPM25.SelectedValue
         Dim NH3 As String = rblNH3.SelectedValue
-        Dim Pb As String
+        Dim Pb As String = rblPb.SelectedValue
 
         EIType = GetEIType(eiYear)
 
-        SaveAdminComment(FacilitySiteID, eiYear, txtComment.Text)
+        SaveAdminComment(airs, eiYear, txtComment.Text)
 
         If EIType = "ANNUAL" Then
             Pb = "Yes"
-        Else
-            Pb = rblPb.SelectedValue
         End If
 
         If SOX = "Yes" AndAlso VOC = "Yes" AndAlso NOX = "Yes" AndAlso CO = "Yes" AndAlso
             PM10 = "Yes" AndAlso PM25 = "Yes" AndAlso NH3 = "Yes" AndAlso Pb = "Yes" Then
+
             'Facility will be opted out of the EI
             Dim colocated As Boolean = (rblIsColocated.SelectedValue = "Yes")
             Dim colocation As String = Nothing
@@ -163,14 +163,13 @@ Partial Class EIS_rp_threshold
                 colocation = txtColocatedWith.Text
             End If
 
-            SaveOption(FacilitySiteID, "1", UpdateUser, eiYear, "2", colocated, colocation)
-            ResetCookies(FacilitySiteID)
+            SaveEisOptOut(airs, True, currentUser.DbUpdateUser, eiYear, "2", colocated, colocation)
         Else
             'Facility will be opted into the EI
-            SaveOption(FacilitySiteID, "0", UpdateUser, eiYear)
-            ResetCookies(FacilitySiteID)
+            SaveEisOptOut(airs, False, currentUser.DbUpdateUser, eiYear)
         End If
 
+        LoadEiStatusCookies(airs, Response)
         Response.Redirect("Default.aspx")
     End Sub
 
@@ -263,114 +262,6 @@ Partial Class EIS_rp_threshold
         btnSubmit.Visible = False
         btnContinue.Visible = True
 
-    End Sub
-
-    Private Sub ResetCookies(fsid As String)
-
-        Dim EISCookies As New HttpCookie("EISAccessInfo")
-        Dim EISMaxYear As Integer
-        Dim enrolled As String
-        Dim eisStatus As String
-        Dim accesscode As String
-        Dim optout As String
-        Dim dateFinalize As String
-        Dim confirmationnumber As String
-        Dim CurrentEIYear As Integer = Now.Year - 1
-
-        Try
-            Dim query = "Select eis_admin.FacilitySiteID, eis_admin.InventoryYear, " &
-                    "EIS_Admin.EISStatusCode, EIS_Admin.datEISStatus, " &
-                    "EIS_Admin.EISAccessCode, EIS_Admin.strOptOut, " &
-                    "EIS_Admin.strEnrollment, EIS_Admin.datFinalize, " &
-                    "EIS_Admin.strConfirmationNumber FROM EIS_Admin, " &
-                    "(select max(inventoryYear) as MaxYear, " &
-                    "EIS_Admin.FacilitySiteID " &
-                    "FROM EIS_Admin GROUP BY EIS_Admin.FacilitySiteID ) MaxResults  " &
-                    "where EIS_Admin.FacilitySiteID = @fsid " &
-                    "and EIS_Admin.inventoryYear = maxresults.maxyear " &
-                    "and EIS_Admin.FacilitySiteID = maxresults.FacilitySiteID " &
-                    "group by EIS_Admin.FacilitySiteID, " &
-                    "EIS_Admin.inventoryYear, " &
-                    "EIS_Admin.EISStatusCode, EIS_Admin.datEISStatus, " &
-                    "EIS_Admin.EISAccessCode, EIS_Admin.strOptOut, " &
-                    "EIS_Admin.strEnrollment, EIS_Admin.datFinalize, " &
-                    "EIS_Admin.strConfirmationNumber"
-
-            Dim param As New SqlParameter("@fsid", fsid)
-
-            Dim dr = DB.GetDataRow(query, param)
-
-            If dr Is Nothing Then
-                'Set EISAccess cookie to "3" id facility does not exist in EIS Admin table
-                EISCookies.Values("EISAccess") = EncryptDecrypt.EncryptText("3")
-            Else
-                'get max year from EIS Admin table
-                If IsDBNull(dr("InventoryYear")) Then
-                    'Do nothing - leave EISMaxYear null
-                Else
-                    EISMaxYear = dr.Item("InventoryYear")
-                End If
-                EISCookies.Values("EISMaxYear") = EncryptDecrypt.EncryptText(EISMaxYear)
-
-                If EISMaxYear = CurrentEIYear Then
-                    'Check enrollment
-                    'get enrollment status: 0 = not enrolled; 1 = enrolled for EI year
-                    If IsDBNull(dr("strEnrollment")) Then
-                        enrolled = "NULL"
-                    Else
-                        enrolled = dr.Item("strEnrollment")
-                    End If
-                    EISCookies.Values("Enrollment") = EncryptDecrypt.EncryptText(enrolled)
-
-                    If enrolled = "1" Then
-                        'getEISStatus for EISMaxYear
-                        If IsDBNull(dr("EISStatusCode")) Then
-                            eisStatus = "NULL"
-                        Else
-                            eisStatus = dr.Item("EISStatusCode")
-                        End If
-                        EISCookies.Values("EISStatus") = EncryptDecrypt.EncryptText(eisStatus)
-
-                        'get EIS Access Code from database
-                        If IsDBNull(dr("EISAccessCode")) Then
-                            accesscode = "NULL"
-                        Else
-                            accesscode = dr.Item("EISAccessCode")
-                        End If
-                        EISCookies.Values("EISAccess") = EncryptDecrypt.EncryptText(accesscode)
-
-                        If IsDBNull(dr("strOptOut")) Then
-                            optout = "NULL"
-                        Else
-                            optout = dr.Item("strOptOut")
-                        End If
-                        EISCookies.Values("OptOut") = EncryptDecrypt.EncryptText(optout)
-
-                        If IsDBNull(dr("datFinalize")) Then
-                            dateFinalize = "NULL"
-                        Else
-                            dateFinalize = dr.Item("datFinalize")
-                        End If
-                        EISCookies.Values("DateFinalize") = EncryptDecrypt.EncryptText(dateFinalize)
-
-                        If IsDBNull(dr("strConfirmationNumber")) Then
-                            confirmationnumber = "NULL"
-                        Else
-                            confirmationnumber = dr.Item("strConfirmationNumber")
-                        End If
-                        EISCookies.Values("ConfNumber") = EncryptDecrypt.EncryptText(confirmationnumber)
-                    End If
-                Else
-                    EISCookies.Values("EISAccess") = EncryptDecrypt.EncryptText("0")
-                End If
-            End If
-
-            EISCookies.Expires = DateTime.Now.AddHours(8)
-            Response.Cookies.Add(EISCookies)
-
-        Catch ex As Exception
-            ErrorReport(ex)
-        End Try
     End Sub
 
     Private Sub rblIsColocated_SelectedIndexChanged(sender As Object, e As EventArgs) Handles rblIsColocated.SelectedIndexChanged

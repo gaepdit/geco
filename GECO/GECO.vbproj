@@ -230,7 +230,6 @@
     <Content Include="EIS\rp_entry.aspx" />
     <Content Include="EIS\rp_facilitystatus.aspx" />
     <Content Include="EIS\rp_facilitythreshold.aspx" />
-    <Content Include="EIS\rp_reset.aspx" />
     <Content Include="EIS\stack_details.aspx" />
     <Content Include="ErrorPage.aspx" />
     <Content Include="ES\confirm.aspx" />
@@ -396,9 +395,6 @@
     </Compile>
     <Compile Include="EIS\rp_facilitythreshold.aspx.designer.vb">
       <DependentUpon>rp_facilitythreshold.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="EIS\rp_reset.aspx.designer.vb">
-      <DependentUpon>rp_reset.aspx</DependentUpon>
     </Compile>
     <Compile Include="EIS\stack_details.aspx.designer.vb">
       <DependentUpon>stack_details.aspx</DependentUpon>
@@ -576,6 +572,7 @@
     <Compile Include="_DAL\DataBaseConnection.vb" />
     <Compile Include="_Code\EIS\eis_accesschecks.vb" />
     <Compile Include="_Code\EIS\eis_calculationmethod.vb" />
+    <Compile Include="_DAL\EIS\eis_Access.vb" />
     <Compile Include="_DAL\EIS\eis_ControlApproachPollutants.vb" />
     <Compile Include="_DAL\EIS\eis_datetime.vb" />
     <Compile Include="_DAL\EIS\eis_deletefunctions.vb" />
@@ -725,10 +722,6 @@
     </Compile>
     <Compile Include="EIS\rp_facilitythreshold.aspx.vb">
       <DependentUpon>rp_facilitythreshold.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="EIS\rp_reset.aspx.vb">
-      <DependentUpon>rp_reset.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="EIS\stack_details.aspx.vb">
