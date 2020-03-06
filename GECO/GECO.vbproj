@@ -231,9 +231,7 @@
     <Content Include="EIS\rp_entry.aspx" />
     <Content Include="EIS\rp_facilitystatus.aspx" />
     <Content Include="EIS\rp_facilitythreshold.aspx" />
-    <Content Include="EIS\rp_pollutant_bulk.aspx" />
     <Content Include="EIS\rp_prepop.aspx" />
-    <Content Include="EIS\rp_process_bulk.aspx" />
     <Content Include="EIS\rp_reset.aspx" />
     <Content Include="EIS\rp_submit.aspx" />
     <Content Include="EIS\rp_summary.aspx" />
@@ -408,14 +406,8 @@
     <Compile Include="EIS\rp_facilitythreshold.aspx.designer.vb">
       <DependentUpon>rp_facilitythreshold.aspx</DependentUpon>
     </Compile>
-    <Compile Include="EIS\rp_pollutant_bulk.aspx.designer.vb">
-      <DependentUpon>rp_pollutant_bulk.aspx</DependentUpon>
-    </Compile>
     <Compile Include="EIS\rp_prepop.aspx.designer.vb">
       <DependentUpon>rp_prepop.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="EIS\rp_process_bulk.aspx.designer.vb">
-      <DependentUpon>rp_process_bulk.aspx</DependentUpon>
     </Compile>
     <Compile Include="EIS\rp_reset.aspx.designer.vb">
       <DependentUpon>rp_reset.aspx</DependentUpon>
@@ -764,16 +756,8 @@
       <DependentUpon>rp_facilitythreshold.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="EIS\rp_pollutant_bulk.aspx.vb">
-      <DependentUpon>rp_pollutant_bulk.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
     <Compile Include="EIS\rp_prepop.aspx.vb">
       <DependentUpon>rp_prepop.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="EIS\rp_process_bulk.aspx.vb">
-      <DependentUpon>rp_process_bulk.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="EIS\rp_reset.aspx.vb">
