@@ -11,12 +11,6 @@
     <link rel="shortcut icon" href="~/favicon.ico?v=69kRrvbXdL" />
     <meta name="theme-color" content="#e5f6fa" />
     <link href="~/assets/css/eis_styles.css?v=20190320" rel="stylesheet" type="text/css" />
-    <script type="text/javascript">
-        function openSCCLookup() {
-            window.open('sccfinder.aspx', null, 'height=700,width=550,status=yes,toolbar=no,menubar=no,location=0,top=100,left=250');
-            return false;
-        }
-    </script>
 </head>
 <body>
     <form id="form1" class="form" runat="server">
