@@ -165,14 +165,13 @@ Partial Class EIS_rp_threshold
 
             SaveOption(FacilitySiteID, "1", UpdateUser, eiYear, "2", colocated, colocation)
             ResetCookies(FacilitySiteID)
-            Response.Redirect("Default.aspx")
         Else
             'Facility will be opted into the EI
             SaveOption(FacilitySiteID, "0", UpdateUser, eiYear)
             ResetCookies(FacilitySiteID)
-            Response.Redirect("rp_prepop.aspx")
         End If
 
+        Response.Redirect("Default.aspx")
     End Sub
 
     Protected Sub btnContinue_Click(sender As Object, e As EventArgs) Handles btnContinue.Click

@@ -230,7 +230,6 @@
     <Content Include="EIS\rp_entry.aspx" />
     <Content Include="EIS\rp_facilitystatus.aspx" />
     <Content Include="EIS\rp_facilitythreshold.aspx" />
-    <Content Include="EIS\rp_prepop.aspx" />
     <Content Include="EIS\rp_reset.aspx" />
     <Content Include="EIS\stack_details.aspx" />
     <Content Include="ErrorPage.aspx" />
@@ -397,9 +396,6 @@
     </Compile>
     <Compile Include="EIS\rp_facilitythreshold.aspx.designer.vb">
       <DependentUpon>rp_facilitythreshold.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="EIS\rp_prepop.aspx.designer.vb">
-      <DependentUpon>rp_prepop.aspx</DependentUpon>
     </Compile>
     <Compile Include="EIS\rp_reset.aspx.designer.vb">
       <DependentUpon>rp_reset.aspx</DependentUpon>
@@ -729,10 +725,6 @@
     </Compile>
     <Compile Include="EIS\rp_facilitythreshold.aspx.vb">
       <DependentUpon>rp_facilitythreshold.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="EIS\rp_prepop.aspx.vb">
-      <DependentUpon>rp_prepop.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="EIS\rp_reset.aspx.vb">
