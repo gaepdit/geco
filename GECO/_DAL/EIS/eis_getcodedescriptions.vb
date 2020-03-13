@@ -35,17 +35,6 @@ Public Module eis_getcodedescriptions
         Return DB.GetString(query, param)
     End Function
 
-    Function GetFacilityStatusCodeDesc(ByVal FacilityStatusCode As String) As String
-        Dim query As String = "Select strDesc " &
-            " FROM EISLK_FACILITYSITESTATUSCODE " &
-            " Where FACILITYSITESTATUSCODE = @FacilityStatusCode " &
-            " and Active = '1' "
-
-        Dim param As New SqlParameter("@FacilityStatusCode", FacilityStatusCode)
-
-        Return DB.GetString(query, param)
-    End Function
-
     Function GetStackStatusCodeDesc(ByVal StackStatusCode As String) As String
         Dim query As String = "Select strDesc " &
             " FROM EISLK_RPSTATUSCODE " &

@@ -7,12 +7,7 @@ Public Class MinMaxLatLon
     Public Property MaxLon As Decimal
 End Class
 
-Public Class MinMaxValues
-    Public Property MinValue As Decimal
-    Public Property MaxValue As Decimal
-End Class
-
-Public Module eis_getcodes
+Public Module eis_getCountyLatLong
 
     Public Function GetCountyLatLong(CountyCode As String) As MinMaxLatLon
         Dim countyMinMax As New MinMaxLatLon With {
@@ -45,31 +40,6 @@ Public Module eis_getcodes
         End If
 
         Return countyMinMax
-    End Function
-
-    Public Function GetRPMinMaxFlowRate(diameter As Decimal, velocity As Decimal) As MinMaxValues
-        Return New MinMaxValues With {
-            .MaxValue = Math.Round(1.0495 * CalculateFlowRate(diameter, velocity), 1),
-            .MinValue = Math.Round(0.955 * CalculateFlowRate(diameter, velocity), 1)
-        }
-    End Function
-
-    Public Function CalculateFlowRate(diameter As Decimal, velocity As Decimal) As Decimal
-        Return Math.PI * (diameter ^ 2) / 4 * velocity
-    End Function
-
-    Public Function CalculateVelocity(diameter As Decimal, flowRate As Decimal) As Decimal
-        Return flowRate / (Math.PI * (diameter ^ 2) / 4)
-    End Function
-
-    Public Function GetFacilityStatusCode_Facility(fsid As String) As String
-        Dim query As String = "Select strFacilitySiteStatusCode " &
-            " from eis_FacilitySite " &
-            " Where FacilitySiteID = @fsid "
-
-        Dim param As New SqlParameter("@fsid", fsid)
-
-        Return DB.GetString(query, param)
     End Function
 
 End Module
