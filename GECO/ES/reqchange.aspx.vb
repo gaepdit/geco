@@ -35,7 +35,7 @@ Partial Class ei_reqchange
 
         Dim FacilityHelp = CType(Master.FindControl("pnlFacilityHelp"), Panel)
 
-        If Not FacilityHelp Is Nothing Then
+        If FacilityHelp IsNot Nothing Then
             FacilityHelp.Visible = False
         End If
 
@@ -45,7 +45,7 @@ Partial Class ei_reqchange
 
         Dim ContactHelp = CType(Master.FindControl("pnlContactHelp"), Panel)
 
-        If Not ContactHelp Is Nothing Then
+        If ContactHelp IsNot Nothing Then
             ContactHelp.Visible = False
         End If
 
@@ -55,7 +55,7 @@ Partial Class ei_reqchange
 
         Dim EmissionsHelp = CType(Master.FindControl("pnlEmissionsHelp"), Panel)
 
-        If Not EmissionsHelp Is Nothing Then
+        If EmissionsHelp IsNot Nothing Then
             EmissionsHelp.Visible = False
         End If
 
@@ -65,7 +65,7 @@ Partial Class ei_reqchange
 
         Dim SubmitHelp = CType(Master.FindControl("pnlSubmitHelp"), Panel)
 
-        If Not SubmitHelp Is Nothing Then
+        If SubmitHelp IsNot Nothing Then
             SubmitHelp.Visible = False
         End If
 

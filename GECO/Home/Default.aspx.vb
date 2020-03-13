@@ -68,13 +68,13 @@ Partial Class Home
             Dim url As String = String.Format("~/Facility/?airs={0}", airsNumber.ShortString())
 
             Dim hlFacility As HyperLink = e.Row.FindControl("hlFacility")
-            If Not hlFacility Is Nothing Then
+            If hlFacility IsNot Nothing Then
                 hlFacility.Text = facilityName
                 hlFacility.NavigateUrl = url
             End If
 
             Dim hlAirs As HyperLink = e.Row.FindControl("hlAirs")
-            If Not hlAirs Is Nothing Then
+            If hlAirs IsNot Nothing Then
                 hlAirs.Text = airsNumber.FormattedString
                 hlAirs.NavigateUrl = url
             End If

@@ -59,7 +59,7 @@ Partial Class es_confirm
 
         Dim FacilityHelp = CType(Master.FindControl("pnlFacilityHelp"), Panel)
 
-        If Not FacilityHelp Is Nothing Then
+        If FacilityHelp IsNot Nothing Then
             FacilityHelp.Visible = False
         End If
 
@@ -69,7 +69,7 @@ Partial Class es_confirm
 
         Dim ContactHelp = CType(Master.FindControl("pnlContactHelp"), Panel)
 
-        If Not ContactHelp Is Nothing Then
+        If ContactHelp IsNot Nothing Then
             ContactHelp.Visible = False
         End If
 
@@ -79,7 +79,7 @@ Partial Class es_confirm
 
         Dim EmissionsHelp = CType(Master.FindControl("pnlEmissionsHelp"), Panel)
 
-        If Not EmissionsHelp Is Nothing Then
+        If EmissionsHelp IsNot Nothing Then
             EmissionsHelp.Visible = False
         End If
 
@@ -89,7 +89,7 @@ Partial Class es_confirm
 
         Dim SubmitHelp = CType(Master.FindControl("pnlSubmitHelp"), Panel)
 
-        If Not SubmitHelp Is Nothing Then
+        If SubmitHelp IsNot Nothing Then
             SubmitHelp.Visible = True
         End If
 
