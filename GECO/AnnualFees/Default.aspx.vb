@@ -153,7 +153,6 @@ Partial Class AnnualFees_Default
                 Else
                     'Changes Detected, Continue
                 End If
-            Else
             End If
             SaveFacilityInfo()
             lblContactMsg.Visible = True
@@ -600,8 +599,7 @@ Partial Class AnnualFees_Default
             lblAdminfeeamtSign.Visible = True
             Dim intdays As Integer
             intdays = DateDiff(DateInterval.Day, CDate(adminfeedate.Text), Now.Date)
-            If intdays <= 0 Then
-            Else
+            If intdays > 0 Then
                 Dim dbladminFee As Double = 0
                 dbladminFee = feetotal * intdays * (CDbl(adminfee.Text) / 100)
                 lblAdminFeeAmount.Text = String.Format("{0:C}", dbladminFee)
@@ -794,13 +792,11 @@ Partial Class AnnualFees_Default
                     txtCoName.Text = dr.Item("strcontactcompanyname")
                 End If
 
-                If IsDBNull(dr.Item("strcontactphonenumber")) Then
-                Else
+                If Not IsDBNull(dr.Item("strcontactphonenumber")) Then
                     txtPhone.Text = dr.Item("strcontactphonenumber")
                 End If
 
-                If IsDBNull(dr.Item("strcontactfaxnumber")) Then
-                Else
+                If Not IsDBNull(dr.Item("strcontactfaxnumber")) Then
                     txtFax.Text = dr.Item("strcontactfaxnumber")
                 End If
 
@@ -944,7 +940,6 @@ Partial Class AnnualFees_Default
 
                 If dr.Item("strpart70") = 1 Then
                     chkPart70SM.SelectedIndex = 0
-                Else
                 End If
             End If
 
@@ -964,9 +959,7 @@ Partial Class AnnualFees_Default
                 'This table has all the information that goes into panel fee calculations.
 
                 'If the NumFeeRate in the AuditedData table is different, then replace the pertonrate.Text with the new value
-                If IsDBNull(dr.Item("numfeerate")) Then
-                ElseIf CInt(dr.Item("numfeerate")) = 0 Then
-                Else
+                If Not IsDBNull(dr.Item("numfeerate")) AndAlso CInt(dr.Item("numfeerate")) <> 0 Then
                     pertonrate.Text = String.Format("{0:C}", dr.Item("numfeerate"))
                 End If
 
@@ -1070,18 +1063,12 @@ Partial Class AnnualFees_Default
                     End If
                 End If
 
-                If IsDBNull(dr("strpart70")) Then
-                Else
-                    If dr.Item("strpart70") = "1" Then
-                        chkPart70SM.SelectedIndex = 0
-                    End If
+                If Not IsDBNull(dr("strpart70")) AndAlso dr.Item("strpart70") = "1" Then
+                    chkPart70SM.SelectedIndex = 0
                 End If
 
-                If IsDBNull(dr.Item("strsyntheticminor")) Then
-                Else
-                    If dr.Item("strsyntheticminor") = "1" Then
-                        chkPart70SM.SelectedIndex = 1
-                    End If
+                If Not IsDBNull(dr.Item("strsyntheticminor")) AndAlso dr.Item("strsyntheticminor") = "1" Then
+                    chkPart70SM.SelectedIndex = 1
                 End If
 
                 If IsDBNull(dr("strclass")) Then
@@ -1093,8 +1080,7 @@ Partial Class AnnualFees_Default
                 ddlClass.SelectedValue = txtClass.Text
             End If
 
-            If nspsReason = "" Then
-            Else
+            If nspsReason <> "" Then
                 Dim items As String() = nspsReason.ToString().Split(",")
                 For i = 0 To items.GetUpperBound(0)
                     Dim currentCheckBox As ListItem
@@ -1885,8 +1871,7 @@ Partial Class AnnualFees_Default
             cmd.Parameters.Add(New SqlParameter("@adminfee", SqlDbType.Decimal)).Value = adminfee
             cmd.Parameters.Add(New SqlParameter("@upduser", SqlDbType.VarChar)).Value = updateuser
 
-            If conn.State = ConnectionState.Open Then
-            Else
+            If conn.State <> ConnectionState.Open Then
                 conn.Open()
             End If
 
@@ -1914,8 +1899,7 @@ Partial Class AnnualFees_Default
             cmd.Parameters.Add(New SqlParameter("@AIRS", SqlDbType.VarChar)).Value = airs
             cmd.Parameters.Add(New SqlParameter("@feeyear", SqlDbType.VarChar)).Value = feeyr
 
-            If conn.State = ConnectionState.Open Then
-            Else
+            If conn.State <> ConnectionState.Open Then
                 conn.Open()
             End If
 
