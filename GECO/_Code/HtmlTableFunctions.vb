@@ -14,7 +14,7 @@ Public Module HtmlTableFunctions
 
         Dim td As New TableCell With {.Text = If(value, "N/A")}
 
-        If classList IsNot Nothing AndAlso classList.Count > 0 Then
+        If classList IsNot Nothing AndAlso classList.Length > 0 Then
             td.CssClass = ConcatNonEmptyStrings(" ", classList)
         End If
 
@@ -36,7 +36,7 @@ Public Module HtmlTableFunctions
         Dim td As New TableCell()
         td.Controls.Add(value)
 
-        If classList IsNot Nothing AndAlso classList.Count > 0 Then
+        If classList IsNot Nothing AndAlso classList.Length > 0 Then
             td.CssClass = ConcatNonEmptyStrings(" ", classList)
         End If
 
