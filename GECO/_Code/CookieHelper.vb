@@ -25,16 +25,8 @@ Public Module CookieHelper
         Token
     End Enum
 
-    <Obsolete("Use CurrentUser Session item instead")>
-    Public Enum GecoCookie
-        UserEmail
-        UserID
-        UserName
-    End Enum
-
     Public Enum CookieCollection
         EISAccessInfo
-        GECOUserInfo
         SessionCookie
     End Enum
 
@@ -55,10 +47,6 @@ Public Module CookieHelper
 
     Public Function GetCookie(cookie As SessionCookie) As String
         Return GetCookieCollectionItem(CookieCollection.SessionCookie.ToString, cookie.ToString)
-    End Function
-
-    Public Function GetCookie(cookie As GecoCookie) As String
-        Return GetCookieCollectionItem(CookieCollection.GECOUserInfo.ToString, cookie.ToString)
     End Function
 
     Private Function GetCookieCollectionItem(name As String, item As String) As String
@@ -135,22 +123,6 @@ Public Module CookieHelper
             .Values(SessionCookie.Series.ToString) = EncryptText(userSession.Series)
             .Values(SessionCookie.Token.ToString) = EncryptText(userSession.Token)
             .Expires = Now.AddDays(COOKIE_EXPIRATION_LONGTERM)
-        End With
-
-        response.Cookies.Add(c)
-    End Sub
-
-    <Obsolete("Use CurrentUser Session item instead")>
-    Public Sub CreateGecoUserCookie(user As GecoUser)
-        Dim response = HttpContext.Current.Response
-
-        Dim c As New HttpCookie(CookieCollection.GECOUserInfo.ToString)
-
-        With c
-            .Values(GecoCookie.UserID.ToString) = EncryptText(user.UserId)
-            .Values(GecoCookie.UserEmail.ToString) = EncryptText(user.Email)
-            .Values(GecoCookie.UserName.ToString) = EncryptText(user.FullName)
-            .Expires = Now.AddDays(COOKIE_EXPIRATION_DAYS)
         End With
 
         response.Cookies.Add(c)

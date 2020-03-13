@@ -1,5 +1,6 @@
 Imports System.Data.SqlClient
 Imports EpdIt.DBUtilities
+Imports GECO.GecoModels
 Imports GECO.MapHelper
 Imports Reimers.Core.Maps
 Imports Reimers.Google.Map
@@ -10,6 +11,7 @@ Partial Class eis_facility_edit
     Private NAICSExists As Boolean
     Private ReadOnly FacilitySaveSuccess As String = "Facility information successfully saved."
     Private ReadOnly FacilitySiteID As String = GetCookie(Cookie.AirsNumber)
+    Private ReadOnly currentUser As GecoUser = GetCurrentUser()
 
 #Region " Load Routines "
 
@@ -335,9 +337,6 @@ Partial Class eis_facility_edit
         Dim facilityDescription As String = TxtFacilitySiteDescription.Text
         Dim facilityComment As String = txtFacilitySiteComment.Text
         Dim NAICScode As String = txtNAICSCode.Text
-        Dim UpdateUserID As String = GetCookie(GecoCookie.UserID)
-        Dim UpdateUserName As String = GetCookie(GecoCookie.UserName)
-        Dim UpdateUser As String = UpdateUserID & "-" & UpdateUserName
 
         'Truncate comment if >400 chars
         facilityComment = Left(facilityComment, 400)
@@ -355,7 +354,7 @@ Partial Class eis_facility_edit
                 New SqlParameter("@facilityDescription", facilityDescription),
                 New SqlParameter("@NAICScode", NAICScode),
                 New SqlParameter("@facilityComment", facilityComment),
-                New SqlParameter("@UpdateUser", UpdateUser),
+                New SqlParameter("@UpdateUser", currentUser.DbUpdateUser),
                 New SqlParameter("@FacilitySiteID", FacilitySiteID)
             }
 
@@ -370,9 +369,6 @@ Partial Class eis_facility_edit
         Dim FacilityMailingAddress2 As String = lblSupplementalAddressText.Text
         Dim FacilityMailingAddressCity As String = txtMailingAddressCityName.Text
         Dim FacilityMailingAddressState As String = ddlFacility_StateMail.SelectedValue
-        Dim UpdateUserID As String = GetCookie(GecoCookie.UserID)
-        Dim UpdateUserName As String = GetCookie(GecoCookie.UserName)
-        Dim UpdateUser As String = UpdateUserID & "-" & UpdateUserName
         Dim FacilityMailingAddressZip As String = txtMailingAddressPostalCode.Text
         Dim FacilityMailingAddressComment = TxtMailingAddressComment.Text
 
@@ -398,7 +394,7 @@ Partial Class eis_facility_edit
                 New SqlParameter("@FacilityMailingAddressState", FacilityMailingAddressState),
                 New SqlParameter("@FacilityMailingAddressZip", FacilityMailingAddressZip),
                 New SqlParameter("@FacilityMailingAddressComment", FacilityMailingAddressComment),
-                New SqlParameter("@UpdateUser", UpdateUser),
+                New SqlParameter("@UpdateUser", currentUser.DbUpdateUser),
                 New SqlParameter("@FacilitySiteID", FacilitySiteID)
             }
 
@@ -414,10 +410,6 @@ Partial Class eis_facility_edit
         End If
 
         Try
-            Dim UpdateUserID As String = GetCookie(GecoCookie.UserID)
-            Dim UpdateUserName As String = GetCookie(GecoCookie.UserName)
-            Dim UpdateUser As String = UpdateUserID & "-" & UpdateUserName
-
             Dim curGoogleMapLink As String = "none"
             If Decimal.TryParse(hidLatitude.Value, Nothing) AndAlso Decimal.TryParse(hidLongitude.Value, Nothing) Then
                 curGoogleMapLink = GoogleMaps.GetMapLinkUrl(New Coordinate(hidLatitude.Value, hidLongitude.Value))
@@ -445,7 +437,7 @@ Partial Class eis_facility_edit
                     vbNewLine &
                     "Facility Site ID: " & FacilitySiteID & vbNewLine &
                     vbNewLine &
-                    "Update User: " & UpdateUserName & " (" & UpdateUserID & ")" & vbNewLine &
+                    "Update User: " & currentUser.FullName & " (" & currentUser.UserId & ")" & vbNewLine &
                     vbNewLine &
                     "Current Geographic Coordinate Information: " & vbNewLine &
                     vbNewLine &
@@ -473,7 +465,7 @@ Partial Class eis_facility_edit
                     "for the following facility. The updated information has <em>NOT</em> been saved in the database. If approved, you must " &
                     "manually update the facility using the IAIP EIS Tool.</p>" &
                     "<p><b>Facility Site ID:</b> " & FacilitySiteID & "</p>" &
-                    "<p><b>Update User:</b> " & UpdateUserName & " (" & UpdateUserID & ")" & "</p>" &
+                    "<p><b>Update User:</b> " & currentUser.FullName & " (" & currentUser.UserId & ")" & "</p>" &
                     "<p><b>Current Geographic Coordinate Information:</b> " & "</p>" &
                     "<ul>" &
                     "<li><b>Latitude:</b> " & hidLatitude.Value & "</li>" &
@@ -507,7 +499,7 @@ Partial Class eis_facility_edit
                     vbNewLine &
                     "Facility Site ID: " & FacilitySiteID & vbNewLine &
                     vbNewLine &
-                    "Update User: " & UpdateUserName & " (" & UpdateUserID & ")" & vbNewLine &
+                    "Update User: " & currentUser.FullName & " (" & currentUser.UserId & ")" & vbNewLine &
                     vbNewLine &
                     "Current Geographic Coordinate Information: " & vbNewLine &
                     vbNewLine &
@@ -525,7 +517,7 @@ Partial Class eis_facility_edit
                 Dim htmlBody As String = "<p>A comment has been submitted for the EIS Facility Geographic Coordinate Information " &
                     "for the following facility. No other geographic information was changed.</p>" &
                     "<p><b>Facility Site ID:</b> " & FacilitySiteID & "</p>" &
-                    "<p><b>Update User:</b> " & UpdateUserName & " (" & UpdateUserID & ")" & "</p>" &
+                    "<p><b>Update User:</b> " & currentUser.FullName & " (" & currentUser.UserId & ")" & "</p>" &
                     "<p><b>Current Geographic Coordinate Information:</b> " & "</p>" &
                     "<ul>" &
                     "<li><b>Latitude:</b> " & hidLatitude.Value & "</li>" &
@@ -552,7 +544,7 @@ Partial Class eis_facility_edit
 
                 Dim params = {
                     New SqlParameter("@GeographicComment", Left(txtGeographicComment.Text, 200)),
-                    New SqlParameter("@UpdateUser", UpdateUser),
+                    New SqlParameter("@UpdateUser", currentUser.DbUpdateUser),
                     New SqlParameter("@FacilitySiteID", FacilitySiteID)
                 }
 
@@ -577,9 +569,6 @@ Partial Class eis_facility_edit
         Dim ContactState As String = ddlContact_MailState.SelectedValue
         Dim ContactZipCode As String = txtMailingAddressPostalCode_Contact.Text
         Dim ContactComment As String = txtAddressComment_Contact.Text
-        Dim UpdateUserID As String = GetCookie(GecoCookie.UserID)
-        Dim UpdateUserName As String = GetCookie(GecoCookie.UserName)
-        Dim UpdateUser As String = UpdateUserID & "-" & UpdateUserName
 
         eis_FacilityData.SaveFacilityContact(
             ContactPrefix,
@@ -593,7 +582,7 @@ Partial Class eis_facility_edit
             ContactState,
             ContactZipCode,
             ContactComment,
-            UpdateUser,
+            currentUser.DbUpdateUser,
             FacilitySiteID
         )
 
@@ -605,9 +594,6 @@ Partial Class eis_facility_edit
         Dim phoneNumber As String = txtTelephoneNumberText.Text
         Dim mobilePhone As String = txtTelephoneNumber_Mobile.Text
         Dim FaxNumber As String = txtTelephoneNumber_Fax.Text
-        Dim UpdateUserID As String = GetCookie(GecoCookie.UserID)
-        Dim UpdateUserName As String = GetCookie(GecoCookie.UserName)
-        Dim UpdateUser As String = UpdateUserID & "-" & UpdateUserName
 
         Dim facParam As New SqlParameter("@FacilitySiteID", FacilitySiteID)
         Dim params As SqlParameter()
@@ -649,7 +635,7 @@ Partial Class eis_facility_edit
                 params = {
                     New SqlParameter("@FacilitySiteID", FacilitySiteID),
                     New SqlParameter("@phoneNumber", phoneNumber),
-                    New SqlParameter("@UpdateUser", UpdateUser)
+                    New SqlParameter("@UpdateUser", currentUser.DbUpdateUser)
                 }
 
                 DB.RunCommand(query, params)
@@ -691,7 +677,7 @@ Partial Class eis_facility_edit
                 params = {
                     New SqlParameter("@FacilitySiteID", FacilitySiteID),
                     New SqlParameter("@mobilePhone", mobilePhone),
-                    New SqlParameter("@UpdateUser", UpdateUser)
+                    New SqlParameter("@UpdateUser", currentUser.DbUpdateUser)
                 }
 
                 DB.RunCommand(query, params)
@@ -733,7 +719,7 @@ Partial Class eis_facility_edit
                 params = {
                     New SqlParameter("@FacilitySiteID", FacilitySiteID),
                     New SqlParameter("@FaxNumber", FaxNumber),
-                    New SqlParameter("@UpdateUser", UpdateUser)
+                    New SqlParameter("@UpdateUser", currentUser.DbUpdateUser)
                 }
 
                 DB.RunCommand(query, params)

@@ -26,7 +26,7 @@ Public Module ErrorReporting
                 exc.Data.Add("URL", URL)
             End If
 
-            Dim userEmail As String = GetCookie(GecoCookie.UserEmail)
+            Dim userEmail As String = GetCurrentUser()?.DbUpdateUser
             If userEmail IsNot Nothing Then
                 exc.Data.Add("User Email", userEmail)
             End If

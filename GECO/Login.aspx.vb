@@ -57,7 +57,6 @@ Partial Class Login
                 End If
 
                 SessionAdd(GecoSession.CurrentUser, user)
-                CreateGecoUserCookie(user)
 
                 If chkRememberMe.Checked Then
                     CreateSessionCookie(userSession)
@@ -97,7 +96,6 @@ Partial Class Login
 
         If GetSavedUserSession(userSession, user) Then
             SessionAdd(GecoSession.CurrentUser, user)
-            CreateGecoUserCookie(user)
             CreateSessionCookie(userSession)
 
             Dim strRedirect As String = Request.QueryString("ReturnUrl")

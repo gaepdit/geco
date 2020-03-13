@@ -1585,7 +1585,7 @@ Partial Class AnnualFees_Default
             Dim feerate As Double = CDbl(pertonrate.Text)
             Dim calculatedfee As Double = CDbl(lblcalculated.Text)
             Dim adminfee As Double = CDbl(hidAdminFee.Value)
-            Dim updateuser As String = "GECO||" & currentUser.Email  'GetCookie(GecoCookie.UserEmail) 
+            Dim updateuser As String = "GECO||" & currentUser.Email
             Dim airs As String = "0413" & GetCookie(Cookie.AirsNumber)
             Dim feeyr As String = feeyear.Text
 
@@ -1778,7 +1778,7 @@ Partial Class AnnualFees_Default
             Dim feerate As Double = CDbl(pertonrate.Text)
             Dim calculatedfee As Double = CDbl(lblcalculated.Text)
             Dim adminfee As Double = CDbl(hidAdminFee.Value)
-            Dim updateuser As String = "GECO||" & currentUser.Email  'GetCookie(GecoCookie.UserEmail) _
+            Dim updateuser As String = "GECO||" & currentUser.Email
             Dim airs As String = "0413" & GetCookie(Cookie.AirsNumber)
             Dim feeyr As String = feeyear.Text
 

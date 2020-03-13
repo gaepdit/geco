@@ -40,7 +40,6 @@ Partial Class _Default
 
         If GetSavedUserSession(userSession, user) Then
             SessionAdd(GecoSession.CurrentUser, user)
-            CreateGecoUserCookie(user)
             CreateSessionCookie(userSession)
 
             Dim strRedirect As String = Request.QueryString("ReturnUrl")

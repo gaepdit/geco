@@ -160,7 +160,7 @@ Partial Class ei_reqchange
     Protected Sub btnSubmitRequest_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnSubmitRequest.Click
 
         Dim AirsNumber As String = Session("esAirsNumber")
-        Dim UserID As String = GetCookie(GecoCookie.UserID)
+        Dim UserID As String = GetCurrentUser().DbUpdateUser
         Dim FacilityName As String = txtFacilityNameNew.Text
         Dim StreetAddress As String = txtStreetAddressNew.Text
         Dim City As String = txtCityNew.Text

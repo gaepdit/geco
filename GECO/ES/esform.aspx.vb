@@ -690,7 +690,7 @@ Partial Class es_esform
         Dim ContactCity As String
         Dim ContactState As String
         Dim ContactZipCode As String
-        Dim UserID As Integer = GetCookie(GecoCookie.UserID)
+        Dim UserID As Integer = GetCurrentUser().DbUpdateUser
         Dim day As String = Now.ToString("d-MMM-yyyy")
         Dim hr As String = Now.Hour
         Dim min As String = Now.Minute
