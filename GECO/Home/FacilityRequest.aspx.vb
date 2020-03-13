@@ -165,7 +165,9 @@ Partial Class Home_FacilityRequest
                 End If
             End If
 
+#Disable Warning S108 ' Nested blocks of code should not be left empty
         Catch exThreadAbort As Threading.ThreadAbortException
+#Enable Warning S108 ' Nested blocks of code should not be left empty
         Catch ex As Exception
             ErrorReport(ex)
         End Try

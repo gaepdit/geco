@@ -215,7 +215,9 @@ Partial Class FacilityHome
             End If
 
             Session.Add("esState", esStatus)
+#Disable Warning S108 ' Nested blocks of code should not be left empty
         Catch exThreadAbort As Threading.ThreadAbortException
+#Enable Warning S108 ' Nested blocks of code should not be left empty
         Catch ex As Exception
             ErrorReport(ex)
         End Try
@@ -347,7 +349,9 @@ Partial Class FacilityHome
                 PAContact.Text = "None"
             End If
 
+#Disable Warning S108 ' Nested blocks of code should not be left empty
         Catch exThreadAbort As Threading.ThreadAbortException
+#Enable Warning S108 ' Nested blocks of code should not be left empty
         Catch ex As Exception
             ErrorReport(ex)
         End Try
@@ -475,7 +479,9 @@ Partial Class FacilityHome
                 lblContactMsg.Text = "There was an error updating the contact."
             End If
 
+#Disable Warning S108 ' Nested blocks of code should not be left empty
         Catch exThreadAbort As Threading.ThreadAbortException
+#Enable Warning S108 ' Nested blocks of code should not be left empty
         Catch ex As Exception
             ErrorReport(ex)
         End Try
@@ -499,7 +505,9 @@ Partial Class FacilityHome
             End If
 
             pnlContact.Visible = True
+#Disable Warning S108 ' Nested blocks of code should not be left empty
         Catch exThreadAbort As Threading.ThreadAbortException
+#Enable Warning S108 ' Nested blocks of code should not be left empty
         Catch ex As Exception
             ErrorReport(ex)
         End Try
@@ -522,7 +530,9 @@ Partial Class FacilityHome
             End If
 
             pnlContact.Visible = True
+#Disable Warning S108 ' Nested blocks of code should not be left empty
         Catch exThreadAbort As Threading.ThreadAbortException
+#Enable Warning S108 ' Nested blocks of code should not be left empty
         Catch ex As Exception
             ErrorReport(ex)
         End Try
@@ -545,7 +555,9 @@ Partial Class FacilityHome
             End If
 
             pnlContact.Visible = True
+#Disable Warning S108 ' Nested blocks of code should not be left empty
         Catch exThreadAbort As Threading.ThreadAbortException
+#Enable Warning S108 ' Nested blocks of code should not be left empty
         Catch ex As Exception
             ErrorReport(ex)
         End Try
@@ -568,7 +580,9 @@ Partial Class FacilityHome
             End If
 
             pnlContact.Visible = True
+#Disable Warning S108 ' Nested blocks of code should not be left empty
         Catch exThreadAbort As Threading.ThreadAbortException
+#Enable Warning S108 ' Nested blocks of code should not be left empty
         Catch ex As Exception
             ErrorReport(ex)
         End Try
@@ -591,7 +605,9 @@ Partial Class FacilityHome
             End If
 
             pnlContact.Visible = True
+#Disable Warning S108 ' Nested blocks of code should not be left empty
         Catch exThreadAbort As Threading.ThreadAbortException
+#Enable Warning S108 ' Nested blocks of code should not be left empty
         Catch ex As Exception
             ErrorReport(ex)
         End Try
@@ -614,7 +630,9 @@ Partial Class FacilityHome
             End If
 
             pnlContact.Visible = True
+#Disable Warning S108 ' Nested blocks of code should not be left empty
         Catch exThreadAbort As Threading.ThreadAbortException
+#Enable Warning S108 ' Nested blocks of code should not be left empty
         Catch ex As Exception
             ErrorReport(ex)
         End Try

@@ -64,7 +64,9 @@ Partial Class AnnualFees_Default
                     UserTabs.Tabs(2).Enabled = False
                     UserTabs.Tabs(3).Enabled = False
                 End If
-            Catch exThreadAbort As System.Threading.ThreadAbortException
+#Disable Warning S108 ' Nested blocks of code should not be left empty
+            Catch exThreadAbort As Threading.ThreadAbortException
+#Enable Warning S108 ' Nested blocks of code should not be left empty
             Catch ex As Exception
                 ErrorReport(ex)
             End Try
@@ -124,11 +126,13 @@ Partial Class AnnualFees_Default
                 Else
                     rblPaymentType.SelectedIndex = 0
                 End If
-            Else
             End If
+
             UserTabs.ActiveTabIndex = 3
 
-        Catch exThreadAbort As System.Threading.ThreadAbortException
+#Disable Warning S108 ' Nested blocks of code should not be left empty
+        Catch exThreadAbort As Threading.ThreadAbortException
+#Enable Warning S108 ' Nested blocks of code should not be left empty
         Catch ex As Exception
             ErrorReport(ex)
         End Try
@@ -162,7 +166,9 @@ Partial Class AnnualFees_Default
                 UserTabs.ActiveTabIndex = 2
             End If
 
-        Catch exThreadAbort As System.Threading.ThreadAbortException
+#Disable Warning S108 ' Nested blocks of code should not be left empty
+        Catch exThreadAbort As Threading.ThreadAbortException
+#Enable Warning S108 ' Nested blocks of code should not be left empty
         Catch ex As Exception
             ErrorReport(ex)
         End Try
@@ -185,7 +191,10 @@ Partial Class AnnualFees_Default
             SavePayandSignInfo()
             pnlSignandPay.Visible = False
             pnlSubmit.Visible = True
-        Catch exThreadAbort As System.Threading.ThreadAbortException
+
+#Disable Warning S108 ' Nested blocks of code should not be left empty
+        Catch exThreadAbort As Threading.ThreadAbortException
+#Enable Warning S108 ' Nested blocks of code should not be left empty
         Catch ex As Exception
             ErrorReport(ex)
         End Try
@@ -195,7 +204,10 @@ Partial Class AnnualFees_Default
         Try
             pnlSignandPay.Visible = True
             pnlSubmit.Visible = False
-        Catch exThreadAbort As System.Threading.ThreadAbortException
+
+#Disable Warning S108 ' Nested blocks of code should not be left empty
+        Catch exThreadAbort As Threading.ThreadAbortException
+#Enable Warning S108 ' Nested blocks of code should not be left empty
         Catch ex As Exception
             ErrorReport(ex)
         End Try
@@ -217,7 +229,9 @@ Partial Class AnnualFees_Default
                 lblMessage.Visible = True
             End If
 
-        Catch exThreadAbort As System.Threading.ThreadAbortException
+#Disable Warning S108 ' Nested blocks of code should not be left empty
+        Catch exThreadAbort As Threading.ThreadAbortException
+#Enable Warning S108 ' Nested blocks of code should not be left empty
         Catch ex As Exception
             ErrorReport(ex)
         End Try
@@ -240,7 +254,10 @@ Partial Class AnnualFees_Default
             End If
 
             UserTabs.ActiveTabIndex = 1
-        Catch exThreadAbort As System.Threading.ThreadAbortException
+
+#Disable Warning S108 ' Nested blocks of code should not be left empty
+        Catch exThreadAbort As Threading.ThreadAbortException
+#Enable Warning S108 ' Nested blocks of code should not be left empty
         Catch ex As Exception
             ErrorReport(ex)
         End Try
@@ -292,7 +309,9 @@ Partial Class AnnualFees_Default
             End Select
 
             CalculateFees()
-        Catch exThreadAbort As System.Threading.ThreadAbortException
+#Disable Warning S108 ' Nested blocks of code should not be left empty
+        Catch exThreadAbort As Threading.ThreadAbortException
+#Enable Warning S108 ' Nested blocks of code should not be left empty
         Catch ex As Exception
             ErrorReport(ex)
         End Try
@@ -325,7 +344,9 @@ Partial Class AnnualFees_Default
                 lblSO2Fee.Text = 0
                 lblPMFee.Text = 0
             End If
-        Catch exThreadAbort As System.Threading.ThreadAbortException
+#Disable Warning S108 ' Nested blocks of code should not be left empty
+        Catch exThreadAbort As Threading.ThreadAbortException
+#Enable Warning S108 ' Nested blocks of code should not be left empty
         Catch ex As Exception
             ErrorReport(ex)
         End Try
@@ -447,7 +468,9 @@ Partial Class AnnualFees_Default
             End If
 
             ClassCalculate()
-        Catch exThreadAbort As System.Threading.ThreadAbortException
+#Disable Warning S108 ' Nested blocks of code should not be left empty
+        Catch exThreadAbort As Threading.ThreadAbortException
+#Enable Warning S108 ' Nested blocks of code should not be left empty
         Catch ex As Exception
             ErrorReport(ex)
         End Try
@@ -559,7 +582,9 @@ Partial Class AnnualFees_Default
                 CalulateAdminFee()
             End If
 
-        Catch exThreadAbort As System.Threading.ThreadAbortException
+#Disable Warning S108 ' Nested blocks of code should not be left empty
+        Catch exThreadAbort As Threading.ThreadAbortException
+#Enable Warning S108 ' Nested blocks of code should not be left empty
         Catch ex As Exception
             ErrorReport(ex)
         End Try
@@ -583,7 +608,9 @@ Partial Class AnnualFees_Default
                 hidAdminFee.Value = String.Format("{0:C}", dbladminFee)
                 lblAdminfeeamtSign.Text = String.Format("{0:C}", dbladminFee)
             End If
-        Catch exThreadAbort As System.Threading.ThreadAbortException
+#Disable Warning S108 ' Nested blocks of code should not be left empty
+        Catch exThreadAbort As Threading.ThreadAbortException
+#Enable Warning S108 ' Nested blocks of code should not be left empty
         Catch ex As Exception
             ErrorReport(ex)
         End Try
@@ -619,7 +646,9 @@ Partial Class AnnualFees_Default
             lblcalculated.Text = String.Format("{0:C}", 0.0)
 
             'CalculateFees()
-        Catch exThreadAbort As System.Threading.ThreadAbortException
+#Disable Warning S108 ' Nested blocks of code should not be left empty
+        Catch exThreadAbort As Threading.ThreadAbortException
+#Enable Warning S108 ' Nested blocks of code should not be left empty
         Catch ex As Exception
             ErrorReport(ex)
         End Try
@@ -715,7 +744,9 @@ Partial Class AnnualFees_Default
                 pnlDidNotOperate.Visible = False
             End If
 
-        Catch exThreadAbort As System.Threading.ThreadAbortException
+#Disable Warning S108 ' Nested blocks of code should not be left empty
+        Catch exThreadAbort As Threading.ThreadAbortException
+#Enable Warning S108 ' Nested blocks of code should not be left empty
         Catch ex As Exception
             ErrorReport(ex)
         End Try
@@ -804,7 +835,9 @@ Partial Class AnnualFees_Default
                 End If
             End If
 
-        Catch exThreadAbort As System.Threading.ThreadAbortException
+#Disable Warning S108 ' Nested blocks of code should not be left empty
+        Catch exThreadAbort As Threading.ThreadAbortException
+#Enable Warning S108 ' Nested blocks of code should not be left empty
         Catch ex As Exception
             ErrorReport(ex)
         End Try
@@ -872,7 +905,9 @@ Partial Class AnnualFees_Default
                 ddlFacilityInfoChange.Enabled = False
             End If
 
-        Catch exThreadAbort As System.Threading.ThreadAbortException
+#Disable Warning S108 ' Nested blocks of code should not be left empty
+        Catch exThreadAbort As Threading.ThreadAbortException
+#Enable Warning S108 ' Nested blocks of code should not be left empty
         Catch ex As Exception
             ErrorReport(ex)
         End Try
@@ -1132,7 +1167,9 @@ Partial Class AnnualFees_Default
                 rblPaymentType.SelectedIndex = 0
             End If
 
-        Catch exThreadAbort As System.Threading.ThreadAbortException
+#Disable Warning S108 ' Nested blocks of code should not be left empty
+        Catch exThreadAbort As Threading.ThreadAbortException
+#Enable Warning S108 ' Nested blocks of code should not be left empty
         Catch ex As Exception
             ErrorReport(ex)
         End Try
@@ -1188,7 +1225,9 @@ Partial Class AnnualFees_Default
                 InsertContactInfo()
             End If
 
-        Catch exThreadAbort As System.Threading.ThreadAbortException
+#Disable Warning S108 ' Nested blocks of code should not be left empty
+        Catch exThreadAbort As Threading.ThreadAbortException
+#Enable Warning S108 ' Nested blocks of code should not be left empty
         Catch ex As Exception
             ErrorReport(ex)
         End Try
@@ -1339,7 +1378,9 @@ Partial Class AnnualFees_Default
                 DB.RunCommand(qList, pList)
             End If
 
-        Catch exThreadAbort As System.Threading.ThreadAbortException
+#Disable Warning S108 ' Nested blocks of code should not be left empty
+        Catch exThreadAbort As Threading.ThreadAbortException
+#Enable Warning S108 ' Nested blocks of code should not be left empty
         Catch ex As Exception
             ErrorReport(ex)
         End Try
@@ -1481,7 +1522,9 @@ Partial Class AnnualFees_Default
                 End If
             End If
 
-        Catch exThreadAbort As System.Threading.ThreadAbortException
+#Disable Warning S108 ' Nested blocks of code should not be left empty
+        Catch exThreadAbort As Threading.ThreadAbortException
+#Enable Warning S108 ' Nested blocks of code should not be left empty
         Catch ex As Exception
             ErrorReport(ex)
         End Try
@@ -1514,7 +1557,9 @@ Partial Class AnnualFees_Default
                 InsertFeeCalculations()
             End If
 
-        Catch exThreadAbort As System.Threading.ThreadAbortException
+#Disable Warning S108 ' Nested blocks of code should not be left empty
+        Catch exThreadAbort As Threading.ThreadAbortException
+#Enable Warning S108 ' Nested blocks of code should not be left empty
         Catch ex As Exception
             ErrorReport(ex)
         End Try
@@ -1906,7 +1951,9 @@ Partial Class AnnualFees_Default
         Try
             UpdatePayandSubmit()
 
-        Catch exThreadAbort As System.Threading.ThreadAbortException
+#Disable Warning S108 ' Nested blocks of code should not be left empty
+        Catch exThreadAbort As Threading.ThreadAbortException
+#Enable Warning S108 ' Nested blocks of code should not be left empty
         Catch ex As Exception
             ErrorReport(ex)
         End Try
@@ -1964,7 +2011,9 @@ Partial Class AnnualFees_Default
 
             DB.RunCommand(qList, pList)
 
-        Catch exThreadAbort As System.Threading.ThreadAbortException
+#Disable Warning S108 ' Nested blocks of code should not be left empty
+        Catch exThreadAbort As Threading.ThreadAbortException
+#Enable Warning S108 ' Nested blocks of code should not be left empty
         Catch ex As Exception
             ErrorReport(ex)
         End Try
@@ -1996,7 +2045,9 @@ Partial Class AnnualFees_Default
 
             DB.RunCommand(SQL, params)
 
-        Catch exThreadAbort As System.Threading.ThreadAbortException
+#Disable Warning S108 ' Nested blocks of code should not be left empty
+        Catch exThreadAbort As Threading.ThreadAbortException
+#Enable Warning S108 ' Nested blocks of code should not be left empty
         Catch ex As Exception
             ErrorReport(ex)
         End Try
@@ -2115,7 +2166,9 @@ Partial Class AnnualFees_Default
 
             DB.RunCommand(qList, pList)
 
-        Catch exThreadAbort As System.Threading.ThreadAbortException
+#Disable Warning S108 ' Nested blocks of code should not be left empty
+        Catch exThreadAbort As Threading.ThreadAbortException
+#Enable Warning S108 ' Nested blocks of code should not be left empty
         Catch ex As Exception
             ErrorReport(ex)
         End Try
@@ -2151,7 +2204,9 @@ Partial Class AnnualFees_Default
 
             DB.RunCommand(SQL, params)
 
-        Catch exThreadAbort As System.Threading.ThreadAbortException
+#Disable Warning S108 ' Nested blocks of code should not be left empty
+        Catch exThreadAbort As Threading.ThreadAbortException
+#Enable Warning S108 ' Nested blocks of code should not be left empty
         Catch ex As Exception
             ErrorReport(ex)
         End Try
@@ -2192,7 +2247,9 @@ Partial Class AnnualFees_Default
                 cblNSPSExempt.Visible = True
             End If
             ClassCalculate()
-        Catch exThreadAbort As System.Threading.ThreadAbortException
+#Disable Warning S108 ' Nested blocks of code should not be left empty
+        Catch exThreadAbort As Threading.ThreadAbortException
+#Enable Warning S108 ' Nested blocks of code should not be left empty
         Catch ex As Exception
             ErrorReport(ex)
         End Try
@@ -2201,7 +2258,9 @@ Partial Class AnnualFees_Default
     Protected Sub chkNSPS1_CheckedChanged(ByVal sender As Object, ByVal e As System.EventArgs)
         Try
             CalculateFees()
-        Catch exThreadAbort As System.Threading.ThreadAbortException
+#Disable Warning S108 ' Nested blocks of code should not be left empty
+        Catch exThreadAbort As Threading.ThreadAbortException
+#Enable Warning S108 ' Nested blocks of code should not be left empty
         Catch ex As Exception
             ErrorReport(ex)
         End Try
@@ -2219,7 +2278,9 @@ Partial Class AnnualFees_Default
             End If
 
             CalculateFees()
-        Catch exThreadAbort As System.Threading.ThreadAbortException
+#Disable Warning S108 ' Nested blocks of code should not be left empty
+        Catch exThreadAbort As Threading.ThreadAbortException
+#Enable Warning S108 ' Nested blocks of code should not be left empty
         Catch ex As Exception
             ErrorReport(ex)
         End Try
@@ -2247,7 +2308,9 @@ Partial Class AnnualFees_Default
                 End If
                 ClassCalculate()
             End If
-        Catch exThreadAbort As System.Threading.ThreadAbortException
+#Disable Warning S108 ' Nested blocks of code should not be left empty
+        Catch exThreadAbort As Threading.ThreadAbortException
+#Enable Warning S108 ' Nested blocks of code should not be left empty
         Catch ex As Exception
             ErrorReport(ex)
         End Try
@@ -2266,7 +2329,9 @@ Partial Class AnnualFees_Default
                 txtfacStreet.Text = ""
                 txtfacCity.Text = ""
             End If
-        Catch exThreadAbort As System.Threading.ThreadAbortException
+#Disable Warning S108 ' Nested blocks of code should not be left empty
+        Catch exThreadAbort As Threading.ThreadAbortException
+#Enable Warning S108 ' Nested blocks of code should not be left empty
         Catch ex As Exception
             ErrorReport(ex)
         End Try
@@ -2291,7 +2356,9 @@ Partial Class AnnualFees_Default
                 linkInvoice.NavigateUrl = String.Format("~/Invoice/?FeeYear={0}&Facility={1}", ddlFeeYear.SelectedItem.Text, currentAirs.ShortString)
                 GetInitialFeeRates()
             End If
-        Catch exThreadAbort As System.Threading.ThreadAbortException
+#Disable Warning S108 ' Nested blocks of code should not be left empty
+        Catch exThreadAbort As Threading.ThreadAbortException
+#Enable Warning S108 ' Nested blocks of code should not be left empty
         Catch ex As Exception
             ErrorReport(ex)
         End Try
@@ -2329,7 +2396,9 @@ Partial Class AnnualFees_Default
             lblVOCFee.Text = String.Format("{0:C}", fee)
             CalculateFees()
             Me.SetFocus(txtNOxTons)
-        Catch exThreadAbort As System.Threading.ThreadAbortException
+#Disable Warning S108 ' Nested blocks of code should not be left empty
+        Catch exThreadAbort As Threading.ThreadAbortException
+#Enable Warning S108 ' Nested blocks of code should not be left empty
         Catch ex As Exception
             ErrorReport(ex)
         End Try
@@ -2345,7 +2414,9 @@ Partial Class AnnualFees_Default
             lblNOxFee.Text = String.Format("{0:C}", fee)
             CalculateFees()
             Me.SetFocus(txtPMTons)
-        Catch exThreadAbort As System.Threading.ThreadAbortException
+#Disable Warning S108 ' Nested blocks of code should not be left empty
+        Catch exThreadAbort As Threading.ThreadAbortException
+#Enable Warning S108 ' Nested blocks of code should not be left empty
         Catch ex As Exception
             ErrorReport(ex)
         End Try
@@ -2361,7 +2432,9 @@ Partial Class AnnualFees_Default
             lblPMFee.Text = String.Format("{0:C}", fee)
             CalculateFees()
             Me.SetFocus(txtSO2Tons)
-        Catch exThreadAbort As System.Threading.ThreadAbortException
+#Disable Warning S108 ' Nested blocks of code should not be left empty
+        Catch exThreadAbort As Threading.ThreadAbortException
+#Enable Warning S108 ' Nested blocks of code should not be left empty
         Catch ex As Exception
             ErrorReport(ex)
         End Try
@@ -2377,7 +2450,9 @@ Partial Class AnnualFees_Default
             lblSO2Fee.Text = String.Format("{0:C}", fee)
             CalculateFees()
             Me.SetFocus(btnCalculate)
-        Catch exThreadAbort As System.Threading.ThreadAbortException
+#Disable Warning S108 ' Nested blocks of code should not be left empty
+        Catch exThreadAbort As Threading.ThreadAbortException
+#Enable Warning S108 ' Nested blocks of code should not be left empty
         Catch ex As Exception
             ErrorReport(ex)
         End Try
@@ -2411,7 +2486,9 @@ Partial Class AnnualFees_Default
                         End If
                 End Select
             Next Ctrl
-        Catch exThreadAbort As System.Threading.ThreadAbortException
+#Disable Warning S108 ' Nested blocks of code should not be left empty
+        Catch exThreadAbort As Threading.ThreadAbortException
+#Enable Warning S108 ' Nested blocks of code should not be left empty
         Catch ex As Exception
             ErrorReport(ex)
         End Try
@@ -2507,7 +2584,9 @@ Partial Class AnnualFees_Default
                     LoadAnnualFeesHistory()
 
             End Select
-        Catch exThreadAbort As System.Threading.ThreadAbortException
+#Disable Warning S108 ' Nested blocks of code should not be left empty
+        Catch exThreadAbort As Threading.ThreadAbortException
+#Enable Warning S108 ' Nested blocks of code should not be left empty
         Catch ex As Exception
             ErrorReport(ex)
 

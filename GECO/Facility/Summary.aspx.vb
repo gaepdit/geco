@@ -94,7 +94,9 @@ Partial Class FacilitySummary
                 End If
             End If
 
+#Disable Warning S108 ' Nested blocks of code should not be left empty
         Catch exThreadAbort As Threading.ThreadAbortException
+#Enable Warning S108 ' Nested blocks of code should not be left empty
         Catch ex As Exception
             ErrorReport(ex)
         End Try
@@ -344,7 +346,9 @@ Partial Class FacilitySummary
                 lblComplianceContactName.Text = "Unassigned"
             End If
 
+#Disable Warning S108 ' Nested blocks of code should not be left empty
         Catch exThreadAbort As Threading.ThreadAbortException
+#Enable Warning S108 ' Nested blocks of code should not be left empty
         Catch ex As Exception
             ErrorReport(ex)
         End Try
