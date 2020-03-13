@@ -124,7 +124,7 @@ Public Class Permit_Application
 
         If PermitApplication.StaffResponsible Is Nothing Then
             pNoContact.Visible = True
-            Exit Sub
+            Return
         End If
 
         With PermitApplication.StaffResponsible
@@ -168,19 +168,19 @@ Public Class Permit_Application
     Private Sub DisplayFeeStatus()
         If PermitApplication.ApplicationFeeInfo Is Nothing Then
             pFeesNotApplicable.Visible = True
-            Exit Sub
+            Return
         End If
 
         With PermitApplication.ApplicationFeeInfo
             ' Applicability
             If Not .FeeDataFinalized Then
                 pFeesNotDetermined.Visible = True
-                Exit Sub
+                Return
             End If
 
             If Not (.ExpeditedFeeApplies OrElse .ApplicationFeeApplies) Then
                 pFeesNotApplicable.Visible = True
-                Exit Sub
+                Return
             End If
 
             ' Notification date
@@ -256,7 +256,7 @@ Public Class Permit_Application
 
         If IsInvoiceGeneratedForApplication(AppNumber) Then
             pGenerateExists.Visible = True
-            Exit Sub
+            Return
         End If
 
         Dim newInvoiceID As Integer

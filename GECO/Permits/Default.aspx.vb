@@ -50,7 +50,7 @@ Public Class PermitDefault
         Dim dt As DataTable = DAL.GetPermitApplications(currentAirs)
 
         If dt Is Nothing OrElse dt.Rows.Count = 0 Then
-            Exit Sub
+            Return
         End If
 
         Dim openApps As DataView = New DataView(dt) With {
@@ -86,7 +86,7 @@ Public Class PermitDefault
         Dim dt As DataTable = DAL.GetPermits(currentAirs)
 
         If dt Is Nothing OrElse dt.Rows.Count = 0 Then
-            Exit Sub
+            Return
         End If
 
         grdCurrentPermits.DataSource = dt

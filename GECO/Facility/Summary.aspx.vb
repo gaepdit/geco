@@ -146,7 +146,7 @@ Partial Class FacilitySummary
 
     Protected Sub AddAirProgramCodes(AirProgramCode As String)
         If String.IsNullOrEmpty(AirProgramCode) Then
-            Exit Sub
+            Return
         End If
 
         Dim codes As New List(Of String)

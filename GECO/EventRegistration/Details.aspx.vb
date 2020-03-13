@@ -13,7 +13,7 @@ Partial Class EventRegistration_EventDetails
             Not Integer.TryParse(Request.QueryString("eventid"), eventId) Then
 
             Response.Redirect(".", False)
-            Exit Sub
+            Return
         End If
 
         If Not EventExists(eventId) Then

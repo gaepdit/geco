@@ -25,7 +25,7 @@ Partial Class Account
                         Throw New HttpException(404, "Not found")
                 End Select
 
-                Exit Sub
+                Return
             End If
 
             Dim action As String = Request.QueryString("action")
@@ -140,7 +140,7 @@ Partial Class Account
                 Dim emailResult = SendConfirmAccountEmail(email, token)
                 If emailResult Then
                     MultiView1.SetActiveView(RegisterSuccess)
-                    Exit Sub
+                    Return
                 End If
         End Select
 

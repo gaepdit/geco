@@ -88,7 +88,7 @@ Partial Class Login
         Dim token As String = GetCookie(SessionCookie.Token)
 
         If String.IsNullOrEmpty(id) OrElse String.IsNullOrEmpty(token) Then
-            Exit Sub
+            Return
         End If
 
         Dim userSession As New UserSession(id, token)

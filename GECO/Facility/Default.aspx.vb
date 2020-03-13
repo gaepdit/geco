@@ -159,7 +159,7 @@ Partial Class FacilityHome
         If Not facilityAccess.FeeAccess Then
             AppsEmissionFees.Visible = False
             AppsFeesSummary.Visible = False
-            Exit Sub
+            Return
         End If
 
         PFLink.NavigateUrl = "~/Fees/?airs=" & currentAirs.ShortString
@@ -191,7 +191,7 @@ Partial Class FacilityHome
     Protected Sub GetEmissionStatementStatus()
         If Not facilityAccess.ESAccess Then
             AppsEmissionsStatement.Visible = False
-            Exit Sub
+            Return
         End If
 
         Try
@@ -237,7 +237,7 @@ Partial Class FacilityHome
 
         If dr Is Nothing OrElse CInt(dr("total")) = 0 Then
             AppsTestNotifications.Visible = False
-            Exit Sub
+            Return
         End If
 
         Dim pendingTests As Integer = dr("pending")

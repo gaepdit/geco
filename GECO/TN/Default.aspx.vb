@@ -90,7 +90,7 @@ Partial Class TN_Default
 
     Protected Sub RequestDetails(s As Object, e As DataGridCommandEventArgs)
         If e.CommandName = "Page" Then
-            Exit Sub
+            Return
         End If
 
         Dim FirstName As String

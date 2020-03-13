@@ -17,7 +17,7 @@ Public Module ErrorReporting
 
             Dim environment As String = ConfigurationManager.AppSettings("GECO_ENVIRONMENT")
             If environment = "Development" Then
-                Exit Sub
+                Return
             End If
 
             ' Add additional data to exception

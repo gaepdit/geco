@@ -5,10 +5,14 @@ Public Module GridViewExportUtil
 
     Public Sub ExportAsExcel(fileName As String, gridView As GridView)
 
-        If gridView Is Nothing OrElse gridView.Rows.Count = 0 Then Exit Sub
+        If gridView Is Nothing OrElse gridView.Rows.Count = 0 Then
+            Return
+        End If
 
         Dim datatable As DataTable = gridView.DataSource
-        If datatable Is Nothing OrElse datatable.Rows.Count = 0 Then Exit Sub
+        If datatable Is Nothing OrElse datatable.Rows.Count = 0 Then
+            Return
+        End If
 
         If String.IsNullOrWhiteSpace(datatable.TableName) Then
             datatable.TableName = "Sheet1"

@@ -35,7 +35,7 @@ Partial Class Home_FacilityRequest
         If String.IsNullOrWhiteSpace(ltlMessage.Text) Then
             lblError.Visible = True
             lblError.Text = "Error: No message sent. Select a facility first."
-            Exit Sub
+            Return
         End If
 
         Dim access As New List(Of String)
@@ -49,7 +49,7 @@ Partial Class Home_FacilityRequest
         If txtEmail.Text = "" Then
             lblError.Visible = True
             lblError.Text = "Please enter your registered email address."
-            Exit Sub
+            Return
         End If
 
         Dim ccList As New List(Of String)
@@ -64,7 +64,7 @@ Partial Class Home_FacilityRequest
         Catch ex As FormatException
             lblError.Visible = True
             lblError.Text = "Please enter a valid email address."
-            Exit Sub
+            Return
         End Try
 
         Dim recipientList As New List(Of String)

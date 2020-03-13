@@ -88,7 +88,7 @@ Partial Class AnnualFees_Default
                 If Not chkNSPSReason Then
                     lblcblnspsreason.Visible = True
                     lblcblnspsreason.Text = "Please select all the NSPS exemptions that apply to your facility."
-                    Exit Sub
+                    Return
                 Else
                     lblcblnspsreason.Visible = False
                 End If
@@ -106,7 +106,7 @@ Partial Class AnnualFees_Default
                 If Not chkNoOperate Then
                     lblNoOperateReason.Visible = True
                     lblNoOperateReason.Text = "You must select at least one checkbox"
-                    Exit Sub
+                    Return
                 Else
                     lblNoOperateReason.Visible = False
                 End If
@@ -145,7 +145,7 @@ Partial Class AnnualFees_Default
                     lblContactMsg.Visible = True
                     lblContactMsg.Text = "You have indicated that the Facility Information is incorrect, " &
                         "but you have not made any changes to the existing information."
-                    Exit Sub
+                    Return
                 Else
                     'Changes Detected, Continue
                 End If
@@ -228,7 +228,7 @@ Partial Class AnnualFees_Default
             If ddlFeeYear.SelectedItem.Text = "-Select Year-" Then
                 lblMessage.Text = "Please select a year to work on"
                 lblMessage.Visible = True
-                Exit Sub
+                Return
             End If
 
             If txtFName.Text = "" Then
@@ -457,7 +457,7 @@ Partial Class AnnualFees_Default
         Try
             If CInt(feeyear.Text) < 2006 AndAlso chkDidNotOperate.Checked Then
                 DidNotOperate()
-                Exit Sub
+                Return
             End If
             If lblVOCFee.Text = "" Then
                 lblVOCFee.Text = 0
@@ -631,7 +631,7 @@ Partial Class AnnualFees_Default
     Protected Sub GetInitialFeeRates()
         Try
             If ddlFeeYear.SelectedItem.Text = "-Select Year-" Then
-                Exit Sub
+                Return
             End If
 
             Dim dr As DataRow = GetFeeRates(ddlFeeYear.SelectedItem.Text)
@@ -2323,7 +2323,7 @@ Partial Class AnnualFees_Default
         Try
             Dim fee As Double
             If Not IsNumeric(txtVOCTons.Text) Then
-                Exit Sub
+                Return
             End If
             fee = PollutantVOCNOx(CInt(txtVOCTons.Text))
             lblVOCFee.Text = String.Format("{0:C}", fee)
@@ -2339,7 +2339,7 @@ Partial Class AnnualFees_Default
         Try
             Dim fee As Double
             If Not IsNumeric(txtNOxTons.Text) Then
-                Exit Sub
+                Return
             End If
             fee = PollutantVOCNOx(CInt(txtNOxTons.Text))
             lblNOxFee.Text = String.Format("{0:C}", fee)
@@ -2355,7 +2355,7 @@ Partial Class AnnualFees_Default
         Try
             Dim fee As Double
             If Not IsNumeric(txtPMTons.Text) Then
-                Exit Sub
+                Return
             End If
             fee = PollutantPMSO2(CInt(txtPMTons.Text))
             lblPMFee.Text = String.Format("{0:C}", fee)
@@ -2371,7 +2371,7 @@ Partial Class AnnualFees_Default
         Try
             Dim fee As Double
             If Not IsNumeric(txtSO2Tons.Text) Then
-                Exit Sub
+                Return
             End If
             fee = PollutantPMSO2(CInt(txtSO2Tons.Text))
             lblSO2Fee.Text = String.Format("{0:C}", fee)
