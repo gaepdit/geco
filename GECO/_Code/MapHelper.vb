@@ -29,8 +29,10 @@
     End Enum
 
     Public Module GoogleMaps
+#Disable Warning S1075 ' URIs should not be hardcoded
         Private Const _googleLinkUri As String = "https://maps.google.com/maps/place/{0}"
         Private Const _googleStaticMapUri As String = "https://maps.googleapis.com/maps/api/staticmap?center={0}&zoom={1}&size={2}&maptype={3}&markers={4}&key={5}"
+#Enable Warning S1075 ' URIs should not be hardcoded
         Private Const _defaultSize As String = "600x200"
         Private Const _defaultZoom As Integer = 16
 
