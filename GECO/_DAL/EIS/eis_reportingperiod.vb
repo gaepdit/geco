@@ -23,6 +23,8 @@ Public Module eis_reportingperiod
             Optional colocated As Boolean? = Nothing,
             Optional colocation As String = Nothing)
 
+        NotNull(fsid, NameOf(fsid))
+
         If Not optOut Then
             ' Following only needed for opt out = true
             ooreason = Nothing
@@ -113,6 +115,8 @@ Public Module eis_reportingperiod
     End Sub
 
     Public Sub ResetEiStatus(fsid As ApbFacilityId, uuser As String, eiyr As String)
+        NotNull(fsid, NameOf(fsid))
+
 
         'Facility needs to start over; make optout null
         Dim EISAccessCode As String = "1"

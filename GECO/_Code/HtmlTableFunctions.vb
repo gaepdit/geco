@@ -4,6 +4,8 @@ Public Module HtmlTableFunctions
 
     <Extension()>
     Public Sub AddTableRow(table As Table, label As String, value As String, Optional labelIsHeader As Boolean = True, Optional classList As String() = Nothing)
+        NotNull(table, NameOf(table))
+
         Dim tr As New TableRow()
 
         If labelIsHeader Then
@@ -25,6 +27,8 @@ Public Module HtmlTableFunctions
 
     <Extension()>
     Public Sub AddTableRow(table As Table, label As String, value As WebControl, Optional labelIsHeader As Boolean = True, Optional classList As String() = Nothing)
+        NotNull(table, NameOf(table))
+
         Dim tr As New TableRow()
 
         If labelIsHeader Then
@@ -47,6 +51,8 @@ Public Module HtmlTableFunctions
 
     <Extension()>
     Public Sub AddTableRow(table As Table, label As String, value As Decimal, Optional asCurrency As Boolean = False, Optional labelIsHeader As Boolean = True)
+        NotNull(table, NameOf(table))
+
         If asCurrency Then
             table.AddTableRow(label, String.Format(Globalization.CultureInfo.CurrentCulture, "{0:C}", value), labelIsHeader, {"table-cell-alignright"})
         Else
@@ -56,6 +62,8 @@ Public Module HtmlTableFunctions
 
     <Extension()>
     Public Sub AddTableRow(table As Table, label As String, dateValue As Date?, Optional skipIfNull As Boolean = True, Optional labelIsHeader As Boolean = True, Optional classList As String() = Nothing)
+        NotNull(table, NameOf(table))
+
         If Not dateValue.HasValue AndAlso skipIfNull Then
             Return
         End If
@@ -65,6 +73,8 @@ Public Module HtmlTableFunctions
 
     <Extension()>
     Public Sub AddTableHeaderRow(table As Table, label As String, value As String)
+        NotNull(table, NameOf(table))
+
         Dim tr As New TableRow With {
             .TableSection = TableRowSection.TableHeader
         }
@@ -77,6 +87,8 @@ Public Module HtmlTableFunctions
 
     <Extension()>
     Public Sub AddTableFooterRow(table As Table, label As String, value As String, Optional labelIsHeader As Boolean = True)
+        NotNull(table, NameOf(table))
+
         Dim tr As New TableRow With {
             .TableSection = TableRowSection.TableFooter
         }
@@ -94,6 +106,8 @@ Public Module HtmlTableFunctions
 
     <Extension()>
     Public Sub AddTableFooterRow(table As Table, label As String, value As Decimal, Optional asCurrency As Boolean = False, Optional labelIsHeader As Boolean = True)
+        NotNull(table, NameOf(table))
+
         Dim tr As New TableRow With {
             .TableSection = TableRowSection.TableFooter
         }

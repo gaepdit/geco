@@ -3,6 +3,8 @@ Public Module RandomStrings
     Private Const UnambiguousCharacters As String = "ACDEFGHJKMNPQRSTUVWXY345679"
 
     Public Function RandomString(ByVal intLength As Integer, Optional ByVal strAllowedCharacters As String = UnambiguousCharacters) As String
+        NotNull(strAllowedCharacters, NameOf(strAllowedCharacters))
+
         Randomize()
         Dim chrChars As Char() = strAllowedCharacters.ToCharArray
         Dim strReturn As New StringBuilder

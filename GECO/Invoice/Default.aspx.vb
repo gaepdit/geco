@@ -65,6 +65,8 @@ Public Class InvoiceDefault
     End Sub
 
     Protected Sub invoicePages_ItemDataBound(sender As Object, e As RepeaterItemEventArgs) Handles invoicePages.ItemDataBound
+        NotNull(e, NameOf(e))
+
         Dim currentInvoice As Invoice = CType(e.Item.DataItem, Invoice)
 
         Dim grdInvoiceItems As GridView = CType(e.Item.FindControl("grdInvoiceItems"), GridView)
@@ -77,6 +79,8 @@ Public Class InvoiceDefault
     End Sub
 
     Protected Sub gridView_DataBound(sender As Object, e As EventArgs)
+        NotNull(sender, NameOf(sender))
+
         Dim gridView As GridView = CType(sender, GridView)
         ' EmptyDataText property of the GridView is only used to pass in an aggregate 
         ' value from the Repeater data item. It is reset here to prevent the value from 
@@ -115,6 +119,8 @@ Public Class InvoiceDefault
     End Function
 
     Protected Shared Function DisplayWhatFor(invoice As Invoice) As String
+        NotNull(invoice, NameOf(invoice))
+
         If invoice.InvoiceCategory = InvoiceCategory.EmissionsFees Then
             Return "<b>" & invoice.FeeYear.ToString & " Emission Fees</b><br />" &
                 "Total emission fees: " & invoice.FeeYearTotalEmissionFees?.ToString("c") & "<br />" &

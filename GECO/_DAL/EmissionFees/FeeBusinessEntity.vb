@@ -4,6 +4,8 @@ Imports GECO.GecoModels
 Public Module FeeBusinessEntity
 
     Public Function CheckFinalSubmit(airsno As ApbFacilityId) As DataTable
+        NotNull(airsno, NameOf(airsno))
+
         Dim SQL As String = "select numfeeyear as intyear, intsubmittal from " &
             "fs_admin where " &
             "strairsnumber = @airsno and " &
@@ -163,6 +165,8 @@ Public Module FeeBusinessEntity
     End Function
 
     Public Function GetFeeStatus(airs As ApbFacilityId) As DataRow
+        NotNull(airs, NameOf(airs))
+
         Dim query As String = " select " &
         "     a.STRAIRSNUMBER, " &
         "     a.NUMFEEYEAR, " &
@@ -187,6 +191,8 @@ Public Module FeeBusinessEntity
     End Function
 
     Public Function GetAnnualFeeHistory(airs As ApbFacilityId) As DataTable
+        NotNull(airs, NameOf(airs))
+
         Dim spName As String = "iaip_facility.GetAnnualFeesHistory"
 
         Return DB.SPGetDataTable(spName, New SqlParameter("@FacilityID", airs.DbFormattedString))

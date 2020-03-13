@@ -5,6 +5,8 @@ Namespace DAL
     Public Module EmailLog
 
         Public Function LogEmail(msg As MailMessage, plainTextBody As String, htmlBody As String, origin As String) As Boolean
+            NotNull(msg, NameOf(msg))
+
             Dim spName As String = "dbo.LogEmail"
 
             Dim params As SqlParameter() = {

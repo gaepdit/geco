@@ -16,6 +16,8 @@ Public Module EnumHelpers
     ''' <remarks>http://stackoverflow.com/a/14772005/212978</remarks>
     <Extension>
     Public Function GetDescription(e As [Enum]) As String
+        NotNull(e, NameOf(e))
+
         Dim enumType As Type = e.GetType()
         Dim name As String = e.ToString()
 

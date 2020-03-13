@@ -12,11 +12,15 @@ Namespace DAL
         End Function
 
         Public Function GetPermitApplications(airsNumber As ApbFacilityId) As DataTable
+            NotNull(airsNumber, NameOf(airsNumber))
+
             Dim spName As String = "iaip_facility.PermitApplications"
             Return DB.SPGetDataTable(spName, New SqlParameter("@AirsNumber", airsNumber.DbFormattedString))
         End Function
 
         Public Function GetPermitApplicationCounts(airsNumber As ApbFacilityId) As DataRow
+            NotNull(airsNumber, NameOf(airsNumber))
+
             Dim spName As String = "iaip_facility.GetApplicationCounts"
             Return DB.SPGetDataRow(spName, New SqlParameter("@AirsNumber", airsNumber.DbFormattedString))
         End Function

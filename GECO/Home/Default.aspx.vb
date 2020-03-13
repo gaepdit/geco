@@ -61,6 +61,8 @@ Partial Class Home
     End Sub
 
     Protected Sub grdAccess_RowDataBound(sender As Object, e As GridViewRowEventArgs) Handles grdAccess.RowDataBound
+        NotNull(e, NameOf(e))
+
         If e.Row.RowType = DataControlRowType.DataRow Then
             Dim row As DataRowView = e.Row.DataItem
             Dim facilityName As String = row.Item("Facility").ToString()

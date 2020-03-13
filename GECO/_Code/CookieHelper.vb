@@ -115,6 +115,8 @@ Public Module CookieHelper
     End Sub
 
     Public Sub CreateSessionCookie(userSession As UserSession)
+        NotNull(userSession, NameOf(userSession))
+
         Dim response = HttpContext.Current.Response
 
         Dim c As New HttpCookie(CookieCollection.SessionCookie.ToString)

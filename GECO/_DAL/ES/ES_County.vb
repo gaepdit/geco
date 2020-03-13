@@ -3,6 +3,8 @@ Imports System.Data.SqlClient
 Public Module ES_County
 
     Public Function GetCounty(AirsNumber As String) As String
+        NotNull(AirsNumber, NameOf(AirsNumber))
+
         Dim CountyCode As String = ""
 
         If AirsNumber.Length = 12 Then

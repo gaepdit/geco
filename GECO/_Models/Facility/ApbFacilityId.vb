@@ -87,6 +87,8 @@ Namespace GecoModels
         End Operator
 
         Public Shared Widening Operator CType(airsNumber As ApbFacilityId) As String
+            NotNull(airsNumber, NameOf(airsNumber))
+
             Return airsNumber.ToString
         End Operator
 

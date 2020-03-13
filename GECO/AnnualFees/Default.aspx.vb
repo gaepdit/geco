@@ -2447,6 +2447,8 @@ Partial Class AnnualFees_Default
 #Region "Reset, Disable, Enable Controls"
 
     Protected Sub ClearAll(ByVal C As Control)
+        NotNull(C, NameOf(C))
+
         Try
             Dim Ctrl As Control 'Declare generic control object
 

@@ -38,6 +38,8 @@
 
         <CodeAnalysis.SuppressMessage("Design", "CA1055")>
         Public Function GetMapLinkUrl(coordinates As Coordinate) As String
+            NotNull(coordinates, NameOf(coordinates))
+
             Return String.Format(_googleLinkUri, coordinates.ToString())
         End Function
 
@@ -48,10 +50,11 @@
 
         <CodeAnalysis.SuppressMessage("Design", "CA1055")>
         Public Function GetStaticMapUrl(coordinates As Coordinate,
-                                               Optional size As String = _defaultSize,
-                                               Optional zoom As Integer = _defaultZoom,
-                                               Optional mapType As GoogleMapType = GoogleMapType.hybrid
-                                               ) As String
+                                        Optional size As String = _defaultSize,
+                                        Optional zoom As Integer = _defaultZoom,
+                                        Optional mapType As GoogleMapType = GoogleMapType.hybrid) As String
+            NotNull(coordinates, NameOf(coordinates))
+
             Dim key As String = ConfigurationManager.AppSettings("GoogleMapsAPIKey")
             Dim marker As String = "color:blue|label:X|" & coordinates.ToString()
 

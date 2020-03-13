@@ -107,6 +107,8 @@ Public Module eis_FacilityData
     End Sub
 
     Public Function IsFacilityLatLonLocked(facilityId As ApbFacilityId) As Boolean
+        NotNull(facilityId, NameOf(facilityId))
+
         Dim query = "select convert(bit, iif(CoordinatesProtected = 'Yes', 1, 0))
             from EIS_EpaFacilityGeoCoord
             where FACILITYSITEID = @FacilitySiteID "
@@ -124,6 +126,8 @@ Public Module eis_FacilityData
     End Enum
 
     Public Sub SaveEisFacilityStatus(fsid As ApbFacilityId, facstatus As FacilitySiteStatusCode, UpdUser As String, eiyr As Integer)
+        NotNull(fsid, NameOf(fsid))
+
         Dim query = "update eis_FacilitySite " &
             " set strFacilitySiteStatusCode = @facstatus, " &
             " intFacilitySiteStatusCodeYear = @eiyr, " &

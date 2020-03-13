@@ -96,6 +96,8 @@ Namespace DAL
         End Function
 
         Public Function GetEmissionFeeInvoices(feeYear As Integer, facilityID As ApbFacilityId, invoiceId As Integer) As List(Of Invoice)
+            NotNull(facilityID, NameOf(facilityID))
+
             Dim params As SqlParameter() = {
                 New SqlParameter("@FacilityID", facilityID.DbFormattedString),
                 New SqlParameter("@FeeYear", feeYear),

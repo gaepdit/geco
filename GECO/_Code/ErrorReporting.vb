@@ -7,6 +7,11 @@ Public Module ErrorReporting
     Public ReadOnly LogExceptionsToFile As Boolean = ConfigurationManager.AppSettings("LogExceptionsToFile")
 
     Public Sub ErrorReport(exc As Exception, Optional redirectToErrorPage As Boolean = True)
+        If exc Is Nothing Then
+            HttpContext.Current.Response.Redirect("~/ErrorPage.aspx", False)
+            Return
+        End If
+
         If LogExceptionsToFile Then
             LogExceptionToTextFile(exc)
         End If

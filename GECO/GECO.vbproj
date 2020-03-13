@@ -564,6 +564,8 @@
       <DependentUpon>Register.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="_Code\Check.vb" />
+    <Compile Include="_Code\CollectionExtensions.vb" />
     <Compile Include="_Code\Colors.vb" />
     <Compile Include="_Code\CookieHelper.vb" />
     <Compile Include="_Code\DecimalFunctions.vb" />

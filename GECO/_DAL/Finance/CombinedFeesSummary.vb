@@ -5,6 +5,8 @@ Namespace DAL
     Public Module CombinedFeesSummary
 
         Public Function GetCombinedFeesSummary(facilityId As ApbFacilityId) As DataSet
+            NotNull(facilityId, NameOf(facilityId))
+
             Dim ds As DataSet = DB.SPGetDataSet("iaip_facility.GetCombinedFeesSummary", New SqlParameter("@FacilityId", facilityId.DbFormattedString))
 
             If ds Is Nothing OrElse ds.Tables.Count <> 2 Then
@@ -18,6 +20,8 @@ Namespace DAL
         End Function
 
         Public Function GetCombinedFeesInvoices(facilityId As ApbFacilityId) As DataSet
+            NotNull(facilityId, NameOf(facilityId))
+
             Dim ds As DataSet = DB.SPGetDataSet("iaip_facility.GetCombinedFeesInvoices", New SqlParameter("@FacilityId", facilityId.DbFormattedString))
 
             If ds Is Nothing OrElse ds.Tables.Count <> 2 Then
@@ -31,6 +35,8 @@ Namespace DAL
         End Function
 
         Public Function GetCombinedFeesDeposits(facilityId As ApbFacilityId) As DataSet
+            NotNull(facilityId, NameOf(facilityId))
+
             Dim ds As DataSet = DB.SPGetDataSet("iaip_facility.GetCombinedFeesDeposits", New SqlParameter("@FacilityId", facilityId.DbFormattedString))
 
             If ds Is Nothing OrElse ds.Tables.Count <> 3 Then

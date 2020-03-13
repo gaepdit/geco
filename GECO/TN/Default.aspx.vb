@@ -81,6 +81,7 @@ Partial Class TN_Default
     End Sub
 
     Protected Sub dgrTestNotify_PageIndexChanged(s As Object, e As DataGridPageChangedEventArgs)
+        NotNull(e, NameOf(e))
 
         dgrTestNotify.DataSource = GetSessionItem(GecoSession.TestNotifications)
         dgrTestNotify.CurrentPageIndex = e.NewPageIndex
@@ -89,6 +90,8 @@ Partial Class TN_Default
     End Sub
 
     Protected Sub RequestDetails(s As Object, e As DataGridCommandEventArgs)
+        NotNull(e, NameOf(e))
+
         If e.CommandName = "Page" Then
             Return
         End If

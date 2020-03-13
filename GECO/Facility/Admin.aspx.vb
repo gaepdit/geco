@@ -70,6 +70,8 @@ Partial Class FacilityAdmin
     End Sub
 
     Protected Sub grdUsers_RowDeleting(sender As Object, e As GridViewDeleteEventArgs) Handles grdUsers.RowDeleting
+        NotNull(e, NameOf(e))
+
         Dim userid As Decimal = Convert.ToDecimal(grdUsers.DataKeys(e.RowIndex).Values("NUMUSERID").ToString())
         Dim airsnumber As String = grdUsers.DataKeys(e.RowIndex).Values("STRAIRSNUMBER").ToString()
 
@@ -79,6 +81,8 @@ Partial Class FacilityAdmin
     End Sub
 
     Protected Sub grdUsers_RowUpdating(sender As Object, e As GridViewUpdateEventArgs) Handles grdUsers.RowUpdating
+        NotNull(e, NameOf(e))
+
         Dim userid As Decimal = Convert.ToDecimal(grdUsers.DataKeys(e.RowIndex).Values("NUMUSERID").ToString())
         Dim airsnumber As String = grdUsers.DataKeys(e.RowIndex).Values("STRAIRSNUMBER").ToString()
         Dim intAdminAccess As Boolean = TryCast(grdUsers.Rows(e.RowIndex).Cells(5).Controls(0), CheckBox).Checked
@@ -93,6 +97,8 @@ Partial Class FacilityAdmin
     End Sub
 
     Protected Sub grdUsers_RowEditing(sender As Object, e As GridViewEditEventArgs) Handles grdUsers.RowEditing
+        NotNull(e, NameOf(e))
+
         grdUsers.EditIndex = e.NewEditIndex
         LoadUserGrid()
     End Sub
@@ -103,6 +109,8 @@ Partial Class FacilityAdmin
     End Sub
 
     Protected Sub grdUsers_RowDataBound(sender As Object, e As GridViewRowEventArgs) Handles grdUsers.RowDataBound
+        NotNull(e, NameOf(e))
+
         If facilityAccess.AdminAccess Then
             If e.Row.RowType = DataControlRowType.DataRow Then
                 Dim linkBtn As LinkButton = CType(e.Row.Cells.Item(0).Controls.Item(0), LinkButton)

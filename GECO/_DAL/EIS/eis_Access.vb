@@ -25,6 +25,8 @@ Public Module eis_Access
     ' | 5             | Complete                 |
 
     Public Function GetEiStatus(airs As ApbFacilityId) As DataRow
+        NotNull(airs, NameOf(airs))
+
         Dim query As String = "select FACILITYSITEID,
                 INVENTORYYEAR,
                 EISSTATUSCODE,
@@ -47,6 +49,8 @@ Public Module eis_Access
     End Function
 
     Public Function LoadEiStatusCookies(airs As ApbFacilityId, response As HttpResponse) As EiStatus
+        NotNull(response, NameOf(response))
+
         Dim EISCookies As New HttpCookie("EISAccessInfo")
 
         Dim enrolled As String = "NULL"

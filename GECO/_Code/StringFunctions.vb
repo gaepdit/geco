@@ -17,6 +17,8 @@ Public Module StringFunctions
     ''' <param name="items">A List of Strings to concatenate</param>
     ''' <returns>A concatenated string separated by the specified separator. Null or empty strings are ignored.</returns>
     Public Function ConcatNonEmptyStrings(separator As String, items As List(Of String)) As String
+        NotNull(items, NameOf(items))
+
         Return ConcatNonEmptyStrings(separator, items.ToArray())
     End Function
 

@@ -57,6 +57,8 @@ Public Module UserAccess
     End Function
 
     Public Function InsertUserAccess(userEmail As String, airs As ApbFacilityId) As Integer
+        NotNull(airs, NameOf(airs))
+
         If Not GecoUserExists(userEmail) Then
             'email address not registered
             Return -1

@@ -937,6 +937,7 @@ Partial Class eis_facility_edit
     End Sub
 
     Protected Sub gvwNAICS_PageIndexChanging(sender As Object, e As Web.UI.WebControls.GridViewPageEventArgs) Handles gvwNAICS.PageIndexChanging
+        NotNull(e, NameOf(e))
 
         gvwNAICS.DataSource = Session("MyNAICSView")
         gvwNAICS.PageIndex = e.NewPageIndex
@@ -976,6 +977,8 @@ Partial Class eis_facility_edit
     End Sub
 
     Sub NAICSCheck(Sender As Object, args As ServerValidateEventArgs)
+        NotNull(args, NameOf(args))
+
         Try
             args.IsValid = False
             NAICSExists = False
@@ -1033,6 +1036,8 @@ Partial Class eis_facility_edit
     End Sub
 
     Protected Sub GMap_Click(sender As Object, e As CoordinatesEventArgs) Handles GMap.Click
+        NotNull(e, NameOf(e))
+
         GMap.Overlays.Clear()
 
         Dim myOverlay As New Marker(New Guid(), e.Coordinates.Latitude, e.Coordinates.Longitude)

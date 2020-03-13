@@ -18,6 +18,8 @@ Public Module eis_getadminuserinfo
     End Function
 
     Public Function SaveAdminComment(fsid As ApbFacilityId, eiyr As Integer, aComment As String) As Boolean
+        NotNull(fsid, NameOf(fsid))
+
         'Truncate comment if greater than 4000 characters
         Dim query = "update eis_Admin " &
             " set strComment = @aComment " &

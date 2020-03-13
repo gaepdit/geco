@@ -249,6 +249,8 @@ Public Module UserAccounts
     End Enum
 
     Public Function GetSavedUserSession(ByRef userSession As UserSession, ByRef user As GecoUser) As Boolean
+        NotNull(userSession, NameOf(userSession))
+
         Dim params As SqlParameter() = {
             New SqlParameter("@Series", userSession.Series),
             New SqlParameter("@Token", userSession.Token)
@@ -274,6 +276,8 @@ Public Module UserAccounts
     End Function
 
     Public Function UpdateUserProfile(user As GecoUser) As DbResult
+        NotNull(user, NameOf(user))
+
         Dim params As SqlParameter() = {
             New SqlParameter("@GecoUserID", user.UserId),
             New SqlParameter("@FName", user.FirstName),
