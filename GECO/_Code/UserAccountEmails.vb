@@ -80,13 +80,18 @@ Public Module UserAccountEmails
         Dim plainBody As String = "The password for this account at " &
             "Georgia Environmental Connections Online (GECO) was recently changed. " &
             vbNewLine & vbNewLine &
+            "Account: {0}" &
+            vbNewLine & vbNewLine &
             "If you did not initiate this change, please contact the Air Protection Branch."
 
         Dim htmlBody As String = "<p>The password for this account at " &
             "Georgia Environmental Connections Online (GECO) was recently changed.</p> " &
+            "<p>Account: {0}</p>" &
             "<p>If you did not initiate this change, please contact the Air Protection Branch.</p>"
 
-        SendEmail(Trim(email), subject, plainBody, htmlBody,
+        SendEmail(Trim(email), subject,
+                  String.Format(plainBody, email),
+                  String.Format(htmlBody, email),
                   caller:="UserAccountEmails.SendPasswordChangeNotification")
     End Sub
 
@@ -109,7 +114,8 @@ Public Module UserAccountEmails
 
         SendEmail(ConcatNonEmptyStrings(",", {Trim(newEmail), Trim(oldEmail)}), subject,
                   String.Format(plainBody, oldEmail, newEmail),
-                  String.Format(htmlBody, oldEmail, newEmail))
+                  String.Format(htmlBody, oldEmail, newEmail),
+                  caller:="UserAccountEmails.SendEmailChangeNotification")
     End Sub
 
 End Module
