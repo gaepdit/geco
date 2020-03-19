@@ -9,7 +9,7 @@ Partial Class EIS_rp_entry
     Inherits Page
 
     Private NAICSExists As Boolean
-    Private ReadOnly currentUser As GecoUser = GetCurrentUser()
+    Private Property currentUser As GecoUser
     Private ReadOnly FacilitySiteID As String = GetCookie(Cookie.AirsNumber)
 
 #Region " Load Routines "
@@ -20,6 +20,8 @@ Partial Class EIS_rp_entry
         Dim OptOut As String = GetCookie(EisCookie.OptOut)
 
         EIEntryAccessCheck(EISAccessCode, OptOut)
+
+        currentUser = GetCurrentUser()
 
         If Not IsPostBack Then
             LoadHorCollectDDL()

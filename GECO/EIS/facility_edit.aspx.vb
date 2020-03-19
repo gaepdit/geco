@@ -11,7 +11,7 @@ Partial Class eis_facility_edit
     Private NAICSExists As Boolean
     Private ReadOnly FacilitySaveSuccess As String = "Facility information successfully saved."
     Private ReadOnly FacilitySiteID As String = GetCookie(Cookie.AirsNumber)
-    Private ReadOnly currentUser As GecoUser = GetCurrentUser()
+    Private Property currentUser As GecoUser
 
 #Region " Load Routines "
 
@@ -20,6 +20,8 @@ Partial Class eis_facility_edit
         Dim EISAccessCode As String = GetCookie(EisCookie.EISAccess)
 
         FIAccessCheck(EISAccessCode)
+
+        currentUser = GetCurrentUser()
 
         If Not IsPostBack Then
             LoadHorCollectDDL()
