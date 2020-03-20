@@ -41,22 +41,13 @@ Partial Public Class AnnualFees_AnnualFees
     Protected WithEvents lblUserName As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''lblFacilityName control.
+    '''lblFacility control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lblFacilityName As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''lblAirsNo control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblAirsNo As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lblFacility As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''EasyMenu1 control.

@@ -1,4 +1,5 @@
-﻿<%@ Page Language="VB" AutoEventWireup="false" Inherits="GECO.ErrorPage" Codebehind="ErrorPage.aspx.vb" %>
+﻿<%@ Page Language="VB" AutoEventWireup="false" Inherits="GECO.ErrorPage" CodeBehind="ErrorPage.aspx.vb" %>
+
 <!DOCTYPE html>
 <html lang="en-us">
 <head runat="server">
@@ -13,14 +14,17 @@
 </head>
 <body>
     <a class="skipnav" href="#main-content">Skip to main content</a>
-    <div id="header" style="height: auto;">
-        <a href="https://epd.georgia.gov/" target="_blank">
-            <img src='<%= Page.ResolveUrl("~/assets/images/epd_logo.jpg") %>' alt="GA EPD" style="float: left; margin: 10px 20px;" />
-        </a>
-        <img src='<%= Page.ResolveUrl("~/assets/images/airbranch_header_bg.jpg") %>' alt="Air Protection Branch" style="margin: 15px 20px;" />
+    <div id="header" class="header-no-menu">
+        <div id="epdlogo">
+            <a href="https://epd.georgia.gov/" target="_blank">
+                <img src='<%= Page.ResolveUrl("~/assets/images/epd-icon.png") %>' alt="Georgia EPD" /></a>
+        </div>
+        <div id="apptitle">
+            <img src='<%= Page.ResolveUrl("~/assets/images/airbranch_header_bg.jpg") %>' alt="Georgia Air Protection Branch" />
+        </div>
     </div>
 
-    <div class="content" id="main-content" style="margin: 0; padding: 100px 25px; width: auto; max-width: 600px;float:none;">
+    <div class="content" id="main-content" style="margin: 0; padding: 100px 25px; width: auto; max-width: 600px; float: none;">
         <h1>An Error Has Occurred</h1>
         <p>
             An unexpected error has occurred on our website. If the problem persists, please contact the Air Protection Branch 

@@ -160,6 +160,7 @@
     <Content Include="Account\Default.aspx" />
     <Content Include="Account\Email.aspx" />
     <Content Include="Account\Password.aspx" />
+    <Content Include="assets\images\epd-icon.png" />
     <Content Include="Home\FacilityRequest.aspx" />
     <Content Include="assets\css\apbstyles.css" />
     <Content Include="assets\css\eis_styles.css" />
@@ -188,8 +189,6 @@
     <Content Include="assets\images\EIS\equivarea.jpg" />
     <Content Include="assets\images\EIS\equivareaexample.jpg" />
     <Content Include="assets\images\EIS\fugitive-angle-diagram.png" />
-    <Content Include="assets\images\epd_logo.jpg" />
-    <Content Include="assets\images\epd_new_logo.jpg" />
     <Content Include="assets\images\expand.jpg" />
     <Content Include="assets\images\export.gif" />
     <Content Include="assets\images\first.gif" />

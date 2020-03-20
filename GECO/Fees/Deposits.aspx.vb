@@ -25,6 +25,7 @@ Public Class Fees_Deposits
             End If
 
             currentAirs = New ApbFacilityId(airsString)
+            Master.currentAirs = currentAirs
             SetCookie(Cookie.AirsNumber, currentAirs.ShortString())
             Master.IsFacilitySubpage = True
         End If

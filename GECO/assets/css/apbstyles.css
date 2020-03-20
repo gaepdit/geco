@@ -37,15 +37,6 @@ div#header
     background: #01009A;
 }
 
-div#epdlogo
-{
-    position: absolute;
-    top: 10px;
-    left: 20px;
-    width: 95px;
-    height: 101px;
-}
-
 div#apptitle
 {
     position: absolute;

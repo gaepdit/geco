@@ -28,6 +28,7 @@ Partial Class FacilityAdmin
             End If
 
             currentAirs = New ApbFacilityId(airsString)
+            Master.currentAirs = currentAirs
             SetCookie(Cookie.AirsNumber, currentAirs.ShortString())
         End If
 

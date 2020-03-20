@@ -1,4 +1,5 @@
-﻿<%@ Page Language="VB" AutoEventWireup="false" Inherits="GECO.Http404Page" Codebehind="404.aspx.vb" %>
+﻿<%@ Page Language="VB" AutoEventWireup="false" Inherits="GECO.Http404Page" CodeBehind="404.aspx.vb" %>
+
 <!DOCTYPE html>
 <html lang="en-us">
 <head runat="server">
@@ -13,11 +14,14 @@
 </head>
 <body>
     <a class="skipnav" href="#main-content">Skip to main content</a>
-    <div id="header" style="height: auto;">
-        <a href="https://epd.georgia.gov/" target="_blank">
-            <img src='<%= Page.ResolveUrl("~/assets/images/epd_logo.jpg") %>' alt="GA EPD" style="float: left; margin: 10px 20px;" />
-        </a>
-        <img src='<%= Page.ResolveUrl("~/assets/images/airbranch_header_bg.jpg") %>' alt="Air Protection Branch" style="margin: 15px 20px;" />
+    <div id="header" class="header-no-menu">
+        <div id="epdlogo">
+            <a href="https://epd.georgia.gov/" target="_blank">
+                <img src='<%= Page.ResolveUrl("~/assets/images/epd-icon.png") %>' alt="Georgia EPD" /></a>
+        </div>
+        <div id="apptitle">
+            <img src='<%= Page.ResolveUrl("~/assets/images/airbranch_header_bg.jpg") %>' alt="Georgia Air Protection Branch" />
+        </div>
     </div>
 
     <div class="content" id="main-content">
@@ -26,7 +30,9 @@
         <p>
             The page you have requested could not be found. If you need assistance
             please contact the
-            <asp:HyperLink id="lnkContact" runat="server">Air Protection Branch</asp:HyperLink>.
+           
+            <asp:HyperLink ID="lnkContact" runat="server">Air Protection Branch</asp:HyperLink>.
+       
         </p>
 
         <ul>

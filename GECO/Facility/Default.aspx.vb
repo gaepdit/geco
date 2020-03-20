@@ -31,7 +31,9 @@ Partial Class FacilityHome
             End If
 
             currentAirs = New ApbFacilityId(airsString)
+            Master.currentAirs = currentAirs
             SetCookie(Cookie.AirsNumber, currentAirs.ShortString())
+            Master.IsFacilitySubpage = True
         End If
 
         MainLoginCheck(Page.ResolveUrl("~/Facility/?airs=" & currentAirs.ShortString))
@@ -48,8 +50,6 @@ Partial Class FacilityHome
         If Not IsPostBack Then
             LoadFacilityInfo()
             GetApplicationStatus()
-
-            Master.SetFacility(ConcatNonEmptyStrings(", ", {currentAirs.FormattedString(), currentFacility}))
 
             Title = "GECO Facility Summary - " & currentFacility
             lblAIRS.Text = currentAirs.FormattedString

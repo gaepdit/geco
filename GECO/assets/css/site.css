@@ -96,12 +96,13 @@ div#header {
     background: #01009A;
 }
 
+    div#header.header-no-menu {
+        height: auto;
+    }
+
 div#epdlogo {
-    position: absolute;
-    top: 10px;
-    left: 20px;
-    width: 95px;
-    height: 101px;
+    display: inline-block;
+    margin: 12px 22px;
 }
 
 div#apptitle {

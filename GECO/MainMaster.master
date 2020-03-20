@@ -25,8 +25,7 @@
         <div id="header">
             <div id="epdlogo">
                 <a href="https://epd.georgia.gov/" target="_blank">
-                    <img src='<%= Page.ResolveUrl("~/assets/images/epd_logo.jpg") %>' alt="Georgia EPD" />
-                </a>
+                    <img src='<%= Page.ResolveUrl("~/assets/images/epd-icon.png") %>' alt="Georgia EPD" /></a>
             </div>
             <div id="apptitle">
                 <img src='<%= Page.ResolveUrl("~/assets/images/airbranch_header_bg.jpg") %>' alt="Georgia Air Protection Branch" />

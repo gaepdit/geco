@@ -29,16 +29,6 @@ Partial Class AnnualFees_Default
             lblMessage.Visible = True
 
             Try
-                'Use FindControl to get the controls from the master page
-                'Add the User data in the Top Header
-                Dim mpUserLabel, mpFacilityLabel As Label
-                mpUserLabel = CType(Master.FindControl("lblUserName"), Label)
-                mpUserLabel.Text = "Welcome, " & currentUser.FullName & " | "
-                mpFacilityLabel = CType(Master.FindControl("lblFacilityName"), Label)
-                mpFacilityLabel.Text = "Facility: " & GetFacilityName(currentAirs) & " | "
-                Dim mpAirsLabel As Label = CType(Master.FindControl("lblAirsNo"), Label)
-                mpAirsLabel.Text = "AIRS No: " & currentAirs.FormattedString
-
                 'Check if the final submission has already been made.
                 'If the final submission has been made, the user cannot
                 'access the fee forms, they will be directed to view

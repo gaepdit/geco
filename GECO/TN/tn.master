@@ -1,4 +1,5 @@
-﻿<%@ Master Language="VB" Inherits="GECO.APB_tn" Codebehind="tn.master.vb" %>
+﻿<%@ Master Language="VB" Inherits="GECO.APB_tn" CodeBehind="tn.master.vb" %>
+
 <%@ Register Assembly="EasyMenu" Namespace="Sequentum" TagPrefix="easymenu" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang="en-us" xmlns="http://www.w3.org/1999/xhtml">
@@ -22,23 +23,23 @@
 
         <div id="header">
             <div id="epdlogo">
-                <img src='<%= Page.ResolveUrl("~/assets/images/epd_logo.jpg") %>' alt="Georgia EPD" />
+                <a href="https://epd.georgia.gov/" target="_blank">
+                    <img src='<%= Page.ResolveUrl("~/assets/images/epd-icon.png") %>' alt="Georgia EPD" />
+                </a>
             </div>
             <div id="apptitle">
                 <img src='<%= Page.ResolveUrl("~/assets/images/airbranch_header_bg.jpg") %>' alt="Georgia Air Protection Branch" />
             </div>
         </div>
         <div id="usermenu">
-            <table width="100%">
+            <table style="width: 100%;">
                 <tr>
-                    <td width="140px"></td>
-                    <td>
-                        <asp:Label ID="lblUserName" runat="server" Text=""></asp:Label>
-                        <asp:Label ID="lblFacilityName" runat="server" Text=""></asp:Label>
-                        <asp:Label ID="lblAirsNo" runat="server" Text=""></asp:Label>
+                    <td style="padding-left: 140px;">
+                        <asp:Label ID="lblUserName" runat="server" Text=""></asp:Label><br />
+                        <asp:Label ID="lblFacility" runat="server" Text=""></asp:Label>
                     </td>
-                    <td align="right">
-                        <seq:EasyMenu ID="EasyMenu1" runat="server" />
+                    <td style="text-align: right;">
+                        <seq:EasyMenu ID="EasyMenu1" runat="server" HorizontalAlignment="Right" />
                     </td>
                 </tr>
             </table>
