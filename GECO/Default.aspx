@@ -25,20 +25,17 @@
         but a GECO account is required to register for any event.
     </p>
 
-    <h2>Emissions Inventory System</h2>
+    <h2>Emissions Inventory</h2>
     <p>
         The <a href="https://www.epa.gov/air-emissions-inventories" target="_blank">National Emissions Inventory</a>
         (NEI) is a detailed estimate compiled by the US EPA of air emissions that include criteria pollutants and 
-        hazardous air pollutants from air emissions sources.
+        hazardous air pollutants from air emissions sources. Emissions inventory data for all Part 70 major source
+        facilities are collected on a three year cycle, while a subset of facilities must report on an annual basis.
     </p>
-    <p>
-        The State of Georgia collects actual facility emissions data through the
-        <a href="https://epd.georgia.gov/submit-emissions-inventory" target="_blank">Emissions Inventory System</a>
-        (EIS) and submits them to EPA. Emissions inventory data for all Part 70 major 
-        source facilities are collected on a three year cycle, while a subset of facilities must report on an annual basis.
-    </p>
-    <p>
-        The Emissions Inventory submittal is due on or about June&nbsp;30 each year.
+    <p class="message-highlight">
+        Starting this year, Georgia will be using the Combined Air Emissions Reporting (CAER) "Common Emissions Form" 
+        (CEF) for the 2019 Emissions Inventory data collection. The Emissions Inventory submittal is due on or about 
+        June&nbsp;30 each year.
     </p>
 
     <h2>Emissions Statement</h2>

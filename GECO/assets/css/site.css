@@ -504,6 +504,10 @@ textarea {
     border-radius: 5px;
 }
 
+    .announcement.announcement-wide {
+        max-width: 53rem;
+    }
+
     .announcement.announcement-centered {
         display: block;
         margin-left: auto;

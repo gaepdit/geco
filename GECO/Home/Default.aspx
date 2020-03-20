@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="VB" MasterPageFile="~/MainMaster.master" AutoEventWireup="false" Inherits="GECO.Home" CodeBehind="Default.aspx.vb" %>
+<%@ Page Title="" Language="VB" MasterPageFile="~/MainMaster.master" AutoEventWireup="false" Inherits="GECO.Home" CodeBehind="Default.aspx.vb" %>
 
 <%@ MasterType VirtualPath="~/MainMaster.master" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="Server">
@@ -70,6 +70,28 @@
         </ContentTemplate>
     </asp:UpdatePanel>
     <br />
+
+    <div class="announcement announcement-wide">
+        <h2>Announcement</h2>
+        <p>
+            Starting this year, Georgia will be using the Combined Air Emissions Reporting (CAER) 
+            "Common Emissions Form" (CEF) for the 2019 Emissions Inventory data collection. To help 
+            transition facilities to this new system, Georgia APB and U.S. EPA have prepared a manual 
+            and will conduct webinars and live virtual help sessions.
+        </p>
+        <p>
+            If you would like to participate in the webinars, please visit the
+            <asp:HyperLink ID="lnkEvents" runat="server"
+                NavigateUrl="~/EventRegistration/">Event Registration</asp:HyperLink>
+            page for dates and times. After the CEF is open for submissions, we will also be conducting
+            virtual live help training sessions that will run from the week of April&nbsp;14,&nbsp;2020
+            to the week of June&nbsp;26,&nbsp;2020.
+        </p>
+        <p>
+            For additional information regarding the webinars and training sessions, please contact Jing 
+            Wang at <a href="mailto:jing.wang@dnr.ga.gov">jing.wang@dnr.ga.gov</a>.
+        </p>
+    </div>
 
     <h1>GECO News and Events</h1>
     <p>

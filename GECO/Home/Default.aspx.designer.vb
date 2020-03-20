@@ -12,7 +12,7 @@ Option Explicit On
 
 
 Partial Public Class Home
-    
+
     '''<summary>
     '''UpdatePanel_top control.
     '''</summary>
@@ -21,7 +21,7 @@ Partial Public Class Home
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents UpdatePanel_top As Global.System.Web.UI.UpdatePanel
-    
+
     '''<summary>
     '''pUpdateRequired control.
     '''</summary>
@@ -30,7 +30,7 @@ Partial Public Class Home
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents pUpdateRequired As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
+
     '''<summary>
     '''lnkUpdateProfile control.
     '''</summary>
@@ -39,7 +39,7 @@ Partial Public Class Home
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lnkUpdateProfile As Global.System.Web.UI.WebControls.HyperLink
-    
+
     '''<summary>
     '''lblNone control.
     '''</summary>
@@ -48,7 +48,7 @@ Partial Public Class Home
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblNone As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''lblAccess control.
     '''</summary>
@@ -57,7 +57,7 @@ Partial Public Class Home
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblAccess As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''grdAccess control.
     '''</summary>
@@ -66,7 +66,7 @@ Partial Public Class Home
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents grdAccess As Global.System.Web.UI.WebControls.GridView
-    
+
     '''<summary>
     '''lnkRequestAccess control.
     '''</summary>
@@ -75,7 +75,7 @@ Partial Public Class Home
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lnkRequestAccess As Global.System.Web.UI.WebControls.HyperLink
-    
+
     '''<summary>
     '''UpdateProgress1 control.
     '''</summary>
@@ -84,7 +84,16 @@ Partial Public Class Home
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents UpdateProgress1 As Global.System.Web.UI.UpdateProgress
-    
+
+    '''<summary>
+    '''lnkEvents control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lnkEvents As Global.System.Web.UI.WebControls.HyperLink
+
     '''<summary>
     '''linkEvents control.
     '''</summary>
@@ -93,7 +102,7 @@ Partial Public Class Home
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents linkEvents As Global.System.Web.UI.WebControls.HyperLink
-    
+
     '''<summary>
     '''lblEIyear1 control.
     '''</summary>
@@ -102,7 +111,7 @@ Partial Public Class Home
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblEIyear1 As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''lblEIYear2 control.
     '''</summary>
@@ -111,7 +120,7 @@ Partial Public Class Home
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblEIYear2 As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''lblAnnualEIText control.
     '''</summary>
@@ -120,7 +129,7 @@ Partial Public Class Home
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblAnnualEIText As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''lblEIYear5 control.
     '''</summary>
@@ -129,7 +138,7 @@ Partial Public Class Home
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblEIYear5 As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''lblTriennialEIText control.
     '''</summary>
@@ -138,7 +147,7 @@ Partial Public Class Home
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblTriennialEIText As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''lblEIYear6 control.
     '''</summary>
@@ -147,7 +156,7 @@ Partial Public Class Home
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblEIYear6 As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''lblEIYear3 control.
     '''</summary>
@@ -156,7 +165,7 @@ Partial Public Class Home
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblEIYear3 As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''lblEIYear4 control.
     '''</summary>
@@ -165,7 +174,7 @@ Partial Public Class Home
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblEIYear4 As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''lblFeeYear1 control.
     '''</summary>
@@ -174,7 +183,7 @@ Partial Public Class Home
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblFeeYear1 As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''lblFeeYear2 control.
     '''</summary>
@@ -183,7 +192,7 @@ Partial Public Class Home
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblFeeYear2 As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''lblFeeYear3 control.
     '''</summary>
@@ -192,7 +201,7 @@ Partial Public Class Home
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblFeeYear3 As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''lblFeeYear4 control.
     '''</summary>
@@ -201,7 +210,7 @@ Partial Public Class Home
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblFeeYear4 As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''lblESYear1 control.
     '''</summary>
@@ -210,7 +219,7 @@ Partial Public Class Home
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblESYear1 As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''lblESYear2 control.
     '''</summary>
@@ -219,7 +228,7 @@ Partial Public Class Home
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblESYear2 As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''lblESYear3 control.
     '''</summary>
@@ -228,7 +237,7 @@ Partial Public Class Home
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblESYear3 As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''Master property.
     '''</summary>
@@ -237,7 +246,7 @@ Partial Public Class Home
     '''</remarks>
     Public Shadows ReadOnly Property Master() As GECO.MainMaster
         Get
-            Return CType(MyBase.Master,GECO.MainMaster)
+            Return CType(MyBase.Master, GECO.MainMaster)
         End Get
     End Property
 End Class
