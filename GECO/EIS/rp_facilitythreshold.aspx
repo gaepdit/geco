@@ -32,7 +32,7 @@
             </asp:TableHeaderRow>
             <asp:TableRow ID="TableRow1" runat="server" BackColor="#9BD7FF">
                 <asp:TableCell ID="TableCell4" runat="server" BorderWidth="1px">
-                    <asp:Label ID="lblSOx" runat="server">SO<sub>X</sub></asp:Label>
+                    <asp:Label ID="lblSOx" runat="server">SO<sub>x</sub></asp:Label>
                 </asp:TableCell>
                 <asp:TableCell ID="TableCell5" runat="server" BorderWidth="1px" HorizontalAlign="Center">
                     <asp:Label ID="lblSOxThreshold" runat="server"></asp:Label>
@@ -66,7 +66,7 @@
             </asp:TableRow>
             <asp:TableRow ID="TableRow3" runat="server" BackColor="#9BD7FF">
                 <asp:TableCell ID="TableCell10" runat="server" BorderWidth="1px">
-                    <asp:Label ID="lblNOx" runat="server">NO<sub>X</sub></asp:Label>
+                    <asp:Label ID="lblNOx" runat="server">NO<sub>x</sub></asp:Label>
                 </asp:TableCell>
                 <asp:TableCell ID="TableCell11" runat="server" BorderWidth="1px" HorizontalAlign="Center">
                     <asp:Label ID="lblNOxThreshold" runat="server"></asp:Label>
