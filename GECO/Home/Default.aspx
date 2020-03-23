@@ -42,7 +42,7 @@
                     <asp:CheckBoxField DataField="EIAccess" HeaderText="Emissions Inventory">
                         <ItemStyle HorizontalAlign="Center" CssClass="table-cell-checkbox" />
                     </asp:CheckBoxField>
-                    <asp:CheckBoxField DataField="ESAccess" HeaderText="Emission Statement">
+                    <asp:CheckBoxField DataField="ESAccess" HeaderText="Emissions Statement">
                         <ItemStyle HorizontalAlign="Center" CssClass="table-cell-checkbox" />
                     </asp:CheckBoxField>
                 </Columns>

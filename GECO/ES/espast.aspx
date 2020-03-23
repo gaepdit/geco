@@ -9,7 +9,7 @@
             <td align="center">
                 <span style="font-size: 14pt; font-weight: bold; color: #4169e1;">Georgia EPD - Air
                     Protection Branch<br />
-                    Emission Statement</span>
+                    Emissions Statement</span>
             </td>
         </tr>
         <tr>
@@ -76,7 +76,7 @@
                 <asp:Panel ID="pnlOptedOut" runat="server">
                     <table align="center" style="width: 500px">
                         <tr>
-                            <td>The facility opted out of the Emission Statement for
+                            <td>The facility opted out of the Emissions Statement for
                                 <asp:Label ID="lblESPastYear2" runat="server"></asp:Label>
                             </td>
                         </tr>

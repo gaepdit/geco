@@ -6,7 +6,7 @@
             <table align="center">
                 <tr>
                     <td>
-                        <span style="font-size: 16pt; color: #4170e1; font-family: Arial"><strong>Emission Statement
+                        <span style="font-size: 16pt; color: #4170e1; font-family: Arial"><strong>Emissions Statement
                                 Confirmation<br />
                         </strong>Georgia EPD - Air Protection Branch</span></td>
                 </tr>
@@ -27,11 +27,11 @@
                     </td>
                 </tr>
                 <tr>
-                    <td align="left">Your facility has chosen (or has previously chosen) to opt out of participating in the Emission Statement
-                    process for calendar year
-                                        <asp:Label ID="lblESYear1" runat="server" Font-Names="Verdana" Font-Size="Small"></asp:Label>
+                    <td align="left">Your facility has chosen (or has previously chosen) to opt out of participating in the Emissions Statement
+                        process for calendar year
+                        <asp:Label ID="lblESYear1" runat="server" Font-Names="Verdana" Font-Size="Small"></asp:Label>
                         by indicating that actual emissions of VOCs and NOx were less than or equal to 25
-                    tons for that year.</td>
+                        tons for that year.</td>
                 </tr>
                 <tr>
                     <td>&nbsp;</td>
@@ -99,11 +99,11 @@
                     <td align="left">&nbsp;</td>
                 </tr>
                 <tr>
-                    <td align="left">Your facility has opted in (or previously opted in) and submitted the Emission Statement data for
-                calendar year
-                <asp:Label ID="lblESYear3" runat="server" Font-Names="Verdana" Font-Size="Small"></asp:Label>
+                    <td align="left">Your facility has opted in (or previously opted in) and submitted the Emissions Statement data for
+                        calendar year
+                        <asp:Label ID="lblESYear3" runat="server" Font-Names="Verdana" Font-Size="Small"></asp:Label>
                         by indicating that emissions of VOCs and/or NOx were greater than 25 tons for that
-                year. The emission quantities you entered appear below.</td>
+                        year. The emission quantities you entered appear below.</td>
                 </tr>
                 <tr>
                     <td>&nbsp;</td>

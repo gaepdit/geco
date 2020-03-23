@@ -3,7 +3,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang="en-us" xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title>GECO Emission Statement</title>
+    <title>GECO Emissions Statement</title>
     <link rel="apple-touch-icon" sizes="180x180" href="~/assets/epd-favicons/apple-touch-icon.png?v=69kRrvbXdL" />
     <link rel="icon" type="image/png" href="~/assets/epd-favicons/favicon-32x32.png?v=69kRrvbXdL" sizes="32x32" />
     <link rel="icon" type="image/png" href="~/assets/epd-favicons/favicon-16x16.png?v=69kRrvbXdL" sizes="16x16" />
@@ -57,7 +57,7 @@
                                 <div style="text-align: left">
                                     <table>
                                         <tr>
-                                            <td style="width: 168px; text-align: center; font-family: Arial; font-size: smaller; font-weight: bold; color: white; background-color: #01009A;">Emission Statement
+                                            <td style="width: 168px; text-align: center; font-family: Arial; font-size: smaller; font-weight: bold; color: white; background-color: #01009A;">Emissions Statement
                                             </td>
                                         </tr>
                                     </table>
@@ -83,7 +83,7 @@
                                     </span></strong>
                                         <br />
                                     </span><span style="font-size: 9pt; font-family: Arial;">Provide contact information
-                                    for the person to contact regarding the Emission Statement.<br />
+                                    for the person to contact regarding the Emissions Statement.<br />
                                         <br />
                                         All fields are required except those indicated on the form.<br />
                                     </span>
@@ -96,10 +96,10 @@
                                     drop-down box.<br />
                                         <br />
                                         A response of YES indicates that your facility's actual emissions of both NOx and
-                                    VOCs are 25 tons/year or less and will cause your facility to opt out of the Emission
+                                    VOCs are 25 tons/year or less and will cause your facility to opt out of the Emissions
                                     Statement process.<br />
                                         <br />
-                                        Choosing NO opts the facility into the Emission Statement process and you must provide
+                                        Choosing NO opts the facility into the Emissions Statement process and you must provide
                                     the actual &nbsp;emission quantities for both NOx and VOCs.<br />
                                         <br />
                                         Choose the "Save" button to submit your information. </span></span>

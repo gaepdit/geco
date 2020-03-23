@@ -1,18 +1,18 @@
 <%@ Page Language="VB" MaintainScrollPositionOnPostback="true" MasterPageFile="es.master"
-    AutoEventWireup="false" Inherits="GECO.es_default" Title="GECO - Emission Statement" Codebehind="default.aspx.vb" %>
+    AutoEventWireup="false" Inherits="GECO.es_default" Title="GECO - Emissions Statement" Codebehind="default.aspx.vb" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <h1>Emissions Statement</h1>
 
     <p style="font-size:small">
-        <b>Select an Emission Statement year to view or work on:</b>
+        <b>Select an Emissions Statement year to view or work on:</b>
         <asp:DropDownList ID="cboESYear" runat="server" AutoPostBack="True" BackColor="#FFFF66"></asp:DropDownList>
     </p>
 
     <asp:Panel ID="pnlInitial" runat="server" Font-Size="Small">
         <table cellpadding="2" style="width: 90%">
             <tr>
-                <td align="left" valign="top">The Emission Statement is required to be completed by facilities located in the
+                <td align="left" valign="top">The Emissions Statement is required to be completed by facilities located in the
                             state of Georgia that meet the following criteria:<br />
                     <ul>
                         <li>Located in any of the following counties: Barrow, Bartow, Carroll, Cherokee, Clayton,
@@ -28,11 +28,11 @@
             </tr>
             <tr>
                 <td align="left" valign="top">
-                    <span style="font-size: 9pt">* If a facility received a notice to submit the Emission
+                    <span style="font-size: 9pt">* If a facility received a notice to submit the Emissions
                                 Statement, but their emissions of both VOCs and NOx fall below the thresholds, the
-                                facility should complete the Emission Statement and choose the option in the emissions
+                                facility should complete the Emissions Statement and choose the option in the emissions
                                 area of the form to indicate that their emissions are below the thresholds. In doing
-                                so, the facility will be opting out of the Emission Statement process for calendar
+                                so, the facility will be opting out of the Emissions Statement process for calendar
                                 year . The opt out option appears after providing facility and contact information.</span>
                 </td>
             </tr>
@@ -51,7 +51,7 @@
                 <td>
                     <table align="center" cellpadding="0" cellspacing="0" style="width: 500px">
                         <tr>
-                            <td>Welcome to the current Emission Statement data collection process. We are
+                            <td>Welcome to the current Emissions Statement data collection process. We are
                                 collecting data for calendar year
                                 <asp:Label ID="lblCurrentYear" runat="server"></asp:Label>
                                 <br />
@@ -67,7 +67,7 @@
                                     </strong><b><span style="font-size: medium">Status for
                                     <asp:Label ID="lblCurrentYear2" runat="server"></asp:Label>
                                         <br />
-                                        Emission Statement</span></b></span><br />
+                                        Emissions Statement</span></b></span><br />
                                     <asp:Label ID="lblCurrentStatus" runat="server" BackColor="#FFC9BB" ForeColor="Black"></asp:Label>
                                     <br />
                                     &nbsp;
@@ -111,7 +111,7 @@
                 <td>
                     <table align="center" cellpadding="0" cellspacing="0" style="width: 500px">
                         <tr>
-                            <td>The following is the Emission Statement information for your facility for the calendar year
+                            <td>The following is the Emissions Statement information for your facility for the calendar year
                                 <asp:Label ID="lblPastYear1" runat="server"></asp:Label>
                                 <br />
                                 &nbsp;
@@ -167,7 +167,7 @@
                                             <td align="center">&nbsp; </td>
                                         </tr>
                                         <tr>
-                                            <td align="center">The facility opted out of the Emission Statement Process in
+                                            <td align="center">The facility opted out of the Emissions Statement Process in
                                                 <asp:Label ID="lblPastYear2" runat="server"></asp:Label></td>
                                         </tr>
                                         <tr>
