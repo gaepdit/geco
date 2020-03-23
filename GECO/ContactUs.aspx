@@ -22,7 +22,7 @@
                 <br />
                 <asp:DropDownList ID="ddlSubject" runat="server">
                     <asp:ListItem>-- Select One --</asp:ListItem>
-                    <asp:ListItem>Emission Inventory</asp:ListItem>
+                    <asp:ListItem>Emissions Inventory</asp:ListItem>
                     <asp:ListItem>Emission Statement</asp:ListItem>
                     <asp:ListItem>Permit Fees</asp:ListItem>
                     <asp:ListItem>Event Registration</asp:ListItem>

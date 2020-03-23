@@ -67,7 +67,7 @@
                 <asp:CheckBoxList ID="lstbAccess" runat="server">
                     <asp:ListItem Text="Facility Access" Value="Facility" Selected="True"></asp:ListItem>
                     <asp:ListItem Text="Permit Fees" Value="Fees"></asp:ListItem>
-                    <asp:ListItem Text="Emission Inventory" Value="Inventory"></asp:ListItem>
+                    <asp:ListItem Text="Emissions Inventory" Value="Inventory"></asp:ListItem>
                     <asp:ListItem Text="Emission Statement" Value="Statement"></asp:ListItem>
                 </asp:CheckBoxList>
             </p>

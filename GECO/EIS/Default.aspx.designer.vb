@@ -23,6 +23,15 @@ Partial Public Class eis_Default
     Protected WithEvents ToolkitScriptManager1 As Global.AjaxControlToolkit.ToolkitScriptManager
 
     '''<summary>
+    '''divCefInstructions control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents divCefInstructions As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
     '''pnlStatus control.
     '''</summary>
     '''<remarks>

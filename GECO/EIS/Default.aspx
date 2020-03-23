@@ -1,20 +1,47 @@
-<%@ Page Title="GECO Emissions Inventory System" Language="VB" MasterPageFile="eismaster.master"
+<%@ Page Title="GECO Emissions Inventory" Language="VB" MasterPageFile="eismaster.master"
     AutoEventWireup="false" Inherits="GECO.eis_Default" CodeBehind="Default.aspx.vb" %>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder3" runat="Server">
     <act:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server"></act:ToolkitScriptManager>
-    <h1>Emissions Inventory System</h1>
+    <h1>Emissions Inventory</h1>
     <p>
         Facilities whose potential emissions exceed the thresholds must report their 
-        actual emissions. 
-   
+        actual emissions. For assistance with calculating PTE, please use the        
+        <a href="https://epd.georgia.gov/documents/potential-emit-guidelines" target="_blank">Potential 
+            to Emit Guidelines</a>.
+        Beginning with the 2019 Emissions Inventory, Georgia will be using the "Common Emissions 
+        Form" (CEF) developed by U.S. EPA.
     </p>
-    <p>
-        For assistance with calculating PTE, please use the 
-       
-        <a href="https://epd.georgia.gov/documents/potential-emit-guidelines" target="_blank">PTE Guidelines</a>.
-   
-    </p>
+    <div id="divCefInstructions" runat="server">
+        <p>
+            The new Emissions Inventory process will be as follows:
+        </p>
+        <ol>
+            <li>
+                <p>
+                    Based on previously available information, the Georgia Air Protection Branch will enroll 
+                    facilities that may need to participate in the 2019 Emissions Inventory. (If your facility 
+                    has not been enrolled, but you believe it should be participating in the EI, please 
+                    contact the APB.)
+                </p>
+            </li>
+            <li>
+                <p>
+                    Begin the EI process below. You will be asked to review basic facility and contact 
+                    information. You will then be asked about facility emissions to determine if participation 
+                    in the Emissions Inventory process is necessary. 
+                    <em>All facilities must complete this step before proceeding to the CEF.</em>
+                </p>
+            </li>
+            <li>
+                <p>
+                    If it is determined that the facility will participate in the Emissions Inventory process, 
+                    you will be directed to EPA's Common Emissions Form. The CEF will be used for completing 
+                    the Emissions Inventory.
+                </p>
+            </li>
+        </ol>
+    </div>
 
     <asp:Panel ID="pnlStatus" runat="server" CssClass="rounded-panel rounded-panel-filled">
         <h2>
@@ -114,9 +141,9 @@
 
     <asp:Panel ID="pnlEisNotAvailable" runat="server" CssClass="rounded-panel"
         Visible="False" Style="display: inherit;">
-        <h2>Emissions Inventory System Not Available</h2>
+        <h2>Emissions Inventory Not Available</h2>
         <p>
-            The EIS is currently unavailable to your facility.
+            The Emissions Inventory is currently unavailable to your facility.
             If you have questions, please contact us using the &quot;Contact Us&quot; menu item above.
        
         </p>

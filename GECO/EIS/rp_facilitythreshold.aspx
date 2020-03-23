@@ -1,4 +1,4 @@
-<%@ Page Title="Facility Thresholds - GECO Emission Inventory" Language="VB" MaintainScrollPositionOnPostback="true" MasterPageFile="eismaster.master"
+<%@ Page Title="Facility Thresholds - GECO Emissions Inventory" Language="VB" MaintainScrollPositionOnPostback="true" MasterPageFile="eismaster.master"
     AutoEventWireup="false" Inherits="GECO.EIS_rp_threshold" CodeBehind="rp_facilitythreshold.aspx.vb" %>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder3" runat="Server">
@@ -14,12 +14,11 @@
         </p>
         <p>
             The thresholds in the questions below pertain to the facility's location. Participation
-            in the Emissions Inventory process depends on the responses to the threshold questions below.
+            in the Emissions Inventory depends on the responses to the threshold questions below.
         </p>
         <p>
             Remember that the numbers pertain to <b>potential emissions,</b> except for lead.
-            <br />
-            <span style="color: #990000; font-weight: bold;">The threshold for lead (Pb) is now based on actual emissions.</span>
+            <b>The threshold for lead (Pb) is now based on actual emissions.</b>
         </p>
         <p align="center">Select a response for all pollutants.</p>
     </div>
@@ -33,7 +32,7 @@
             </asp:TableHeaderRow>
             <asp:TableRow ID="TableRow1" runat="server" BackColor="#9BD7FF">
                 <asp:TableCell ID="TableCell4" runat="server" BorderWidth="1px">
-                    <asp:Label ID="lblSOx" runat="server" Text="SOx"></asp:Label>
+                    <asp:Label ID="lblSOx" runat="server">SO<sub>X</sub></asp:Label>
                 </asp:TableCell>
                 <asp:TableCell ID="TableCell5" runat="server" BorderWidth="1px" HorizontalAlign="Center">
                     <asp:Label ID="lblSOxThreshold" runat="server"></asp:Label>
@@ -67,7 +66,7 @@
             </asp:TableRow>
             <asp:TableRow ID="TableRow3" runat="server" BackColor="#9BD7FF">
                 <asp:TableCell ID="TableCell10" runat="server" BorderWidth="1px">
-                    <asp:Label ID="lblNOx" runat="server" Text="NOx"></asp:Label>
+                    <asp:Label ID="lblNOx" runat="server">NO<sub>X</sub></asp:Label>
                 </asp:TableCell>
                 <asp:TableCell ID="TableCell11" runat="server" BorderWidth="1px" HorizontalAlign="Center">
                     <asp:Label ID="lblNOxThreshold" runat="server"></asp:Label>
@@ -101,7 +100,7 @@
             </asp:TableRow>
             <asp:TableRow ID="TableRow5" runat="server" BackColor="#9BD7FF">
                 <asp:TableCell ID="TableCell16" runat="server" BorderWidth="1px">
-                    <asp:Label ID="lblPM10" runat="server" Text="PM10"></asp:Label>
+                    <asp:Label ID="lblPM10" runat="server">PM<sub>10</sub></asp:Label>
                 </asp:TableCell>
                 <asp:TableCell ID="TableCell17" runat="server" BorderWidth="1px" HorizontalAlign="Center">
                     <asp:Label ID="lblPM10Threshold" runat="server"></asp:Label>
@@ -118,7 +117,7 @@
             </asp:TableRow>
             <asp:TableRow ID="TableRow6" runat="server">
                 <asp:TableCell ID="TableCell19" runat="server" BorderWidth="1px">
-                    <asp:Label ID="lblPM25" runat="server" Text="PM25"></asp:Label>
+                    <asp:Label ID="lblPM25" runat="server">PM<sub>2.5</sub></asp:Label>
                 </asp:TableCell>
                 <asp:TableCell ID="TableCell20" runat="server" BorderWidth="1px" HorizontalAlign="Center">
                     <asp:Label ID="lblPM25Threshold" runat="server"></asp:Label>
@@ -135,7 +134,7 @@
             </asp:TableRow>
             <asp:TableRow ID="TableRow7" runat="server" BackColor="#9BD7FF">
                 <asp:TableCell ID="TableCell22" runat="server" BorderWidth="1px">
-                    <asp:Label ID="lblNH3" runat="server" Text="NH3"></asp:Label>
+                    <asp:Label ID="lblNH3" runat="server">NH<sub>3</sub></asp:Label>
                 </asp:TableCell>
                 <asp:TableCell ID="TableCell23" runat="server" BorderWidth="1px" HorizontalAlign="Center">
                     <asp:Label ID="lblNH3Threshold" runat="server"></asp:Label>
@@ -178,12 +177,9 @@
         </div>
     </div>
     <p>
-        Clicking &ldquo;<asp:Label ID="lblNextButton" runat="server">Continue</asp:Label>&rdquo; below and submitting
-        this form is certification that the facility&#39;s potential emissions are as described
-        by the selections in the table above. Depending on the responses the facility may
-        or may not have to participate in the Emissions Inventory process for the
-        <asp:Label ID="lblEIYear" runat="server"></asp:Label>
-        calendar year.
+        Clicking "<asp:Label ID="lblNextButton" runat="server">Continue</asp:Label>" below and submitting
+        this form is certification that the facility's potential emissions are as described
+        by the selections in the table above.
     </p>
     <asp:ValidationSummary ID="vgThresholds" runat="server" Style="text-align: center"
         ValidationGroup="vgThreshold" HeaderText="One or more selections were not made. All are required." />

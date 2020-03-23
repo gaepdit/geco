@@ -1,4 +1,4 @@
-Imports System.Data.SqlClient
+﻿Imports System.Data.SqlClient
 Imports EpdIt.DBUtilities
 Imports GECO.GecoModels
 
@@ -109,7 +109,7 @@ Public Module eis_reportingperiod
                 "<b>Co-location info</b>:</p>" &
                 "<blockquote><pre>" & colocation & "</pre></blockquote>"
 
-            SendEmail(GecoContactEmail, "GECO EIS - Facility opt out and co-location", plainBody, htmlBody,
+            SendEmail(GecoContactEmail, "GECO EI - Facility opt out and co-location", plainBody, htmlBody,
                       caller:="eis_reportingperiod.SaveOption")
         End If
     End Sub

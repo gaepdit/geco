@@ -39,7 +39,7 @@
                     <asp:CheckBoxField DataField="FeeAccess" HeaderText="Permit Fees">
                         <ItemStyle HorizontalAlign="Center" CssClass="table-cell-checkbox" />
                     </asp:CheckBoxField>
-                    <asp:CheckBoxField DataField="EIAccess" HeaderText="Emission Inventory">
+                    <asp:CheckBoxField DataField="EIAccess" HeaderText="Emissions Inventory">
                         <ItemStyle HorizontalAlign="Center" CssClass="table-cell-checkbox" />
                     </asp:CheckBoxField>
                     <asp:CheckBoxField DataField="ESAccess" HeaderText="Emission Statement">
@@ -76,7 +76,7 @@
         <p>
             Starting this year, Georgia will be using the Combined Air Emissions Reporting (CAER) 
             "Common Emissions Form" (CEF) for the 2019 Emissions Inventory data collection. To help 
-            transition facilities to this new system, Georgia APB and U.S. EPA have prepared a manual 
+            transition facilities to this new form, Georgia APB and U.S. EPA have prepared a manual 
             and will conduct webinars and live virtual help sessions.
         </p>
         <p>
@@ -103,7 +103,7 @@
 
     <h2>Event Registration</h2>
     <p>
-        The GECO system is used to register for classes, workshops, and other events hosted by Georgia EPD. View all
+        The GECO site is used to register for classes, workshops, and other events hosted by Georgia EPD. View all
         <asp:HyperLink ID="linkEvents" runat="server" NavigateUrl="~/EventRegistration/">upcoming events</asp:HyperLink>.
     </p>
 
@@ -111,11 +111,11 @@
         <asp:Label ID="lblEIyear1" runat="server" Text=""></asp:Label>
         Emissions Inventory</h2>
     <p>
-        The Emissions Inventory System (EIS) will soon be available for use to submit data for the
+        The Emissions Inventory (EI) will soon be available for use to submit data for the
         <asp:Label ID="lblEIYear2" runat="server" Text=""></asp:Label>
         calendar year. Look out for correspondence in the mail advising if EPD believes your facility needs to participate. 
-        Visit the <a href="https://epd.georgia.gov/submit-emissions-inventory" target="_blank">EIS Information</a> page 
-        and EPA's <a href="https://www.epa.gov/air-emissions-inventories/air-emissions-reporting-requirements-aerr"
+        Visit the EPD <a href="https://epd.georgia.gov/submit-emissions-inventory" target="_blank">Emissions Inventory Information</a> page 
+        and the EPA <a href="https://www.epa.gov/air-emissions-inventories/air-emissions-reporting-requirements-aerr"
             target="_blank">Air Emissions Reporting Requirements</a> page for more information.
     </p>
     <ul>
@@ -123,8 +123,6 @@
             <p>
                 Participation in the emissions inventory is based on a facility's Potential
                 to Emit (PTE) equaling or exceeding the defined thresholds.
-                For assistance with calculating PTE, please use the 
-                <a href="https://epd.georgia.gov/documents/potential-emit-guidelines" target="_blank">PTE Guidelines</a>.
             </p>
         </li>
         <li>
@@ -137,7 +135,7 @@
                 <asp:Label ID="lblTriennialEIText" runat="server" Visible="false">The
                     <asp:Label ID="lblEIYear6" runat="server" Text=""></asp:Label>
                     EI is a <b>triennial</b> data collection year; therefore most facilities in the 
-                    EI system are required to submit EI data as the PTE thresholds are lower.
+                    EI universe are required to submit EI data as the PTE thresholds are lower.
                 </asp:Label>
             </p>
         </li>

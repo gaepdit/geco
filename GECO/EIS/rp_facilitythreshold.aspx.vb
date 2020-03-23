@@ -1,4 +1,4 @@
-Imports System.Data.SqlClient
+﻿Imports System.Data.SqlClient
 Imports EpdIt.DBUtilities
 Imports GECO.GecoModels
 
@@ -25,7 +25,6 @@ Partial Class EIS_rp_threshold
                 lblLocation.Text = "not located in the ozone non-attainment area."
             End If
 
-            lblEIYear.Text = EIYear
             LoadpageInfo(EIType)
             txtComment.Text = GetAdminComment(FacilitySiteID, EIYear)
         End If

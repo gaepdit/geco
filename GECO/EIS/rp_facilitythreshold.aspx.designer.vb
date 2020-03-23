@@ -12,7 +12,7 @@ Option Explicit On
 
 
 Partial Public Class EIS_rp_threshold
-    
+
     '''<summary>
     '''ToolkitScriptManager1 control.
     '''</summary>
@@ -21,7 +21,7 @@ Partial Public Class EIS_rp_threshold
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ToolkitScriptManager1 As Global.AjaxControlToolkit.ToolkitScriptManager
-    
+
     '''<summary>
     '''lblLocation control.
     '''</summary>
@@ -30,7 +30,7 @@ Partial Public Class EIS_rp_threshold
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblLocation As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''tblThreshold control.
     '''</summary>
@@ -39,7 +39,7 @@ Partial Public Class EIS_rp_threshold
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents tblThreshold As Global.System.Web.UI.WebControls.Table
-    
+
     '''<summary>
     '''TableCell1 control.
     '''</summary>
@@ -48,7 +48,7 @@ Partial Public Class EIS_rp_threshold
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents TableCell1 As Global.System.Web.UI.WebControls.TableHeaderCell
-    
+
     '''<summary>
     '''TableCell2 control.
     '''</summary>
@@ -57,7 +57,7 @@ Partial Public Class EIS_rp_threshold
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents TableCell2 As Global.System.Web.UI.WebControls.TableHeaderCell
-    
+
     '''<summary>
     '''TableCell3 control.
     '''</summary>
@@ -66,7 +66,7 @@ Partial Public Class EIS_rp_threshold
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents TableCell3 As Global.System.Web.UI.WebControls.TableHeaderCell
-    
+
     '''<summary>
     '''TableRow1 control.
     '''</summary>
@@ -75,7 +75,7 @@ Partial Public Class EIS_rp_threshold
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents TableRow1 As Global.System.Web.UI.WebControls.TableRow
-    
+
     '''<summary>
     '''TableCell4 control.
     '''</summary>
@@ -84,7 +84,7 @@ Partial Public Class EIS_rp_threshold
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents TableCell4 As Global.System.Web.UI.WebControls.TableCell
-    
+
     '''<summary>
     '''lblSOx control.
     '''</summary>
@@ -93,7 +93,7 @@ Partial Public Class EIS_rp_threshold
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblSOx As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''TableCell5 control.
     '''</summary>
@@ -102,7 +102,7 @@ Partial Public Class EIS_rp_threshold
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents TableCell5 As Global.System.Web.UI.WebControls.TableCell
-    
+
     '''<summary>
     '''lblSOxThreshold control.
     '''</summary>
@@ -111,7 +111,7 @@ Partial Public Class EIS_rp_threshold
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblSOxThreshold As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''TableCell6 control.
     '''</summary>
@@ -120,7 +120,7 @@ Partial Public Class EIS_rp_threshold
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents TableCell6 As Global.System.Web.UI.WebControls.TableCell
-    
+
     '''<summary>
     '''rblSOx control.
     '''</summary>
@@ -129,7 +129,7 @@ Partial Public Class EIS_rp_threshold
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rblSOx As Global.System.Web.UI.WebControls.RadioButtonList
-    
+
     '''<summary>
     '''reqvSOx control.
     '''</summary>
@@ -138,7 +138,7 @@ Partial Public Class EIS_rp_threshold
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents reqvSOx As Global.System.Web.UI.WebControls.RequiredFieldValidator
-    
+
     '''<summary>
     '''TableRow2 control.
     '''</summary>
@@ -147,7 +147,7 @@ Partial Public Class EIS_rp_threshold
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents TableRow2 As Global.System.Web.UI.WebControls.TableRow
-    
+
     '''<summary>
     '''TableCell7 control.
     '''</summary>
@@ -156,7 +156,7 @@ Partial Public Class EIS_rp_threshold
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents TableCell7 As Global.System.Web.UI.WebControls.TableCell
-    
+
     '''<summary>
     '''lblVOC control.
     '''</summary>
@@ -165,7 +165,7 @@ Partial Public Class EIS_rp_threshold
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblVOC As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''TableCell8 control.
     '''</summary>
@@ -174,7 +174,7 @@ Partial Public Class EIS_rp_threshold
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents TableCell8 As Global.System.Web.UI.WebControls.TableCell
-    
+
     '''<summary>
     '''lblVOCThreshold control.
     '''</summary>
@@ -183,7 +183,7 @@ Partial Public Class EIS_rp_threshold
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblVOCThreshold As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''TableCell9 control.
     '''</summary>
@@ -192,7 +192,7 @@ Partial Public Class EIS_rp_threshold
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents TableCell9 As Global.System.Web.UI.WebControls.TableCell
-    
+
     '''<summary>
     '''rblVOC control.
     '''</summary>
@@ -201,7 +201,7 @@ Partial Public Class EIS_rp_threshold
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rblVOC As Global.System.Web.UI.WebControls.RadioButtonList
-    
+
     '''<summary>
     '''reqvVOC control.
     '''</summary>
@@ -210,7 +210,7 @@ Partial Public Class EIS_rp_threshold
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents reqvVOC As Global.System.Web.UI.WebControls.RequiredFieldValidator
-    
+
     '''<summary>
     '''TableRow3 control.
     '''</summary>
@@ -219,7 +219,7 @@ Partial Public Class EIS_rp_threshold
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents TableRow3 As Global.System.Web.UI.WebControls.TableRow
-    
+
     '''<summary>
     '''TableCell10 control.
     '''</summary>
@@ -228,7 +228,7 @@ Partial Public Class EIS_rp_threshold
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents TableCell10 As Global.System.Web.UI.WebControls.TableCell
-    
+
     '''<summary>
     '''lblNOx control.
     '''</summary>
@@ -237,7 +237,7 @@ Partial Public Class EIS_rp_threshold
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblNOx As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''TableCell11 control.
     '''</summary>
@@ -246,7 +246,7 @@ Partial Public Class EIS_rp_threshold
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents TableCell11 As Global.System.Web.UI.WebControls.TableCell
-    
+
     '''<summary>
     '''lblNOxThreshold control.
     '''</summary>
@@ -255,7 +255,7 @@ Partial Public Class EIS_rp_threshold
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblNOxThreshold As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''TableCell12 control.
     '''</summary>
@@ -264,7 +264,7 @@ Partial Public Class EIS_rp_threshold
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents TableCell12 As Global.System.Web.UI.WebControls.TableCell
-    
+
     '''<summary>
     '''rblNOx control.
     '''</summary>
@@ -273,7 +273,7 @@ Partial Public Class EIS_rp_threshold
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rblNOx As Global.System.Web.UI.WebControls.RadioButtonList
-    
+
     '''<summary>
     '''reqvNOx control.
     '''</summary>
@@ -282,7 +282,7 @@ Partial Public Class EIS_rp_threshold
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents reqvNOx As Global.System.Web.UI.WebControls.RequiredFieldValidator
-    
+
     '''<summary>
     '''TableRow4 control.
     '''</summary>
@@ -291,7 +291,7 @@ Partial Public Class EIS_rp_threshold
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents TableRow4 As Global.System.Web.UI.WebControls.TableRow
-    
+
     '''<summary>
     '''TableCell13 control.
     '''</summary>
@@ -300,7 +300,7 @@ Partial Public Class EIS_rp_threshold
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents TableCell13 As Global.System.Web.UI.WebControls.TableCell
-    
+
     '''<summary>
     '''lblCO control.
     '''</summary>
@@ -309,7 +309,7 @@ Partial Public Class EIS_rp_threshold
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblCO As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''TableCell14 control.
     '''</summary>
@@ -318,7 +318,7 @@ Partial Public Class EIS_rp_threshold
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents TableCell14 As Global.System.Web.UI.WebControls.TableCell
-    
+
     '''<summary>
     '''lblCOThreshold control.
     '''</summary>
@@ -327,7 +327,7 @@ Partial Public Class EIS_rp_threshold
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblCOThreshold As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''TableCell15 control.
     '''</summary>
@@ -336,7 +336,7 @@ Partial Public Class EIS_rp_threshold
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents TableCell15 As Global.System.Web.UI.WebControls.TableCell
-    
+
     '''<summary>
     '''rblCO control.
     '''</summary>
@@ -345,7 +345,7 @@ Partial Public Class EIS_rp_threshold
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rblCO As Global.System.Web.UI.WebControls.RadioButtonList
-    
+
     '''<summary>
     '''reqvCO control.
     '''</summary>
@@ -354,7 +354,7 @@ Partial Public Class EIS_rp_threshold
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents reqvCO As Global.System.Web.UI.WebControls.RequiredFieldValidator
-    
+
     '''<summary>
     '''TableRow5 control.
     '''</summary>
@@ -363,7 +363,7 @@ Partial Public Class EIS_rp_threshold
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents TableRow5 As Global.System.Web.UI.WebControls.TableRow
-    
+
     '''<summary>
     '''TableCell16 control.
     '''</summary>
@@ -372,7 +372,7 @@ Partial Public Class EIS_rp_threshold
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents TableCell16 As Global.System.Web.UI.WebControls.TableCell
-    
+
     '''<summary>
     '''lblPM10 control.
     '''</summary>
@@ -381,7 +381,7 @@ Partial Public Class EIS_rp_threshold
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblPM10 As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''TableCell17 control.
     '''</summary>
@@ -390,7 +390,7 @@ Partial Public Class EIS_rp_threshold
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents TableCell17 As Global.System.Web.UI.WebControls.TableCell
-    
+
     '''<summary>
     '''lblPM10Threshold control.
     '''</summary>
@@ -399,7 +399,7 @@ Partial Public Class EIS_rp_threshold
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblPM10Threshold As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''TableCell18 control.
     '''</summary>
@@ -408,7 +408,7 @@ Partial Public Class EIS_rp_threshold
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents TableCell18 As Global.System.Web.UI.WebControls.TableCell
-    
+
     '''<summary>
     '''rblPM10 control.
     '''</summary>
@@ -417,7 +417,7 @@ Partial Public Class EIS_rp_threshold
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rblPM10 As Global.System.Web.UI.WebControls.RadioButtonList
-    
+
     '''<summary>
     '''reqvPM10 control.
     '''</summary>
@@ -426,7 +426,7 @@ Partial Public Class EIS_rp_threshold
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents reqvPM10 As Global.System.Web.UI.WebControls.RequiredFieldValidator
-    
+
     '''<summary>
     '''TableRow6 control.
     '''</summary>
@@ -435,7 +435,7 @@ Partial Public Class EIS_rp_threshold
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents TableRow6 As Global.System.Web.UI.WebControls.TableRow
-    
+
     '''<summary>
     '''TableCell19 control.
     '''</summary>
@@ -444,7 +444,7 @@ Partial Public Class EIS_rp_threshold
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents TableCell19 As Global.System.Web.UI.WebControls.TableCell
-    
+
     '''<summary>
     '''lblPM25 control.
     '''</summary>
@@ -453,7 +453,7 @@ Partial Public Class EIS_rp_threshold
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblPM25 As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''TableCell20 control.
     '''</summary>
@@ -462,7 +462,7 @@ Partial Public Class EIS_rp_threshold
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents TableCell20 As Global.System.Web.UI.WebControls.TableCell
-    
+
     '''<summary>
     '''lblPM25Threshold control.
     '''</summary>
@@ -471,7 +471,7 @@ Partial Public Class EIS_rp_threshold
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblPM25Threshold As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''TableCell21 control.
     '''</summary>
@@ -480,7 +480,7 @@ Partial Public Class EIS_rp_threshold
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents TableCell21 As Global.System.Web.UI.WebControls.TableCell
-    
+
     '''<summary>
     '''rblPM25 control.
     '''</summary>
@@ -489,7 +489,7 @@ Partial Public Class EIS_rp_threshold
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rblPM25 As Global.System.Web.UI.WebControls.RadioButtonList
-    
+
     '''<summary>
     '''reqvPM25 control.
     '''</summary>
@@ -498,7 +498,7 @@ Partial Public Class EIS_rp_threshold
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents reqvPM25 As Global.System.Web.UI.WebControls.RequiredFieldValidator
-    
+
     '''<summary>
     '''TableRow7 control.
     '''</summary>
@@ -507,7 +507,7 @@ Partial Public Class EIS_rp_threshold
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents TableRow7 As Global.System.Web.UI.WebControls.TableRow
-    
+
     '''<summary>
     '''TableCell22 control.
     '''</summary>
@@ -516,7 +516,7 @@ Partial Public Class EIS_rp_threshold
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents TableCell22 As Global.System.Web.UI.WebControls.TableCell
-    
+
     '''<summary>
     '''lblNH3 control.
     '''</summary>
@@ -525,7 +525,7 @@ Partial Public Class EIS_rp_threshold
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblNH3 As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''TableCell23 control.
     '''</summary>
@@ -534,7 +534,7 @@ Partial Public Class EIS_rp_threshold
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents TableCell23 As Global.System.Web.UI.WebControls.TableCell
-    
+
     '''<summary>
     '''lblNH3Threshold control.
     '''</summary>
@@ -543,7 +543,7 @@ Partial Public Class EIS_rp_threshold
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblNH3Threshold As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''TableCell24 control.
     '''</summary>
@@ -552,7 +552,7 @@ Partial Public Class EIS_rp_threshold
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents TableCell24 As Global.System.Web.UI.WebControls.TableCell
-    
+
     '''<summary>
     '''rblNH3 control.
     '''</summary>
@@ -561,7 +561,7 @@ Partial Public Class EIS_rp_threshold
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rblNH3 As Global.System.Web.UI.WebControls.RadioButtonList
-    
+
     '''<summary>
     '''reqvNH3 control.
     '''</summary>
@@ -570,7 +570,7 @@ Partial Public Class EIS_rp_threshold
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents reqvNH3 As Global.System.Web.UI.WebControls.RequiredFieldValidator
-    
+
     '''<summary>
     '''TableRow8 control.
     '''</summary>
@@ -579,7 +579,7 @@ Partial Public Class EIS_rp_threshold
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents TableRow8 As Global.System.Web.UI.WebControls.TableRow
-    
+
     '''<summary>
     '''TableCell25 control.
     '''</summary>
@@ -588,7 +588,7 @@ Partial Public Class EIS_rp_threshold
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents TableCell25 As Global.System.Web.UI.WebControls.TableCell
-    
+
     '''<summary>
     '''lblPb control.
     '''</summary>
@@ -597,7 +597,7 @@ Partial Public Class EIS_rp_threshold
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblPb As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''TableCell26 control.
     '''</summary>
@@ -606,7 +606,7 @@ Partial Public Class EIS_rp_threshold
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents TableCell26 As Global.System.Web.UI.WebControls.TableCell
-    
+
     '''<summary>
     '''lblPbThreshold control.
     '''</summary>
@@ -615,7 +615,7 @@ Partial Public Class EIS_rp_threshold
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblPbThreshold As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''TableCell27 control.
     '''</summary>
@@ -624,7 +624,7 @@ Partial Public Class EIS_rp_threshold
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents TableCell27 As Global.System.Web.UI.WebControls.TableCell
-    
+
     '''<summary>
     '''rblPb control.
     '''</summary>
@@ -633,7 +633,7 @@ Partial Public Class EIS_rp_threshold
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rblPb As Global.System.Web.UI.WebControls.RadioButtonList
-    
+
     '''<summary>
     '''reqvPb control.
     '''</summary>
@@ -642,7 +642,7 @@ Partial Public Class EIS_rp_threshold
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents reqvPb As Global.System.Web.UI.WebControls.RequiredFieldValidator
-    
+
     '''<summary>
     '''txtComment control.
     '''</summary>
@@ -651,7 +651,7 @@ Partial Public Class EIS_rp_threshold
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtComment As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''txtComment_TextBoxWatermarkExtender control.
     '''</summary>
@@ -660,7 +660,7 @@ Partial Public Class EIS_rp_threshold
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtComment_TextBoxWatermarkExtender As Global.AjaxControlToolkit.TextBoxWatermarkExtender
-    
+
     '''<summary>
     '''lblNextButton control.
     '''</summary>
@@ -669,16 +669,7 @@ Partial Public Class EIS_rp_threshold
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblNextButton As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''lblEIYear control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblEIYear As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''vgThresholds control.
     '''</summary>
@@ -687,7 +678,7 @@ Partial Public Class EIS_rp_threshold
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents vgThresholds As Global.System.Web.UI.WebControls.ValidationSummary
-    
+
     '''<summary>
     '''dOptOut control.
     '''</summary>
@@ -696,7 +687,7 @@ Partial Public Class EIS_rp_threshold
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents dOptOut As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
+
     '''<summary>
     '''lblOptOutStatus1 control.
     '''</summary>
@@ -705,7 +696,7 @@ Partial Public Class EIS_rp_threshold
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblOptOutStatus1 As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''pnlColocate control.
     '''</summary>
@@ -714,7 +705,7 @@ Partial Public Class EIS_rp_threshold
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents pnlColocate As Global.System.Web.UI.WebControls.Panel
-    
+
     '''<summary>
     '''rblIsColocated control.
     '''</summary>
@@ -723,7 +714,7 @@ Partial Public Class EIS_rp_threshold
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rblIsColocated As Global.System.Web.UI.WebControls.RadioButtonList
-    
+
     '''<summary>
     '''reqIsColocated control.
     '''</summary>
@@ -732,7 +723,7 @@ Partial Public Class EIS_rp_threshold
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents reqIsColocated As Global.System.Web.UI.WebControls.RequiredFieldValidator
-    
+
     '''<summary>
     '''pnlColocation control.
     '''</summary>
@@ -741,7 +732,7 @@ Partial Public Class EIS_rp_threshold
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents pnlColocation As Global.System.Web.UI.WebControls.Panel
-    
+
     '''<summary>
     '''txtColocatedWith control.
     '''</summary>
@@ -750,7 +741,7 @@ Partial Public Class EIS_rp_threshold
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtColocatedWith As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''btnContinue control.
     '''</summary>
@@ -759,7 +750,7 @@ Partial Public Class EIS_rp_threshold
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnContinue As Global.System.Web.UI.WebControls.Button
-    
+
     '''<summary>
     '''btnSubmit control.
     '''</summary>
@@ -768,7 +759,7 @@ Partial Public Class EIS_rp_threshold
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnSubmit As Global.System.Web.UI.WebControls.Button
-    
+
     '''<summary>
     '''btnCancel control.
     '''</summary>

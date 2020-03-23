@@ -20,7 +20,7 @@
 
     <h2>Event Registration</h2>
     <p>
-        The GECO system is used to register for classes, workshops, and other events hosted by Georgia EPD. You may view the 
+        The GECO site is used to register for classes, workshops, and other events hosted by Georgia EPD. You may view the 
         <asp:HyperLink ID="linkEvents" runat="server" NavigateUrl="~/EventRegistration/">upcoming events</asp:HyperLink>, 
         but a GECO account is required to register for any event.
     </p>

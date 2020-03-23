@@ -3,7 +3,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang="en-us" xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title>GECO Emission Inventory System</title>
+    <title>GECO Emissions Inventory</title>
     <link rel="apple-touch-icon" sizes="180x180" href="~/assets/epd-favicons/apple-touch-icon.png?v=69kRrvbXdL" />
     <link rel="icon" type="image/png" href="~/assets/epd-favicons/favicon-32x32.png?v=69kRrvbXdL" sizes="32x32" />
     <link rel="icon" type="image/png" href="~/assets/epd-favicons/favicon-16x16.png?v=69kRrvbXdL" sizes="16x16" />
@@ -37,7 +37,7 @@
             </div>
             <div id="leftnav">
                 <div class="homeButton">
-                    <asp:HyperLink ID="lbtnHome" runat="server" CssClass="navButton" NavigateUrl="~/EIS/">EIS Home</asp:HyperLink>
+                    <asp:HyperLink ID="lbtnHome" runat="server" CssClass="navButton" NavigateUrl="~/EIS/">Emissions Inventory Home</asp:HyperLink>
                 </div>
 
                 <asp:Panel ID="pnlFacility" runat="server" CssClass="leftNavMenu">

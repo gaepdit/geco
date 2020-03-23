@@ -78,15 +78,16 @@ Partial Class eis_Default
                     ' Facility opted in, QA check complete, reset not allowed
                     pnlStatus.BackColor = GecoColors.ActionCompletePanel.BackColor
                     lblHeading.Text = "Participating in Emission Inventory"
-                    lblMainMessage.Text = "The facility has reported that is participating in the " &
-                        EIYear & " EI process. " &
+                    lblMainMessage.Text = "The facility has reported that it is participating in the " &
+                        EIYear & " Emissions Inventory. " &
                         "Use to button above to open EPA's Common Emissions Form (CEF). " &
-                        "The CEF will be used for completing the Emission Inventory."
+                        "The CEF will be used for completing the EI."
                     lblStatusText.Text = GetEISStatusMessage(EISStatus)
                     trOptOutReason.Visible = False
                     lblConfNumberText.Text = ConfNumber
                     lblLastUpdateText.Text = DateFinalize
                     LinkToEpaCef.Visible = True
+                    divCefInstructions.Visible = False
                     lblOther.Text = "The Air Protection Branch has reviewed and accepted the facility's data. " &
                         "The status may not be changed at this time."
 
@@ -94,12 +95,13 @@ Partial Class eis_Default
                     ' Facility opted out of EI, QA check complete, reset not allowed
                     pnlStatus.BackColor = GecoColors.NoActionPanel.BackColor
                     lblHeading.Text = "Not Participating In Emission Inventory"
-                    lblMainMessage.Text = "The facility has reported that is not participating in the" &
-                        EIYear & " EI process."
+                    lblMainMessage.Text = "The facility has reported that it is not participating in the" &
+                        EIYear & " Emissions Inventory."
                     lblStatusText.Text = GetEISStatusMessage(EISStatus)
                     trOptOutReason.Visible = False
                     lblConfNumberText.Text = ConfNumber
                     lblLastUpdateText.Text = DateFinalize
+                    divCefInstructions.Visible = False
                     lblOther.Text = "The Air Protection Branch has reviewed and accepted the facility's data. " &
                         "The status may not be changed at this time."
 
@@ -129,10 +131,10 @@ Partial Class eis_Default
                     pnlStatus.BackColor = GecoColors.InProgressPanel.BackColor
                     lblHeading.Text = "Ready For Emissions Inventory Process"
                     lblMainMessage.Text = "EPD's Air Protection Branch has determined that this facility " &
-                        "may need to participate in the " & EIYear & " EI process. Click the button above " &
+                        "may need to participate in the " & EIYear & " Emissions Inventory. Click the button above " &
                         "to begin. You will first verify the facility and contact " &
                         "information and then answer questions about the facility emissions " &
-                        "to determine if participation in the Emissions Inventory process " &
+                        "to determine if participation in the EI " &
                         "is necessary."
                     lblStatusText.Text = GetEISStatusMessage(EISStatus)
                     trOptOutReason.Visible = False
@@ -152,10 +154,10 @@ Partial Class eis_Default
                     ' Facility opted into EI, reset allowed
                     pnlStatus.BackColor = GecoColors.ActionCompletePanel.BackColor
                     lblHeading.Text = "Participating in Emission Inventory"
-                    lblMainMessage.Text = "The facility has reported that is participating in the " &
-                        EIYear & " EI process. " &
+                    lblMainMessage.Text = "The facility has reported that it is participating in the " &
+                        EIYear & " Emissions Inventory. " &
                         "Use to button above to open EPA's Common Emissions Form (CEF). " &
-                        "The CEF will be used for completing the Emission Inventory."
+                        "The CEF will be used for completing the EI."
                     lblStatusText.Text = GetEISStatusMessage(EISStatus)
                     trOptOutReason.Visible = False
                     lblConfNumberText.Text = ConfNumber
@@ -165,19 +167,21 @@ Partial Class eis_Default
                     lblOther.Text = "You may choose to reset the facility status and start " &
                         "over. Click the button to reset your status."
                     LinkToEpaCef.Visible = True
+                    divCefInstructions.Visible = False
 
                 ElseIf OptOut = "1" AndAlso EISStatus = "3" Then
                     ' Facility opted out of EI, reset allowed
                     pnlStatus.BackColor = GecoColors.NoActionPanel.BackColor
                     lblHeading.Text = "Not Participating In Emission Inventory"
-                    lblMainMessage.Text = "The facility has reported that is not participating in the" &
-                        EIYear & " EI process."
+                    lblMainMessage.Text = "The facility has reported that it is not participating in the " &
+                        EIYear & " Emissions Inventory."
                     lblStatusText.Text = GetEISStatusMessage(EISStatus)
                     lblOptOutReasonText.Text = GetOptOutReason(FacilitySiteID, EIYear)
                     lblConfNumberText.Text = ConfNumber
                     lblLastUpdateText.Text = DateFinalize
                     btnReset.Text = "Reset " & EIYear & " Status"
                     btnReset.Visible = True
+                    divCefInstructions.Visible = False
                     lblOther.Text = "You may choose to reset the facility status and start " &
                         "over. Click the button to reset your status."
 
@@ -185,10 +189,10 @@ Partial Class eis_Default
                     ' Facility opted into EI, QA in progress, reset not allowed
                     pnlStatus.BackColor = GecoColors.ActionCompletePanel.BackColor
                     lblHeading.Text = "Participating in Emission Inventory"
-                    lblMainMessage.Text = "The facility has reported that is participating in the" &
-                        EIYear & " EI process. " &
+                    lblMainMessage.Text = "The facility has reported that it is participating in the " &
+                        EIYear & " Emissions Inventory. " &
                         "Use to button above to open EPA's Common Emissions Form (CEF). " &
-                        "The CEF will be used for completing the Emission Inventory."
+                        "The CEF will be used for completing the EI."
                     lblStatusText.Text = GetEISStatusMessage(EISStatus)
                     trOptOutReason.Visible = False
                     lblConfNumberText.Text = ConfNumber
@@ -196,17 +200,19 @@ Partial Class eis_Default
                     lblOther.Text = "The Air Protection Branch is reviewing the facility's " &
                         "data so the current status may not be changed at this time."
                     LinkToEpaCef.Visible = True
+                    divCefInstructions.Visible = False
 
                 ElseIf OptOut = "1" AndAlso EISStatus = "4" Then
                     ' Facility opted out of EI, QA in progress, reset not allowed
                     pnlStatus.BackColor = GecoColors.NoActionPanel.BackColor
                     lblHeading.Text = "Not Participating In Emission Inventory"
-                    lblMainMessage.Text = "The facility has reported that is not participating in the" &
-                        EIYear & " EI process."
+                    lblMainMessage.Text = "The facility has reported that it is not participating in the " &
+                        EIYear & " Emissions Inventory."
                     lblStatusText.Text = GetEISStatusMessage(EISStatus)
                     trOptOutReason.Visible = False
                     lblConfNumberText.Text = ConfNumber
                     lblLastUpdateText.Text = DateFinalize
+                    divCefInstructions.Visible = False
                     lblOther.Text = "The Air Protection Branch is reviewing the facility's " &
                         "data so the current status may not be changed at this time."
 

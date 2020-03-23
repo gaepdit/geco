@@ -1,4 +1,4 @@
-<%@ Page Title="Facility Status - GECO Emission Inventory" Language="VB" MaintainScrollPositionOnPostback="true"
+<%@ Page Title="Facility Status - GECO Emissions Inventory" Language="VB" MaintainScrollPositionOnPostback="true"
     MasterPageFile="eismaster.master" AutoEventWireup="false"
     Inherits="GECO.EIS_rp_facilitystatus" CodeBehind="rp_facilitystatus.aspx.vb" %>
 

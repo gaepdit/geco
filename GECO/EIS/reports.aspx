@@ -1,4 +1,4 @@
-﻿<%@ Page Title="GECO Emission Inventory Reports" Language="VB" MasterPageFile="eismaster.master" AutoEventWireup="false" Inherits="GECO.EIS_reports" CodeBehind="reports.aspx.vb" %>
+﻿<%@ Page Title="GECO Emissions Inventory Reports" Language="VB" MasterPageFile="eismaster.master" AutoEventWireup="false" Inherits="GECO.EIS_reports" CodeBehind="reports.aspx.vb" %>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder3" runat="Server">
     <style type="text/css">
@@ -29,7 +29,7 @@
                     }
     </style>
     <div style="text-align: center">
-        <h2>Emission Inventory Reports</h2>
+        <h2>Emissions Inventory Reports</h2>
 
         <p>
             Click one of the buttons below to go the the page for the indicated report.<br />

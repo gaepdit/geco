@@ -33,7 +33,7 @@
         <h1>Edit Facility Details</h1>
 
         <asp:ValidationSummary ID="ValidationSummary1" runat="server" HeaderText="You received the following errors:"></asp:ValidationSummary>
-        <div style="text-align: center; width: 580px; margin-left: 200px; font-size: medium; color: #ff0000; font-weight: bold">
+        <div style="text-align: center; width: 580px; margin-left: 200px; font-size: medium; font-weight: bold">
             Verify and correct the information below before clicking<br />
             the button at the bottom of the page to continue.
         </div>
@@ -175,7 +175,7 @@
                     <p class="label" id="pGeoInfo" runat="server">
                         <em>Geographic information updates must be reviewed by APB staff.</em>
                         If the existing values are incorrect, enter your corrections below and include a comment in the 
-                        Comment box explaining your changes. Geographic data will not be modified in the EIS system until 
+                        comment box explaining your changes. Geographic data will not be modified in the Emissions Inventory system until 
                         approved by APB staff. Please use the &quot;Contact Us&quot; menu item above if you have questions.
                     </p>
                 </div>
@@ -263,9 +263,9 @@
         <asp:HiddenField ID="hidGeographicComment" runat="server" Visible="false" />
         <br />
         <div class="fieldwrapperseparator">
-            <asp:Label ID="lblSeparator5" class="styledseparator" runat="server" Text="Emission Inventory Contact Information"></asp:Label>
-            <asp:Label ID="Label1" CssClass="label" runat="server" Text="The Emission Inventory contact
-            will receive notices regarding annual Emission Inventory submittals for the facility."></asp:Label>
+            <asp:Label ID="lblSeparator5" class="styledseparator" runat="server" Text="Emissions Inventory Contact Information"></asp:Label>
+            <asp:Label ID="Label1" CssClass="label" runat="server" Text="The Emissions Inventory contact
+            will receive notices regarding annual Emissions Inventory submittals for the facility."></asp:Label>
         </div>
         <div class="fieldwrapper">
             <asp:Label ID="lblNamePrefix" class="styled" runat="server" Text="Honorific:"></asp:Label>
@@ -277,26 +277,26 @@
             <asp:Label ID="lblfirstname" class="styled" runat="server" Text="First Name:"></asp:Label>
             <asp:TextBox ID="txtFirstName" runat="server" class="editable" Text="" Width="200px"></asp:TextBox>
             <asp:RequiredFieldValidator ID="reqvFirstName" runat="server" ControlToValidate="txtFirstName"
-                ErrorMessage="The Emission Inventory contact first name is required.">*</asp:RequiredFieldValidator>
+                ErrorMessage="The Emissions Inventory contact first name is required.">*</asp:RequiredFieldValidator>
         </div>
         <div class="fieldwrapper">
             <asp:Label ID="lblLastName" class="styled" runat="server" Text="Last Name:"></asp:Label>
             <asp:TextBox ID="txtLastName" runat="server" class="editable" Text="" Width="200px"></asp:TextBox>
             <asp:RequiredFieldValidator ID="reqvLastName" runat="server" ControlToValidate="txtLastName"
-                ErrorMessage="The Emission Inventory contact last name is required.">*</asp:RequiredFieldValidator>
+                ErrorMessage="The Emissions Inventory contact last name is required.">*</asp:RequiredFieldValidator>
         </div>
         <div class="fieldwrapper">
             <asp:Label ID="lblIndividualTitleText" class="styled" runat="server" Text="Individual Title: "></asp:Label>
             <asp:TextBox ID="txtIndividualTitleText" runat="server" class="editable" Text=""
                 Width="200px"></asp:TextBox>
             <asp:RequiredFieldValidator ID="reqvIndividualTitleText" runat="server" ControlToValidate="txtIndividualTitleText"
-                ErrorMessage="The Emission Inventory contact title is required.">*</asp:RequiredFieldValidator>
+                ErrorMessage="The Emissions Inventory contact title is required.">*</asp:RequiredFieldValidator>
         </div>
         <div class="fieldwrapper">
             <asp:Label ID="lblMailingAddressText_Contact" class="styled" runat="server" Text="Contact Mailing Address:"></asp:Label>
             <asp:TextBox ID="txtMailingAddressText_Contact" runat="server" class="editable" Text=""></asp:TextBox>
             <asp:RequiredFieldValidator ID="reqvMailingAddressText_Contact" runat="server" ControlToValidate="txtMailingAddressText_Contact"
-                ErrorMessage="The Emission Inventory contact mailing address is required.">*</asp:RequiredFieldValidator>
+                ErrorMessage="The Emissions Inventory contact mailing address is required.">*</asp:RequiredFieldValidator>
         </div>
         <div class="fieldwrapper">
             <asp:Label ID="lblSupplementalAddressText_Contact" class="styled_noline" runat="server"
@@ -313,7 +313,7 @@
             <asp:TextBox ID="txtMailingAddressCityName_Contact" runat="server" class="editable"
                 Text="" Width="200px"></asp:TextBox>
             <asp:RequiredFieldValidator ID="reqvMailingAddressCityName_Contact" runat="server"
-                ControlToValidate="txtMailingAddressCityName_Contact" ErrorMessage="The Emission Inventory contact city is required.">*</asp:RequiredFieldValidator>
+                ControlToValidate="txtMailingAddressCityName_Contact" ErrorMessage="The Emissions Inventory contact city is required.">*</asp:RequiredFieldValidator>
         </div>
         <div class="fieldwrapper">
             <asp:Label ID="lblMailingAddressStateCode_Contact" class="styled" runat="server"
@@ -321,7 +321,7 @@
             <asp:DropDownList ID="ddlContact_MailState" runat="server">
             </asp:DropDownList>
             <asp:RequiredFieldValidator ID="reqvMailingAddressStateCode_Contact" ControlToValidate="ddlContact_MailState"
-                InitialValue="--Select a State--" runat="server" ValidationGroup="vgStack" ErrorMessage="The Emission Inventory contact state is required."
+                InitialValue="--Select a State--" runat="server" ValidationGroup="vgStack" ErrorMessage="The Emissions Inventory contact state is required."
                 Display="Dynamic">*</asp:RequiredFieldValidator>
         </div>
         <div class="fieldwrapper">
@@ -330,7 +330,7 @@
             <asp:TextBox ID="txtMailingAddressPostalCode_Contact" runat="server" class="editable"
                 Text="" Width="150px"></asp:TextBox>
             <asp:RequiredFieldValidator ID="reqvMailingAddressPostalCode_Contact" runat="server"
-                ControlToValidate="txtMailingAddressPostalCode_Contact" ErrorMessage="The Emission Inventory contact zip code is required.">*</asp:RequiredFieldValidator>
+                ControlToValidate="txtMailingAddressPostalCode_Contact" ErrorMessage="The Emissions Inventory contact zip code is required.">*</asp:RequiredFieldValidator>
             <asp:RegularExpressionValidator ID="rgxvMailingAddressPostalCode_Contact" runat="server"
                 ControlToValidate="txtMailingAddressPostalCode_Contact" ErrorMessage="Please check the contact mailing address zip code format."
                 ValidationExpression="^(\d{5})(-\d{4})?$" Display="Dynamic">Format must be either 99999 or 99999-9999</asp:RegularExpressionValidator>
@@ -344,7 +344,7 @@
             <asp:TextBox ID="txtTelephoneNumberText" runat="server" class="editable" Text=""
                 Width="150px" MaxLength="30"></asp:TextBox>
             <asp:RequiredFieldValidator ID="reqvTelephoneNumberText" runat="server" ControlToValidate="txtTelephoneNumberText"
-                ErrorMessage="The Emission Inventory contact phone number is required.">*</asp:RequiredFieldValidator>
+                ErrorMessage="The Emissions Inventory contact phone number is required.">*</asp:RequiredFieldValidator>
         </div>
         <div class="fieldwrapper">
             <asp:Label ID="lblTelephoneNumberText_mobile" class="styled" runat="server" Text="Contact Mobile Number: "></asp:Label>
@@ -368,7 +368,7 @@
             <asp:Label ID="lblElectronicAddress" class="styled" runat="server" Text="Email: "></asp:Label>
             <asp:TextBox ID="txtElectronicAddressText" runat="server" class="editable" Text=""></asp:TextBox>
             <asp:RequiredFieldValidator ID="reqvElectronicAddressText" runat="server" ControlToValidate="txtElectronicAddressText"
-                ErrorMessage="The Emission Inventory contact email address is required.">*</asp:RequiredFieldValidator>
+                ErrorMessage="The Emissions Inventory contact email address is required.">*</asp:RequiredFieldValidator>
             <asp:RegularExpressionValidator ID="rgxvElectronicAddress" runat="server"
                 ControlToValidate="txtElectronicAddressText"
                 ErrorMessage="Email address not valid."

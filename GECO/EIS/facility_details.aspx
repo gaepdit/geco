@@ -200,7 +200,7 @@
             ReadOnly="True"></asp:TextBox>
     </div>
     <div class="fieldwrapperseparator">
-        <asp:Label ID="lblSeparator5" class="styledseparator" runat="server" Text="Emission Inventory Contact Information"></asp:Label>
+        <asp:Label ID="lblSeparator5" class="styledseparator" runat="server" Text="Emissions Inventory Contact Information"></asp:Label>
         <div class="sepbuttons">
             <asp:Button ID="btnEditContact" runat="server" Text="Edit Contact Info"
                 ToolTip="" Font-Size="Small" Visible="False" />
