@@ -16,12 +16,14 @@
   </connectionStrings>
 
   <appSettings>
+    <!-- Required settings-->
     <add key="GECO_ENVIRONMENT" value="" xdt:Transform="SetAttributes" xdt:Locator="Match(key)"/>
     <add key="UndeliverableEmailFolder" value="" xdt:Transform="SetAttributes" xdt:Locator="Match(key)"/>
     <add key="LoggingFolder" value="" xdt:Transform="SetAttributes" xdt:Locator="Match(key)"/>
     <add key="LogExceptionsToFile" value="" xdt:Transform="SetAttributes" xdt:Locator="Match(key)"/>
     <add key="GecoContactEmail" value="" xdt:Transform="SetAttributes" xdt:Locator="Match(key)"/>
     <add key="GecoContactName" value="" xdt:Transform="SetAttributes" xdt:Locator="Match(key)"/>
+    <add key="SmtpHost" value="" xdt:Transform="SetAttributes" xdt:Locator="Match(key)"/>
     <add key="GoogleMapsAPIKey" value="" xdt:Transform="SetAttributes" xdt:Locator="Match(key)"/>
     <add key="SENTRY_DSN" value="" xdt:Transform="SetAttributes" xdt:Locator="Match(key)"/>
     <!-- <add key="EpaCefUrl" value="https://cdx.epa.gov" xdt:Transform="SetAttributes" xdt:Locator="Match(key)"/> -->

@@ -9,6 +9,8 @@ Public Module EmailSender
     Public ReadOnly GecoContactName As String = ConfigurationManager.AppSettings("GecoContactName")
     Public ReadOnly SaveAllEmails As Boolean = ConfigurationManager.AppSettings("SaveAllEmails")
     Public ReadOnly EnableSendingEmail As Boolean = ConfigurationManager.AppSettings("EnableSendingEmail")
+    Public ReadOnly SmtpHost As String = ConfigurationManager.AppSettings("SmtpHost")
+    Public ReadOnly SmtpPort As Integer = ConfigurationManager.AppSettings("SmtpPort")
 
     ''' <summary>
     ''' Sends an email and returns true if successful; otherwise false.
@@ -83,7 +85,7 @@ Public Module EmailSender
             End If
 
             Try
-                Using smtpClient As New SmtpClient("smtp.gets.ga.gov")
+                Using smtpClient As New SmtpClient(SmtpHost, SmtpPort)
                     smtpClient.Send(msg)
                 End Using
 

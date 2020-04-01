@@ -2,7 +2,8 @@
 <!--
   DO NOT EDIT "Web.config"!!!
 
-  Web.config is automatically generated on build. Edit Web.configBuilder.xml instead.
+  Web.config is automatically generated on build. Edit Web.configBuilder.xml and
+  Web.configBuilder.{configuration}.xml instead.
 -->
 
 <!--
@@ -19,6 +20,8 @@
     <add key="GecoContactEmail" value="GeorgiaAirProtectionBranch@dnr.ga.gov" />
     <add key="GecoContactName" value="GECO" />
     <add key="EnableSendingEmail" value="true" />
+    <add key="SmtpHost" value="localhost" />
+    <add key="SmtpPort" value="2525" />
     <add key="SaveAllEmails" value="false" />
     <add key="GoogleMapsAPIKey" value="" />
     <add key="SENTRY_DSN" value="" />
