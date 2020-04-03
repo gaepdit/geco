@@ -1,4 +1,4 @@
-Imports System.Data.SqlClient
+﻿Imports System.Data.SqlClient
 Imports GECO.GecoModels
 
 Partial Class AnnualFees_Default
@@ -355,7 +355,7 @@ Partial Class AnnualFees_Default
             End If
             Dim fee As Double
 
-            'For 1-hour zone non-attainment counties, the VOC/NOx emissions
+            'For 1-hour zone nonattainment counties, the VOC/NOx emissions
             'threshold is 25 tons
 
             If chkNonAttainment.Checked Then

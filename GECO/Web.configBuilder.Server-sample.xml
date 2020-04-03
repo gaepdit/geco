@@ -26,8 +26,8 @@
     <add key="SmtpHost" value="" xdt:Transform="SetAttributes" xdt:Locator="Match(key)"/>
     <add key="GoogleMapsAPIKey" value="" xdt:Transform="SetAttributes" xdt:Locator="Match(key)"/>
     <add key="SENTRY_DSN" value="" xdt:Transform="SetAttributes" xdt:Locator="Match(key)"/>
-    <!-- <add key="EpaCefUrl" value="https://cdx.epa.gov" xdt:Transform="SetAttributes" xdt:Locator="Match(key)"/> -->
-    <add key="EpaCefUrl" value="https://test.epacdx.net" xdt:Transform="SetAttributes" xdt:Locator="Match(key)"/>
+    <!-- <add key="EpaCaersUrl" value="https://cdx.epa.gov" xdt:Transform="SetAttributes" xdt:Locator="Match(key)"/> -->
+    <add key="EpaCaersUrl" value="https://test.epacdx.net" xdt:Transform="SetAttributes" xdt:Locator="Match(key)"/>
   </appSettings>
 
   <system.web>

@@ -23,13 +23,13 @@ Partial Public Class eis_Default
     Protected WithEvents ToolkitScriptManager1 As Global.AjaxControlToolkit.ToolkitScriptManager
 
     '''<summary>
-    '''divCefInstructions control.
+    '''divCaersInstructions control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents divCefInstructions As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+    Protected WithEvents divCaersInstructions As Global.System.Web.UI.HtmlControls.HtmlGenericControl
 
     '''<summary>
     '''pnlStatus control.
@@ -59,13 +59,13 @@ Partial Public Class eis_Default
     Protected WithEvents btnBegin As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
-    '''LinkToEpaCef control.
+    '''LinkToEpaCaers control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents LinkToEpaCef As Global.System.Web.UI.WebControls.HyperLink
+    Protected WithEvents LinkToEpaCaers As Global.System.Web.UI.WebControls.HyperLink
 
     '''<summary>
     '''lblMainMessage control.

@@ -9,10 +9,10 @@
         actual emissions. For assistance with calculating PTE, please use the        
         <a href="https://epd.georgia.gov/documents/potential-emit-guidelines" target="_blank">Potential 
             to Emit Guidelines</a>.
-        Beginning with the 2019 Emissions Inventory, Georgia will be using the "Common Emissions 
-        Form" (CEF) developed by U.S. EPA.
+        Beginning with the 2019 Emissions Inventory, Georgia will be using the Combined Air Emissions 
+        Reporting System (CAERS) developed by U.S. EPA.
     </p>
-    <div id="divCefInstructions" runat="server">
+    <div id="divCaersInstructions" runat="server">
         <p>
             The new Emissions Inventory process will be as follows:
         </p>
@@ -30,14 +30,13 @@
                     Begin the EI process below. You will be asked to review basic facility and contact 
                     information. You will then be asked about facility emissions to determine if participation 
                     in the Emissions Inventory process is necessary. 
-                    <em>All facilities must complete this step before proceeding to the CEF.</em>
+                    <em>All facilities must complete this step before proceeding to the CAERS.</em>
                 </p>
             </li>
             <li>
                 <p>
                     If it is determined that the facility will participate in the Emissions Inventory process, 
-                    you will be directed to EPA's Common Emissions Form. The CEF will be used for completing 
-                    the Emissions Inventory.
+                    you will be directed to EPA's CAERS to complete the Emissions Inventory.
                 </p>
             </li>
         </ol>
@@ -50,8 +49,8 @@
 
         <div class="button-container-actions">
             <asp:Button ID="btnBegin" runat="server" CssClass="button button-large" Visible="false" />
-            <asp:HyperLink ID="LinkToEpaCef" runat="server" CssClass="button button-large" Visible="false"
-                Text="Proceed to the EPA Common Emissions Form" Target="_blank" />
+            <asp:HyperLink ID="LinkToEpaCaers" runat="server" CssClass="button button-large" Visible="false"
+                Text="Proceed to the EPA Combined Air Emissions Reporting System" Target="_blank" />
         </div>
 
         <p>

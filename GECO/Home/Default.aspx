@@ -74,8 +74,8 @@
     <div class="announcement announcement-wide">
         <h2>Announcement</h2>
         <p>
-            Starting this year, Georgia will be using the Combined Air Emissions Reporting (CAER) 
-            "Common Emissions Form" (CEF) for the 2019 Emissions Inventory data collection. To help 
+            Starting this year, Georgia will be using the Combined Air Emissions Reporting System 
+            (CAERS) for the 2019 Emissions Inventory data collection. To help 
             transition facilities to this new form, Georgia APB and U.S. EPA have prepared a manual 
             and will conduct webinars and live virtual help sessions.
         </p>
@@ -83,7 +83,7 @@
             If you would like to participate in the webinars, please visit the
             <asp:HyperLink ID="lnkEvents" runat="server"
                 NavigateUrl="~/EventRegistration/">Event Registration</asp:HyperLink>
-            page for dates and times. After the CEF is open for submissions, we will also be conducting
+            page for dates and times. After the CAERS is open for submissions, we will also be conducting
             virtual live help training sessions that will run from the week of April&nbsp;14,&nbsp;2020
             to the week of June&nbsp;26,&nbsp;2020.
         </p>

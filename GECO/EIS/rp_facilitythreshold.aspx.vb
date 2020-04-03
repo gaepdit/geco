@@ -20,9 +20,9 @@ Partial Class EIS_rp_threshold
             SummerDayRequired = CheckSummerDayRequired(FacilitySiteID)
             EIType = GetEIType(EIYear)
             If SummerDayRequired Then
-                lblLocation.Text = "located in the ozone non-attainment area."
+                lblLocation.Text = "located in the ozone nonattainment area."
             Else
-                lblLocation.Text = "not located in the ozone non-attainment area."
+                lblLocation.Text = "not located in the ozone nonattainment area."
             End If
 
             LoadpageInfo(EIType)

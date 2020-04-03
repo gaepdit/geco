@@ -33,8 +33,8 @@
         facilities are collected on a three year cycle, while a subset of facilities must report on an annual basis.
     </p>
     <p class="message-highlight">
-        Starting this year, Georgia will be using the Combined Air Emissions Reporting (CAER) "Common Emissions Form" 
-        (CEF) for the 2019 Emissions Inventory data collection. The Emissions Inventory submittal is due on or about 
+        Starting this year, Georgia will be using the Combined Air Emissions Reporting System (CAERS) 
+        for the 2019 Emissions Inventory data collection. The Emissions Inventory submittal is due on or about 
         June&nbsp;30 each year.
     </p>
 

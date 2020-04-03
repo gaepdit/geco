@@ -18,7 +18,7 @@ Partial Class eis_Default
         lblFacilityNameText.Text = GetFacilityName(FacilitySiteID)
         lblFacilityIDText.Text = FacilityAIRS.FormattedString
 
-        LinkToEpaCef.NavigateUrl = ConfigurationManager.AppSettings("EpaCefUrl")
+        LinkToEpaCaers.NavigateUrl = ConfigurationManager.AppSettings("EpaCaersUrl")
 
         If Not IsPostBack Then
             EISPanel()
@@ -67,7 +67,7 @@ Partial Class eis_Default
         ' | 4             | QA Process               |
         ' | 5             | Complete                 |
 
-        ' NOTE: For the new process (using EPA's CAER app), status code "2" is no longer used.
+        ' NOTE: For the new process (using EPA's CAERS app), status code "2" is no longer used.
         ' When Facility either opts in or out, status is set to "3"
 
         Select Case EISAccessCode
@@ -80,14 +80,13 @@ Partial Class eis_Default
                     lblHeading.Text = "Participating in Emission Inventory"
                     lblMainMessage.Text = "The facility has reported that it is participating in the " &
                         EIYear & " Emissions Inventory. " &
-                        "Use to button above to open EPA's Common Emissions Form (CEF). " &
-                        "The CEF will be used for completing the EI."
+                        "Use to button above to open EPA's CAERS. CAERS will be used for completing the EI."
                     lblStatusText.Text = GetEISStatusMessage(EISStatus)
                     trOptOutReason.Visible = False
                     lblConfNumberText.Text = ConfNumber
                     lblLastUpdateText.Text = DateFinalize
-                    LinkToEpaCef.Visible = True
-                    divCefInstructions.Visible = False
+                    LinkToEpaCaers.Visible = True
+                    divCaersInstructions.Visible = False
                     lblOther.Text = "The Air Protection Branch has reviewed and accepted the facility's data. " &
                         "The status may not be changed at this time."
 
@@ -101,7 +100,7 @@ Partial Class eis_Default
                     trOptOutReason.Visible = False
                     lblConfNumberText.Text = ConfNumber
                     lblLastUpdateText.Text = DateFinalize
-                    divCefInstructions.Visible = False
+                    divCaersInstructions.Visible = False
                     lblOther.Text = "The Air Protection Branch has reviewed and accepted the facility's data. " &
                         "The status may not be changed at this time."
 
@@ -156,8 +155,7 @@ Partial Class eis_Default
                     lblHeading.Text = "Participating in Emission Inventory"
                     lblMainMessage.Text = "The facility has reported that it is participating in the " &
                         EIYear & " Emissions Inventory. " &
-                        "Use to button above to open EPA's Common Emissions Form (CEF). " &
-                        "The CEF will be used for completing the EI."
+                        "Use to button above to open EPA's CAERS. CAERS will be used for completing the EI."
                     lblStatusText.Text = GetEISStatusMessage(EISStatus)
                     trOptOutReason.Visible = False
                     lblConfNumberText.Text = ConfNumber
@@ -166,8 +164,8 @@ Partial Class eis_Default
                     btnReset.Visible = True
                     lblOther.Text = "You may choose to reset the facility status and start " &
                         "over. Click the button to reset your status."
-                    LinkToEpaCef.Visible = True
-                    divCefInstructions.Visible = False
+                    LinkToEpaCaers.Visible = True
+                    divCaersInstructions.Visible = False
 
                 ElseIf OptOut = "1" AndAlso EISStatus = "3" Then
                     ' Facility opted out of EI, reset allowed
@@ -181,7 +179,7 @@ Partial Class eis_Default
                     lblLastUpdateText.Text = DateFinalize
                     btnReset.Text = "Reset " & EIYear & " Status"
                     btnReset.Visible = True
-                    divCefInstructions.Visible = False
+                    divCaersInstructions.Visible = False
                     lblOther.Text = "You may choose to reset the facility status and start " &
                         "over. Click the button to reset your status."
 
@@ -191,16 +189,15 @@ Partial Class eis_Default
                     lblHeading.Text = "Participating in Emission Inventory"
                     lblMainMessage.Text = "The facility has reported that it is participating in the " &
                         EIYear & " Emissions Inventory. " &
-                        "Use to button above to open EPA's Common Emissions Form (CEF). " &
-                        "The CEF will be used for completing the EI."
+                        "Use to button above to open EPA's CAERS. CAERS will be used for completing the EI."
                     lblStatusText.Text = GetEISStatusMessage(EISStatus)
                     trOptOutReason.Visible = False
                     lblConfNumberText.Text = ConfNumber
                     lblLastUpdateText.Text = DateFinalize
                     lblOther.Text = "The Air Protection Branch is reviewing the facility's " &
                         "data so the current status may not be changed at this time."
-                    LinkToEpaCef.Visible = True
-                    divCefInstructions.Visible = False
+                    LinkToEpaCaers.Visible = True
+                    divCaersInstructions.Visible = False
 
                 ElseIf OptOut = "1" AndAlso EISStatus = "4" Then
                     ' Facility opted out of EI, QA in progress, reset not allowed
@@ -212,7 +209,7 @@ Partial Class eis_Default
                     trOptOutReason.Visible = False
                     lblConfNumberText.Text = ConfNumber
                     lblLastUpdateText.Text = DateFinalize
-                    divCefInstructions.Visible = False
+                    divCaersInstructions.Visible = False
                     lblOther.Text = "The Air Protection Branch is reviewing the facility's " &
                         "data so the current status may not be changed at this time."
 

@@ -425,7 +425,7 @@
                     <tr>
                         <td>
                             <asp:CheckBox ID="chkNonAttainment" runat="server" Font-Bold="True" Enabled="False"
-                                Text="1-HOUR OZONE NON-ATTAINMENT"></asp:CheckBox>
+                                Text="1-HOUR OZONE NONATTAINMENT"></asp:CheckBox>
                         </td>
                         <td>CLASS:
                            
