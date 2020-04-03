@@ -24,6 +24,7 @@
     <add key="GecoContactEmail" value="" xdt:Transform="SetAttributes" xdt:Locator="Match(key)"/>
     <add key="GecoContactName" value="" xdt:Transform="SetAttributes" xdt:Locator="Match(key)"/>
     <add key="SmtpHost" value="" xdt:Transform="SetAttributes" xdt:Locator="Match(key)"/>
+    <add key="SmtpPort" value="" xdt:Transform="SetAttributes" xdt:Locator="Match(key)"/>
     <add key="GoogleMapsAPIKey" value="" xdt:Transform="SetAttributes" xdt:Locator="Match(key)"/>
     <add key="SENTRY_DSN" value="" xdt:Transform="SetAttributes" xdt:Locator="Match(key)"/>
     <!-- <add key="EpaCaersUrl" value="https://cdx.epa.gov" xdt:Transform="SetAttributes" xdt:Locator="Match(key)"/> -->

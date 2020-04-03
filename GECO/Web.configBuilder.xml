@@ -21,7 +21,7 @@
     <add key="GecoContactName" value="GECO" />
     <add key="EnableSendingEmail" value="true" />
     <add key="SmtpHost" value="localhost" />
-    <add key="SmtpPort" value="2525" />
+    <add key="SmtpPort" value="25" />
     <add key="SaveAllEmails" value="false" />
     <add key="GoogleMapsAPIKey" value="" />
     <add key="SENTRY_DSN" value="" />
