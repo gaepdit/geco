@@ -1,4 +1,4 @@
-﻿Public Module Check
+﻿Public Module Guard
 
     Public Function NotNull(Of T)(ByVal value As T, ByVal parameterName As String) As T
         If value Is Nothing Then
