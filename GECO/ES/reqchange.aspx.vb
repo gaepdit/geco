@@ -1,4 +1,4 @@
-Imports System.Data.SqlClient
+﻿Imports System.Data.SqlClient
 
 Partial Class ei_reqchange
     Inherits Page
@@ -160,7 +160,7 @@ Partial Class ei_reqchange
     Protected Sub btnSubmitRequest_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnSubmitRequest.Click
 
         Dim AirsNumber As String = Session("esAirsNumber")
-        Dim UserID As String = GetCurrentUser().DbUpdateUser
+        Dim UserID As Integer = GetCurrentUser().UserId
         Dim FacilityName As String = txtFacilityNameNew.Text
         Dim StreetAddress As String = txtStreetAddressNew.Text
         Dim City As String = txtCityNew.Text

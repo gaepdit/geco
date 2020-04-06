@@ -1,4 +1,4 @@
-Imports GECO.GecoModels
+﻿Imports GECO.GecoModels
 Imports SharpRaven
 Imports SharpRaven.Data
 
@@ -31,14 +31,14 @@ Public Module ErrorReporting
                 exc.Data.Add("URL", URL)
             End If
 
-            Dim userEmail As String = GetCurrentUser()?.DbUpdateUser
+            Dim userEmail As String = GetCurrentUser()?.Email
             If userEmail IsNot Nothing Then
                 exc.Data.Add("User Email", userEmail)
             End If
 
             Dim currentUser As GecoUser = GetCurrentUser()
             If currentUser IsNot Nothing Then
-                exc.Data.Add("Current User ID", currentUser.UserId)
+                exc.Data.Add("Current User ID", currentUser.DbUpdateUser)
             End If
 
             Dim airsCookie As String = GetCookie(Cookie.AirsNumber)
