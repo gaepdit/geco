@@ -138,9 +138,7 @@
                                 <td valign="middle">
                                     <asp:TextBox ID="txtYCoordinate" runat="server" BorderColor="CornflowerBlue" BorderStyle="Solid"
                                         BorderWidth="1px" Font-Names="Verdana" Font-Size="Small" MaxLength="9"></asp:TextBox>
-                                    degrees North &nbsp;&nbsp;
-                                    <asp:HyperLink ID="HyperLink1" runat="server" Font-Names="Arial" Font-Size="Small"
-                                        NavigateUrl="http://www.mapbuilder.net/" Target="_blank" ToolTip="Find Latitude & Longitude using Map Builder">Find Lat-Long</asp:HyperLink>
+                                    degrees North
                                 </td>
                             </tr>
                             <tr>
