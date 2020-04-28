@@ -31,7 +31,7 @@
                         process for calendar year
                        
                         <asp:Label ID="lblESYear1" runat="server"></asp:Label>
-                        by indicating that actual emissions of VOCs and NOx were less than or equal to 25
+                        by indicating that actual emissions of VOCs and NO<sub>x</sub> were less than or equal to 25
                         tons for that year.</td>
                 </tr>
                 <tr>
@@ -107,7 +107,7 @@
                         calendar year
                        
                         <asp:Label ID="lblESYear3" runat="server"></asp:Label>
-                        by indicating that emissions of VOCs and/or NOx were greater than 25 tons for that
+                        by indicating that emissions of VOCs and/or NO<sub>x</sub> were greater than 25 tons for that
                         year. The emission quantities you entered appear below.</td>
                 </tr>
                 <tr>
@@ -132,7 +132,7 @@
                
                         <asp:Label ID="lblVOCAmt2" runat="server" Font-Bold="True"></asp:Label>
                         tons/year<br />
-                        NOx Emissions:
+                        NO<sub>x</sub> Emissions:
                
                         <asp:Label ID="lblNOXAmt2" runat="server" Font-Bold="True"></asp:Label>
                         tons/year<br />

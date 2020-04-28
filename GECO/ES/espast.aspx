@@ -67,7 +67,7 @@
                         </tr>
                         <tr>
                             <td align="right">
-                                <b>NOx Emissions:</b></td>
+                                <b>NO<sub>x</sub> Emissions:</b></td>
                             <td align="left">
                                 <asp:Label ID="lblNOx" runat="server"></asp:Label>
                                 &nbsp;tpy</td>

@@ -560,7 +560,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td align="right" valign="middle">Actual annual facility-wide NOx Emissions:
+                                    <td align="right" valign="middle">Actual annual facility-wide NO<sub>x</sub> Emissions:
                                     </td>
                                     <td align="left" valign="middle">
                                         <asp:TextBox ID="txtNOx" runat="server" MaxLength="7">0</asp:TextBox>
