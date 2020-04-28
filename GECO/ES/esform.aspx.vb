@@ -647,8 +647,16 @@ Partial Class es_esform
 
     Protected Sub btnSave_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnSave.Click
 
+        If String.IsNullOrWhiteSpace(txtNOx.Text) OrElse Not IsNumeric(txtNOx.Text) Then
+            txtNOx.Text = "0"
+        End If
+
+        If String.IsNullOrWhiteSpace(txtVOC.Text) OrElse Not IsNumeric(txtVOC.Text) Then
+            txtVOC.Text = "0"
+        End If
+
         If txtNOx.Text = "0" AndAlso txtVOC.Text = "0" Then
-            lblVOCNOXZero.Text = "VOC and NOx cannot both be zero."
+            lblVOCNOXZero.Text = "Either VOC or NOx must be greater than zero."
         Else
             SaveES()
             SaveContactAPB()

@@ -541,7 +541,7 @@
                                     <td align="right" valign="middle">Actual annual facility-wide VOC Emissions:
                                     </td>
                                     <td align="left" valign="middle">
-                                        <asp:TextBox ID="txtVOC" runat="server" MaxLength="7"></asp:TextBox>
+                                        <asp:TextBox ID="txtVOC" runat="server" MaxLength="7">0</asp:TextBox>
                                         &nbsp;tons/year
                                     </td>
                                 </tr>
@@ -552,7 +552,7 @@
                                             ValidChars="." TargetControlID="txtVOC">
                                         </act:FilteredTextBoxExtender>
                                         <asp:RangeValidator ID="RangeValidator1" runat="server" ControlToValidate="txtVOC"
-                                            CssClass="validator" Display="Dynamic" ErrorMessage="Maximum VOC emissionsis 99,999 tons."
+                                            CssClass="validator" Display="Dynamic" ErrorMessage="Maximum VOC emissions is 99,999 tons."
                                             MaximumValue="99999" MinimumValue="0" Type="Double" Width="100%"></asp:RangeValidator>
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtVOC"
                                             Display="Dynamic" ErrorMessage="VOC quantity required." Font-Bold="False"
@@ -563,7 +563,7 @@
                                     <td align="right" valign="middle">Actual annual facility-wide NOx Emissions:
                                     </td>
                                     <td align="left" valign="middle">
-                                        <asp:TextBox ID="txtNOx" runat="server" MaxLength="7"></asp:TextBox>
+                                        <asp:TextBox ID="txtNOx" runat="server" MaxLength="7">0</asp:TextBox>
                                         &nbsp;tons/year
                                     </td>
                                 </tr>
@@ -574,7 +574,7 @@
                                             ValidChars="." TargetControlID="txtNOx">
                                         </act:FilteredTextBoxExtender>
                                         <asp:RangeValidator ID="RangeValidator9" runat="server" ControlToValidate="txtNOx"
-                                            CssClass="validator" Display="Dynamic" ErrorMessage="Maximum NOx emissionsis 99,999 tons."
+                                            CssClass="validator" Display="Dynamic" ErrorMessage="Maximum NOx emissions is 99,999 tons."
                                             MaximumValue="99999" MinimumValue="0" Type="Double" Width="100%"></asp:RangeValidator>
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtNOx"
                                             Display="Dynamic" ErrorMessage="NOx quantity required." Font-Bold="False" Width="100%"></asp:RequiredFieldValidator>
