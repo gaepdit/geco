@@ -1,4 +1,4 @@
-<%@ Page Language="VB" MaintainScrollPositionOnPostback="true" MasterPageFile="es.master" AutoEventWireup="false" Inherits="GECO.es_confirm" Title="GECO - Confirmation" Codebehind="confirm.aspx.vb" %>
+<%@ Page Language="VB" MaintainScrollPositionOnPostback="true" MasterPageFile="es.master" AutoEventWireup="false" Inherits="GECO.es_confirm" Title="GECO - Confirmation" CodeBehind="confirm.aspx.vb" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <div style="text-align: center">
@@ -29,7 +29,8 @@
                 <tr>
                     <td align="left">Your facility has chosen (or has previously chosen) to opt out of participating in the Emissions Statement
                         process for calendar year
-                        <asp:Label ID="lblESYear1" runat="server" Font-Names="Verdana" Font-Size="Small"></asp:Label>
+                       
+                        <asp:Label ID="lblESYear1" runat="server"></asp:Label>
                         by indicating that actual emissions of VOCs and NOx were less than or equal to 25
                         tons for that year.</td>
                 </tr>
@@ -38,14 +39,16 @@
                 </tr>
                 <tr>
                     <td>The confirmation number issued for opting out was:<br />
-                        <asp:Label ID="lblConfNum1" runat="server" Font-Bold="True" Font-Names="Verdana"
-                            Font-Size="Medium"></asp:Label><br />
+                        <asp:Label ID="lblConfNum1" runat="server" Font-Bold="True" Font-Size="Medium"></asp:Label><br />
                         Today's Date:
-                                        <asp:Label ID="lblDate1" runat="server"></asp:Label><br />
+                                       
+                        <asp:Label ID="lblDate1" runat="server"></asp:Label><br />
                         AIRS No.:
-                                        <asp:Label ID="lblAirsNo1" runat="server"></asp:Label><br />
+                                       
+                        <asp:Label ID="lblAirsNo1" runat="server"></asp:Label><br />
                         Facility:
-                                        <asp:Label ID="lblFacility1" runat="server"></asp:Label></td>
+                                       
+                        <asp:Label ID="lblFacility1" runat="server"></asp:Label></td>
                 </tr>
                 <tr>
                     <td>&nbsp;&nbsp;</td>
@@ -55,8 +58,9 @@
                         <asp:Button ID="btnOptOutChange1" runat="server" Text="Make Changes"
                             Width="170px" />
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <input id="Button1" onclick="window.print()" style="width: 88px" type="button"
-                        value="Print" /><br />
+                   
+                        <input id="Button1" onclick="window.print()" style="width: 88px" type="button"
+                            value="Print" /><br />
                     </td>
                 </tr>
                 <tr>
@@ -93,7 +97,7 @@
             <table width="75%">
                 <tr>
                     <td align="center">
-                        <strong><span style="font-size: 16pt; color: #4170e1; font-family: Arial">Opted In</span></strong></td>
+                        <strong><span style="font-size: 16pt; color: #4170e1;">Opted In</span></strong></td>
                 </tr>
                 <tr>
                     <td align="left">&nbsp;</td>
@@ -101,7 +105,8 @@
                 <tr>
                     <td align="left">Your facility has opted in (or previously opted in) and submitted the Emissions Statement data for
                         calendar year
-                        <asp:Label ID="lblESYear3" runat="server" Font-Names="Verdana" Font-Size="Small"></asp:Label>
+                       
+                        <asp:Label ID="lblESYear3" runat="server"></asp:Label>
                         by indicating that emissions of VOCs and/or NOx were greater than 25 tons for that
                         year. The emission quantities you entered appear below.</td>
                 </tr>
@@ -110,57 +115,63 @@
                 </tr>
                 <tr>
                     <td align="center" style="height: 148px">The confirmation number for submitting the data is:<br />
-                        <asp:Label ID="lblConfNumFinalize" runat="server" Font-Bold="True" Font-Names="Verdana"
+                        <asp:Label ID="lblConfNumFinalize" runat="server" Font-Bold="True"
                             Font-Size="Medium"></asp:Label><br />
                         Today's
                 Date:
-                <asp:Label ID="lblDate2" runat="server"></asp:Label><br />
+               
+                        <asp:Label ID="lblDate2" runat="server"></asp:Label><br />
                         AIRS No.:
-                <asp:Label ID="lblAirsNo2" runat="server"></asp:Label><br />
+               
+                        <asp:Label ID="lblAirsNo2" runat="server"></asp:Label><br />
                         Facility:
-                <asp:Label ID="lblFacility2" runat="server"></asp:Label><br />
+               
+                        <asp:Label ID="lblFacility2" runat="server"></asp:Label><br />
                         <br />
                         VOC Emissions:
-                <asp:Label ID="lblVOCAmt2" runat="server" Font-Bold="True" Font-Names="Arial" Font-Size="Small"></asp:Label>
+               
+                        <asp:Label ID="lblVOCAmt2" runat="server" Font-Bold="True"></asp:Label>
                         tons/year<br />
                         NOx Emissions:
-                <asp:Label ID="lblNOXAmt2" runat="server" Font-Bold="True" Font-Names="Arial" Font-Size="Small"></asp:Label>
+               
+                        <asp:Label ID="lblNOXAmt2" runat="server" Font-Bold="True"></asp:Label>
                         tons/year<br />
                         &nbsp;</td>
                 </tr>
-                <tr style="font-family: Verdana">
+                <tr>
                     <td>&nbsp; &nbsp;</td>
                 </tr>
-                <tr style="font-family: Verdana">
+                <tr>
                     <td>
                         <asp:Button ID="btnConfFinal" runat="server" Text="Make Changes"
                             Width="170px" />
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <input id="btnPrint" onclick="window.print()" style="width: 88px" type="button"
-                        value="Print" /><br />
+                   
+                        <input id="btnPrint" onclick="window.print()" style="width: 88px" type="button"
+                            value="Print" /><br />
                         <span style="color: #FF0000">NOTE: You will get a new confirmation number.
                     Making changes will not<br />
                             change your original submission date on record for compliance purposes.</span></td>
                 </tr>
-                <tr style="font-family: Verdana">
+                <tr>
                     <td>&nbsp;&nbsp;</td>
                 </tr>
-                <tr style="font-family: Verdana">
+                <tr>
                     <td>For further assistance,<br />
                         contact the Georgia Air Protection Branch.<br />
                         Telephone: 404-363-7000</td>
                 </tr>
-                <tr style="font-family: Verdana">
+                <tr>
                     <td>&nbsp;</td>
                 </tr>
-                <tr style="font-family: Verdana">
+                <tr>
                     <td>&nbsp;&nbsp;</td>
                 </tr>
-                <tr style="font-family: Verdana">
-                    <td>&nbsp;</td>
+                <tr>
+                    <td>&nbsp;&nbsp;</td>
                 </tr>
-                <tr style="font-family: Verdana">
-                    <td>&nbsp;</td>
+                <tr>
+                    <td>&nbsp;&nbsp;</td>
                 </tr>
             </table>
         </div>

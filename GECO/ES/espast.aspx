@@ -1,4 +1,4 @@
-<%@ Page Title="Emissions Statement" Language="VB" MasterPageFile="es.master" AutoEventWireup="false" Inherits="GECO.ES_espast" Codebehind="espast.aspx.vb" %>
+<%@ Page Title="Emissions Statement" Language="VB" MasterPageFile="es.master" AutoEventWireup="false" Inherits="GECO.ES_espast" CodeBehind="espast.aspx.vb" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <table style="width: 100%">
@@ -19,7 +19,8 @@
         <tr>
             <td align="center">
                 <span style="font-size: large; color: #4169e1;">Data For Calendar Year
-                <asp:Label ID="lblPastESYear" runat="server"></asp:Label>
+               
+                    <asp:Label ID="lblPastESYear" runat="server"></asp:Label>
                 </span>
             </td>
         </tr>
@@ -77,6 +78,7 @@
                     <table align="center" style="width: 500px">
                         <tr>
                             <td>The facility opted out of the Emissions Statement for
+                               
                                 <asp:Label ID="lblESPastYear2" runat="server"></asp:Label>
                             </td>
                         </tr>
@@ -90,6 +92,7 @@
                         <td align="center">
                             <input id="Button1" onclick="window.print()" style="width: 88px" type="button"
                                 value="Print" />&nbsp;&nbsp;
+                           
                             <asp:Button ID="btnEiHome" runat="server" Text="Back to ES Home" />
                         </td>
                     </tr>
