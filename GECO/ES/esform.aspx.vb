@@ -108,12 +108,12 @@ Partial Class es_esform
 
     Protected Sub cboYesNo_SelectedIndexChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles cboYesNo.SelectedIndexChanged
 
-        If cboYesNo.SelectedValue = "YES" Then
-            txtVOC.Text = ""
-            txtNOx.Text = ""
-            pnlEmissions.Visible = False
-        Else
+        If cboYesNo.SelectedValue = "NO" Then
             pnlEmissions.Visible = True
+        Else
+            txtVOC.Text = "0"
+            txtNOx.Text = "0"
+            pnlEmissions.Visible = False
         End If
 
     End Sub
@@ -387,47 +387,47 @@ Partial Class es_esform
 
             If YesNo = "NO" Then
                 If IsDBNull(dr("dblVOCEmission")) Then
-                    txtVOC.Text = ""
+                    txtVOC.Text = "0"
                 Else
                     VOCAmt = dr.Item("dblVOCEmission")
                     If VOCAmt <= 0 Then
-                        txtVOC.Text = ""
+                        txtVOC.Text = "0"
                     Else
                         txtVOC.Text = Round(VOCAmt, 2)
                     End If
                 End If
                 If IsDBNull(dr("dblNOXEmission")) Then
-                    txtNOx.Text = ""
+                    txtNOx.Text = "0"
                 Else
                     NOXAmt = dr.Item("dblNOXEmission")
                     If NOXAmt < 0 Then
-                        txtNOx.Text = ""
+                        txtNOx.Text = "0"
                     Else
                         txtNOx.Text = Round(NOXAmt, 2)
                     End If
                 End If
                 pnlEmissions.Visible = True
             ElseIf YesNo = "YES" Then
-                txtVOC.Text = ""
-                txtNOx.Text = ""
+                txtVOC.Text = "0"
+                txtNOx.Text = "0"
                 'pnlEmissions.Visible = False
             ElseIf YesNo = "--" Then
                 If IsDBNull(dr("dblVOCEmission")) Then
-                    txtVOC.Text = ""
+                    txtVOC.Text = "0"
                 Else
                     VOCAmt = dr.Item("dblVOCEmission")
                     If VOCAmt <= 0 Then
-                        txtVOC.Text = ""
+                        txtVOC.Text = "0"
                     Else
                         txtVOC.Text = Round(VOCAmt, 2)
                     End If
                 End If
                 If IsDBNull(dr("dblNOXEmission")) Then
-                    txtNOx.Text = ""
+                    txtNOx.Text = "0"
                 Else
                     NOXAmt = dr.Item("dblNOXEmission")
                     If NOXAmt <= 0 Then
-                        txtNOx.Text = ""
+                        txtNOx.Text = "0"
                     Else
                         txtNOx.Text = Round(NOXAmt, 2)
                     End If
@@ -647,15 +647,17 @@ Partial Class es_esform
 
     Protected Sub btnSave_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnSave.Click
 
-        If String.IsNullOrWhiteSpace(txtNOx.Text) OrElse Not IsNumeric(txtNOx.Text) Then
+        If String.IsNullOrWhiteSpace(txtNOx.Text) OrElse Not IsNumeric(txtNOx.Text) OrElse
+           CDec(txtNOx.Text) < 0 Then
             txtNOx.Text = "0"
         End If
 
-        If String.IsNullOrWhiteSpace(txtVOC.Text) OrElse Not IsNumeric(txtVOC.Text) Then
+        If String.IsNullOrWhiteSpace(txtVOC.Text) OrElse Not IsNumeric(txtVOC.Text) OrElse
+           CDec(txtVOC.Text) < 0 Then
             txtVOC.Text = "0"
         End If
 
-        If txtNOx.Text = "0" AndAlso txtVOC.Text = "0" Then
+        If cboYesNo.SelectedValue = "NO" AndAlso txtNOx.Text = "0" AndAlso txtVOC.Text = "0" Then
             lblVOCNOXZero.Text = "Either VOC or NOx must be greater than zero."
         Else
             SaveES()

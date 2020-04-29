@@ -15,7 +15,7 @@
     </div>
     <asp:Panel ID="pnlOptedOutYes" runat="server" Width="100%">
         <div style="text-align: center">
-            <table width="75%">
+            <table>
                 <tr>
                     <td align="center">
                         <strong><span style="font-size: 16pt; color: #4170e1; font-family: Arial">Opted Out</span></strong></td>
