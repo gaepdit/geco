@@ -1,4 +1,4 @@
-Imports System.Data.SqlClient
+﻿Imports System.Data.SqlClient
 Imports EpdIt.DBUtilities
 Imports GECO.GecoModels
 Imports GECO.MapHelper
@@ -144,6 +144,12 @@ Partial Class EIS_rp_entry
     End Sub
 
     Private Sub LoadFacilityGCIValidation()
+        If IsFacilityLatLonLocked(FacilitySiteID) Then
+            rngvLatitudeMeasure.Enabled = False
+            rngvLongitudeMeasure.Enabled = False
+            Return
+        End If
+
         Dim CountyCode As String = GetCookie(Cookie.AirsNumber).Substring(0, 3)
         Dim mm As MinMaxLatLon = GetCountyLatLong(CountyCode)
 
