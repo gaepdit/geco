@@ -20,34 +20,21 @@ Public Class Global_asax
     'End Sub
 
     Sub Application_Error(ByVal sender As Object, ByVal e As EventArgs)
-        ' Fires when an error occurs
-        ' Code that runs when an unhandled error occurs
+        ' Fires when an unhandled error occurs
 
         ' Get exception
-        Dim lastErrorWrapper As HttpException = CType(Server.GetLastError(), HttpException)
-        Dim httpCode As Integer = lastErrorWrapper.GetHttpCode()
+        Dim exc As Exception = Server.GetLastError()
+        Dim httpCode As Integer = CType(exc, HttpException).GetHttpCode()
 
         ' 404's handled differently from everything else
         If httpCode = 404 Then
             Server.ClearError()
             Server.Transfer("/404.aspx")
         Else
-            Dim exc As Exception = lastErrorWrapper
-
-            If lastErrorWrapper.InnerException IsNot Nothing Then
-                exc = lastErrorWrapper.InnerException
-            End If
-
-            ' Redirect to error page
-            If Not exc.Data.Contains("Unhandled") Then
-                exc.Data.Add("Unhandled", True)
-            End If
-
-            If Not exc.Data.Contains("HTTP Code") Then
-                exc.Data.Add("HTTP Code", httpCode)
-            End If
-
-            ErrorReport(exc)
+            ' Add data to exception and send to error logger
+            exc.Data.AddIfNotExists("Unhandled", True)
+            exc.Data.AddIfNotExists("HTTP Code", httpCode)
+            ErrorReport(exc, unhandled:=True)
         End If
     End Sub
 

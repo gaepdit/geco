@@ -1,80 +1,89 @@
-﻿Imports GECO.GecoModels
-Imports SharpRaven
-Imports SharpRaven.Data
+Imports GECO.GecoModels
+Imports Mindscape.Raygun4Net
+Imports Mindscape.Raygun4Net.Messages
 
 Public Module ErrorReporting
 
-    Public ReadOnly LogExceptionsToFile As Boolean = ConfigurationManager.AppSettings("LogExceptionsToFile")
 
-    Public Sub ErrorReport(exc As Exception, Optional redirectToErrorPage As Boolean = True)
+    Public Sub ErrorReport(exc As Exception,
+                           Optional redirectToErrorPage As Boolean = True,
+                           Optional unhandled As Boolean = False)
+
         If exc Is Nothing Then
             HttpContext.Current.Response.Redirect("~/ErrorPage.aspx", False)
             Return
         End If
 
+        Dim LogExceptionsToFile As Boolean = ConfigurationManager.AppSettings("LogExceptionsToFile")
         If LogExceptionsToFile Then
             LogExceptionToTextFile(exc)
         End If
 
         Try
-            Dim context = HttpContext.Current
-            context.Server.ClearError()
+            HttpContext.Current.Server.ClearError()
 
             Dim environment As String = ConfigurationManager.AppSettings("GECO_ENVIRONMENT")
             If environment = "Development" Then
                 Return
             End If
 
-            ' Add additional data to exception
-            Dim URL = context.Request.Url.AbsoluteUri
-            If Not String.IsNullOrEmpty(URL) Then
-                exc.Data.Add("URL", URL)
+            ' Data for error logger
+            Dim tags As New List(Of String) From {environment}
+            If unhandled Then
+                tags.Add("Unhandled")
             End If
 
-            Dim userEmail As String = GetCurrentUser()?.Email
-            If userEmail IsNot Nothing Then
-                exc.Data.Add("User Email", userEmail)
-            End If
-
-            Dim currentUser As GecoUser = GetCurrentUser()
-            If currentUser IsNot Nothing Then
-                exc.Data.Add("Current User ID", currentUser.DbUpdateUser)
-            End If
-
-            Dim airsCookie As String = GetCookie(Cookie.AirsNumber)
-            If airsCookie IsNot Nothing Then
-                exc.Data.Add("Current AIRS", airsCookie)
-            End If
-
-            If exc.StackTrace IsNot Nothing Then
-                exc.Data.Add("Stack Trace", exc.StackTrace)
-            End If
-
-            If exc.TargetSite IsNot Nothing AndAlso exc.TargetSite.Name IsNot Nothing Then
-                exc.Data.Add("Target Method", exc.TargetSite.Name)
-            End If
+            Dim customData As New Dictionary(Of String, Object)
+            customData.AddIfNotNullOrEmpty("Absolute URI", HttpContext.Current.Request.Url.AbsoluteUri)
+            customData.AddIfNotNullOrEmpty("Current AIRS", GetCookie(Cookie.AirsNumber))
 
             ' Log the exception
             Try
-                Dim ExceptionLogger As New RavenClient(ConfigurationManager.AppSettings("SENTRY_DSN")) With {
-                    .Environment = environment,
-                    .Release = ConfigurationManager.AppSettings("GECO_VERSION")
+
+                Dim raygunClient As New RaygunClient With {
+                    .ApplicationVersion = ConfigurationManager.AppSettings("GECO_VERSION"),
+                    .UserInfo = GetRaygunIdentifier()
                 }
-                ExceptionLogger.Capture(New SentryEvent(exc))
+                raygunClient.IgnoreFormFieldNames("txtPassword", "txtOldPassword", "txtNewPassword", "txtPwdConfirm")
+
+                If unhandled Then
+                    raygunClient.Send(exc, tags, customData)
+                Else
+                    raygunClient.SendInBackground(exc, tags, customData)
+                End If
+
             Catch ex As Exception
-                ' If Sentry logging fails, log to text file
-                LogToTextFile("Sentry exception:")
+                ' If logging fails, log to text file instead
+                LogToTextFile("Exception logging error:")
                 LogExceptionToTextFile(ex)
             End Try
 
         Catch ex As Exception
-            ' Do nothing if procedure fails
+            ' Do nothing if error logger fails
         Finally
             If redirectToErrorPage Then
                 HttpContext.Current.Response.Redirect("~/ErrorPage.aspx", False)
             End If
         End Try
     End Sub
+
+    Private Function GetRaygunIdentifier() As RaygunIdentifierMessage
+        Dim user As GecoUser = GetCurrentUser()
+
+        If user Is Nothing Then
+            Return New RaygunIdentifierMessage("") With {
+                .IsAnonymous = True
+            }
+        Else
+            Return New RaygunIdentifierMessage(user.UserId) With {
+                .Email = user.Email,
+                .FirstName = user.FirstName,
+                .FullName = user.FullName,
+                .IsAnonymous = False
+            }
+        End If
+    End Function
+
 
     Private Sub LogExceptionToTextFile(exc As Exception)
         Dim sb As New StringBuilder("--- Begin Exception ---")

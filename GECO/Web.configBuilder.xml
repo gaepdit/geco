@@ -2,14 +2,22 @@
 <!--
   DO NOT EDIT "Web.config"!!!
 
-  Web.config is automatically generated on build. Edit Web.configBuilder.xml and
-  Web.configBuilder.{configuration}.xml instead.
+  Web.config is automatically generated on build. Edit "Web.configBuilder.xml" and
+  "Web.configBuilder.{configuration}.xml" instead.
 -->
 
 <!--
   For more information on how to configure your ASP.NET application, please visit https://go.microsoft.com/fwlink/?LinkId=169433
 -->
 <configuration>
+  <configSections>
+    <section name="RaygunSettings" type="Mindscape.Raygun4Net.RaygunSettings, Mindscape.Raygun4Net" />
+  </configSections>
+
+  <connectionStrings>
+    <add name="SqlConnectionString" connectionString="" />
+  </connectionStrings>
+
   <appSettings>
     <add key="GECO_VERSION" value="2020.6.2" />
     <add key="GECO_ENVIRONMENT" value="Development" />
@@ -24,14 +32,11 @@
     <add key="SmtpPort" value="25" />
     <add key="SaveAllEmails" value="false" />
     <add key="GoogleMapsAPIKey" value="" />
-    <add key="SENTRY_DSN" value="" />
     <add key="ValidationSettings:UnobtrusiveValidationMode" value="None" />
     <add key="EpaCaersUrl" value="" />
   </appSettings>
 
-  <connectionStrings>
-    <add name="SqlConnectionString" connectionString="" />
-  </connectionStrings>
+  <RaygunSettings apikey="" />
 
   <system.web>
     <!--

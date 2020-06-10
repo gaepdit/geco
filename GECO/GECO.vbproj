@@ -87,6 +87,12 @@
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Mindscape.Raygun4Net, Version=5.10.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Mindscape.Raygun4Net.5.10.2\lib\net40\Mindscape.Raygun4Net.dll</HintPath>
+    </Reference>
+    <Reference Include="Mindscape.Raygun4Net4, Version=5.10.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Mindscape.Raygun4Net.5.10.2\lib\net40\Mindscape.Raygun4Net4.dll</HintPath>
+    </Reference>
     <Reference Include="MSCaptcha, Version=2.0.1.36094, Culture=neutral, PublicKeyToken=b9ff12f28cdcf412, processorArchitecture=MSIL">
       <HintPath>..\packages\MSCaptcha.1.0.0\lib\MSCaptcha.dll</HintPath>
     </Reference>
@@ -98,9 +104,6 @@
     </Reference>
     <Reference Include="Reimers.Google.Map, Version=5.3.95.699, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Reimers.Google.Map.5.3.95.699\lib\Net40\Reimers.Google.Map.dll</HintPath>
-    </Reference>
-    <Reference Include="SharpRaven, Version=2.4.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\SharpRaven.2.4.0\lib\net45\SharpRaven.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -562,6 +565,7 @@
       <DependentUpon>Register.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="_Code\DictionaryExtensions.vb" />
     <Compile Include="_Code\Guard.vb" />
     <Compile Include="_Code\CollectionExtensions.vb" />
     <Compile Include="_Code\Colors.vb" />

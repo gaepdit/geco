@@ -8,17 +8,17 @@
         Return value
     End Function
 
-    'Public Function NotNullOrEmpty(ByVal value As String, ByVal parameterName As String) As String
-    '    If value Is Nothing Then
-    '        Throw New ArgumentNullException(parameterName)
-    '    End If
+    Public Function NotNullOrEmpty(ByVal value As String, ByVal parameterName As String) As String
+        If value Is Nothing Then
+            Throw New ArgumentNullException(parameterName)
+        End If
 
-    '    If String.IsNullOrEmpty(value) Then
-    '        Throw New ArgumentException($"{parameterName} can not be null or empty.", parameterName)
-    '    End If
+        If String.IsNullOrEmpty(value) Then
+            Throw New ArgumentException($"{parameterName} can not be null or empty.", parameterName)
+        End If
 
-    '    Return value
-    'End Function
+        Return value
+    End Function
 
     'Public Function NotNullOrWhiteSpace(ByVal value As String, ByVal parameterName As String) As String
     '    If value Is Nothing Then
