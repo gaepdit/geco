@@ -1,9 +1,6 @@
-Imports GECO.GecoModels
-Imports Mindscape.Raygun4Net
-Imports Mindscape.Raygun4Net.Messages
+﻿Imports Mindscape.Raygun4Net
 
 Public Module ErrorReporting
-
 
     Public Sub ErrorReport(exc As Exception,
                            Optional redirectToErrorPage As Boolean = True,
@@ -42,7 +39,7 @@ Public Module ErrorReporting
 
                 Dim raygunClient As New RaygunClient With {
                     .ApplicationVersion = ConfigurationManager.AppSettings("GECO_VERSION"),
-                    .UserInfo = GetRaygunIdentifier()
+                    .UserInfo = RaygunInfo.GetRaygunIdentifier()
                 }
                 raygunClient.IgnoreFormFieldNames("txtPassword", "txtOldPassword", "txtNewPassword", "txtPwdConfirm")
 
@@ -66,24 +63,6 @@ Public Module ErrorReporting
             End If
         End Try
     End Sub
-
-    Private Function GetRaygunIdentifier() As RaygunIdentifierMessage
-        Dim user As GecoUser = GetCurrentUser()
-
-        If user Is Nothing Then
-            Return New RaygunIdentifierMessage("") With {
-                .IsAnonymous = True
-            }
-        Else
-            Return New RaygunIdentifierMessage(user.UserId) With {
-                .Email = user.Email,
-                .FirstName = user.FirstName,
-                .FullName = user.FullName,
-                .IsAnonymous = False
-            }
-        End If
-    End Function
-
 
     Private Sub LogExceptionToTextFile(exc As Exception)
         Dim sb As New StringBuilder("--- Begin Exception ---")

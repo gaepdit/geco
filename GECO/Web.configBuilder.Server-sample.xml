@@ -30,6 +30,8 @@
     <add key="EpaCaersUrl" value="https://test.epacdx.net" xdt:Transform="SetAttributes" xdt:Locator="Match(key)"/>
   </appSettings>
 
+  <RaygunSettings apikey="" xdt:Transform="SetAttributes" />
+
   <system.web>
     <compilation xdt:Transform="RemoveAttributes(debug)" />
   </system.web>

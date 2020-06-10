@@ -24,7 +24,7 @@
     End Function
 
     Public Function SessionItemExists(sessionItem As GecoSession) As Boolean
-        Return (HttpContext.Current.Session(sessionItem.ToString) IsNot Nothing)
+        Return (HttpContext.Current.Session?.Item(sessionItem.ToString) IsNot Nothing)
     End Function
 
 End Module

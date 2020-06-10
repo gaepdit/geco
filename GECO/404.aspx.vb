@@ -1,13 +1,13 @@
-Partial Class Http404Page
+﻿Partial Class Http404Page
     Inherits Page
 
-    Private ReadOnly GecoEmailSender As String = ConfigurationManager.AppSettings("GecoEmailSender")
+    Public ReadOnly Property raygunInfo As New RaygunInfo()
 
     Private Sub Http404Page_Load(sender As Object, e As EventArgs) Handles Me.Load
         Response.TrySkipIisCustomErrors = True
         Response.StatusCode = 404
         Response.StatusDescription = "Not Found"
 
-        lnkContact.NavigateUrl = String.Format("mailto:{0}", GecoEmailSender)
+        lnkContact.NavigateUrl = $"mailto:{ConfigurationManager.AppSettings("GecoEmailSender")}"
     End Sub
 End Class

@@ -3,6 +3,7 @@
 Partial Class APB_eismaster
     Inherits MasterPage
 
+    Public ReadOnly Property raygunInfo As New RaygunInfo()
     Private Property currentUser As GecoUser
     Private Property currentAirs As ApbFacilityId
 

@@ -11,6 +11,18 @@
     <link rel="shortcut icon" href="~/favicon.ico?v=69kRrvbXdL" />
     <meta name="theme-color" content="#e5f6fa" />
     <link href="~/assets/css/eis_styles.css?v=20190320" rel="stylesheet" type="text/css" />
+    <script type="text/javascript">
+        !function (a, b, c, d, e, f, g, h) {
+            a.RaygunObject = e, a[e] = a[e] || function () {
+                (a[e].o = a[e].o || []).push(arguments)
+            }, f = b.createElement(c), g = b.getElementsByTagName(c)[0],
+                f.async = 1, f.src = d, g.parentNode.insertBefore(f, g), h = a.onerror, a.onerror = function (b, c, d, f, g) {
+                    h && h(b, c, d, f, g), g || (g = new Error(b)), a[e].q = a[e].q || [], a[e].q.push({
+                        e: g
+                    })
+                }
+        }(window, document, "script", "//cdn.raygun.io/raygun4js/raygun.min.js", "rg4js");
+    </script>
 </head>
 <body>
     <form id="form1" class="form" runat="server">
@@ -74,5 +86,16 @@
             </div>
         </div>
     </form>
+    <script type="text/javascript">
+        rg4js('apiKey', '<%= raygunInfo.ApiKey %>');
+        rg4js('setVersion', '<%= raygunInfo.Version %>');
+        rg4js('enableCrashReporting', true);
+        rg4js('enablePulse', true);
+        rg4js('setUser', {
+            identifier: '<%= raygunInfo.User.Identifier %>',
+            isAnonymous: <%= raygunInfo.IsAnonymous %>
+        });
+        rg4js('withTags', ['<%= raygunInfo.Environment %>']);
+    </script>
 </body>
 </html>

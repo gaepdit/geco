@@ -1,8 +1,9 @@
-Imports GECO.GecoModels
+﻿Imports GECO.GecoModels
 
 Partial Class APB_es
     Inherits MasterPage
 
+    Public ReadOnly Property raygunInfo As New RaygunInfo()
     Private Property currentUser As GecoUser
     Private Property currentAirs As ApbFacilityId
 
@@ -27,6 +28,7 @@ Partial Class APB_es
 
         'Check if the user has access to the Application
         Dim facilityAccess = currentUser.GetFacilityAccess(currentAirs)
+
         If Not facilityAccess.ESAccess Then
             Response.Redirect("~/NoAccess.aspx")
         End If

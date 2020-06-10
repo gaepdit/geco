@@ -1,8 +1,9 @@
-Imports GECO.GecoModels
+﻿Imports GECO.GecoModels
 
 Partial Class MainMaster
     Inherits MasterPage
 
+    Public ReadOnly Property raygunInfo As New RaygunInfo()
     Public Property IncludeSignInLink As Boolean = True
     Public Property IncludeRegisterLink As Boolean = True
     Public Property IsFacilitySubpage As Boolean = False

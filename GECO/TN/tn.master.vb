@@ -1,8 +1,9 @@
-Imports GECO.GecoModels
+﻿Imports GECO.GecoModels
 
 Partial Class APB_tn
     Inherits MasterPage
 
+    Public ReadOnly Property raygunInfo As New RaygunInfo()
     Private Property currentUser As GecoUser
     Private Property currentAirs As ApbFacilityId
 

@@ -14,6 +14,18 @@
     <meta name="theme-color" content="#e5f6fa" />
     <link href="~/assets/css/printstyle.css?v=20180724" media="print" rel="stylesheet" type="text/css" />
     <link href="~/assets/css/site.css?v=20200323" rel="stylesheet" type="text/css" />
+    <script type="text/javascript">
+        !function (a, b, c, d, e, f, g, h) {
+            a.RaygunObject = e, a[e] = a[e] || function () {
+                (a[e].o = a[e].o || []).push(arguments)
+            }, f = b.createElement(c), g = b.getElementsByTagName(c)[0],
+                f.async = 1, f.src = d, g.parentNode.insertBefore(f, g), h = a.onerror, a.onerror = function (b, c, d, f, g) {
+                    h && h(b, c, d, f, g), g || (g = new Error(b)), a[e].q = a[e].q || [], a[e].q.push({
+                        e: g
+                    })
+                }
+        }(window, document, "script", "//cdn.raygun.io/raygun4js/raygun.min.js", "rg4js");
+    </script>
 </head>
 <body>
     <a class="skipnav" href="#main-content">Skip to main content</a>
@@ -69,9 +81,20 @@
         <!-- end outer 3-column container -->
         <div class="footer">
             ©<%= Now.Year %> <a href="https://epd.georgia.gov/">Georgia Environmental Protection Division</a>, 
-            <a href="https://epd.georgia.gov/air-protection-branch">Air Protection Branch</a> 
+            <a href="https://epd.georgia.gov/air-protection-branch">Air Protection Branch</a>
             • All rights reserved
         </div>
     </form>
+    <script type="text/javascript">
+        rg4js('apiKey', '<%= raygunInfo.ApiKey %>');
+        rg4js('setVersion', '<%= raygunInfo.Version %>');
+        rg4js('enableCrashReporting', true);
+        rg4js('enablePulse', true);
+        rg4js('setUser', {
+            identifier: '<%= raygunInfo.User.Identifier %>',
+            isAnonymous: <%= raygunInfo.IsAnonymous %>
+        });
+        rg4js('withTags', ['<%= raygunInfo.Environment %>']);
+    </script>
 </body>
 </html>

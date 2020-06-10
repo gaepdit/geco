@@ -3,6 +3,7 @@
 Public Class Memo
     Inherits MasterPage
 
+    Public ReadOnly Property raygunInfo As New RaygunInfo()
     Public Property EpdDirector As String
     Public Property MemoPageCount As Integer
 

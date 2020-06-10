@@ -572,6 +572,7 @@
     <Compile Include="_Code\CookieHelper.vb" />
     <Compile Include="_Code\DecimalFunctions.vb" />
     <Compile Include="_Code\HtmlTableFunctions.vb" />
+    <Compile Include="_Code\RaygunInfo.vb" />
     <Compile Include="_DAL\AnnualFees\AnnualFees.vb" />
     <Compile Include="_DAL\DataBaseConnection.vb" />
     <Compile Include="_Code\EIS\eis_accesschecks.vb" />
