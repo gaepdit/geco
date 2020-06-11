@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <!-- 
   Create copies of this sample config file to store the connection string and 
   settings for each deployment server. E.g., Web.configBuilder.Debug.xml,
@@ -6,9 +7,9 @@
   
   Do NOT add these config files to the source code repository! They will contain
   secrets.
- -->
 
-<!-- For more information on using web.config transformation visit https://go.microsoft.com/fwlink/?LinkId=125889 -->
+  For more information on using web.config transformation visit https://go.microsoft.com/fwlink/?LinkId=125889
+ -->
 
 <configuration xmlns:xdt="http://schemas.microsoft.com/XML-Document-Transform">
   <connectionStrings>
@@ -16,7 +17,6 @@
   </connectionStrings>
 
   <appSettings>
-    <!-- Required settings-->
     <add key="GECO_ENVIRONMENT" value="" xdt:Transform="SetAttributes" xdt:Locator="Match(key)"/>
     <add key="UndeliverableEmailFolder" value="" xdt:Transform="SetAttributes" xdt:Locator="Match(key)"/>
     <add key="LoggingFolder" value="" xdt:Transform="SetAttributes" xdt:Locator="Match(key)"/>
@@ -33,6 +33,7 @@
   <RaygunSettings apikey="" xdt:Transform="SetAttributes" />
 
   <system.web>
+    <!-- Remove debug attribute in production -->
     <compilation xdt:Transform="RemoveAttributes(debug)" />
   </system.web>
 
