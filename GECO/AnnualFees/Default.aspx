@@ -60,6 +60,10 @@
                         Text="Begin →" CausesValidation="False" Visible="false" />
                 </div>
 
+                <div class="announcement">
+                    <p>The 2019 Annual Permit Fee Invoices can be generated beginning July&nbsp;27,&nbsp;2020.</p>
+                </div>
+
                 <h1>Annual Permit/Emissions Fees Reporting Form</h1>
                 <p>
                     The Georgia Air Protection Branch’s Emission Fee Reports are online.

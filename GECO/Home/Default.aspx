@@ -4,11 +4,17 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="Server">
     <asp:UpdatePanel ID="UpdatePanel_top" runat="server">
         <ContentTemplate>
-            <div class="announcement announcement-severe announcement-centered">
+            <div class="announcement announcement-severe">
+                <h2>Maintenance Outage</h2>
                 <p>
                     There will be a scheduled maintenance outage of this web site from Wednesday afternoon 7/8/2020 at 4&nbsp;PM 
                     until Thursday morning 7/9/2020 at 6&nbsp;AM. Thank you for your patience!
                 </p>
+            </div>
+
+            <div class="announcement announcement-mild">
+                <h2>Annual Permit Fees</h2>
+                <p>The 2019 Annual Permit Fee Invoices can be generated beginning July&nbsp;27,&nbsp;2020.</p>
             </div>
 
             <h1>GECO Home</h1>
@@ -79,7 +85,7 @@
     <br />
 
     <div class="announcement announcement-wide">
-        <h2>Announcement</h2>
+        <h2>Emissions Inventory News</h2>
         <p>
             Starting this year, Georgia will be using the Combined Air Emissions Reporting System 
             (CAERS) for the 2019 Emissions Inventory data collection. To help 
@@ -162,7 +168,7 @@
         The
         <asp:Label ID="lblFeeYear2" runat="server" Text=""></asp:Label>
         Annual Permit Fee process begins 
-        July&nbsp;1,&nbsp;<asp:Label ID="lblFeeYear3" runat="server" Text=""></asp:Label>. 
+        July&nbsp;27,&nbsp;<asp:Label ID="lblFeeYear3" runat="server" Text=""></asp:Label>. 
         The deadline for fee submittal is 
         <strong>September&nbsp;1,&nbsp;<asp:Label ID="lblFeeYear4" runat="server" Text=""></asp:Label></strong>. 
     </p>
