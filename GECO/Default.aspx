@@ -23,8 +23,6 @@
         <asp:HyperLink ID="Register" runat="server" Text="Register" NavigateUrl="~/Register.aspx" CssClass="button button-large" />
     </p>
 
-    <%--<p><a href="#">Instructions for creating a GECO account</a></p>--%>
-
     <h2>Event Registration</h2>
     <p>
         The GECO site is used to register for classes, workshops, and other events hosted by Georgia EPD. You may view the 
@@ -39,10 +37,8 @@
         hazardous air pollutants from air emissions sources. Emissions inventory data for all Part 70 major source
         facilities are collected on a three year cycle, while a subset of facilities must report on an annual basis.
     </p>
-    <p class="message-highlight">
-        Starting this year, Georgia will be using the Combined Air Emissions Reporting System (CAERS) 
-        for the 2019 Emissions Inventory data collection. The Emissions Inventory submittal is due on or about 
-        June&nbsp;30 each year.
+    <p>
+        The Emissions Inventory submittal is due on or about June&nbsp;30 each year.
     </p>
 
     <h2>Emissions Statement</h2>

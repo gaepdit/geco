@@ -86,15 +86,6 @@ Partial Public Class Home
     Protected WithEvents UpdateProgress1 As Global.System.Web.UI.UpdateProgress
 
     '''<summary>
-    '''lnkEvents control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lnkEvents As Global.System.Web.UI.WebControls.HyperLink
-
-    '''<summary>
     '''linkEvents control.
     '''</summary>
     '''<remarks>
