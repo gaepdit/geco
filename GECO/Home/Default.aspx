@@ -4,14 +4,6 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="Server">
     <asp:UpdatePanel ID="UpdatePanel_top" runat="server">
         <ContentTemplate>
-            <div class="announcement announcement-severe">
-                <h2>Maintenance Outage</h2>
-                <p>
-                    There will be a scheduled maintenance outage of this web site from Wednesday afternoon 7/8/2020 at 4&nbsp;PM 
-                    until Thursday morning 7/9/2020 at 6&nbsp;AM. Thank you for your patience!
-                </p>
-            </div>
-
             <div class="announcement announcement-mild">
                 <h2>Annual Permit Fees</h2>
                 <p>The 2019 Annual Permit Fee Invoices can be generated beginning July&nbsp;27,&nbsp;2020.</p>
