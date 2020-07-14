@@ -1,17 +1,13 @@
-Imports System.Data.SqlClient
+﻿Imports System.Data.SqlClient
 Imports GECO.GecoModels
 
 Partial Class AnnualFees_Default
     Inherits Page
 
-#Region "Global Variables"
-
     Private Property currentUser As GecoUser
     Private Property currentAirs As ApbFacilityId
 
     Dim feetotal, feepart70, feesm, feensps, feecalculated As Double
-
-#End Region
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         currentUser = GetCurrentUser()
@@ -140,9 +136,8 @@ Partial Class AnnualFees_Default
                     lblContactMsg.Text = "You have indicated that the Facility Information is incorrect, " &
                         "but you have not made any changes to the existing information."
                     Return
-                Else
-                    'Changes Detected, Continue
                 End If
+                'Changes Detected, Continue
             End If
             SaveFacilityInfo()
             lblContactMsg.Visible = True
@@ -271,8 +266,6 @@ Partial Class AnnualFees_Default
                     End If
 
                     ResetFees()
-
-                    'lblpart70SMFee.Text = String.Format("{0:C}", part70smfee)
 
                 Case "B", "PR"
 
@@ -566,7 +559,6 @@ Partial Class AnnualFees_Default
 
             'Added by Mahesh 01/30/2010
             'To incorporate late admin fees
-
             If CDate(adminfeedate.Text) < Now.Date Then
                 CalulateAdminFee()
             End If
@@ -606,7 +598,7 @@ Partial Class AnnualFees_Default
 
     Private Sub DidNotOperate()
 
-        'If the facility has checked did not operate do thefollowing:
+        'If the facility has checked did not operate do the following:
         Try
             rblNoOperateReason.Visible = True
             btnSavePnlFeeCalc.CausesValidation = False
@@ -633,7 +625,6 @@ Partial Class AnnualFees_Default
             lblsm.Text = String.Format("{0:C}", 0.0)
             lblcalculated.Text = String.Format("{0:C}", 0.0)
 
-            'CalculateFees()
 #Disable Warning S108 ' Nested blocks of code should not be left empty
         Catch exThreadAbort As Threading.ThreadAbortException
 #Enable Warning S108 ' Nested blocks of code should not be left empty
@@ -705,20 +696,17 @@ Partial Class AnnualFees_Default
             End If
 
             feeyear.Text = ddlFeeYear.SelectedItem.Text
-            'lblDeadline.Text = CInt(feeyear.Text) + 1
             ResetFeeCalculationTab()
             'Take the user back to the welcome page
             UserTabs.ActiveTabIndex = 0
 
             If Mid(ddlFeeYear.SelectedItem.Value, 5) = 1 Then
-                'UserTabs.Tabs(1).Enabled = True
                 UserTabs.Tabs(2).Enabled = False
                 UserTabs.Tabs(3).Enabled = False
                 linkInvoice.Visible = True
                 btnProceed.Visible = False
                 btnUpdateContact.Text = "Save Fee Contact"
             Else
-                'UserTabs.Tabs(1).Enabled = True
                 UserTabs.Tabs(2).Enabled = True
                 UserTabs.Tabs(3).Enabled = True
                 linkInvoice.Visible = False
@@ -912,11 +900,7 @@ Partial Class AnnualFees_Default
                 'This table has all the information that goes into top panel and
                 'is disabled so that the user cannot change it.
 
-                '    'If IsDBNull(dr.Item("strclass")) Then
-                '    txtClass.Text = ""
-                'Else
                 txtClass.Text = dr.Item("strclass")
-                'End If
 
                 If dr.Item("strnsps") = 1 Then
                     chkNSPS.Checked = True
@@ -924,7 +908,6 @@ Partial Class AnnualFees_Default
                     chkNSPS1.Visible = False
                 Else
                     chkNSPS.Checked = False
-                    'chkNSPS1.Checked = False
                     chkNSPS1.Visible = True
                 End If
 
@@ -1580,6 +1563,7 @@ Partial Class AnnualFees_Default
                         sb.Append(cblNSPSExempt.Items(i).Value & ",")
                     End If
                 Next
+
                 'Create the value to be inserted by removing the last comma in sb
                 nspsreason = Left(sb.ToString(), Len(sb.ToString()) - 1)
             Else
@@ -1761,32 +1745,22 @@ Partial Class AnnualFees_Default
             If chkNSPSExempt.Checked Then
                 exemptnsps = "1"
                 Dim sb As StringBuilder = New StringBuilder()
-                'Dim sb1 As StringBuilder = New StringBuilder()
+
                 For i = 0 To cblNSPSExempt.Items.Count - 1
                     If cblNSPSExempt.Items(i).Selected Then
                         sb.Append(cblNSPSExempt.Items(i).Value & ",")
-                        'sb1.Append(cblNSPSExempt.Items(i).Text & ";")
                     End If
                 Next
+
                 'Create the value to be inserted by removing the last comma in sb
                 nspsreason = Left(sb.ToString(), Len(sb.ToString()) - 1)
-                'exemptreasontext = Left(sb1.ToString(), Len(sb1.ToString()) - 1)
-
-                'For i = 0 To cblNSPSExempt.Items.Count - 1
-                '    If cblNSPSExempt.Items(i).Selected Then
-                '        nspsreason = nspsreason & 1
-                '        exemptreasontext = exemptreasontext & cblNSPSExempt.Items(i).Text & "; "
-                '    Else
-                '        nspsreason = nspsreason & 0
-                '    End If
-                'Next
             End If
 
             If chkDidNotOperate.Checked Then
                 operate = rblNoOperateReason.SelectedIndex
             End If
 
-            'First SQL command withing the transaction
+            'First SQL command within the transaction
             Dim voctons As Integer = CInt(txtVOCTons.Text)
             Dim noxtons As Integer = CInt(txtNOxTons.Text)
             Dim pmtons As Integer = CInt(txtPMTons.Text)
@@ -2212,7 +2186,7 @@ Partial Class AnnualFees_Default
 
 #End Region
 
-#Region "Control's Auto Postback"
+#Region "Controls Auto Postback"
 
     Protected Sub ddlClass_SelectedIndexChanged(ByVal sender As Object, ByVal e As System.EventArgs)
         Try
@@ -2516,8 +2490,6 @@ Partial Class AnnualFees_Default
 #Region "Miscellaneous Subs"
 
     Protected Sub DoServerSideCode(ByVal sender As Object, ByVal e As EventArgs)
-        Dim xmldatasource As New XmlDataSource
-
         Try
             'Based on which tab is clicked the following will be executed
             Select Case UserTabs.ActiveTab.ID
@@ -2570,9 +2542,6 @@ Partial Class AnnualFees_Default
 #Enable Warning S108 ' Nested blocks of code should not be left empty
         Catch ex As Exception
             ErrorReport(ex)
-
-        Finally
-            xmldatasource.Dispose()
         End Try
     End Sub
 
