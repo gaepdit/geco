@@ -1,4 +1,4 @@
-﻿Imports System.Data.SqlClient
+Imports System.Data.SqlClient
 Imports GECO.GecoModels
 
 Partial Class AnnualFees_Default
@@ -1590,7 +1590,7 @@ Partial Class AnnualFees_Default
                 operate = rblNoOperateReason.SelectedIndex
             End If
 
-            'First SQL command withing the transaction
+            'First SQL command within the transaction
             Dim voctons As Integer = CInt(txtVOCTons.Text)
             Dim noxtons As Integer = CInt(txtNOxTons.Text)
             Dim pmtons As Integer = CInt(txtPMTons.Text)
@@ -1634,87 +1634,90 @@ Partial Class AnnualFees_Default
                 "where strairsnumber = @AIRS " &
                 "and numfeeyear = @feeyear "
 
-            Dim conn As New SqlConnection(DBConnectionString)
-            Dim cmd As New SqlCommand(SQL, conn)
+            Using conn As New SqlConnection(DBConnectionString)
+                Using cmd As New SqlCommand(SQL, conn)
 
-            'add SQL parameters for first SQL update
-            cmd.Parameters.Add(New SqlParameter("@voctons", SqlDbType.Int)).Value = voctons
-            cmd.Parameters.Add(New SqlParameter("@noxtons", SqlDbType.Int)).Value = noxtons
-            cmd.Parameters.Add(New SqlParameter("@pmtons", SqlDbType.Int)).Value = pmtons
-            cmd.Parameters.Add(New SqlParameter("@so2tons", SqlDbType.Int)).Value = so2tons
-            cmd.Parameters.Add(New SqlParameter("@part70fee", SqlDbType.Decimal)).Value = part70fee
-            cmd.Parameters.Add(New SqlParameter("@smfee", SqlDbType.Decimal)).Value = smfee
-            cmd.Parameters.Add(New SqlParameter("@nspsfee", SqlDbType.Decimal)).Value = nspsfee
-            cmd.Parameters.Add(New SqlParameter("@totalfee", SqlDbType.Decimal)).Value = totalfee
-            cmd.Parameters.Add(New SqlParameter("@nspsexempt", SqlDbType.VarChar)).Value = nspsexempt
-            cmd.Parameters.Add(New SqlParameter("@nspsreason", SqlDbType.VarChar)).Value = nspsexemptreason
-            cmd.Parameters.Add(New SqlParameter("@operate", SqlDbType.VarChar)).Value = operate
-            cmd.Parameters.Add(New SqlParameter("@sclass", SqlDbType.VarChar)).Value = Sclass
-            cmd.Parameters.Add(New SqlParameter("@nsps", SqlDbType.VarChar)).Value = nsps
-            cmd.Parameters.Add(New SqlParameter("@part70", SqlDbType.VarChar)).Value = part70
-            cmd.Parameters.Add(New SqlParameter("@feerate", SqlDbType.Decimal)).Value = feerate
-            cmd.Parameters.Add(New SqlParameter("@synminor", SqlDbType.VarChar)).Value = syntheticminor
-            cmd.Parameters.Add(New SqlParameter("@calcfee", SqlDbType.Decimal)).Value = calculatedfee
-            cmd.Parameters.Add(New SqlParameter("@adminfee", SqlDbType.Decimal)).Value = adminfee
-            cmd.Parameters.Add(New SqlParameter("@upduser", SqlDbType.VarChar)).Value = updateuser
-            cmd.Parameters.Add(New SqlParameter("@AIRS", SqlDbType.VarChar)).Value = airs
-            cmd.Parameters.Add(New SqlParameter("@feeyear", SqlDbType.VarChar)).Value = feeyr
+                    'add SQL parameters for first SQL update
+                    cmd.Parameters.Add(New SqlParameter("@voctons", SqlDbType.Int)).Value = voctons
+                    cmd.Parameters.Add(New SqlParameter("@noxtons", SqlDbType.Int)).Value = noxtons
+                    cmd.Parameters.Add(New SqlParameter("@pmtons", SqlDbType.Int)).Value = pmtons
+                    cmd.Parameters.Add(New SqlParameter("@so2tons", SqlDbType.Int)).Value = so2tons
+                    cmd.Parameters.Add(New SqlParameter("@part70fee", SqlDbType.Decimal)).Value = part70fee
+                    cmd.Parameters.Add(New SqlParameter("@smfee", SqlDbType.Decimal)).Value = smfee
+                    cmd.Parameters.Add(New SqlParameter("@nspsfee", SqlDbType.Decimal)).Value = nspsfee
+                    cmd.Parameters.Add(New SqlParameter("@totalfee", SqlDbType.Decimal)).Value = totalfee
+                    cmd.Parameters.Add(New SqlParameter("@nspsexempt", SqlDbType.VarChar)).Value = nspsexempt
+                    cmd.Parameters.Add(New SqlParameter("@nspsreason", SqlDbType.VarChar)).Value = nspsexemptreason
+                    cmd.Parameters.Add(New SqlParameter("@operate", SqlDbType.VarChar)).Value = operate
+                    cmd.Parameters.Add(New SqlParameter("@sclass", SqlDbType.VarChar)).Value = Sclass
+                    cmd.Parameters.Add(New SqlParameter("@nsps", SqlDbType.VarChar)).Value = nsps
+                    cmd.Parameters.Add(New SqlParameter("@part70", SqlDbType.VarChar)).Value = part70
+                    cmd.Parameters.Add(New SqlParameter("@feerate", SqlDbType.Decimal)).Value = feerate
+                    cmd.Parameters.Add(New SqlParameter("@synminor", SqlDbType.VarChar)).Value = syntheticminor
+                    cmd.Parameters.Add(New SqlParameter("@calcfee", SqlDbType.Decimal)).Value = calculatedfee
+                    cmd.Parameters.Add(New SqlParameter("@adminfee", SqlDbType.Decimal)).Value = adminfee
+                    cmd.Parameters.Add(New SqlParameter("@upduser", SqlDbType.VarChar)).Value = updateuser
+                    cmd.Parameters.Add(New SqlParameter("@AIRS", SqlDbType.VarChar)).Value = airs
+                    cmd.Parameters.Add(New SqlParameter("@feeyear", SqlDbType.VarChar)).Value = feeyr
 
-            If conn.State <> ConnectionState.Open Then
-                conn.Open()
-            End If
+                    If conn.State <> ConnectionState.Open Then
+                        conn.Open()
+                    End If
 
-            tran = conn.BeginTransaction()
-            cmd.Transaction = tran
-            cmd.CommandType = CommandType.Text
+                    tran = conn.BeginTransaction()
+                    cmd.Transaction = tran
+                    cmd.CommandType = CommandType.Text
 
-            cmd.ExecuteNonQuery()
+                    cmd.ExecuteNonQuery()
 
-            cmd.Parameters.Clear()
+                    cmd.Parameters.Clear()
 
-            'Second SQL command within the transaction
-            SQL = "Update fs_admin set numcurrentstatus = 6, " &
-                "updatedatetime = getdate(), " &
-                "DATSTATUSDATE = getdate(), " &
-                "updateuser = @UpdUsr " &
-                "where strairsnumber = @AIRS " &
-                "and numfeeyear = @feeyear " &
-                "and numcurrentstatus < 6"
+                    'Second SQL command within the transaction
+                    SQL = "Update fs_admin set numcurrentstatus = 6, " &
+                        "updatedatetime = getdate(), " &
+                        "DATSTATUSDATE = getdate(), " &
+                        "updateuser = @UpdUsr " &
+                        "where strairsnumber = @AIRS " &
+                        "and numfeeyear = @feeyear " &
+                        "and numcurrentstatus < 6"
 
-            cmd.CommandText = SQL  ' = New SqlCommand(SQL, conn)
-            cmd.CommandType = CommandType.Text
+                    cmd.CommandText = SQL
+                    cmd.CommandType = CommandType.Text
 
-            cmd.Parameters.Add(New SqlParameter("@UpdUsr", SqlDbType.VarChar)).Value = updateuser
-            cmd.Parameters.Add(New SqlParameter("@AIRS", SqlDbType.VarChar)).Value = airs
-            cmd.Parameters.Add(New SqlParameter("@feeyear", SqlDbType.VarChar)).Value = feeyr
+                    cmd.Parameters.Add(New SqlParameter("@UpdUsr", SqlDbType.VarChar)).Value = updateuser
+                    cmd.Parameters.Add(New SqlParameter("@AIRS", SqlDbType.VarChar)).Value = airs
+                    cmd.Parameters.Add(New SqlParameter("@feeyear", SqlDbType.VarChar)).Value = feeyr
 
-            If conn.State <> ConnectionState.Open Then
-                conn.Open()
-            End If
+                    If conn.State <> ConnectionState.Open Then
+                        conn.Open()
+                    End If
 
-            cmd.ExecuteNonQuery()
+                    cmd.ExecuteNonQuery()
 
-            cmd.Parameters.Clear()
+                    cmd.Parameters.Clear()
 
-            'Third SQL command within the transaction
-            cmd.CommandText = "PD_FeeAmendment" ' = New SqlCommand("PD_FeeAmendment", conn)
+                    'Third SQL command within the transaction
+                    cmd.CommandText = "PD_FeeAmendment"
 
-            If conn.State <> ConnectionState.Open Then
-                conn.Open()
-            End If
+                    If conn.State <> ConnectionState.Open Then
+                        conn.Open()
+                    End If
 
-            cmd.CommandType = CommandType.StoredProcedure
+                    cmd.CommandType = CommandType.StoredProcedure
 
-            cmd.Parameters.Add(New SqlParameter("AIRSNumber", SqlDbType.VarChar)).Value = airs
-            cmd.Parameters.Add(New SqlParameter("FeeYear", SqlDbType.Decimal)).Value = feeyr
+                    cmd.Parameters.Add(New SqlParameter("AIRSNumber", SqlDbType.VarChar)).Value = airs
+                    cmd.Parameters.Add(New SqlParameter("FeeYear", SqlDbType.Decimal)).Value = feeyr
 
-            cmd.ExecuteNonQuery()
+                    cmd.ExecuteNonQuery()
 
-            tran.Commit()
+                    tran.Commit()
 
-            If conn.State = ConnectionState.Open Then
-                conn.Close()
-            End If
+                    If conn.State = ConnectionState.Open Then
+                        conn.Close()
+                    End If
+
+                End Using
+            End Using
 
         Catch exThreadAbort As System.Threading.ThreadAbortException
             tran.Rollback()
@@ -1835,82 +1838,84 @@ Partial Class AnnualFees_Default
                 "getdate(), " &
                 "@upduser)"
 
-            Dim conn As New SqlConnection(DBConnectionString)
-            Dim cmd As New SqlCommand(SQL, conn)
+            Using conn As New SqlConnection(DBConnectionString)
+                Using cmd As New SqlCommand(SQL, conn)
 
-            'add SQL parameters for first SQL update
-            cmd.Parameters.Add(New SqlParameter("@AIRS", SqlDbType.VarChar)).Value = airs
-            cmd.Parameters.Add(New SqlParameter("@feeyear", SqlDbType.VarChar)).Value = feeyr
-            cmd.Parameters.Add(New SqlParameter("@voctons", SqlDbType.Int)).Value = voctons
-            cmd.Parameters.Add(New SqlParameter("@noxtons", SqlDbType.Int)).Value = noxtons
-            cmd.Parameters.Add(New SqlParameter("@pmtons", SqlDbType.Int)).Value = pmtons
-            cmd.Parameters.Add(New SqlParameter("@so2tons", SqlDbType.Int)).Value = so2tons
-            cmd.Parameters.Add(New SqlParameter("@part70fee", SqlDbType.Decimal)).Value = part70fee
-            cmd.Parameters.Add(New SqlParameter("@smfee", SqlDbType.Decimal)).Value = smfee
-            cmd.Parameters.Add(New SqlParameter("@nspsfee", SqlDbType.Decimal)).Value = nspsfee
-            cmd.Parameters.Add(New SqlParameter("@totalfee", SqlDbType.Decimal)).Value = totalfee
-            cmd.Parameters.Add(New SqlParameter("@nspsexempt", SqlDbType.VarChar)).Value = nspsexempt
-            cmd.Parameters.Add(New SqlParameter("@nspsreason", SqlDbType.VarChar)).Value = nspsexemptreason
-            cmd.Parameters.Add(New SqlParameter("@operate", SqlDbType.VarChar)).Value = operate
-            cmd.Parameters.Add(New SqlParameter("@sclass", SqlDbType.VarChar)).Value = Sclass
-            cmd.Parameters.Add(New SqlParameter("@nsps", SqlDbType.VarChar)).Value = nsps
-            cmd.Parameters.Add(New SqlParameter("@part70", SqlDbType.VarChar)).Value = part70
-            cmd.Parameters.Add(New SqlParameter("@feerate", SqlDbType.Decimal)).Value = feerate
-            cmd.Parameters.Add(New SqlParameter("@synminor", SqlDbType.VarChar)).Value = syntheticminor
-            cmd.Parameters.Add(New SqlParameter("@calcfee", SqlDbType.Decimal)).Value = calculatedfee
-            cmd.Parameters.Add(New SqlParameter("@adminfee", SqlDbType.Decimal)).Value = adminfee
-            cmd.Parameters.Add(New SqlParameter("@upduser", SqlDbType.VarChar)).Value = updateuser
+                    'add SQL parameters for first SQL update
+                    cmd.Parameters.Add(New SqlParameter("@AIRS", SqlDbType.VarChar)).Value = airs
+                    cmd.Parameters.Add(New SqlParameter("@feeyear", SqlDbType.VarChar)).Value = feeyr
+                    cmd.Parameters.Add(New SqlParameter("@voctons", SqlDbType.Int)).Value = voctons
+                    cmd.Parameters.Add(New SqlParameter("@noxtons", SqlDbType.Int)).Value = noxtons
+                    cmd.Parameters.Add(New SqlParameter("@pmtons", SqlDbType.Int)).Value = pmtons
+                    cmd.Parameters.Add(New SqlParameter("@so2tons", SqlDbType.Int)).Value = so2tons
+                    cmd.Parameters.Add(New SqlParameter("@part70fee", SqlDbType.Decimal)).Value = part70fee
+                    cmd.Parameters.Add(New SqlParameter("@smfee", SqlDbType.Decimal)).Value = smfee
+                    cmd.Parameters.Add(New SqlParameter("@nspsfee", SqlDbType.Decimal)).Value = nspsfee
+                    cmd.Parameters.Add(New SqlParameter("@totalfee", SqlDbType.Decimal)).Value = totalfee
+                    cmd.Parameters.Add(New SqlParameter("@nspsexempt", SqlDbType.VarChar)).Value = nspsexempt
+                    cmd.Parameters.Add(New SqlParameter("@nspsreason", SqlDbType.VarChar)).Value = nspsexemptreason
+                    cmd.Parameters.Add(New SqlParameter("@operate", SqlDbType.VarChar)).Value = operate
+                    cmd.Parameters.Add(New SqlParameter("@sclass", SqlDbType.VarChar)).Value = Sclass
+                    cmd.Parameters.Add(New SqlParameter("@nsps", SqlDbType.VarChar)).Value = nsps
+                    cmd.Parameters.Add(New SqlParameter("@part70", SqlDbType.VarChar)).Value = part70
+                    cmd.Parameters.Add(New SqlParameter("@feerate", SqlDbType.Decimal)).Value = feerate
+                    cmd.Parameters.Add(New SqlParameter("@synminor", SqlDbType.VarChar)).Value = syntheticminor
+                    cmd.Parameters.Add(New SqlParameter("@calcfee", SqlDbType.Decimal)).Value = calculatedfee
+                    cmd.Parameters.Add(New SqlParameter("@adminfee", SqlDbType.Decimal)).Value = adminfee
+                    cmd.Parameters.Add(New SqlParameter("@upduser", SqlDbType.VarChar)).Value = updateuser
 
-            If conn.State <> ConnectionState.Open Then
-                conn.Open()
-            End If
+                    If conn.State <> ConnectionState.Open Then
+                        conn.Open()
+                    End If
 
-            tran = conn.BeginTransaction()
-            cmd.Transaction = tran
-            cmd.CommandType = CommandType.Text
+                    tran = conn.BeginTransaction()
+                    cmd.Transaction = tran
+                    cmd.CommandType = CommandType.Text
 
-            cmd.ExecuteNonQuery()
+                    cmd.ExecuteNonQuery()
 
-            cmd.Parameters.Clear()
+                    cmd.Parameters.Clear()
 
-            'Second SQL command within the transaction
-            SQL = "Update fs_admin set numcurrentstatus = 6, " &
-                "updatedatetime = getdate(), " &
-                "DATSTATUSDATE = getdate(), " &
-                "updateuser = @UpdUsr " &
-                "where strairsnumber = @AIRS " &
-                "and numfeeyear = @feeyear " &
-                "and numcurrentstatus < 6"
+                    'Second SQL command within the transaction
+                    SQL = "Update fs_admin set numcurrentstatus = 6, " &
+                        "updatedatetime = getdate(), " &
+                        "DATSTATUSDATE = getdate(), " &
+                        "updateuser = @UpdUsr " &
+                        "where strairsnumber = @AIRS " &
+                        "and numfeeyear = @feeyear " &
+                        "and numcurrentstatus < 6"
 
-            cmd.CommandText = SQL  ' = New SqlCommand(SQL, conn)
-            cmd.CommandType = CommandType.Text
+                    cmd.CommandText = SQL
+                    cmd.CommandType = CommandType.Text
 
-            cmd.Parameters.Add(New SqlParameter("@UpdUsr", SqlDbType.VarChar)).Value = updateuser
-            cmd.Parameters.Add(New SqlParameter("@AIRS", SqlDbType.VarChar)).Value = airs
-            cmd.Parameters.Add(New SqlParameter("@feeyear", SqlDbType.VarChar)).Value = feeyr
+                    cmd.Parameters.Add(New SqlParameter("@UpdUsr", SqlDbType.VarChar)).Value = updateuser
+                    cmd.Parameters.Add(New SqlParameter("@AIRS", SqlDbType.VarChar)).Value = airs
+                    cmd.Parameters.Add(New SqlParameter("@feeyear", SqlDbType.VarChar)).Value = feeyr
 
-            If conn.State <> ConnectionState.Open Then
-                conn.Open()
-            End If
+                    If conn.State <> ConnectionState.Open Then
+                        conn.Open()
+                    End If
 
-            cmd.ExecuteNonQuery()
+                    cmd.ExecuteNonQuery()
 
-            cmd.Parameters.Clear()
+                    cmd.Parameters.Clear()
 
-            'cmd = New SqlCommand("PD_FeeAmendment", conn)
-            cmd.CommandText = "PD_FeeAmendment"
-            cmd.CommandType = CommandType.StoredProcedure
+                    cmd.CommandText = "PD_FeeAmendment"
+                    cmd.CommandType = CommandType.StoredProcedure
 
-            cmd.Parameters.Add(New SqlParameter("FeeYear", SqlDbType.Decimal)).Value = feeyear.Text
-            cmd.Parameters.Add(New SqlParameter("AIRSNumber", SqlDbType.VarChar)).Value = "0413" & GetCookie(Cookie.AirsNumber)
+                    cmd.Parameters.Add(New SqlParameter("FeeYear", SqlDbType.Decimal)).Value = feeyear.Text
+                    cmd.Parameters.Add(New SqlParameter("AIRSNumber", SqlDbType.VarChar)).Value = "0413" & GetCookie(Cookie.AirsNumber)
 
-            cmd.ExecuteNonQuery()
+                    cmd.ExecuteNonQuery()
 
-            tran.Commit()
+                    tran.Commit()
 
-            If conn.State = ConnectionState.Open Then
-                conn.Close()
-            End If
+                    If conn.State = ConnectionState.Open Then
+                        conn.Close()
+                    End If
+
+                End Using
+            End Using
 
         Catch exThreadAbort As System.Threading.ThreadAbortException
             tran.Rollback()
