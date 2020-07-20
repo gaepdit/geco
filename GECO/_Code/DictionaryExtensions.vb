@@ -1,6 +1,6 @@
 ﻿Imports System.Runtime.CompilerServices
 
-Module DictionaryExtensions
+Public Module DictionaryExtensions
 
     ''' <summary>
     ''' Adds an element with the provided key and value to the System.Collections.IDictionary 

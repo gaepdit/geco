@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="..\packages\Microsoft.CodeAnalysis.FxCopAnalyzers.2.9.8\build\Microsoft.CodeAnalysis.FxCopAnalyzers.props" Condition="Exists('..\packages\Microsoft.CodeAnalysis.FxCopAnalyzers.2.9.8\build\Microsoft.CodeAnalysis.FxCopAnalyzers.props')" />
   <Import Project="..\packages\Microsoft.NetFramework.Analyzers.2.9.8\build\Microsoft.NetFramework.Analyzers.props" Condition="Exists('..\packages\Microsoft.NetFramework.Analyzers.2.9.8\build\Microsoft.NetFramework.Analyzers.props')" />
@@ -565,6 +565,7 @@
       <DependentUpon>Register.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="_Classes\AnnualFeeCalc.vb" />
     <Compile Include="_Code\DictionaryExtensions.vb" />
     <Compile Include="_Code\Guard.vb" />
     <Compile Include="_Code\CollectionExtensions.vb" />
@@ -572,8 +573,7 @@
     <Compile Include="_Code\CookieHelper.vb" />
     <Compile Include="_Code\DecimalFunctions.vb" />
     <Compile Include="_Code\HtmlTableFunctions.vb" />
-    <Compile Include="_Code\RaygunInfo.vb" />
-    <Compile Include="_DAL\AnnualFees\AnnualFees.vb" />
+    <Compile Include="_Classes\RaygunInfo.vb" />
     <Compile Include="_DAL\DataBaseConnection.vb" />
     <Compile Include="_Code\EIS\eis_accesschecks.vb" />
     <Compile Include="_DAL\EIS\eis_Access.vb" />
@@ -597,7 +597,7 @@
     <Compile Include="_DAL\ES\ES_MiscCode.vb" />
     <Compile Include="_DAL\Events\Events.vb" />
     <Compile Include="_DAL\Facility\FacilityInfo.vb" />
-    <Compile Include="_DAL\EmissionFees\FeeBusinessEntity.vb" />
+    <Compile Include="_DAL\AnnualFees\AnnualFees.vb" />
     <Compile Include="_Code\Geocode.vb" />
     <Compile Include="_Code\Globals.vb" />
     <Compile Include="_Code\GridviewExportUtil.vb" />
@@ -635,7 +635,7 @@
     <Compile Include="_Code\StringFunctions.vb" />
     <Compile Include="_Code\UrlHelper.vb" />
     <Compile Include="_Code\UserAccountEmails.vb" />
-    <Compile Include="_DAL\EmissionFees\ZipCode.vb" />
+    <Compile Include="_DAL\AnnualFees\ZipCode.vb" />
     <Compile Include="Controls\PreventRePost.ascx.vb">
       <DependentUpon>PreventRePost.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

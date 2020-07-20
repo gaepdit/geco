@@ -548,13 +548,13 @@ textarea {
     border-color: #CDCDCD;
     margin-bottom: 1em;
     margin-top: 1em;
+    text-align: left;
 }
 
     .table-simple th,
     .table-simple td {
         padding: 5px;
         vertical-align: baseline;
-        text-align: left;
         border-color: #CDCDCD;
     }
 
@@ -647,13 +647,21 @@ textarea {
     font-weight: normal;
 }
 
+.table-cell-alignleft,
+.table-simple .table-cell-alignleft,
+.table-cell-alignleft input {
+    text-align: left;
+}
+
 .table-cell-alignright,
-.table-simple .table-cell-alignright {
+.table-simple .table-cell-alignright,
+.table-cell-alignright input {
     text-align: right;
 }
 
 .table-cell-aligncenter,
-.table-simple .table-cell-aligncenter {
+.table-simple .table-cell-aligncenter,
+.table-cell-aligncenter input {
     text-align: center;
 }
 

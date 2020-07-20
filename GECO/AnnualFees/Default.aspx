@@ -24,17 +24,6 @@
         }
     </script>
 
-    <div visible="false" style="display: none;">
-        <asp:Label ID="feeyear" runat="server" Visible="false"></asp:Label>
-        <asp:Label ID="pertonrate" runat="server" Visible="false"></asp:Label>
-        <asp:Label ID="smfee" runat="server" Visible="false"></asp:Label>
-        <asp:Label ID="nspsfee" runat="server" Visible="false"></asp:Label>
-        <asp:Label ID="titlevfee" runat="server" Visible="false"></asp:Label>
-        <asp:Label ID="adminfee" runat="server" Visible="false"></asp:Label>
-        <asp:Label ID="adminfeedate" runat="server" Visible="false"></asp:Label>
-        <asp:Label ID="numaathres" runat="server" Visible="false"></asp:Label>
-        <asp:Label ID="numnathres" runat="server" Visible="false"></asp:Label>
-    </div>
     <div align="center">
         <strong>Submission Deadline:</strong>
         <asp:Label ID="lblDeadline" ForeColor="DarkRed" Font-Bold="true" runat="server"></asp:Label><br />
@@ -51,17 +40,13 @@
         <asp:Label ID="lblMessage" runat="server" ForeColor="#C00000" Visible="False"></asp:Label>
     </p>
 
-    <act:TabContainer runat="server" ID="UserTabs" OnClientActiveTabChanged="ActiveTabChanged" OnActiveTabChanged="DoServerSideCode">
+    <act:TabContainer runat="server" ID="UserTabs" OnClientActiveTabChanged="ActiveTabChanged">
 
         <act:TabPanel runat="Server" ID="Welcome" HeaderText="Welcome">
             <ContentTemplate>
-                <div align="right">
+                <div>
                     <asp:Button ID="btnProceed" runat="server" Font-Bold="True"
                         Text="Begin →" CausesValidation="False" Visible="false" />
-                </div>
-
-                <div class="announcement">
-                    <p>The 2019 Annual Permit Fee Invoices can be generated beginning July&nbsp;27,&nbsp;2020.</p>
                 </div>
 
                 <h1>Annual Permit/Emissions Fees Reporting Form</h1>
@@ -99,52 +84,47 @@
                 </p>
 
                 <div runat="server" id="feeRatesSection" visible="false">
-                    <h2>Calendar Year <% =feeyear.Text %> Emission Fees</h2>
+                    <h2>Calendar Year <% =feeYear.Value %> Emission Fees</h2>
                     <p>
                         (1) For major Part 70 sources paying the “calculated fees”, the cost per ton of
-                        pollutant is <strong><% =pertonrate.Text %></strong>. If a stationary source with 
-                        a Part 70 permit permanently ceases operation
+                        pollutant is <strong><% =feeCalc.FeeRates.PerTonRate.ToString("c") %></strong>. 
+                        If a stationary source with a Part 70 permit permanently ceases operation
                         prior to the calendar year in which the fees are based and requests that the Part
                         70 permit for that facility be revoked and the Division revokes the Part 70 permit
                         for the facility during or prior to the calendar year in which fees are based, the
-                        Part 70 fee does not apply.
-                   
+                        Part 70 fee does not apply.                   
                     </p>
                     <p>
                         (2) Any source for which a Part 70 (Title V) permit application is or will be required
                         to be submitted for the purpose of obtaining a Part 70 permit is required to pay
                         Part 70 Fees once a construction (SIP) permit is required under 391-3-1-.03(1) has
                         been issued for the construction of a new Part 70 source or the modification of
-                        an existing source which results in the source becoming a Part 70 source.
-                   
+                        an existing source which results in the source becoming a Part 70 source.                   
                     </p>
                     <p>
                         Synthetic Minor (SM) sources that are not also Part 70 sources owe a Synthetic Minor
-                        Fee of <strong><% =smfee.Text %></strong>. True Minor (B) and Permit-by-Rule (PR) 
-                        sources that are not also
+                        Fee of <strong><% =feeCalc.FeeRates.SmFeeRate.ToString("c") %></strong>. 
+                        True Minor (B) and Permit-by-Rule (PR) sources that are not also
                         Part 70 sources do not have to pay either the Part 70 or Synthetic Minor Fee. If
                         a stationary source with a synthetic minor permit permanently ceases operation and
                         requests that the synthetic minor operating permit for that facility be revoked
                         and the Division revokes the synthetic minor operating permit for the facility during
                         or prior to the calendar year in which the fees are based, the synthetic minor permit
-                        fee does not apply.
-                   
+                        fee does not apply.                   
                     </p>
                     <p>
                         (3) Sources that are subject to at least one NSPS standard must pay the NSPS fee
-                        of <strong><% =nspsfee.Text %></strong>, unless all of the NSPS standards the source 
-                        is subject to are listed in section 2.1 of the Fee Manual.
-                   
+                        of <strong><% =feeCalc.FeeRates.NspsFeeRate.ToString("c") %></strong>, unless all 
+                        of the NSPS standards the source is subject to are listed in section 2.1 of the Fee Manual.
+                  
                     </p>
                     <p>
                         (4) The NSPS Fee is due in <strong><em>addition</em></strong> to any Part 70 or synthetic minor
-                        fee that may be due.
-                   
+                        fee that may be due.                   
                     </p>
                     <p>
                         (5) If the total amount due for a facility is $10,000 or greater, the fee may be
-                        paid in four equal quarterly payments.
-                   
+                        paid in four equal quarterly payments.                   
                     </p>
                 </div>
 
@@ -409,8 +389,7 @@
                 </asp:Panel>
                 <br />
                 <br />
-                <asp:Button ID="btnUpdateContact" runat="server" Text="Save Fee Contact" OnClick="btnUpdateContact_Click"
-                    ValidationGroup="Contact" />
+                <asp:Button ID="btnUpdateContact" runat="server" Text="Save Fee Contact" ValidationGroup="Contact" />
                 <asp:Label ID="lblContactMsg" runat="server" ForeColor="#C000C0" Visible="False"></asp:Label>
             </ContentTemplate>
         </act:TabPanel>
@@ -434,7 +413,7 @@
                         <td>CLASS:
                            
                             <asp:TextBox ID="txtClass" runat="server" Width="50px" BackColor="#E0E0E0" ForeColor="#400000"
-                                MaxLength="2" ReadOnly="True">CLASS:</asp:TextBox>
+                                MaxLength="2" ReadOnly="True"></asp:TextBox>
                         </td>
                         <td>
                             <asp:CheckBox ID="chkNSPS" runat="server" Font-Bold="True" Enabled="False" Text="NSPS"></asp:CheckBox>
@@ -446,18 +425,16 @@
                         </td>
                         <td>CLASS:
                            
-                            <asp:DropDownList ID="ddlClass" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlClass_SelectedIndexChanged">
-                                <asp:ListItem></asp:ListItem>
-                                <asp:ListItem Value="A">A</asp:ListItem>
-                                <asp:ListItem Value="SM">SM</asp:ListItem>
-                                <asp:ListItem Value="B">B</asp:ListItem>
-                                <asp:ListItem Value="PR">PR</asp:ListItem>
-                                <asp:ListItem Value="C">C</asp:ListItem>
+                            <asp:DropDownList ID="ddlClass" runat="server" AutoPostBack="True">
+                                <asp:ListItem Value="A">A - Major Source</asp:ListItem>
+                                <asp:ListItem Value="SM">SM - Synthetic Minor Source</asp:ListItem>
+                                <asp:ListItem Value="B">B - Minor Source</asp:ListItem>
+                                <asp:ListItem Value="PR">PR - Permit-by-Rule Source</asp:ListItem>
                             </asp:DropDownList>
                         </td>
                         <td>
                             <asp:CheckBox ID="chkNSPS1" runat="server" Font-Bold="True" Visible="False" Text="NSPS"
-                                AutoPostBack="True" OnCheckedChanged="chkNSPS1_CheckedChanged"></asp:CheckBox>
+                                AutoPostBack="True"></asp:CheckBox>
                         </td>
                     </tr>
                 </table>
@@ -465,170 +442,157 @@
                 <asp:ValidationSummary ID="ValidationSummary1" runat="server" ValidationGroup="Calculation"
                     DisplayMode="BulletList" />
                 <br />
-                <asp:Panel ID="pnlDidNotOperate" runat="server" Visible="false">
-                    Check here if this stationary source did not operate at all in calendar year
-                   
-                    <% =feeyear.Text%>
-                    <br>
-                    <asp:CheckBox ID="chkDidNotOperate" runat="server" AutoPostBack="True" Font-Bold="True"
-                        Text="Did Not Operate" />
-                    <asp:Label ID="lblNoOperateReason" runat="server" ForeColor="Red" Visible="False">You must select one option</asp:Label>
-                    <asp:RadioButtonList ID="rblNoOperateReason" runat="server" AutoPostBack="True">
-                        <asp:ListItem Value="1">Source is permanently shutdown. Please revoke the Air Permit and remove this source from the Permit Fee mailing list.</asp:ListItem>
-                        <asp:ListItem Value="2">Source may operate in the future. Please make no changes to the Air Permit or the Permit Fee mailing list. Select this if the source was only temporarily shutdown during all of the calendar year but may operate in the future, or if this source is a newly permitted source but has not yet commenced operation.</asp:ListItem>
-                    </asp:RadioButtonList>
-                </asp:Panel>
+
                 <asp:Panel ID="pnlEmissions" runat="server" Visible="true">
                     <p>
                         If this is a major Part 70 source, complete the following. (If the total calculated emission fee is less than the 
                         minimum Part 70 Fee defined in the Permit Fee Manual, then the owner or operator must pay the minimum Part 70 Fee.)
                     </p>
-                    <table style="border-collapse: collapse;" cellpadding="5">
-                        <tr>
-                            <td style="border: 1px solid">Calculated Annual Volatile Organic Compounds (VOC) Emissions in Tons</td>
-                            <td style="border: 1px solid">
-                                <asp:TextBox ID="txtVOCTons" runat="server" Width="75px" MaxLength="4" ValidationGroup="Calculation"
-                                    AutoPostBack="true" CausesValidation="true"></asp:TextBox>
-                                <asp:RequiredFieldValidator ID="rfvtxtVOCTons" runat="server" Font-Size="Smaller"
-                                    ControlToValidate="txtVOCTons" ErrorMessage="Please enter anuual VOC emissions"
-                                    Display="Dynamic" ValidationGroup="Calculation">*</asp:RequiredFieldValidator>
-                                <asp:RangeValidator ID="rnvtxtVOCTons" runat="server" Font-Size="Smaller" ControlToValidate="txtVOCTons"
-                                    ErrorMessage="The Annual VOC Emissions cannot be greater than 4000 tons and must be rounded to the nearest whole number"
-                                    Display="Dynamic" Type="Integer" MaximumValue="4000" MinimumValue="0" ValidationGroup="Calculation"><= 4000</asp:RangeValidator>
-                                <act:FilteredTextBoxExtender FilterType="Numbers" runat="server" TargetControlID="txtVOCTons"></act:FilteredTextBoxExtender>
-                            </td>
-                            <td style="border: 1px solid" align="right">Fee for VOC:
-                            </td>
-                            <td style="border: 1px solid" align="center">
-                                <asp:Label ID="lblVOCFee" runat="server"></asp:Label>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="border: 1px solid">Calculated Annual Nitrogen Oxides (NOx) Emissions in Tons
-                            </td>
-                            <td style="border: 1px solid">
-                                <asp:TextBox ID="txtNOxTons" runat="server" Width="75px" MaxLength="4" ValidationGroup="Calculation"
-                                    AutoPostBack="true" CausesValidation="true"></asp:TextBox>
-                                <asp:RequiredFieldValidator ID="rfvtxtNOxTons" runat="server" Font-Size="Smaller"
-                                    ControlToValidate="txtNOxTons" ErrorMessage="Please enter anuual NOx emissions"
-                                    Display="Dynamic" ValidationGroup="Calculation">*</asp:RequiredFieldValidator>
-                                <asp:RangeValidator ID="rnvtxtNOxTons" runat="server" Font-Size="Smaller" ControlToValidate="txtNOxTons"
-                                    ErrorMessage="The Annual NOx Emissions cannot be greater than 4000 tons and must be rounded to the nearest whole number"
-                                    Display="Dynamic" Type="Integer" MaximumValue="4000" MinimumValue="0" ValidationGroup="Calculation"><= 4000</asp:RangeValidator>
-                                <act:FilteredTextBoxExtender FilterType="Numbers" runat="server" TargetControlID="txtNOxTons"></act:FilteredTextBoxExtender>
-                            </td>
-                            <td style="border: 1px solid" align="right">Fee for NOx:
-                            </td>
-                            <td style="border: 1px solid" align="center">
-                                <asp:Label ID="lblNOxFee" runat="server"></asp:Label>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="border: 1px solid">Calculated Annual Particulate Matter (PM) Emissions in Tons
-                            </td>
-                            <td style="border: 1px solid">
-                                <asp:TextBox ID="txtPMTons" runat="server" Width="75px" MaxLength="4" ValidationGroup="Calculation"
-                                    AutoPostBack="true" CausesValidation="true"></asp:TextBox>
-                                <asp:RequiredFieldValidator ID="rfvtxtPMTons" runat="server" Font-Size="Smaller"
-                                    ControlToValidate="txtPMTons" ErrorMessage="Please enter anuual PM emissions"
-                                    Display="Dynamic" ValidationGroup="Calculation">*</asp:RequiredFieldValidator>
-                                <asp:RangeValidator ID="rnvtxtPMTons" runat="server" Font-Size="Smaller" ControlToValidate="txtPMTons"
-                                    ErrorMessage="The Annual PM Emissions cannot be greater than 4000 tons and must be rounded to the nearest whole number"
-                                    Display="Dynamic" Type="Integer" MaximumValue="4000" MinimumValue="0" ValidationGroup="Calculation"><= 4000</asp:RangeValidator>
-                                <act:FilteredTextBoxExtender FilterType="Numbers" runat="server" TargetControlID="txtPMTons"></act:FilteredTextBoxExtender>
-                            </td>
-                            <td style="border: 1px solid" align="right">Fee for PM:
-                            </td>
-                            <td style="border: 1px solid" align="center">
-                                <asp:Label ID="lblPMFee" runat="server"></asp:Label>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="border: 1px solid">Calculated Annual Sulfur Dioxide (SO2) Emissions in Tons
-                            </td>
-                            <td style="border: 1px solid">
-                                <asp:TextBox ID="txtSO2Tons" runat="server" Width="75px" MaxLength="4" ValidationGroup="Calculation"
-                                    AutoPostBack="true" CausesValidation="true"></asp:TextBox>
-                                <asp:RequiredFieldValidator ID="rfvtxtSO2Tons" runat="server" Font-Size="Smaller"
-                                    ControlToValidate="txtSO2Tons" ErrorMessage="Please enter anuual SO2 emissions"
-                                    Display="Dynamic" ValidationGroup="Calculation">*</asp:RequiredFieldValidator>
-                                <asp:RangeValidator ID="rnvtxtSO2Tons" runat="server" Font-Size="Smaller" ControlToValidate="txtSO2Tons"
-                                    ErrorMessage="The Annual SO2 Emissions cannot be greater than 4000 tons and must be rounded to the nearest whole number"
-                                    Display="Dynamic" Type="Integer" MaximumValue="4000" MinimumValue="0" ValidationGroup="Calculation"><= 4000</asp:RangeValidator>
-                                <act:FilteredTextBoxExtender FilterType="Numbers" runat="server" TargetControlID="txtSO2Tons"></act:FilteredTextBoxExtender>
-                            </td>
-                            <td style="border: 1px solid" align="right">Fee for SO2:
-                            </td>
-                            <td style="border: 1px solid" align="center">
-                                <asp:Label ID="lblSO2Fee" runat="server"></asp:Label>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td style="border: 1px solid" align="right" rowspan="1">
-                                <strong>Total Emission Fee:</strong>
-                            </td>
-                            <td style="border: 1px solid" align="center">
-                                <asp:Label ID="lblPart70Fee" runat="server" BackColor="#E0E0E0" Font-Bold="True"></asp:Label>
-                            </td>
-                        </tr>
+                    <table class="table-simple table-cell-alignright">
+                        <thead>
+                            <tr>
+                                <th scope="col" colspan="2">Annual Emissions (tons)</th>
+                                <th scope="col" class="table-cell-alignright">Calculated Fee ($)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="table-cell-alignleft">Volatile Organic Compounds (VOC)</td>
+                                <td>
+                                    <asp:TextBox ID="txtVOCTons" runat="server" MaxLength="4" ValidationGroup="Calculation"
+                                        AutoPostBack="true" CausesValidation="true" CssClass="input-small"></asp:TextBox>
+                                    <asp:RequiredFieldValidator ID="rfvtxtVOCTons" runat="server" Font-Size="Smaller"
+                                        ControlToValidate="txtVOCTons" ErrorMessage="Please enter anuual VOC emissions"
+                                        Display="Dynamic" ValidationGroup="Calculation">*</asp:RequiredFieldValidator>
+                                    <asp:RangeValidator ID="rnvtxtVOCTons" runat="server" Font-Size="Smaller" ControlToValidate="txtVOCTons"
+                                        ErrorMessage="The Annual VOC Emissions cannot be greater than 4000 tons and must be rounded to the nearest whole number"
+                                        Display="Dynamic" Type="Integer" MaximumValue="4000" MinimumValue="0" ValidationGroup="Calculation"><br />0 to 4000</asp:RangeValidator>
+                                    <act:FilteredTextBoxExtender FilterType="Numbers" runat="server" TargetControlID="txtVOCTons"></act:FilteredTextBoxExtender>
+                                </td>
+                                <td>
+                                    <asp:Label ID="lblVOCFee" runat="server"></asp:Label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="table-cell-alignleft">Nitrogen Oxides (NO<sub>x</sub>)</td>
+                                <td>
+                                    <asp:TextBox ID="txtNOxTons" runat="server" MaxLength="4" ValidationGroup="Calculation"
+                                        AutoPostBack="true" CausesValidation="true" CssClass="input-small"></asp:TextBox>
+                                    <asp:RequiredFieldValidator ID="rfvtxtNOxTons" runat="server" Font-Size="Smaller"
+                                        ControlToValidate="txtNOxTons" ErrorMessage="Please enter anuual NOx emissions"
+                                        Display="Dynamic" ValidationGroup="Calculation">*</asp:RequiredFieldValidator>
+                                    <asp:RangeValidator ID="rnvtxtNOxTons" runat="server" Font-Size="Smaller" ControlToValidate="txtNOxTons"
+                                        ErrorMessage="The Annual NOx Emissions cannot be greater than 4000 tons and must be rounded to the nearest whole number"
+                                        Display="Dynamic" Type="Integer" MaximumValue="4000" MinimumValue="0" ValidationGroup="Calculation"><br />0 to 4000</asp:RangeValidator>
+                                    <act:FilteredTextBoxExtender FilterType="Numbers" runat="server" TargetControlID="txtNOxTons"></act:FilteredTextBoxExtender>
+                                </td>
+                                <td>
+                                    <asp:Label ID="lblNOxFee" runat="server"></asp:Label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="table-cell-alignleft">Particulate Matter (PM)</td>
+                                <td>
+                                    <asp:TextBox ID="txtPMTons" runat="server" MaxLength="4" ValidationGroup="Calculation"
+                                        AutoPostBack="true" CausesValidation="true" CssClass="input-small"></asp:TextBox>
+                                    <asp:RequiredFieldValidator ID="rfvtxtPMTons" runat="server" Font-Size="Smaller"
+                                        ControlToValidate="txtPMTons" ErrorMessage="Please enter anuual PM emissions"
+                                        Display="Dynamic" ValidationGroup="Calculation">*</asp:RequiredFieldValidator>
+                                    <asp:RangeValidator ID="rnvtxtPMTons" runat="server" Font-Size="Smaller" ControlToValidate="txtPMTons"
+                                        ErrorMessage="The Annual PM Emissions cannot be greater than 4000 tons and must be rounded to the nearest whole number"
+                                        Display="Dynamic" Type="Integer" MaximumValue="4000" MinimumValue="0" ValidationGroup="Calculation"><br />0 to 4000</asp:RangeValidator>
+                                    <act:FilteredTextBoxExtender FilterType="Numbers" runat="server" TargetControlID="txtPMTons"></act:FilteredTextBoxExtender>
+                                </td>
+                                <td>
+                                    <asp:Label ID="lblPMFee" runat="server"></asp:Label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="table-cell-alignleft">Sulfur Dioxide (SO<sub>2</sub>)</td>
+                                <td>
+                                    <asp:TextBox ID="txtSO2Tons" runat="server" MaxLength="4" ValidationGroup="Calculation"
+                                        AutoPostBack="true" CausesValidation="true" CssClass="input-small"></asp:TextBox>
+                                    <asp:RequiredFieldValidator ID="rfvtxtSO2Tons" runat="server" Font-Size="Smaller"
+                                        ControlToValidate="txtSO2Tons" ErrorMessage="Please enter anuual SO2 emissions"
+                                        Display="Dynamic" ValidationGroup="Calculation">*</asp:RequiredFieldValidator>
+                                    <asp:RangeValidator ID="rnvtxtSO2Tons" runat="server" Font-Size="Smaller" ControlToValidate="txtSO2Tons"
+                                        ErrorMessage="The Annual SO2 Emissions cannot be greater than 4000 tons and must be rounded to the nearest whole number"
+                                        Display="Dynamic" Type="Integer" MaximumValue="4000" MinimumValue="0" ValidationGroup="Calculation"><br />0 to 4000</asp:RangeValidator>
+                                    <act:FilteredTextBoxExtender FilterType="Numbers" runat="server" TargetControlID="txtSO2Tons"></act:FilteredTextBoxExtender>
+                                </td>
+                                <td>
+                                    <asp:Label ID="lblSO2Fee" runat="server"></asp:Label>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th scope="row">Totals:</th>
+                                <td>
+                                    <asp:Label ID="lblEmissionsTotal" runat="server"></asp:Label>
+                                </td>
+                                <td>
+                                    <asp:Label ID="lblEmissionFeeTotal" runat="server" Font-Bold="True"></asp:Label>
+                                </td>
+                            </tr>
+                        </tfoot>
                     </table>
                 </asp:Panel>
                 <p>
                     Select whether this source is a Part 70 or Synthetic Minor source.
                     If the source is both Part 70 and Synthetic Minor, check both boxes.
                 </p>
-                <asp:CheckBoxList ID="chkPart70SM" runat="server" Font-Bold="True">
-                    <asp:ListItem Value="Part 70 Fee">Part 70 Source</asp:ListItem>
-                    <asp:ListItem Value="Synthetic Minor Fee">Synthetic Minor Source</asp:ListItem>
-                </asp:CheckBoxList>
+
+                <asp:Panel ID="RegsChecklist" runat="server">
+                    <asp:CheckBox ID="chkPart70Source" runat="server" Text="Part 70 Source" AutoPostBack="True" />
+                    <asp:CheckBox ID="chkSmSource" runat="server" Text="Synthetic Minor Source" Enabled="false" />
+                </asp:Panel>
+
+                <p align="right">
+                    Part 70 Maintenance Fee:
+                    <asp:Label ID="lblPart70MaintenanceFee" runat="server" BackColor="#E0E0E0"></asp:Label>
+                </p>
                 <p align="right">
                     Part 70/SM Fee:
-                       
-                        <asp:Label ID="lblpart70SMFee" runat="server" BackColor="#E0E0E0"></asp:Label>
+                    <asp:Label ID="lblpart70SMFee" runat="server" BackColor="#E0E0E0"></asp:Label>
                 </p>
                 <p>
                     If this stationary source is subject to NSPS and not exempt from the&nbsp;NSPS fee,&nbsp;$1500
                         will be entered for NSPS Fee. However, if the source is NSPS but exempt from the
                         NSPS fee&nbsp;in accordance with section 2.1 of the manual for all NSPS equipment
-                        at facility, check the box for NSPS Exempt and select the reasons why it is exempt.
-                   
+                        at facility, check the box for NSPS Exempt and select the reasons why it is exempt.                   
                 </p>
+                <p>
+                    <asp:CheckBox ID="chkNSPSExempt" runat="server" Font-Bold="True" Text="Exempt NSPS" AutoPostBack="True" />&nbsp;                       
+                </p>
+                <p>
+                    <asp:Label ID="lblNspsExemptionWarning" visible="false" runat="server" ForeColor="red" 
+                        Text="Please select all the NSPS exemptions that apply to your facility." />
+                </p>
+                <asp:CheckBoxList ID="NspsExemptionsChecklist" runat="server" Font-Size="Small" Visible="False"></asp:CheckBoxList>
+
                 <p align="right">
                     NSPS Fee:                       
                     <asp:Label ID="lblNSPSFee" runat="server" BackColor="#E0E0E0"></asp:Label>
                 </p>
-                <p>
-                    <asp:CheckBox ID="chkNSPSExempt" runat="server" Font-Bold="True" Text="Exempt NSPS"
-                        AutoPostBack="True"></asp:CheckBox>&nbsp;                       
-                </p>
-                <p>
-                    <asp:Label ID="lblcblnspsreason" runat="server" ForeColor="red" Font-Size="smaller" />
-                </p>
-                <asp:CheckBoxList ID="cblNSPSExempt" runat="server" Font-Size="Small" Visible="False"></asp:CheckBoxList>
+
                 <p align="right">
-                    <asp:Button ID="btnCalculate" runat="server" Text="Calculate" ValidationGroup="Calculation"></asp:Button>&nbsp;                   
-                    <asp:Label ID="lblpart70" runat="server" Visible="False"></asp:Label>
-                    <asp:Label ID="lblcalculated" runat="server" Visible="False"></asp:Label>
-                    <asp:Label ID="lblsm" runat="server" Visible="False"></asp:Label>
+                    <asp:Button ID="btnCalculate" runat="server" Text="Recalculate" ValidationGroup="Calculation"></asp:Button>&nbsp;                   
+                    
                     Total Emissions Fee Due:
-                       
-                        <asp:Label ID="lblTotalFee" runat="server" BackColor="#E0E0E0" ForeColor="#000040"
-                            Font-Bold="True"></asp:Label><br />
+                    <asp:Label ID="lblTotalFee" runat="server" BackColor="#E0E0E0" ForeColor="#000040" Font-Bold="True"></asp:Label><br />
                     <asp:Label ID="lblAdminFeeText" runat="server" Visible="false"></asp:Label>
                     <asp:Label ID="lblAdminFeeAmount" runat="server" BackColor="#E0E0E0" ForeColor="#000040"
                         Font-Bold="True" Visible="false"></asp:Label>
-                    <asp:HiddenField ID="hidAdminFee" Value="0" Visible="false" runat="server" />
                 </p>
                 <p>
                     <asp:Button ID="btnSavePnlFeeCalc" runat="server" ToolTip="Save this section and proceed to Payment Info"
-                        Text="Save and Continue" ValidationGroup="Calculation"></asp:Button>
+                        Text="Save Fee Calculations and Continue →" ValidationGroup="Calculation"></asp:Button>
                 </p>
             </ContentTemplate>
         </act:TabPanel>
 
-        <act:TabPanel runat="server" ID="SignPay" HeaderText="Sign & Pay">
+        <act:TabPanel runat="server" ID="SignPay" HeaderText="Sign & Submit">
             <ContentTemplate>
                 <asp:Panel ID="pnlSignandPay" runat="server">
                     <asp:ValidationSummary ID="ValidationSummary2" runat="server" ValidationGroup="SignPay"
@@ -650,7 +614,7 @@
                     <p>
                         <table id="Table7" cellspacing="1" cellpadding="1" border="0">
                             <tr>
-                                <td>Total Emissions Fee Due: &nbsp;
+                                <td>Total Annual Fee Due: &nbsp;
                                 </td>
                                 <td>
                                     <asp:Label ID="lblPayment" runat="server"></asp:Label>
@@ -658,7 +622,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <asp:Label ID="lbladminfeeSign" runat="server" Visible="false"></asp:Label>&nbsp;
+                                    <asp:Label ID="lbladminfeeSign" runat="server" Visible="false">Admin Fee:</asp:Label>&nbsp;
                                 </td>
                                 <td>
                                     <asp:Label ID="lblAdminfeeamtSign" runat="server" Visible="false"></asp:Label>
@@ -717,8 +681,8 @@
                         <asp:TextBox ID="txtComments" runat="server" Width="90%" MaxLength="2000" TextMode="MultiLine"></asp:TextBox>
                     </p>
                     <p>
-                        <asp:Button ID="btnSavepnlSign" runat="server" Text="Save and Continue" ValidationGroup="SignPay"></asp:Button>
-                        Clicking on the Save and Continue button will take you to the final submission screen.
+                        <asp:Button ID="btnSavepnlSign" runat="server" Text="Continue →" ValidationGroup="SignPay"></asp:Button>
+                        Clicking on the Continue button will take you to the final submission screen.
                     </p>
                 </asp:Panel>
                 <asp:Panel ID="pnlSubmit" runat="server" Visible="False">
@@ -739,7 +703,7 @@
             </ContentTemplate>
         </act:TabPanel>
 
-        <act:TabPanel runat="server" ID="Reports" HeaderText="History">
+        <act:TabPanel runat="server" ID="History" HeaderText="History">
             <ContentTemplate>
                 <p>
                     Following is annual permit fee information from the current year back to 2004. Past invoices and deposit information are located
