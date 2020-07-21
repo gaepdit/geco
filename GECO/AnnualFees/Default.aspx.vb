@@ -1157,7 +1157,7 @@ Partial Class AnnualFees_Default
                 New SqlParameter("@InvDate", dt),
                 New SqlParameter("@UpdUser", "GECO||" & currentUser.Email),
                 New SqlParameter("@PayType", payType),
-                New SqlParameter("@InvStatus", If(feeCalc.CalcTotalFee > 0, "1", "0"))
+                New SqlParameter("@InvStatus", If(feeCalc.CalcTotalFee = 0, "1", "0"))
             }
 
             'Add SQL and Parameters to each list
