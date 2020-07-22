@@ -123,7 +123,7 @@
 
                     <h2>Notes</h2>
                     <p>
-                        The "Fee Calculations" and "Sign & Pay" tabs are only available when fees have not yet
+                        The "Fee Calculations" and "Sign & Submit" tabs are only available when fees have not yet
                     been submitted for the selected year.
                
                     </p>
