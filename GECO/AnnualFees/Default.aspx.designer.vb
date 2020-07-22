@@ -23,15 +23,6 @@ Partial Public Class AnnualFees_Default
     Protected WithEvents ModalUpdateProgress1 As Global.AjaxControls.ModalUpdateProgress
 
     '''<summary>
-    '''lblDeadline control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblDeadline As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
     '''ddlFeeYear control.
     '''</summary>
     '''<remarks>
@@ -48,6 +39,15 @@ Partial Public Class AnnualFees_Default
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents linkInvoice As Global.System.Web.UI.WebControls.HyperLink
+
+    '''<summary>
+    '''lblDeadline control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblDeadline As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''lblMessage control.
@@ -491,31 +491,13 @@ Partial Public Class AnnualFees_Default
     Protected WithEvents Calculation As Global.AjaxControlToolkit.TabPanel
 
     '''<summary>
-    '''chkNonAttainment control.
+    '''lblCurrentClass control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents chkNonAttainment As Global.System.Web.UI.WebControls.CheckBox
-
-    '''<summary>
-    '''txtClass control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtClass As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''chkNSPS control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents chkNSPS As Global.System.Web.UI.WebControls.CheckBox
+    Protected WithEvents lblCurrentClass As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''ddlClass control.
@@ -527,13 +509,13 @@ Partial Public Class AnnualFees_Default
     Protected WithEvents ddlClass As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
-    '''chkNSPS1 control.
+    '''pnlEmissions control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents chkNSPS1 As Global.System.Web.UI.WebControls.CheckBox
+    Protected WithEvents pnlEmissions As Global.System.Web.UI.WebControls.Panel
 
     '''<summary>
     '''ValidationSummary1 control.
@@ -543,15 +525,6 @@ Partial Public Class AnnualFees_Default
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ValidationSummary1 As Global.System.Web.UI.WebControls.ValidationSummary
-
-    '''<summary>
-    '''pnlEmissions control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents pnlEmissions As Global.System.Web.UI.WebControls.Panel
 
     '''<summary>
     '''txtVOCTons control.
@@ -734,6 +707,15 @@ Partial Public Class AnnualFees_Default
     Protected WithEvents chkPart70Source As Global.System.Web.UI.WebControls.CheckBox
 
     '''<summary>
+    '''lblPart70MinFeeRate control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblPart70MinFeeRate As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
     '''chkSmSource control.
     '''</summary>
     '''<remarks>
@@ -741,6 +723,24 @@ Partial Public Class AnnualFees_Default
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents chkSmSource As Global.System.Web.UI.WebControls.CheckBox
+
+    '''<summary>
+    '''lblSmFeeRate control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblSmFeeRate As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''lblpart70SMFee control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblpart70SMFee As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''lblPart70MaintenanceFee control.
@@ -752,13 +752,40 @@ Partial Public Class AnnualFees_Default
     Protected WithEvents lblPart70MaintenanceFee As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''lblpart70SMFee control.
+    '''lblNspsFeeRate control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lblpart70SMFee As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lblNspsFeeRate As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''chkNSPS control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents chkNSPS As Global.System.Web.UI.WebControls.CheckBox
+
+    '''<summary>
+    '''chkNSPS1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents chkNSPS1 As Global.System.Web.UI.WebControls.CheckBox
+
+    '''<summary>
+    '''lblNspsRemovalNotice control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblNspsRemovalNotice As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''chkNSPSExempt control.
@@ -795,15 +822,6 @@ Partial Public Class AnnualFees_Default
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblNSPSFee As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''btnCalculate control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnCalculate As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
     '''lblTotalFee control.

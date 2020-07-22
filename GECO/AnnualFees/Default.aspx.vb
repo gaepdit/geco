@@ -112,10 +112,6 @@ Partial Class AnnualFees_Default
         End If
     End Sub
 
-    Protected Sub btnCalculate_Click(sender As Object, e As EventArgs) Handles btnCalculate.Click
-        RecalculateFees()
-    End Sub
-
     Protected Sub btnSavePnlFeeCalc_Click(sender As Object, e As EventArgs) Handles btnSavePnlFeeCalc.Click
         If chkNSPSExempt.Checked Then
             If Not AnyNspsExemptionSelected() Then
@@ -313,36 +309,44 @@ Partial Class AnnualFees_Default
     Private Sub LoadFeeData()
         Dim dr As DataRow = GetClassInfo(feeYear.Value)
 
+        Dim initClass As String = "B"
+
         If dr IsNot Nothing Then
             'Getting details for the facility from table fs_mailout.
             'This table has all the information that goes into top panel and
             'is disabled so that the user cannot change it.
 
-            txtClass.Text = GetNullableString(dr.Item("strclass"))
+            initClass = GetNullableString(dr.Item("strclass"))
+            Select Case initClass
+                Case "A"
+                    lblCurrentClass.Text = "A - Major Source"
+                Case "SM"
+                    lblCurrentClass.Text = "SM - Synthetic Minor Source"
+                Case "B"
+                    lblCurrentClass.Text = "B - Minor Source"
+                Case "PR"
+                    lblCurrentClass.Text = "PR - Permit-by-Rule Source"
+            End Select
 
             chkPart70Source.Checked = False
             chkSmSource.Checked = False
 
-            UpdateUiFromClass(txtClass.Text)
+            UpdateUiFromClass(initClass)
 
-            If GetNullable(Of Integer)(dr.Item("strnsps")) = 1 Then
-                chkNSPS.Checked = True
-                chkNSPS1.Checked = True
-                chkNSPS1.Visible = False
-            Else
-                chkNSPS.Checked = False
-                chkNSPS1.Checked = False
-                chkNSPS1.Visible = True
-            End If
+            Dim initNsps As Boolean = GetNullable(Of Integer)(dr.Item("strnsps")) = 1
+            chkNSPS.Checked = initNsps
+            chkNSPS1.Checked = initNsps
+            chkNSPS1.Visible = Not initNsps
+            chkNSPS1.Enabled = Not initNsps
+            lblNspsRemovalNotice.Visible = initNsps
+            lblNspsRemovalNotice.Text = "If it is believed that this stationary source is not subject to any NSPS standard, <br/>call the number listed in Section 6.0 of this manual."
+            chkNSPSExempt.Enabled = initNsps
 
-            If GetNullable(Of Integer)(dr.Item("strpart70")) = 1 Then
-                chkPart70Source.Checked = True
-            End If
+            chkPart70Source.Checked = GetNullable(Of Integer)(dr.Item("strpart70")) = 1
         End If
 
         'Next get Data from fs_feeauditeddata Tables
         dr = GetExistingFeeData(feeYear.Value)
-        chkNSPSExempt.Enabled = False
 
         If dr IsNot Nothing Then
             'If the NumFeeRate in the AuditedData table is different, then replace the pertonrate with the new value
@@ -362,8 +366,6 @@ Partial Class AnnualFees_Default
                 chkNSPS1.Visible = True
             End If
 
-            chkNSPSExempt.Enabled = chkNSPS1.Visible
-
             If GetNullable(Of Integer)(dr.Item("strnspsexempt")) = 1 Then
                 chkNSPSExempt.Checked = True
                 If NspsExemptionsChecklist.Items.Count < 1 Then LoadNSPSExemptList()
@@ -377,7 +379,7 @@ Partial Class AnnualFees_Default
             chkSmSource.Checked = GetNullable(Of Integer)(dr.Item("strsyntheticminor")) = 1
 
             If IsDBNull(dr.Item("strclass")) Then
-                ddlClass.SelectedValue = txtClass.Text
+                ddlClass.SelectedValue = initClass
             Else
                 ddlClass.SelectedValue = dr.Item("strclass").ToString
             End If
@@ -397,7 +399,7 @@ Partial Class AnnualFees_Default
                 Next
             End If
         Else
-            ddlClass.SelectedValue = txtClass.Text
+            ddlClass.SelectedValue = initClass
         End If
 
         RecalculateFees()
@@ -1198,10 +1200,6 @@ Partial Class AnnualFees_Default
             Return False
         End If
 
-        ' TODO: First three not needed?
-        'SaveFacilityInfo()
-        'SaveFeeCalcInfo()
-        'SavePayandSignInfo()
         SaveFinalSubmit()
         SaveInvoiceNumber()
         SaveConfirmationNumber()
@@ -1305,6 +1303,7 @@ Partial Class AnnualFees_Default
             UserTabs.Tabs(3).Enabled = False
             UserTabs.Tabs(3).Visible = False
 
+            lblDeadline.Visible = False
             linkInvoice.Visible = False
             linkInvoice.NavigateUrl = Nothing
             btnProceed.Visible = False
@@ -1323,6 +1322,7 @@ Partial Class AnnualFees_Default
                 UserTabs.Tabs(3).Enabled = False
                 UserTabs.Tabs(3).Visible = False
 
+                lblDeadline.Visible = False
                 linkInvoice.NavigateUrl = String.Format("~/Invoice/?FeeYear={0}&Facility={1}", feeYear.Value, currentAirs.ShortString)
                 linkInvoice.Visible = True
                 btnProceed.Visible = False
@@ -1333,9 +1333,15 @@ Partial Class AnnualFees_Default
                 UserTabs.Tabs(3).Enabled = True
                 UserTabs.Tabs(3).Visible = True
 
+                lblDeadline.Visible = True
+                lblDeadline.Text = "Submission Deadline: " & feeCalc.FeeRates.DueDate.ToString(LongishDateFormat)
                 linkInvoice.Visible = False
                 btnProceed.Visible = True
                 btnUpdateContact.Text = "Save Fee Contact and Continue →"
+
+                lblPart70MinFeeRate.Text = feeCalc.FeeRates.Part70MinFee.ToString("c0")
+                lblSmFeeRate.Text = feeCalc.FeeRates.SmFeeRate.ToString("c0")
+                lblNspsFeeRate.Text = feeCalc.FeeRates.NspsFeeRate.ToString("c0")
             End If
         End If
 

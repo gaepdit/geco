@@ -708,6 +708,11 @@ textarea {
     padding: .5em;
 }
 
+.label-highlight {
+    background-color: #ffffcc;
+    padding: 2px 3px;
+}
+
 /* Submenu */
 
 ul.menu-list-horizontal {
