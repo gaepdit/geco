@@ -27,7 +27,7 @@
     <asp:GridView ID="grdAnnualInvoices" runat="server" CssClass="table-simple" Visible="true" AutoGenerateColumns="False">
         <Columns>
             <asp:HyperLinkField DataTextField="Fee Year" HeaderText="Fee Year" ItemStyle-CssClass="table-cell-link"
-                DataNavigateUrlFields="Fee Year" DataNavigateUrlFormatString="~/AnnualFees/Invoice.aspx?FeeYear={0}" />
+                DataNavigateUrlFields="FacilityID,Fee Year" DataNavigateUrlFormatString="~/Invoice/?Facility={0}&FeeYear={1}" />
             <asp:BoundField DataField="Invoice Date" HeaderText="Date" DataFormatString="{0:dd-MMM-yyyy}" ItemStyle-CssClass="table-cell-alignright" />
             <asp:BoundField DataField="Invoice Amount" HeaderText="Amount" DataFormatString="{0:c}" ItemStyle-CssClass="table-cell-alignright" />
             <asp:BoundField DataField="Invoice ID" HeaderText="Invoice ID" />
