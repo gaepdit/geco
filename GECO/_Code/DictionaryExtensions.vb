@@ -15,6 +15,7 @@ Public Module DictionaryExtensions
     <Extension>
     Public Sub AddIfNotExists(ByRef d As IDictionary, key As Object, value As Object)
         NotNull(key, NameOf(key))
+        NotNull(d, NameOf(d))
 
         If Not d.Contains(key) Then
             d.Add(key, value)
@@ -33,6 +34,9 @@ Public Module DictionaryExtensions
     ''' has a fixed size.</exception>
     <Extension>
     Public Sub AddIfNotNullOrEmpty(ByRef d As IDictionary, key As Object, value As String)
+        NotNull(key, NameOf(key))
+        NotNull(d, NameOf(d))
+
         If Not String.IsNullOrEmpty(value) Then
             d.Add(key, value)
         End If
