@@ -1,4 +1,4 @@
-Namespace GecoModels
+﻿Namespace GecoModels
     Public Class ApbFacilityId
         Implements IEquatable(Of ApbFacilityId)
 
@@ -83,8 +83,12 @@ Namespace GecoModels
 #Region " Operators "
 
         Public Shared Narrowing Operator CType(airsNumber As String) As ApbFacilityId
-            Return New ApbFacilityId(airsNumber)
+            Return FromString(airsNumber)
         End Operator
+
+        Public Shared Function FromString(airsNumber As String) As ApbFacilityId
+            Return New ApbFacilityId(airsNumber)
+        End Function
 
         Public Shared Widening Operator CType(airsNumber As ApbFacilityId) As String
             NotNull(airsNumber, NameOf(airsNumber))
