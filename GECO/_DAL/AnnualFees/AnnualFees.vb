@@ -225,7 +225,6 @@ Public Module AnnualFees
         NotNull(airs, NameOf(airs))
 
         Dim spName As String = "iaip_facility.GetAnnualFeesHistory"
-
         Return DB.SPGetDataTable(spName, New SqlParameter("@FacilityID", airs.DbFormattedString))
     End Function
 
