@@ -6,7 +6,7 @@
         <ContentTemplate>
             <div class="announcement announcement-mild">
                 <h2>Annual Permit Fees</h2>
-                <p>The 2019 Annual Permit Fee Invoices can be generated beginning July&nbsp;27,&nbsp;2020.</p>
+                    <p>2019 Annual Permit Fee Invoices are now available.</p>
             </div>
 
             <h1>GECO Home</h1>
