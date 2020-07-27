@@ -1,4 +1,4 @@
-<%@ Page Language="VB" MasterPageFile="~/AnnualFees/AnnualFees.master" AutoEventWireup="false" Inherits="GECO.AnnualFees_Default" Title="GECO Emissions Fees" CodeBehind="Default.aspx.vb" %>
+﻿<%@ Page Language="VB" MasterPageFile="~/AnnualFees/AnnualFees.master" AutoEventWireup="false" Inherits="GECO.AnnualFees_Default" Title="GECO Emissions Fees" CodeBehind="Default.aspx.vb" %>
 
 <%@ Import Namespace="GECO" %>
 
@@ -552,13 +552,13 @@
                         <tr>
                             <th scope="col">Update:</th>
                             <td>
-                                <asp:CheckBox ID="chkNSPS1" runat="server" Visible="False" Text="Subject to NSPS" AutoPostBack="True"></asp:CheckBox>
+                                <asp:CheckBox ID="chkNSPS1" runat="server" Text="Subject to NSPS" AutoPostBack="True"></asp:CheckBox>
                                 <asp:Label ID="lblNspsRemovalNotice" runat="server" Visible="false"></asp:Label>
                             </td>
                         </tr>
                     </table>
                     <p>
-                        <asp:CheckBox ID="chkNSPSExempt" runat="server" Text="Exempt from NSPS fees" AutoPostBack="True" />
+                        <asp:CheckBox ID="chkNSPSExempt" runat="server" Text="Exempt from NSPS fees" Enabled="False" AutoPostBack="True" />
                     </p>
                     <p>
                         <asp:Label ID="lblNspsExemptionWarning" Visible="false" runat="server" ForeColor="red"
