@@ -867,32 +867,28 @@ Partial Class AnnualFees_Default
         DB.RunCommand(qList, pList)
     End Sub
 
-    Private Sub SaveFinalSubmit()
-        Dim SQL As String = "Update fs_admin Set " &
-            "numcurrentstatus = 8, " &
-            "intsubmittal = 1, " &
-            "updatedatetime = getdate(), " &
-            "DATSTATUSDATE = getdate(), " &
-            "datsubmittal = getdate(), " &
-            "updateuser = @UpdUser " &
-            "where strairsnumber = @airs " &
-            "and numfeeyear = @FY"
-
-        Dim params As SqlParameter() = {
-            New SqlParameter("@UpdUser", "GECO||" & currentUser.Email),
-            New SqlParameter("@airs", currentAirs.DbFormattedString),
-            New SqlParameter("@FY", feeYear.Value)
-        }
-
-        DB.RunCommand(SQL, params)
-    End Sub
-
-    Private Sub SaveInvoiceNumber()
-        Dim numberOfInvoices As Integer
-        Dim payType As Integer
-
+    Private Function SaveFinalSubmit() As Boolean
         Dim qList As New List(Of String)
         Dim pList As New List(Of SqlParameter())
+
+        qList.Add("Update fs_admin Set " &
+                  "numcurrentstatus = 8, " &
+                  "intsubmittal = 1, " &
+                  "updatedatetime = getdate(), " &
+                  "DATSTATUSDATE = getdate(), " &
+                  "datsubmittal = getdate(), " &
+                  "updateuser = @UpdUser " &
+                  "where strairsnumber = @airs " &
+                  "and numfeeyear = @FY")
+
+        pList.Add({
+                  New SqlParameter("@UpdUser", "GECO||" & currentUser.Email),
+                  New SqlParameter("@airs", currentAirs.DbFormattedString),
+                  New SqlParameter("@FY", feeYear.Value)
+                  })
+
+        Dim numberOfInvoices As Integer
+        Dim payType As Integer
 
         If txtPayType.Text = "Entire Annual Year" Then
             numberOfInvoices = 1
@@ -900,7 +896,7 @@ Partial Class AnnualFees_Default
             numberOfInvoices = 4
         End If
 
-        Dim SQL As String = "Insert into fs_feeinvoice " &
+        Dim invoiceSql As String = "Insert into fs_feeinvoice " &
             "(invoiceid, numfeeyear, strairsnumber, numamount, datinvoicedate, updatedatetime, " &
             "createdatetime, updateuser, strpaytype, strinvoicestatus, active) " &
             "values(Next Value for feeinvoice_id, @feeYear, @AirsNo, @AmtDue, @InvDate, " &
@@ -925,7 +921,7 @@ Partial Class AnnualFees_Default
                     payType = 5
             End Select
 
-            Dim params As SqlParameter() = {
+            Dim invoiceParams As SqlParameter() = {
                 New SqlParameter("@feeYear", feeYear.Value),
                 New SqlParameter("@AirsNo", currentAirs.DbFormattedString),
                 New SqlParameter("@AmtDue", feeCalc.CalcTotalFee / numberOfInvoices),
@@ -936,35 +932,31 @@ Partial Class AnnualFees_Default
             }
 
             'Add SQL and Parameters to each list
-            qList.Add(SQL)
-            pList.Add(params)
+            qList.Add(invoiceSql)
+            pList.Add(invoiceParams)
 
             i += 1
         End While
 
-        DB.RunCommand(qList, pList)
-    End Sub
+        qList.Add("Update fs_feedata set " &
+                  "strconfirmationnumber = @conf, " &
+                  "strconfirmationuser = @UID, " &
+                  "updatedatetime = @UpdDT, " &
+                  "updateuser = @Uemail " &
+                  "where strairsnumber = @AIRSno " &
+                  "and numfeeyear = @FY")
 
-    Private Sub SaveConfirmationNumber()
-        Dim SQL As String = "Update fs_feedata set " &
-            "strconfirmationnumber = @conf, " &
-            "strconfirmationuser = @UID, " &
-            "updatedatetime = @UpdDT, " &
-            "updateuser = @Uemail " &
-            "where strairsnumber = @AIRSno " &
-            "and numfeeyear = @FY"
+        pList.Add({
+                  New SqlParameter("@conf", currentAirs.ShortString & "-" & Now.ToString("yyyyMMddhhmm")),
+                  New SqlParameter("@UID", currentUser.UserId),
+                  New SqlParameter("@UpdDT", lblDate.Text),
+                  New SqlParameter("@Uemail", "GECO||" & currentUser.Email),
+                  New SqlParameter("@AIRSno", currentAirs.DbFormattedString),
+                  New SqlParameter("@FY", feeYear.Value)
+                  })
 
-        Dim params As SqlParameter() = {
-            New SqlParameter("@conf", currentAirs.ShortString & "-" & Now.ToString("yyyyMMddhhmm")),
-            New SqlParameter("@UID", currentUser.UserId),
-            New SqlParameter("@UpdDT", lblDate.Text),
-            New SqlParameter("@Uemail", "GECO||" & currentUser.Email),
-            New SqlParameter("@AIRSno", currentAirs.DbFormattedString),
-            New SqlParameter("@FY", feeYear.Value)
-        }
-
-        DB.RunCommand(SQL, params)
-    End Sub
+        Return DB.RunCommand(qList, pList)
+    End Function
 
     Private Function UpdateDatabase() As Boolean
         Page.Validate()
@@ -973,11 +965,7 @@ Partial Class AnnualFees_Default
             Return False
         End If
 
-        SaveFinalSubmit()
-        SaveInvoiceNumber()
-        SaveConfirmationNumber()
-
-        Return True
+        Return SaveFinalSubmit()
     End Function
 
 #End Region
