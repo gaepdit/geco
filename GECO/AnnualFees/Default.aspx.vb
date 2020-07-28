@@ -780,268 +780,41 @@ Partial Class AnnualFees_Default
     End Sub
 
     Private Sub SaveFeeData()
-        If FeeDataExists(currentAirs, feeYear.Value) Then
-            UpdateFeeData()
-        Else
-            InsertFeeData()
-        End If
-    End Sub
-
-    Private Sub UpdateFeeData()
-        Dim tran As SqlTransaction = Nothing
-
         Dim nspsreason As String = "0"
-
         If chkNSPSExempt.Checked Then
             Dim nspsReasons As New List(Of String)
-
             For Each item As ListItem In NspsExemptionsChecklist.Items
-                If item.Selected Then
-                    nspsReasons.Add(item.Value)
-                End If
+                If item.Selected Then nspsReasons.Add(item.Value)
             Next
-
             nspsreason = ConcatNonEmptyStrings(",", nspsReasons)
         End If
 
-        'First SQL command within the transaction
-        Dim SQL As String = "Update fs_feedata set " &
-            "intvoctons = @voctons, " &
-            "intnoxtons = @noxtons, " &
-            "intpmtons = @pmtons, " &
-            "intso2tons = @so2tons, " &
-            "numpart70fee = @part70fee, " &
-            "MaintenanceFee = @MaintenanceFee, " &
-            "numsmfee = @smfee, " &
-            "numnspsfee = @nspsfee, " &
-            "numtotalfee = @totalfee, " &
-            "strnspsexempt = @nspsexempt, " &
-            "strnspsexemptreason = @nspsreason, " &
-            "stroperate = @operate, " &
-            "strclass = @sclass, " &
-            "strnsps = @nsps, " &
-            "strpart70 = @part70, " &
-            "numfeerate = @feerate, " &
-            "strsyntheticminor = @synminor, " &
-            "numcalculatedfee = @calcfee, " &
-            "numadminfee = @adminfee, " &
-            "updatedatetime = getdate(), " &
-            "updateuser = @upduser " &
-            "where strairsnumber = @AIRS " &
-            "and numfeeyear = @feeyear "
+        Dim spName As String = "PD_FEE_SaveFeeData"
+        Dim params As SqlParameter() = {
+            New SqlParameter("@AirsNumber", currentAirs.DbFormattedString),
+            New SqlParameter("@FeeYear", feeYear.Value),
+            New SqlParameter("@VocTons", feeCalc.Emissions.VocTons),
+            New SqlParameter("@NoxTons", feeCalc.Emissions.NoxTons),
+            New SqlParameter("@PmTons", feeCalc.Emissions.PmTons),
+            New SqlParameter("@So2Tons", feeCalc.Emissions.So2Tons),
+            New SqlParameter("@Part70Fee", feeCalc.CalcPart70Fee),
+            New SqlParameter("@MaintenanceFee", feeCalc.CalcMaintenanceFee),
+            New SqlParameter("@SmFee", feeCalc.CalcSmFee),
+            New SqlParameter("@NspsFee", feeCalc.CalcNspsFee),
+            New SqlParameter("@TotalFee", feeCalc.CalcTotalFee),
+            New SqlParameter("@FeeRate", feeCalc.FeeRates.PerTonRate),
+            New SqlParameter("@CalculatedFee", feeCalc.CalcEmissionFee),
+            New SqlParameter("@AdminFee", feeCalc.CalcAdminFee),
+            New SqlParameter("@NspsExempt", If(chkNSPSExempt.Checked, "1", "0")),
+            New SqlParameter("@NspsExemptReason", If(chkNSPSExempt.Checked, nspsreason, "0")),
+            New SqlParameter("@Class", ddlClass.SelectedValue),
+            New SqlParameter("@NspsApplies", If(chkNSPS1.Checked, "1", "0")),
+            New SqlParameter("@Part70Applies", If(chkPart70Source.Checked, "1", "0")),
+            New SqlParameter("@SmApplies", If(chkSmSource.Checked, "1", "0")),
+            New SqlParameter("@UpdateUser", "GECO||" & currentUser.Email)
+        }
 
-        Try
-            Using conn As New SqlConnection(DBConnectionString)
-                Using cmd As New SqlCommand(SQL, conn)
-
-                    'add SQL parameters for first SQL update
-                    'add SQL parameters for first SQL update
-                    cmd.Parameters.Add(New SqlParameter("@voctons", SqlDbType.Int)).Value = feeCalc.Emissions.VocTons
-                    cmd.Parameters.Add(New SqlParameter("@noxtons", SqlDbType.Int)).Value = feeCalc.Emissions.NoxTons
-                    cmd.Parameters.Add(New SqlParameter("@pmtons", SqlDbType.Int)).Value = feeCalc.Emissions.PmTons
-                    cmd.Parameters.Add(New SqlParameter("@so2tons", SqlDbType.Int)).Value = feeCalc.Emissions.So2Tons
-                    cmd.Parameters.Add(New SqlParameter("@part70fee", SqlDbType.Decimal)).Value = feeCalc.CalcPart70Fee
-                    cmd.Parameters.Add(New SqlParameter("@MaintenanceFee", SqlDbType.Decimal)).Value = feeCalc.CalcMaintenanceFee
-                    cmd.Parameters.Add(New SqlParameter("@smfee", SqlDbType.Decimal)).Value = feeCalc.CalcSmFee
-                    cmd.Parameters.Add(New SqlParameter("@nspsfee", SqlDbType.Decimal)).Value = feeCalc.CalcNspsFee
-                    cmd.Parameters.Add(New SqlParameter("@totalfee", SqlDbType.Decimal)).Value = feeCalc.CalcTotalFee
-                    cmd.Parameters.Add(New SqlParameter("@nspsexempt", SqlDbType.VarChar)).Value = If(chkNSPSExempt.Checked, "1", "0")
-                    cmd.Parameters.Add(New SqlParameter("@nspsreason", SqlDbType.VarChar)).Value = If(chkNSPSExempt.Checked, nspsreason, "0")
-                    cmd.Parameters.Add(New SqlParameter("@operate", SqlDbType.VarChar)).Value = "1"
-                    cmd.Parameters.Add(New SqlParameter("@sclass", SqlDbType.VarChar)).Value = ddlClass.SelectedValue
-                    cmd.Parameters.Add(New SqlParameter("@nsps", SqlDbType.VarChar)).Value = If(chkNSPS1.Checked, "1", "0")
-                    cmd.Parameters.Add(New SqlParameter("@part70", SqlDbType.VarChar)).Value = If(chkPart70Source.Checked, "1", "0")
-                    cmd.Parameters.Add(New SqlParameter("@feerate", SqlDbType.Decimal)).Value = feeCalc.FeeRates.PerTonRate
-                    cmd.Parameters.Add(New SqlParameter("@synminor", SqlDbType.VarChar)).Value = If(chkSmSource.Checked, "1", "0")
-                    cmd.Parameters.Add(New SqlParameter("@calcfee", SqlDbType.Decimal)).Value = feeCalc.CalcEmissionFee
-                    cmd.Parameters.Add(New SqlParameter("@adminfee", SqlDbType.Decimal)).Value = feeCalc.CalcAdminFee
-                    cmd.Parameters.Add(New SqlParameter("@upduser", SqlDbType.VarChar)).Value = "GECO||" & currentUser.Email
-                    cmd.Parameters.Add(New SqlParameter("@AIRS", SqlDbType.VarChar)).Value = currentAirs.DbFormattedString
-                    cmd.Parameters.Add(New SqlParameter("@feeyear", SqlDbType.Int)).Value = feeYear.Value
-
-                    If conn.State <> ConnectionState.Open Then
-                        conn.Open()
-                    End If
-
-                    tran = conn.BeginTransaction()
-                    cmd.Transaction = tran
-                    cmd.CommandType = CommandType.Text
-
-                    cmd.ExecuteNonQuery()
-
-                    cmd.Parameters.Clear()
-
-                    'Second SQL command within the transaction
-                    SQL = "Update fs_admin set numcurrentstatus = 6, " &
-                        "updatedatetime = getdate(), " &
-                        "DATSTATUSDATE = getdate(), " &
-                        "updateuser = @UpdUsr " &
-                        "where strairsnumber = @AIRS " &
-                        "and numfeeyear = @feeyear " &
-                        "and numcurrentstatus < 6"
-
-                    cmd.CommandText = SQL
-                    cmd.CommandType = CommandType.Text
-
-                    cmd.Parameters.Add(New SqlParameter("@UpdUsr", SqlDbType.VarChar)).Value = "GECO||" & currentUser.Email
-                    cmd.Parameters.Add(New SqlParameter("@AIRS", SqlDbType.VarChar)).Value = currentAirs.DbFormattedString
-                    cmd.Parameters.Add(New SqlParameter("@feeyear", SqlDbType.VarChar)).Value = feeYear.Value
-
-                    cmd.ExecuteNonQuery()
-
-                    cmd.Parameters.Clear()
-
-                    'Third SQL command within the transaction
-                    cmd.CommandText = "PD_FeeAmendment"
-
-                    cmd.CommandType = CommandType.StoredProcedure
-
-                    cmd.Parameters.Add(New SqlParameter("AIRSNumber", SqlDbType.VarChar)).Value = currentAirs.DbFormattedString
-                    cmd.Parameters.Add(New SqlParameter("FeeYear", SqlDbType.Decimal)).Value = feeYear.Value
-
-                    cmd.ExecuteNonQuery()
-
-                    tran.Commit()
-
-                    If conn.State = ConnectionState.Open Then
-                        conn.Close()
-                    End If
-                End Using
-            End Using
-
-        Catch ex As Exception
-            tran.Rollback()
-            ErrorReport(ex)
-        End Try
-    End Sub
-
-    Private Sub InsertFeeData()
-        Dim tran As SqlTransaction = Nothing
-
-        Dim nspsreason As String = "0"
-
-        If chkNSPSExempt.Checked Then
-            Dim nspsReasons As New List(Of String)
-
-            For Each item As ListItem In NspsExemptionsChecklist.Items
-                If item.Selected Then
-                    nspsReasons.Add(item.Value)
-                End If
-            Next
-
-            nspsreason = ConcatNonEmptyStrings(",", nspsReasons)
-        End If
-
-        'First SQL command within the transaction
-        Dim SQL As String = "Insert into fs_feedata " &
-            "(strairsnumber, numfeeyear, " &
-            "intvoctons, intpmtons, intso2tons, intnoxtons, " &
-            "numpart70fee, MaintenanceFee, numsmfee, numnspsfee, " &
-            "numtotalfee, strnspsexempt, strnspsexemptreason, stroperate, " &
-            "strclass, strnsps, strpart70, numfeerate, " &
-            "strsyntheticminor, numcalculatedfee, numadminfee, " &
-            "updatedatetime, createdatetime, updateuser) " &
-            "values(@AIRS, " &
-            "@feeyear, " &
-            "@voctons" &
-            "@pmtons, " &
-            "@so2tons, " &
-            "@noxtons, " &
-            "@part70fee, " &
-            "@MaintenanceFee, " &
-            "@smfee, " &
-            "@nspsfee, " &
-            "@totalfee, " &
-            "@nspsexempt, " &
-            "@nspsreason, " &
-            "@operate, " &
-            "@sclass, " &
-            "@nsps, " &
-            "@part70, " &
-            "@feerate, " &
-            "@synminor, " &
-            "@calcfee, " &
-            "@adminfee, " &
-            "getdate(), " &
-            "getdate(), " &
-            "@upduser)"
-
-        Try
-            Using conn As New SqlConnection(DBConnectionString)
-                Using cmd As New SqlCommand(SQL, conn)
-
-                    'add SQL parameters for first SQL update
-                    cmd.Parameters.Add(New SqlParameter("@AIRS", SqlDbType.VarChar)).Value = currentAirs.DbFormattedString
-                    cmd.Parameters.Add(New SqlParameter("@feeyear", SqlDbType.Int)).Value = feeYear.Value
-                    cmd.Parameters.Add(New SqlParameter("@voctons", SqlDbType.Int)).Value = feeCalc.Emissions.VocTons
-                    cmd.Parameters.Add(New SqlParameter("@noxtons", SqlDbType.Int)).Value = feeCalc.Emissions.NoxTons
-                    cmd.Parameters.Add(New SqlParameter("@pmtons", SqlDbType.Int)).Value = feeCalc.Emissions.PmTons
-                    cmd.Parameters.Add(New SqlParameter("@so2tons", SqlDbType.Int)).Value = feeCalc.Emissions.So2Tons
-                    cmd.Parameters.Add(New SqlParameter("@part70fee", SqlDbType.Decimal)).Value = feeCalc.CalcPart70Fee
-                    cmd.Parameters.Add(New SqlParameter("@MaintenanceFee", SqlDbType.Decimal)).Value = feeCalc.CalcMaintenanceFee
-                    cmd.Parameters.Add(New SqlParameter("@smfee", SqlDbType.Decimal)).Value = feeCalc.CalcSmFee
-                    cmd.Parameters.Add(New SqlParameter("@nspsfee", SqlDbType.Decimal)).Value = feeCalc.CalcNspsFee
-                    cmd.Parameters.Add(New SqlParameter("@totalfee", SqlDbType.Decimal)).Value = feeCalc.CalcTotalFee
-                    cmd.Parameters.Add(New SqlParameter("@nspsexempt", SqlDbType.VarChar)).Value = If(chkNSPSExempt.Checked, "1", "0")
-                    cmd.Parameters.Add(New SqlParameter("@nspsreason", SqlDbType.VarChar)).Value = If(chkNSPSExempt.Checked, nspsreason, "0")
-                    cmd.Parameters.Add(New SqlParameter("@operate", SqlDbType.VarChar)).Value = "1"
-                    cmd.Parameters.Add(New SqlParameter("@sclass", SqlDbType.VarChar)).Value = ddlClass.SelectedValue
-                    cmd.Parameters.Add(New SqlParameter("@nsps", SqlDbType.VarChar)).Value = If(chkNSPS1.Checked, "1", "0")
-                    cmd.Parameters.Add(New SqlParameter("@part70", SqlDbType.VarChar)).Value = If(chkPart70Source.Checked, "1", "0")
-                    cmd.Parameters.Add(New SqlParameter("@feerate", SqlDbType.Decimal)).Value = feeCalc.FeeRates.PerTonRate
-                    cmd.Parameters.Add(New SqlParameter("@synminor", SqlDbType.VarChar)).Value = If(chkSmSource.Checked, "1", "0")
-                    cmd.Parameters.Add(New SqlParameter("@calcfee", SqlDbType.Decimal)).Value = feeCalc.CalcEmissionFee
-                    cmd.Parameters.Add(New SqlParameter("@adminfee", SqlDbType.Decimal)).Value = feeCalc.CalcAdminFee
-                    cmd.Parameters.Add(New SqlParameter("@upduser", SqlDbType.VarChar)).Value = "GECO||" & currentUser.Email
-
-                    If conn.State <> ConnectionState.Open Then
-                        conn.Open()
-                    End If
-
-                    tran = conn.BeginTransaction()
-                    cmd.Transaction = tran
-                    cmd.CommandType = CommandType.Text
-
-                    cmd.ExecuteNonQuery()
-
-                    cmd.Parameters.Clear()
-
-                    'Second SQL command within the transaction
-                    SQL = "Update fs_admin set numcurrentstatus = 6, " &
-                        "updatedatetime = getdate(), " &
-                        "DATSTATUSDATE = getdate(), " &
-                        "updateuser = @UpdUsr " &
-                        "where strairsnumber = @AIRS " &
-                        "and numfeeyear = @feeyear " &
-                        "and numcurrentstatus < 6"
-
-                    cmd.CommandText = SQL
-                    cmd.CommandType = CommandType.Text
-
-                    cmd.Parameters.Add(New SqlParameter("@UpdUsr", SqlDbType.VarChar)).Value = "GECO||" & currentUser.Email
-                    cmd.Parameters.Add(New SqlParameter("@AIRS", SqlDbType.VarChar)).Value = currentAirs.DbFormattedString
-                    cmd.Parameters.Add(New SqlParameter("@feeyear", SqlDbType.Int)).Value = feeYear.Value
-
-                    cmd.ExecuteNonQuery()
-
-                    cmd.Parameters.Clear()
-
-                    cmd.CommandText = "PD_FeeAmendment"
-                    cmd.CommandType = CommandType.StoredProcedure
-
-                    cmd.Parameters.Add(New SqlParameter("FeeYear", SqlDbType.Int)).Value = feeYear.Value
-                    cmd.Parameters.Add(New SqlParameter("AIRSNumber", SqlDbType.VarChar)).Value = currentAirs.DbFormattedString
-
-                    cmd.ExecuteNonQuery()
-
-                    tran.Commit()
-                End Using
-            End Using
-
-        Catch ex As Exception
-            tran.Rollback()
-            ErrorReport(ex)
-        End Try
+        DB.SPRunCommand(spName, params)
     End Sub
 
     Private Sub SavePayandSignInfo()
