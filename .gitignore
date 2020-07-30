@@ -407,7 +407,7 @@ MigrationBackup/
 
 # End of https://www.gitignore.io/api/macos,windows,visualstudio
 
-# GECO-specific
+### GECO-specific ###
 
 _DeadLetterOffice/
 Web.*.config
@@ -417,3 +417,12 @@ Web.configBuilder.Staging.xml
 Web.config
 docs/GECO Instructions\.html
 GECO/Deploy/
+
+# Cypress.io config files
+cypress.env.json
+**/config/*.json
+
+# Cypress.io generated videos, screenshots, and logs
+**/cypress/videos/
+**/cypress/screenshots/
+**/cypress/logs/
