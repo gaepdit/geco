@@ -1,5 +1,31 @@
-# Created by https://www.gitignore.io/api/macos,windows,visualstudio
-# Edit at https://www.gitignore.io/?templates=macos,windows,visualstudio
+### GECO-specific ###
+
+# Folders
+_UnsentEmail/
+
+# Web config builder
+Web.*.config
+Web.configBuilder.Debug.xml
+Web.configBuilder.Release.xml
+Web.configBuilder.Staging.xml
+Web.config
+
+# Build
+docs/GECO Instructions\.html
+GECO/Deploy/
+
+# Cypress.io config files
+cypress.env.json
+**/config/*.json
+
+# Cypress.io generated videos, screenshots, and logs
+**/cypress/videos/
+**/cypress/screenshots/
+**/cypress/logs/
+
+### Generic ###
+# Created by https://www.toptal.com/developers/gitignore/api/macos,windows,visualstudio
+# Edit at https://www.toptal.com/developers/gitignore?templates=macos,windows,visualstudio
 
 ### macOS ###
 # General
@@ -87,6 +113,7 @@ bld/
 [Bb]in/
 [Oo]bj/
 [Ll]og/
+[Ll]ogs/
 
 # Visual Studio 2015/2017 cache/options directory
 .vs/
@@ -126,6 +153,7 @@ StyleCopReport.xml
 *_p.c
 *_h.h
 *.ilk
+*.meta
 *.obj
 *.iobj
 *.pch
@@ -183,9 +211,6 @@ _ReSharper*/
 *.[Rr]e[Ss]harper
 *.DotSettings.user
 
-# JustCode is a .NET coding add-in
-.JustCode
-
 # TeamCity is a build add-in
 _TeamCity*
 
@@ -195,6 +220,9 @@ _TeamCity*
 # AxoCover is a Code Coverage Tool
 .axoCover/*
 !.axoCover/settings.json
+
+# Coverlet is a free, cross platform Code Coverage Tool
+coverage*[.json, .xml, .info]
 
 # Visual Studio code coverage results
 *.coverage
@@ -405,24 +433,7 @@ healthchecksdb
 # Backup folder for Package Reference Convert tool in Visual Studio 2017
 MigrationBackup/
 
-# End of https://www.gitignore.io/api/macos,windows,visualstudio
+# Ionide (cross platform F# VS Code tools) working folder
+.ionide/
 
-### GECO-specific ###
-
-_DeadLetterOffice/
-Web.*.config
-Web.configBuilder.Debug.xml
-Web.configBuilder.Release.xml
-Web.configBuilder.Staging.xml
-Web.config
-docs/GECO Instructions\.html
-GECO/Deploy/
-
-# Cypress.io config files
-cypress.env.json
-**/config/*.json
-
-# Cypress.io generated videos, screenshots, and logs
-**/cypress/videos/
-**/cypress/screenshots/
-**/cypress/logs/
+# End of https://www.toptal.com/developers/gitignore/api/macos,windows,visualstudio
