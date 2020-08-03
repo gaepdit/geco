@@ -1,6 +1,6 @@
 ﻿Imports System.Data.SqlClient
-Imports GECO.GecoModels
 Imports EpdIt.DBUtilities
+Imports GECO.GecoModels
 
 Partial Class AnnualFees_Default
     Inherits Page
@@ -8,6 +8,7 @@ Partial Class AnnualFees_Default
     Private Property currentUser As GecoUser
     Private Property currentAirs As ApbFacilityId
     Public Property feeYear As Integer? = Nothing
+    Private Property feeYearCompleted As Boolean
     Public Property feeCalc As AnnualFeeCalc
 
     Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
@@ -24,27 +25,14 @@ Partial Class AnnualFees_Default
         End If
 
         'Javascript pop up window for final submission confirmation
-        btnSubmit.Attributes.Add("onclick",
-                                 "return confirm('Are you sure you want to make the final submission?');")
-        'Clear the Global message text and make it invisible
-        lblMessage.Text = ""
-        lblMessage.Visible = False
+        btnSubmit.Attributes.Add("onclick", "return confirm('Are you sure you want to make the final submission?');")
 
         If Not Page.IsPostBack Then
-            lblMessage.Text = "Please select a year to work on."
+            tabFeeCalculation.Visible = False
             lblMessage.Visible = True
 
-            'Check if the final submission has already been made.
-            'If the final submission has been made, the user cannot
-            'access the fee forms, they will be directed to view
-            'the summary report and payment coupons.
             ddlFeeYear.Items.Add("-Select Year-")
             Dim dt As DataTable = CheckFinalSubmit(currentAirs)
-
-            UserTabs.Tabs(2).Enabled = False
-            UserTabs.Tabs(2).Visible = False
-            UserTabs.Tabs(3).Enabled = False
-            UserTabs.Tabs(3).Visible = False
 
             If dt.Rows.Count > 0 Then
                 'Don't pre-select any Year. Let the user select a year they want to work on.
@@ -55,9 +43,18 @@ Partial Class AnnualFees_Default
             End If
         End If
 
-        If ddlFeeYear.SelectedItem.Text <> "-Select Year-" Then
+        If ddlFeeYear.SelectedItem.Text = "-Select Year-" Then
+            feeYear = Nothing
+            feeCalc = New AnnualFeeCalc With {
+                .CountyCode = Mid(GetCookie(Cookie.AirsNumber), 1, 3),
+                .EntryDate = Now.Date
+            }
+        Else
             feeYear = CInt(ddlFeeYear.SelectedItem.Text)
+            feeYearCompleted = (ddlFeeYear.SelectedValue = "1")
+            feeCalc.FeeRates = GetFeeRates(feeYear.Value)
         End If
+
     End Sub
 
     Private Sub AnnualFees_Default_PreRender(sender As Object, e As EventArgs) Handles Me.PreRender
@@ -66,26 +63,42 @@ Partial Class AnnualFees_Default
 
 #Region "Button Click Events"
 
-    Protected Sub btnProceed_Click(sender As Object, e As EventArgs) Handles btnProceed.Click
+    Private Function DoubleCheckFeeYear() As Boolean
         If Not feeYear.HasValue Then
-            lblMessage.Text = "Please select a year to work on"
             lblMessage.Visible = True
-            btnProceed.Visible = False
-            Return
+            btnBeginFeeReport.Visible = False
+            tabFeeCalculation.Visible = False
+            Return False
+        Else
+            tabFeeCalculation.Visible = Not feeYearCompleted
+            Return True
         End If
+    End Function
 
-        If txtFName.Text = "" Then
-            'Load Data from database
+    Protected Sub btnBeginFeeReport_Click(sender As Object, e As EventArgs) Handles btnBeginFeeReport.Click
+        BeginFeeReport()
+    End Sub
+
+    Private Sub BeginFeeReport()
+        If Not DoubleCheckFeeYear() Then Return
+
+        If String.IsNullOrEmpty(txtFName.Text) Then
             LoadFacilityContact()
             LoadFacilityInfo()
             rblFeeContact.SelectedIndex = 0
-            btnUpdateContact.Enabled = True
         End If
 
-        UserTabs.ActiveTabIndex = 1
+        pnlFeeContact.Visible = True
+        pnlFeeCalculation.Visible = False
+        pnlFeeSignature.Visible = False
+        pnlFeeSubmit.Visible = False
+
+        UserTabs.ActiveTab = tabFeeCalculation
     End Sub
 
     Protected Sub btnUpdateContact_Click(sender As Object, e As EventArgs) Handles btnUpdateContact.Click
+        If Not DoubleCheckFeeYear() Then Return
+
         lblContactMsg.Visible = False
 
         'If the facility indicated change in facility info
@@ -98,18 +111,22 @@ Partial Class AnnualFees_Default
                     "but you have not made any changes to the existing information."
                 Return
             End If
-            'Changes Detected, Continue
         End If
 
-        SaveFacilityInfo()
-        lblContactMsg.Visible = True
-        lblContactMsg.Text = "Contact information saved."
+        If Not SaveFacilityInfo() Then
+            lblContactMsg.Visible = True
+            lblContactMsg.Text = "There was an error saving the contact info. Please double-check your entries."
+            Return
+        End If
 
-        If btnUpdateContact.Text = "Save Fee Contact and Continue →" Then
-            'Load fee data from database
+        'Load fee data from database
+        'If Emissions data is already loaded, then do not re-load
+        If String.IsNullOrEmpty(lblTotalFee.Text) Then
             LoadFeeData()
-            UserTabs.ActiveTabIndex = 2
         End If
+
+        pnlFeeContact.Visible = False
+        pnlFeeCalculation.Visible = True
     End Sub
 
     Protected Sub btnSavePnlFeeCalc_Click(sender As Object, e As EventArgs) Handles btnSavePnlFeeCalc.Click
@@ -123,10 +140,16 @@ Partial Class AnnualFees_Default
         End If
 
         RecalculateFees()
-        SaveFeeData()
 
-        LoadSignandPay()
-        UserTabs.ActiveTabIndex = 3
+        If Not SaveFeeData() Then
+            lblSaveFeeCalcMessage.Visible = True
+            lblSaveFeeCalcMessage.Text = "There was an error saving the fee calculations. Please double-check your entries."
+            Return
+        End If
+
+        LoadSignAndPay()
+        pnlFeeCalculation.Visible = False
+        pnlFeeSignature.Visible = True
     End Sub
 
     Private Function AnyNspsExemptionSelected() As Boolean
@@ -144,9 +167,14 @@ Partial Class AnnualFees_Default
             txtPayType.Text = "Four Quarterly Payments"
         End If
 
-        SavePayandSignInfo()
-        pnlSignandPay.Visible = False
-        pnlSubmit.Visible = True
+        If Not SavePayandSignInfo() Then
+            lblSaveFeeCalcMessage.Visible = True
+            lblSaveFeeCalcMessage.Text = "There was an error saving the signature info. Please double-check your entries."
+            Return
+        End If
+
+        pnlFeeSignature.Visible = False
+        pnlFeeSubmit.Visible = True
     End Sub
 
     Protected Sub btnSubmit_Click(sender As Object, e As EventArgs) Handles btnSubmit.Click
@@ -155,16 +183,28 @@ Partial Class AnnualFees_Default
             Response.BufferOutput = True
             Response.Redirect(String.Format("~/Invoice/?FeeYear={0}&Facility={1}", feeYear.Value, currentAirs.ShortString))
         Else
-            pnlSignandPay.Visible = True
-            pnlSubmit.Visible = False
-            lblMessage.Text = "Please click on the Fee Contact and Fee Calculations tabs and verify the data"
-            lblMessage.Visible = True
+            lblContactMsg.Text = "There was an error saving your fees report. Please double-check your entries."
+            lblContactMsg.Visible = True
+            pnlFeeContact.Visible = True
+            pnlFeeCalculation.Visible = False
+            pnlFeeSignature.Visible = False
+            pnlFeeSubmit.Visible = False
         End If
     End Sub
 
+    Protected Sub btnCancelFeeCalcSubmit_Click(sender As Object, e As EventArgs) Handles btnCancelFeeCalc.Click
+        pnlFeeCalculation.Visible = False
+        pnlFeeContact.Visible = True
+    End Sub
+
+    Protected Sub btnCancelSignature_Click(sender As Object, e As EventArgs) Handles btnCancelSignature.Click
+        pnlFeeSignature.Visible = False
+        pnlFeeCalculation.Visible = True
+    End Sub
+
     Protected Sub btnCancelSubmit_Click(sender As Object, e As EventArgs) Handles btnCancelSubmit.Click
-        pnlSignandPay.Visible = True
-        pnlSubmit.Visible = False
+        pnlFeeSubmit.Visible = False
+        pnlFeeSignature.Visible = True
     End Sub
 
 #End Region
@@ -172,6 +212,7 @@ Partial Class AnnualFees_Default
 #Region "Fee Calculation Functions"
 
     Public Sub RecalculateFees()
+        ' Calculate
         If ddlClass.SelectedValue = "A" Then
             If Not IsNumeric(txtVOCTons.Text) Then txtVOCTons.Text = 0
             If Not IsNumeric(txtNOxTons.Text) Then txtNOxTons.Text = 0
@@ -194,10 +235,7 @@ Partial Class AnnualFees_Default
         feeCalc.RuleNspsApplies = chkNSPS1.Checked AndAlso Not chkNSPSExempt.Checked
         feeCalc.EntryDate = Now.Date
 
-        DisplayFeeCalcs()
-    End Sub
-
-    Private Sub DisplayFeeCalcs()
+        ' Display values
         lblVOCFee.Text = feeCalc.CalcVocFee.ToString("c")
         lblNOxFee.Text = feeCalc.CalcNoxFee.ToString("c")
         lblPMFee.Text = feeCalc.CalcPmFee.ToString("c")
@@ -408,11 +446,14 @@ Partial Class AnnualFees_Default
     Protected Sub LoadCityState(sender As Object, e As EventArgs) Handles txtZip.TextChanged
         Try
             lblZipError.Visible = False
-            Dim dt As DataTable = GetCityStateFromZip(txtZip.Text)
+            Dim dr As DataRow = GetCityStateFromZip(txtZip.Text)
 
-            If dt IsNot Nothing Then
-                txtCity.Text = dt.Rows(0)("city")
-                txtState.Text = Address.ProbableStateCode(dt.Rows(0)("state"))
+            If dr Is Nothing Then
+                lblZipError.Text = "Please make sure the zip code entered is correct"
+                lblZipError.Visible = True
+            Else
+                txtCity.Text = GetNullableString(dr("city"))
+                txtState.Text = Address.ProbableStateCode(GetNullableString(dr("state")))
             End If
         Catch ex As Exception
             lblZipError.Text = "Please make sure the zip code entered is correct"
@@ -420,17 +461,15 @@ Partial Class AnnualFees_Default
         End Try
 
         Dim sm As ScriptManager = Master.FindControl("ScriptManager1")
-        sm.SetFocus(txtPhone)
+        sm.SetFocus(txtCity)
     End Sub
 
-    Protected Sub LoadSignandPay()
+    Protected Sub LoadSignAndPay()
         'If Signature data is already loaded, then do not re-load
         If String.IsNullOrEmpty(txtOwner.Text) Then
             Dim dr As DataRow = GetPaySubmitInfo(feeYear.Value)
 
             If dr IsNot Nothing Then
-                'This sub will get information that goes in panel Sign and Submit
-
                 txtPayType.Text = GetNullableString(dr.Item("STRPAYMENTPLAN"))
                 txtOwner.Text = GetNullableString(dr.Item("strofficialname"))
                 txtOwnerTitle.Text = GetNullableString(dr.Item("strofficialtitle"))
@@ -443,8 +482,6 @@ Partial Class AnnualFees_Default
                 rblPaymentType.SelectedIndex = 0
             End If
         End If
-
-        lblDate.Text = Now.ToString("dd-MMM-yyyy hh:mm")
     End Sub
 
     Protected Sub LoadNSPSExemptList()
@@ -460,195 +497,137 @@ Partial Class AnnualFees_Default
     End Sub
 
     Protected Sub LoadAnnualFeesHistory()
-        grdFeeHistory.DataSource = GetAnnualFeeHistory(currentAirs)
-        grdFeeHistory.DataBind()
+        If grdFeeHistory.DataSource Is Nothing Then
+            grdFeeHistory.DataSource = GetAnnualFeeHistory(currentAirs)
+            grdFeeHistory.DataBind()
+        End If
     End Sub
 
 #End Region
 
 #Region "Save and Update to Database"
 
-    Private Sub SaveFacilityInfo()
-        Dim SQL As String
-        Dim params As SqlParameter()
+    Private Function SaveFacilityInfo() As Boolean
+        Dim SQL As String = "Select strairsnumber " &
+            "FROM fs_contactinfo " &
+            "where strairsnumber = @airs " &
+            "and numfeeyear = @feeyear"
 
-        If Not feeYear.HasValue Then
-            SQL = "Select strairsnumber " &
-                "FROM apbcontactinformation " &
-                "where strairsnumber = @airs " &
-                "and strkey = '40'"
-            params = {New SqlParameter("@airs", "0413" & GetCookie(Cookie.AirsNumber))}
-        Else
-            SQL = "Select strairsnumber " &
-                "FROM fs_contactinfo " &
-                "where strairsnumber = @airs " &
-                "and numfeeyear = @feeyear"
-            params = {
-                New SqlParameter("@airs", "0413" & GetCookie(Cookie.AirsNumber)),
-                New SqlParameter("@feeyear", feeYear.Value)
-            }
-        End If
-
+        Dim params As SqlParameter() = {
+            New SqlParameter("@airs", "0413" & GetCookie(Cookie.AirsNumber)),
+            New SqlParameter("@feeyear", feeYear.Value)
+        }
 
         Dim dr As DataRow = DB.GetDataRow(SQL, params)
 
         If dr IsNot Nothing Then
-            UpdateContactInfo()
+            Return UpdateContactInfo()
         Else
-            InsertContactInfo()
+            Return InsertContactInfo()
         End If
-    End Sub
+    End Function
 
-    Private Sub UpdateContactInfo()
-        'This sub will save the nformation entered or changed in the
-        'Facility Information panel.
+    Private Function UpdateContactInfo() As Boolean
+        Dim qList As New List(Of String)
+        Dim pList As New List(Of SqlParameter())
 
-        Dim contactDescription As String = "Fee Contact updated from GECO Fee application page by " & currentUser.FullName & " on " & Now.ToString(ShortishDateFormat)
+        Dim SQL2 As String = "Update fs_contactinfo set " &
+            "strcontactfirstname = @FirstName, " &
+            "strcontactlastname = @LastName, " &
+            "strcontacttitle = @Title, " &
+            "strcontactphonenumber = @Phone, " &
+            "strcontactfaxnumber = @Fax, " &
+            "strcontactemail = @Email, " &
+            "strcontactaddress = @Street, " &
+            "strcontactcity = @City, " &
+            "strcontactstate = @State, " &
+            "strcontactzipcode = @Zip, " &
+            "strcontactcompanyname = @Company, " &
+            "updatedatetime = getdate(), " &
+            "updateuser = @User " &
+            "where strairsnumber = @Airs " &
+            "and numfeeyear = @FeeYear"
 
-        If Not feeYear.HasValue Then
+        Dim params2 As SqlParameter() = {
+            New SqlParameter("@FirstName", txtFName.Text),
+            New SqlParameter("@LastName", txtLName.Text),
+            New SqlParameter("@Title", txtTitle.Text),
+            New SqlParameter("@Phone", txtPhone.Text),
+            New SqlParameter("@Fax", txtFax.Text),
+            New SqlParameter("@Email", txtEmail.Text),
+            New SqlParameter("@Street", txtAddress.Text),
+            New SqlParameter("@City", txtCity.Text),
+            New SqlParameter("@State", txtState.Text),
+            New SqlParameter("@Zip", txtZip.Text),
+            New SqlParameter("@Company", txtCoName.Text),
+            New SqlParameter("@User", "GECO||" & currentUser.Email),
+            New SqlParameter("@Airs", "0413" & GetCookie(Cookie.AirsNumber)),
+            New SqlParameter("@FeeYear", feeYear.Value)
+        }
 
-            Dim SQL As String = "Update apbcontactinformation set " &
-                "strcontactfirstname = @FirstName, " &
-                "strcontactlastname = @LastName, " &
-                "strcontacttitle = @Title, " &
-                "strcontactphonenumber1 = @Phone, " &
-                "strcontactfaxnumber = @Fax, " &
-                "strcontactemail = @Email, " &
-                "strcontactcity = @City, " &
-                "strcontactstate = @State, " &
-                "strcontactzipcode = @Zip, " &
-                "strcontactcompanyname = @Company, " &
-                "strcontactdescription = @ContDesc, " &
-                "datmodifingdate = getdate(), " &
-                "strmodifingperson = '0' " &
-                "where strcontactkey = @ContKey"
+        qList.Add(SQL2)
+        pList.Add(params2)
 
-            Dim params As SqlParameter() = {
-                New SqlParameter("@FirstName", txtFName.Text),
-                New SqlParameter("@LastName", txtLName.Text),
-                New SqlParameter("@Title", txtTitle.Text),
-                New SqlParameter("@Phone", txtPhone.Text),
-                New SqlParameter("@Fax", txtFax.Text),
-                New SqlParameter("@Email", txtEmail.Text),
-                New SqlParameter("@Street", txtAddress.Text),
-                New SqlParameter("@City", txtCity.Text),
-                New SqlParameter("@State", txtState.Text),
-                New SqlParameter("@Zip", txtZip.Text),
-                New SqlParameter("@Company", txtCoName.Text),
-                New SqlParameter("@ContDesc", contactDescription),
-                New SqlParameter("@ContKey", "0413" & GetCookie(Cookie.AirsNumber) & "40")
-            }
+        Dim contactDescription As String = "Fee Contact updated during " & feeYear.Value.ToString & " by " & currentUser.FullName & " on " & Now.ToString(ShortishDateFormat)
 
-            DB.RunCommand(SQL, params)
+        Dim Sql3 As String = "Update apbcontactinformation set " &
+            "strcontactfirstname = @FirstName, " &
+            "strcontactlastname = @LastName, " &
+            "strcontacttitle = @Title, " &
+            "strcontactphonenumber1 = @Phone, " &
+            "strcontactfaxnumber = @Fax, " &
+            "strcontactemail = @Email, " &
+            "strcontactaddress1 = @Street, " &
+            "strcontactcity = @City, " &
+            "strcontactstate = @State, " &
+            "strcontactzipcode = @Zip,             " &
+            "strcontactcompanyname = @Company, " &
+            "strcontactdescription = @ContDesc, " &
+            "datmodifingdate = getdate(), " &
+            "strmodifingperson = '0' " &
+            "where strcontactkey = @ContKey"
 
-        Else
-            Dim qList As New List(Of String)
-            Dim pList As New List(Of SqlParameter())
+        Dim params3 As SqlParameter() = {
+            New SqlParameter("@FirstName", txtFName.Text),
+            New SqlParameter("@LastName", txtLName.Text),
+            New SqlParameter("@Title", txtTitle.Text),
+            New SqlParameter("@Phone", txtPhone.Text),
+            New SqlParameter("@Fax", txtFax.Text),
+            New SqlParameter("@Email", txtEmail.Text),
+            New SqlParameter("@Street", txtAddress.Text),
+            New SqlParameter("@City", txtCity.Text),
+            New SqlParameter("@State", txtState.Text),
+            New SqlParameter("@Zip", txtZip.Text),
+            New SqlParameter("@Company", txtCoName.Text),
+            New SqlParameter("@ContDesc", contactDescription),
+            New SqlParameter("@ContKey", "0413" & GetCookie(Cookie.AirsNumber) & "40")
+        }
 
-            Dim SQL2 As String = "Update fs_contactinfo set " &
-                "strcontactfirstname = @FirstName, " &
-                "strcontactlastname = @LastName, " &
-                "strcontacttitle = @Title, " &
-                "strcontactphonenumber = @Phone, " &
-                "strcontactfaxnumber = @Fax, " &
-                "strcontactemail = @Email, " &
-                "strcontactaddress = @Street, " &
-                "strcontactcity = @City, " &
-                "strcontactstate = @State, " &
-                "strcontactzipcode = @Zip, " &
-                "strcontactcompanyname = @Company, " &
-                "updatedatetime = getdate(), " &
-                "updateuser = @User " &
-                "where strairsnumber = @Airs " &
-                "and numfeeyear = @FeeYear"
+        qList.Add(Sql3)
+        pList.Add(params3)
 
-            Dim params2 As SqlParameter() = {
-                New SqlParameter("@FirstName", txtFName.Text),
-                New SqlParameter("@LastName", txtLName.Text),
-                New SqlParameter("@Title", txtTitle.Text),
-                New SqlParameter("@Phone", txtPhone.Text),
-                New SqlParameter("@Fax", txtFax.Text),
-                New SqlParameter("@Email", txtEmail.Text),
-                New SqlParameter("@Street", txtAddress.Text),
-                New SqlParameter("@City", txtCity.Text),
-                New SqlParameter("@State", txtState.Text),
-                New SqlParameter("@Zip", txtZip.Text),
-                New SqlParameter("@Company", txtCoName.Text),
-                New SqlParameter("@User", "GECO||" & currentUser.Email),
-                New SqlParameter("@Airs", "0413" & GetCookie(Cookie.AirsNumber)),
-                New SqlParameter("@FeeYear", feeYear.Value)
-            }
+        Dim SQL4 As String = "Update fs_admin set numcurrentstatus = 5, " &
+            "updatedatetime = getdate(), " &
+            "DATSTATUSDATE = getdate(), " &
+            "updateuser = @UpdUser " &
+            "where strairsnumber = @Airs " &
+            "and numfeeyear = @FeeYear " &
+            "and numcurrentstatus < 5"
 
-            'Add SQL and Parameters to each list
-            qList.Add(SQL2)
-            pList.Add(params2)
+        Dim params4 As SqlParameter() = {
+            New SqlParameter("@UpdUser", "GECO||" & currentUser.Email),
+            New SqlParameter("@Airs", "0413" & GetCookie(Cookie.AirsNumber)),
+            New SqlParameter("@FeeYear", feeYear.Value)
+        }
 
-            contactDescription = "Fee Contact updated during " & feeYear.Value.ToString & " by " & currentUser.FullName & " on " & Now.ToString(ShortishDateFormat)
+        qList.Add(SQL4)
+        pList.Add(params4)
 
-            Dim Sql3 As String = "Update apbcontactinformation set " &
-                "strcontactfirstname = @FirstName, " &
-                "strcontactlastname = @LastName, " &
-                "strcontacttitle = @Title, " &
-                "strcontactphonenumber1 = @Phone, " &
-                "strcontactfaxnumber = @Fax, " &
-                "strcontactemail = @Email, " &
-                "strcontactaddress1 = @Street, " &
-                "strcontactcity = @City, " &
-                "strcontactstate = @State, " &
-                "strcontactzipcode = @Zip,             " &
-                "strcontactcompanyname = @Company, " &
-                "strcontactdescription = @ContDesc, " &
-                "datmodifingdate = getdate(), " &
-                "strmodifingperson = '0' " &
-                "where strcontactkey = @ContKey"
+        Return DB.RunCommand(qList, pList)
+    End Function
 
-            Dim params3 As SqlParameter() = {
-                New SqlParameter("@FirstName", txtFName.Text),
-                New SqlParameter("@LastName", txtLName.Text),
-                New SqlParameter("@Title", txtTitle.Text),
-                New SqlParameter("@Phone", txtPhone.Text),
-                New SqlParameter("@Fax", txtFax.Text),
-                New SqlParameter("@Email", txtEmail.Text),
-                New SqlParameter("@Street", txtAddress.Text),
-                New SqlParameter("@City", txtCity.Text),
-                New SqlParameter("@State", txtState.Text),
-                New SqlParameter("@Zip", txtZip.Text),
-                New SqlParameter("@Company", txtCoName.Text),
-                New SqlParameter("@ContDesc", contactDescription),
-                New SqlParameter("@ContKey", "0413" & GetCookie(Cookie.AirsNumber) & "40")
-            }
-
-            'Add SQL and Parameters to each list
-            qList.Add(Sql3)
-            pList.Add(params3)
-
-            Dim SQL4 As String = "Update fs_admin set numcurrentstatus = 5, " &
-                "updatedatetime = getdate(), " &
-                "DATSTATUSDATE = getdate(), " &
-                "updateuser = @UpdUser " &
-                "where strairsnumber = @Airs " &
-                "and numfeeyear = @FeeYear " &
-                "and numcurrentstatus < 5"
-
-            Dim params4 As SqlParameter() = {
-                New SqlParameter("@UpdUser", "GECO||" & currentUser.Email),
-                New SqlParameter("@Airs", "0413" & GetCookie(Cookie.AirsNumber)),
-                New SqlParameter("@FeeYear", feeYear.Value)
-            }
-
-            'Add SQL and Parameters to each list
-            qList.Add(SQL4)
-            pList.Add(params4)
-
-            DB.RunCommand(qList, pList)
-        End If
-    End Sub
-
-    Private Sub InsertContactInfo()
-        'This sub will save the information entered or changed in the
-        'Facility Information panel.
-
-        Dim SQL As String
+    Private Function InsertContactInfo() As Boolean
+        Dim SQL1 As String
         Dim FirstName As String = txtFName.Text
         Dim LastName As String = txtLName.Text
         Dim User As String = "GECO||" & currentUser.Email
@@ -661,125 +640,96 @@ Partial Class AnnualFees_Default
         Dim State As String = txtState.Text
         Dim Zip As String = txtZip.Text
         Dim CompName As String = txtCoName.Text
-        Dim AirsNo As String = "0413" & GetCookie(Cookie.AirsNumber)
-        Dim Key As String = "0413" & GetCookie(Cookie.AirsNumber) & "40"
-        Dim ContactDescription As String = "Fee Contact updated from GECO Fee application page by " & currentUser.FullName & " on " & Now.ToString(ShortishDateFormat)
 
-        If Not feeYear.HasValue Then
-            SQL = "Insert into apbcontactinformation ( " &
-                "strcontactfirstname, strcontactlastname, strcontacttitle, " &
-                "strcontactphonenumber1, strcontactfaxnumber, strcontactemail, strcontactaddress1, " &
-                "strcontactcity, strcontactstate, strcontactzipcode, strcontactcompanyname, " &
-                "STRMODIFINGPERSON, DATMODIFINGDATE, strairsnumber, strkey, strcontactkey, strcontactdescription) " &
-                "values(@FirstName, " &
-                "@LastName, " &
-                "@Title, " &
-                "@Phone, " &
-                "@Fax, " &
-                "@Email, " &
-                "@Street, " &
-                "@City, " &
-                "@State, " &
-                "@Zip, " &
-                "@CompName, " &
-                "'0', " &
-                "getdate(), " &
-                "@Airs, " &
-                "'40', " &
-                "@Key, " &
-                "@ContDesc)"
+        Dim qList As New List(Of String)
+        Dim pList As New List(Of SqlParameter())
+        Dim airsParam As New SqlParameter("@Airs", currentAirs.DbFormattedString)
 
-            Dim params As SqlParameter() = {
-                New SqlParameter("@FirstName", FirstName),
-                New SqlParameter("@LastName", LastName),
-                New SqlParameter("@Title", Title),
-                New SqlParameter("@Phone", Phone),
-                New SqlParameter("@Fax", Fax),
-                New SqlParameter("@Email", Email),
-                New SqlParameter("@Street", Street),
-                New SqlParameter("@City", City),
-                New SqlParameter("@State", State),
-                New SqlParameter("@Zip", Zip),
-                New SqlParameter("@CompName", CompName),
-                New SqlParameter("@Airs", AirsNo),
-                New SqlParameter("@Key", Key),
-                New SqlParameter("@ContDesc", ContactDescription)
-            }
+        SQL1 = "Insert into fs_contactinfo ( " &
+            "strcontactfirstname, strcontactlastname, strcontacttitle, " &
+            "strcontactphonenumber, strcontactfaxnumber, strcontactemail, strcontactaddress, " &
+            "strcontactcity, strcontactstate, strcontactzipcode, strcontactcompanyname, " &
+            "strairsnumber, numfeeyear) " &
+            "values(@FirstName, " &
+            "@LastName, " &
+            "@Title, " &
+            "@Phone, " &
+            "@Fax, " &
+            "@Email, " &
+            "@Street, " &
+            "@City, " &
+            "@State, " &
+            "@Zip, " &
+            "@CompName, " &
+            "@Airs, " &
+            "@FeeYear)"
 
-            DB.RunCommand(SQL, params)
+        Dim params1 As SqlParameter() = {
+            airsParam,
+            New SqlParameter("@FirstName", FirstName),
+            New SqlParameter("@LastName", LastName),
+            New SqlParameter("@Title", Title),
+            New SqlParameter("@Phone", Phone),
+            New SqlParameter("@Fax", Fax),
+            New SqlParameter("@Email", Email),
+            New SqlParameter("@Street", Street),
+            New SqlParameter("@City", City),
+            New SqlParameter("@State", State),
+            New SqlParameter("@Zip", Zip),
+            New SqlParameter("@CompName", CompName),
+            New SqlParameter("@FeeYear", feeYear.Value)
+        }
 
-        Else
-            Dim qList As New List(Of String)
-            Dim pList As New List(Of SqlParameter())
+        qList.Add(SQL1)
+        pList.Add(params1)
 
-            SQL = "Insert into fs_contactinfo ( " &
-                "strcontactfirstname, strcontactlastname, strcontacttitle, " &
-                "strcontactphonenumber, strcontactfaxnumber, strcontactemail, strcontactaddress, " &
-                "strcontactcity, strcontactstate, strcontactzipcode, strcontactcompanyname, " &
-                "strairsnumber, numfeeyear) " &
-                "values(@FirstName, " &
-                "@LastName, " &
-                "@Title, " &
-                "@Phone, " &
-                "@Fax, " &
-                "@Email, " &
-                "@Street, " &
-                "@City, " &
-                "@State, " &
-                "@Zip, " &
-                "@CompName, " &
-                "@Airs, " &
-                "@FeeYear)"
+        Dim SQL2 As String = "Update fs_admin set numcurrentstatus = 5, " &
+            "updatedatetime = getdate(), " &
+            "DATSTATUSDATE = getdate(), " &
+            "updateuser = @User " &
+            "where strairsnumber = @Airs " &
+            "and numfeeyear = @FeeYear " &
+            "And numcurrentstatus < 5"
 
-            Dim params1 As SqlParameter() = {
-                New SqlParameter("@FirstName", FirstName),
-                New SqlParameter("@LastName", LastName),
-                New SqlParameter("@Title", Title),
-                New SqlParameter("@Phone", Phone),
-                New SqlParameter("@Fax", Fax),
-                New SqlParameter("@Email", Email),
-                New SqlParameter("@Street", Street),
-                New SqlParameter("@City", City),
-                New SqlParameter("@State", State),
-                New SqlParameter("@Zip", Zip),
-                New SqlParameter("@CompName", CompName),
-                New SqlParameter("@Airs", AirsNo),
-                New SqlParameter("@FeeYear", feeYear.Value)
-            }
+        Dim params2 As SqlParameter() = {
+            airsParam,
+            New SqlParameter("@User", User),
+            New SqlParameter("@FeeYear", feeYear.Value)
+        }
 
-            'Add SQL and Parameters to each list
-            qList.Add(SQL)
-            pList.Add(params1)
+        qList.Add(SQL2)
+        pList.Add(params2)
 
-            Dim SQL1 As String = "Update fs_admin set numcurrentstatus = 5, " &
-                "updatedatetime = getdate(), " &
-                "DATSTATUSDATE = getdate(), " &
-                "updateuser = @User " &
-                "where strairsnumber = @Airs " &
-                "and numfeeyear = @FeeYear " &
-                "And numcurrentstatus < 5"
+        If ddlFacilityInfoChange.SelectedIndex = 1 Then
+            Dim query As String = "select convert(bit, count(*)) FROM APBFACILITYINFOTEMP where STRAIRSNUMBER = @Airs"
 
-            Dim params2 As SqlParameter() = {
-                New SqlParameter("@User", User),
-                New SqlParameter("@Airs", AirsNo),
-                New SqlParameter("@FeeYear", feeYear.Value)
-            }
-
-            'Add SQL and Parame3ters to each list
-            qList.Add(SQL1)
-            pList.Add(params2)
-
-            DB.RunCommand(qList, pList)
-
-            If ddlFacilityInfoChange.SelectedIndex = 1 Then
-                SaveTempFacInfo(GetCookie(Cookie.AirsNumber), txtfacName.Text, txtfacStreet.Text, txtfacCity.Text)
+            If DB.GetBoolean(query, airsParam) Then
+                qList.Add("Update apbfacilityinfotemp set " &
+                    "strfacilityname = @FacName, " &
+                    "strfacilitystreet1 = @FacStr, " &
+                    "strfacilitycity = @FacCity " &
+                    "where strairsnumber = @Airs")
             Else
-                RemoveTempFacInfo(GetCookie(Cookie.AirsNumber))
+                qList.Add("Insert into apbfacilityinfotemp( " &
+                    "strairsnumber, strfacilityname, strfacilitystreet1, strfacilitycity) " &
+                    "values(@Airs , @FacName, @FacStr, @FacCity)")
             End If
-        End If
-    End Sub
 
-    Private Sub SaveFeeData()
+            pList.Add({
+                airsParam,
+                New SqlParameter("@FacName", txtfacName.Text),
+                New SqlParameter("@FacStr", txtfacStreet.Text),
+                New SqlParameter("@FacCity", txtfacCity.Text)
+            })
+        Else
+            qList.Add("Delete FROM apbfacilityinfotemp where strairsnumber = @Airs")
+            pList.Add({airsParam})
+        End If
+
+        Return DB.RunCommand(qList, pList)
+    End Function
+
+    Private Function SaveFeeData() As Boolean
         Dim nspsreason As String = "0"
         If chkNSPSExempt.Checked Then
             Dim nspsReasons As New List(Of String)
@@ -814,10 +764,10 @@ Partial Class AnnualFees_Default
             New SqlParameter("@UpdateUser", "GECO||" & currentUser.Email)
         }
 
-        DB.SPRunCommand(spName, params)
-    End Sub
+        Return DB.SPRunCommand(spName, params)
+    End Function
 
-    Private Sub SavePayandSignInfo()
+    Private Function SavePayandSignInfo() As Boolean
         Dim qList As New List(Of String)
         Dim pList As New List(Of SqlParameter())
 
@@ -826,7 +776,7 @@ Partial Class AnnualFees_Default
             "strofficialname = @Owner, " &
             "strofficialtitle = @OwnerTitle, " &
             "strcomment = @Comments, " &
-            "updatedatetime = @Date, " &
+            "updatedatetime = getdate(), " &
             "updateuser = @UEmail " &
             "where strairsnumber = @Airs " &
             "and numfeeyear = @FeeYear "
@@ -836,7 +786,6 @@ Partial Class AnnualFees_Default
             New SqlParameter("@Owner", txtOwner.Text),
             New SqlParameter("@OwnerTitle", txtOwnerTitle.Text),
             New SqlParameter("@Comments", txtComments.Text),
-            New SqlParameter("@Date", lblDate.Text),
             New SqlParameter("@UEmail", "GECO||" & currentUser.Email),
             New SqlParameter("@Airs", currentAirs.DbFormattedString),
             New SqlParameter("@FeeYear", feeYear.Value)
@@ -864,8 +813,8 @@ Partial Class AnnualFees_Default
         qList.Add(Sql2)
         pList.Add(params2)
 
-        DB.RunCommand(qList, pList)
-    End Sub
+        Return DB.RunCommand(qList, pList)
+    End Function
 
     Private Function SaveFinalSubmit() As Boolean
         Dim qList As New List(Of String)
@@ -941,7 +890,7 @@ Partial Class AnnualFees_Default
         qList.Add("Update fs_feedata set " &
                   "strconfirmationnumber = @conf, " &
                   "strconfirmationuser = @UID, " &
-                  "updatedatetime = @UpdDT, " &
+                  "updatedatetime = getdate(), " &
                   "updateuser = @Uemail " &
                   "where strairsnumber = @AIRSno " &
                   "and numfeeyear = @FY")
@@ -949,7 +898,6 @@ Partial Class AnnualFees_Default
         pList.Add({
                   New SqlParameter("@conf", currentAirs.ShortString & "-" & Now.ToString("yyyyMMddhhmm")),
                   New SqlParameter("@UID", currentUser.UserId),
-                  New SqlParameter("@UpdDT", lblDate.Text),
                   New SqlParameter("@Uemail", "GECO||" & currentUser.Email),
                   New SqlParameter("@AIRSno", currentAirs.DbFormattedString),
                   New SqlParameter("@FY", feeYear.Value)
@@ -1051,62 +999,41 @@ Partial Class AnnualFees_Default
     End Sub
 
     Protected Sub ddlFeeYear_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ddlFeeYear.SelectedIndexChanged
-        ResetFeeCalculationTab()
+        UserTabs.ActiveTab = tabWelcome
 
-        feeCalc = New AnnualFeeCalc With {
-            .CountyCode = Mid(GetCookie(Cookie.AirsNumber), 1, 3),
-            .EntryDate = Now.Date
-        }
+        ClearAll(pnlFeeCalculation) 'Clear controls in the Calculation Tab
+        ClearAll(pnlFeeSignature) 'Clear controls in the Sign and Pay Tab
 
-        If ddlFeeYear.SelectedItem.Text = "-Select Year-" Then
-            UserTabs.Tabs(2).Enabled = False
-            UserTabs.Tabs(2).Visible = False
-            UserTabs.Tabs(3).Enabled = False
-            UserTabs.Tabs(3).Visible = False
-
+        If Not feeYear.HasValue Then
             lblDeadline.Visible = False
             linkInvoice.Visible = False
             linkInvoice.NavigateUrl = Nothing
-            btnProceed.Visible = False
+            btnBeginFeeReport.Visible = False
+            lblMessage.Visible = True
             feeRatesSection.Visible = False
+            tabFeeCalculation.Visible = False
         Else
-            pnlSignandPay.Visible = True
-            pnlSubmit.Visible = False
             txtFName.Text = ""
             NspsExemptionsChecklist.Items.Clear()
-            feeCalc.FeeRates = GetFeeRates(feeYear.Value)
+            lblMessage.Visible = False
             feeRatesSection.Visible = True
 
-            If ddlFeeYear.SelectedItem.Value = "1" Then
-                UserTabs.Tabs(2).Enabled = False
-                UserTabs.Tabs(2).Visible = False
-                UserTabs.Tabs(3).Enabled = False
-                UserTabs.Tabs(3).Visible = False
+            tabFeeCalculation.Visible = Not feeYearCompleted
+            lblDeadline.Visible = Not feeYearCompleted
+            linkInvoice.Visible = feeYearCompleted
+            btnBeginFeeReport.Visible = Not feeYearCompleted
 
-                lblDeadline.Visible = False
-                linkInvoice.NavigateUrl = String.Format("~/Invoice/?FeeYear={0}&Facility={1}", feeYear.Value, currentAirs.ShortString)
-                linkInvoice.Visible = True
-                btnProceed.Visible = False
-                btnUpdateContact.Text = "Save Fee Contact"
+            pnlFeeContact.Visible = True
+            pnlFeeCalculation.Visible = False
+            pnlFeeSignature.Visible = False
+            pnlFeeSubmit.Visible = False
+
+            If feeYearCompleted Then
+                linkInvoice.NavigateUrl = $"~/Invoice/?FeeYear={feeYear.Value}&Facility={currentAirs.ShortString}"
             Else
-                UserTabs.Tabs(2).Enabled = True
-                UserTabs.Tabs(2).Visible = True
-                UserTabs.Tabs(3).Enabled = True
-                UserTabs.Tabs(3).Visible = True
-
-                lblDeadline.Visible = True
-                lblDeadline.Text = "Submission Deadline: " & feeCalc.FeeRates.DueDate.ToString(LongishDateFormat)
-                linkInvoice.Visible = False
-                btnProceed.Visible = True
-                btnUpdateContact.Text = "Save Fee Contact and Continue →"
-
-                lblPart70MinFeeRate.Text = feeCalc.FeeRates.Part70MinFee.ToString("c0")
-                lblSmFeeRate.Text = feeCalc.FeeRates.SmFeeRate.ToString("c0")
-                lblNspsFeeRate.Text = feeCalc.FeeRates.NspsFeeRate.ToString("c0")
+                lblDeadline.Text = $"Submission Deadline: {feeCalc.FeeRates.DueDate.ToString(LongishDateFormat)}"
             End If
         End If
-
-        UserTabs.ActiveTabIndex = 0
     End Sub
 
     Protected Sub rblFeeContact_SelectedIndexChanged(sender As Object, e As EventArgs) Handles rblFeeContact.SelectedIndexChanged
@@ -1139,42 +1066,6 @@ Partial Class AnnualFees_Default
 
 #End Region
 
-#Region "Reset, Disable, Enable Controls"
-
-    Protected Sub ClearAll(c As Control)
-        NotNull(c, NameOf(c))
-
-        For Each Ctrl As Control In c.Controls
-            Select Case TypeName(Ctrl)
-                Case "TextBox" 'Do the following code if control is a Text Box
-                    CType(Ctrl, TextBox).Text = String.Empty
-                Case "CheckBox" 'Do the following code if control is a Check Box
-                    CType(Ctrl, CheckBox).Checked = False
-                Case "DropDownList" 'Do the following code if control is a Drop Down List
-                    CType(Ctrl, DropDownList).ClearSelection()
-                Case "CheckBoxList" 'Do the following code if control is a Checkbox List
-                    CType(Ctrl, CheckBoxList).ClearSelection()
-                Case "Label" 'Do the following code if control is a Label
-                    CType(Ctrl, Label).Text = String.Empty
-                Case "RadioButtonList" 'Do the following code if control is a Radiobutton List
-                    CType(Ctrl, RadioButtonList).ClearSelection()
-                Case Else
-                    If Ctrl.Controls.Count > 0 Then 'Check for container control
-                        ClearAll(Ctrl) 'Recursively call sub for controls in container
-                    End If
-            End Select
-        Next
-    End Sub
-
-    Private Sub ResetFeeCalculationTab()
-        'This will clear all the data from the Fee Calculations and Sign and Pay tab
-        'Since the viewstate will still keep information previously entered.
-        ClearAll(Calculation) 'Clear controls in the Calculation Tab
-        ClearAll(SignPay) 'Clear controls in the Sign and Pay Tab
-    End Sub
-
-#End Region
-
 #Region "Validation Functions"
 
     Private Function ValidateFacilityInfoChange() As Boolean
@@ -1194,31 +1085,14 @@ Partial Class AnnualFees_Default
 
     Protected Sub UserTabs_ActiveTabChanged(sender As Object, e As EventArgs) Handles UserTabs.ActiveTabChanged
         Select Case UserTabs.ActiveTab.ID
-            Case "Contact"
-                If ddlFeeYear.SelectedItem.Text = "-Select Year-" Then
-                    lblMessage.Text = "Please select a fee year above.."
-                    lblMessage.Visible = True
-                End If
+            Case NameOf(tabWelcome)
+                DoubleCheckFeeYear()
 
-                'If Facility Contact is already loaded, then do not re-load
-                If String.IsNullOrEmpty(txtFName.Text) Then
-                    LoadFacilityContact()
-                    LoadFacilityInfo()
-                    rblFeeContact.SelectedIndex = 0
-                    btnUpdateContact.Enabled = True
-                End If
-
-            Case "Calculation"
-                'If Emissions data is already loaded, then do not re-load
-                If String.IsNullOrEmpty(lblTotalFee.Text) Then
-                    LoadFeeData()
-                End If
-
-            Case "SignPay"
-                LoadSignandPay()
-
-            Case "History"
+            Case NameOf(tabHistory)
                 LoadAnnualFeesHistory()
+
+            Case NameOf(tabFeeCalculation)
+                BeginFeeReport()
 
         End Select
     End Sub

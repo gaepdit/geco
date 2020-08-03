@@ -230,7 +230,7 @@ div#userinfo {
     /*height:18px;
 	width:148px;*/
     font-weight: bold;
-    font-size: 12;
+    font-size: 12px;
     width: 250px;
 }
 
@@ -241,7 +241,7 @@ div#userinfo {
     border: 1px solid #BEBEBE;
     background-color: #F0F8FF;
     color: gray;
-    font-size: 12;
+    font-size: 12px;
     width: 250px;
 }
 

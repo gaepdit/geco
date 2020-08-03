@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="..\packages\Microsoft.CodeAnalysis.FxCopAnalyzers.2.9.8\build\Microsoft.CodeAnalysis.FxCopAnalyzers.props" Condition="Exists('..\packages\Microsoft.CodeAnalysis.FxCopAnalyzers.2.9.8\build\Microsoft.CodeAnalysis.FxCopAnalyzers.props')" />
   <Import Project="..\packages\Microsoft.NetFramework.Analyzers.2.9.8\build\Microsoft.NetFramework.Analyzers.props" Condition="Exists('..\packages\Microsoft.NetFramework.Analyzers.2.9.8\build\Microsoft.NetFramework.Analyzers.props')" />
@@ -566,6 +566,7 @@
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="_Classes\AnnualFeeCalc.vb" />
+    <Compile Include="_Code\ControlMethods.vb" />
     <Compile Include="_Code\DictionaryExtensions.vb" />
     <Compile Include="_Code\Guard.vb" />
     <Compile Include="_Code\CollectionExtensions.vb" />

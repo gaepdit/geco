@@ -1,15 +1,15 @@
-Imports System.Data.SqlClient
+﻿Imports System.Data.SqlClient
 
 Public Module ZipCode
 
-    Public Function GetCityStateFromZip(zip As String) As DataTable
+    Public Function GetCityStateFromZip(zip As String) As DataRow
         Return GetCityStateFromZip(CInt(zip))
     End Function
 
-    Public Function GetCityStateFromZip(zip As Integer) As DataTable
+    Public Function GetCityStateFromZip(zip As Integer) As DataRow
         Dim query As String = "Select city, state FROM ZipCityState where zip = @zip"
         Dim param As New SqlParameter("@zip", zip)
-        Return DB.GetDataTable(query, param)
+        Return DB.GetDataRow(query, param)
     End Function
 
 End Module

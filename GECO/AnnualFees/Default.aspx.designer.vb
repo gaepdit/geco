@@ -41,15 +41,6 @@ Partial Public Class AnnualFees_Default
     Protected WithEvents linkInvoice As Global.System.Web.UI.WebControls.HyperLink
 
     '''<summary>
-    '''lblDeadline control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblDeadline As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
     '''lblMessage control.
     '''</summary>
     '''<remarks>
@@ -68,22 +59,31 @@ Partial Public Class AnnualFees_Default
     Protected WithEvents UserTabs As Global.AjaxControlToolkit.TabContainer
 
     '''<summary>
-    '''Welcome control.
+    '''tabWelcome control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents Welcome As Global.AjaxControlToolkit.TabPanel
+    Protected WithEvents tabWelcome As Global.AjaxControlToolkit.TabPanel
 
     '''<summary>
-    '''btnProceed control.
+    '''btnBeginFeeReport control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents btnProceed As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents btnBeginFeeReport As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''lblDeadline control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblDeadline As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''feeRatesSection control.
@@ -95,13 +95,22 @@ Partial Public Class AnnualFees_Default
     Protected WithEvents feeRatesSection As Global.System.Web.UI.HtmlControls.HtmlGenericControl
 
     '''<summary>
-    '''Contact control.
+    '''tabFeeCalculation control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents Contact As Global.AjaxControlToolkit.TabPanel
+    Protected WithEvents tabFeeCalculation As Global.AjaxControlToolkit.TabPanel
+
+    '''<summary>
+    '''pnlFeeContact control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents pnlFeeContact As Global.System.Web.UI.WebControls.Panel
 
     '''<summary>
     '''rblFeeContact control.
@@ -131,13 +140,13 @@ Partial Public Class AnnualFees_Default
     Protected WithEvents txtFName As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''RequiredFieldValidator3 control.
+    '''RequiredFieldValidator1 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents RequiredFieldValidator3 As Global.System.Web.UI.WebControls.RequiredFieldValidator
+    Protected WithEvents RequiredFieldValidator1 As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
     '''txtLName control.
@@ -464,15 +473,6 @@ Partial Public Class AnnualFees_Default
     Protected WithEvents HyperLink4 As Global.System.Web.UI.WebControls.HyperLink
 
     '''<summary>
-    '''btnUpdateContact control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnUpdateContact As Global.System.Web.UI.WebControls.Button
-
-    '''<summary>
     '''lblContactMsg control.
     '''</summary>
     '''<remarks>
@@ -482,13 +482,22 @@ Partial Public Class AnnualFees_Default
     Protected WithEvents lblContactMsg As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''Calculation control.
+    '''btnUpdateContact control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents Calculation As Global.AjaxControlToolkit.TabPanel
+    Protected WithEvents btnUpdateContact As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''pnlFeeCalculation control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents pnlFeeCalculation As Global.System.Web.UI.WebControls.Panel
 
     '''<summary>
     '''lblCurrentClass control.
@@ -707,15 +716,6 @@ Partial Public Class AnnualFees_Default
     Protected WithEvents chkPart70Source As Global.System.Web.UI.WebControls.CheckBox
 
     '''<summary>
-    '''lblPart70MinFeeRate control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblPart70MinFeeRate As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
     '''chkSmSource control.
     '''</summary>
     '''<remarks>
@@ -723,15 +723,6 @@ Partial Public Class AnnualFees_Default
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents chkSmSource As Global.System.Web.UI.WebControls.CheckBox
-
-    '''<summary>
-    '''lblSmFeeRate control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblSmFeeRate As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''lblpart70SMFee control.
@@ -750,15 +741,6 @@ Partial Public Class AnnualFees_Default
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblPart70MaintenanceFee As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''lblNspsFeeRate control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblNspsFeeRate As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''chkNSPS control.
@@ -851,6 +833,24 @@ Partial Public Class AnnualFees_Default
     Protected WithEvents lblAdminFeeAmount As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
+    '''lblSaveFeeCalcMessage control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblSaveFeeCalcMessage As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''btnCancelFeeCalc control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnCancelFeeCalc As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
     '''btnSavePnlFeeCalc control.
     '''</summary>
     '''<remarks>
@@ -860,22 +860,13 @@ Partial Public Class AnnualFees_Default
     Protected WithEvents btnSavePnlFeeCalc As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
-    '''SignPay control.
+    '''pnlFeeSignature control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents SignPay As Global.AjaxControlToolkit.TabPanel
-
-    '''<summary>
-    '''pnlSignandPay control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents pnlSignandPay As Global.System.Web.UI.WebControls.Panel
+    Protected WithEvents pnlFeeSignature As Global.System.Web.UI.WebControls.Panel
 
     '''<summary>
     '''ValidationSummary2 control.
@@ -959,15 +950,6 @@ Partial Public Class AnnualFees_Default
     Protected WithEvents rfvOwner As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
-    '''RequiredFieldValidator1 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents RequiredFieldValidator1 As Global.System.Web.UI.WebControls.RequiredFieldValidator
-
-    '''<summary>
     '''txtOwnerTitle control.
     '''</summary>
     '''<remarks>
@@ -986,24 +968,6 @@ Partial Public Class AnnualFees_Default
     Protected WithEvents rfvOwnerTitle As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
-    '''RequiredFieldValidator16 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents RequiredFieldValidator16 As Global.System.Web.UI.WebControls.RequiredFieldValidator
-
-    '''<summary>
-    '''lblDate control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblDate As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
     '''txtComments control.
     '''</summary>
     '''<remarks>
@@ -1011,6 +975,15 @@ Partial Public Class AnnualFees_Default
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtComments As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''btnCancelSignature control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnCancelSignature As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
     '''btnSavepnlSign control.
@@ -1022,22 +995,13 @@ Partial Public Class AnnualFees_Default
     Protected WithEvents btnSavepnlSign As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
-    '''pnlSubmit control.
+    '''pnlFeeSubmit control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents pnlSubmit As Global.System.Web.UI.WebControls.Panel
-
-    '''<summary>
-    '''btnSubmit control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnSubmit As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents pnlFeeSubmit As Global.System.Web.UI.WebControls.Panel
 
     '''<summary>
     '''btnCancelSubmit control.
@@ -1049,13 +1013,22 @@ Partial Public Class AnnualFees_Default
     Protected WithEvents btnCancelSubmit As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
-    '''History control.
+    '''btnSubmit control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents History As Global.AjaxControlToolkit.TabPanel
+    Protected WithEvents btnSubmit As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''tabHistory control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents tabHistory As Global.AjaxControlToolkit.TabPanel
 
     '''<summary>
     '''hlPermitFees control.
