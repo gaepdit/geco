@@ -1,4 +1,4 @@
-html {
+﻿html {
     box-sizing: border-box;
 }
 
@@ -966,3 +966,33 @@ button:disabled,
     font-size: 85%;
     background-color: #C0C0FF;
 }
+
+/* Form progress bar */
+.form-progress {
+    margin: 1rem 0 1.5rem;
+    padding: 0 0 1em 0;
+    border-bottom: 1px solid #ddd;
+}
+
+    .form-progress li {
+        display: inline-block;
+        background: white;
+        padding: 4px 11px;
+    }
+
+    .form-progress .current {
+        background: #f0f9ff;
+        font-weight: bold;
+    }
+
+    .form-progress li::before {
+        content: '▷ ';
+    }
+
+    .form-progress .done::before {
+        content: '✓ ';
+    }
+
+    .form-progress .current::before {
+        content: '▶ ';
+    }
