@@ -103,6 +103,7 @@
             identifier: '<%= raygunInfo.User.Identifier %>',
             isAnonymous: <%= raygunInfo.IsAnonymous %>
         });
+        rg4js('logContentsOfXhrCalls', true);
         rg4js('withTags', ['<%= raygunInfo.Environment %>']);
     </script>
 </body>
