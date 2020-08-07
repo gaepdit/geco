@@ -45,16 +45,10 @@ Partial Class AnnualFees_Default
 
         If ddlFeeYear.SelectedItem.Text = "-Select Year-" Then
             feeYear = Nothing
-            feeCalc = New AnnualFeeCalc With {
-                .CountyCode = Mid(GetCookie(Cookie.AirsNumber), 1, 3),
-                .EntryDate = Now.Date
-            }
         Else
             feeYear = CInt(ddlFeeYear.SelectedItem.Text)
             feeYearCompleted = (ddlFeeYear.SelectedValue = "1")
-            feeCalc.FeeRates = GetFeeRates(feeYear.Value)
         End If
-
     End Sub
 
     Private Sub AnnualFees_Default_PreRender(sender As Object, e As EventArgs) Handles Me.PreRender
@@ -1013,6 +1007,8 @@ Partial Class AnnualFees_Default
             feeRatesSection.Visible = False
             tabFeeCalculation.Visible = False
         Else
+            feeCalc.FeeRates = GetFeeRates(feeYear)
+
             txtFName.Text = ""
             NspsExemptionsChecklist.Items.Clear()
             lblMessage.Visible = False
