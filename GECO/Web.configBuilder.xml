@@ -36,7 +36,7 @@
     <add key="EpaCaersUrl" value="" />
   </appSettings>
 
-  <RaygunSettings apikey="" />
+  <RaygunSettings apikey="" excludeHttpStatusCodes="404" excludeErrorsFromLocal="true" />
 
   <system.web>
     <!--
