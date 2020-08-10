@@ -804,11 +804,11 @@
   <ItemGroup>
     <Content Include="EIS\eismaster.master" />
     <Content Include="ES\es.master" />
-    <Content Include="AnnualFees\FeeAmendment.xls" />
     <Content Include="AnnualFees\AnnualFees.master" />
     <Content Include="MainMaster.master" />
     <Content Include="IP.ashx" />
     <Content Include="GECO.vbproj.vsspell" />
+    <Content Include="AnnualFees\FeeAmendmentForm.xlsx" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
