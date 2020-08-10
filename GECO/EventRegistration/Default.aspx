@@ -21,7 +21,7 @@
     <asp:GridView ID="gvwEventList" runat="server" AutoGenerateColumns="False" DataKeyNames="numres_eventid"
         ShowHeader="false" ShowFooter="false" EmptyDataText="There are no classes or workshops scheduled at this time."
         BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px"
-        CellPadding="3" GridLines="Vertical">
+        CellPadding="3" GridLines="Vertical" Width="100%">
         <RowStyle BackColor="#EEEEEE" ForeColor="Black" />
         <Columns>
             <asp:TemplateField>

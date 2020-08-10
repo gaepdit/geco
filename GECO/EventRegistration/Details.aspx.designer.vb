@@ -12,7 +12,7 @@ Option Explicit On
 
 
 Partial Public Class EventRegistration_EventDetails
-    
+
     '''<summary>
     '''lblTitle control.
     '''</summary>
@@ -21,7 +21,16 @@ Partial Public Class EventRegistration_EventDetails
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblTitle As Global.System.Web.UI.WebControls.Label
-    
+
+    '''<summary>
+    '''pCanceled control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents pCanceled As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
     '''<summary>
     '''pLoginWarning control.
     '''</summary>
@@ -30,7 +39,7 @@ Partial Public Class EventRegistration_EventDetails
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents pLoginWarning As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
+
     '''<summary>
     '''lnkLogin control.
     '''</summary>
@@ -39,7 +48,7 @@ Partial Public Class EventRegistration_EventDetails
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lnkLogin As Global.System.Web.UI.WebControls.HyperLink
-    
+
     '''<summary>
     '''lnkRegister control.
     '''</summary>
@@ -48,7 +57,7 @@ Partial Public Class EventRegistration_EventDetails
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lnkRegister As Global.System.Web.UI.WebControls.HyperLink
-    
+
     '''<summary>
     '''pUpdateRequired control.
     '''</summary>
@@ -57,7 +66,7 @@ Partial Public Class EventRegistration_EventDetails
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents pUpdateRequired As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
+
     '''<summary>
     '''lnkUpdateProfile control.
     '''</summary>
@@ -66,7 +75,7 @@ Partial Public Class EventRegistration_EventDetails
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lnkUpdateProfile As Global.System.Web.UI.WebControls.HyperLink
-    
+
     '''<summary>
     '''pUpdateRequiredRegistered control.
     '''</summary>
@@ -75,7 +84,7 @@ Partial Public Class EventRegistration_EventDetails
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents pUpdateRequiredRegistered As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
+
     '''<summary>
     '''HyperLink1 control.
     '''</summary>
@@ -84,7 +93,7 @@ Partial Public Class EventRegistration_EventDetails
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents HyperLink1 As Global.System.Web.UI.WebControls.HyperLink
-    
+
     '''<summary>
     '''litEventDetails control.
     '''</summary>
@@ -93,7 +102,7 @@ Partial Public Class EventRegistration_EventDetails
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents litEventDetails As Global.System.Web.UI.WebControls.Literal
-    
+
     '''<summary>
     '''litCapacity control.
     '''</summary>
@@ -102,7 +111,7 @@ Partial Public Class EventRegistration_EventDetails
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents litCapacity As Global.System.Web.UI.WebControls.Literal
-    
+
     '''<summary>
     '''pnlLoggedIn control.
     '''</summary>
@@ -111,7 +120,7 @@ Partial Public Class EventRegistration_EventDetails
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents pnlLoggedIn As Global.System.Web.UI.WebControls.Panel
-    
+
     '''<summary>
     '''lblMessage control.
     '''</summary>
@@ -120,7 +129,7 @@ Partial Public Class EventRegistration_EventDetails
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblMessage As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''pnlPasscode control.
     '''</summary>
@@ -129,7 +138,7 @@ Partial Public Class EventRegistration_EventDetails
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents pnlPasscode As Global.System.Web.UI.WebControls.Panel
-    
+
     '''<summary>
     '''txtPasscode control.
     '''</summary>
@@ -138,7 +147,7 @@ Partial Public Class EventRegistration_EventDetails
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtPasscode As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''btnPasscode control.
     '''</summary>
@@ -147,7 +156,7 @@ Partial Public Class EventRegistration_EventDetails
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnPasscode As Global.System.Web.UI.WebControls.Button
-    
+
     '''<summary>
     '''lblPasscodeWrong control.
     '''</summary>
@@ -156,7 +165,7 @@ Partial Public Class EventRegistration_EventDetails
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblPasscodeWrong As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''pnlRegister control.
     '''</summary>
@@ -165,7 +174,7 @@ Partial Public Class EventRegistration_EventDetails
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents pnlRegister As Global.System.Web.UI.WebControls.Panel
-    
+
     '''<summary>
     '''litConfirmation control.
     '''</summary>
@@ -174,7 +183,7 @@ Partial Public Class EventRegistration_EventDetails
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents litConfirmation As Global.System.Web.UI.WebControls.Literal
-    
+
     '''<summary>
     '''lblEmail control.
     '''</summary>
@@ -183,7 +192,7 @@ Partial Public Class EventRegistration_EventDetails
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblEmail As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''txtComments control.
     '''</summary>
@@ -192,7 +201,7 @@ Partial Public Class EventRegistration_EventDetails
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtComments As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''btnRegister control.
     '''</summary>
@@ -201,7 +210,7 @@ Partial Public Class EventRegistration_EventDetails
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnRegister As Global.System.Web.UI.WebControls.Button
-    
+
     '''<summary>
     '''btnCancelRegistration control.
     '''</summary>
@@ -210,7 +219,7 @@ Partial Public Class EventRegistration_EventDetails
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnCancelRegistration As Global.System.Web.UI.WebControls.Button
-    
+
     '''<summary>
     '''Master property.
     '''</summary>
@@ -219,7 +228,7 @@ Partial Public Class EventRegistration_EventDetails
     '''</remarks>
     Public Shadows ReadOnly Property Master() As GECO.MainMaster
         Get
-            Return CType(MyBase.Master,GECO.MainMaster)
+            Return CType(MyBase.Master, GECO.MainMaster)
         End Get
     End Property
 End Class

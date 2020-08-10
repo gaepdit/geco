@@ -29,9 +29,7 @@ Partial Class EventRegistration_EventDetails
 
             lblMessage.Text = ""
 
-            DisplayEventDetails()
-
-            If UserIsLoggedIn() Then
+            If DisplayEventDetails() AndAlso UserIsLoggedIn() Then
                 pLoginWarning.Visible = False
                 pnlLoggedIn.Visible = True
                 lblEmail.Text = currentUser.Email
@@ -50,7 +48,7 @@ Partial Class EventRegistration_EventDetails
 
     ' Display event
 
-    Private Sub DisplayEventDetails()
+    Private Function DisplayEventDetails() As Boolean
         Dim dr = GetEventDetails(eventId)
 
         If dr Is Nothing Then
@@ -58,52 +56,67 @@ Partial Class EventRegistration_EventDetails
         End If
 
         Dim address As New Address() With {
-                    .Street = dr.Item("strAddress").ToString,
-                    .City = dr.Item("strCity").ToString,
-                    .State = dr.Item("strState").ToString,
-                    .PostalCode = dr.Item("numZipCode").ToString
-                }
+            .Street = GetNullableString(dr.Item("strAddress")),
+            .City = GetNullableString(dr.Item("strCity")),
+            .State = GetNullableString(dr.Item("strState")),
+            .PostalCode = GetNullableString(dr.Item("numZipCode"))
+        }
 
-        lblTitle.Text = dr.Item("StrTitle").ToString
+        lblTitle.Text = GetNullableString(dr.Item("StrTitle"))
 
-        litEventDetails.Text &= dr.Item("strDescription").ToString
+        litEventDetails.Text = GetNullableString(dr.Item("strDescription"))
 
-        If Not String.IsNullOrEmpty(dr.Item("strWebURL").ToString) Then
-            litEventDetails.Text &= "<br /><br /><strong>Event Website: </strong><a href='" & dr.Item("strWebURL").ToString
-            litEventDetails.Text &= "' target='_blank'>" & dr.Item("strWebURL").ToString & "</a>"
+        If Not String.IsNullOrEmpty(GetNullableString(dr.Item("strWebURL"))) Then
+            litEventDetails.Text &= "<br /><br /><strong>Event Website: </strong><a href='" & GetNullableString(dr.Item("strWebURL"))
+            litEventDetails.Text &= "' target='_blank'>" & GetNullableString(dr.Item("strWebURL")) & "</a>"
         End If
 
-        litEventDetails.Text &= "<p><strong>Date & Time: </strong><br />" & String.Format("{0: MM/dd/yyyy}", CDate(dr.Item("datStartDate").ToString))
-        litEventDetails.Text &= ", " & dr.Item("strEventStartTime").ToString
+        litEventDetails.Text &= "<p><strong>Date & Time: </strong><br />" & String.Format("{0: MM/dd/yyyy}", CDate(dr.Item("datStartDate")))
+        litEventDetails.Text &= ", " & GetNullableString(dr.Item("strEventStartTime"))
         litEventDetails.Text &= "<br />to "
-        If dr.Item("datEndDate").ToString <> "" Then
-            litEventDetails.Text &= String.Format("{0: MM/dd/yyyy}", CDate(dr.Item("datEndDate").ToString)) & ", "
+
+        If Not String.IsNullOrEmpty(GetNullableString(dr.Item("datEndDate"))) Then
+            litEventDetails.Text &= String.Format("{0: MM/dd/yyyy}", CDate(dr.Item("datEndDate"))) & ", "
         End If
-        litEventDetails.Text &= dr.Item("strEventEndTime").ToString
 
-        litEventDetails.Text &= "<br /><br /><strong>Location: </strong><br />" & dr.Item("strVenue").ToString
-        litEventDetails.Text &= "<br /><a title='Click to open Google Map' href='https://maps.google.com/?q=" & address.ToLinearString
-        litEventDetails.Text &= "' target='_blank'>" & address.ToString
-        litEventDetails.Text &= "</a></p>"
+        litEventDetails.Text &= GetNullableString(dr.Item("strEventEndTime"))
 
+        litEventDetails.Text &= "<br /><br /><strong>Location: </strong><br />" & GetNullableString(dr.Item("strVenue"))
+
+        If Not String.IsNullOrEmpty(address.ToLinearString) Then
+            litEventDetails.Text &= "<br /><a title='Click to open Google Map' href='https://maps.google.com/?q=" & address.ToLinearString
+            litEventDetails.Text &= "' target='_blank'>" & address.ToString
+            litEventDetails.Text &= "</a>"
+        End If
+
+        litEventDetails.Text &= "</p>"
         litEventDetails.Text &= "<p><strong>Contact:</strong>"
-        litEventDetails.Text &= "<br />" & dr.Item("strFirstName").ToString
-        litEventDetails.Text &= " " & dr.Item("strLastName").ToString
-        litEventDetails.Text &= "<br />" & dr.Item("strPhone").ToString
-        litEventDetails.Text &= "<br /><a href='mailto:" & dr.Item("strEmailAddress").ToString
-        litEventDetails.Text &= "'>" & dr.Item("strEmailAddress").ToString & "</a></p>"
+        litEventDetails.Text &= "<br />" & GetNullableString(dr.Item("strFirstName"))
+        litEventDetails.Text &= " " & GetNullableString(dr.Item("strLastName"))
+        litEventDetails.Text &= "<br />" & GetNullableString(dr.Item("NUMWEBPHONENUMBER"))
+        litEventDetails.Text &= "<br /><a href='mailto:" & GetNullableString(dr.Item("strEmailAddress"))
+        litEventDetails.Text &= "'>" & GetNullableString(dr.Item("strEmailAddress")) & "</a></p>"
 
-        If dr.Item("strNotes").ToString <> "" Then
-            litEventDetails.Text &= "<strong>Additional Notes: </strong><br />" & dr.Item("strNotes").ToString
+        If Not String.IsNullOrEmpty(GetNullableString(dr.Item("strNotes"))) Then
+            litEventDetails.Text &= "<strong>Additional Notes: </strong><br />" & GetNullableString(dr.Item("strNotes"))
         End If
 
         Dim total As Integer = dr.Item("numCapacity")
         Dim confirmed As Integer = dr.Item("NumConfirmed")
         Dim waiting As Integer = dr.Item("NumWaitingList")
 
+        If GetNullable(Of Integer)(dr("NUMEVENTSTATUSCODE")) <> 2 Then
+            pCanceled.Visible = True
+            pnlLoggedIn.Visible = False
+            litCapacity.Visible = False
+            pLoginWarning.Visible = False
+
+            Return False
+        End If
+
         DisplayCapacity(total, confirmed, waiting)
 
-        Dim passcode As String = GetNullable(Of String)(dr.Item("strPasscode"))
+        Dim passcode As String = GetNullableString(dr.Item("strPasscode"))
 
         If String.IsNullOrEmpty(passcode) OrElse passcode = "1" Then ' No Passcode Required
             passcodeRequired = False
@@ -111,7 +124,9 @@ Partial Class EventRegistration_EventDetails
             SessionAdd(GecoSession.EventPasscode, passcode)
             passcodeRequired = True
         End If
-    End Sub
+
+        Return True
+    End Function
 
     Private Sub CheckCapacity()
         Dim total As Integer = 0
@@ -165,18 +180,20 @@ Partial Class EventRegistration_EventDetails
 
     Private Sub DisplayRegistration()
         Dim dr = GetRegistrationStatus(eventId, currentUser.UserId)
-        Dim status As Integer = dr.Item("StatusCode")
 
         If dr IsNot Nothing Then
+            Dim status As Integer = dr.Item("StatusCode")
+            Dim regDate As Date = dr.Item("RegistrationDate")
+
             litConfirmation.Text = "<b>Status:</b> " & If(status = 1, "REGISTERED", "WAITING LIST")
             litConfirmation.Text &= "<br />You registered for this event on "
-            litConfirmation.Text &= String.Format("{0:M/d/yyyy}", dr.Item("RegistrationDate")) & "."
+            litConfirmation.Text &= String.Format("{0:M/d/yyyy}", regDate) & "."
 
             If status = 2 Then
                 litConfirmation.Text &= "<br /><br /><em>The event is currently full, but you have been placed on the waiting list.</em>"
             End If
 
-            litConfirmation.Text &= "<br /><br /><b>Confirmation code:</b> " & dr.Item("ConfirmationCode").ToString
+            litConfirmation.Text &= "<br /><br /><b>Confirmation code:</b> " & GetNullableString(dr.Item("ConfirmationCode"))
 
             litConfirmation.Text &= "<br /><br /><b>You may cancel your registration here.</b>"
 

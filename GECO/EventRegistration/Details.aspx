@@ -7,6 +7,10 @@
         <asp:Label ID="lblTitle" runat="server"></asp:Label>
     </h1>
 
+    <p id="pCanceled" runat="server" class="message-highlight" visible="false">
+        This event has been canceled.
+    </p>
+
     <p id="pLoginWarning" runat="server" class="message-highlight">
         <strong>A GECO account is required to register for any event.</strong>
         <asp:HyperLink ID="lnkLogin" runat="server" NavigateUrl="~/Login.aspx" CssClass="no-visited">Sign in</asp:HyperLink>

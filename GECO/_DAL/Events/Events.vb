@@ -1,79 +1,42 @@
-Imports System.Data
-Imports System.Data.SqlClient
+﻿Imports System.Data.SqlClient
 
 Public Module Events
 
     Public Function EventExists(eventId As Integer) As Boolean
-        Dim query = " select convert(bit, count(*)) " &
-            " from RES_EVENT " &
-            " where convert(int, NUMRES_EVENTID) = @eventId "
-
+        Dim query = "select * from dbo.RES_EVENT where NUMRES_EVENTID = @eventId and ACTIVE = '1' "
         Dim param As New SqlParameter("@eventId", eventId)
-
         Return DB.GetBoolean(query, param)
     End Function
 
     Public Function GetActiveEvents() As DataTable
-        Dim query = " SELECT * " &
-            " FROM dbo.RES_EVENT " &
-            " WHERE ACTIVE = '1' " &
-            "       AND DATSTARTDATE >= dateadd(m, -2, SYSDATETIME()) " &
-            " ORDER BY DATSTARTDATE DESC, " &
-            "     NUMRES_EVENTID "
-
+        Dim query = "SELECT NUMRES_EVENTID, STRTITLE, STRDESCRIPTION, DATSTARTDATE, DATENDDATE, STREVENTSTARTTIME, STREVENTENDTIME, STRVENUE,
+            STRADDRESS, STRCITY, STRSTATE, NUMZIPCODE
+            FROM dbo.RES_EVENT WHERE ACTIVE = '1' and NUMEVENTSTATUSCODE = 2 AND DATSTARTDATE >= dateadd(week, -1, getdate())
+            ORDER BY DATSTARTDATE DESC, NUMRES_EVENTID"
         Return DB.GetDataTable(query)
     End Function
 
     Public Function GetEventDetails(eventId As Integer) As DataRow
-        Dim query = " SELECT " &
-            "     (SELECT count(*) " &
-            "      FROM dbo.RES_REGISTRATION " &
-            "      WHERE " &
-            "          convert(int, NUMRES_EVENTID) = @eventId " &
-            "          AND ACTIVE = '1' " &
-            "          AND convert(int, NUMREGISTRATIONSTATUSCODE) = 1 " &
-            "     ) AS NumConfirmed, " &
-            "     (SELECT count(*) " &
-            "      FROM dbo.RES_REGISTRATION " &
-            "      WHERE " &
-            "          convert(int, NUMRES_EVENTID) = @eventId " &
-            "          AND ACTIVE = '1' " &
-            "          AND convert(int, NUMREGISTRATIONSTATUSCODE) = 2 " &
-            "     ) AS NumWaitingList, " &
-            "     r.NUMRES_EVENTID, " &
-            "     r.NUMEVENTSTATUSCODE, " &
-            "     r.STRUSERGCODE, " &
-            "     r.STRTITLE, " &
-            "     r.STRDESCRIPTION, " &
-            "     r.DATSTARTDATE, " &
-            "     r.DATENDDATE, " &
-            "     r.STRVENUE, " &
-            "     r.NUMCAPACITY, " &
-            "     r.STRNOTES, " &
-            "     r.STRMULTIPLEREGISTRATIONS, " &
-            "     r.ACTIVE, " &
-            "     r.CREATEDATETIME, " &
-            "     r.UPDATEUSER, " &
-            "     r.UPDATEDATETIME, " &
-            "     r.STRPASSCODE, " &
-            "     r.STRADDRESS, " &
-            "     r.STRCITY, " &
-            "     r.STRSTATE, " &
-            "     r.NUMZIPCODE, " &
-            "     r.NUMAPBCONTACT, " &
-            "     r.NUMWEBPHONENUMBER, " &
-            "     r.STREVENTSTARTTIME, " &
-            "     r.STREVENTENDTIME, " &
-            "     r.STRWEBURL, " &
-            "     p.STRFIRSTNAME, " &
-            "     p.STRLASTNAME, " &
-            "     p.STRPHONE, " &
-            "     p.STREMAILADDRESS " &
-            " FROM dbo.RES_EVENT r " &
-            "     INNER JOIN dbo.EPDUSERPROFILES p " &
-            "         ON r.STRUSERGCODE = p.NUMUSERID " &
-            " WHERE r.ACTIVE = '1' " &
-            "       AND convert(int, r.NUMRES_EVENTID) = @eventId "
+        Dim query = "SELECT (SELECT count(*)
+            FROM dbo.RES_REGISTRATION
+            WHERE NUMRES_EVENTID = @eventId
+                AND ACTIVE = '1'
+                AND NUMREGISTRATIONSTATUSCODE = 1) AS NumConfirmed,
+            (SELECT count(*)
+            FROM dbo.RES_REGISTRATION
+            WHERE NUMRES_EVENTID = @eventId
+                AND ACTIVE = '1'
+                AND NUMREGISTRATIONSTATUSCODE = 2) AS NumWaitingList,
+           convert(date, r.DATSTARTDATE)         as DATSTARTDATE,
+           convert(date, r.DATENDDATE)           as DATENDDATE,
+           r.NUMEVENTSTATUSCODE, r.STRTITLE, r.STRDESCRIPTION, r.STRVENUE, r.NUMCAPACITY, r.STRNOTES, r.STRPASSCODE,
+           r.STRADDRESS, r.STRCITY, r.STRSTATE, r.NUMZIPCODE, r.NUMWEBPHONENUMBER, r.STREVENTSTARTTIME, r.STREVENTENDTIME,
+           r.STRWEBURL, p.STRFIRSTNAME, p.STRLASTNAME, p.STREMAILADDRESS
+        FROM dbo.RES_EVENT r
+            INNER JOIN dbo.EPDUSERPROFILES p
+            ON r.STRUSERGCODE = p.NUMUSERID
+        WHERE r.ACTIVE = '1'
+          AND convert(int, r.NUMRES_EVENTID) = @eventId"
 
         Dim param As New SqlParameter("@eventId", eventId)
 
@@ -82,25 +45,20 @@ Public Module Events
 
     Public Function GetEventAvailability(eventId As Integer) As DataRow
         ' Returns Total, Confirmed, WaitingList
-        Dim query = " SELECT " &
-            "     convert(int, NUMCAPACITY) As Total, " &
-            "     (SELECT count(*) " &
-            "      FROM dbo.RES_REGISTRATION " &
-            "      WHERE " &
-            "          convert(int, NUMRES_EVENTID) = @eventId " &
-            "          AND ACTIVE = '1' " &
-            "          AND convert(int, NUMREGISTRATIONSTATUSCODE) = 1 " &
-            "     ) AS Confirmed, " &
-            "     (SELECT count(*) " &
-            "      FROM dbo.RES_REGISTRATION " &
-            "      WHERE " &
-            "          convert(int, NUMRES_EVENTID) = @eventId " &
-            "          AND ACTIVE = '1' " &
-            "          AND convert(int, NUMREGISTRATIONSTATUSCODE) = 2 " &
-            "     ) AS WaitingList " &
-            " FROM dbo.RES_EVENT " &
-            " WHERE ACTIVE = '1' " &
-            "       AND convert(int, NUMRES_EVENTID) = @eventId "
+        Dim query = "SELECT NUMCAPACITY As Total,
+            (SELECT count(*)
+            FROM dbo.RES_REGISTRATION
+            WHERE NUMRES_EVENTID = @eventId
+                AND ACTIVE = '1'
+                AND NUMREGISTRATIONSTATUSCODE = 1) AS Confirmed,
+            (SELECT count(*)
+            FROM dbo.RES_REGISTRATION
+            WHERE NUMRES_EVENTID = @eventId
+                AND ACTIVE = '1'
+                AND NUMREGISTRATIONSTATUSCODE = 2) AS WaitingList
+            FROM dbo.RES_EVENT
+            WHERE ACTIVE = '1'
+              AND NUMRES_EVENTID = @eventId "
 
         Dim param As New SqlParameter("@eventId", eventId)
 
@@ -108,15 +66,14 @@ Public Module Events
     End Function
 
     Public Function GetRegistrationStatus(eventId As Integer, userId As Integer) As DataRow
-        Dim query = " SELECT " &
-            "     DATREGISTRATIONDATETIME as RegistrationDate, " &
-            "     convert(int, NUMREGISTRATIONSTATUSCODE) as StatusCode, " &
-            "     STRCONFIRMATIONNUMBER as ConfirmationCode, " &
-            "     STRCOMMENTS as Comments " &
-            " FROM RES_REGISTRATION " &
-            " WHERE convert(int, NUMGECOUSERID) = @userId " &
-            "       AND convert(int, NUMRES_EVENTID) = @eventId " &
-            "       AND convert(int, NUMREGISTRATIONSTATUSCODE) <> 3 "
+        Dim query = "SELECT convert(date, DATREGISTRATIONDATETIME) as RegistrationDate,
+               NUMREGISTRATIONSTATUSCODE as StatusCode,
+               STRCONFIRMATIONNUMBER as ConfirmationCode,
+               STRCOMMENTS as Comments
+        FROM dbo.RES_REGISTRATION
+        WHERE NUMGECOUSERID = @userId
+          AND NUMRES_EVENTID = @eventId
+          AND NUMREGISTRATIONSTATUSCODE <> 3 "
 
         Dim params As SqlParameter() = {
             New SqlParameter("@userId", userId),
@@ -127,11 +84,11 @@ Public Module Events
     End Function
 
     Public Function UserIsRegisteredForEvent(eventId As Integer, userId As Integer) As Boolean
-        Dim query = " SELECT convert(bit, count(*)) " &
-        " FROM RES_REGISTRATION " &
-        " WHERE convert(int, NUMGECOUSERID) = @userId " &
-        "       AND convert(int, NUMRES_EVENTID) = @eventId " &
-        "       AND convert(int, NUMREGISTRATIONSTATUSCODE) <> 3 "
+        Dim query = "SELECT convert(bit, count(*))
+        FROM dbo.RES_REGISTRATION
+        WHERE NUMGECOUSERID = @userId
+          AND NUMRES_EVENTID = @eventId
+          AND NUMREGISTRATIONSTATUSCODE <> 3 "
 
         Dim params As SqlParameter() = {
             New SqlParameter("@userId", userId),
