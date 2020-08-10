@@ -33,7 +33,7 @@
 
         <act:TabContainer runat="server" ID="UserTabs" OnClientActiveTabChanged="ActiveTabChanged">
 
-            <act:TabPanel runat="Server" ID="tabWelcome" HeaderText="Welcome">
+            <act:TabPanel runat="Server" ID="tabWelcome" HeaderText="Supporting Documents">
                 <ContentTemplate>
                     <asp:Button ID="btnBeginFeeReport" runat="server" CssClass="button-large button-proceed" Text="Begin Fee Calculation →" CausesValidation="False" Visible="false" />
                     <asp:Label ID="lblDeadline" ForeColor="DarkRed" runat="server" Visible="false"></asp:Label>
@@ -696,7 +696,7 @@
                 </ContentTemplate>
             </act:TabPanel>
 
-            <act:TabPanel runat="server" ID="tabHistory" HeaderText="History">
+            <act:TabPanel runat="server" ID="tabHistory" HeaderText="Submittal History">
                 <ContentTemplate>
                     <p>
                         Following is annual permit fee information from the current year back to 2004. Past invoices and deposit information are located
