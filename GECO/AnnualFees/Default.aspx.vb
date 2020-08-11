@@ -126,11 +126,11 @@ Partial Class AnnualFees_Default
     Protected Sub btnSavePnlFeeCalc_Click(sender As Object, e As EventArgs) Handles btnSavePnlFeeCalc.Click
         If chkNSPSExempt.Checked Then
             If Not AnyNspsExemptionSelected() Then
-                lblNspsExemptionWarning.Visible = True
+                pNspsExemptionWarning.Visible = True
                 Return
             End If
 
-            lblNspsExemptionWarning.Visible = False
+            pNspsExemptionWarning.Visible = False
         End If
 
         RecalculateFees()
@@ -372,7 +372,7 @@ Partial Class AnnualFees_Default
             chkNSPS1.Enabled = Not initNsps
             lblNspsRemovalNotice.Visible = initNsps
             lblNspsRemovalNotice.Text = "If it is believed that this stationary source is not subject to any NSPS standard, <br/>call the number listed in Section 6.0 of this manual."
-            chkNSPSExempt.Enabled = initNsps
+            chkNSPSExempt.Visible = initNsps
 
             chkPart70Source.Checked = GetNullable(Of Integer)(dr.Item("strpart70")) = 1
         End If
@@ -942,7 +942,7 @@ Partial Class AnnualFees_Default
 
     Protected Sub chkNSPS1_CheckedChanged(sender As Object, e As EventArgs) Handles chkNSPS1.CheckedChanged
         chkNSPSExempt.Checked = Not chkNSPS1.Checked
-        chkNSPSExempt.Enabled = chkNSPS1.Checked
+        chkNSPSExempt.Visible = chkNSPS1.Checked
 
         If Not chkNSPS1.Checked Then
             chkNSPSExempt.Checked = False
@@ -950,7 +950,7 @@ Partial Class AnnualFees_Default
 
         NspsExemptionsChecklist.Visible = chkNSPS1.Checked AndAlso chkNSPSExempt.Checked
         feeCalc.RuleNspsApplies = chkNSPS1.Checked AndAlso Not chkNSPSExempt.Checked
-        lblNspsExemptionWarning.Visible = False
+        pNspsExemptionWarning.Visible = False
 
         If chkNSPSExempt.Checked Then
             If NspsExemptionsChecklist.Items.Count < 1 Then LoadNSPSExemptList()
@@ -965,7 +965,7 @@ Partial Class AnnualFees_Default
 
         NspsExemptionsChecklist.Visible = chkNSPS1.Checked AndAlso chkNSPSExempt.Checked
         feeCalc.RuleNspsApplies = chkNSPS1.Checked AndAlso Not chkNSPSExempt.Checked
-        lblNspsExemptionWarning.Visible = False
+        pNspsExemptionWarning.Visible = False
 
         If chkNSPSExempt.Checked Then
             If NspsExemptionsChecklist.Items.Count < 1 Then LoadNSPSExemptList()

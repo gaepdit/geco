@@ -162,12 +162,12 @@
             <act:TabPanel runat="Server" ID="tabFeeCalculation" HeaderText="Fee Reporting" Visible="false">
                 <ContentTemplate>
                     <asp:Panel ID="pnlFeeContact" runat="server">
-                    <ul class="form-progress">
-                        <li class="current">Verify Contact Info</li>
-                        <li>Calculate Fees</li>
-                        <li>Sign</li>
-                        <li>Submit</li>
-                    </ul>
+                        <ul class="form-progress">
+                            <li class="current">Verify Contact Info</li>
+                            <li>Calculate Fees</li>
+                            <li>Sign</li>
+                            <li>Submit</li>
+                        </ul>
                         <h3>Fee Contact</h3>
                         <p>
                             These options will pre-load the contact form with either the current Fee Contact information or the 
@@ -390,12 +390,12 @@
                     </asp:Panel>
 
                     <asp:Panel ID="pnlFeeCalculation" runat="server" Visible="false">
-                    <ul class="form-progress">
-                        <li class="done">Verify Contact Info</li>
-                        <li class="current">Calculate Fees</li>
-                        <li>Sign</li>
-                        <li>Submit</li>
-                    </ul>
+                        <ul class="form-progress">
+                            <li class="done">Verify Contact Info</li>
+                            <li class="current">Calculate Fees</li>
+                            <li>Sign</li>
+                            <li>Submit</li>
+                        </ul>
                         <h3>Source Classification</h3>
                         <p>For further clarification, please see the Fee Manual.</p>
                         <table class="table-simple table-list">
@@ -559,11 +559,10 @@
                             </tr>
                         </table>
                         <p>
-                            <asp:CheckBox ID="chkNSPSExempt" runat="server" Text="Exempt from NSPS fees" Enabled="False" AutoPostBack="True" />
+                            <asp:CheckBox ID="chkNSPSExempt" runat="server" Text="Exempt from NSPS fees" AutoPostBack="True" />
                         </p>
-                        <p>
-                            <asp:Label ID="lblNspsExemptionWarning" Visible="false" runat="server" ForeColor="red"
-                                Text="Please select all the NSPS exemptions that apply to your facility." />
+                        <p id="pNspsExemptionWarning" visible="false" runat="server" style="color: darkred;">
+                            Please select all the NSPS exemptions that apply to your facility.
                         </p>
                         <asp:CheckBoxList ID="NspsExemptionsChecklist" runat="server" Font-Size="Small" Visible="False"></asp:CheckBoxList>
                         <p align="right">
@@ -589,12 +588,12 @@
                     </asp:Panel>
 
                     <asp:Panel ID="pnlFeeSignature" runat="server" Visible="false">
-                    <ul class="form-progress">
-                        <li class="done">Verify Contact Info</li>
-                        <li class="done">Calculate Fees</li>
-                        <li class="current">Sign</li>
-                        <li>Submit</li>
-                    </ul>
+                        <ul class="form-progress">
+                            <li class="done">Verify Contact Info</li>
+                            <li class="done">Calculate Fees</li>
+                            <li class="current">Sign</li>
+                            <li>Submit</li>
+                        </ul>
                         <asp:ValidationSummary ID="ValidationSummary2" runat="server" ValidationGroup="SignPay" DisplayMode="BulletList" />
 
                         <p>You may select the payment option here. If the fee owed is $10,000 or greater, the fee may be paid in four equal quarterly payments.</p>
@@ -676,12 +675,12 @@
                     </asp:Panel>
 
                     <asp:Panel ID="pnlFeeSubmit" runat="server" Visible="False">
-                    <ul class="form-progress">
-                        <li class="done">Verify Contact Info</li>
-                        <li class="done">Calculate Fees</li>
-                        <li class="done">Sign</li>
-                        <li class="current">Submit</li>
-                    </ul>
+                        <ul class="form-progress">
+                            <li class="done">Verify Contact Info</li>
+                            <li class="done">Calculate Fees</li>
+                            <li class="done">Sign</li>
+                            <li class="current">Submit</li>
+                        </ul>
                         <p>
                             You are about to make a final submission. Once submitted, you will
                             not be able to make any changes. However, you will be able to view

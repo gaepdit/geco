@@ -779,13 +779,13 @@ Partial Public Class AnnualFees_Default
     Protected WithEvents chkNSPSExempt As Global.System.Web.UI.WebControls.CheckBox
 
     '''<summary>
-    '''lblNspsExemptionWarning control.
+    '''pNspsExemptionWarning control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lblNspsExemptionWarning As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents pNspsExemptionWarning As Global.System.Web.UI.HtmlControls.HtmlGenericControl
 
     '''<summary>
     '''NspsExemptionsChecklist control.
