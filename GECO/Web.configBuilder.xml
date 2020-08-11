@@ -18,7 +18,7 @@
   </connectionStrings>
 
   <appSettings>
-    <add key="GECO_VERSION" value="2020.8.10" />
+    <add key="GECO_VERSION" value="2020.8.11" />
     <add key="GecoEmailSender" value="GeorgiaAirProtectionBranch@dnr.ga.gov" />
     <add key="EnableSendingEmail" value="true" />
     <add key="SaveAllEmails" value="false" />
