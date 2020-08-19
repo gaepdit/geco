@@ -228,4 +228,18 @@ Public Module AnnualFees
         Return DB.SPGetDataTable(spName, New SqlParameter("@FacilityID", airs.DbFormattedString))
     End Function
 
+    Public Function ActiveInvoiceExists(airs As ApbFacilityId, feeYear As Integer) As Boolean
+        NotNull(airs, NameOf(airs))
+
+        Dim SQL As String = "select convert(bit, count(*)) from FS_FEEINVOICE
+            where STRAIRSNUMBER = @airsno and NUMFEEYEAR = @feeyear and ACTIVE = 1"
+
+        Dim params As SqlParameter() = {
+            New SqlParameter("@airsno", airs.DbFormattedString),
+            New SqlParameter("@feeyear", feeYear)
+        }
+
+        Return DB.GetBoolean(SQL, params)
+    End Function
+
 End Module

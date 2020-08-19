@@ -172,10 +172,16 @@ Partial Class AnnualFees_Default
     End Sub
 
     Protected Sub btnSubmit_Click(sender As Object, e As EventArgs) Handles btnSubmit.Click
+        If ActiveInvoiceExists(currentAirs, feeYear.Value) Then
+            feeYearCompleted = True
+            ResetPage()
+            Return
+        End If
+
         If UpdateDatabase() Then
             Page.Dispose()
             Response.BufferOutput = True
-            Response.Redirect(String.Format("~/Invoice/?FeeYear={0}&Facility={1}", feeYear.Value, currentAirs.ShortString))
+            Response.Redirect($"~/Invoice/?FeeYear={feeYear.Value}&Facility={currentAirs.ShortString}")
         Else
             lblContactMsg.Text = "There was an error saving your fees report. Please double-check your entries."
             lblContactMsg.Visible = True
@@ -993,6 +999,10 @@ Partial Class AnnualFees_Default
     End Sub
 
     Protected Sub ddlFeeYear_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ddlFeeYear.SelectedIndexChanged
+        ResetPage()
+    End Sub
+
+    Private Sub ResetPage()
         UserTabs.ActiveTab = tabWelcome
 
         ClearAll(pnlFeeCalculation) 'Clear controls in the Calculation Tab
