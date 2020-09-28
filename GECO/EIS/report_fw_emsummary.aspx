@@ -76,4 +76,5 @@
         <p id="lblFWSummary" runat="server" visible="false">Emissions shown are ANNUAL emissions quantities.</p>
         <br />
         <br />
+    </div>
 </asp:Content>
