@@ -92,7 +92,7 @@ Public Class AnnualFeeCalc
                 Return 0D
             End If
 
-            Return DaysDelayed * CalcFeeSubtotal * FeeRates.AdminFeeRate
+            Return DaysDelayed * CalcFeeSubtotal * FeeRates.AdminFeeRate / 100
         End Get
     End Property
     Public ReadOnly Property CalcTotalFee As Decimal
