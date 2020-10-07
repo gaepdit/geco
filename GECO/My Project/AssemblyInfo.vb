@@ -1,4 +1,4 @@
-﻿Imports System.Resources
+Imports System.Resources
 Imports System
 Imports System.Reflection
 Imports System.Runtime.InteropServices
@@ -12,7 +12,7 @@ Imports System.Runtime.InteropServices
 <Assembly: AssemblyDescription("")>
 <Assembly: AssemblyCompany("")>
 <Assembly: AssemblyProduct("GECO")>
-<Assembly: AssemblyCopyright("Copyright © 2019")>
+<Assembly: AssemblyCopyright("Copyright © 2020")>
 <Assembly: AssemblyTrademark("")>
 
 <Assembly: ComVisible(False)>
@@ -31,6 +31,6 @@ Imports System.Runtime.InteropServices
 ' by using the '*' as shown below:
 ' <Assembly: AssemblyVersion("1.0.*")> 
 
-<Assembly: AssemblyVersion("2020.9.28.*")>
+<Assembly: AssemblyVersion("2020.10.7.*")>
 <Assembly: AssemblyFileVersion("1.0.0.0")>
 <Assembly: NeutralResourcesLanguage("en-US")>
