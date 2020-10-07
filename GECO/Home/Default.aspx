@@ -4,11 +4,6 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="Server">
     <asp:UpdatePanel ID="UpdatePanel_top" runat="server">
         <ContentTemplate>
-            <div class="announcement announcement-mild">
-                <h2>Annual Permit Fees</h2>
-                    <p>2019 Annual Permit Fee Invoices are now available.</p>
-            </div>
-
             <h1>GECO Home</h1>
 
             <p>Georgia Environmental Connections Online ("GECO") is an online service allowing public access to various Georgia Air Protection Branch applications.</p>
