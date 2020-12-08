@@ -1,154 +1,83 @@
-﻿<%@ Master Language="VB" Inherits="GECO.APB_es" CodeBehind="es.master.vb" %>
+﻿<%@ Master MasterPageFile="~/MainMaster.master" Language="VB" Inherits="GECO.APB_es" CodeBehind="es.master.vb" %>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html lang="en-us" xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title>GECO Emissions Statement</title>
-    <link rel="apple-touch-icon" sizes="180x180" href="~/assets/epd-favicons/apple-touch-icon.png?v=69kRrvbXdL" />
-    <link rel="icon" type="image/png" href="~/assets/epd-favicons/favicon-32x32.png?v=69kRrvbXdL" sizes="32x32" />
-    <link rel="icon" type="image/png" href="~/assets/epd-favicons/favicon-16x16.png?v=69kRrvbXdL" sizes="16x16" />
-    <link rel="mask-icon" href="~/assets/epd-favicons/safari-pinned-tab.svg?v=69kRrvbXdL" color="#5bbad5" />
-    <link rel="shortcut icon" href="~/favicon.ico?v=69kRrvbXdL" />
-    <meta name="theme-color" content="#e5f6fa" />
-    <link href="~/assets/css/printstyle.css?v=20180724" media="print" rel="stylesheet" type="text/css" />
-    <link href="~/assets/css/site.css?v=20201209" rel="stylesheet" type="text/css" />
-    <script type="text/javascript">
-        !function (a, b, c, d, e, f, g, h) {
-            a.RaygunObject = e, a[e] = a[e] || function () {
-                (a[e].o = a[e].o || []).push(arguments)
-            }, f = b.createElement(c), g = b.getElementsByTagName(c)[0],
-                f.async = 1, f.src = d, g.parentNode.insertBefore(f, g), h = a.onerror, a.onerror = function (b, c, d, f, g) {
-                    h && h(b, c, d, f, g), g || (g = new Error(b)), a[e].q = a[e].q || [], a[e].q.push({
-                        e: g
-                    })
-                }
-        }(window, document, "script", "//cdn.raygun.io/raygun4js/raygun.min.js", "rg4js");
-    </script>
-</head>
-<body>
-    <a class="skipnav" href="#main-content">Skip to main content</a>
-    <form id="form1" runat="server">
-        <asp:ScriptManager ID="ScriptManager1" runat="server">
-        </asp:ScriptManager>
-        <div id="header">
-            <div id="epdlogo">
-                <a href="https://epd.georgia.gov/" target="_blank">
-                    <img src='<%= Page.ResolveUrl("~/assets/images/epd-icon.png") %>' alt="Georgia EPD" /></a>
-            </div>
-            <div id="apptitle">
-                <img src='<%= Page.ResolveUrl("~/assets/images/airbranch_header_bg.jpg") %>' alt="Georgia Air Protection Branch" />
-            </div>
-        </div>
-        <div id="usermenu">
-            <table style="width: 100%;">
-                <tr>
-                    <td style="padding-left: 140px;">
-                        <asp:Label ID="lblUserName" runat="server" Text=""></asp:Label><br />
-                        <asp:Label ID="lblFacility" runat="server" Text=""></asp:Label>
-                    </td>
-                    <td style="text-align: right;">
-                        <seq:EasyMenu ID="EasyMenu1" runat="server" HorizontalAlignment="Right" />
-                    </td>
-                </tr>
-            </table>
-        </div>
-        <div class="outer-container" id="main-content">
-            <!-- container for all 3 columns -->
-            <div class="inner-container">
-                <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
-                    <ContentTemplate>
-                        <!-- container for only left and center columns -->
-                        <div class="content-center">
-                            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-                            </asp:ContentPlaceHolder>
-                        </div>
-                        <!-- end content -->
-                        <div class="nav">
-                            <div class="colwrapper">
-                                <div style="text-align: left">
-                                    <table>
-                                        <tr>
-                                            <td style="width: 168px; text-align: center; font-weight: bold; color: white; background-color: #01009A;">Emissions Statement
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </div>
-                                <asp:Panel ID="pnlFacilityHelp" runat="server">
-                                    <strong>&nbsp; Facility
+<%@ MasterType VirtualPath="~/MainMaster.master" %>
+<asp:Content ID="Content" runat="server" ContentPlaceHolderID="Content">
+    <div class="outer-container" id="main-content">
+        <!-- container for all 3 columns -->
+        <div class="inner-container">
+            <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
+                <ContentTemplate>
+                    <!-- container for only left and center columns -->
+                    <div class="content-center">
+                        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                        </asp:ContentPlaceHolder>
+                    </div>
+                    <!-- end content -->
+                    <div class="nav">
+                        <div class="colwrapper">
+                            <div style="text-align: left">
+                                <table>
+                                    <tr>
+                                        <td style="width: 168px; text-align: center; font-weight: bold; color: white; background-color: #01009A;">Emissions Statement
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <asp:Panel ID="pnlFacilityHelp" runat="server">
+                                <strong>&nbsp; Facility
                                     Location<br />
-                                    </strong>
-                                    <br />
-                                    Information at the top of the Facility Location form cannot
+                                </strong>
+                                <br />
+                                Information at the top of the Facility Location form cannot
                                         be changed. The address shown is for the facility's physical street address.<br />
-                                    <br />
-                                    If errors exist for the facility location, click the "<strong>Request Name or Address
+                                <br />
+                                If errors exist for the facility location, click the "<strong>Request Name or Address
                                             Change</strong>" button located below the address area to request any changes
                                         that may be needed. Note that requested changes will not be immediate.<br />
-                                    <br />
-                                    Provide the facility's latitude, longitude and the other 3 pieces of information
+                                <br />
+                                Provide the facility's latitude, longitude and the other 3 pieces of information
                                         associated with the method of determining the latitude and longitude.
                                
-                                </asp:Panel>
-                                <asp:Panel ID="pnlContactHelp" runat="server" Width="100%">
-                                    <strong>&nbsp; Contact
+                            </asp:Panel>
+                            <asp:Panel ID="pnlContactHelp" runat="server" Width="100%">
+                                <strong>&nbsp; Contact
                                     Information<br />
-                                    </strong>
-                                    <br />
-                                    Provide contact information
+                                </strong>
+                                <br />
+                                Provide contact information
                                     for the person to contact regarding the Emissions Statement.<br />
-                                    <br />
-                                    All fields are required except those indicated on the form.<br />
-                                </asp:Panel>
-                                <asp:Panel ID="pnlEmissionsHelp" runat="server" Width="100%">
-                                    <strong>&nbsp; Emissions
+                                <br />
+                                All fields are required except those indicated on the form.<br />
+                            </asp:Panel>
+                            <asp:Panel ID="pnlEmissionsHelp" runat="server" Width="100%">
+                                <strong>&nbsp; Emissions
                                     Information<br />
-                                        <br />
-                                    </strong>You must answer the question asked on the form by choosing YES or NO from the
-                                    drop-down box.<br />
                                     <br />
-                                    A response of YES indicates that your facility's actual emissions of both NO<sub>x</sub> and
+                                </strong>You must answer the question asked on the form by choosing YES or NO from the
+                                    drop-down box.<br />
+                                <br />
+                                A response of YES indicates that your facility's actual emissions of both NO<sub>x</sub> and
                                     VOCs are 25 tons/year or less and will cause your facility to opt out of the Emissions
                                     Statement process.<br />
-                                    <br />
-                                    Choosing NO opts the facility into the Emissions Statement process and you must provide
+                                <br />
+                                Choosing NO opts the facility into the Emissions Statement process and you must provide
                                     the actual &nbsp;emission quantities for both NO<sub>x</sub> and VOCs.<br />
-                                    <br />
-                                    Choose the "Save" button to submit your information.
+                                <br />
+                                Choose the "Save" button to submit your information.
                                
-                                </asp:Panel>
-                            </div>
+                            </asp:Panel>
                         </div>
-                        <div class="clear">
-                        </div>
-                    </ContentTemplate>
-                </asp:UpdatePanel>
-                <!-- sets inner-container height, needed for background color -->
-                <br />
-            </div>
-            <div class="clear">
-            </div>
-            <!-- sets outer-container height, needed for background color -->
+                    </div>
+                    <div class="clear">
+                    </div>
+                </ContentTemplate>
+            </asp:UpdatePanel>
+            <!-- sets inner-container height, needed for background color -->
+            <br />
         </div>
-        <!-- end outer 3-column container -->
-        <div class="footer">
-            ©<%= Now.Year %> <a href="https://epd.georgia.gov/">Georgia Environmental Protection Division</a>, 
-           
-            <a href="https://epd.georgia.gov/air-protection-branch">Air Protection Branch</a>
-            • All rights reserved
-       
+        <div class="clear">
         </div>
-    </form>
-    <script type="text/javascript">
-        rg4js('apiKey', '<%= raygunInfo.ApiKey %>');
-        rg4js('setVersion', '<%= raygunInfo.Version %>');
-        rg4js('enableCrashReporting', true);
-        rg4js('enablePulse', true);
-        rg4js('setUser', {
-            identifier: '<%= raygunInfo.User.Identifier %>',
-            isAnonymous: <%= raygunInfo.IsAnonymous %>
-        });
-        rg4js('logContentsOfXhrCalls', true);
-        rg4js('withTags', ['<%= raygunInfo.Environment %>']);
-    </script>
-</body>
-</html>
+        <!-- sets outer-container height, needed for background color -->
+    </div>
+    <!-- end outer 3-column container -->
+</asp:Content>
