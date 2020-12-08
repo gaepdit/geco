@@ -12,7 +12,7 @@ Option Explicit On
 
 
 Partial Public Class TN_Default
-    
+
     '''<summary>
     '''ModalUpdateProgress1 control.
     '''</summary>
@@ -21,7 +21,7 @@ Partial Public Class TN_Default
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ModalUpdateProgress1 As Global.AjaxControls.ModalUpdateProgress
-    
+
     '''<summary>
     '''UpdatePanel1 control.
     '''</summary>
@@ -30,7 +30,7 @@ Partial Public Class TN_Default
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents UpdatePanel1 As Global.System.Web.UI.UpdatePanel
-    
+
     '''<summary>
     '''dgrTestNotify control.
     '''</summary>
@@ -39,7 +39,7 @@ Partial Public Class TN_Default
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents dgrTestNotify As Global.System.Web.UI.WebControls.DataGrid
-    
+
     '''<summary>
     '''pnlDetails control.
     '''</summary>
@@ -48,7 +48,7 @@ Partial Public Class TN_Default
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents pnlDetails As Global.System.Web.UI.WebControls.Panel
-    
+
     '''<summary>
     '''lblTestPlan control.
     '''</summary>
@@ -57,7 +57,7 @@ Partial Public Class TN_Default
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblTestPlan As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''lblTestLogNumber control.
     '''</summary>
@@ -66,7 +66,7 @@ Partial Public Class TN_Default
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblTestLogNumber As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''lblEmissionUnit control.
     '''</summary>
@@ -75,7 +75,7 @@ Partial Public Class TN_Default
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblEmissionUnit As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''lblPollutants control.
     '''</summary>
@@ -84,7 +84,7 @@ Partial Public Class TN_Default
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblPollutants As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''lblNotificationDate control.
     '''</summary>
@@ -93,7 +93,7 @@ Partial Public Class TN_Default
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblNotificationDate As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''lblStartDate control.
     '''</summary>
@@ -102,7 +102,7 @@ Partial Public Class TN_Default
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblStartDate As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''lblEndDate control.
     '''</summary>
@@ -111,7 +111,7 @@ Partial Public Class TN_Default
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblEndDate As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''lblComment control.
     '''</summary>
@@ -120,7 +120,7 @@ Partial Public Class TN_Default
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblComment As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''lblConfNo control.
     '''</summary>
@@ -129,7 +129,7 @@ Partial Public Class TN_Default
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblConfNo As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''lblContactName control.
     '''</summary>
@@ -138,7 +138,7 @@ Partial Public Class TN_Default
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblContactName As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''lblTelephone control.
     '''</summary>
@@ -147,7 +147,7 @@ Partial Public Class TN_Default
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblTelephone As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''lblExt control.
     '''</summary>
@@ -156,7 +156,7 @@ Partial Public Class TN_Default
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblExt As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''lblFax control.
     '''</summary>
@@ -165,7 +165,7 @@ Partial Public Class TN_Default
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblFax As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''lblEmail control.
     '''</summary>
@@ -174,7 +174,7 @@ Partial Public Class TN_Default
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblEmail As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''lblEPDContact control.
     '''</summary>
@@ -183,7 +183,7 @@ Partial Public Class TN_Default
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblEPDContact As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''lblEPDTelephone control.
     '''</summary>
@@ -192,7 +192,7 @@ Partial Public Class TN_Default
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblEPDTelephone As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''lblEPDFax control.
     '''</summary>
@@ -201,7 +201,7 @@ Partial Public Class TN_Default
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblEPDFax As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''lblEPDEmail control.
     '''</summary>
@@ -210,4 +210,16 @@ Partial Public Class TN_Default
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblEPDEmail As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''Master property.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated property.
+    '''</remarks>
+    Public Shadows ReadOnly Property Master() As GECO.MainMaster
+        Get
+            Return CType(MyBase.Master, GECO.MainMaster)
+        End Get
+    End Property
 End Class

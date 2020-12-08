@@ -1,12 +1,36 @@
-Imports System.Data
-Imports System.Data.SqlClient
+﻿Imports System.Data.SqlClient
 Imports System.DateTime
 Imports EpdIt.DBUtilities
+Imports GECO.GecoModels
 
 Partial Class TN_Default
     Inherits Page
 
+    Private Property currentAirs As ApbFacilityId
+
     Private Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
+        If IsPostBack Then
+            currentAirs = New ApbFacilityId(GetCookie(Cookie.AirsNumber))
+        Else
+            ' AIRS number
+            Dim airsString As String
+
+            If Request.QueryString("airs") IsNot Nothing Then
+                airsString = Request.QueryString("airs")
+            Else
+                airsString = GetCookie(Cookie.AirsNumber)
+            End If
+
+            If Not ApbFacilityId.IsValidAirsNumberFormat(airsString) Then
+                HttpContext.Current.Response.Redirect("~/Home/")
+            End If
+
+            currentAirs = New ApbFacilityId(airsString)
+            Master.currentAirs = currentAirs
+            SetCookie(Cookie.AirsNumber, currentAirs.ShortString())
+            Master.IsFacilitySubpage = True
+        End If
+
         If Not IsPostBack Then
             loaddgrTestNotify()
         End If
@@ -59,7 +83,6 @@ Partial Class TN_Default
 #Region " Datagrid Routine "
 
     Private Sub loaddgrTestNotify()
-        Dim AirsNumber As String = "0413" & GetCookie(Cookie.AirsNumber)
 
         Dim query As String = "select STRTESTLOGNUMBER, " &
             "STREMISSIONUNIT, " &
@@ -71,7 +94,7 @@ Partial Class TN_Default
             "FROM ISMPTestNotification where strAirsNumber = @AirsNumber " &
             "order by datProposedStartDate Desc"
 
-        Dim dt As DataTable = DB.GetDataTable(query, New SqlParameter("@AirsNumber", AirsNumber))
+        Dim dt As DataTable = DB.GetDataTable(query, New SqlParameter("@AirsNumber", currentAirs.DbFormattedString))
 
         Dim dv As New DataView(dt)
 

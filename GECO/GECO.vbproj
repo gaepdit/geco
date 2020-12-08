@@ -544,13 +544,6 @@
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="TN\tn.master.designer.vb">
-      <DependentUpon>tn.master</DependentUpon>
-    </Compile>
-    <Compile Include="TN\tn.master.vb">
-      <DependentUpon>tn.master</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
     <Compile Include="Home\Default.aspx.designer.vb">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
@@ -823,7 +816,6 @@
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
     <None Include="packages.config" />
-    <Content Include="TN\tn.master" />
     <Content Include="vwd.webinfo" />
     <Content Include="Web.config" />
     <Content Include="Memo.Master" />

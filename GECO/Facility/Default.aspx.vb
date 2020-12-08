@@ -1,4 +1,4 @@
-Imports System.Data.SqlClient
+﻿Imports System.Data.SqlClient
 Imports EpdIt.DBUtilities
 Imports GECO.DAL
 Imports GECO.GecoModels
@@ -225,6 +225,8 @@ Partial Class FacilityHome
     End Sub
 
     Private Sub GetTestNotificationStatus()
+        TNLink.NavigateUrl = "~/TN/?airs=" & currentAirs.ShortString
+
         Dim query As String = " select " &
         "     count(*)        as total, " &
         "     sum(case when DATPROPOSEDSTARTDATE >= getdate() " &
