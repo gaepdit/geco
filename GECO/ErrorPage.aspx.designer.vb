@@ -12,4 +12,16 @@ Option Explicit On
 
 
 Partial Public Class ErrorPage
+
+    '''<summary>
+    '''Master property.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated property.
+    '''</remarks>
+    Public Shadows ReadOnly Property Master() As GECO.MainMaster
+        Get
+            Return CType(MyBase.Master, GECO.MainMaster)
+        End Get
+    End Property
 End Class
