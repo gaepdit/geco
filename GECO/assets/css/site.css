@@ -80,12 +80,14 @@ a:visited {
     background-color: transparent;
 }
 
-a:hover, a:focus {
+a:hover, a:focus,
+a:hover.no-visited, a:focus.no-visited {
     color: #0066ee;
 }
 
-a:active {
-    color: #EE0000;
+a:active,
+a:active.no-visited {
+    color: #CC0000;
 }
 
 /* page header, uses body colors */
@@ -924,10 +926,15 @@ button:disabled,
 }
 
 
-/* Deprecated layout */
+/* AjaxControlToolkit TabContainer layout fixes */
 .ajax__tab_header {
     box-sizing: content-box;
 }
+
+    .ajax__tab_header span {
+        vertical-align: bottom;
+    }
+
 /* left column */
 .nav {
     width: 28%; /* % of inner-container width is ~same width as right column */

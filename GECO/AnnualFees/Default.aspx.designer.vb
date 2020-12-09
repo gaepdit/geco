@@ -23,6 +23,15 @@ Partial Public Class AnnualFees_Default
     Protected WithEvents ModalUpdateProgress1 As Global.AjaxControls.ModalUpdateProgress
 
     '''<summary>
+    '''UpdatePanel1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents UpdatePanel1 As Global.System.Web.UI.UpdatePanel
+
+    '''<summary>
     '''ddlFeeYear control.
     '''</summary>
     '''<remarks>
@@ -1047,4 +1056,16 @@ Partial Public Class AnnualFees_Default
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents grdFeeHistory As Global.System.Web.UI.WebControls.GridView
+
+    '''<summary>
+    '''Master property.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated property.
+    '''</remarks>
+    Public Shadows ReadOnly Property Master() As GECO.MainMaster
+        Get
+            Return CType(MyBase.Master, GECO.MainMaster)
+        End Get
+    End Property
 End Class

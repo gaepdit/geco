@@ -12,8 +12,20 @@ Partial Class AnnualFees_Default
     Public Property feeCalc As AnnualFeeCalc
 
     Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
+        MainLoginCheck()
+        AirsSelectedCheck()
+
         currentUser = GetCurrentUser()
         currentAirs = GetCookie(Cookie.AirsNumber)
+
+        'Check if the user has access to the Application
+        Dim facilityAccess = currentUser.GetFacilityAccess(currentAirs)
+
+        If Not facilityAccess.FeeAccess Then
+            Response.Redirect("~/NoAccess.aspx")
+        End If
+
+        Master.IsFacilitySubpage = True
 
         If ViewState(NameOf(feeCalc)) Is Nothing Then
             feeCalc = New AnnualFeeCalc With {

@@ -465,9 +465,6 @@
     <Compile Include="AnnualFees\Default.aspx.designer.vb">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
-    <Compile Include="AnnualFees\AnnualFees.master.designer.vb">
-      <DependentUpon>AnnualFees.master</DependentUpon>
-    </Compile>
     <Compile Include="Fees\Deposits.aspx.designer.vb">
       <DependentUpon>Deposits.aspx</DependentUpon>
     </Compile>
@@ -762,10 +759,6 @@
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AnnualFees\AnnualFees.master.vb">
-      <DependentUpon>AnnualFees.master</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -797,7 +790,6 @@
   <ItemGroup>
     <Content Include="EIS\eismaster.master" />
     <Content Include="ES\es.master" />
-    <Content Include="AnnualFees\AnnualFees.master" />
     <Content Include="MainMaster.master" />
     <Content Include="IP.ashx" />
     <Content Include="GECO.vbproj.vsspell" />
