@@ -109,21 +109,5 @@
                 </ContentTemplate>
             </asp:UpdatePanel>
         </div>
-
-        <div class="announcement">
-            <h2>Announcement</h2>
-            <p>
-                As of August 1, 2018, all GECO accounts must use a confirmed email address. If 
-            you created your account prior to that date, you will need to request an email confirmation 
-            link before you can sign in.
-            </p>
-            <p>
-                <asp:HyperLink ID="lnkResend" runat="server" NavigateUrl="~/Account.aspx?action=resend" CssClass="no-visited">✉️ Request confirmation link</asp:HyperLink>
-            </p>
-            <p>
-                If you no longer have access to the email address you 
-            used when registering, please contact us to update your account.
-            </p>
-        </div>
     </div>
 </asp:Content>

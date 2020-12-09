@@ -476,21 +476,25 @@ textarea {
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     grid-gap: 2em;
     margin: 2em auto;
-    max-width: 50rem;
+    max-width: 54rem;
 }
 
-.login-form input[type=text],
-.login-form input[type=password] {
-    width: 100%;
+.login-form {
+    max-width: 27rem;
+    margin: auto;
 }
 
-.login-form fieldset {
-    border-width: 1px;
-    border-radius: 5px;
-    padding: 0 16px;
-    width: 100%;
-    max-width: 25rem;
-}
+    .login-form input[type=text],
+    .login-form input[type=password] {
+        width: 100%;
+    }
+
+    .login-form fieldset {
+        border-width: 1px;
+        border-radius: 5px;
+        padding: 0 16px;
+        width: 27rem;
+    }
 
 .login-register {
     padding: 8px 16px 0;
