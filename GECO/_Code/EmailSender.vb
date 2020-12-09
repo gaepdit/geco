@@ -1,4 +1,4 @@
-Imports System.IO
+﻿Imports System.IO
 Imports System.Net.Mail
 Imports System.Net.Mime
 
@@ -114,7 +114,6 @@ Public Module EmailSender
         End Using
     End Sub
 
-    <CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1804:RemoveUnusedLocals", MessageId:="testEmail")>
     <CodeAnalysis.SuppressMessage("Minor Code Smell", "S1481:Unused local variables should be removed", Justification:="MailAddress created to test valid format")>
     Public Function IsValidEmailAddress(emailAddress As String) As Boolean
         If String.IsNullOrEmpty(emailAddress) Then Return False

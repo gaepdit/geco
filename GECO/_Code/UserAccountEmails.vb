@@ -55,18 +55,19 @@ Public Module UserAccountEmails
         Dim subject As String = "GECO: Password Reset"
 
         Dim plainBody As String = "A password reset was requested for this account at " &
-            "Georgia Environmental Connections Online (GECO). " &
+            "Georgia Environmental Connections Online (GECO). This link expires after 2 hours." &
             vbNewLine & vbNewLine &
-            "Reset your password using this link: " &
-            vbNewLine & "{0}" &
+            "{0}" &
             vbNewLine & vbNewLine &
-            "The link expires after 2 hours."
+            "If you did not request a password reset, you can ignore this message and your password will not change."
 
         Dim htmlBody As String = "<p>A password reset was requested for this account at " &
-            "Georgia Environmental Connections Online (GECO).</p> " &
-            "<p>Reset your password using this link: <br /> " &
-            "<a href='{0}' target='_blank'>Reset password</a></p>" &
-            "<p>The link expires after 2 hours.</p>"
+            "Georgia Environmental Connections Online (GECO). This link expires after 2 hours.</p> " &
+            "<p><a href='{0}' " &
+            "style='display:inline-block;border:10px solid darkblue;background:darkblue;color:white;border-radius:3px;border-left-width:15px;border-right-width:15px;'>" &
+            "Reset password</a></p>" &
+            "<p>If you did not request a password reset, you can ignore this message and your password will not change.</p>" &
+            "<p>If the above link doesn't work, copy and paste the following into your web browser:<br /> {0} </p>"
 
         SendEmail(Trim(email), subject,
                   String.Format(plainBody, confirmationUrl),
