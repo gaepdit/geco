@@ -1,4 +1,4 @@
-﻿Imports System.IO
+Imports System.IO
 Imports System.Net.Mail
 Imports System.Net.Mime
 
@@ -64,7 +64,7 @@ Public Module EmailSender
         End If
 
         If htmlBody IsNot Nothing Then
-            msg.AlternateViews.Add(AlternateView.CreateAlternateViewFromString(htmlBody, New ContentType(MediaTypeNames.Text.Html)))
+            msg.AlternateViews.Add(AlternateView.CreateAlternateViewFromString(htmlBody, Encoding.UTF8, "text/html"))
         End If
 
         Dim origin As String = ConcatNonEmptyStrings(" | User ID: ", {ConcatNonEmptyStrings(".", {"GECO", caller}), GetCurrentUser()?.UserId.ToString})
