@@ -17,7 +17,7 @@ Partial Class APB_es
         End If
 
         If Not IsPostBack Then
-            Master.IsFacilitySubpage = True
+            Master.IsFacilitySet = True
         End If
     End Sub
 

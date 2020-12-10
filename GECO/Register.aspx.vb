@@ -1,5 +1,4 @@
-Imports System.Reflection
-Imports GECO.GecoModels
+﻿Imports System.Reflection
 
 Partial Class Register
     Inherits Page
@@ -12,8 +11,6 @@ Partial Class Register
 
             Session.Clear()
             ClearAllCookies()
-
-            Master.IncludeRegisterLink = False
         End If
     End Sub
 

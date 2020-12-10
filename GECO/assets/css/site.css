@@ -17,8 +17,8 @@ html, body {
 
 .content {
     width: 100%;
-    padding: 0 2em;
-    margin: 2em 0;
+    padding: 0 2rem;
+    margin: 2rem 0;
     font-size: 85%;
 }
 
@@ -90,53 +90,69 @@ a:active.no-visited {
     color: #CC0000;
 }
 
-/* page header, uses body colors */
-div#header {
-    clear: both;
-    height: 100px;
+/* Page header */
+.header {
     background: #01009A;
+    width: 100%;
+    padding: 1.2rem 2rem;
+    font-size: 16px;
+    color: #DEDEF9;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap-reverse;
+    justify-content: flex-end;
 }
 
-    div#header.header-no-menu {
-        height: auto;
+    .header .logo {
+        height: 48px;
+        vertical-align: middle;
+        margin-right: 1rem;
     }
 
-div#epdlogo {
-    display: inline-block;
-    margin: 12px 22px;
+.header-home {
+    font-weight: 600;
+    line-height: 1.4;
 }
 
-div#apptitle {
-    position: absolute;
-    top: 15px;
-    left: 140px;
+.header-full {
+    flex: auto;
 }
 
-div#usermenu {
-    background: #01009A;
-    color: #ffffff;
-    font-size: 75%;
+.header a {
+    white-space: nowrap;
+    padding: .5rem 0;
+    color: #DEDEF9;
+    text-decoration: none;
+    margin-right: 1em;
 }
 
-div#userinfo {
-    position: absolute;
-    top: 100px;
-    left: 150px;
-    color: #ffffff;
-    font-size: 75%;
+    .header a:hover, .header a:focus {
+        color: #B4B4D7;
+    }
+
+.sub-nav a {
+    margin-left: .8em;
+    margin-right: 0;
+    font-size: 12px;
+}
+
+.header-sub {
+    color: #DEDEF9;
+    background: #3C3BCA;
+    padding: .8rem 2rem;
+    font-size: 12px;
 }
 
 /* page footer, uses body colors */
 .footer {
-    clear: both; /* below all columns */
-    width: 100%; /* full window width */
+    clear: both;
+    width: 100%;
     margin: 0;
-    padding-top: .3em;
-    padding-bottom: .3em;
+    padding: 1em 0;
     font-size: 75%;
     color: #fff;
     text-align: center;
-    background-color: #01009A;
+    background: #01009A;
 }
 
     .footer a {
@@ -475,8 +491,8 @@ textarea {
 .login-page {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    grid-gap: 2em;
-    margin: 2em auto;
+    grid-gap: 2rem;
+    margin: 2rem auto;
     max-width: 54rem;
 }
 

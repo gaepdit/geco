@@ -26,9 +26,9 @@ Partial Class TN_Default
             End If
 
             currentAirs = New ApbFacilityId(airsString)
-            Master.currentAirs = currentAirs
+            Master.CurrentAirs = currentAirs
             SetCookie(Cookie.AirsNumber, currentAirs.ShortString())
-            Master.IsFacilitySubpage = True
+            Master.IsFacilitySet = True
         End If
 
         If Not IsPostBack Then

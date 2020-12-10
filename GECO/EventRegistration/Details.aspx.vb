@@ -23,10 +23,6 @@ Partial Class EventRegistration_EventDetails
         currentUser = GetCurrentUser()
 
         If Not IsPostBack Then
-            'Menu setup
-            Dim EasyMenu1 As Sequentum.EasyMenu = CType(Master.FindControl("EasyMenu1"), Sequentum.EasyMenu)
-            EasyMenu1.MenuRoot.AddSubMenuItem("Event List", ".")
-
             lblMessage.Text = ""
 
             If DisplayEventDetails() AndAlso UserIsLoggedIn() Then

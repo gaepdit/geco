@@ -1,4 +1,4 @@
-Imports GECO.GecoModels
+﻿Imports GECO.GecoModels
 
 Partial Class _Default
     Inherits Page
@@ -14,8 +14,6 @@ Partial Class _Default
             Else
                 GetUserFromSession()
             End If
-
-            Master.IncludeSignInLink = True
 
             ClearCurrentLogin()
         End If

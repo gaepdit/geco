@@ -41,7 +41,7 @@ Public Class Permit_Application
         If Not IsPostBack Then
             DisplayPermitApplication()
 
-            Master.IsFacilitySubpage = True
+            Master.IsFacilitySet = True
         End If
     End Sub
 

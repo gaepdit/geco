@@ -12,7 +12,7 @@ Option Explicit On
 
 
 Partial Public Class MainMaster
-    
+
     '''<summary>
     '''form1 control.
     '''</summary>
@@ -21,7 +21,7 @@ Partial Public Class MainMaster
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents form1 As Global.System.Web.UI.HtmlControls.HtmlForm
-    
+
     '''<summary>
     '''ScriptManager1 control.
     '''</summary>
@@ -30,16 +30,7 @@ Partial Public Class MainMaster
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ScriptManager1 As Global.System.Web.UI.ScriptManager
-    
-    '''<summary>
-    '''lblUserName control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblUserName As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''lblFacility control.
     '''</summary>
@@ -48,16 +39,7 @@ Partial Public Class MainMaster
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblFacility As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''EasyMenu1 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents EasyMenu1 As Global.Sequentum.EasyMenu
-    
+
     '''<summary>
     '''Content control.
     '''</summary>

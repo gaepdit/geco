@@ -25,9 +25,9 @@ Public Class Fees_Invoices
             End If
 
             currentAirs = New ApbFacilityId(airsString)
-            Master.currentAirs = currentAirs
+            Master.CurrentAirs = currentAirs
             SetCookie(Cookie.AirsNumber, currentAirs.ShortString())
-            Master.IsFacilitySubpage = True
+            Master.IsFacilitySet = True
         End If
 
         MainLoginCheck(Page.ResolveUrl("~/Fees/?airs=" & currentAirs.ShortString))

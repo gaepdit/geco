@@ -5,20 +5,16 @@
     <h1>Facility Home</h1>
 
     <p>
-        Current Facility: 
         <b>
-            <asp:Label ID="lblFacilityDisplay" runat="server"></asp:Label>
-        </b>
+            <asp:Label ID="lblFacilityDisplay" runat="server"></asp:Label></b>
         <br />
-        AIRS No:        
-        <b>
-            <asp:Label ID="lblAIRS" runat="server"></asp:Label>
-        </b>
+        AIRS Number:
+        <asp:Label ID="lblAIRS" runat="server"></asp:Label>
     </p>
 
     <ul class="menu-list-horizontal">
         <li>
-            <asp:HyperLink ID="lnkFacilityHome" runat="server" NavigateUrl="~/Facility/" Enabled="false" CssClass="selected-menu-item">Facility Home</asp:HyperLink>
+            <asp:HyperLink ID="lnkFacilityHome" runat="server" NavigateUrl="~/Facility/" Enabled="false" CssClass="selected-menu-item">Tools</asp:HyperLink>
         </li>
         <li>
             <asp:HyperLink ID="lnkFacilityInfo" runat="server" NavigateUrl="~/Facility/Summary.aspx">Facility Info</asp:HyperLink>
@@ -205,15 +201,16 @@
                         <th>Telephone Number</th>
                         <td>
                             <asp:TextBox ID="txtPhone" runat="server" MaxLength="30" ValidationGroup="Contact"></asp:TextBox>
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" 
-                                ControlToValidate="txtPhone" ErrorMessage="Phone Number is required" 
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server"
+                                ControlToValidate="txtPhone" ErrorMessage="Phone Number is required"
                                 Font-Size="Small" ValidationGroup="Contact" />
                         </td>
                     </tr>
                     <tr>
                         <th>Fax Number</th>
                         <td>
-                            <asp:TextBox ID="txtFax" runat="server" MaxLength="10" ValidationGroup="Contact"></asp:TextBox> (numbers only)
+                            <asp:TextBox ID="txtFax" runat="server" MaxLength="10" ValidationGroup="Contact"></asp:TextBox>
+                            (numbers only)
                             <act:FilteredTextBoxExtender ID="FilteredTextBoxExtender4" runat="server" TargetControlID="txtFax"
                                 FilterType="Numbers" Enabled="True">
                             </act:FilteredTextBoxExtender>

@@ -5,20 +5,16 @@
     <h1>Facility Summary</h1>
 
     <p>
-        Current Facility: 
         <b>
-            <asp:Label ID="lblFacilityDisplay" runat="server"></asp:Label>
-        </b>
+            <asp:Label ID="lblFacilityDisplay" runat="server"></asp:Label></b>
         <br />
-        AIRS No:        
-        <b>
-            <asp:Label ID="lblAIRS" runat="server"></asp:Label>
-        </b>
+        AIRS Number:
+        <asp:Label ID="lblAIRS" runat="server"></asp:Label>
     </p>
 
     <ul class="menu-list-horizontal">
         <li>
-            <asp:HyperLink ID="lnkFacilityHome" runat="server" NavigateUrl="~/Facility/">Facility Home</asp:HyperLink>
+            <asp:HyperLink ID="lnkFacilityHome" runat="server" NavigateUrl="~/Facility/">Tools</asp:HyperLink>
         </li>
         <li>
             <asp:HyperLink ID="lnkFacilityInfo" runat="server" NavigateUrl="~/Facility/Summary.aspx" Enabled="false" CssClass="selected-menu-item">Facility Info</asp:HyperLink>

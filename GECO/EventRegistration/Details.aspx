@@ -3,6 +3,8 @@
 
 <%@ MasterType VirtualPath="~/MainMaster.master" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="Server">
+    <asp:HyperLink ID="lnkEvents" runat="server" NavigateUrl="~/EventRegistration/" CssClass="button">← Back to Events List</asp:HyperLink>
+
     <h1>
         <asp:Label ID="lblTitle" runat="server"></asp:Label>
     </h1>

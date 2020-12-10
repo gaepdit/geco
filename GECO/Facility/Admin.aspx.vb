@@ -1,4 +1,4 @@
-Imports GECO.GecoModels
+﻿Imports GECO.GecoModels
 
 Partial Class FacilityAdmin
     Inherits Page
@@ -28,7 +28,7 @@ Partial Class FacilityAdmin
             End If
 
             currentAirs = New ApbFacilityId(airsString)
-            Master.currentAirs = currentAirs
+            Master.CurrentAirs = currentAirs
             SetCookie(Cookie.AirsNumber, currentAirs.ShortString())
         End If
 
@@ -47,12 +47,10 @@ Partial Class FacilityAdmin
             LoadFacilityInfo()
             LoadUserGrid()
 
-            Master.SetFacility(ConcatNonEmptyStrings(", ", {currentAirs.FormattedString(), currentFacility}))
-
             Title = "GECO Facility Admin - " & lblFacilityDisplay.Text
             lblAIRS.Text = currentAirs.FormattedString
 
-            Master.IsFacilitySubpage = True
+            Master.IsFacilitySet = True
         End If
     End Sub
 

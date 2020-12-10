@@ -1,4 +1,4 @@
-Imports System.Data.SqlClient
+﻿Imports System.Data.SqlClient
 Imports EpdIt.DBUtilities
 Imports GECO.GecoModels
 
@@ -30,7 +30,7 @@ Partial Class FacilitySummary
             End If
 
             currentAirs = New ApbFacilityId(airsString)
-            Master.currentAirs = currentAirs
+            Master.CurrentAirs = currentAirs
             SetCookie(Cookie.AirsNumber, currentAirs.ShortString())
         End If
 
@@ -50,12 +50,10 @@ Partial Class FacilitySummary
             LoadFacilityHeaderData()
             LoadStateContactInformation()
 
-            Master.SetFacility(ConcatNonEmptyStrings(", ", {currentAirs.FormattedString(), currentFacility}))
-
             Title = "GECO Facility Summary - " & lblFacilityDisplay.Text
             lblAIRS.Text = currentAirs.FormattedString
 
-            Master.IsFacilitySubpage = True
+            Master.IsFacilitySet = True
         End If
     End Sub
 

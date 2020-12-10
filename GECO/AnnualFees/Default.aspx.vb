@@ -25,7 +25,7 @@ Partial Class AnnualFees_Default
             Response.Redirect("~/NoAccess.aspx")
         End If
 
-        Master.IsFacilitySubpage = True
+        Master.IsFacilitySet = True
 
         If ViewState(NameOf(feeCalc)) Is Nothing Then
             feeCalc = New AnnualFeeCalc With {
