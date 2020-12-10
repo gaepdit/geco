@@ -40,8 +40,9 @@ Partial Class MainMaster
                 SetFacility(ConcatNonEmptyStrings(", ", {currentAirs.FormattedString(), GetFacilityName(currentAirs), GetFacilityCity(currentAirs)}))
             End If
 
-            SetUpEasyMenu()
         End If
+
+        SetUpEasyMenu()
     End Sub
 
     Private Sub SetUpEasyMenu()
