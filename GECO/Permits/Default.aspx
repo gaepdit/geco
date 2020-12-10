@@ -7,11 +7,10 @@
 
     <p>
         <b>
-            <asp:Label ID="lblFacilityDisplay" runat="server"></asp:Label>
-            <br />
-            AIRS No:
-            <asp:Label ID="lblAIRS" runat="server"></asp:Label>
-        </b>
+            <asp:Label ID="lblFacilityDisplay" runat="server"></asp:Label></b>
+        <br />
+        AIRS Number:
+        <asp:Label ID="lblAIRS" runat="server"></asp:Label>
     </p>
 
     <h2>Open Permit Applications</h2>

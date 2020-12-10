@@ -96,7 +96,7 @@ a:active.no-visited {
     width: 100%;
     padding: 1.2rem 2rem;
     font-size: 16px;
-    color: #DEDEF9;
+    color: #fff;
     display: flex;
     align-items: center;
     flex-wrap: wrap-reverse;
@@ -148,22 +148,20 @@ a:active.no-visited {
     clear: both;
     width: 100%;
     margin: 0;
-    padding: 1em 0;
+    padding: 1em 2rem;
     font-size: 75%;
     color: #fff;
-    text-align: center;
     background: #01009A;
 }
 
     .footer a {
-        color: #ff7;
-        text-decoration: none;
+        color: #DEDEF9;
+        font-size:12px;
     }
 
         .footer a:hover,
         .footer a:focus {
-            color: #ff3;
-            text-decoration: underline;
+            color: #B4B4D7;
         }
 
     .header p,

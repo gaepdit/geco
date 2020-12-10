@@ -1,4 +1,4 @@
-﻿<%@ Master Language="VB" Inherits="GECO.MainMaster" CodeBehind="MainMaster.master.vb" %>
+<%@ Master Language="VB" Inherits="GECO.MainMaster" CodeBehind="MainMaster.master.vb" %>
 
 <%@ Register Assembly="System.Web.Extensions, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" Namespace="System.Web.UI" TagPrefix="asp" %>
 <!DOCTYPE html>
@@ -63,8 +63,8 @@
             </div>
 
             <nav class="sub-nav">
-                <a href="<%= Page.ResolveUrl("~/Facility/") %>">Facility home</a>
                 <a href="<%= Page.ResolveUrl("~/Home/") %>">Switch facility</a>
+                <a href="<%= Page.ResolveUrl("~/Facility/") %>">Facility home</a>
             </nav>
         </div>
         <% End If %>
@@ -73,13 +73,11 @@
             <asp:ContentPlaceHolder ID="Content" runat="server"></asp:ContentPlaceHolder>
             <div class="clear"></div>
         </div>
-
-        <div class="footer">
-            ©<%= Now.Year %> <a href="https://epd.georgia.gov/">Georgia Environmental Protection Division</a>, 
-            <a href="https://epd.georgia.gov/air-protection-branch">Air Protection Branch</a>
-            • All rights reserved
-        </div>
     </form>
+
+    <div class="footer">
+        <a href="https://epd.georgia.gov/">Georgia Environmental Protection Division</a> | <a href="https://epd.georgia.gov/air-protection-branch">Air Protection Branch</a>
+    </div>
     <script type="text/javascript">
         rg4js('apiKey', '<%= raygunInfo.ApiKey %>');
         rg4js('setVersion', '<%= raygunInfo.Version %>');

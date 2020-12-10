@@ -12,9 +12,8 @@ Partial Class MainMaster
         CurrentAirs = If(CurrentAirs, ApbFacilityId.IfValid(GetCookie(Cookie.AirsNumber)))
         IsLoggedIn = UserIsLoggedIn()
 
-        If Not IsPostBack AndAlso IsLoggedIn AndAlso CurrentAirs IsNot Nothing Then
+        If Not IsPostBack AndAlso IsFacilitySet AndAlso IsLoggedIn AndAlso CurrentAirs IsNot Nothing Then
             SetFacility()
-            IsFacilitySet = True
         End If
 
     End Sub
