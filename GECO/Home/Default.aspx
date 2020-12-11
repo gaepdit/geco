@@ -85,24 +85,19 @@
         <asp:HyperLink ID="linkEvents" runat="server" NavigateUrl="~/EventRegistration/">upcoming events</asp:HyperLink>.
     </p>
 
-    <h2>
-        <asp:Label ID="lblEIyear1" runat="server" Text=""></asp:Label>
-        Emissions Inventory</h2>
+    <h2>Emissions Inventory</h2>
     <p>
-        The Emissions Inventory (EI) will soon be available for use to submit data for the
-        <asp:Label ID="lblEIYear2" runat="server" Text=""></asp:Label>
-        calendar year. Look out for correspondence in the mail advising if EPD believes your facility needs to participate. 
+        Participation in the emissions inventory is based on a facility's Potential to Emit (PTE) equaling or exceeding the defined thresholds.
+        Look out for correspondence in the mail advising if EPD believes your facility needs to participate. 
         Visit the EPD <a href="https://epd.georgia.gov/submit-emissions-inventory" target="_blank">Emissions Inventory Information</a> page 
         and the EPA <a href="https://www.epa.gov/air-emissions-inventories/air-emissions-reporting-requirements-aerr"
-            target="_blank">Air Emissions Reporting Requirements</a> page for more information.
+            target="_blank">Air Emissions Reporting Requirements</a> page for more information.           
     </p>
+    <h3>
+        <asp:Label ID="lblEIYear2" runat="server" Text=""></asp:Label>
+        Emissions Inventory Year:
+    </h3>
     <ul>
-        <li>
-            <p>
-                Participation in the emissions inventory is based on a facility's Potential
-                to Emit (PTE) equaling or exceeding the defined thresholds.
-            </p>
-        </li>
         <li>
             <p>
                 <asp:Label ID="lblAnnualEIText" runat="server">The
@@ -125,10 +120,23 @@
             </p>
         </li>
     </ul>
-    <h2>
+
+    <h2>Annual Permit Fees</h2>
+    <p>
+        Annual permit fees are required for Synthetic Minor and Part 70 sources and certain NSPS sources. 
+        Procedures for calculating and paying fees are on the Annual/Emissions Fees page for your facility.
+        If you need to make an amendment to any past fee submittal, a Fee Amendment form (along with Fee 
+        Calculation worksheets) is available for download as a Microsoft Excel file on the same page.
+    </p>
+    <p>
+        The emission fee process begins July 1 each year, and the deadline for fee submittal is on or about 
+        September 1. Visit the <a href="https://epd.georgia.gov/air-permit-fees" target="_blank">Air Permit Fees</a>
+        page for more information.       
+    </p>
+    <h3>
         <asp:Label ID="lblFeeYear1" runat="server" Text=""></asp:Label>
-        Annual Permit Fees
-    </h2>
+        Fee Year:
+    </h3>
     <p>
         The
         <asp:Label ID="lblFeeYear2" runat="server" Text=""></asp:Label>
@@ -137,17 +145,18 @@
         The deadline for fee submittal is 
         <strong>September&nbsp;1,&nbsp;<asp:Label ID="lblFeeYear4" runat="server" Text=""></asp:Label></strong>. 
     </p>
-    <p>
-        If you need to make an amendment to any past fee submittal, please select the appropriate
-        facility above, navigate to the Annual Permit Fees application, and select the
-        Supporting Documents tab. The Fee Amendment form is available for download as a
-        Microsoft Excel file. The Fee Calculation worksheets are there also.
-    </p>
 
     <h2>
-        <asp:Label ID="lblESYear1" runat="server" Text=""></asp:Label>
         Emissions Statement
     </h2>
+    <p>Facilities in the Atlanta metro maintenance area whose NO<sub>x</sub> and/or VOC actual emissions are 
+        greater than 25 tons per year are required to submit an annual Emissions Statement (ES). The Emissions 
+        Statement is due on or about June 15 each year.
+    </p>
+    <h3>
+        <asp:Label ID="lblESYear1" runat="server" Text=""></asp:Label>
+        Emissions Statement:
+    </h3>
     <p>
         The
         <asp:Label ID="lblESYear2" runat="server" Text="Label"></asp:Label>

@@ -12,16 +12,15 @@ Partial Class MainMaster
         CurrentAirs = If(CurrentAirs, ApbFacilityId.IfValid(GetCookie(Cookie.AirsNumber)))
         IsLoggedIn = UserIsLoggedIn()
 
-        If Not IsPostBack AndAlso IsFacilitySet AndAlso IsLoggedIn AndAlso CurrentAirs IsNot Nothing Then
-            SetFacility()
-        End If
-
+        SetFacility()
     End Sub
 
     Public Sub SetFacility()
-        lblFacility.Text =
-            ConcatNonEmptyStrings(", ", {GetFacilityName(CurrentAirs), GetFacilityCity(CurrentAirs)}) &
-            " (" & CurrentAirs.FormattedString() & ")"
+        If Not IsPostBack AndAlso IsFacilitySet AndAlso IsLoggedIn AndAlso CurrentAirs IsNot Nothing Then
+            lblFacility.Text =
+                ConcatNonEmptyStrings(", ", {GetFacilityName(CurrentAirs), GetFacilityCity(CurrentAirs)}) &
+                " (" & CurrentAirs.FormattedString() & ")"
+        End If
     End Sub
 
 End Class

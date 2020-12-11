@@ -70,6 +70,10 @@ h2 {
     color: #000080;
 }
 
+h3 {
+    font-size: 100%;
+}
+
 a:link, a:visited.no-visited {
     color: #0000EE;
     background-color: transparent;
@@ -156,7 +160,7 @@ a:active.no-visited {
 
     .footer a {
         color: #DEDEF9;
-        font-size:12px;
+        font-size: 12px;
     }
 
         .footer a:hover,
@@ -514,6 +518,8 @@ textarea {
 .login-register {
     padding: 8px 16px 0;
 }
+
+/* Announcements */
 
 .announcement {
     display: inline-block;

@@ -1,4 +1,4 @@
-<%@ Page Language="VB" MasterPageFile="~/MainMaster.master" AutoEventWireup="false" Inherits="GECO.AnnualFees_Default" Title="GECO Emissions Fees" CodeBehind="Default.aspx.vb" %>
+﻿<%@ Page Language="VB" MasterPageFile="~/MainMaster.master" AutoEventWireup="false" Inherits="GECO.AnnualFees_Default" Title="GECO Emissions Fees" CodeBehind="Default.aspx.vb" %>
 
 <%@ Import Namespace="GECO" %>
 <%@ MasterType VirtualPath="~/MainMaster.master" %>
@@ -39,7 +39,7 @@
 
                             <h1>Annual Permit/Emissions Fees Reporting Form</h1>
                             <p>
-                                The Georgia Air Protection Branch’s Emission Fee Reports are online.
+                                The Georgia Air Protection Branchs Emission Fees Reports are online.
                     Your facility is required to complete the on-line fee form and submit
                     your fee data electronically no matter the amount of fees the facility may owe.
                     If your facility does not owe a fee, you are still required to complete the on-line

@@ -690,3 +690,46 @@ button.button:disabled,
     .button-container-labeled div {
         display: inline-block;
     }
+
+/* Announcements */
+
+.announcement {
+    display: inline-block;
+    max-width: 25rem;
+    margin-top: 5px;
+    margin-right: 13px;
+    padding: 5px 16px;
+    background: lightyellow;
+    border: 1px solid beige;
+    border-radius: 5px;
+    vertical-align: text-top;
+}
+
+    .announcement.announcement-wide {
+        max-width: 53rem;
+    }
+
+    .announcement.announcement-centered {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .announcement h2 {
+        margin-top: 0;
+        padding-top: 0;
+        border: none;
+    }
+
+    .announcement.announcement-mild {
+        border: 3px solid #eeeece;
+    }
+
+    .announcement.announcement-severe {
+        background: #ffd9df;
+        border: 3px solid #ac3e3e;
+    }
+
+        .announcement.announcement-severe h2 {
+            color: #8e1e1e;
+        }

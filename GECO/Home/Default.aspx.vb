@@ -21,7 +21,6 @@ Partial Class Home
     End Sub
 
     Private Sub LoadYearLabels()
-        lblEIyear1.Text = Now.Year - 1 'This is the EI calendar year
         lblEIYear2.Text = Now.Year - 1 'This is the EI calendar year
         lblEIYear3.Text = Now.Year - 1 'This is the EI calendar year
         lblEIYear4.Text = Now.Year 'This is the EI due date

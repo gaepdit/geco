@@ -95,15 +95,6 @@ Partial Public Class Home
     Protected WithEvents linkEvents As Global.System.Web.UI.WebControls.HyperLink
 
     '''<summary>
-    '''lblEIyear1 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblEIyear1 As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
     '''lblEIYear2 control.
     '''</summary>
     '''<remarks>
