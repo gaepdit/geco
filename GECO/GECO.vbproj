@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="..\packages\Microsoft.CodeAnalysis.FxCopAnalyzers.2.9.8\build\Microsoft.CodeAnalysis.FxCopAnalyzers.props" Condition="Exists('..\packages\Microsoft.CodeAnalysis.FxCopAnalyzers.2.9.8\build\Microsoft.CodeAnalysis.FxCopAnalyzers.props')" />
   <Import Project="..\packages\Microsoft.NetFramework.Analyzers.2.9.8\build\Microsoft.NetFramework.Analyzers.props" Condition="Exists('..\packages\Microsoft.NetFramework.Analyzers.2.9.8\build\Microsoft.NetFramework.Analyzers.props')" />
@@ -555,7 +555,7 @@
       <DependentUpon>Register.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="_Classes\AnnualFeeCalc.vb" />
+    <Compile Include="_Models\AnnualFees\AnnualFeeCalc.vb" />
     <Compile Include="_Code\ControlMethods.vb" />
     <Compile Include="_Code\DictionaryExtensions.vb" />
     <Compile Include="_Code\Guard.vb" />
@@ -564,7 +564,7 @@
     <Compile Include="_Code\CookieHelper.vb" />
     <Compile Include="_Code\DecimalFunctions.vb" />
     <Compile Include="_Code\HtmlTableFunctions.vb" />
-    <Compile Include="_Classes\RaygunInfo.vb" />
+    <Compile Include="_Models\App\RaygunInfo.vb" />
     <Compile Include="_DAL\DataBaseConnection.vb" />
     <Compile Include="_Code\EIS\eis_accesschecks.vb" />
     <Compile Include="_DAL\EIS\eis_Access.vb" />
@@ -606,7 +606,7 @@
     <Compile Include="_DAL\Permits\IssuedAirPermits.vb" />
     <Compile Include="_DAL\Users\UserAccess.vb" />
     <Compile Include="_DAL\Users\UserAccounts.vb" />
-    <Compile Include="_Models\Address.vb" />
+    <Compile Include="_Models\Common\Address.vb" />
     <Compile Include="_Models\Facility\ApbFacilityId.vb" />
     <Compile Include="_Models\Finance\InvoiceItem.vb" />
     <Compile Include="_Models\Finance\Invoice.vb" />
@@ -617,7 +617,7 @@
     <Compile Include="_Models\People\GecoUser.vb" />
     <Compile Include="_Models\Permit\ApplicationFeeInfo.vb" />
     <Compile Include="_Models\Permit\PermitApplication.vb" />
-    <Compile Include="_Models\UserSession.vb" />
+    <Compile Include="_Models\App\UserSession.vb" />
     <Compile Include="_DAL\EIS\eis_NAICS.vb" />
     <Compile Include="_Code\ParseNullables.vb" />
     <Compile Include="_Code\RandomStrings.vb" />
