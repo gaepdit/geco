@@ -12,6 +12,11 @@
         Beginning with the 2019 Emissions Inventory, Georgia will be using the Combined Air Emissions 
         Reporting System (CAERS) developed by U.S. EPA.
     </p>
+
+    <div class="announcement">
+        GECO will be ready for the 2020 NEI on January 25, 2021. Thanks for your patience.
+    </div>
+
     <div id="divCaersInstructions" runat="server">
         <p>
             The new Emissions Inventory process will be as follows:

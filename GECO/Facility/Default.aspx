@@ -82,6 +82,7 @@
                     </asp:TableHeaderCell>
                     <asp:TableCell runat="server">
                         <asp:Label ID="lblEIText" runat="server"></asp:Label>
+                        <br /><em class="label-highlight" style="line-height:1.5">The 2020 NEI will be available on Jan. 25, 2021.</em>
                     </asp:TableCell>
                     <asp:TableCell runat="server">
                         <asp:Label ID="lblEIDate" runat="server"></asp:Label>
