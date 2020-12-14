@@ -14,15 +14,6 @@ Option Explicit On
 Partial Public Class EventRegistration_EventDetails
 
     '''<summary>
-    '''lnkEvents control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lnkEvents As Global.System.Web.UI.WebControls.HyperLink
-
-    '''<summary>
     '''lblTitle control.
     '''</summary>
     '''<remarks>

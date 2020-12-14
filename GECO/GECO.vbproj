@@ -164,6 +164,9 @@
     <Content Include="Account\Email.aspx" />
     <Content Include="Account\Password.aspx" />
     <Content Include="assets\images\epd-icon.png" />
+    <Content Include="EIS\History\Default.aspx" />
+    <Content Include="EIS\History\EmissionUnits.aspx" />
+    <Content Include="EIS\History\ReleasePoints.aspx" />
     <Content Include="Home\FacilityRequest.aspx" />
     <Content Include="assets\css\eis_styles.css" />
     <Content Include="assets\css\memo-print.css" />
@@ -298,6 +301,27 @@
     <Compile Include="Account\Password.aspx.vb">
       <DependentUpon>Password.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EIS\History\Default.aspx.designer.vb">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EIS\History\Default.aspx.vb">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="EIS\History\EmissionUnits.aspx.designer.vb">
+      <DependentUpon>EmissionUnits.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EIS\History\EmissionUnits.aspx.vb">
+      <DependentUpon>EmissionUnits.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="EIS\History\ReleasePoints.aspx.designer.vb">
+      <DependentUpon>ReleasePoints.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EIS\History\ReleasePoints.aspx.vb">
+      <DependentUpon>ReleasePoints.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="GlobalSuppressions.vb" />
     <Compile Include="Home\FacilityRequest.aspx.designer.vb">

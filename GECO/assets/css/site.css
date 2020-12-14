@@ -568,6 +568,10 @@ textarea {
     width: 100%;
 }
 
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: rgba(0,0,0,.05);
+}
+
 .table-simple {
     border-collapse: collapse;
     border-color: #CDCDCD;
