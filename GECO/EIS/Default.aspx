@@ -14,7 +14,7 @@
     </p>
 
     <div class="announcement">
-        GECO will be ready for the 2020 NEI on January 25, 2021. Thanks for your patience.
+        <strong>GECO will be ready for the 2020&nbsp;NEI on January&nbsp;25,&nbsp;2021. Thanks for your patience.</strong>
     </div>
 
     <div id="divCaersInstructions" runat="server">
