@@ -3,6 +3,7 @@
 
 <%@ MasterType VirtualPath="~/MainMaster.master" %>
 <asp:Content ID="Content" ContentPlaceHolderID="Content" runat="Server">
+    <a href="<%= Page.ResolveUrl("~/EIS/") %>" class="button">← Back to Emissions Inventory Page</a>
 
     <h1>Emissions Inventory Historical Data</h1>
 
@@ -18,11 +19,11 @@
         <li><p><a href="Processes.aspx">Processes</a></p></li>
     </ul>
 
-    <h3>Emissions Inventory Reports</h3>
+    <h3>Reporting Period Reports</h3>
     <ul>
-        <li><p><a href="ReportingPeriodDetails.aspx">Process Reporting Period</a></p></li>
-        <li><p><a href="PollutantDetails.aspx">Pollutant Report</a></p></li>
-        <li><p><a href="EmissionsSummary.aspx">Facility-Wide Emissions Summary</a></p></li>
+        <li><p><a href="ReportingPeriodProcesses.aspx">Process Reporting Period</a></p></li>
+        <li><p><a href="ReportingPeriodPollutants.aspx">Pollutant Report</a></p></li>
+        <li><p><a href="ReportingPeriodEmissions.aspx">Facility-Wide Emissions Summary</a></p></li>
     </ul>
 
 </asp:Content>

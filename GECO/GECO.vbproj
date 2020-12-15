@@ -165,6 +165,10 @@
     <Content Include="Account\Password.aspx" />
     <Content Include="assets\images\epd-icon.png" />
     <Content Include="EIS\History\Default.aspx" />
+    <Content Include="EIS\History\ReportingPeriodEmissions.aspx" />
+    <Content Include="EIS\History\ReportingPeriodPollutants.aspx" />
+    <Content Include="EIS\History\ReportingPeriodProcesses.aspx" />
+    <Content Include="EIS\History\Processes.aspx" />
     <Content Include="EIS\History\EmissionUnits.aspx" />
     <Content Include="EIS\History\ReleasePoints.aspx" />
     <Content Include="Home\FacilityRequest.aspx" />
@@ -307,6 +311,34 @@
     </Compile>
     <Compile Include="EIS\History\Default.aspx.vb">
       <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="EIS\History\ReportingPeriodEmissions.aspx.designer.vb">
+      <DependentUpon>ReportingPeriodEmissions.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EIS\History\ReportingPeriodEmissions.aspx.vb">
+      <DependentUpon>ReportingPeriodEmissions.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="EIS\History\ReportingPeriodPollutants.aspx.designer.vb">
+      <DependentUpon>ReportingPeriodPollutants.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EIS\History\ReportingPeriodPollutants.aspx.vb">
+      <DependentUpon>ReportingPeriodPollutants.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="EIS\History\ReportingPeriodProcesses.aspx.designer.vb">
+      <DependentUpon>ReportingPeriodProcesses.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EIS\History\ReportingPeriodProcesses.aspx.vb">
+      <DependentUpon>ReportingPeriodProcesses.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="EIS\History\Processes.aspx.designer.vb">
+      <DependentUpon>Processes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EIS\History\Processes.aspx.vb">
+      <DependentUpon>Processes.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="EIS\History\EmissionUnits.aspx.designer.vb">
