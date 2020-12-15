@@ -4,25 +4,35 @@ Imports GECO.GecoModels
 Public Class EIS_History_EmissionUnits
     Inherits Page
 
-    Private Property FacilitySiteID As ApbFacilityId
+    Private Property CurrentAirs As ApbFacilityId
 
     Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
         MainLoginCheck()
-        FacilitySiteID = GetCookie(Cookie.AirsNumber)
 
-        If String.IsNullOrEmpty(FacilitySiteID) Then
+        Dim airs As String = GetCookie(Cookie.AirsNumber)
+
+        If String.IsNullOrEmpty(airs) Then
             Response.Redirect("~/")
         End If
 
-        FacilitySiteID = New ApbFacilityId(FacilitySiteID)
-        Master.CurrentAirs = FacilitySiteID
+        CurrentAirs = New ApbFacilityId(airs)
+        Master.CurrentAirs = CurrentAirs
         Master.IsFacilitySet = True
 
-        LoadEmissionUnits()
+        If Not IsPostBack Then
+            ShowFacilityInfo()
+        End If
+
+        LoadDetails()
     End Sub
 
+    Private Sub ShowFacilityInfo()
+        Dim currentFacility As String = GetFacilityName(CurrentAirs) & ", " & GetFacilityCity(CurrentAirs)
+        lblFacilityDisplay.Text = currentFacility
+        lblAIRS.Text = CurrentAirs.FormattedString
+    End Sub
 
-    Private Sub LoadEmissionUnits()
+    Private Sub LoadDetails()
         Dim query = "select u.EmissionsUnitID, u.strUnitDescription,
                    lu.STRDESC as strUnitType, u.fltUnitDesignCapacity,
                    u.STRUNITDESIGNCAPACITYUOMCODE, u.NUMMAXIMUMNAMEPLATECAPACITY,
@@ -38,7 +48,7 @@ Public Class EIS_History_EmissionUnits
             where FacilitySiteID = @FacilitySiteID
               and u.Active = '1'"
 
-        Dim param As New SqlParameter("@FacilitySiteID", FacilitySiteID.ShortString)
+        Dim param As New SqlParameter("@FacilitySiteID", CurrentAirs.ShortString)
         Dim dt As DataTable = DB.GetDataTable(query, param)
 
         If dt IsNot Nothing AndAlso dt.Rows.Count > 0 Then
@@ -52,7 +62,7 @@ Public Class EIS_History_EmissionUnits
     End Sub
 
     Private Sub EmissionUnitsExport_Click(sender As Object, e As EventArgs) Handles EmissionUnitsExport.Click
-        ExportAsExcel($"{FacilitySiteID.ShortString}_Emission_Units", EmissionUnits)
+        ExportAsExcel($"{CurrentAirs.ShortString}_Emission_Units", EmissionUnits)
     End Sub
 
 End Class

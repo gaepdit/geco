@@ -11,52 +11,16 @@ Option Strict On
 Option Explicit On
 
 
-Partial Public Class EIS_Default
+Partial Public Class EIS_Default_Old
 
     '''<summary>
-    '''lblFacilityDisplay control.
+    '''ToolkitScriptManager1 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lblFacilityDisplay As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''lblAIRS control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblAIRS As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''lnkEisHome control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lnkEisHome As Global.System.Web.UI.WebControls.HyperLink
-
-    '''<summary>
-    '''lnkFacilityInfo control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lnkFacilityInfo As Global.System.Web.UI.WebControls.HyperLink
-
-    '''<summary>
-    '''lnkHistory control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lnkHistory As Global.System.Web.UI.WebControls.HyperLink
+    Protected WithEvents ToolkitScriptManager1 As Global.AjaxControlToolkit.ToolkitScriptManager
 
     '''<summary>
     '''divCaersInstructions control.
@@ -309,16 +273,4 @@ Partial Public Class EIS_Default
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblErrorMessage As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''Master property.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated property.
-    '''</remarks>
-    Public Shadows ReadOnly Property Master() As GECO.MainMaster
-        Get
-            Return CType(MyBase.Master, GECO.MainMaster)
-        End Get
-    End Property
 End Class

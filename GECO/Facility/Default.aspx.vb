@@ -11,8 +11,6 @@ Partial Class FacilityHome
     Private Property currentAirs As ApbFacilityId
     Private Property currentFacility As String = Nothing
 
-#Region " Page Load "
-
     Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
         If IsPostBack Then
             currentAirs = New ApbFacilityId(GetCookie(Cookie.AirsNumber))
@@ -71,10 +69,6 @@ Partial Class FacilityHome
         lblFacilityDisplay.Text = currentFacility
     End Sub
 
-#End Region
-
-#Region " Load data "
-
     Protected Sub LoadFacilityContact()
         Dim dr As DataRow = GetAPBContactInformation(hidContactKey.Value)
 
@@ -103,6 +97,8 @@ Partial Class FacilityHome
             AppsEmissionInventory.Visible = False
             Return
         End If
+
+        EisLink.NavigateUrl = "~/EIS/?airs=" & currentAirs.ShortString
 
         ' This procedure obtains variable values from the EIS_Admin table and saves values in cookies
         ' Steps: 1 - read stored database values for EISStatusCode, EISStatusCode date, EISAccessCode, OptOut, Enrollment status, date finalized, last conf number
@@ -358,10 +354,6 @@ Partial Class FacilityHome
             ErrorReport(ex)
         End Try
     End Sub
-
-#End Region
-
-#Region " Contacts editing "
 
     Protected Sub rblContact_SelectedIndexChanged(sender As Object, e As EventArgs) Handles rblContact.SelectedIndexChanged
         LoadCurrentContact()
@@ -677,7 +669,5 @@ Partial Class FacilityHome
         txtZip.Text = ""
         txtPhone.Text = ""
     End Sub
-
-#End Region
 
 End Class

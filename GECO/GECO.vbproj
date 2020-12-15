@@ -164,6 +164,7 @@
     <Content Include="Account\Email.aspx" />
     <Content Include="Account\Password.aspx" />
     <Content Include="assets\images\epd-icon.png" />
+    <Content Include="EIS\Default.aspx" />
     <Content Include="EIS\History\Default.aspx" />
     <Content Include="EIS\History\ReportingPeriodEmissions.aspx" />
     <Content Include="EIS\History\ReportingPeriodPollutants.aspx" />
@@ -218,7 +219,7 @@
     <Content Include="Controls\PreventRePost.ascx" />
     <Content Include="Login.aspx" />
     <Content Include="Default.aspx" />
-    <Content Include="EIS\Default.aspx" />
+    <Content Include="EIS\Default_Old.aspx" />
     <Content Include="EIS\emissionunit_details.aspx" />
     <Content Include="EIS\emissionunit_summary.aspx" />
     <Content Include="EIS\facility_details.aspx" />
@@ -306,6 +307,13 @@
       <DependentUpon>Password.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="EIS\Default.aspx.designer.vb">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EIS\Default.aspx.vb">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="EIS\History\Default.aspx.designer.vb">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
@@ -390,8 +398,8 @@
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="EIS\Default.aspx.designer.vb">
-      <DependentUpon>Default.aspx</DependentUpon>
+    <Compile Include="EIS\Default_Old.aspx.designer.vb">
+      <DependentUpon>Default_Old.aspx</DependentUpon>
     </Compile>
     <Compile Include="EIS\eismaster.master.designer.vb">
       <DependentUpon>eismaster.master</DependentUpon>
@@ -687,8 +695,8 @@
       <DependentUpon>PreventRePost.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="EIS\Default.aspx.vb">
-      <DependentUpon>Default.aspx</DependentUpon>
+    <Compile Include="EIS\Default_Old.aspx.vb">
+      <DependentUpon>Default_Old.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="EIS\eismaster.master.vb">

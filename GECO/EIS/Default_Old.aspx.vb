@@ -1,50 +1,28 @@
 ﻿Imports GECO.GecoModels
 
-Public Class EIS_Default
+Partial Class EIS_Default_Old
     Inherits Page
 
-    Private Property CurrentAirs As ApbFacilityId
+    Private FacilitySiteID As String = GetCookie(Cookie.AirsNumber)
+    Private FacilityAIRS As ApbFacilityId
 
     Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
-        MainLoginCheck()
+        FacilitySiteID = GetCookie(Cookie.AirsNumber)
 
-        If IsPostBack Then
-            CurrentAirs = New ApbFacilityId(GetCookie(Cookie.AirsNumber))
-        Else
-            Dim airsString As String
-
-            If Request.QueryString("airs") IsNot Nothing Then
-                airsString = Request.QueryString("airs")
-            Else
-                airsString = GetCookie(Cookie.AirsNumber)
-            End If
-
-            If Not ApbFacilityId.IsValidAirsNumberFormat(airsString) Then
-                HttpContext.Current.Response.Redirect("~/Home/")
-            End If
-
-            CurrentAirs = New ApbFacilityId(airsString)
-            Master.CurrentAirs = CurrentAirs
-            SetCookie(Cookie.AirsNumber, CurrentAirs.ShortString())
-            Master.IsFacilitySet = True
+        If String.IsNullOrEmpty(FacilitySiteID) Then
+            Response.Redirect("~/")
         End If
 
-        Dim facilityAccess As FacilityAccess = GetCurrentUser().GetFacilityAccess(CurrentAirs)
+        FacilityAIRS = New ApbFacilityId(FacilitySiteID)
 
-        If facilityAccess Is Nothing OrElse Not facilityAccess.EisAccess Then
-            HttpContext.Current.Response.Redirect("~/Home/")
-        End If
+        lblFacilityNameText.Text = GetFacilityName(FacilitySiteID)
+        lblFacilityIDText.Text = FacilityAIRS.FormattedString
+
+        LinkToEpaCaers.NavigateUrl = ConfigurationManager.AppSettings("EpaCaersUrl")
 
         If Not IsPostBack Then
-            ShowFacilityInfo()
             EISPanel()
         End If
-    End Sub
-
-    Private Sub ShowFacilityInfo()
-        Dim currentFacility As String = GetFacilityName(CurrentAirs) & ", " & GetFacilityCity(CurrentAirs)
-        lblFacilityDisplay.Text = currentFacility
-        lblAIRS.Text = CurrentAirs.FormattedString
     End Sub
 
     Private Sub EISPanel()
@@ -196,7 +174,7 @@ Public Class EIS_Default
                     lblMainMessage.Text = "The facility has reported that it is not participating in the " &
                         EIYear & " Emissions Inventory."
                     lblStatusText.Text = GetEISStatusMessage(EISStatus)
-                    lblOptOutReasonText.Text = GetOptOutReason(CurrentAirs.ShortString, EIYear)
+                    lblOptOutReasonText.Text = GetOptOutReason(FacilitySiteID, EIYear)
                     lblConfNumberText.Text = ConfNumber
                     lblLastUpdateText.Text = DateFinalize
                     btnReset.Text = "Reset " & EIYear & " Status"
@@ -309,8 +287,8 @@ Public Class EIS_Default
         Dim EIYear As String = GetCookie(EisCookie.EISMaxYear)
         Dim currentUser = GetCurrentUser()
 
-        ResetEiStatus(CurrentAirs, currentUser.DbUpdateUser, EIYear)
-        LoadEiStatusCookies(CurrentAirs, Response)
+        ResetEiStatus(FacilityAIRS, currentUser.DbUpdateUser, EIYear)
+        LoadEiStatusCookies(FacilitySiteID, Response)
         Response.Redirect("Default.aspx")
 
     End Sub

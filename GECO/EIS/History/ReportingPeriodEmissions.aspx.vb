@@ -4,25 +4,33 @@ Imports GECO.GecoModels
 Public Class EIS_History_ReportingPeriodEmissions
     Inherits Page
 
-    Private Property FacilitySiteID As ApbFacilityId
+    Private Property CurrentAirs As ApbFacilityId
 
     Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
         MainLoginCheck()
-        FacilitySiteID = GetCookie(Cookie.AirsNumber)
 
-        If String.IsNullOrEmpty(FacilitySiteID) Then
+        Dim airs As String = GetCookie(Cookie.AirsNumber)
+
+        If String.IsNullOrEmpty(airs) Then
             Response.Redirect("~/")
         End If
 
-        FacilitySiteID = New ApbFacilityId(FacilitySiteID)
-        Master.CurrentAirs = FacilitySiteID
+        CurrentAirs = New ApbFacilityId(airs)
+        Master.CurrentAirs = CurrentAirs
         Master.IsFacilitySet = True
 
         If Not IsPostBack Then
+            ShowFacilityInfo()
             LoadYears()
         End If
 
         LoadDetails()
+    End Sub
+
+    Private Sub ShowFacilityInfo()
+        Dim currentFacility As String = GetFacilityName(CurrentAirs) & ", " & GetFacilityCity(CurrentAirs)
+        lblFacilityDisplay.Text = currentFacility
+        lblAIRS.Text = CurrentAirs.FormattedString
     End Sub
 
     Private Sub LoadYears()
@@ -31,7 +39,7 @@ Public Class EIS_History_ReportingPeriodEmissions
             where FACILITYSITEID = @FacilitySiteID
             order by INTINVENTORYYEAR desc"
 
-        Dim param As New SqlParameter("@FacilitySiteID", FacilitySiteID.ShortString)
+        Dim param As New SqlParameter("@FacilitySiteID", CurrentAirs.ShortString)
 
         Dim dt As DataTable = DB.GetDataTable(query, param)
 
@@ -56,7 +64,7 @@ Public Class EIS_History_ReportingPeriodEmissions
             GROUP BY STRPOLLUTANT"
 
         Dim params As SqlParameter() = {
-            New SqlParameter("@FacilitySiteID", FacilitySiteID.ShortString),
+            New SqlParameter("@FacilitySiteID", CurrentAirs.ShortString),
             New SqlParameter("@EIYear", Integer.Parse(Years.SelectedValue))
         }
 
@@ -76,7 +84,7 @@ Public Class EIS_History_ReportingPeriodEmissions
     End Sub
 
     Private Sub ReportingPeriodExport_Click(sender As Object, e As EventArgs) Handles ReportingPeriodExport.Click
-        ExportAsExcel($"{FacilitySiteID.ShortString}_{Years.SelectedValue}_Reporting_Period_Emissions", ReportingPeriod)
+        ExportAsExcel($"{CurrentAirs.ShortString}_{Years.SelectedValue}_Reporting_Period_Emissions", ReportingPeriod)
     End Sub
 
 End Class

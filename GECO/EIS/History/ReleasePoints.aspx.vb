@@ -4,22 +4,33 @@ Imports GECO.GecoModels
 Public Class EIS_History_ReleasePoints
     Inherits Page
 
-    Private Property FacilitySiteID As ApbFacilityId
+    Private Property CurrentAirs As ApbFacilityId
 
     Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
         MainLoginCheck()
-        FacilitySiteID = GetCookie(Cookie.AirsNumber)
 
-        If String.IsNullOrEmpty(FacilitySiteID) Then
+        Dim airs As String = GetCookie(Cookie.AirsNumber)
+
+        If String.IsNullOrEmpty(airs) Then
             Response.Redirect("~/")
         End If
 
-        FacilitySiteID = New ApbFacilityId(FacilitySiteID)
-        Master.CurrentAirs = FacilitySiteID
+        CurrentAirs = New ApbFacilityId(airs)
+        Master.CurrentAirs = CurrentAirs
         Master.IsFacilitySet = True
+
+        If Not IsPostBack Then
+            ShowFacilityInfo()
+        End If
 
         LoadFugitives()
         LoadStacks()
+    End Sub
+
+    Private Sub ShowFacilityInfo()
+        Dim currentFacility As String = GetFacilityName(CurrentAirs) & ", " & GetFacilityCity(CurrentAirs)
+        lblFacilityDisplay.Text = currentFacility
+        lblAIRS.Text = CurrentAirs.FormattedString
     End Sub
 
     Private Sub LoadFugitives()
@@ -43,7 +54,7 @@ Public Class EIS_History_ReleasePoints
               AND p.Active = '1'
             ORDER BY p.ReleasePointID"
 
-        Dim param As New SqlParameter("@FacilitySiteID", FacilitySiteID.ShortString)
+        Dim param As New SqlParameter("@FacilitySiteID", CurrentAirs.ShortString)
         Dim dt As DataTable = DB.GetDataTable(query, param)
 
         If dt IsNot Nothing AndAlso dt.Rows.Count > 0 Then
@@ -80,7 +91,7 @@ Public Class EIS_History_ReleasePoints
               AND p.Active = '1'
             ORDER BY p.ReleasePointID"
 
-        Dim param As New SqlParameter("@FacilitySiteID", FacilitySiteID.ShortString)
+        Dim param As New SqlParameter("@FacilitySiteID", CurrentAirs.ShortString)
         Dim dt As DataTable = DB.GetDataTable(query, param)
 
         If dt IsNot Nothing AndAlso dt.Rows.Count > 0 Then
@@ -94,11 +105,11 @@ Public Class EIS_History_ReleasePoints
     End Sub
 
     Private Sub FugitivesExport_Click(sender As Object, e As EventArgs) Handles FugitivesExport.Click
-        ExportAsExcel($"{FacilitySiteID.ShortString}_Fugitive_Release_Points", Fugitives)
+        ExportAsExcel($"{CurrentAirs.ShortString}_Fugitive_Release_Points", Fugitives)
     End Sub
 
     Private Sub StacksExport_Click(sender As Object, e As EventArgs) Handles StacksExport.Click
-        ExportAsExcel($"{FacilitySiteID.ShortString}_Stack_Release_Points", Stacks)
+        ExportAsExcel($"{CurrentAirs.ShortString}_Stack_Release_Points", Stacks)
     End Sub
 
 End Class

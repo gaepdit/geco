@@ -1,30 +1,9 @@
-<%@ Page Title="GECO Emissions Inventory System" Language="VB" MasterPageFile="~/MainMaster.master"
-    AutoEventWireup="false" Inherits="GECO.EIS_Default" CodeBehind="Default.aspx.vb" %>
+<%@ Page Title="GECO Emissions Inventory" Language="VB" MasterPageFile="eismaster.master"
+    AutoEventWireup="false" Inherits="GECO.EIS_Default_Old" CodeBehind="Default_Old.aspx.vb" %>
 
-<%@ MasterType VirtualPath="~/MainMaster.master" %>
-<asp:Content ID="Content" ContentPlaceHolderID="Content" runat="Server">
-    <h1>Emissions Inventory System</h1>
-
-    <p>
-        <b>
-            <asp:Label ID="lblFacilityDisplay" runat="server"></asp:Label></b>
-        <br />
-        AIRS Number:
-        <asp:Label ID="lblAIRS" runat="server"></asp:Label>
-    </p>
-
-    <ul class="menu-list-horizontal">
-        <li>
-            <asp:HyperLink ID="lnkEisHome" runat="server" NavigateUrl="~/EIS/" Enabled="false" CssClass="selected-menu-item disabled">EIS Home</asp:HyperLink>
-        </li>
-        <li>
-            <asp:HyperLink ID="lnkFacilityInfo" runat="server" NavigateUrl="~/EIS/Facility/">Edit Facility Info</asp:HyperLink>
-        </li>
-        <li>
-            <asp:HyperLink ID="lnkHistory" runat="server" NavigateUrl="~/EIS/History/">Historical Data</asp:HyperLink>
-        </li>
-    </ul>
-
+<asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder3" runat="Server">
+    <act:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server"></act:ToolkitScriptManager>
+    <h1>Emissions Inventory</h1>
     <p>
         Facilities whose potential emissions exceed the thresholds must report their 
         actual emissions. For assistance with calculating PTE, please use the        
@@ -35,7 +14,7 @@
     </p>
 
     <div class="announcement">
-        <strong>GECO will be ready for the 2020&nbsp;NEI on January&nbsp;25,&nbsp;2021. Thanks for your patience.</strong>
+        <strong>GECO will be ready for the 2020 NEI on January 25, 2021. Thanks for your patience.</strong>
     </div>
 
     <div id="divCaersInstructions" runat="server">
@@ -181,4 +160,5 @@
             <asp:Label ID="lblErrorMessage" runat="server"></asp:Label>
         </p>
     </asp:Panel>
+
 </asp:Content>

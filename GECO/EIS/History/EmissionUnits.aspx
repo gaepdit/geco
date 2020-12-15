@@ -3,9 +3,32 @@
 
 <%@ MasterType VirtualPath="~/MainMaster.master" %>
 <asp:Content ID="Content" ContentPlaceHolderID="Content" runat="Server">
-    <a href="Default.aspx" class="button">← Back to EIS Reports</a>
+    <h1>Emissions Inventory System</h1>
 
-    <h1>Emissions Inventory Historical Data: Emission Units</h1>
+    <p>
+        <b>
+            <asp:Label ID="lblFacilityDisplay" runat="server"></asp:Label></b>
+        <br />
+        AIRS Number:
+        <asp:Label ID="lblAIRS" runat="server"></asp:Label>
+    </p>
+
+    <ul class="menu-list-horizontal">
+        <li>
+            <asp:HyperLink ID="lnkEisHome" runat="server" NavigateUrl="~/EIS/">EIS Home</asp:HyperLink>
+        </li>
+        <li>
+            <asp:HyperLink ID="lnkFacilityInfo" runat="server" NavigateUrl="~/EIS/Facility/">Edit Facility Info</asp:HyperLink>
+        </li>
+        <li>
+            <asp:HyperLink ID="lnkHistory" runat="server" NavigateUrl="~/EIS/History/" CssClass="selected-menu-item">Historical Data</asp:HyperLink>
+        </li>
+    </ul>
+
+    <h2>Historical Data</h2>
+    <p><a href="Default.aspx" class="">← All Reports</a></p>
+
+    <h3>Emission Units</h3>
 
     <p id="EmissionUnitsEmptyNotice" runat="server" visible="False">
         No emission units exist for this facility in the EIS.

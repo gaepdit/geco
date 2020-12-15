@@ -21,7 +21,7 @@
             <asp:HyperLink ID="lnkEditEmail" runat="server" NavigateUrl="~/Account/Email.aspx">Email</asp:HyperLink>
         </li>
         <li>
-            <asp:HyperLink ID="lnkEditPassword" runat="server" NavigateUrl="~/Account/Password.aspx" Enabled="false" CssClass="selected-menu-item">Password</asp:HyperLink>
+            <asp:HyperLink ID="lnkEditPassword" runat="server" NavigateUrl="~/Account/Password.aspx" Enabled="false" CssClass="selected-menu-item disabled">Password</asp:HyperLink>
         </li>
     </ul>
 

@@ -20,7 +20,7 @@
             <asp:HyperLink ID="lnkFacilityInfo" runat="server" NavigateUrl="~/Facility/Summary.aspx">Facility Info</asp:HyperLink>
         </li>
         <li>
-            <asp:HyperLink ID="lnkFacilityAdmin" runat="server" NavigateUrl="~/Facility/Admin.aspx" Enabled="false" CssClass="selected-menu-item">User Access</asp:HyperLink>
+            <asp:HyperLink ID="lnkFacilityAdmin" runat="server" NavigateUrl="~/Facility/Admin.aspx" Enabled="false" CssClass="selected-menu-item disabled">User Access</asp:HyperLink>
         </li>
     </ul>
 

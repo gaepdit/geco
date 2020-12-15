@@ -775,8 +775,11 @@ ul.menu-list-horizontal {
     ul.menu-list-horizontal .selected-menu-item {
         color: #313175;
         background: #f0f9ff;
-        pointer-events: none;
         border-color: #c4c4ff #c4c4ff #fff;
+    }
+
+    ul.menu-list-horizontal .selected-menu-item.disabled {
+        pointer-events: none;
     }
 
     ul.menu-list-horizontal + h2,

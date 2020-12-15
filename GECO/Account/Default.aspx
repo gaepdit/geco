@@ -15,7 +15,7 @@
 
     <ul class="menu-list-horizontal">
         <li>
-            <asp:HyperLink ID="lnkEditProfile" runat="server" NavigateUrl="~/Account/" Enabled="false" CssClass="selected-menu-item">Profile</asp:HyperLink>
+            <asp:HyperLink ID="lnkEditProfile" runat="server" NavigateUrl="~/Account/" Enabled="false" CssClass="selected-menu-item disabled">Profile</asp:HyperLink>
         </li>
         <li>
             <asp:HyperLink ID="lnkEditEmail" runat="server" NavigateUrl="~/Account/Email.aspx">Email</asp:HyperLink>

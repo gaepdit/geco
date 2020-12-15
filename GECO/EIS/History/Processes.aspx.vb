@@ -4,25 +4,35 @@ Imports GECO.GecoModels
 Public Class EIS_History_Processes
     Inherits Page
 
-    Private Property FacilitySiteID As ApbFacilityId
+    Private Property CurrentAirs As ApbFacilityId
 
     Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
         MainLoginCheck()
-        FacilitySiteID = GetCookie(Cookie.AirsNumber)
 
-        If String.IsNullOrEmpty(FacilitySiteID) Then
+        Dim airs As String = GetCookie(Cookie.AirsNumber)
+
+        If String.IsNullOrEmpty(airs) Then
             Response.Redirect("~/")
         End If
 
-        FacilitySiteID = New ApbFacilityId(FacilitySiteID)
-        Master.CurrentAirs = FacilitySiteID
+        CurrentAirs = New ApbFacilityId(airs)
+        Master.CurrentAirs = CurrentAirs
         Master.IsFacilitySet = True
 
-        LoadProcesses()
+        If Not IsPostBack Then
+            ShowFacilityInfo()
+        End If
+
+        LoadDetails()
     End Sub
 
+    Private Sub ShowFacilityInfo()
+        Dim currentFacility As String = GetFacilityName(CurrentAirs) & ", " & GetFacilityCity(CurrentAirs)
+        lblFacilityDisplay.Text = currentFacility
+        lblAIRS.Text = CurrentAirs.FormattedString
+    End Sub
 
-    Private Sub LoadProcesses()
+    Private Sub LoadDetails()
         Dim query = "SELECT p.EmissionsUnitID,
                    s.strDesc AS strUnitDesc,
                    p.ProcessID,
@@ -45,7 +55,7 @@ Public Class EIS_History_Processes
               AND p.active = '1'
             ORDER BY p.EmissionsUnitID, p.ProcessID"
 
-        Dim param As New SqlParameter("@FacilitySiteID", FacilitySiteID.ShortString)
+        Dim param As New SqlParameter("@FacilitySiteID", CurrentAirs.ShortString)
         Dim dt As DataTable = DB.GetDataTable(query, param)
 
         If dt IsNot Nothing AndAlso dt.Rows.Count > 0 Then
@@ -59,7 +69,7 @@ Public Class EIS_History_Processes
     End Sub
 
     Private Sub ProcessesExport_Click(sender As Object, e As EventArgs) Handles ProcessesExport.Click
-        ExportAsExcel($"{FacilitySiteID.ShortString}_Processes", Processes)
+        ExportAsExcel($"{CurrentAirs.ShortString}_Processes", Processes)
     End Sub
 
 End Class
