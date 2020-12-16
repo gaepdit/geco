@@ -14,7 +14,7 @@
 
     <ul class="menu-list-horizontal">
         <li>
-            <asp:HyperLink ID="lnkFacilityHome" runat="server" NavigateUrl="~/Facility/">Tools</asp:HyperLink>
+            <asp:HyperLink ID="lnkFacilityHome" runat="server" NavigateUrl="~/Facility/">Menu</asp:HyperLink>
         </li>
         <li>
             <asp:HyperLink ID="lnkFacilityInfo" runat="server" NavigateUrl="~/Facility/Summary.aspx" Enabled="false" CssClass="selected-menu-item disabled">Facility Info</asp:HyperLink>

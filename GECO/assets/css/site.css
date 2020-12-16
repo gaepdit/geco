@@ -1,3 +1,4 @@
+/* Layout */
 html {
     box-sizing: border-box;
 }
@@ -58,41 +59,52 @@ html, body {
         top: 0
     }
 
+h1, h2, h3 {
+    color: #010053;
+}
+
 h1 {
     font-size: 175%;
     margin: .6em 0 .3em;
 }
 
 h2 {
-    font-size: 125%;
-    margin: 1.5em 0 .2em;
+    font-size: 150%;
+    margin: 1.1em 0 .2em;
     padding-top: .5em;
-    color: #000080;
 }
 
 h3 {
-    font-size: 100%;
+    font-size: 125%;
 }
 
-a:link, a:visited.no-visited {
+/* Links */
+a, a:visited.no-visited {
     color: #0000EE;
-    background-color: transparent;
 }
 
-a:visited {
-    color: #551A8B;
-    background-color: transparent;
+    a:visited {
+        color: #551A8B;
+    }
+
+    a:hover, a:focus,
+    a:hover.no-visited, a:focus.no-visited {
+        color: #0066ee;
+    }
+
+    a:active,
+    a:active.no-visited {
+        color: #CC0000;
+    }
+
+h1 a, h2 a, h3 a {
+    text-decoration: none;
 }
 
-a:hover, a:focus,
-a:hover.no-visited, a:focus.no-visited {
-    color: #0066ee;
-}
-
-a:active,
-a:active.no-visited {
-    color: #CC0000;
-}
+    h1 a:hover, h2 a:hover, h3 a:hover,
+    h1 a:focus, h2 a:focus, h3 a:focus {
+        text-decoration: underline;
+    }
 
 /* Page header */
 .header {
@@ -226,9 +238,7 @@ a:active.no-visited {
 
 /*Modal Popup*/
 .modalBackground {
-    background-color: Gray;
-    filter: alpha(opacity=70);
-    opacity: 0.7;
+    background-color: #ccccccb2;
 }
 
 .modalPopup {
@@ -278,9 +288,7 @@ a:active.no-visited {
 }
 
 .modalProgressGreyBackground {
-    background: #CCCCCC;
-    filter: alpha(opacity=60);
-    opacity: 0.6;
+    background: #CCCCCC99;
 }
 
 .alternatingrowstyle {
@@ -334,9 +342,7 @@ a:active.no-visited {
     overflow: hidden;
     padding: 0;
     margin: 0;
-    background-color: #CCCCCC;
-    filter: alpha(opacity=60);
-    opacity: 0.6;
+    background-color: #CCCCCC99;
     z-index: 1000;
 }
 
@@ -411,9 +417,7 @@ a:active.no-visited {
 /***** START Modal Popup *****/
 
 .mdemodalbackground {
-    background-color: Gray;
-    filter: alpha(opacity=70);
-    opacity: 0.7;
+    background-color: #ccccccb2;
 }
 
 .pnlmodalpopup {
@@ -463,7 +467,6 @@ a.tableCellLink {
         text-decoration: underline;
     }
 
-
 /* Form */
 input[type=text],
 input[type=password],
@@ -488,7 +491,9 @@ input[type=checkbox] {
 
 textarea {
     height: 80px;
+    vertical-align: baseline;
 }
+
 /* Login page */
 .login-page {
     display: grid;
@@ -614,7 +619,7 @@ textarea {
     }
 
 .table-list tbody th {
-    text-align: right;
+    padding-left: 0;
 }
 
 .table-simple th.headerstyle,
@@ -782,9 +787,9 @@ ul.menu-list-horizontal {
         border-color: #c4c4ff #c4c4ff #fff;
     }
 
-    ul.menu-list-horizontal .selected-menu-item.disabled {
-        pointer-events: none;
-    }
+        ul.menu-list-horizontal .selected-menu-item.disabled {
+            pointer-events: none;
+        }
 
     ul.menu-list-horizontal + h2,
     ul.menu-list-horizontal + div > h2:first-child {
@@ -852,41 +857,39 @@ button,
     margin: 8px 4px 8px 0;
     border: none;
     border-radius: 3px;
-    color: #474761;
+    color: #211FE8;
     text-decoration: none;
-    background: #ddd;
-    background: linear-gradient(0deg, #ddd 0%, #eee 100%);
-    box-shadow: 0 1px 1px -1px #2e3646;
+    background: #eee;
+    box-shadow: 0 1px 1px -1px #999;
 }
 
-    a.button:hover,
+    .button:hover,
     button:hover,
     [type="button"]:hover,
     [type="reset"]:hover,
     [type="submit"]:hover,
-    a.button:focus,
+    .button:focus,
     button:focus,
     [type="button"]:focus,
     [type="reset"]:focus,
     [type="submit"]:focus {
-        background: #c2d3f3;
-        background: linear-gradient(0deg, #c2d3f3 0%, #e5edfb 100%);
+        background: #06e;
+        color: #fff;
         box-shadow: 0 1px 3px -1px #2e3646;
     }
 
-    a.button:active,
+    .button:active,
     button:active,
     [type="button"]:active,
     [type="reset"]:active,
     [type="submit"]:active {
         position: relative;
         top: 1px;
-        background: #bbcff3;
-        background: linear-gradient(0deg, ##bbcff3 0%, #e5edfb 100%);
+        background: #17f;
         box-shadow: 0 1px 3px -2px #2e3646;
     }
 
-    a.button.button-large,
+    .button.button-large,
     button.button-large,
     [type="button"].button-large,
     [type="reset"].button-large,
@@ -894,59 +897,59 @@ button,
         padding: 8px 16px;
     }
 
-    .button-small a.button,
+    .button-small .button,
     .button-small button,
     .button-small [type="button"],
     .button-small [type="reset"],
     .button-small [type="submit"],
-    a.button.button-small,
+    .button.button-small,
     button.button-small,
     [type="button"].button-small,
     [type="reset"].button-small,
     [type="submit"].button-small {
         margin: 2px;
         padding: 2px 8px;
-        box-shadow: 0 1px 1px -1px #2e3646;
+        box-shadow: 0 1px 1px -1px #999;
     }
 
 /* Button intents */
 .button-proceed {
-    color: #293021;
-    background: #98d035;
-    background: linear-gradient(0deg, #c3ee90 0%, #ddf9c7 100%);
-    box-shadow: 0 1px 1px -1px #293021;
+    color: #283c15;
+    background: #a0ea57;
+    box-shadow: 0 1px 1px -1px #283c15;
 }
 
     .button-proceed:hover,
     .button-proceed:focus {
-        background: #98d035;
-        background: linear-gradient(0deg, #98d035 0%, #c3ee90 100%);
-        box-shadow: 0 1px 3px -1px #293021;
+        color: #fff;
+        background: #57aa04;
+        box-shadow: 0 1px 3px -1px #283c15;
     }
 
     .button-proceed:active {
-        box-shadow: 0 1px 3px -2px #293021;
+        background: #68b919;
+        box-shadow: 0 1px 3px -2px #283c15;
     }
 
+a.button-cancel,
 .button-cancel {
     color: #3e2927;
-    background: #f7bbb1;
-    background: linear-gradient(0deg, #f7bbb1 0%, #f8e1de 100%);
-    box-shadow: 0 1px 1px -1px #3e2927;
+    box-shadow: 0 1px 1px -1px #999;
 }
 
     .button-cancel:hover,
     .button-cancel:focus {
-        background: #f2938c;
-        background: linear-gradient(0deg, #f2938c 0%, #f7bbb1 100%);
+        color: #fff;
+        background: #372e2d;
         box-shadow: 0 1px 3px -1px #3e2927;
     }
 
     .button-cancel:active {
+        background: #4d4341;
         box-shadow: 0 1px 3px -2px #3e2927;
     }
 
-a.button:disabled,
+.button:disabled,
 button:disabled,
 [type="button"]:disabled,
 [type="reset"]:disabled,
@@ -955,7 +958,6 @@ button:disabled,
     color: #777;
     box-shadow: none;
 }
-
 
 /* AjaxControlToolkit TabContainer layout fixes */
 .ajax__tab_header {

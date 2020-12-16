@@ -4,10 +4,10 @@
 
 <%@ MasterType VirtualPath="~/EIS/EIS.master" %>
 <asp:Content ID="Content" ContentPlaceHolderID="Content" runat="Server">
-    <h2>Historical Data</h2>
-    <p><a href="Default.aspx" class="">← All Reports</a></p>
-
-    <h3>Reporting Period Emissions</h3>
+    <h2>
+        <a href="<%= Page.ResolveUrl("~/EIS/History/") %>" class="no-visited">Historical Data</a>
+        / Reporting Period Emissions
+    </h2>
 
     <asp:UpdatePanel ID="YearUpdate" runat="server">
         <Triggers>

@@ -4,17 +4,17 @@
 
 <%@ MasterType VirtualPath="~/EIS/EIS.master" %>
 <asp:Content ID="Content" ContentPlaceHolderID="Content" runat="Server">
-    <h2>Historical Data</h2>
-    <p><a href="Default.aspx" class="">← All Reports</a></p>
-
-    <h3>Release Points</h3>
+    <h2>
+        <a href="<%= Page.ResolveUrl("~/EIS/History/") %>" class="no-visited">Historical Data</a>
+        / Release Points
+    </h2>
 
     <ul>
-        <li><a href="#fugitive">Fugitive Release Points</a></li>
-        <li><a href="#stack">Stack Release Points</a></li>
+        <li><a href="#fugitive" class="no-visited">Fugitive Release Points</a></li>
+        <li><a href="#stack" class="no-visited">Stack Release Points</a></li>
     </ul>
 
-    <h2 id="fugitive">Fugitive Release Points</h2>
+    <h3 id="fugitive">Fugitive Release Points</h3>
     <p id="FugitivesEmptyNotice" runat="server" visible="False">
         No fugitive release points exist for this facility in the EIS.
     </p>
@@ -40,7 +40,7 @@
         </Columns>
     </asp:GridView>
 
-    <h2 id="stack">Stack Release Points</h2>
+    <h3 id="stack">Stack Release Points</h3>
     <p id="StacksEmptyNotice" runat="server" visible="False">
         No stacks exist for this facility in the EIS.
     </p>

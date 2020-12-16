@@ -1,13 +1,13 @@
 ﻿<%@ Page MasterPageFile="~/EIS/EIS.master" Language="VB" AutoEventWireup="false"
-    Title="GECO EIS Historical Data: Emission Units" 
+    Title="GECO EIS Historical Data: Emission Units"
     Inherits="GECO.EIS_History_EmissionUnits" CodeBehind="EmissionUnits.aspx.vb" %>
 
 <%@ MasterType VirtualPath="~/EIS/EIS.master" %>
 <asp:Content ID="Content" ContentPlaceHolderID="Content" runat="Server">
-    <h2>Historical Data</h2>
-    <p><a href="Default.aspx" class="">← All Reports</a></p>
-
-    <h3>Emission Units</h3>
+    <h2>
+        <a href="<%= Page.ResolveUrl("~/EIS/History/") %>" class="no-visited">Historical Data</a>
+        / Emission Units
+    </h2>
 
     <p id="EmissionUnitsEmptyNotice" runat="server" visible="False">
         No emission units exist for this facility in the EIS.

@@ -7,6 +7,10 @@ Public Class EIS
     Public Property SelectedTab As EisTab = EisTab.Home
 
     Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
+        If CurrentAirs Is Nothing Then
+            Response.Redirect("~/EIS/")
+        End If
+
         Master.CurrentAirs = CurrentAirs
         Master.IsFacilitySet = True
 

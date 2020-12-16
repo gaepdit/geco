@@ -32,7 +32,7 @@ Public Class EIS_Default
         Dim facilityAccess As FacilityAccess = GetCurrentUser().GetFacilityAccess(CurrentAirs)
 
         If facilityAccess Is Nothing OrElse Not facilityAccess.EisAccess Then
-            HttpContext.Current.Response.Redirect("~/Home/")
+            Response.Redirect("~/Home/")
         End If
 
         If Not IsPostBack Then

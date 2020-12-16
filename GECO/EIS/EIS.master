@@ -16,7 +16,7 @@
             <asp:HyperLink ID="lnkHome" runat="server" NavigateUrl="~/EIS/">EIS Home</asp:HyperLink>
         </li>
         <li>
-            <asp:HyperLink ID="lnkFacility" runat="server" NavigateUrl="~/EIS/Facility/">Facility Info</asp:HyperLink>
+            <asp:HyperLink ID="lnkFacility" runat="server" NavigateUrl="~/EIS/Facility/">EIS Facility Info</asp:HyperLink>
         </li>
         <li>
             <asp:HyperLink ID="lnkHistory" runat="server" NavigateUrl="~/EIS/History/">Historical Data</asp:HyperLink>
