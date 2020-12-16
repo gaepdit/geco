@@ -1,4 +1,4 @@
-Imports System.Collections.Generic
+﻿Imports System.Collections.Generic
 
 Namespace GecoModels
     Public Class Address
@@ -11,21 +11,38 @@ Namespace GecoModels
         Public Property PostalCode As String
 
         Public Overrides Function ToString() As String
-            Return CompileAddressString(False)
+            Return CompileAddressString(CompileStringType.NewLine)
         End Function
 
         Public Function ToLinearString() As String
-            Return CompileAddressString(True)
+            Return CompileAddressString(CompileStringType.Linear)
         End Function
 
-        Private Function CompileAddressString(linear As Boolean) As String
+        Public Function ToHtmlString() As String
+            Return CompileAddressString(CompileStringType.Html)
+        End Function
+
+        Private Enum CompileStringType
+            NewLine
+            Linear
+            Html
+        End Enum
+
+        Private Function CompileAddressString(type As CompileStringType) As String
             Dim cityState As String = ConcatNonEmptyStrings(", ", {City, State})
             Dim zip As String = FormatPostalCode(PostalCode)
-            If linear Then
-                Return ConcatNonEmptyStrings(", ", {Street, Street2, cityState & " " & zip})
-            Else
-                Return ConcatNonEmptyStrings(vbNewLine, {Street, Street2, cityState & " " & zip})
-            End If
+            Dim separator As String = ""
+
+            Select Case type
+                Case CompileStringType.Html
+                    separator = "<br />"
+                Case CompileStringType.Linear
+                    separator = ", "
+                Case CompileStringType.NewLine
+                    separator = vbNewLine
+            End Select
+
+            Return ConcatNonEmptyStrings(separator, {Street, Street2, cityState & " " & zip})
         End Function
 
         Public Shared Function FormatPostalCode(postalCode As String) As String

@@ -165,6 +165,7 @@
     <Content Include="Account\Password.aspx" />
     <Content Include="assets\images\epd-icon.png" />
     <Content Include="EIS\Default.aspx" />
+    <Content Include="EIS\Facility\Default.aspx" />
     <Content Include="EIS\History\Default.aspx" />
     <Content Include="EIS\History\ReportingPeriodEmissions.aspx" />
     <Content Include="EIS\History\ReportingPeriodPollutants.aspx" />
@@ -319,6 +320,13 @@
     </Compile>
     <Compile Include="EIS\EIS.master.vb">
       <DependentUpon>EIS.master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EIS\Facility\Default.aspx.designer.vb">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EIS\Facility\Default.aspx.vb">
+      <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="EIS\History\Default.aspx.designer.vb">

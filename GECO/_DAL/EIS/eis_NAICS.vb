@@ -2,7 +2,7 @@
 
 Public Module eis_NAICS
 
-    Public Function GetNaicsCodeDesc(ByVal NaicsCode As String) As String
+    Public Function GetNaicsCodeDesc(NaicsCode As String) As String
         Dim query As String = "Select strDesc " &
             " FROM EISLK_NAICSCODE " &
             " Where NAICSCode = @code " &

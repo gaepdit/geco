@@ -1,3 +1,5 @@
+﻿Imports System.Runtime.CompilerServices
+
 Public Module StringFunctions
 
     ''' <summary>
@@ -22,6 +24,7 @@ Public Module StringFunctions
         Return ConcatNonEmptyStrings(separator, items.ToArray())
     End Function
 
+    <Extension()>
     Public Function NonEmptyStringOrNothing(s As String) As String
         If String.IsNullOrEmpty(s) Then
             Return Nothing
