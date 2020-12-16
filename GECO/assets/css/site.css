@@ -1,4 +1,4 @@
-﻿html {
+html {
     box-sizing: border-box;
 }
 
@@ -608,6 +608,10 @@ textarea {
             vertical-align: middle;
             text-align: right;
         }
+
+    .table-simple caption {
+        text-align: left;
+    }
 
 .table-list tbody th {
     text-align: right;

@@ -14,51 +14,6 @@ Option Explicit On
 Partial Public Class EIS_History_ReportingPeriodProcesses
 
     '''<summary>
-    '''lblFacilityDisplay control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblFacilityDisplay As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''lblAIRS control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblAIRS As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''lnkEisHome control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lnkEisHome As Global.System.Web.UI.WebControls.HyperLink
-
-    '''<summary>
-    '''lnkFacilityInfo control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lnkFacilityInfo As Global.System.Web.UI.WebControls.HyperLink
-
-    '''<summary>
-    '''lnkHistory control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lnkHistory As Global.System.Web.UI.WebControls.HyperLink
-
-    '''<summary>
     '''YearUpdate control.
     '''</summary>
     '''<remarks>
@@ -127,9 +82,9 @@ Partial Public Class EIS_History_ReportingPeriodProcesses
     '''<remarks>
     '''Auto-generated property.
     '''</remarks>
-    Public Shadows ReadOnly Property Master() As GECO.MainMaster
+    Public Shadows ReadOnly Property Master() As GECO.EIS
         Get
-            Return CType(MyBase.Master, GECO.MainMaster)
+            Return CType(MyBase.Master, GECO.EIS)
         End Get
     End Property
 End Class

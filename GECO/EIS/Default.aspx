@@ -1,30 +1,9 @@
-<%@ Page Title="GECO Emissions Inventory System" Language="VB" MasterPageFile="~/MainMaster.master"
-    AutoEventWireup="false" Inherits="GECO.EIS_Default" CodeBehind="Default.aspx.vb" %>
+<%@ Page MasterPageFile="~/EIS/EIS.master" Language="VB" AutoEventWireup="false"
+    Title="GECO Emissions Inventory System"
+    Inherits="GECO.EIS_Default" CodeBehind="Default.aspx.vb" %>
 
-<%@ MasterType VirtualPath="~/MainMaster.master" %>
+<%@ MasterType VirtualPath="~/EIS/EIS.master" %>
 <asp:Content ID="Content" ContentPlaceHolderID="Content" runat="Server">
-    <h1>Emissions Inventory System</h1>
-
-    <p>
-        <b>
-            <asp:Label ID="lblFacilityDisplay" runat="server"></asp:Label></b>
-        <br />
-        AIRS Number:
-        <asp:Label ID="lblAIRS" runat="server"></asp:Label>
-    </p>
-
-    <ul class="menu-list-horizontal">
-        <li>
-            <asp:HyperLink ID="lnkEisHome" runat="server" NavigateUrl="~/EIS/" Enabled="false" CssClass="selected-menu-item disabled">EIS Home</asp:HyperLink>
-        </li>
-        <li>
-            <asp:HyperLink ID="lnkFacilityInfo" runat="server" NavigateUrl="~/EIS/Facility/">Edit Facility Info</asp:HyperLink>
-        </li>
-        <li>
-            <asp:HyperLink ID="lnkHistory" runat="server" NavigateUrl="~/EIS/History/">Historical Data</asp:HyperLink>
-        </li>
-    </ul>
-
     <p>
         Facilities whose potential emissions exceed the thresholds must report their 
         actual emissions. For assistance with calculating PTE, please use the        
@@ -68,7 +47,7 @@
         </ol>
     </div>
 
-    <asp:Panel ID="pnlStatus" runat="server" CssClass="rounded-panel rounded-panel-filled">
+    <asp:Panel ID="pnlStatus" runat="server" CssClass="status-panel">
         <h2>
             <asp:Label ID="lblHeading" runat="server"></asp:Label>
         </h2>

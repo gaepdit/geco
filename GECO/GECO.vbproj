@@ -314,6 +314,13 @@
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
+    <Compile Include="EIS\EIS.master.designer.vb">
+      <DependentUpon>EIS.master</DependentUpon>
+    </Compile>
+    <Compile Include="EIS\EIS.master.vb">
+      <DependentUpon>EIS.master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="EIS\History\Default.aspx.designer.vb">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
@@ -858,6 +865,7 @@
     <Content Include="IP.ashx" />
     <Content Include="GECO.vbproj.vsspell" />
     <Content Include="AnnualFees\FeeAmendmentForm.xlsx" />
+    <Content Include="EIS\EIS.master" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>

@@ -13,17 +13,7 @@ Public Class EIS_History_Default
         End If
 
         Master.CurrentAirs = New ApbFacilityId(airs)
-        Master.IsFacilitySet = True
-
-        If Not IsPostBack Then
-            ShowFacilityInfo()
-        End If
-    End Sub
-
-    Private Sub ShowFacilityInfo()
-        Dim currentFacility As String = GetFacilityName(Master.CurrentAirs) & ", " & GetFacilityCity(Master.CurrentAirs)
-        lblFacilityDisplay.Text = currentFacility
-        lblAIRS.Text = Master.CurrentAirs.FormattedString
+        Master.SelectedTab = EIS.EisTab.History
     End Sub
 
 End Class

@@ -17,19 +17,9 @@ Public Class EIS_History_Processes
 
         CurrentAirs = New ApbFacilityId(airs)
         Master.CurrentAirs = CurrentAirs
-        Master.IsFacilitySet = True
-
-        If Not IsPostBack Then
-            ShowFacilityInfo()
-        End If
+        Master.SelectedTab = EIS.EisTab.History
 
         LoadDetails()
-    End Sub
-
-    Private Sub ShowFacilityInfo()
-        Dim currentFacility As String = GetFacilityName(CurrentAirs) & ", " & GetFacilityCity(CurrentAirs)
-        lblFacilityDisplay.Text = currentFacility
-        lblAIRS.Text = CurrentAirs.FormattedString
     End Sub
 
     Private Sub LoadDetails()

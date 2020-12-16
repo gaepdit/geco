@@ -25,8 +25,8 @@ Public Class EIS_Default
 
             CurrentAirs = New ApbFacilityId(airsString)
             Master.CurrentAirs = CurrentAirs
+            Master.SelectedTab = EIS.EisTab.Home
             SetCookie(Cookie.AirsNumber, CurrentAirs.ShortString())
-            Master.IsFacilitySet = True
         End If
 
         Dim facilityAccess As FacilityAccess = GetCurrentUser().GetFacilityAccess(CurrentAirs)
@@ -36,18 +36,11 @@ Public Class EIS_Default
         End If
 
         If Not IsPostBack Then
-            ShowFacilityInfo()
-            EISPanel()
+            ShowEisPanel()
         End If
     End Sub
 
-    Private Sub ShowFacilityInfo()
-        Dim currentFacility As String = GetFacilityName(CurrentAirs) & ", " & GetFacilityCity(CurrentAirs)
-        lblFacilityDisplay.Text = currentFacility
-        lblAIRS.Text = CurrentAirs.FormattedString
-    End Sub
-
-    Private Sub EISPanel()
+    Private Sub ShowEisPanel()
 
         Dim EISAccessCode As String = GetCookie(EisCookie.EISAccess)
         Dim EIYear As String = ""

@@ -1,0 +1,26 @@
+﻿<%@ Master Language="VB" MasterPageFile="~/MainMaster.master" AutoEventWireup="false" CodeBehind="EIS.master.vb" Inherits="GECO.EIS" %>
+
+<%@ MasterType VirtualPath="~/MainMaster.master" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="server">
+    <h1>Emissions Inventory System</h1>
+    <p>
+        <b>
+            <asp:Label ID="lblFacilityDisplay" runat="server"></asp:Label></b>
+        <br />
+        AIRS Number:
+        <asp:Label ID="lblAIRS" runat="server"></asp:Label>
+    </p>
+
+    <ul class="menu-list-horizontal">
+        <li>
+            <asp:HyperLink ID="lnkHome" runat="server" NavigateUrl="~/EIS/">EIS Home</asp:HyperLink>
+        </li>
+        <li>
+            <asp:HyperLink ID="lnkFacility" runat="server" NavigateUrl="~/EIS/Facility/">Facility Info</asp:HyperLink>
+        </li>
+        <li>
+            <asp:HyperLink ID="lnkHistory" runat="server" NavigateUrl="~/EIS/History/">Historical Data</asp:HyperLink>
+        </li>
+    </ul>
+    <asp:ContentPlaceHolder ID="Content" runat="server"></asp:ContentPlaceHolder>
+</asp:Content>

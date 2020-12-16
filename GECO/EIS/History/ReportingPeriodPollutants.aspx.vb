@@ -17,20 +17,13 @@ Public Class EIS_History_ReportingPeriodPollutants
 
         CurrentAirs = New ApbFacilityId(airs)
         Master.CurrentAirs = CurrentAirs
-        Master.IsFacilitySet = True
+        Master.SelectedTab = EIS.EisTab.History
 
         If Not IsPostBack Then
-            ShowFacilityInfo()
             LoadYears()
         End If
 
         LoadDetails()
-    End Sub
-
-    Private Sub ShowFacilityInfo()
-        Dim currentFacility As String = GetFacilityName(CurrentAirs) & ", " & GetFacilityCity(CurrentAirs)
-        lblFacilityDisplay.Text = currentFacility
-        lblAIRS.Text = CurrentAirs.FormattedString
     End Sub
 
     Private Sub LoadYears()

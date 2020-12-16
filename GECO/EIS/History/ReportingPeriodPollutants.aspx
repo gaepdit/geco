@@ -1,35 +1,9 @@
-﻿<%@ Page Title="GECO Emissions Inventory Historical Data: Reporting Period Pollutant Details" Language="VB" MasterPageFile="~/MainMaster.master"
-    AutoEventWireup="false" CodeBehind="ReportingPeriodPollutants.aspx.vb" Inherits="GECO.EIS_History_ReportingPeriodPollutants" %>
+﻿<%@ Page MasterPageFile="~/EIS/EIS.master" Language="VB" AutoEventWireup="false"
+    Title="GECO EIS Historical Data: Reporting Period Pollutant Details" 
+    Inherits="GECO.EIS_History_ReportingPeriodPollutants" CodeBehind="ReportingPeriodPollutants.aspx.vb" %>
 
-<%@ MasterType VirtualPath="~/MainMaster.master" %>
+<%@ MasterType VirtualPath="~/EIS/EIS.master" %>
 <asp:Content ID="Content" ContentPlaceHolderID="Content" runat="Server">
-    <style>
-        table caption {
-            text-align: left;
-        }
-    </style>
-    <h1>Emissions Inventory System</h1>
-
-    <p>
-        <b>
-            <asp:Label ID="lblFacilityDisplay" runat="server"></asp:Label></b>
-        <br />
-        AIRS Number:
-        <asp:Label ID="lblAIRS" runat="server"></asp:Label>
-    </p>
-
-    <ul class="menu-list-horizontal">
-        <li>
-            <asp:HyperLink ID="lnkEisHome" runat="server" NavigateUrl="~/EIS/">EIS Home</asp:HyperLink>
-        </li>
-        <li>
-            <asp:HyperLink ID="lnkFacilityInfo" runat="server" NavigateUrl="~/EIS/Facility/">Edit Facility Info</asp:HyperLink>
-        </li>
-        <li>
-            <asp:HyperLink ID="lnkHistory" runat="server" NavigateUrl="~/EIS/History/" CssClass="selected-menu-item">Historical Data</asp:HyperLink>
-        </li>
-    </ul>
-
     <h2>Historical Data</h2>
     <p><a href="Default.aspx" class="">← All Reports</a></p>
 

@@ -11,70 +11,61 @@ Option Strict On
 Option Explicit On
 
 
-Partial Public Class EIS_History_ReportingPeriodEmissions
+Partial Public Class EIS
 
     '''<summary>
-    '''YearUpdate control.
+    '''lblFacilityDisplay control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents YearUpdate As Global.System.Web.UI.UpdatePanel
+    Protected WithEvents lblFacilityDisplay As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''YearLabel control.
+    '''lblAIRS control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents YearLabel As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lblAIRS As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''Years control.
+    '''lnkHome control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents Years As Global.System.Web.UI.WebControls.DropDownList
+    Protected WithEvents lnkHome As Global.System.Web.UI.WebControls.HyperLink
 
     '''<summary>
-    '''YearButton control.
+    '''lnkFacility control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents YearButton As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents lnkFacility As Global.System.Web.UI.WebControls.HyperLink
 
     '''<summary>
-    '''ReportingPeriodExport control.
+    '''lnkHistory control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents ReportingPeriodExport As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents lnkHistory As Global.System.Web.UI.WebControls.HyperLink
 
     '''<summary>
-    '''ReportingPeriodEmptyNotice control.
+    '''Content control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents ReportingPeriodEmptyNotice As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-
-    '''<summary>
-    '''ReportingPeriod control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents ReportingPeriod As Global.System.Web.UI.WebControls.GridView
+    Protected WithEvents Content As Global.System.Web.UI.WebControls.ContentPlaceHolder
 
     '''<summary>
     '''Master property.
@@ -82,9 +73,9 @@ Partial Public Class EIS_History_ReportingPeriodEmissions
     '''<remarks>
     '''Auto-generated property.
     '''</remarks>
-    Public Shadows ReadOnly Property Master() As GECO.EIS
+    Public Shadows ReadOnly Property Master() As GECO.MainMaster
         Get
-            Return CType(MyBase.Master, GECO.EIS)
+            Return CType(MyBase.Master, GECO.MainMaster)
         End Get
     End Property
 End Class
