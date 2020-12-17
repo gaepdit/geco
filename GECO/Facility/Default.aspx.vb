@@ -1,4 +1,4 @@
-﻿Imports System.Data.SqlClient
+Imports System.Data.SqlClient
 Imports EpdIt.DBUtilities
 Imports GECO.DAL
 Imports GECO.GecoModels
@@ -108,21 +108,22 @@ Partial Class FacilityHome
         '        4 - If facility not enrolled - message indicating that the EI is not applicable is displayed
         Dim EIYear As Integer = Now.Year - 1
 
-        Dim eiStatus As EiStatus = LoadEiStatusCookies(currentAirs, Response)
+        Dim eiStatus As EiStatus = GetEiStatus(currentAirs)
+        LoadEiStatusCookies(currentAirs, Response)
 
-        If eiStatus.Access = "3" Then
+        If eiStatus.AccessCode = 3 Then
             AppsEmissionInventory.Visible = False
             Return
         End If
 
         ' enrollment status: 0 = not enrolled; 1 = enrolled for EI year
-        If eiStatus.Enrolled <> "1" Then
+        If eiStatus.Enrolled Then
             lblEIText.Text = "Not enrolled in " & EIYear & " EI."
             lblEIDate.Text = ""
             Return
         End If
 
-        lblEIDate.Text = GetEIDeadline(eiStatus.EIMaxYear)
+        lblEIDate.Text = GetEIDeadline(eiStatus.MaxYear)
 
         ' | EISSTATUSCODE | STRDESC                  |
         ' |---------------|--------------------------|
@@ -133,17 +134,17 @@ Partial Class FacilityHome
         ' | 4             | QA Process               |
         ' | 5             | Complete                 |
 
-        Select Case eiStatus.Status
-            Case "0"
+        Select Case eiStatus.StatusCode
+            Case 0
                 lblEIText.Text = EIYear & " EI not applicable."
                 lblEIDate.Text = ""
-            Case "1"
+            Case 1
                 lblEIText.Text = "Ready for " & EIYear & " EI."
-            Case "2"
+            Case 2
                 lblEIText.Text = EIYear & " EI in progress."
-            Case "3", "4"
+            Case 3, 4
                 lblEIText.Text = EIYear & " EI submitted on " & eiStatus.DateFinalized & "."
-            Case "5"
+            Case 5
                 lblEIText.Text = EIYear & " EI completed on " & eiStatus.DateFinalized & "."
             Case Else
                 lblEIText.Text = "To be determined."

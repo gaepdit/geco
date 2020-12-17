@@ -28,9 +28,18 @@ Public Module StringFunctions
     Public Function NonEmptyStringOrNothing(s As String) As String
         If String.IsNullOrEmpty(s) Then
             Return Nothing
-        Else
-            Return s
         End If
+
+        Return s
+    End Function
+
+    <Extension()>
+    Public Function EmptyStringIfNothing(s As String) As String
+        If s Is Nothing Then
+            Return ""
+        End If
+
+        Return s
     End Function
 
 End Module
