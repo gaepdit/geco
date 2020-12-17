@@ -4,9 +4,15 @@
 
 <%@ MasterType VirtualPath="~/EIS/EIS.master" %>
 <asp:Content ID="Content3" ContentPlaceHolderID="Content" runat="Server">
+    <p id="updateMessage" runat="server" visible="false" class="message-highlight">Facility details were successfully saved.</p>
+
     <h2>Facility Information</h2>
 
-    <p><a href="<%= Page.ResolveUrl("~/EIS/Facility/Edit.aspx") %>" class="button">Edit Facility Details</a></p>
+    <p>
+        <asp:HyperLink ID="btnEdit" runat="server" NavigateUrl="~/EIS/Facility/Edit.aspx" CssClass="button">
+            Edit Facility Details
+        </asp:HyperLink>
+    </p>
 
     <h3>Facility Description</h3>
 
@@ -133,8 +139,8 @@
     </table>
 
     <div>
-        <asp:HyperLink ID="lnkGoogleMap" runat="server" Target="_blank">
-            <asp:Image ID="imgGoogleStaticMap" runat="server" CssClass="link-image" BorderStyle="Solid" BorderWidth="2px" /><br />
+        <asp:HyperLink ID="lnkGoogleMap" runat="server" Target="_blank" CssClass="no-visited">
+            <asp:Image ID="imgGoogleStaticMap" runat="server" BorderStyle="Solid" BorderWidth="2px" /><br />
             Open map in new window
         </asp:HyperLink>
     </div>

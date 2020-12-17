@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="..\packages\Microsoft.CodeAnalysis.FxCopAnalyzers.2.9.8\build\Microsoft.CodeAnalysis.FxCopAnalyzers.props" Condition="Exists('..\packages\Microsoft.CodeAnalysis.FxCopAnalyzers.2.9.8\build\Microsoft.CodeAnalysis.FxCopAnalyzers.props')" />
   <Import Project="..\packages\Microsoft.NetFramework.Analyzers.2.9.8\build\Microsoft.NetFramework.Analyzers.props" Condition="Exists('..\packages\Microsoft.NetFramework.Analyzers.2.9.8\build\Microsoft.NetFramework.Analyzers.props')" />
@@ -165,6 +165,7 @@
     <Content Include="Account\Password.aspx" />
     <Content Include="assets\images\epd-icon.png" />
     <Content Include="EIS\Default.aspx" />
+    <Content Include="EIS\Facility\Edit.aspx" />
     <Content Include="EIS\Facility\Default.aspx" />
     <Content Include="EIS\History\Default.aspx" />
     <Content Include="EIS\History\ReportingPeriodEmissions.aspx" />
@@ -320,6 +321,13 @@
     </Compile>
     <Compile Include="EIS\EIS.master.vb">
       <DependentUpon>EIS.master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EIS\Facility\Edit.aspx.designer.vb">
+      <DependentUpon>Edit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EIS\Facility\Edit.aspx.vb">
+      <DependentUpon>Edit.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="EIS\Facility\Default.aspx.designer.vb">
@@ -634,6 +642,8 @@
       <DependentUpon>Register.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="_DAL\EIS\Facility.vb" />
+    <Compile Include="_DAL\Facility\FacilityContacts.vb" />
     <Compile Include="_Models\AnnualFees\AnnualFeeCalc.vb" />
     <Compile Include="_Code\ControlMethods.vb" />
     <Compile Include="_Code\DictionaryExtensions.vb" />

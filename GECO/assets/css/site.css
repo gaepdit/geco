@@ -1,4 +1,4 @@
-/* Layout */
+﻿/* Layout */
 html {
     box-sizing: border-box;
 }
@@ -787,6 +787,10 @@ ul.menu-list-horizontal {
         border-color: #c4c4ff #c4c4ff #fff;
     }
 
+        ul.menu-list-horizontal .selected-menu-item:hover {
+            border-bottom-color: #fff;
+        }
+
         ul.menu-list-horizontal .selected-menu-item.disabled {
             pointer-events: none;
         }
@@ -819,6 +823,11 @@ input {
     line-height: 1.15;
     margin: 0;
     overflow: visible;
+}
+
+select, textarea {
+    font-family: inherit;
+    font-size: 100%;
 }
 
 button {
@@ -1045,4 +1054,20 @@ button:disabled,
 
     .form-progress .current::before {
         content: '▶ ';
+    }
+
+/* Panel */
+.panel {
+    border-radius: 9px;
+    padding: .5rem 2rem;
+    margin: 5px;
+    border: 5px solid #010053;
+}
+
+    .panel h2, .panel h3 {
+        text-align: center;
+    }
+
+    .panel .panel-inprogress {
+        border-color: #006600;
     }

@@ -1,5 +1,5 @@
 ﻿Imports EpdIt.DBUtilities
-Imports System.Data.SqlClient
+Imports GECO.DAL.EIS
 Imports GECO.GecoModels
 Imports GECO.MapHelper
 
@@ -21,6 +21,13 @@ Partial Class EIS_Facility_Default
         Master.CurrentAirs = CurrentAirs
         Master.SelectedTab = EIS.EisTab.Facility
 
+        Dim eiStatus As EiStatus = GetEiStatus(CurrentAirs)
+        If eiStatus.AccessCode > 1 Then btnEdit.Visible = False
+
+        If Request.QueryString("updated") IsNot Nothing AndAlso Request.QueryString("updated") = "true" Then
+            updateMessage.Visible = True
+        End If
+
         If Not IsPostBack Then
             LoadFacilityDetails()
             LoadPhoneNumbers()
@@ -31,23 +38,7 @@ Partial Class EIS_Facility_Default
         Dim updateUser As String
         Dim updateDateTime As Date?
 
-        Dim query = "select strFacilitySiteName, strMailingAddressText, strSupplementalAddressText, strMailingAddressCityName,
-                   strMailingAddressStateCode, strMailingAddressPostalCode, strLocationAddressText, strSupplementalLocationText,
-                   strLocalityName, strLocationAddressPostalCode, strAddressComment, strFacilitySiteStatusDesc,
-                   intFacilitySiteStatusCodeYear, strFacilitySiteDescription, strNAICSCode, strFacilitySiteComment,
-                   numLatitudeMeasure, numLongitudeMeasure, STRHORCOLLMETDesc, INTHORACCURACYMEASURE, STRHORREFDATUMDesc,
-                   strGeographicComment, strNamePrefixText, strFirstName, strLastName, strIndividualTitleText, strFSAIMAddressText,
-                   strFSAISAddressText, strFSAIMAddressCityName, strFSAIMAddressStateCode, strFSAIMAddressPostalCode,
-                   StrElectronicAddressText, UpdateUser_mailingAddress, UpdateDateTime_mailingAddress, LastEPASubmitDate_MAddress,
-                   UpdateUser_FacilitySite, UpdateDateTime_FacilitySite, LastEPASubmitDate_FacilitySite, UpdateUser_GeoCoord,
-                   UpdateDateTime_GeoCoord, LastEPASubmitDate_GeoCoord, UpdateUser_AffIndiv, UpdateDateTime_AffIndiv,
-                   LastEPASubmitDate_AffIndiv, strFSAIAddressComment
-            FROM VW_EIS_FACILITY
-            where FACILITYSITEID = @FacilitySiteID"
-
-        Dim param As New SqlParameter("@FacilitySiteID", CurrentAirs.ShortString)
-
-        Dim dr = DB.GetDataRow(query, param)
+        Dim dr As DataRow = GetEisFacilityDetails(CurrentAirs)
 
         If dr Is Nothing Then
             Throw New ArgumentException($"EIS Facility Details not available for {CurrentAirs.FormattedString}")
@@ -62,7 +53,7 @@ Partial Class EIS_Facility_Default
         End If
         lblNAICS.Text = GetNullableString(dr.Item("strNAICSCode")) &
             " - " & GetNaicsCodeDesc(GetNullableString(dr.Item("strNAICSCode")))
-        lblDescriptionComment.Text = GetNullableString(dr.Item("strFacilitySiteName"))
+        lblDescriptionComment.Text = GetNullableString(dr.Item("strFacilitySiteComment"))
 
         updateDateTime = GetNullableDateTime(dr.Item("UpdateDateTime_FacilitySite"))
         updateUser = GetNullableString(dr.Item("UpdateUser_FacilitySite"))
@@ -154,12 +145,7 @@ Partial Class EIS_Facility_Default
     End Sub
 
     Private Sub LoadPhoneNumbers()
-        Dim query = "select TELEPHONENUMBERTYPECODE, STRTELEPHONENUMBERTEXT
-            from EIS_TELEPHONECOMM where FACILITYSITEID = @FacilitySiteID and ACTIVE='1'"
-
-        Dim param As New SqlParameter("@FacilitySiteID", CurrentAirs.ShortString)
-
-        Dim dt As DataTable = DB.GetDataTable(query, param)
+        Dim dt As DataTable = GetEisContactPhoneNumbers(CurrentAirs)
 
         If dt IsNot Nothing Then
             For Each dr As DataRow In dt.Rows

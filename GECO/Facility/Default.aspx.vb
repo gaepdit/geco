@@ -1,4 +1,4 @@
-Imports System.Data.SqlClient
+﻿Imports System.Data.SqlClient
 Imports EpdIt.DBUtilities
 Imports GECO.DAL
 Imports GECO.GecoModels
@@ -365,89 +365,12 @@ Partial Class FacilityHome
             Dim contactDescription As String = "Contact updated from GECO Facility Home page by " & currentUser.FullName &
                 " on " & Now.ToShortDateString()
 
-            Dim params As SqlParameter() = {
-                New SqlParameter("@strcontactfirstname", txtFName.Text),
-                New SqlParameter("@strcontactlastname", txtLName.Text),
-                New SqlParameter("@strcontacttitle", txtTitle.Text),
-                New SqlParameter("@strcontactphonenumber1", txtPhone.Text),
-                New SqlParameter("@strcontactfaxnumber", txtFax.Text),
-                New SqlParameter("@strcontactemail", txtEmailContact.Text),
-                New SqlParameter("@strcontactaddress1", txtAddress.Text),
-                New SqlParameter("@strcontactcity", txtCity.Text),
-                New SqlParameter("@strcontactstate", Address.ProbableStateCode(txtState.Text)),
-                New SqlParameter("@strcontactzipcode", txtZip.Text),
-                New SqlParameter("@strcontactcompanyname", txtCoName.Text),
-                New SqlParameter("@strcontactdescription", contactDescription),
-                New SqlParameter("@strmodifingperson", "0"),
-                New SqlParameter("@STRAIRSNUMBER", currentAirs.DbFormattedString),
-                New SqlParameter("@strkey", hidContactKey.Value),
-                New SqlParameter("@strcontactkey", currentAirs.DbFormattedString & hidContactKey.Value.ToString)
-            }
+            Dim result As Boolean = Facility.SaveApbContactInformation(currentAirs, hidContactKey.Value, Nothing,
+                txtFName.Text, txtLName.Text, txtTitle.Text, txtEmailContact.Text, txtAddress.Text, Nothing,
+                txtCity.Text, Address.ProbableStateCode(txtState.Text), txtZip.Text, txtPhone.Text, Nothing, txtFax.Text,
+                contactDescription, txtCoName.Text, "0")
 
-            Dim query As String = "select convert(bit, count(*)) " &
-            " FROM APBCONTACTINFORMATION " &
-            " where STRAIRSNUMBER = @STRAIRSNUMBER " &
-            " and STRKEY = convert(varchar(2), @strkey)"
-
-            If DB.GetBoolean(query, params) Then
-                query = "Update apbcontactinformation set " &
-                    "strcontactfirstname = @strcontactfirstname, " &
-                    "strcontactlastname = @strcontactlastname, " &
-                    "strcontacttitle = @strcontacttitle, " &
-                    "strcontactphonenumber1 = @strcontactphonenumber1, " &
-                    "strcontactfaxnumber = @strcontactfaxnumber, " &
-                    "strcontactemail = @strcontactemail, " &
-                    "strcontactaddress1 = @strcontactaddress1, " &
-                    "strcontactcity = @strcontactcity, " &
-                    "strcontactstate = @strcontactstate, " &
-                    "strcontactzipcode = @strcontactzipcode, " &
-                    "strcontactcompanyname = @strcontactcompanyname, " &
-                    "strcontactdescription = @strcontactdescription, " &
-                    "datmodifingdate = getdate(), " &
-                    "strmodifingperson = @strmodifingperson " &
-                    "where strcontactkey = @strcontactkey "
-            Else
-                query = " insert into APBCONTACTINFORMATION ( " &
-                    "     STRCONTACTKEY, " &
-                    "     STRAIRSNUMBER, " &
-                    "     STRKEY, " &
-                    "     STRCONTACTFIRSTNAME, " &
-                    "     STRCONTACTLASTNAME, " &
-                    "     STRCONTACTTITLE, " &
-                    "     STRCONTACTCOMPANYNAME, " &
-                    "     STRCONTACTPHONENUMBER1, " &
-                    "     STRCONTACTFAXNUMBER, " &
-                    "     STRCONTACTEMAIL, " &
-                    "     STRCONTACTADDRESS1, " &
-                    "     STRCONTACTCITY, " &
-                    "     STRCONTACTSTATE, " &
-                    "     STRCONTACTZIPCODE, " &
-                    "     STRMODIFINGPERSON, " &
-                    "     DATMODIFINGDATE, " &
-                    "     STRCONTACTDESCRIPTION " &
-                    " ) " &
-                    " values ( " &
-                    "     @STRCONTACTKEY, " &
-                    "     @STRAIRSNUMBER, " &
-                    "     @STRKEY, " &
-                    "     @STRCONTACTFIRSTNAME, " &
-                    "     @STRCONTACTLASTNAME, " &
-                    "     @STRCONTACTTITLE, " &
-                    "     @STRCONTACTCOMPANYNAME, " &
-                    "     @STRCONTACTPHONENUMBER1, " &
-                    "     @STRCONTACTFAXNUMBER, " &
-                    "     @STRCONTACTEMAIL, " &
-                    "     @STRCONTACTADDRESS1, " &
-                    "     @STRCONTACTCITY, " &
-                    "     @STRCONTACTSTATE, " &
-                    "     @STRCONTACTZIPCODE, " &
-                    "     0, " &
-                    "     getdate(), " &
-                    "     @STRCONTACTDESCRIPTION " &
-                    " ) "
-            End If
-
-            If DB.RunCommand(query, params) Then
+            If result Then
                 lblContactMsg.Visible = True
                 lblContactMsg.Text = "The current contact has been updated successfully."
 

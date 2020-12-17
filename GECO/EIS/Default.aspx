@@ -47,7 +47,7 @@
         </ol>
     </div>
 
-    <asp:Panel ID="pnlStatus" runat="server" CssClass="status-panel">
+    <asp:Panel ID="pnlStatus" runat="server" CssClass="panel">
         <h2>
             <asp:Label ID="lblHeading" runat="server"></asp:Label>
         </h2>

@@ -3,7 +3,7 @@ Imports GECO.GecoModels
 
 Public Module eis_FacilityData
 
-    Public Function EisFacSiteAffExists(FacilitySiteID As String) As Boolean
+    Private Function EisFacSiteAffExists(FacilitySiteID As String) As Boolean
         Dim query = "select convert(bit, count(*)) " &
         " from EIS_FACILITYSITEAFFINDIV " &
         " where FACILITYSITEID = @FacilitySiteID "
@@ -27,8 +27,21 @@ Public Module eis_FacilityData
          ContactZipCode As String,
          ContactComment As String,
          UpdateUser As String,
-         FacilitySiteID As String
-        )
+         FacilitySiteID As String)
+
+        NotNull(ContactPrefix, NameOf(ContactPrefix))
+        NotNull(ContactFirstName, NameOf(ContactFirstName))
+        NotNull(ContactLastName, NameOf(ContactLastName))
+        NotNull(ContactTitle, NameOf(ContactTitle))
+        NotNull(ContactEmail, NameOf(ContactEmail))
+        NotNull(ContactAddress1, NameOf(ContactAddress1))
+        NotNull(ContactAddress2, NameOf(ContactAddress2))
+        NotNull(ContactCity, NameOf(ContactCity))
+        NotNull(ContactState, NameOf(ContactState))
+        NotNull(ContactZipCode, NameOf(ContactZipCode))
+        NotNull(ContactComment, NameOf(ContactComment))
+        NotNull(UpdateUser, NameOf(UpdateUser))
+
         Dim query As String
 
         If EisFacSiteAffExists(FacilitySiteID) Then
@@ -88,18 +101,18 @@ Public Module eis_FacilityData
         End If
 
         Dim params As SqlParameter() = {
-            New SqlParameter("@ContactPrefix", Left(ContactPrefix, 15)),
-            New SqlParameter("@ContactFirstName", Left(ContactFirstName, 35)),
-            New SqlParameter("@ContactLastName", Left(ContactLastName, 35)),
-            New SqlParameter("@ContactTitle", Left(ContactTitle, 100)),
-            New SqlParameter("@ContactEmail", Left(ContactEmail, 50)),
-            New SqlParameter("@ContactAddress1", Left(ContactAddress1, 100)),
-            New SqlParameter("@ContactAddress2", Left(ContactAddress2, 50)),
-            New SqlParameter("@ContactCity", Left(ContactCity, 60)),
-            New SqlParameter("@ContactState", Left(ContactState, 2)),
-            New SqlParameter("@ContactZipCode", Left(ContactZipCode, 10)),
-            New SqlParameter("@contactComment", Left(ContactComment, 400)),
-            New SqlParameter("@UpdateUser", Left(UpdateUser, 250)),
+            New SqlParameter("@ContactPrefix", ContactPrefix.Left(15)),
+            New SqlParameter("@ContactFirstName", ContactFirstName.Left(35)),
+            New SqlParameter("@ContactLastName", ContactLastName.Left(35)),
+            New SqlParameter("@ContactTitle", ContactTitle.Left(100)),
+            New SqlParameter("@ContactEmail", ContactEmail.Left(50)),
+            New SqlParameter("@ContactAddress1", ContactAddress1.Left(100)),
+            New SqlParameter("@ContactAddress2", ContactAddress2.Left(50)),
+            New SqlParameter("@ContactCity", ContactCity.Left(60)),
+            New SqlParameter("@ContactState", ContactState.Left(2)),
+            New SqlParameter("@ContactZipCode", ContactZipCode.Left(10)),
+            New SqlParameter("@contactComment", ContactComment.Left(400)),
+            New SqlParameter("@UpdateUser", UpdateUser.Left(250)),
             New SqlParameter("@FacilitySiteID", FacilitySiteID)
         }
 

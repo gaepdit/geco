@@ -42,4 +42,17 @@ Public Module StringFunctions
         Return s
     End Function
 
+    <Extension()>
+    Public Function Left(s As String, length As Integer) As String
+        If s Is Nothing Then
+            Return String.Empty
+        End If
+
+        If s.Length > length Then
+            Return s.Substring(0, length)
+        End If
+
+        Return s
+    End Function
+
 End Module

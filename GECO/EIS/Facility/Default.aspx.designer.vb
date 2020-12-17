@@ -14,6 +14,24 @@ Option Explicit On
 Partial Public Class EIS_Facility_Default
 
     '''<summary>
+    '''updateMessage control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents updateMessage As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
+    '''btnEdit control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnEdit As Global.System.Web.UI.WebControls.HyperLink
+
+    '''<summary>
     '''lblFacilityName control.
     '''</summary>
     '''<remarks>
