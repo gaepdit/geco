@@ -23,4 +23,14 @@ Partial Class MainMaster
         End If
     End Sub
 
+    Public Sub SetDefaultButton(button As Button)
+        NotNull(button, NameOf(button))
+
+        MainForm.DefaultButton = button.UniqueID
+    End Sub
+
+    Public Sub ClearDefaultButton()
+        MainForm.DefaultButton = ""
+    End Sub
+
 End Class

@@ -81,7 +81,7 @@ Partial Class EventRegistration_EventDetails
 
         If Not String.IsNullOrEmpty(address.ToLinearString) Then
             litEventDetails.Text &= "<br /><a title='Click to open Google Map' href='https://maps.google.com/?q=" & address.ToLinearString
-            litEventDetails.Text &= "' target='_blank'>" & address.ToString
+            litEventDetails.Text &= "' target='_blank'>" & address.ToHtmlString
             litEventDetails.Text &= "</a>"
         End If
 

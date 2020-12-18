@@ -1,6 +1,4 @@
-﻿Imports System.Collections.Generic
-
-Namespace GecoModels
+﻿Namespace GecoModels
     Public Class Address
         ' Address is simply all the elements of a postal address
 
@@ -11,6 +9,10 @@ Namespace GecoModels
         Public Property PostalCode As String
 
         Public Overrides Function ToString() As String
+            Return CompileAddressString(CompileStringType.Linear)
+        End Function
+
+        Public Function ToNewLineString() As String
             Return CompileAddressString(CompileStringType.NewLine)
         End Function
 

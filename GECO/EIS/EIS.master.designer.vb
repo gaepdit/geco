@@ -50,6 +50,15 @@ Partial Public Class EIS
     Protected WithEvents lnkFacility As Global.System.Web.UI.WebControls.HyperLink
 
     '''<summary>
+    '''lnkUsers control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lnkUsers As Global.System.Web.UI.WebControls.HyperLink
+
+    '''<summary>
     '''lnkHistory control.
     '''</summary>
     '''<remarks>

@@ -174,6 +174,7 @@
     <Content Include="EIS\History\Processes.aspx" />
     <Content Include="EIS\History\EmissionUnits.aspx" />
     <Content Include="EIS\History\ReleasePoints.aspx" />
+    <Content Include="EIS\Users\Default.aspx" />
     <Content Include="Home\FacilityRequest.aspx" />
     <Content Include="assets\css\eis_styles.css" />
     <Content Include="assets\css\memo-print.css" />
@@ -384,6 +385,13 @@
     </Compile>
     <Compile Include="EIS\History\ReleasePoints.aspx.vb">
       <DependentUpon>ReleasePoints.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="EIS\Users\Default.aspx.designer.vb">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EIS\Users\Default.aspx.vb">
+      <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="GlobalSuppressions.vb" />
@@ -642,6 +650,7 @@
       <DependentUpon>Register.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="_DAL\EIS\CaerContacts.vb" />
     <Compile Include="_DAL\EIS\Facility.vb" />
     <Compile Include="_DAL\Facility\FacilityContacts.vb" />
     <Compile Include="_Models\AnnualFees\AnnualFeeCalc.vb" />
@@ -688,6 +697,7 @@
     <Compile Include="_DAL\Finance\FacilityFinances.vb" />
     <Compile Include="_DAL\Logging\EmailLog.vb" />
     <Compile Include="_DAL\Organization\Organization.vb" />
+    <Compile Include="_Models\EIS\CaerContact.vb" />
     <Compile Include="_Models\Finance\DepositApplied.vb" />
     <Compile Include="_DAL\Finance\Invoices.vb" />
     <Compile Include="_DAL\Finance\ApplicationFees.vb" />
@@ -928,6 +938,7 @@
     <Analyzer Include="..\packages\SonarAnalyzer.VisualBasic.8.4.0.15306\analyzers\SonarAnalyzer.dll" />
     <Analyzer Include="..\packages\SonarAnalyzer.VisualBasic.8.4.0.15306\analyzers\SonarAnalyzer.VisualBasic.dll" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

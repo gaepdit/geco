@@ -32,6 +32,8 @@ Public Class EIS
                 lnkHome.CssClass = "selected-menu-item"
             Case EisTab.Facility
                 lnkFacility.CssClass = "selected-menu-item"
+            Case EisTab.Users
+                lnkUsers.CssClass = "selected-menu-item"
             Case EisTab.History
                 lnkHistory.CssClass = "selected-menu-item"
         End Select
@@ -40,6 +42,7 @@ Public Class EIS
     Public Enum EisTab
         Home
         Facility
+        Users
         History
     End Enum
 

@@ -617,13 +617,13 @@ Partial Public Class EIS_Facility_EditPage
     Protected WithEvents hidGeographicComment As Global.System.Web.UI.WebControls.HiddenField
 
     '''<summary>
-    '''lblNamePrefix control.
+    '''lblPrefix control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lblNamePrefix As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lblPrefix As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''txtPrefix control.
@@ -635,13 +635,13 @@ Partial Public Class EIS_Facility_EditPage
     Protected WithEvents txtPrefix As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''lblfirstname control.
+    '''lblFirstName control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lblfirstname As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lblFirstName As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''txtFirstName control.

@@ -40,7 +40,7 @@
                             AssociatedControlID="txtMailingAddressText">Mailing Address</asp:Label>
                     </th>
                     <td>
-                        <asp:TextBox ID="txtMailingAddressText" runat="server" ReadOnly="true" />
+                        <asp:TextBox ID="txtMailingAddressText" runat="server" />
                         <asp:RequiredFieldValidator ID="reqvMailingAddressText" runat="server" ControlToValidate="txtMailingAddressText"
                             ErrorMessage="The facility mailing address is required.">*</asp:RequiredFieldValidator>
                         <br />
@@ -78,9 +78,9 @@
                     <td>
                         <asp:TextBox ID="txtMailingAddressPostalCode" runat="server" MaxLength="10" />
                         <asp:RequiredFieldValidator ID="reqvMailingAddressPostalCode" runat="server" ControlToValidate="txtMailingAddressPostalCode"
-                            ErrorMessage="The facility mailing address zip code is required.">*</asp:RequiredFieldValidator>
+                            ErrorMessage="The facility mailing address postal code is required.">*</asp:RequiredFieldValidator>
                         <asp:RegularExpressionValidator ID="rgxvMailingAddressPostalCode" runat="server"
-                            ControlToValidate="txtMailingAddressPostalCode" ErrorMessage="Please check the facility mailing address zip code format."
+                            ControlToValidate="txtMailingAddressPostalCode" ErrorMessage="Please check the facility mailing address postal code format."
                             ValidationExpression="^(\d{5})(-\d{4})?$" Display="Dynamic">Format must be either 99999 or 99999-9999</asp:RegularExpressionValidator>
                     </td>
                 </tr>
@@ -264,7 +264,7 @@
             <tbody>
                 <tr>
                     <th>
-                        <asp:Label ID="lblNamePrefix" runat="server"
+                        <asp:Label ID="lblPrefix" runat="server"
                             AssociatedControlID="txtPrefix">Honorific</asp:Label>
                     </th>
                     <td>
@@ -273,7 +273,7 @@
                 </tr>
                 <tr>
                     <th>
-                        <asp:Label ID="lblfirstname" runat="server"
+                        <asp:Label ID="lblFirstName" runat="server"
                             AssociatedControlID="txtFirstName">First Name</asp:Label>
                     </th>
                     <td>
@@ -346,9 +346,9 @@
                     <td>
                         <asp:TextBox ID="txtMailingAddressPostalCode_Contact" runat="server" />
                         <asp:RequiredFieldValidator ID="reqvMailingAddressPostalCode_Contact" runat="server"
-                            ControlToValidate="txtMailingAddressPostalCode_Contact" ErrorMessage="The Emissions Inventory contact zip code is required.">*</asp:RequiredFieldValidator>
+                            ControlToValidate="txtMailingAddressPostalCode_Contact" ErrorMessage="The Emissions Inventory contact postal code is required.">*</asp:RequiredFieldValidator>
                         <asp:RegularExpressionValidator ID="rgxvMailingAddressPostalCode_Contact" runat="server"
-                            ControlToValidate="txtMailingAddressPostalCode_Contact" ErrorMessage="Please check the contact mailing address zip code format."
+                            ControlToValidate="txtMailingAddressPostalCode_Contact" ErrorMessage="Please check the contact mailing address postal code format."
                             ValidationExpression="^(\d{5})(-\d{4})?$" Display="Dynamic">Format must be either 99999 or 99999-9999</asp:RegularExpressionValidator>
                     </td>
                 </tr>

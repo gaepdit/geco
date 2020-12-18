@@ -1,4 +1,4 @@
-Imports EpdIt.DBUtilities
+﻿Imports EpdIt.DBUtilities
 Imports GECO.DAL.EIS
 Imports GECO.GecoModels
 Imports GECO.MapHelper
@@ -11,6 +11,7 @@ Partial Class EIS_Facility_EditPage
     Public Property CurrentAirs As ApbFacilityId
     Private Property CurrentUser As GecoUser
     Private Property GMapApiKey = ConfigurationManager.AppSettings("GoogleMapsAPIKey")
+
     Private NAICSExists As Boolean
 
     Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
@@ -44,6 +45,8 @@ Partial Class EIS_Facility_EditPage
 
             txtMapLat.Attributes.Add("readonly", "readonly")
             txtMapLon.Attributes.Add("readonly", "readonly")
+
+            Master.Master.SetDefaultButton(btnSave)
         End If
     End Sub
 

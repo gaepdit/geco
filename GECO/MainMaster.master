@@ -30,7 +30,7 @@
 </head>
 <body>
     <a class="skipnav" href="#main-content">Skip to main content</a>
-    <form id="form1" runat="server">
+    <form id="MainForm" runat="server">
         <asp:ScriptManager ID="ScriptManager1" runat="Server" EnablePartialRendering="true" ScriptMode="Release">
         </asp:ScriptManager>
 

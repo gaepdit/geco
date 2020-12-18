@@ -2,6 +2,7 @@
     Public Class Person
 
         ' Name
+        Public Property Honorific As String
         Public Property FirstName As String
         Public Property LastName As String
 
@@ -15,6 +16,8 @@
 
         ' (Phone numbers)
         Public Property PhoneNumber As String
+
+        ' Static functions
 
         Public Shared Function ResolvePhoneNumbers(formattedPhone As String, unformattedPhone As String) As String
             If Not String.IsNullOrEmpty(formattedPhone) Then
