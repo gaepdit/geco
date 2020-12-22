@@ -7,6 +7,7 @@ Public Class EIS_Default
     Public Property EiStatus As EisStatus
 
     Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
+        ClearCookie(Cookie.EiProcess)
         MainLoginCheck()
 
         If IsPostBack Then
@@ -38,18 +39,6 @@ Public Class EIS_Default
         End If
 
         EiStatus = GetEiStatus(CurrentAirs)
-
-        ' For testing:
-        'EiStatus = New EisStatus() With {
-        '    .AccessCode = 2,
-        '    .DateFinalized = Today,
-        '    .OptOut = False,
-        '    .OptOutReason = 2,
-        '    .StatusCode = 3,
-        '    .MaxYear = 2019,
-        '    .Enrolled = True,
-        '    .ConfirmationNumber = "CONF-123"
-        '}
 
         If Not IsPostBack Then
             CdxLink.NavigateUrl = ConfigurationManager.AppSettings("EpaCaersUrl")
@@ -303,6 +292,11 @@ Public Class EIS_Default
         pnlResetStatus.Visible = False
         pnlStatus.Visible = True
         ShowEisPanel()
+    End Sub
+
+    Private Sub btnBeginEiProcess_Click(sender As Object, e As EventArgs) Handles btnBeginEiProcess.Click
+        SetCookie(Cookie.EiProcess, True.ToString)
+        Response.Redirect("~/EIS/Facility/Edit.aspx")
     End Sub
 
 End Class

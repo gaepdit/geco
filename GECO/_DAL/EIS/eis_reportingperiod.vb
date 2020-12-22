@@ -89,7 +89,7 @@ Public Module eis_reportingperiod
 
         If colocated AndAlso Not String.IsNullOrWhiteSpace(colocation) Then
             'Send email to APB
-            Dim airs As String = New GecoModels.ApbFacilityId(fsid).FormattedString
+            Dim airs As String = New ApbFacilityId(fsid).FormattedString
             Dim facilityName As String = GetFacilityName(fsid)
             Dim reason As String = DecodeOptOutReason(ooreason)
 
@@ -132,7 +132,7 @@ Public Module eis_reportingperiod
             " where FacilitySiteID = @fsid and " &
             " InventoryYear = @eiyr "
 
-        Dim params = {
+        Dim params As SqlParameter() = {
             New SqlParameter("@UpdateUser", uuser),
             New SqlParameter("@fsid", fsid.ShortString),
             New SqlParameter("@eiyr", eiyr)
@@ -140,5 +140,23 @@ Public Module eis_reportingperiod
 
         DB.RunCommand(query, params)
     End Sub
+
+    Public Function GetEiThresholds(year As Integer, naa As Boolean) As DataTable
+        Dim query As String = "select STRPOLLUTANT as [Pollutant],
+                   IIF(@naa = 1, NUMTHRESHOLDNAA, NUMTHRESHOLD) as [Threshold]
+            from EITHRESHOLDS t
+                inner join EITHRESHOLDYEARS y
+                on y.STREITYPE = t.STRTYPE
+            where STRYEAR = @year
+              and NUMTHRESHOLD is not null
+            order by STRYEAR"
+
+        Dim params As SqlParameter() = {
+            New SqlParameter("@year", year),
+            New SqlParameter("@naa", naa)
+        }
+
+        Return DB.GetDataTable(query, params)
+    End Function
 
 End Module

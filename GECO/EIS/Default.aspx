@@ -60,7 +60,7 @@
                 </p>
 
                 <p id="pBeginProcess" runat="server" visible="false">
-                    <a href="<%= Page.ResolveUrl("~/EIS/Process/")  %>" class="button button-large">Begin EI Process</a>
+                    <asp:Button ID="btnBeginEiProcess" runat="server" Text="Begin EI Process" CssClass="button-large button-proceed" />
                 </p>
 
                 <p id="pReset" runat="server" visible="false">

@@ -76,6 +76,17 @@ Public Module FacilityInfo
         End Select
     End Function
 
+    Public Function CheckSummerDayRequired(airs As ApbFacilityId) As Boolean
+        NotNull(airs, NameOf(airs))
+
+        Select Case airs.CountySubstring
+            Case "015", "057", "063", "067", "077", "089", "097", "113", "117", "121", "135", "151", "217", "223", "247"
+                Return True
+            Case Else
+                Return False
+        End Select
+    End Function
+
     Public Function CheckFacilityEmissionStatement(airs As ApbFacilityId) As Boolean
         NotNull(airs, NameOf(airs))
 

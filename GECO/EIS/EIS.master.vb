@@ -5,6 +5,7 @@ Public Class EIS
 
     Public Property CurrentAirs As ApbFacilityId
     Public Property SelectedTab As EisTab = EisTab.Home
+    Public Property IsBeginEisProcess As Boolean = False
 
     Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
         If CurrentAirs Is Nothing Then

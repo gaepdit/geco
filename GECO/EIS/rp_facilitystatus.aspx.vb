@@ -49,7 +49,7 @@ Partial Class EIS_rp_facilitystatus
             Dim colocated As Boolean = (rblIsColocated.SelectedValue = "Yes")
             Dim colocation As String = Nothing
 
-            If rblIsColocated.SelectedValue = "Yes" Then
+            If colocated Then
                 colocation = txtColocatedWith.Text
             End If
 

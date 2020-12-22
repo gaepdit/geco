@@ -70,9 +70,15 @@ Public Module eis_Access
             eiStatus.StatusCode = dr.Item("EISSTATUSCODE")
             eiStatus.AccessCode = dr.Item("EISACCESSCODE")
             eiStatus.OptOut = GetNullable(Of Boolean?)(dr.Item("OPTOUT"))
-            eiStatus.OptOutReason = GetNullable(Of Integer?)(dr.Item("STROPTOUTREASON"))
             eiStatus.DateFinalized = GetNullableDateTime(dr.Item("DATFINALIZE"))
             eiStatus.ConfirmationNumber = GetNullableString(dr.Item("STRCONFIRMATIONNUMBER")).EmptyStringIfNothing()
+
+            Dim optOutReason As String = GetNullableString(dr.Item("STROPTOUTREASON"))
+            If String.IsNullOrEmpty(optOutReason) Then
+                eiStatus.OptOutReason = Nothing
+            Else
+                eiStatus.OptOutReason = CInt(optOutReason)
+            End If
         End If
 
         Return eiStatus

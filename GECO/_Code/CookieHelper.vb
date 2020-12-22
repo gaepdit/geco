@@ -8,6 +8,7 @@ Public Module CookieHelper
 
     Public Enum Cookie
         AirsNumber
+        EiProcess
     End Enum
 
     Public Enum EisCookie
@@ -33,7 +34,6 @@ Public Module CookieHelper
     Public Function GetCookie(cookie As Cookie) As String
         Dim c = GetHttpCookie(cookie.ToString)
 
-        ' Must test for null value before attempting to decrypt
         If c Is Nothing OrElse String.IsNullOrEmpty(c.Value) Then
             Return Nothing
         End If
@@ -52,7 +52,6 @@ Public Module CookieHelper
     Private Function GetCookieCollectionItem(name As String, item As String) As String
         Dim collection = GetCookieCollection(name)
 
-        ' Must test for null value before attempting to decrypt
         If collection Is Nothing OrElse collection.Count = 0 OrElse collection.Item(item) Is Nothing Then
             Return Nothing
         End If

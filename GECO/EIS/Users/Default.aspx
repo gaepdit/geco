@@ -4,7 +4,21 @@
 
 <%@ MasterType VirtualPath="~/EIS/EIS.master" %>
 <asp:Content ID="Content" ContentPlaceHolderID="Content" runat="Server">
+    <% If IsBeginEisProcess %>
+    <ul class="form-progress">
+        <li class="done">Facility Information</li>
+        <li class="current">CAERS Users</li>
+        <li>Facility Status</li>
+    </ul>
+
+    <h2>Verify CAERS Users</h2>
+    <% Else %>
     <h2>CAERS Users</h2>
+    <% End If %>
+
+    <% If IsBeginEisProcess %>
+    <p class="message-highlight">Verify the CAERS Users below. Make any additions or corrections as needed, then select the Continue button at the bottom of the page.</p>
+    <% End If %>
 
     <asp:UpdatePanel ID="updAddNew" runat="server">
         <ContentTemplate>
@@ -13,7 +27,7 @@
                 <asp:Button ID="btnAddNew" runat="server" Text="Add New CAERS User" />
             </p>
 
-            <asp:Panel ID="pnlAddNew" runat="server" Visible="false">
+            <asp:Panel ID="pnlAddNew" runat="server" CssClass="panel" Visible="false" DefaultButton="btnSaveNew">
                 <h3>Add New User</h3>
                 <asp:ValidationSummary ID="ValidationSummaryNew" runat="server" HeaderText="Please correct the following errors:"></asp:ValidationSummary>
 
@@ -204,7 +218,7 @@
                 </Columns>
             </asp:GridView>
 
-            <asp:Panel ID="pnlEditUser" runat="server" Visible="false">
+            <asp:Panel ID="pnlEditUser" runat="server" CssClass="panel" Visible="false" DefaultButton="btnSaveEdit">
                 <h3>Edit User</h3>
                 <asp:ValidationSummary ID="ValidationSummaryEdit" runat="server" HeaderText="Please correct the following errors:"></asp:ValidationSummary>
 
@@ -351,7 +365,11 @@
                 </p>
             </asp:Panel>
 
+            <% If IsBeginEisProcess Then %>
+            <p>
+                <asp:Button ID="btnProceed" runat="server" Text="Confirm CAERS Users and Continue →" CssClass="button-large button-proceed" />
+            </p>
+            <% End If %>
         </ContentTemplate>
     </asp:UpdatePanel>
-
 </asp:Content>

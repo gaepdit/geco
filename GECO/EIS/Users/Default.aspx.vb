@@ -2,11 +2,11 @@
 Imports GECO.GecoModels
 Imports GECO.DAL.EIS
 
-
 Public Class EIS_Users_Default
     Inherits Page
 
     Public Property CurrentAirs As ApbFacilityId
+    Public Property IsBeginEisProcess As Boolean = False
 
     Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
         MainLoginCheck()
@@ -21,12 +21,19 @@ Public Class EIS_Users_Default
         Master.CurrentAirs = CurrentAirs
         Master.SelectedTab = EIS.EisTab.Users
 
+        If GetCookie(Cookie.EiProcess) IsNot Nothing Then
+            IsBeginEisProcess = True
+            Master.IsBeginEisProcess = True
+        End If
+
         Dim eiStatus As EisStatus = GetEiStatus(CurrentAirs)
 
         If eiStatus.AccessCode > 1 Then
             pAddNew.Visible = False
             grdCaersUsers.Columns.RemoveAt(grdCaersUsers.Columns.Count - 1)
         End If
+
+        Master.Master.ClearDefaultButton()
 
         If Not IsPostBack Then
             LoadDropdownLists()
@@ -38,20 +45,14 @@ Public Class EIS_Users_Default
         Dim dt As DataTable = GetCaerContacts(CurrentAirs)
 
         If dt IsNot Nothing AndAlso dt.Rows.Count > 0 Then
+            grdCaersUsers.Visible = True
             grdCaersUsers.DataSource = dt
+            grdCaersUsers.DataBind()
             pNoUsersNotice.Visible = False
         Else
             grdCaersUsers.DataSource = Nothing
             grdCaersUsers.Visible = False
             pNoUsersNotice.Visible = True
-        End If
-
-        grdCaersUsers.DataBind()
-
-        If pAddNew.Visible Then
-            Master.Master.SetDefaultButton(btnAddNew)
-        Else
-            Master.Master.ClearDefaultButton()
         End If
     End Sub
 
@@ -99,14 +100,13 @@ Public Class EIS_Users_Default
         btnAddNew.Visible = False
         pnlAddNew.Visible = True
         pnlEditUser.Visible = False
-
-        Master.Master.SetDefaultButton(btnSaveNew)
+        btnProceed.Visible = False
     End Sub
 
     Private Sub CancelNewUser_Click(sender As Object, e As EventArgs) Handles btnCancelNew.Click
         btnAddNew.Visible = True
         pnlAddNew.Visible = False
-        Master.Master.SetDefaultButton(btnAddNew)
+        btnProceed.Visible = True
     End Sub
 
     Private Sub btnSaveNew_Click(sender As Object, e As EventArgs) Handles btnSaveNew.Click
@@ -142,6 +142,8 @@ Public Class EIS_Users_Default
 
         btnAddNew.Visible = True
         pnlAddNew.Visible = False
+        btnProceed.Visible = True
+
         LoadCurrentUsers()
     End Sub
 
@@ -176,7 +178,7 @@ Public Class EIS_Users_Default
             hidEditId.Value = id.ToString
 
             btnAddNew.Visible = False
-            Master.Master.SetDefaultButton(btnSaveEdit)
+            btnProceed.Visible = False
         End If
     End Sub
 
@@ -185,9 +187,7 @@ Public Class EIS_Users_Default
 
         If pAddNew.Visible Then
             btnAddNew.Visible = True
-            Master.Master.SetDefaultButton(btnAddNew)
-        Else
-            Master.Master.ClearDefaultButton()
+            btnProceed.Visible = True
         End If
     End Sub
 
@@ -228,7 +228,14 @@ Public Class EIS_Users_Default
 
         pnlAddNew.Visible = False
         pnlEditUser.Visible = False
+        btnProceed.Visible = True
+
         LoadCurrentUsers()
+    End Sub
+
+    Private Sub btnProceed_Click(sender As Object, e As EventArgs) Handles btnProceed.Click
+        SetCookie(Cookie.EiProcess, True.ToString)
+        Response.Redirect("~/EIS/Process/")
     End Sub
 
 End Class

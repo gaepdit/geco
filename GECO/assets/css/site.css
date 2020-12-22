@@ -476,7 +476,49 @@ a.tableCellLink {
         text-decoration: underline;
     }
 
-/* Form */
+/* Forms */
+
+/* normalize */
+button,
+input {
+    font-family: inherit;
+    font-size: 100%;
+    line-height: 1.15;
+    margin: 0;
+    overflow: visible;
+}
+
+select, textarea {
+    font-family: inherit;
+    font-size: 100%;
+}
+
+button {
+    text-transform: none;
+}
+
+button,
+[type="button"],
+[type="reset"],
+[type="submit"] {
+    -webkit-appearance: button;
+}
+
+    button::-moz-focus-inner,
+    [type="button"]::-moz-focus-inner,
+    [type="reset"]::-moz-focus-inner,
+    [type="submit"]::-moz-focus-inner {
+        border-style: none;
+        padding: 0;
+    }
+
+    button:-moz-focusring,
+    [type="button"]:-moz-focusring,
+    [type="reset"]:-moz-focusring,
+    [type="submit"]:-moz-focusring {
+        outline: 1px dotted ButtonText;
+    }
+
 input[type=text],
 input[type=password],
 input:not([type]),
@@ -496,6 +538,10 @@ textarea {
 
 input[type=checkbox] {
     margin-right: 4px;
+}
+
+input[type=radio] {
+    margin: 0 3px 0 5px;
 }
 
 textarea {
@@ -824,48 +870,6 @@ blockquote {
 
 /* Buttons */
 
-/* normalize */
-button,
-input {
-    font-family: inherit;
-    font-size: 100%;
-    line-height: 1.15;
-    margin: 0;
-    overflow: visible;
-}
-
-select, textarea {
-    font-family: inherit;
-    font-size: 100%;
-}
-
-button {
-    text-transform: none;
-}
-
-button,
-[type="button"],
-[type="reset"],
-[type="submit"] {
-    -webkit-appearance: button;
-}
-
-    button::-moz-focus-inner,
-    [type="button"]::-moz-focus-inner,
-    [type="reset"]::-moz-focus-inner,
-    [type="submit"]::-moz-focus-inner {
-        border-style: none;
-        padding: 0;
-    }
-
-    button:-moz-focusring,
-    [type="button"]:-moz-focusring,
-    [type="reset"]:-moz-focusring,
-    [type="submit"]:-moz-focusring {
-        outline: 1px dotted ButtonText;
-    }
-
-/* new button styling */
 a.button,
 button,
 [type="button"],
@@ -1078,7 +1082,8 @@ button:disabled,
     border-color: #060;
 }
 
-    .panel-inprogress h2 {
+    .panel-inprogress h2,
+    .panel-inprogress h3 {
         color: #060;
     }
 
@@ -1087,7 +1092,8 @@ button:disabled,
 }
 
 
-    .panel-complete h2 {
+    .panel-complete h2,
+    .panel-complete h3 {
         color: #00F;
     }
 
@@ -1095,7 +1101,8 @@ button:disabled,
     border-color: #A00;
 }
 
-    .panel-error h2 {
+    .panel-error h2,
+    .panel-error h3 {
         color: #A00;
     }
 
@@ -1103,10 +1110,11 @@ button:disabled,
     border-color: #525260;
 }
 
-    .panel-noaction h2 {
+    .panel-noaction h2,
+    .panel-noaction h3 {
         color: #525260;
     }
 
-.panel h1, .panel h2 {
+.panel h1, .panel h2, .panel h3 {
     margin-top: 0;
 }

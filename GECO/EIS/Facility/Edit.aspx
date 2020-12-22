@@ -5,12 +5,26 @@
 <%@ MasterType VirtualPath="~/EIS/EIS.master" %>
 <%@ Register Assembly="Reimers.Google.Map" Namespace="Reimers.Google.Map" TagPrefix="Reimers" %>
 <asp:Content ID="Content3" ContentPlaceHolderID="Content" runat="Server">
+    <% If IsBeginEisProcess %>
+    <ul class="form-progress">
+        <li class="current">Facility Information</li>
+        <li>CAERS Users</li>
+        <li>Facility Status</li>
+    </ul>
+
+    <h2>Verify Facility Information</h2>
+    <% Else %>
     <h2>Edit Facility Information</h2>
+    <% End If %>
 
     <asp:Panel ID="pnlFacilityEdit" runat="server">
-        <asp:ValidationSummary ID="ValidationSummary" runat="server" HeaderText="Please correct the following errors:"></asp:ValidationSummary>
-
+        <% If IsBeginEisProcess %>
+        <p class="message-highlight">Verify the facility and contact information below. Make any corrections needed, then select the Continue button at the bottom of the page.</p>
+        <% Else %>
         <p><a href="<%= Page.ResolveUrl("~/EIS/Facility/") %>" class="button button-cancel">Cancel</a></p>
+        <% End If %>
+
+        <asp:ValidationSummary ID="ValidationSummary" runat="server" HeaderText="Please correct the following errors:"></asp:ValidationSummary>
 
         <h3>Name and Address</h3>
         <p>If the facility name or address are incorrect, please contact the Air Protection Branch.</p>
@@ -414,7 +428,9 @@
 
         <p>
             <asp:Button ID="btnSave" runat="server" Text="Save" CssClass="button-large" />
+            <% If Not IsBeginEisProcess Then %>
             <a href="<%= Page.ResolveUrl("~/EIS/Facility/") %>" class="button button-large button-cancel">Cancel</a>
+            <% End If %>
         </p>
     </asp:Panel>
 
@@ -488,7 +504,7 @@
             <tr>
                 <th>Latitude</th>
                 <td>
-                    <asp:TextBox ID="txtMapLat" runat="server" ></asp:TextBox>
+                    <asp:TextBox ID="txtMapLat" runat="server"></asp:TextBox>
                 </td>
             </tr>
             <tr>

@@ -11,6 +11,7 @@ Partial Class EIS_Facility_EditPage
     Public Property CurrentAirs As ApbFacilityId
     Private Property CurrentUser As GecoUser
     Private Property GMapApiKey = ConfigurationManager.AppSettings("GoogleMapsAPIKey")
+    Public Property IsBeginEisProcess As Boolean = False
 
     Private NAICSExists As Boolean
 
@@ -23,13 +24,19 @@ Partial Class EIS_Facility_EditPage
             Response.Redirect("~/")
         End If
 
-        CurrentUser = GetCurrentUser()
         CurrentAirs = New ApbFacilityId(airs)
+        CurrentUser = GetCurrentUser()
         Master.CurrentAirs = CurrentAirs
         Master.SelectedTab = EIS.EisTab.Facility
 
         Dim eiStatus As EisStatus = GetEiStatus(CurrentAirs)
         If eiStatus.AccessCode > 1 Then Response.Redirect("~/EIS/Facility/")
+
+        If GetCookie(Cookie.EiProcess) IsNot Nothing Then
+            IsBeginEisProcess = True
+            Master.IsBeginEisProcess = True
+            SetUpEisProcess()
+        End If
 
         If Not IsPostBack Then
             LoadDropdownLists()
@@ -48,6 +55,11 @@ Partial Class EIS_Facility_EditPage
 
             Master.Master.SetDefaultButton(btnSave)
         End If
+    End Sub
+
+    Private Sub SetUpEisProcess()
+        btnSave.CssClass = "button-large button-proceed"
+        btnSave.Text = "Save Facility Information and Continue →"
     End Sub
 
     Private Sub LoadDropdownLists()
@@ -312,7 +324,12 @@ Partial Class EIS_Facility_EditPage
             SaveContactPhoneNumber()
             SaveAPBContactInformation()
 
-            Response.Redirect("~/EIS/Facility?updated=true")
+            If IsBeginEisProcess Then
+                SetCookie(Cookie.EiProcess, True.ToString)
+                Response.Redirect("~/EIS/Users/")
+            Else
+                Response.Redirect("~/EIS/Facility?updated=true")
+            End If
         End If
 
     End Sub

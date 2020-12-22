@@ -2,7 +2,12 @@
 
 <%@ MasterType VirtualPath="~/MainMaster.master" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="server">
+    <% If IsBeginEisProcess %>
+    <h1>Begin Emissions Inventory Process</h1>
+    <% Else %>
     <h1>Emissions Inventory System</h1>
+    <% End If %>
+
     <p>
         <b>
             <asp:Label ID="lblFacilityDisplay" runat="server"></asp:Label></b>
@@ -11,6 +16,7 @@
         <asp:Label ID="lblAIRS" runat="server"></asp:Label>
     </p>
 
+    <% If Not IsBeginEisProcess %>
     <ul class="menu-list-horizontal">
         <li>
             <asp:HyperLink ID="lnkHome" runat="server" NavigateUrl="~/EIS/">EIS Home</asp:HyperLink>
@@ -25,5 +31,7 @@
             <asp:HyperLink ID="lnkHistory" runat="server" NavigateUrl="~/EIS/History/">Historical Data</asp:HyperLink>
         </li>
     </ul>
+    <% End If %>
+
     <asp:ContentPlaceHolder ID="Content" runat="server"></asp:ContentPlaceHolder>
 </asp:Content>
