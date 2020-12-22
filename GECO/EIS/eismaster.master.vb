@@ -8,6 +8,7 @@ Partial Class APB_eismaster
     Private Property currentAirs As ApbFacilityId
 
     Private Sub APB_eismaster_Init(sender As Object, e As EventArgs) Handles Me.Init
+        Response.Redirect("~/EIS/")
         MainLoginCheck()
         EisLoginCheck()
 
