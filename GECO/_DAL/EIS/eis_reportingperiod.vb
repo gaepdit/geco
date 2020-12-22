@@ -1,5 +1,4 @@
 ﻿Imports System.Data.SqlClient
-Imports EpdIt.DBUtilities
 Imports GECO.GecoModels
 
 Public Module eis_reportingperiod
@@ -114,19 +113,14 @@ Public Module eis_reportingperiod
         End If
     End Sub
 
-    Public Sub ResetEiStatus(fsid As ApbFacilityId, uuser As String, eiyr As String)
+    Public Sub ResetEiStatus(fsid As ApbFacilityId, uuser As String, eiyr As Integer)
         NotNull(fsid, NameOf(fsid))
 
-
         'Facility needs to start over; make optout null
-        Dim EISAccessCode As String = "1"
-        Dim EISStatus As String = "1"
-        Dim OptOut As String = Nothing
-
         Dim query = "Update eis_Admin set " &
-            " eisStatusCode = @EISStatus, " &
-            " eisAccessCode = @EISAccessCode, " &
-            " strOptout = @OptOut, " &
+            " eisStatusCode = '1', " &
+            " eisAccessCode = '1', " &
+            " strOptout = null, " &
             " strOptOutReason = null, " &
             " strConfirmationNumber = null, " &
             " datFinalize = null, " &
@@ -139,20 +133,12 @@ Public Module eis_reportingperiod
             " InventoryYear = @eiyr "
 
         Dim params = {
-            New SqlParameter("@EISStatus", EISStatus),
-            New SqlParameter("@EISAccessCode", EISAccessCode),
-            New SqlParameter("@OptOut", OptOut),
             New SqlParameter("@UpdateUser", uuser),
             New SqlParameter("@fsid", fsid.ShortString),
             New SqlParameter("@eiyr", eiyr)
         }
 
-        Try
-            DB.RunCommand(query, params)
-        Catch ex As Exception
-            ErrorReport(ex)
-        End Try
-
+        DB.RunCommand(query, params)
     End Sub
 
 End Module

@@ -54,7 +54,7 @@ Partial Class EIS_rp_facilitystatus
             End If
 
             SaveEisOptOut(airs, True, currentUser.DbUpdateUser, eiYear, "1", colocated, colocation)
-            LoadEiStatusCookies(airs, Response)
+            SetEiStatusCookies(airs, Response)
             Response.Redirect("Default.aspx")
         Else
             Response.Redirect("rp_facilitythreshold.aspx")

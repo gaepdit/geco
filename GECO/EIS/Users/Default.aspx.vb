@@ -21,7 +21,7 @@ Public Class EIS_Users_Default
         Master.CurrentAirs = CurrentAirs
         Master.SelectedTab = EIS.EisTab.Users
 
-        Dim eiStatus As EiStatus = GetEiStatus(CurrentAirs)
+        Dim eiStatus As EisStatus = GetEiStatus(CurrentAirs)
 
         If eiStatus.AccessCode > 1 Then
             pAddNew.Visible = False

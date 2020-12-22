@@ -29,10 +29,11 @@ Partial Class FacilityHome
             End If
 
             currentAirs = New ApbFacilityId(airsString)
-            Master.CurrentAirs = currentAirs
             SetCookie(Cookie.AirsNumber, currentAirs.ShortString())
-            Master.IsFacilitySet = True
         End If
+
+        Master.CurrentAirs = currentAirs
+        Master.IsFacilitySet = True
 
         MainLoginCheck(Page.ResolveUrl("~/Facility/?airs=" & currentAirs.ShortString))
 
@@ -108,8 +109,8 @@ Partial Class FacilityHome
         '        4 - If facility not enrolled - message indicating that the EI is not applicable is displayed
         Dim EIYear As Integer = Now.Year - 1
 
-        Dim eiStatus As EiStatus = GetEiStatus(currentAirs)
-        LoadEiStatusCookies(currentAirs, Response)
+        Dim eiStatus As EisStatus = GetEiStatus(currentAirs)
+        SetEiStatusCookies(currentAirs, Response)
 
         If eiStatus.AccessCode = 3 Then
             AppsEmissionInventory.Visible = False

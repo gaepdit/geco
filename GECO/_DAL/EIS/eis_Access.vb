@@ -29,7 +29,7 @@ Public Module eis_Access
 
         Dim query As String = "select INVENTORYYEAR, EISSTATUSCODE, EISACCESSCODE,
                convert(bit, STROPTOUT) as OPTOUT, convert(bit, STRENROLLMENT) as ENROLLMENT,
-               DATFINALIZE, STRCONFIRMATIONNUMBER
+               DATFINALIZE, STRCONFIRMATIONNUMBER, STROPTOUTREASON
             FROM EIS_ADMIN
             where FACILITYSITEID = @airs
               and INVENTORYYEAR =
@@ -42,16 +42,16 @@ Public Module eis_Access
         Return DB.GetDataRow(query, param)
     End Function
 
-    Public Function GetEiStatus(airs As ApbFacilityId) As EiStatus
+    Public Function GetEiStatus(airs As ApbFacilityId) As EisStatus
         NotNull(airs, NameOf(airs))
 
         Dim dr As DataRow = GetEiStatusDataRow(airs)
 
         If dr Is Nothing Then
-            Return New EiStatus With {.AccessCode = 3, .Enrolled = False}
+            Return New EisStatus With {.AccessCode = 3, .Enrolled = False}
         End If
 
-        Dim eiStatus As New EiStatus With {
+        Dim eiStatus As New EisStatus With {
             .MaxYear = dr("INVENTORYYEAR")
         }
 
@@ -70,6 +70,7 @@ Public Module eis_Access
             eiStatus.StatusCode = dr.Item("EISSTATUSCODE")
             eiStatus.AccessCode = dr.Item("EISACCESSCODE")
             eiStatus.OptOut = GetNullable(Of Boolean?)(dr.Item("OPTOUT"))
+            eiStatus.OptOutReason = GetNullable(Of Integer?)(dr.Item("STROPTOUTREASON"))
             eiStatus.DateFinalized = GetNullableDateTime(dr.Item("DATFINALIZE"))
             eiStatus.ConfirmationNumber = GetNullableString(dr.Item("STRCONFIRMATIONNUMBER")).EmptyStringIfNothing()
         End If
@@ -77,11 +78,11 @@ Public Module eis_Access
         Return eiStatus
     End Function
 
-    Public Sub LoadEiStatusCookies(airs As ApbFacilityId, response As HttpResponse)
+    Public Sub SetEiStatusCookies(airs As ApbFacilityId, response As HttpResponse)
         NotNull(airs, NameOf(airs))
         NotNull(response, NameOf(response))
 
-        Dim eiStatus As EiStatus = GetEiStatus(airs)
+        Dim eiStatus As EisStatus = GetEiStatus(airs)
 
         Dim enrollment As String = "0"
         If eiStatus.Enrolled Then enrollment = "1"
@@ -108,12 +109,13 @@ Public Module eis_Access
 
 End Module
 
-Public Class EiStatus
+Public Class EisStatus
     Public Property AccessCode As Integer
     Public Property Enrolled As Boolean
     Public Property StatusCode As Integer
     Public Property DateFinalized As Date?
     Public Property MaxYear As Integer
     Public Property OptOut As Boolean?
+    Public Property OptOutReason As Integer?
     Public Property ConfirmationNumber As String = ""
 End Class

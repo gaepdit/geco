@@ -21,7 +21,7 @@ Partial Class EIS_Facility_Default
         Master.CurrentAirs = CurrentAirs
         Master.SelectedTab = EIS.EisTab.Facility
 
-        Dim eiStatus As EiStatus = GetEiStatus(CurrentAirs)
+        Dim eiStatus As EisStatus = GetEiStatus(CurrentAirs)
         If eiStatus.AccessCode > 1 Then btnEdit.Visible = False
 
         If Request.QueryString("updated") IsNot Nothing AndAlso Request.QueryString("updated") = "true" Then

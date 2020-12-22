@@ -4,6 +4,7 @@ Public Class EIS_Default
     Inherits Page
 
     Private Property CurrentAirs As ApbFacilityId
+    Public Property EiStatus As EisStatus
 
     Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
         MainLoginCheck()
@@ -24,10 +25,11 @@ Public Class EIS_Default
             End If
 
             CurrentAirs = New ApbFacilityId(airsString)
-            Master.CurrentAirs = CurrentAirs
-            Master.SelectedTab = EIS.EisTab.Home
             SetCookie(Cookie.AirsNumber, CurrentAirs.ShortString())
         End If
+
+        Master.CurrentAirs = CurrentAirs
+        Master.SelectedTab = EIS.EisTab.Home
 
         Dim facilityAccess As FacilityAccess = GetCurrentUser().GetFacilityAccess(CurrentAirs)
 
@@ -35,33 +37,27 @@ Public Class EIS_Default
             Response.Redirect("~/Home/")
         End If
 
+        EiStatus = GetEiStatus(CurrentAirs)
+
+        ' For testing:
+        'EiStatus = New EisStatus() With {
+        '    .AccessCode = 2,
+        '    .DateFinalized = Today,
+        '    .OptOut = False,
+        '    .OptOutReason = 2,
+        '    .StatusCode = 3,
+        '    .MaxYear = 2019,
+        '    .Enrolled = True,
+        '    .ConfirmationNumber = "CONF-123"
+        '}
+
         If Not IsPostBack Then
+            CdxLink.NavigateUrl = ConfigurationManager.AppSettings("EpaCaersUrl")
             ShowEisPanel()
         End If
     End Sub
 
     Private Sub ShowEisPanel()
-
-        Dim EISAccessCode As String = GetCookie(EisCookie.EISAccess)
-        Dim EIYear As String = ""
-        Dim EISStatus As String = ""
-        Dim Enrollment As String
-        Dim OptOut As String = "NULL"
-        Dim DateFinalize As String = ""
-        Dim ConfNumber As String = ""
-
-        If EISAccessCode <> "3" Then
-            EIYear = GetCookie(EisCookie.EISMaxYear)
-            EISStatus = GetCookie(EisCookie.EISStatus)
-            Enrollment = GetCookie(EisCookie.Enrollment)
-
-            If Enrollment = "1" Then
-                OptOut = GetCookie(EisCookie.OptOut)
-                DateFinalize = GetCookie(EisCookie.DateFinalize)
-                ConfNumber = GetCookie(EisCookie.ConfNumber)
-            End If
-        End If
-
         ' | EISACCESSCODE | STRDESC                                                 |
         ' |---------------|---------------------------------------------------------|
         ' | 0             | FI access allowed with edit; EI access allowed, no edit |
@@ -71,7 +67,7 @@ Public Class EIS_Default
         ' | 4             | Facility has no access to FI or EI                      |
 
         ' EISAccess = 3 indicates that the facility is not in the EIS_Admin table.
-        ' "3" is not stored in the admin table; it is set in the GetEisStatus routine in Facility/Default.aspx.vb
+        ' "3" is not stored in the admin table; it is set in the GetEisStatus method
 
         ' | EISSTATUSCODE | STRDESC                  |
         ' |---------------|--------------------------|
@@ -85,233 +81,228 @@ Public Class EIS_Default
         ' NOTE: For the new process (using EPA's CAERS app), status code "2" is no longer used.
         ' When Facility either opts in or out, status is set to "3"
 
-        Select Case EISAccessCode
+        Select Case EiStatus.AccessCode
 
-            Case "0"
+            Case 0 ' FI access allowed with edit; EI access allowed, no edit
 
-                If OptOut = "0" AndAlso EISStatus = "5" Then
+                If Not EiStatus.OptOut AndAlso EiStatus.StatusCode = 5 Then
                     ' Facility opted in, QA check complete, reset not allowed
-                    pnlStatus.BackColor = GecoColors.ActionCompletePanel.BackColor
-                    lblHeading.Text = "Participating in Emission Inventory"
+
+                    pnlStatus.CssClass = "panel panel-complete"
+                    lblMainStatus.Text = "Participating in the Emissions Inventory"
                     lblMainMessage.Text = "The facility has reported that it is participating in the " &
-                        EIYear & " Emissions Inventory. " &
-                        "Use to button above to open EPA's CAERS. CAERS will be used for completing the EI."
-                    lblStatusText.Text = GetEISStatusMessage(EISStatus)
-                    trOptOutReason.Visible = False
-                    lblConfNumberText.Text = ConfNumber
-                    lblLastUpdateText.Text = DateFinalize
-                    LinkToEpaCaers.Visible = True
-                    divCaersInstructions.Visible = False
-                    lblOther.Text = "The Air Protection Branch has reviewed and accepted the facility's data. " &
+                        EiStatus.MaxYear & " Emissions Inventory. " &
+                        "The Air Protection Branch has reviewed and accepted the facility's data. " &
                         "The status may not be changed at this time."
+                    pBeginProcess.Visible = False
+                    dCdxNext.Visible = True
+                    trOptOutReason.Visible = False
+                    lblConfNumberText.Text = EiStatus.ConfirmationNumber
+                    lblLastUpdateText.Text = EiStatus.DateFinalized.ToString
+                    pReset.Visible = False
+                    dNewProcess.Visible = False
 
-                ElseIf OptOut = "1" AndAlso EISStatus = "5" Then
+                ElseIf EiStatus.OptOut AndAlso EiStatus.StatusCode = 5 Then
                     ' Facility opted out of EI, QA check complete, reset not allowed
-                    pnlStatus.BackColor = GecoColors.NoActionPanel.BackColor
-                    lblHeading.Text = "Not Participating In Emission Inventory"
-                    lblMainMessage.Text = "The facility has reported that it is not participating in the" &
-                        EIYear & " Emissions Inventory."
-                    lblStatusText.Text = GetEISStatusMessage(EISStatus)
-                    trOptOutReason.Visible = False
-                    lblConfNumberText.Text = ConfNumber
-                    lblLastUpdateText.Text = DateFinalize
-                    divCaersInstructions.Visible = False
-                    lblOther.Text = "The Air Protection Branch has reviewed and accepted the facility's data. " &
-                        "The status may not be changed at this time."
 
-                ElseIf OptOut = "NULL" AndAlso EISStatus = "0" Then
+                    pnlStatus.CssClass = "panel panel-complete"
+                    lblMainStatus.Text = "Not Participating in the Emissions Inventory"
+                    lblMainMessage.Text = "The facility has reported that it is not participating in the" &
+                        EiStatus.MaxYear & " Emissions Inventory. " &
+                        "The Air Protection Branch has reviewed and accepted the facility's data. " &
+                        "The status may not be changed at this time."
+                    pBeginProcess.Visible = False
+                    dCdxNext.Visible = False
+                    trOptOutReason.Visible = True
+                    lblOptOutReasonText.Text = DecodeOptOutReason(EiStatus.OptOutReason)
+                    lblConfNumberText.Text = EiStatus.ConfirmationNumber
+                    lblLastUpdateText.Text = EiStatus.DateFinalized.ToString
+                    pReset.Visible = False
+                    dNewProcess.Visible = False
+
+                ElseIf EiStatus.OptOut Is Nothing AndAlso EiStatus.StatusCode = 0 Then
                     'Facility not in current EI
-                    pnlStatus.BackColor = GecoColors.NoActionPanel.BackColor
-                    lblHeading.Text = "Emissions Inventory Not Available"
+
+                    pnlStatus.CssClass = "panel panel-noaction"
+                    lblMainStatus.Text = "Emissions Inventory Not Available"
                     lblMainMessage.Text = "Either Emissions Inventory enrollment has not yet occurred for the " &
                         "current EI submittal event or the Air Protection Branch has determined that the facility " &
-                        "does not need to participate in the current EI submittal event."
-                    lblOther.Text = "Contact the Air Protection Branch if you believe " &
+                        "does not need to participate in the current EI submittal event. " &
+                        "Contact the Air Protection Branch if you believe " &
                         "your facility should be participating in the current EI submittal event."
-                    lblStatusText.Text = GetEISStatusMessage(EISStatus)
+                    pBeginProcess.Visible = False
+                    dCdxNext.Visible = False
                     trOptOutReason.Visible = False
                     trConfNumber.Visible = False
                     trLastUpdate.Visible = False
+                    pReset.Visible = False
+                    dNewProcess.Visible = True
 
                 Else
                     'Some type of error
-                    DisplayEIError("A1")
+                    DisplayEisError("A1")
                 End If
 
-            Case "1"
+            Case 1 ' FI and EI access allowed, both with edit
 
-                If OptOut = "NULL" AndAlso EISStatus = "1" Then
+                If EiStatus.OptOut Is Nothing AndAlso EiStatus.StatusCode = 1 Then
                     ' Facility in EI, but not started
-                    pnlStatus.BackColor = GecoColors.InProgressPanel.BackColor
-                    lblHeading.Text = "Ready For Emissions Inventory Process"
+
+                    pnlStatus.CssClass = "panel panel-inprogress"
+                    lblMainStatus.Text = "Ready for the Emissions Inventory Process"
                     lblMainMessage.Text = "EPD's Air Protection Branch has determined that this facility " &
-                        "may need to participate in the " & EIYear & " Emissions Inventory. Click the button above " &
-                        "to begin. You will first verify the facility and contact " &
-                        "information and then answer questions about the facility emissions " &
-                        "to determine if participation in the EI " &
-                        "is necessary."
-                    lblStatusText.Text = GetEISStatusMessage(EISStatus)
-                    trOptOutReason.Visible = False
-                    trConfNumber.Visible = False
-                    trLastUpdate.Visible = False
-                    btnBegin.Text = "Begin " & EIYear & " EI"
-                    btnBegin.Visible = True
+                        "may need to participate in the " &
+                        EiStatus.MaxYear & " Emissions Inventory. " &
+                        "Click the button below to begin. You will first verify the facility and " &
+                        "contact information and then answer questions about the facility emissions " &
+                        "to determine if participation in the EI is necessary."
+                    pBeginProcess.Visible = True
+                    dCdxNext.Visible = False
+                    StatusTable.Visible = False
+                    pReset.Visible = False
+                    dNewProcess.Visible = True
 
                 Else
                     'Some type of error
-                    DisplayEIError("A2")
+                    DisplayEisError("A2")
                 End If
 
-            Case "2"
+            Case 2 ' FI and EI access allowed, both no edit
 
-                If OptOut = "0" AndAlso EISStatus = "3" Then
+                If Not EiStatus.OptOut AndAlso EiStatus.StatusCode = 3 Then
                     ' Facility opted into EI, reset allowed
-                    pnlStatus.BackColor = GecoColors.ActionCompletePanel.BackColor
-                    lblHeading.Text = "Participating in Emission Inventory"
-                    lblMainMessage.Text = "The facility has reported that it is participating in the " &
-                        EIYear & " Emissions Inventory. " &
-                        "Use to button above to open EPA's CAERS. CAERS will be used for completing the EI."
-                    lblStatusText.Text = GetEISStatusMessage(EISStatus)
-                    trOptOutReason.Visible = False
-                    lblConfNumberText.Text = ConfNumber
-                    lblLastUpdateText.Text = DateFinalize
-                    btnReset.Text = "Reset " & EIYear & " Status"
-                    btnReset.Visible = True
-                    lblOther.Text = "You may choose to reset the facility status and start " &
-                        "over. Click the button to reset your status."
-                    LinkToEpaCaers.Visible = True
-                    divCaersInstructions.Visible = False
 
-                ElseIf OptOut = "1" AndAlso EISStatus = "3" Then
+                    pnlStatus.CssClass = "panel panel-complete"
+                    lblMainStatus.Text = "Participating in the Emissions Inventory (Submitted)"
+                    lblMainMessage.Text = "The facility has reported that it is participating in the " &
+                        EiStatus.MaxYear & " Emissions Inventory. " &
+                        "You may reset the current status and start over."
+                    pBeginProcess.Visible = False
+                    dCdxNext.Visible = True
+                    trOptOutReason.Visible = False
+                    lblConfNumberText.Text = EiStatus.ConfirmationNumber
+                    lblLastUpdateText.Text = EiStatus.DateFinalized.ToString
+                    pReset.Visible = True
+                    dNewProcess.Visible = False
+
+                ElseIf EiStatus.OptOut AndAlso EiStatus.StatusCode = 3 Then
                     ' Facility opted out of EI, reset allowed
-                    pnlStatus.BackColor = GecoColors.NoActionPanel.BackColor
-                    lblHeading.Text = "Not Participating In Emission Inventory"
-                    lblMainMessage.Text = "The facility has reported that it is not participating in the " &
-                        EIYear & " Emissions Inventory."
-                    lblStatusText.Text = GetEISStatusMessage(EISStatus)
-                    lblOptOutReasonText.Text = GetOptOutReason(CurrentAirs.ShortString, EIYear)
-                    lblConfNumberText.Text = ConfNumber
-                    lblLastUpdateText.Text = DateFinalize
-                    btnReset.Text = "Reset " & EIYear & " Status"
-                    btnReset.Visible = True
-                    divCaersInstructions.Visible = False
-                    lblOther.Text = "You may choose to reset the facility status and start " &
-                        "over. Click the button to reset your status."
 
-                ElseIf OptOut = "0" AndAlso EISStatus = "4" Then
+                    pnlStatus.CssClass = "panel panel-complete"
+                    lblMainStatus.Text = "Not Participating in the Emissions Inventory (Submitted)"
+                    lblMainMessage.Text = "The facility has reported that it is not participating in the " &
+                        EiStatus.MaxYear & " Emissions Inventory. " &
+                        "You may reset the current status."
+                    pBeginProcess.Visible = False
+                    dCdxNext.Visible = False
+                    trOptOutReason.Visible = True
+                    lblOptOutReasonText.Text = DecodeOptOutReason(EiStatus.OptOutReason)
+                    lblConfNumberText.Text = EiStatus.ConfirmationNumber
+                    lblLastUpdateText.Text = EiStatus.DateFinalized.ToString
+                    pReset.Visible = True
+                    dNewProcess.Visible = False
+
+                ElseIf Not EiStatus.OptOut AndAlso EiStatus.StatusCode = 4 Then
                     ' Facility opted into EI, QA in progress, reset not allowed
-                    pnlStatus.BackColor = GecoColors.ActionCompletePanel.BackColor
-                    lblHeading.Text = "Participating in Emission Inventory"
-                    lblMainMessage.Text = "The facility has reported that it is participating in the " &
-                        EIYear & " Emissions Inventory. " &
-                        "Use to button above to open EPA's CAERS. CAERS will be used for completing the EI."
-                    lblStatusText.Text = GetEISStatusMessage(EISStatus)
-                    trOptOutReason.Visible = False
-                    lblConfNumberText.Text = ConfNumber
-                    lblLastUpdateText.Text = DateFinalize
-                    lblOther.Text = "The Air Protection Branch is reviewing the facility's " &
-                        "data so the current status may not be changed at this time."
-                    LinkToEpaCaers.Visible = True
-                    divCaersInstructions.Visible = False
 
-                ElseIf OptOut = "1" AndAlso EISStatus = "4" Then
-                    ' Facility opted out of EI, QA in progress, reset not allowed
-                    pnlStatus.BackColor = GecoColors.NoActionPanel.BackColor
-                    lblHeading.Text = "Not Participating In Emission Inventory"
-                    lblMainMessage.Text = "The facility has reported that it is not participating in the " &
-                        EIYear & " Emissions Inventory."
-                    lblStatusText.Text = GetEISStatusMessage(EISStatus)
-                    trOptOutReason.Visible = False
-                    lblConfNumberText.Text = ConfNumber
-                    lblLastUpdateText.Text = DateFinalize
-                    divCaersInstructions.Visible = False
-                    lblOther.Text = "The Air Protection Branch is reviewing the facility's " &
+                    pnlStatus.CssClass = "panel panel-complete"
+                    lblMainStatus.Text = "Participating in the Emissions Inventory (Under Review)"
+                    lblMainMessage.Text = "The facility has reported that it is participating in the " &
+                        EiStatus.MaxYear & " Emissions Inventory. " &
+                        "The Air Protection Branch is reviewing the facility's " &
                         "data so the current status may not be changed at this time."
+                    pBeginProcess.Visible = False
+                    dCdxNext.Visible = True
+                    trOptOutReason.Visible = False
+                    lblConfNumberText.Text = EiStatus.ConfirmationNumber
+                    lblLastUpdateText.Text = EiStatus.DateFinalized.ToString
+                    pReset.Visible = False
+                    dNewProcess.Visible = False
+
+                ElseIf EiStatus.OptOut AndAlso EiStatus.StatusCode = 4 Then
+                    ' Facility opted out of EI, QA in progress, reset not allowed
+
+                    pnlStatus.CssClass = "panel panel-complete"
+                    lblMainStatus.Text = "Not Participating in the Emissions Inventory (Under Review)"
+                    lblMainMessage.Text = "The facility has reported that it is not participating in the " &
+                        EiStatus.MaxYear & " Emissions Inventory. " &
+                        "The Air Protection Branch is reviewing the facility's " &
+                        "data so the current status may not be changed at this time."
+                    pBeginProcess.Visible = False
+                    dCdxNext.Visible = False
+                    trOptOutReason.Visible = True
+                    lblOptOutReasonText.Text = DecodeOptOutReason(EiStatus.OptOutReason)
+                    lblConfNumberText.Text = EiStatus.ConfirmationNumber
+                    lblLastUpdateText.Text = EiStatus.DateFinalized.ToString
+                    pReset.Visible = False
+                    dNewProcess.Visible = False
 
                 Else
                     'Some type of error
-                    DisplayEIError("A3")
+                    DisplayEisError("A3")
                 End If
 
-            Case "3", "4"
-                'EIS not available to the facility
+            Case 3, 4
+                ' 3 - Facility not in EIS
+                ' 4 - Facility has no access to FI or EI
+
                 pnlEisNotAvailable.Visible = True
                 pnlStatus.Visible = False
                 pnlResetStatus.Visible = False
                 pnlError.Visible = False
-                pnlEisNotAvailable.BorderColor = GecoColors.ErrorPanel.BackColor
+                dNewProcess.Visible = True
 
             Case Else
                 'Some type of error
-                DisplayEIError("A4")
+                DisplayEisError("A4")
         End Select
     End Sub
 
-    Private Sub DisplayEIError(errorId As String)
-
+    Private Sub DisplayEisError(errorId As String)
         pnlError.Visible = True
         pnlEisNotAvailable.Visible = False
         pnlResetStatus.Visible = False
         pnlStatus.Visible = False
 
-        pnlError.BackColor = GecoColors.ErrorPanel.BackColor
-
-        lblErrorMessage.Text = "There is a data error. Please contact the Air Protection " &
-            "Branch using the contact link above. (Error " & errorId & ".)"
-
+        lblErrorId.Text = errorId
     End Sub
 
-    Protected Sub btnBegin_Click(sender As Object, e As EventArgs) Handles btnBegin.Click
-
-        Response.Redirect("rp_entry.aspx")
-
-    End Sub
-
-    Protected Sub btnReset_Click(sender As Object, e As EventArgs) Handles btnReset.Click
-
-        If GetCookie(EisCookie.EISAccess) = "3" Then
-            DisplayEIError("C1")
+    Private Sub btnReset_Click(sender As Object, e As EventArgs) Handles btnReset.Click
+        If EiStatus.AccessCode = 3 Then
+            DisplayEisError("C1")
             Return
         End If
 
-        If GetCookie(EisCookie.Enrollment) <> "1" Then
-            DisplayEIError("C2")
+        If Not EiStatus.Enrolled Then
+            DisplayEisError("C2")
             Return
         End If
 
-        lblResetDate.Text = GetCookie(EisCookie.DateFinalize)
-        lblResetYear.Text = GetCookie(EisCookie.EISMaxYear)
-
-        If GetCookie(EisCookie.OptOut) = "1" Then
-            lblResetStatus.Text = "Not participating in " & GetCookie(EisCookie.EISMaxYear) & " EI."
+        If EiStatus.OptOut Then
+            lblResetStatus.Text = "Not participating in the " & EiStatus.MaxYear & " EI."
+        ElseIf Not EiStatus.OptOut Then
+            lblResetStatus.Text = "Participating in the " & EiStatus.MaxYear & " EI."
         Else
-            lblResetStatus.Text = "Participating in " & GetCookie(EisCookie.EISMaxYear) & " EI."
+            DisplayEisError("C3")
+            Return
         End If
+
+        lblResetDate.Text = EiStatus.DateFinalized
 
         pnlResetStatus.Visible = True
         pnlStatus.Visible = False
-        pnlEisNotAvailable.Visible = False
-        pnlError.Visible = False
-
-        pnlResetStatus.BorderColor = GecoColors.ErrorPanel.BackColor
-
     End Sub
 
     Protected Sub btnConfirmResetStatus_Click(sender As Object, e As EventArgs) Handles btnConfirmResetStatus.Click
-
-        Dim EIYear As String = GetCookie(EisCookie.EISMaxYear)
-        Dim currentUser = GetCurrentUser()
-
-        ResetEiStatus(CurrentAirs, currentUser.DbUpdateUser, EIYear)
-        LoadEiStatusCookies(CurrentAirs, Response)
+        ResetEiStatus(CurrentAirs, GetCurrentUser().DbUpdateUser, EiStatus.MaxYear)
+        SetEiStatusCookies(CurrentAirs, Response)
         Response.Redirect("Default.aspx")
-
     End Sub
 
     Protected Sub btnCancelResetStatus_Click(sender As Object, e As EventArgs) Handles btnCancelResetStatus.Click
-
-        Response.Redirect("Default.aspx")
-
+        pnlResetStatus.Visible = False
+        pnlStatus.Visible = True
+        ShowEisPanel()
     End Sub
 
 End Class

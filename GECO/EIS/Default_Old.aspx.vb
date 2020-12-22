@@ -288,7 +288,7 @@ Partial Class EIS_Default_Old
         Dim currentUser = GetCurrentUser()
 
         ResetEiStatus(FacilityAIRS, currentUser.DbUpdateUser, EIYear)
-        LoadEiStatusCookies(FacilitySiteID, Response)
+        SetEiStatusCookies(FacilitySiteID, Response)
         Response.Redirect("Default.aspx")
 
     End Sub

@@ -28,7 +28,7 @@ Partial Class EIS_Facility_EditPage
         Master.CurrentAirs = CurrentAirs
         Master.SelectedTab = EIS.EisTab.Facility
 
-        Dim eiStatus As EiStatus = GetEiStatus(CurrentAirs)
+        Dim eiStatus As EisStatus = GetEiStatus(CurrentAirs)
         If eiStatus.AccessCode > 1 Then Response.Redirect("~/EIS/Facility/")
 
         If Not IsPostBack Then
