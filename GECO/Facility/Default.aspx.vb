@@ -118,7 +118,7 @@ Partial Class FacilityHome
         End If
 
         ' enrollment status: 0 = not enrolled; 1 = enrolled for EI year
-        If eiStatus.Enrolled Then
+        If Not eiStatus.Enrolled Then
             lblEIText.Text = "Not enrolled in " & EIYear & " EI."
             lblEIDate.Text = ""
             Return
