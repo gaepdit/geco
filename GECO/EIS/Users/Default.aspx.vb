@@ -42,17 +42,41 @@ Public Class EIS_Users_Default
     End Sub
 
     Private Sub LoadCurrentUsers()
-        Dim dt As DataTable = GetCaerContacts(CurrentAirs)
+        Dim dt As DataTable = GetAllCaerContacts(CurrentAirs)
 
         If dt IsNot Nothing AndAlso dt.Rows.Count > 0 Then
             grdCaersUsers.Visible = True
             grdCaersUsers.DataSource = dt
             grdCaersUsers.DataBind()
             pNoUsersNotice.Visible = False
+
+            btnAddNew.Visible = True
+            btnCancelNew.Visible = True
+            pnlAddNew.Visible = False
+
+            If IsBeginEisProcess Then
+                pVerifyUsers.Visible = True
+
+                If CaerContactsExist(CurrentAirs) Then
+                    pAddMore.Visible = False
+                    btnProceed.Visible = True
+                Else
+                    pAddMore.Visible = True
+                    btnProceed.Visible = False
+                End If
+            End If
         Else
             grdCaersUsers.DataSource = Nothing
             grdCaersUsers.Visible = False
             pNoUsersNotice.Visible = True
+
+            btnAddNew.Visible = False
+            pnlAddNew.Visible = True
+            btnCancelNew.Visible = False
+
+            pVerifyUsers.Visible = False
+            pAddMore.Visible = True
+            btnProceed.Visible = False
         End If
     End Sub
 
@@ -241,8 +265,10 @@ Public Class EIS_Users_Default
     End Sub
 
     Private Sub btnProceed_Click(sender As Object, e As EventArgs) Handles btnProceed.Click
-        SetCookie(Cookie.EiProcess, True.ToString)
-        Response.Redirect("~/EIS/Process/")
+        If CaerContactsExist(CurrentAirs) Then
+            SetCookie(Cookie.EiProcess, True.ToString)
+            Response.Redirect("~/EIS/Process/")
+        End If
     End Sub
 
 End Class

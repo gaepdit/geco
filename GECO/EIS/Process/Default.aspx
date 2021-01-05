@@ -101,6 +101,7 @@
                 <h2>Submittal</h2>
 
                 <p class="message-highlight">
+                    Status:
                     <% If Participating = 1 Then %>
                     The facility <em>will not</em> participate in the <%=EiStatus.MaxYear %> Emissions Inventory because it did not operate.
                     <% ElseIf Participating = 2 Then %>

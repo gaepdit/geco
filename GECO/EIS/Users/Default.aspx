@@ -16,14 +16,15 @@
     <h2>CAERS Users</h2>
     <% End If %>
 
-    <p>Use of CAERS requires at least one each of a certifier and a preparer. If a single person fulfills both roles, they must be added as both a certifier and preparer.</p>
-
-    <% If IsBeginEisProcess %>
-    <p class="message-highlight">Verify the CAERS Users below. Make any additions or corrections as needed, then select the Continue button at the bottom of the page.</p>
-    <% End If %>
+    <p>Use of CAERS requires at least one certifier and one preparer. If a single person serves both roles, they must be added as both.</p>
 
     <asp:UpdatePanel ID="updAddNew" runat="server">
         <ContentTemplate>
+
+            <% If IsBeginEisProcess %>
+            <p id="pVerifyUsers" runat="server" class="message-highlight">Verify the CAERS Users below. Make any additions or corrections as needed, then select the Continue button at the bottom of the page.</p>
+            <p id="pAddMore" runat="server" class="message-warning">At least one certifier and one preparer must exist before proceeding.</p>
+            <% End If %>
 
             <p id="pAddNew" runat="server">
                 <asp:Button ID="btnAddNew" runat="server" Text="Add New CAERS User" />

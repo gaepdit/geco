@@ -25,7 +25,7 @@ Namespace DAL.EIS
                 New SqlParameter("@GecoUser", GetCurrentUser.UserId)
             }
 
-            Dim result As Integer = DB.SPReturnValue("geco.CreateCaerContact", params)
+            Dim result As Integer = DB.SPReturnValue("geco.Caer_CreateContact", params)
 
             Select Case result
                 Case 0
@@ -54,7 +54,7 @@ Namespace DAL.EIS
                 New SqlParameter("@GecoUser", GetCurrentUser.UserId)
             }
 
-            Dim result As Integer = DB.SPReturnValue("geco.UpdateCaerContact", params, result)
+            Dim result As Integer = DB.SPReturnValue("geco.Caer_UpdateContact", params, result)
 
             Select Case result
                 Case 0
@@ -79,12 +79,12 @@ Namespace DAL.EIS
             Return DB.RunCommand(Query, param)
         End Function
 
-        Public Function GetCaerContacts(facilityId As ApbFacilityId) As DataTable
-            Return DB.SPGetDataTable("geco.GetCaerContacts", New SqlParameter("@FacilitySiteId", facilityId.ShortString))
+        Public Function GetAllCaerContacts(facilityId As ApbFacilityId) As DataTable
+            Return DB.SPGetDataTable("geco.Caer_GetAllContacts", New SqlParameter("@FacilitySiteId", facilityId.ShortString))
         End Function
 
         Public Function GetCaerContact(id As Guid) As CaerContact
-            Dim dr As DataRow = DB.SPGetDataRow("geco.GetCaerContact", New SqlParameter("@Id", id))
+            Dim dr As DataRow = DB.SPGetDataRow("geco.Caer_GetContact", New SqlParameter("@Id", id))
 
             If dr Is Nothing Then
                 Return Nothing
@@ -121,6 +121,10 @@ Namespace DAL.EIS
             }
 
             Return caerContact
+        End Function
+
+        Public Function CaerContactsExist(facilityId As ApbFacilityId) As Boolean
+            Return DB.SPGetBoolean("geco.Caer_ContactsExist", New SqlParameter("@FacilitySiteId", facilityId.ShortString))
         End Function
 
     End Module

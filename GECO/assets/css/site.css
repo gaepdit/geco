@@ -791,13 +791,18 @@ textarea {
     padding: 0 10px 4px 0;
 }
 
-/* Update messages */
+/* Message highlights */
 .message-update {
     color: #80005e;
 }
 
 .message-highlight {
     background-color: #ffffcc;
+    padding: .5em;
+}
+
+.message-warning {
+    background-color: #ffcccc;
     padding: .5em;
 }
 

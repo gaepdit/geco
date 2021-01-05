@@ -23,6 +23,24 @@ Partial Public Class EIS_Users_Default
     Protected WithEvents updAddNew As Global.System.Web.UI.UpdatePanel
 
     '''<summary>
+    '''pVerifyUsers control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents pVerifyUsers As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
+    '''pAddMore control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents pAddMore As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
     '''pAddNew control.
     '''</summary>
     '''<remarks>
