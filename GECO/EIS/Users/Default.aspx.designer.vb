@@ -68,13 +68,22 @@ Partial Public Class EIS_Users_Default
     Protected WithEvents lblRoleNew As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''ddlRoleNew control.
+    '''rRoleNew control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents ddlRoleNew As Global.System.Web.UI.WebControls.DropDownList
+    Protected WithEvents rRoleNew As Global.System.Web.UI.WebControls.RadioButtonList
+
+    '''<summary>
+    '''reqvRoleNew control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents reqvRoleNew As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
     '''lblPrefixNew control.

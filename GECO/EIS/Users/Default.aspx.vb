@@ -79,8 +79,6 @@ Public Class EIS_Users_Default
     End Sub
 
     Private Sub LoadRoles()
-        ddlRoleNew.Items.Add("Preparer")
-        ddlRoleNew.Items.Add("Certifier")
         ddlRoleEdit.Items.Add("Preparer")
         ddlRoleEdit.Items.Add("Certifier")
     End Sub
@@ -129,16 +127,25 @@ Public Class EIS_Users_Default
             .Title = txtTitleNew.Text
         }
 
-        Dim role As CaerRole = [Enum].Parse(GetType(CaerRole), ddlRoleNew.SelectedValue)
-
         Dim caerContact As New CaerContact With {
             .Active = True,
-            .CaerRole = role,
             .Contact = contact,
             .FacilitySiteId = CurrentAirs
         }
 
-        SaveCaerContact(caerContact)
+        Select Case rRoleNew.SelectedValue
+            Case "Preparer"
+                caerContact.CaerRole = CaerRole.Preparer
+                SaveCaerContact(caerContact)
+            Case "Certifier"
+                caerContact.CaerRole = CaerRole.Certifier
+                SaveCaerContact(caerContact)
+            Case "Both"
+                caerContact.CaerRole = CaerRole.Preparer
+                SaveCaerContact(caerContact)
+                caerContact.CaerRole = CaerRole.Certifier
+                SaveCaerContact(caerContact)
+        End Select
 
         btnAddNew.Visible = True
         pnlAddNew.Visible = False

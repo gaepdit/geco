@@ -16,6 +16,8 @@
     <h2>CAERS Users</h2>
     <% End If %>
 
+    <p>Use of CAERS requires at least one each of a certifier and a preparer. If a single person fulfills both roles, they must be added as both a certifier and preparer.</p>
+
     <% If IsBeginEisProcess %>
     <p class="message-highlight">Verify the CAERS Users below. Make any additions or corrections as needed, then select the Continue button at the bottom of the page.</p>
     <% End If %>
@@ -35,10 +37,16 @@
                     <tr>
                         <th>
                             <asp:Label ID="lblRoleNew" runat="server"
-                                AssociatedControlID="ddlRoleNew">CAERS Role</asp:Label>
+                                AssociatedControlID="rRoleNew">CAERS Role</asp:Label>
                         </th>
                         <td>
-                            <asp:DropDownList ID="ddlRoleNew" runat="server" />
+                            <asp:RadioButtonList ID="rRoleNew" runat="server" RepeatLayout="Flow" RepeatDirection="Horizontal">
+                                <asp:ListItem>Preparer</asp:ListItem>
+                                <asp:ListItem>Certifier</asp:ListItem>
+                                <asp:ListItem>Both</asp:ListItem>
+                            </asp:RadioButtonList>
+                            <asp:RequiredFieldValidator ID="reqvRoleNew" runat="server" ControlToValidate="rRoleNew"
+                                ErrorMessage="The CAERS Role is required.">*</asp:RequiredFieldValidator>
                         </td>
                     </tr>
                     <tr>

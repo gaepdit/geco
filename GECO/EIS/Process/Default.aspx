@@ -17,8 +17,7 @@
 
             <p><b>Did the facility operate at any time during calendar year <%=EiStatus.MaxYear %>?</b></p>
 
-            <asp:RadioButtonList ID="rOperate" runat="server" RepeatLayout="Flow"
-                RepeatDirection="Horizontal" AutoPostBack="true">
+            <asp:RadioButtonList ID="rOperate" runat="server" RepeatLayout="Flow" RepeatDirection="Horizontal" AutoPostBack="true">
                 <asp:ListItem>Yes</asp:ListItem>
                 <asp:ListItem>No</asp:ListItem>
             </asp:RadioButtonList>
