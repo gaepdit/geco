@@ -16,14 +16,31 @@
     <h2>CAERS Users</h2>
     <% End If %>
 
-    <p>Use of CAERS requires at least one certifier and one preparer. If a single person serves both roles, they must be added as both.</p>
+    <p>
+        Use of CAERS requires at least one certifier and one preparer.
+        If a single person serves both roles, they must be added as both.
+        Only one certifier is allowed, but multiple preparers can be added.
+    </p>
 
     <asp:UpdatePanel ID="updAddNew" runat="server">
         <ContentTemplate>
+            <asp:HiddenField ID="hidCertifiersCount" runat="server" />
+            <asp:HiddenField ID="hidPreparersCount" runat="server" />
 
-            <% If IsBeginEisProcess %>
-            <p id="pVerifyUsers" runat="server" class="message-highlight">Verify the CAERS Users below. Make any additions or corrections as needed, then select the Continue button at the bottom of the page.</p>
-            <p id="pAddMore" runat="server" class="message-warning">At least one certifier and one preparer must exist before proceeding.</p>
+            <% If IsBeginEisProcess Then %>
+
+            <% If hidCertifiersCount.Value = 0 Then %>
+            <p class="message-warning">One certifier must be added before proceeding.</p>
+            <% ElseIf hidCertifiersCount.Value > 1 Then %>
+            <p class="message-warning">Only one certifier is allowed.</p>
+            <% End If %>
+
+            <% If hidPreparersCount.Value = 0 Then %>
+            <p class="message-warning">At least one preparer must be added before proceeding.</p>
+            <% ElseIf hidCertifiersCount.Value = 1 Then %>
+            <p class="message-highlight">Verify the CAERS Users below. Make any additions or corrections as needed, then select the Continue button at the bottom of the page.</p>
+            <% End If %>
+
             <% End If %>
 
             <p id="pAddNew" runat="server">
@@ -37,10 +54,10 @@
                 <table class="table-simple table-list">
                     <tr>
                         <th>
-                            <asp:Label ID="lblRoleNew" runat="server"
-                                AssociatedControlID="rRoleNew">CAERS Role</asp:Label>
+                            <asp:Label ID="lblRoleNew" runat="server" AssociatedControlID="rRoleNew">CAERS Role</asp:Label>
                         </th>
                         <td>
+                            <% If hidCertifiersCount.Value = 0 Then %>
                             <asp:RadioButtonList ID="rRoleNew" runat="server" RepeatLayout="Flow" RepeatDirection="Horizontal">
                                 <asp:ListItem>Preparer</asp:ListItem>
                                 <asp:ListItem>Certifier</asp:ListItem>
@@ -48,6 +65,11 @@
                             </asp:RadioButtonList>
                             <asp:RequiredFieldValidator ID="reqvRoleNew" runat="server" ControlToValidate="rRoleNew"
                                 ErrorMessage="The CAERS Role is required.">*</asp:RequiredFieldValidator>
+                            <% Else %>
+                            <asp:RadioButtonList ID="rRolePreparer" runat="server" RepeatLayout="Flow" RepeatDirection="Horizontal" Enabled="false">
+                                <asp:ListItem Selected="True">Preparer</asp:ListItem>
+                            </asp:RadioButtonList>
+                            <% End If %>
                         </td>
                     </tr>
                     <tr>
@@ -198,14 +220,14 @@
                     <asp:TemplateField HeaderText="User">
                         <ItemTemplate>
                             <%# Eval("Honorific") %> <%# Eval("FirstName") %> <%# Eval("LastName") %><br />
-                            <%# Eval("Title") %><br />
+                            <%# If(String.IsNullOrWhiteSpace(Eval("Title").ToString()), "", $"{Eval("Title")}<br />") %>
                             <%# Eval("Company") %>
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Address">
                         <ItemTemplate>
                             <%# Eval("Street") %><br />
-                            <%# Eval("Street2") %><br />
+                            <%# If(String.IsNullOrWhiteSpace(Eval("Street2").ToString()), "", $"{Eval("Street2")}<br />") %>
                             <%# Eval("City")%>, <%# Eval("State") %> <%# Eval("PostalCode") %>
                         </ItemTemplate>
                     </asp:TemplateField>
@@ -374,7 +396,9 @@
                 </p>
             </asp:Panel>
 
-            <% If IsBeginEisProcess Then %>
+            <% If IsBeginEisProcess AndAlso
+                    hidCertifiersCount.Value = 1 AndAlso
+                    hidPreparersCount.Value > 0 Then %>
             <p>
                 <asp:Button ID="btnProceed" runat="server" Text="Confirm CAERS Users and Continue →" CssClass="button-large button-proceed" />
             </p>

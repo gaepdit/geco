@@ -79,8 +79,8 @@ Namespace DAL.EIS
             Return DB.RunCommand(Query, param)
         End Function
 
-        Public Function GetAllCaerContacts(facilityId As ApbFacilityId) As DataTable
-            Return DB.SPGetDataTable("geco.Caer_GetAllContacts", New SqlParameter("@FacilitySiteId", facilityId.ShortString))
+        Public Function GetFacilityCaerContacts(facilityId As ApbFacilityId) As DataTable
+            Return DB.SPGetDataTable("geco.Caer_GetFacilityContacts", New SqlParameter("@FacilitySiteId", facilityId.ShortString))
         End Function
 
         Public Function GetCaerContact(id As Guid) As CaerContact
@@ -121,10 +121,6 @@ Namespace DAL.EIS
             }
 
             Return caerContact
-        End Function
-
-        Public Function CaerContactsExist(facilityId As ApbFacilityId) As Boolean
-            Return DB.SPGetBoolean("geco.Caer_ContactsExist", New SqlParameter("@FacilitySiteId", facilityId.ShortString))
         End Function
 
     End Module

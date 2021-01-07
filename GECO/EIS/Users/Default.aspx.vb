@@ -36,15 +36,18 @@ Public Class EIS_Users_Default
         Master.Master.ClearDefaultButton()
 
         If Not IsPostBack Then
-            LoadDropdownLists()
+            LoadStates()
             LoadCurrentUsers()
         End If
     End Sub
 
     Private Sub LoadCurrentUsers()
-        Dim dt As DataTable = GetAllCaerContacts(CurrentAirs)
+        Dim dt As DataTable = GetFacilityCaerContacts(CurrentAirs)
 
         If dt IsNot Nothing AndAlso dt.Rows.Count > 0 Then
+            hidCertifiersCount.Value = dt.Select($"CaerRole = '{CaerRole.Certifier}'").Length
+            hidPreparersCount.Value = dt.Select($"CaerRole = '{CaerRole.Preparer}'").Length
+
             grdCaersUsers.Visible = True
             grdCaersUsers.DataSource = dt
             grdCaersUsers.DataBind()
@@ -53,36 +56,18 @@ Public Class EIS_Users_Default
             btnAddNew.Visible = True
             btnCancelNew.Visible = True
             pnlAddNew.Visible = False
-
-            If IsBeginEisProcess Then
-                pVerifyUsers.Visible = True
-
-                If CaerContactsExist(CurrentAirs) Then
-                    pAddMore.Visible = False
-                    btnProceed.Visible = True
-                Else
-                    pAddMore.Visible = True
-                    btnProceed.Visible = False
-                End If
-            End If
         Else
+            hidCertifiersCount.Value = 0
+            hidPreparersCount.Value = 0
+
             grdCaersUsers.DataSource = Nothing
             grdCaersUsers.Visible = False
             pNoUsersNotice.Visible = True
 
             btnAddNew.Visible = False
-            pnlAddNew.Visible = True
             btnCancelNew.Visible = False
-
-            pVerifyUsers.Visible = False
-            pAddMore.Visible = True
-            btnProceed.Visible = False
+            pnlAddNew.Visible = True
         End If
-    End Sub
-
-    Private Sub LoadDropdownLists()
-        LoadStates()
-        LoadRoles()
     End Sub
 
     Private Sub LoadStates()
@@ -100,11 +85,6 @@ Public Class EIS_Users_Default
             ddlStateNew.Items.Add(newListItem)
             ddlStateEdit.Items.Add(newListItem)
         Next
-    End Sub
-
-    Private Sub LoadRoles()
-        ddlRoleEdit.Items.Add("Preparer")
-        ddlRoleEdit.Items.Add("Certifier")
     End Sub
 
     ' Delete existing user
@@ -158,16 +138,16 @@ Public Class EIS_Users_Default
         }
 
         Select Case rRoleNew.SelectedValue
-            Case "Preparer"
-                caerContact.CaerRole = CaerRole.Preparer
-                SaveCaerContact(caerContact)
-            Case "Certifier"
+            Case CaerRole.Certifier.ToString
                 caerContact.CaerRole = CaerRole.Certifier
                 SaveCaerContact(caerContact)
             Case "Both"
                 caerContact.CaerRole = CaerRole.Preparer
                 SaveCaerContact(caerContact)
                 caerContact.CaerRole = CaerRole.Certifier
+                SaveCaerContact(caerContact)
+            Case Else
+                caerContact.CaerRole = CaerRole.Preparer
                 SaveCaerContact(caerContact)
         End Select
 
@@ -189,13 +169,15 @@ Public Class EIS_Users_Default
         If user IsNot Nothing AndAlso user.Active Then
             pnlEditUser.Visible = True
             pnlAddNew.Visible = False
+            hidEditId.Value = id.ToString
+            btnAddNew.Visible = False
+            btnProceed.Visible = False
 
             txtStreetEdit.Text = user.Contact.Address.Street
             txtStreet2Edit.Text = user.Contact.Address.Street2
             txtCityEdit.Text = user.Contact.Address.City
             ddlStateEdit.SelectedValue = user.Contact.Address.State
             txtPostalCodeEdit.Text = user.Contact.Address.PostalCode
-
             txtCompanyEdit.Text = user.Contact.Company
             txtEmailEdit.Text = user.Contact.Email
             txtPrefixEdit.Text = user.Contact.Honorific
@@ -204,12 +186,15 @@ Public Class EIS_Users_Default
             txtTelephoneEdit.Text = user.Contact.PhoneNumber
             txtTitleEdit.Text = user.Contact.Title
 
+            ddlRoleEdit.Items.Clear()
+            ddlRoleEdit.Items.Add(CaerRole.Preparer.ToString)
+            If hidCertifiersCount.Value = 0 OrElse user.CaerRole = CaerRole.Certifier Then
+                ddlRoleEdit.Items.Add(CaerRole.Certifier.ToString)
+                ddlRoleEdit.Enabled = True
+            Else
+                ddlRoleEdit.Enabled = False
+            End If
             ddlRoleEdit.SelectedValue = user.CaerRole.ToString()
-
-            hidEditId.Value = id.ToString
-
-            btnAddNew.Visible = False
-            btnProceed.Visible = False
         End If
     End Sub
 
@@ -265,7 +250,7 @@ Public Class EIS_Users_Default
     End Sub
 
     Private Sub btnProceed_Click(sender As Object, e As EventArgs) Handles btnProceed.Click
-        If CaerContactsExist(CurrentAirs) Then
+        If hidCertifiersCount.Value = 1 AndAlso hidPreparersCount.Value >= 1 Then
             SetCookie(Cookie.EiProcess, True.ToString)
             Response.Redirect("~/EIS/Process/")
         End If

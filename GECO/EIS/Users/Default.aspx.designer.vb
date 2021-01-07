@@ -23,22 +23,22 @@ Partial Public Class EIS_Users_Default
     Protected WithEvents updAddNew As Global.System.Web.UI.UpdatePanel
 
     '''<summary>
-    '''pVerifyUsers control.
+    '''hidCertifiersCount control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents pVerifyUsers As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+    Protected WithEvents hidCertifiersCount As Global.System.Web.UI.WebControls.HiddenField
 
     '''<summary>
-    '''pAddMore control.
+    '''hidPreparersCount control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents pAddMore As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+    Protected WithEvents hidPreparersCount As Global.System.Web.UI.WebControls.HiddenField
 
     '''<summary>
     '''pAddNew control.
@@ -102,6 +102,15 @@ Partial Public Class EIS_Users_Default
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents reqvRoleNew As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
+    '''rRolePreparer control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rRolePreparer As Global.System.Web.UI.WebControls.RadioButtonList
 
     '''<summary>
     '''lblPrefixNew control.
