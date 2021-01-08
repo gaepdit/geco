@@ -12,7 +12,7 @@
     <link rel="mask-icon" href="~/assets/epd-favicons/safari-pinned-tab.svg?v=69kRrvbXdL" color="#5bbad5" />
     <link rel="shortcut icon" href="~/favicon.ico?v=69kRrvbXdL" />
     <meta name="theme-color" content="#e5f6fa" />
-    <link href="~/assets/css/site.css?v=20210105" rel="stylesheet" type="text/css" />
+    <link href="~/assets/css/site.css?v=20210108" rel="stylesheet" type="text/css" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Access to various Georgia Air Protection Branch applications">
     <script type="text/javascript">
@@ -29,6 +29,10 @@
     </script>
 </head>
 <body>
+    <% If Environment <> "Production" Then %>
+    <div class="banner-test-site">Test Site</div>
+    <% End If %>
+
     <a class="skipnav" href="#main-content">Skip to main content</a>
     <form id="MainForm" runat="server">
         <asp:ScriptManager ID="ScriptManager1" runat="Server" EnablePartialRendering="true" ScriptMode="Release">

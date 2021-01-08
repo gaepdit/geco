@@ -7,6 +7,7 @@ Partial Class MainMaster
     Public Property IsFacilitySet As Boolean = False
     Public Property IsLoggedIn As Boolean
     Public Property CurrentAirs As ApbFacilityId
+    Public ReadOnly Property Environment As String = ConfigurationManager.AppSettings("GECO_ENVIRONMENT")
 
     Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
         CurrentAirs = If(CurrentAirs, ApbFacilityId.IfValid(GetCookie(Cookie.AirsNumber)))
