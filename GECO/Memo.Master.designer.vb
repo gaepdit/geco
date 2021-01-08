@@ -11,7 +11,7 @@ Option Strict On
 Option Explicit On
 
 
-Partial Public Class Memo
+Partial Public Class MemoLayout
     
     '''<summary>
     '''head control.

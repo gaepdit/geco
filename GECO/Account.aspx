@@ -1,4 +1,4 @@
-<%@ Page Language="VB" MasterPageFile="~/MainMaster.master" AutoEventWireup="false" Inherits="GECO.Account" Title="GECO - Registration" CodeBehind="Account.aspx.vb" %>
+<%@ Page Language="VB" MasterPageFile="~/Main.master" AutoEventWireup="false" Inherits="GECO.Account" Title="GECO - Registration" CodeBehind="Account.aspx.vb" %>
 
 <%@ Register Assembly="MSCaptcha" Namespace="MSCaptcha" TagPrefix="captcha" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="Server">

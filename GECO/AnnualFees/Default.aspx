@@ -1,7 +1,7 @@
-﻿<%@ Page Language="VB" MasterPageFile="~/MainMaster.master" AutoEventWireup="false" Inherits="GECO.AnnualFees_Default" Title="GECO Emissions Fees" CodeBehind="Default.aspx.vb" %>
+﻿<%@ Page Language="VB" MasterPageFile="~/Main.master" AutoEventWireup="false" Inherits="GECO.AnnualFees_Default" Title="GECO Emissions Fees" CodeBehind="Default.aspx.vb" %>
 
 <%@ Import Namespace="GECO" %>
-<%@ MasterType VirtualPath="~/MainMaster.master" %>
+<%@ MasterType VirtualPath="~/Main.master" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="Server">
     <acs:ModalUpdateProgress ID="ModalUpdateProgress1" runat="server" DisplayAfter="1500" BackgroundCssClass="modalProgressGreyBackground">
         <ProgressTemplate>

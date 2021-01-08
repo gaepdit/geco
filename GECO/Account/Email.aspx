@@ -1,6 +1,6 @@
-﻿<%@ Page Title="GECO Account" Language="VB" MasterPageFile="~/MainMaster.master" AutoEventWireup="false" Inherits="GECO.Account_Email" CodeBehind="Email.aspx.vb" %>
+﻿<%@ Page Title="GECO Account" Language="VB" MasterPageFile="~/Main.master" AutoEventWireup="false" Inherits="GECO.Account_Email" CodeBehind="Email.aspx.vb" %>
 
-<%@ MasterType VirtualPath="~/MainMaster.master" %>
+<%@ MasterType VirtualPath="~/Main.master" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="Server">
     <h1>Account</h1>
 

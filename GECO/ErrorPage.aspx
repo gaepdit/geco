@@ -1,7 +1,7 @@
-﻿<%@ Page Language="VB" MasterPageFile="~/MainMaster.master" AutoEventWireup="false"
+﻿<%@ Page Language="VB" MasterPageFile="~/Main.master" AutoEventWireup="false"
     Inherits="GECO.ErrorPage" Title="GECO Error Page" CodeBehind="ErrorPage.aspx.vb" %>
 
-<%@ MasterType VirtualPath="~/MainMaster.master" %>
+<%@ MasterType VirtualPath="~/Main.master" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="Server">
     <div class="content" id="main-content" style="margin: 0; padding: 100px 25px; width: auto; max-width: 600px;">
         <h1>An Error Has Occurred</h1>

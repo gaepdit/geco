@@ -28,9 +28,9 @@ Partial Public Class Http404Page
     '''<remarks>
     '''Auto-generated property.
     '''</remarks>
-    Public Shadows ReadOnly Property Master() As GECO.MainMaster
+    Public Shadows ReadOnly Property Master() As GECO.MainLayout
         Get
-            Return CType(MyBase.Master, GECO.MainMaster)
+            Return CType(MyBase.Master, GECO.MainLayout)
         End Get
     End Property
 End Class

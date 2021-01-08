@@ -592,11 +592,11 @@
     <Compile Include="Global.asax.vb">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="MainMaster.master.designer.vb">
-      <DependentUpon>MainMaster.master</DependentUpon>
+    <Compile Include="Main.master.designer.vb">
+      <DependentUpon>Main.master</DependentUpon>
     </Compile>
-    <Compile Include="MainMaster.master.vb">
-      <DependentUpon>MainMaster.master</DependentUpon>
+    <Compile Include="Main.master.vb">
+      <DependentUpon>Main.master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="NoAccess.aspx.designer.vb">
@@ -630,11 +630,11 @@
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Memo.Master.designer.vb">
-      <DependentUpon>Memo.Master</DependentUpon>
+    <Compile Include="Memo.master.designer.vb">
+      <DependentUpon>Memo.master</DependentUpon>
     </Compile>
-    <Compile Include="Memo.Master.vb">
-      <DependentUpon>Memo.Master</DependentUpon>
+    <Compile Include="Memo.master.vb">
+      <DependentUpon>Memo.master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="TN\Default.aspx.designer.vb">
@@ -897,7 +897,7 @@
   <ItemGroup>
     <Content Include="EIS\eismaster.master" />
     <Content Include="ES\es.master" />
-    <Content Include="MainMaster.master" />
+    <Content Include="Main.master" />
     <Content Include="IP.ashx" />
     <Content Include="GECO.vbproj.vsspell" />
     <Content Include="AnnualFees\FeeAmendmentForm.xlsx" />
@@ -918,7 +918,7 @@
     <None Include="packages.config" />
     <Content Include="vwd.webinfo" />
     <Content Include="Web.config" />
-    <Content Include="Memo.Master" />
+    <Content Include="Memo.master" />
     <None Include="Web.configBuilder.Debug.xml">
       <DependentUpon>Web.configBuilder.xml</DependentUpon>
       <IsTransformFile>true</IsTransformFile>

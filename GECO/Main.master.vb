@@ -1,6 +1,6 @@
 ﻿Imports GECO.GecoModels
 
-Partial Class MainMaster
+Partial Class MainLayout
     Inherits MasterPage
 
     Public ReadOnly Property raygunInfo As New RaygunInfo()

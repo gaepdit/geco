@@ -1,6 +1,6 @@
-﻿<%@ Master Language="VB" MasterPageFile="~/MainMaster.master" AutoEventWireup="false" CodeBehind="EIS.master.vb" Inherits="GECO.EIS" %>
+﻿<%@ Master Language="VB" MasterPageFile="~/Main.master" AutoEventWireup="false" CodeBehind="EIS.master.vb" Inherits="GECO.EIS" %>
 
-<%@ MasterType VirtualPath="~/MainMaster.master" %>
+<%@ MasterType VirtualPath="~/Main.master" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="server">
     <% If IsBeginEisProcess %>
     <h1>Begin Emissions Inventory Process</h1>

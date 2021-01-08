@@ -11,7 +11,7 @@ Option Strict On
 Option Explicit On
 
 
-Partial Public Class MainMaster
+Partial Public Class MainLayout
 
     '''<summary>
     '''MainForm control.

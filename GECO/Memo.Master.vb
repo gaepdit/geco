@@ -1,6 +1,6 @@
 ﻿Imports GECO.DAL
 
-Public Class Memo
+Public Class MemoLayout
     Inherits MasterPage
 
     Public ReadOnly Property raygunInfo As New RaygunInfo()

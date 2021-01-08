@@ -1,7 +1,7 @@
-﻿<%@ Page Title="Georgia EPD Event Details" Language="VB" MasterPageFile="~/MainMaster.master"
+﻿<%@ Page Title="Georgia EPD Event Details" Language="VB" MasterPageFile="~/Main.master"
     AutoEventWireup="false" Inherits="GECO.EventRegistration_EventDetails" CodeBehind="Details.aspx.vb" %>
 
-<%@ MasterType VirtualPath="~/MainMaster.master" %>
+<%@ MasterType VirtualPath="~/Main.master" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="Server">
     <a href="Default.aspx" class="button">← Back to Events List</a>
 

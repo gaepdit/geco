@@ -1,6 +1,6 @@
-﻿<%@ Page Language="vb" MasterPageFile="~/MainMaster.master" AutoEventWireup="false" CodeBehind="Default.aspx.vb" Inherits="GECO.PermitDefault" Title="Air Quality Permits" %>
+﻿<%@ Page Language="vb" MasterPageFile="~/Main.master" AutoEventWireup="false" CodeBehind="Default.aspx.vb" Inherits="GECO.PermitDefault" Title="Air Quality Permits" %>
 
-<%@ MasterType VirtualPath="~/MainMaster.master" %>
+<%@ MasterType VirtualPath="~/Main.master" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="Server">
     <h1>Air Quality Permits and Permit Applications</h1>

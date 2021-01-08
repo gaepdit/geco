@@ -1,7 +1,7 @@
-﻿<%@ Page Title="GECO - Request Facility Access" Language="VB" MasterPageFile="~/MainMaster.master" AutoEventWireup="false"
+﻿<%@ Page Title="GECO - Request Facility Access" Language="VB" MasterPageFile="~/Main.master" AutoEventWireup="false"
     Inherits="GECO.Home_FacilityRequest" CodeBehind="FacilityRequest.aspx.vb" %>
 
-<%@ MasterType VirtualPath="~/MainMaster.master" %>
+<%@ MasterType VirtualPath="~/Main.master" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="Server">
     <h2>GECO Facility Access Request</h2>
 

@@ -1,6 +1,6 @@
-﻿<%@ Page Language="VB" MasterPageFile="~/MainMaster.master" AutoEventWireup="false" Inherits="GECO.Register" Title="GECO - User Registration" CodeBehind="Register.aspx.vb" %>
+﻿<%@ Page Language="VB" MasterPageFile="~/Main.master" AutoEventWireup="false" Inherits="GECO.Register" Title="GECO - User Registration" CodeBehind="Register.aspx.vb" %>
 
-<%@ MasterType VirtualPath="~/MainMaster.master" %>
+<%@ MasterType VirtualPath="~/Main.master" %>
 <%@ Register Assembly="MSCaptcha" Namespace="MSCaptcha" TagPrefix="captcha" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="Server">
     <h2>GECO Registration</h2>

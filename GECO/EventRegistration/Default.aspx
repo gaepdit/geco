@@ -1,7 +1,7 @@
-﻿<%@ Page Title="Georgia EPD Upcoming Events" Language="VB" MasterPageFile="~/MainMaster.master"
+﻿<%@ Page Title="Georgia EPD Upcoming Events" Language="VB" MasterPageFile="~/Main.master"
     AutoEventWireup="false" Inherits="GECO.EventRegistration_Default" CodeBehind="Default.aspx.vb" %>
 
-<%@ MasterType VirtualPath="~/MainMaster.master" %>
+<%@ MasterType VirtualPath="~/Main.master" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="Server">
     <h1>Upcoming classes and workshops offered by Georgia EPD</h1>
 

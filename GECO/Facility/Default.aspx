@@ -1,6 +1,6 @@
-<%@ Page Language="VB" MasterPageFile="~/MainMaster.master" AutoEventWireup="false" Inherits="GECO.FacilityHome" Title="GECO Facility Home" CodeBehind="Default.aspx.vb" %>
+<%@ Page Language="VB" MasterPageFile="~/Main.master" AutoEventWireup="false" Inherits="GECO.FacilityHome" Title="GECO Facility Home" CodeBehind="Default.aspx.vb" %>
 
-<%@ MasterType VirtualPath="~/MainMaster.master" %>
+<%@ MasterType VirtualPath="~/Main.master" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="Server">
     <h1>Facility Home</h1>
 
