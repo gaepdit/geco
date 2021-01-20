@@ -1,4 +1,4 @@
-﻿<%@ Page MasterPageFile="~/EIS/EIS.master" Language="VB" AutoEventWireup="false"
+<%@ Page MasterPageFile="~/EIS/EIS.master" Language="VB" AutoEventWireup="false"
     Title="GECO EIS: Facility Status"
     Inherits="GECO.EIS_Process_Default" CodeBehind="Default.aspx.vb" %>
 
@@ -33,9 +33,8 @@
                 <h2>Facility Emissions Thresholds</h2>
 
                 <p>
-                    The facility is <em><% If Not SummerDayRequired Then %> not <% End If %> 
-                    located in the ozone nonattainment area.</em>
-                    The thresholds in the table below pertain to the facility's location. 
+                    Note that the thresholds below pertain to <em>potential emissions,</em> except for lead.
+                    The threshold for lead (Pb) is based on actual emissions.
                 </p>
 
                 <asp:GridView ID="gThresholds" runat="server" AutoGenerateColumns="false" CssClass="table-simple">
@@ -48,11 +47,6 @@
                         </asp:TemplateField>
                     </Columns>
                 </asp:GridView>
-
-                <p>
-                    Remember that the thresholds pertain to <em>potential emissions,</em> except for lead.
-                    The threshold for lead (Pb) is based on actual emissions.
-                </p>
 
                 <p>
                     <b>Is the facility below <strong>ALL</strong> of the thresholds listed?</b><br />

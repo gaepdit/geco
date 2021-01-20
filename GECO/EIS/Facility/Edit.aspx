@@ -1,4 +1,4 @@
-﻿<%@ Page MasterPageFile="~/EIS/EIS.master" Language="VB" AutoEventWireup="false"
+<%@ Page MasterPageFile="~/EIS/EIS.master" Language="VB" AutoEventWireup="false"
     Title="GECO EIS: Edit Facility Details"
     Inherits="GECO.EIS_Facility_EditPage" CodeBehind="Edit.aspx.vb" %>
 
@@ -27,7 +27,7 @@
         <asp:ValidationSummary ID="ValidationSummary" runat="server" HeaderText="Please correct the following errors:"></asp:ValidationSummary>
 
         <h3>Name and Address</h3>
-        <p>If the facility name or address are incorrect, please contact the Air Protection Branch.</p>
+        <p>If the facility name or address are incorrect, please email <a href="mailto:emissions.inventory@dnr.ga.gov">emissions.inventory@dnr.ga.gov</a>.</p>
         <table class="table-simple table-list">
             <tbody>
                 <tr>

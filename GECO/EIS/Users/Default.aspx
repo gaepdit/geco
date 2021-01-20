@@ -17,9 +17,9 @@
     <% End If %>
 
     <p>
-        Use of CAERS requires at least one certifier and one preparer.
+        Use of CAERS requires only one certifier and at least one preparer
+        (multiple preparers are permitted).
         If a single person serves both roles, they must be added as both.
-        Only one certifier is allowed, but multiple preparers can be added.
     </p>
 
     <asp:UpdatePanel ID="updAddNew" runat="server">

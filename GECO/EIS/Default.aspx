@@ -5,12 +5,12 @@
 <%@ MasterType VirtualPath="~/EIS/EIS.master" %>
 <asp:Content ID="Content" ContentPlaceHolderID="Content" runat="Server">
     <p>
-        Facilities whose potential emissions exceed the thresholds must report their 
+        Facilities whose potential emissions equal or exceed the thresholds must report their 
         actual emissions. For assistance with calculating PTE, please use the        
         <a href="https://epd.georgia.gov/documents/potential-emit-guidelines" target="_blank">Potential 
             to Emit Guidelines</a>.
-        Beginning with the 2019 Emissions Inventory, Georgia will be using the <i>Combined Air Emissions 
-        Reporting System</i> (CAERS) developed by U.S. EPA.
+        Since the 2019 Emissions Inventory, Georgia has used the <i>Combined Air Emissions 
+        Reporting System</i> (<abbr>CAERS</abbr>) developed by U.S. EPA.
     </p>
 
     <div id="dNewProcess" runat="server">
@@ -23,21 +23,35 @@
                     Based on previously available information, the Georgia Air Protection Branch will enroll 
                     facilities that may need to participate in the Emissions Inventory. (If your facility 
                     has not been enrolled, but you believe it should be participating in the EI, please 
-                    contact the APB.)
+                    email <a href="mailto:emissions.inventory@dnr.ga.gov">emissions.inventory@dnr.ga.gov</a>.)
                 </p>
             </li>
             <li>
                 <p>
-                    Begin the EI process below. You will be asked to review basic facility and contact 
-                    information. You will then be asked about facility emissions to determine if 
-                    participation in the Emissions Inventory process is necessary. 
-                    <em>All facilities must complete this step before proceeding to the CAERS.</em>
+                    Begin the EI process below. You will be asked to review basic facility information. 
+                    You will then be asked about facility PTE emissions to determine if participation in the 
+                    Emissions Inventory process is necessary. 
                 </p>
             </li>
             <li>
                 <p>
-                    If it is determined that the facility will participate in the Emissions Inventory 
-                    process, you will be directed to EPA's CAERS to complete the Emissions Inventory.
+                    If it is determined that the facility will participate in the Emissions Inventory process, 
+                    you will be directed to provide preparer and certifier information. If it is determined 
+                    that the facility will not participate in the Emissions Inventory process, the facility 
+                    will be complete with the 2020 Emissions Inventory, and steps 4 and 5 can be ignored.
+                </p>
+            </li>
+            <li>
+                <p>
+                    For facilities new to CDX/CAERS: Once you provide preparer and certifier information, you 
+                    will be directed to EPA’s CDX to provide the same information. For facilities who 
+                    participated in the 2019 EI, skip this step unless a new preparer/certifier needs to be added.
+                </p>
+            </li>
+            <li>
+                <p>
+                    A notification will be sent in March indicating when facilities can begin their 2020 
+                    Emissions Inventory.
                 </p>
             </li>
         </ol>
@@ -76,7 +90,7 @@
                     <ol>
                         <li>Register in CDX using the link below.</li>
                         <li>Set up CAERS in CDX.</li>
-                        <li>Await the approval email from CAERS that your account is linked to the correct facilities.</li>
+                        <li>Await approval that your CAERS account is linked to the correct facilities.</li>
                     </ol>
                     <p>
                         <asp:HyperLink ID="CdxLink" runat="server" Text="Link to EPA CDX" Target="_blank" CssClass="button" />
