@@ -32,7 +32,7 @@ Partial Class EIS_Facility_EditPage
         Dim eiStatus As EisStatus = GetEiStatus(CurrentAirs)
         If eiStatus.AccessCode > 1 Then Response.Redirect("~/EIS/Facility/")
 
-        If GetCookie(Cookie.EiProcess) IsNot Nothing Then
+        If Session("EisProcessStarted") IsNot Nothing Then
             IsBeginEisProcess = True
             Master.IsBeginEisProcess = True
             SetUpEisProcess()
@@ -325,10 +325,10 @@ Partial Class EIS_Facility_EditPage
             SaveAPBContactInformation()
 
             If IsBeginEisProcess Then
-                SetCookie(Cookie.EiProcess, True.ToString)
-                Response.Redirect("~/EIS/Users/")
+                Response.Redirect("~/EIS/Process/")
             Else
-                Response.Redirect("~/EIS/Facility?updated=true")
+                Session("FacilityUpdated") = True.ToString
+                Response.Redirect("~/EIS/Facility")
             End If
         End If
 
@@ -611,8 +611,8 @@ Partial Class EIS_Facility_EditPage
 
         If latitude <> 0 AndAlso longitude <> 0 Then
             GMap.Center = LatLng.Create(latitude, longitude)
-            txtMapLat.Text = latitude.ToString().Left(8)
-            txtMapLon.Text = longitude.ToString().Left(9)
+            txtMapLat.Text = Left(latitude.ToString(), 8)
+            txtMapLon.Text = Left(longitude.ToString(), 9)
         Else
             Dim dr As DataRow = GetEisFacilityDetails(CurrentAirs)
 
@@ -645,8 +645,8 @@ Partial Class EIS_Facility_EditPage
 
         GMap.Overlays.Clear()
 
-        Dim latitude As String = e.Coordinates.Latitude.ToString.Left(8)
-        Dim longitude As String = e.Coordinates.Longitude.ToString.Left(9)
+        Dim latitude As String = Left(e.Coordinates.Latitude.ToString, 8)
+        Dim longitude As String = Left(e.Coordinates.Longitude.ToString, 9)
 
         Dim myOverlay As New Marker(New Guid(), latitude, longitude)
         GMap.Overlays.Add(myOverlay)

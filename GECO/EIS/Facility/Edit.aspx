@@ -1,4 +1,4 @@
-<%@ Page MasterPageFile="~/EIS/EIS.master" Language="VB" AutoEventWireup="false"
+﻿<%@ Page MasterPageFile="~/EIS/EIS.master" Language="VB" AutoEventWireup="false"
     Title="GECO EIS: Edit Facility Details"
     Inherits="GECO.EIS_Facility_EditPage" CodeBehind="Edit.aspx.vb" %>
 
@@ -8,8 +8,9 @@
     <% If IsBeginEisProcess %>
     <ul class="form-progress">
         <li class="current">Facility Information</li>
-        <li>CAERS Users</li>
         <li>Facility Status</li>
+        <li>CAERS Users</li>
+        <li>Submit</li>
     </ul>
 
     <h2>Verify Facility Information</h2>
@@ -427,6 +428,9 @@
         </table>
 
         <p>
+            <% If IsBeginEisProcess Then %>
+            <a href="<%= Page.ResolveUrl("~/EIS/") %>" class="button button-large button-cancel">Cancel</a>
+            <% End If %>
             <asp:Button ID="btnSave" runat="server" Text="Save" CssClass="button-large" />
             <% If Not IsBeginEisProcess Then %>
             <a href="<%= Page.ResolveUrl("~/EIS/Facility/") %>" class="button button-large button-cancel">Cancel</a>

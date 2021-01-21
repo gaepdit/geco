@@ -6,9 +6,10 @@
 <asp:Content ID="Content" ContentPlaceHolderID="Content" runat="Server">
     <% If IsBeginEisProcess %>
     <ul class="form-progress">
-        <li class="done">Facility Information</li>
+        <li class="done"><a href="<%= Page.ResolveUrl("~/EIS/Facility/Edit.aspx") %>">Facility Information</a></li>
+        <li class="done"><a href="<%= Page.ResolveUrl("~/EIS/Process/") %>">Facility Status</a></li>
         <li class="current">CAERS Users</li>
-        <li>Facility Status</li>
+        <li>Submit</li>
     </ul>
 
     <h2>Verify CAERS Users</h2>

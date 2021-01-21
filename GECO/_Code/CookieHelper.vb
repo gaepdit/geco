@@ -8,7 +8,6 @@ Public Module CookieHelper
 
     Public Enum Cookie
         AirsNumber
-        EiProcess
     End Enum
 
     Public Enum EisCookie

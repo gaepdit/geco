@@ -24,7 +24,8 @@ Partial Class EIS_Facility_Default
         Dim eiStatus As EisStatus = GetEiStatus(CurrentAirs)
         If eiStatus.AccessCode > 1 Then btnEdit.Visible = False
 
-        If Request.QueryString("updated") IsNot Nothing AndAlso Request.QueryString("updated") = "true" Then
+        If Session("FacilityUpdated") = True.ToString Then
+            Session("FacilityUpdated") = Nothing
             updateMessage.Visible = True
         End If
 

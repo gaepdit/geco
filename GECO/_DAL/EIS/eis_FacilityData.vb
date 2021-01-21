@@ -1,4 +1,4 @@
-﻿Imports System.Data.SqlClient
+Imports System.Data.SqlClient
 Imports GECO.GecoModels
 
 Public Module eis_FacilityData
@@ -101,18 +101,18 @@ Public Module eis_FacilityData
         End If
 
         Dim params As SqlParameter() = {
-            New SqlParameter("@ContactPrefix", ContactPrefix.Left(15)),
-            New SqlParameter("@ContactFirstName", ContactFirstName.Left(35)),
-            New SqlParameter("@ContactLastName", ContactLastName.Left(35)),
-            New SqlParameter("@ContactTitle", ContactTitle.Left(100)),
-            New SqlParameter("@ContactEmail", ContactEmail.Left(50)),
-            New SqlParameter("@ContactAddress1", ContactAddress1.Left(100)),
-            New SqlParameter("@ContactAddress2", ContactAddress2.Left(50)),
-            New SqlParameter("@ContactCity", ContactCity.Left(60)),
-            New SqlParameter("@ContactState", ContactState.Left(2)),
-            New SqlParameter("@ContactZipCode", ContactZipCode.Left(10)),
-            New SqlParameter("@contactComment", ContactComment.Left(400)),
-            New SqlParameter("@UpdateUser", UpdateUser.Left(250)),
+            New SqlParameter("@ContactPrefix", Left(ContactPrefix, 15)),
+            New SqlParameter("@ContactFirstName", Left(ContactFirstName, 35)),
+            New SqlParameter("@ContactLastName", Left(ContactLastName, 35)),
+            New SqlParameter("@ContactTitle", Left(ContactTitle, 100)),
+            New SqlParameter("@ContactEmail", Left(ContactEmail, 50)),
+            New SqlParameter("@ContactAddress1", Left(ContactAddress1, 100)),
+            New SqlParameter("@ContactAddress2", Left(ContactAddress2, 50)),
+            New SqlParameter("@ContactCity", Left(ContactCity, 60)),
+            New SqlParameter("@ContactState", Left(ContactState, 2)),
+            New SqlParameter("@ContactZipCode", Left(ContactZipCode, 10)),
+            New SqlParameter("@contactComment", Left(ContactComment, 400)),
+            New SqlParameter("@UpdateUser", Left(UpdateUser, 250)),
             New SqlParameter("@FacilitySiteID", FacilitySiteID)
         }
 

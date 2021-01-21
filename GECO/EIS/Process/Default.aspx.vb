@@ -1,4 +1,5 @@
 ﻿Imports GECO.GecoModels
+Imports GECO.GecoModels.EIS
 
 Public Class EIS_Process_Default
     Inherits Page
@@ -9,7 +10,7 @@ Public Class EIS_Process_Default
     Public Property Participating As Integer
 
     Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
-        If GetCookie(Cookie.EiProcess) Is Nothing Then
+        If Session("EisProcessStarted") Is Nothing Then
             Response.Redirect("~/EIS/")
         End If
 
@@ -23,11 +24,68 @@ Public Class EIS_Process_Default
 
         CurrentAirs = New ApbFacilityId(airs)
         Master.CurrentAirs = CurrentAirs
-        Master.SelectedTab = EIS.EisTab.Users
         Master.IsBeginEisProcess = True
 
         EiStatus = GetEiStatus(CurrentAirs)
         SummerDayRequired = CheckSummerDayRequired(CurrentAirs)
+
+        If Not IsPostBack AndAlso Session("EisProcess") IsNot Nothing Then
+            LoadCurrentData()
+        End If
+    End Sub
+
+    Private Sub LoadCurrentData()
+        Dim process As EisProcess = CType(Session("EisProcess"), EisProcess)
+
+        If process IsNot Nothing Then
+            txtComment.Text = process.AdminComment
+
+            Select Case process.Opted
+                Case OptedInOut.DidNotOperate
+                    rOperate.SelectedIndex = 1
+                    rThresholds.SelectedIndex = -1
+                    pnlColocate.Visible = True
+                    pnlEmissions.Visible = False
+                    Select Case process.Colocated
+                        Case True
+                            rColocated.SelectedIndex = 0
+                            pnlColocatedWith.Visible = True
+                            txtColocatedWith.Text = process.Colocation
+                        Case False
+                            rColocated.SelectedIndex = 1
+                            pnlColocatedWith.Visible = False
+                        Case Else
+                            rColocated.SelectedIndex = -1
+                            pnlColocatedWith.Visible = False
+                    End Select
+                Case OptedInOut.BelowThresholds
+                    rOperate.SelectedIndex = 0
+                    rThresholds.SelectedIndex = 0
+                    pnlColocate.Visible = True
+                    pnlEmissions.Visible = True
+                    LoadEmissionsThresholds()
+                    Select Case process.Colocated
+                        Case True
+                            rColocated.SelectedIndex = 0
+                            txtColocatedWith.Text = process.Colocation
+                            pnlColocatedWith.Visible = True
+                        Case False
+                            rColocated.SelectedIndex = 1
+                            pnlColocatedWith.Visible = False
+                        Case Else
+                            rColocated.SelectedIndex = -1
+                            pnlColocatedWith.Visible = False
+                    End Select
+                Case OptedInOut.OptedIn
+                    rOperate.SelectedIndex = 0
+                    rThresholds.SelectedIndex = 1
+                    pnlColocate.Visible = False
+                    pnlEmissions.Visible = True
+                    LoadEmissionsThresholds()
+            End Select
+
+            pnlContinue.Visible = True
+        End If
     End Sub
 
     Private Sub LoadEmissionsThresholds()
@@ -71,66 +129,48 @@ Public Class EIS_Process_Default
     End Sub
 
     Private Sub btnContinue_Click(sender As Object, e As EventArgs) Handles btnContinue.Click
-        pnlContinue.Visible = False
-        pnlSubmit.Visible = True
+        SaveAndContinue()
+    End Sub
+
+    Private Sub SaveAndContinue()
+        Dim opted As OptedInOut
+        Dim colocated As Boolean?
+        Dim colocation As String
 
         If rOperate.SelectedValue = "No" Then
             ' Facility opted out because it did not operate
-            Participating = 1
+            opted = OptedInOut.DidNotOperate
+            colocated = (rColocated.SelectedValue = "Yes")
+            colocation = If(colocated, txtColocatedWith.Text, Nothing)
         ElseIf rThresholds.SelectedValue = "Yes" Then
             ' Facility opted out because emissions are below threshold
-            Participating = 2
+            opted = OptedInOut.BelowThresholds
+            colocated = (rColocated.SelectedValue = "Yes")
+            colocation = If(colocated, txtColocatedWith.Text, Nothing)
         Else
             ' Facility opted in
-            Participating = 3
+            opted = OptedInOut.OptedIn
+            colocated = Nothing
+            colocation = Nothing
         End If
 
-        EnableDisableControls(False)
-    End Sub
+        Dim process = New EisProcess With {
+            .FacilitySiteId = CurrentAirs,
+            .InventoryYear = EiStatus.MaxYear,
+            .AdminComment = Left(txtComment.Text, 4000),
+            .Opted = opted,
+            .Colocated = colocated,
+            .Colocation = colocation,
+            .UpdateUser = GetCurrentUser().DbUpdateUser
+        }
 
-    Private Sub btnCancel_Click(sender As Object, e As EventArgs) Handles btnCancel.Click
-        pnlContinue.Visible = True
-        pnlSubmit.Visible = False
+        Session("EisProcess") = process
 
-        EnableDisableControls(True)
-    End Sub
-
-    Private Sub EnableDisableControls(enable As Boolean)
-        rOperate.Enabled = enable
-        txtComment.Enabled = enable
-        rThresholds.Enabled = enable
-        rColocated.Enabled = enable
-        txtColocatedWith.Enabled = enable
-    End Sub
-
-    Private Sub btnSubmit_Click(sender As Object, e As EventArgs) Handles btnSubmit.Click
-        SaveAndSubmit()
-    End Sub
-
-    Private Sub SaveAndSubmit()
-        Dim currentUser As GecoUser = GetCurrentUser()
-        Dim year As Integer = EiStatus.MaxYear
-
-        Dim colocated As Boolean = (rColocated.SelectedValue = "Yes")
-        Dim colocation As String = If(colocated, txtColocatedWith.Text, Nothing)
-
-        ' Save FacilityStatus as OP even if not
-        SaveEisFacilityStatus(CurrentAirs, FacilitySiteStatusCode.OP, currentUser.DbUpdateUser, year)
-        SaveAdminComment(CurrentAirs, year, txtComment.Text)
-
-        If rOperate.SelectedValue = "No" Then
-            ' Facility opted out because it did not operate
-            SaveEisOptOut(CurrentAirs, True, currentUser.DbUpdateUser, year, "1", colocated, colocation)
-        ElseIf rThresholds.SelectedValue = "Yes" Then
-            ' Facility opted out because emissions are below threshold
-            SaveEisOptOut(CurrentAirs, True, currentUser.DbUpdateUser, year, "2", colocated, colocation)
+        If opted = OptedInOut.OptedIn Then
+            Response.Redirect("~/EIS/Users/")
         Else
-            ' Facility opted in
-            SaveEisOptOut(CurrentAirs, False, currentUser.DbUpdateUser, year)
+            Response.Redirect("~/EIS/Process/Submit.aspx")
         End If
-
-        ClearCookie(Cookie.EiProcess)
-        Response.Redirect("~/EIS/")
     End Sub
 
 End Class

@@ -89,7 +89,7 @@ Public Module eis_reportingperiod
 
         If colocated AndAlso Not String.IsNullOrWhiteSpace(colocation) Then
             'Send email to APB
-            Dim airs As String = New ApbFacilityId(fsid).FormattedString
+            Dim airs As String = fsid.FormattedString
             Dim facilityName As String = GetFacilityName(fsid)
             Dim reason As String = DecodeOptOutReason(ooreason)
 

@@ -1,13 +1,14 @@
-<%@ Page MasterPageFile="~/EIS/EIS.master" Language="VB" AutoEventWireup="false"
+﻿<%@ Page MasterPageFile="~/EIS/EIS.master" Language="VB" AutoEventWireup="false"
     Title="GECO EIS: Facility Status"
     Inherits="GECO.EIS_Process_Default" CodeBehind="Default.aspx.vb" %>
 
 <%@ MasterType VirtualPath="~/EIS/EIS.master" %>
 <asp:Content ID="Content3" ContentPlaceHolderID="Content" runat="Server">
     <ul class="form-progress">
-        <li class="done">Facility Information</li>
-        <li class="done">CAERS Users</li>
+        <li class="done"><a href="<%= Page.ResolveUrl("~/EIS/Facility/Edit.aspx") %>">Facility Information</a></li>
         <li class="current">Facility Status</li>
+        <li>CAERS Users</li>
+        <li>Submit</li>
     </ul>
 
     <asp:UpdatePanel ID="UpdatePanel" runat="server">
@@ -91,27 +92,6 @@
                 </p>
             </asp:Panel>
 
-            <asp:Panel ID="pnlSubmit" runat="server" Visible="false">
-                <h2>Submittal</h2>
-
-                <p class="message-highlight">
-                    Status:
-                    <% If Participating = 1 Then %>
-                    The facility <em>will not</em> participate in the <%=EiStatus.MaxYear %> Emissions Inventory because it did not operate.
-                    <% ElseIf Participating = 2 Then %>
-                    The facility <em>will not</em> participate in the <%=EiStatus.MaxYear %> Emissions Inventory because all emissions were below the thresholds.
-                    <% ElseIf Participating = 3 Then %>
-                    The facility <em>will</em> participate in the <%=EiStatus.MaxYear %> Emissions Inventory.
-                    <% End If %>
-                </p>
-
-                <p>Click "Submit" to submit your selections, or click Cancel to make changes.</p>
-                <p>
-                    <asp:Button ID="btnSubmit" runat="server" Text="Submit" CssClass="button-large button-proceed" />
-                    <asp:Button ID="btnCancel" runat="server" Text="Cancel" CssClass="button-large button-cancel" />
-                </p>
-            </asp:Panel>
         </ContentTemplate>
     </asp:UpdatePanel>
-
 </asp:Content>

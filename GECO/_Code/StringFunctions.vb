@@ -42,7 +42,6 @@ Public Module StringFunctions
         Return s
     End Function
 
-    <Extension()>
     Public Function Left(s As String, length As Integer) As String
         If s Is Nothing Then
             Return String.Empty

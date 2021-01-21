@@ -66,7 +66,7 @@ Namespace DAL.EIS
                 New SqlParameter("@FacilityMailingAddressCity", address.City),
                 New SqlParameter("@FacilityMailingAddressState", address.State),
                 New SqlParameter("@FacilityMailingAddressZip", address.PostalCode),
-                New SqlParameter("@FacilityMailingAddressComment", comment.Left(400)),
+                New SqlParameter("@FacilityMailingAddressComment", Left(comment, 400)),
                 New SqlParameter("@UpdateUser", user.DbUpdateUser),
                 New SqlParameter("@FacilitySiteID", airs.ShortString)
             }
@@ -90,7 +90,7 @@ Namespace DAL.EIS
             Dim params As SqlParameter() = {
                 New SqlParameter("@facilityDescription", description),
                 New SqlParameter("@NAICScode", naics),
-                New SqlParameter("@facilityComment", comment.Left(400)),
+                New SqlParameter("@facilityComment", Left(comment, 400)),
                 New SqlParameter("@UpdateUser", user.DbUpdateUser),
                 New SqlParameter("@FacilitySiteID", airs.ShortString)
             }
@@ -109,7 +109,7 @@ Namespace DAL.EIS
                     " where FACILITYSITEID = @FacilitySiteID "
 
             Dim params = {
-                    New SqlParameter("@GeographicComment", comment.Left(200)),
+                    New SqlParameter("@GeographicComment", Left(comment, 200)),
                     New SqlParameter("@UpdateUser", user.DbUpdateUser),
                     New SqlParameter("@FacilitySiteID", airs.ShortString)
                 }

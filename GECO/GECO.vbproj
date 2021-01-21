@@ -175,6 +175,7 @@
     <Content Include="EIS\History\EmissionUnits.aspx" />
     <Content Include="EIS\History\ReleasePoints.aspx" />
     <Content Include="EIS\Process\Default.aspx" />
+    <Content Include="EIS\Process\Submit.aspx" />
     <Content Include="EIS\Users\Default.aspx" />
     <Content Include="Home\FacilityRequest.aspx" />
     <Content Include="assets\css\eis_styles.css" />
@@ -393,6 +394,13 @@
     </Compile>
     <Compile Include="EIS\Process\Default.aspx.vb">
       <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="EIS\Process\Submit.aspx.designer.vb">
+      <DependentUpon>Submit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EIS\Process\Submit.aspx.vb">
+      <DependentUpon>Submit.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="EIS\Users\Default.aspx.designer.vb">
@@ -660,6 +668,7 @@
     </Compile>
     <Compile Include="_DAL\EIS\CaerContacts.vb" />
     <Compile Include="_DAL\EIS\Facility.vb" />
+    <Compile Include="_DAL\EIS\Process.vb" />
     <Compile Include="_DAL\Facility\FacilityContacts.vb" />
     <Compile Include="_Models\AnnualFees\AnnualFeeCalc.vb" />
     <Compile Include="_Code\ControlMethods.vb" />
@@ -706,6 +715,7 @@
     <Compile Include="_DAL\Logging\EmailLog.vb" />
     <Compile Include="_DAL\Organization\Organization.vb" />
     <Compile Include="_Models\EIS\CaerContact.vb" />
+    <Compile Include="_Models\EIS\EisProcess.vb" />
     <Compile Include="_Models\Finance\DepositApplied.vb" />
     <Compile Include="_DAL\Finance\Invoices.vb" />
     <Compile Include="_DAL\Finance\ApplicationFees.vb" />

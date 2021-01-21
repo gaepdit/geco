@@ -1089,6 +1089,27 @@ button:disabled,
         content: '▶ ';
     }
 
+    .form-progress .skipped {
+        color: #666;
+    }
+
+        .form-progress .skipped::before {
+            content: '✗ ';
+        }
+
+    .form-progress a {
+        color: #0000EE;
+        text-decoration: none;
+    }
+
+        .form-progress a:hover, .form-progress a:focus {
+            color: #0066ee;
+        }
+
+        .form-progress a:active {
+            color: #CC0000;
+        }
+
 /* Panel */
 .panel {
     border-radius: 9px;

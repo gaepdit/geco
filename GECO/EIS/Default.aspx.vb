@@ -7,7 +7,8 @@ Public Class EIS_Default
     Public Property EiStatus As EisStatus
 
     Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
-        ClearCookie(Cookie.EiProcess)
+        Session("EisProcessStarted") = Nothing
+        Session("EisProcess") = Nothing
         MainLoginCheck()
 
         If IsPostBack Then
@@ -295,7 +296,7 @@ Public Class EIS_Default
     End Sub
 
     Private Sub btnBeginEiProcess_Click(sender As Object, e As EventArgs) Handles btnBeginEiProcess.Click
-        SetCookie(Cookie.EiProcess, True.ToString)
+        Session("EisProcessStarted") = True.ToString
         Response.Redirect("~/EIS/Facility/Edit.aspx")
     End Sub
 

@@ -21,7 +21,11 @@ Public Class EIS_Users_Default
         Master.CurrentAirs = CurrentAirs
         Master.SelectedTab = EIS.EisTab.Users
 
-        If GetCookie(Cookie.EiProcess) IsNot Nothing Then
+        If Session("EisProcessStarted") IsNot Nothing Then
+            If Session("EisProcess") Is Nothing Then
+                Response.Redirect("~/EIS/")
+            End If
+
             IsBeginEisProcess = True
             Master.IsBeginEisProcess = True
         End If
@@ -251,8 +255,7 @@ Public Class EIS_Users_Default
 
     Private Sub btnProceed_Click(sender As Object, e As EventArgs) Handles btnProceed.Click
         If hidCertifiersCount.Value = 1 AndAlso hidPreparersCount.Value >= 1 Then
-            SetCookie(Cookie.EiProcess, True.ToString)
-            Response.Redirect("~/EIS/Process/")
+            Response.Redirect("~/EIS/Process/Submit.aspx")
         End If
     End Sub
 

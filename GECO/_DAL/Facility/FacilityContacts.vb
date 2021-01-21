@@ -107,7 +107,7 @@ Namespace DAL.Facility
                 New SqlParameter("@ContactZipCode", Replace(zipCode, "-", "")),
                 New SqlParameter("@CompanyName", companyName),
                 New SqlParameter("@IAIPUserID", updateUserId),
-                New SqlParameter("@contactComment", comment.Left(400))
+                New SqlParameter("@contactComment", Left(comment, 400))
             }
 
             Return DB.RunCommand(query, params)
