@@ -12,8 +12,7 @@
     <link rel="shortcut icon" href="~/favicon.ico?v=69kRrvbXdL" />
     <meta name="theme-color" content="#e5f6fa" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/8.0.0/sanitize.min.css" integrity="sha256-gk3z+XTkT2rjrvAxcKDA15OH4w1FssyEwnSC3WnKbWU=" crossorigin="anonymous" />
-    <link rel="stylesheet" href="assets/css/memo.css?v=20191009" />
-    <link rel="stylesheet" href="assets/css/memo-print.css?v=20191009" media="print" />
+    <link rel="stylesheet" href="assets/css/memo.css?v=202101221" />
     <asp:ContentPlaceHolder ID="head" runat="server"></asp:ContentPlaceHolder>
     <script type="text/javascript">
         !function (a, b, c, d, e, f, g, h) {
@@ -31,7 +30,7 @@
 <body>
     <form id="form1" runat="server">
         <div class="toolbar" runat="server" visible="<%# MemoPageCount > 0 %>">
-            <%= PageCountDisplay() %>
+            <%= PageCountDisplay %>
             <button onclick="window.print(); return false;">🖨️ Print</button>
         </div>
 

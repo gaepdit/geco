@@ -1,24 +1,12 @@
-﻿Imports GECO.DAL
-
-Public Class MemoLayout
+﻿Public Class MemoLayout
     Inherits MasterPage
 
-    Public ReadOnly Property raygunInfo As New RaygunInfo()
-    Public Property EpdDirector As String
+    Protected ReadOnly Property raygunInfo As New RaygunInfo()
     Public Property MemoPageCount As Integer
-
-    Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
-        If Not IsPostBack Then
-            EpdDirector = GetManagerName("EpdDirector")
-        End If
-    End Sub
-
-    Protected Function PageCountDisplay() As String
-        If MemoPageCount > 1 Then
-            Return "(" & MemoPageCount & " pages)"
-        End If
-
-        Return ""
-    End Function
+    Protected ReadOnly Property PageCountDisplay As String
+        Get
+            Return If(MemoPageCount > 1, $"({MemoPageCount} pages)", "")
+        End Get
+    End Property
 
 End Class
