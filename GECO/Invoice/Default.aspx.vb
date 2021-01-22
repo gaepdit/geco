@@ -33,11 +33,10 @@ Public Class InvoiceDefault
                 Integer.TryParse(Request.QueryString("FeeYear"), FeeYear) AndAlso
                 ApbFacilityId.TryParse(Request.QueryString("Facility"), FacilityID) Then
 
-                If Request.QueryString("InvoiceId") IsNot Nothing Then
-#Disable Warning S1481 ' Unused local variables should be removed
-                    ' If TryParse fails, InvoiceId already set = 0
-                    Dim unused = Integer.TryParse(Request.QueryString("InvoiceId"), InvoiceId)
-#Enable Warning S1481 ' Unused local variables should be removed
+                ' If TryParse fails, set InvoiceId = 0
+                If Request.QueryString("InvoiceId") IsNot Nothing AndAlso
+                    Not Integer.TryParse(Request.QueryString("InvoiceId"), InvoiceId) Then
+                    InvoiceId = 0
                 End If
 
                 Invoices = GetEmissionFeeInvoices(FeeYear, FacilityID, InvoiceId)

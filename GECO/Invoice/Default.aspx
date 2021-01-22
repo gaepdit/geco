@@ -13,20 +13,11 @@
             <div class="wrapper">
                 <header class="grid">
                     <div class="grid__item">
-                        <asp:Image runat="server" CssClass="logo" ImageUrl="~/assets/images/epd-logo.png" />
+                        <asp:Image runat="server" CssClass="logo" ImageUrl="~/assets/images/epd-logo.png" AlternateText="Georgia Environmental Protection Division" />
                     </div>
-                    <div class="grid__item grid__item_right">
-                        <address class="inside-address">
-                            <div class="director"><%= Master.EpdDirector %></div>
-                            <div class="branch">
-                                Air Protection Branch
-                            </div>
-                            <div>
-                                4244 International Parkway, Suite 120<br />
-                                Atlanta, Georgia 30354<br />
-                                (404) 363-7000
-                            </div>
-                        </address>
+                    <div class="grid__item">
+                        <h1><%# DisplayObject(Eval("InvoiceID"), "Invoice #{0}") %></h1>
+                        <h2>Due Date: <%# DisplayDate(Eval("DueDate")) %></h2>
                     </div>
                 </header>
 
@@ -39,36 +30,22 @@
 
                 <div class="grid">
                     <div class="grid__item">
-                        <h1><%# DisplayObject(Eval("InvoiceID"), "Invoice #{0}") %></h1>
-
                         <table class="table-list">
                             <tr>
-                                <th scope="row">Invoice Date</th>
-                                <td><%# DisplayDate(Eval("InvoiceDate")) %></td>
+                                <th scope="row">Facility</th>
+                                <td><%# DirectCast(Container.DataItem, Invoice).FacilityName %></td>
                             </tr>
-                            <tr>
-                                <th scope="row">Due Date</th>
-                                <td><%# DisplayDate(Eval("DueDate")) %></td>
-                            </tr>
-                            <tr>
-                                <th scope="row">For</th>
-                                <td>
-                                    <%# DisplayWhatFor(Container.DataItem) %><br />
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-                    <div class="grid__item">
-                        <h2>Bill To:</h2>
-
-                        <table class="table-list">
                             <tr>
                                 <th scope="row">AIRS #</th>
                                 <td><%# DirectCast(Container.DataItem, Invoice).FacilityID.FormattedString() %></td>
                             </tr>
                             <tr>
-                                <th scope="row">Facility</th>
-                                <td><%# DirectCast(Container.DataItem, Invoice).FacilityName %></td>
+                                <th scope="row">Invoice Date</th>
+                                <td><%# DisplayDate(Eval("InvoiceDate")) %></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Invoice For</th>
+                                <td><%# DisplayWhatFor(Container.DataItem) %></td>
                             </tr>
                         </table>
                     </div>
@@ -85,7 +62,7 @@
                 </asp:GridView>
 
                 <asp:Panel ID="pnlPayments" runat="server"
-                    Visible="<%# DirectCast(Container.DataItem, Invoice).DepositsApplied.Count > 0 %>">
+                    Visible="<%# Not DirectCast(Container.DataItem, Invoice).Voided AndAlso DirectCast(Container.DataItem, Invoice).DepositsApplied.Count > 0 %>">
                     <h2>Payments Applied</h2>
                     <asp:GridView ID="grdPayments" runat="server" CssClass="table-simple table-full-width table-accounting"
                         AutoGenerateColumns="False" ShowFooter="true" RowHeaderColumn="Description" UseAccessibleHeader="true"

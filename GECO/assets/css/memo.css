@@ -22,7 +22,7 @@ body {
 h1 {
     font-size: 1.8em;
     line-height: 1.125;
-    margin: .5em 0;
+    margin: 5px 0 .5em;
 }
 
 h2 {
@@ -41,7 +41,7 @@ h2 {
 }
 
 .grid__item {
-    flex: 1 0 auto;
+    flex: 0 1 auto;
 }
 
 .grid__item_right {
@@ -54,24 +54,7 @@ h2 {
     width: 100%;
     max-width: 300px;
     min-width: 50px;
-}
-
-.inside-address {
-    display: inline-block;
-    text-align: left;
-    margin-top: .5em;
-}
-
-.director {
-    font-weight: bold;
-    font-size: large;
-    padding-bottom: .5em;
-    border-bottom: 1px solid;
-    margin-bottom: .5em;
-}
-
-.branch {
-    font-weight: bold;
+    padding-right: 10px;
 }
 
 /* Toolbar */
