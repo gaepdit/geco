@@ -166,7 +166,6 @@
     <Content Include="assets\images\epd-icon.png" />
     <Content Include="Home\FacilityRequest.aspx" />
     <Content Include="assets\css\eis_styles.css" />
-    <Content Include="assets\css\memo-print.css" />
     <Content Include="assets\css\memo.css" />
     <Content Include="assets\images\epd-logo.png" />
     <Content Include="assets\css\site.css" />

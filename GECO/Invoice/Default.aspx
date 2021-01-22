@@ -15,7 +15,7 @@
                     <div class="grid__item">
                         <asp:Image runat="server" CssClass="logo" ImageUrl="~/assets/images/epd-logo.png" AlternateText="Georgia Environmental Protection Division" />
                     </div>
-                    <div class="grid__item">
+                    <div class="grid__item grid__item_right">
                         <h1><%# DisplayObject(Eval("InvoiceID"), "Invoice #{0}") %></h1>
                         <h2>Due Date: <%# DisplayDate(Eval("DueDate")) %></h2>
                     </div>
