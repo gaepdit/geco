@@ -30,13 +30,6 @@ Public Class EIS_Users_Default
             Master.IsBeginEisProcess = True
         End If
 
-        Dim eiStatus As EisStatus = GetEiStatus(CurrentAirs)
-
-        If eiStatus.AccessCode > 1 Then
-            pAddNew.Visible = False
-            grdCaersUsers.Columns.RemoveAt(grdCaersUsers.Columns.Count - 1)
-        End If
-
         Master.Master.ClearDefaultButton()
 
         If Not IsPostBack Then
@@ -57,7 +50,7 @@ Public Class EIS_Users_Default
             grdCaersUsers.DataBind()
             pNoUsersNotice.Visible = False
 
-            btnAddNew.Visible = True
+            pAddNew.Visible = True
             btnCancelNew.Visible = True
             pnlAddNew.Visible = False
         Else
@@ -68,7 +61,7 @@ Public Class EIS_Users_Default
             grdCaersUsers.Visible = False
             pNoUsersNotice.Visible = True
 
-            btnAddNew.Visible = False
+            pAddNew.Visible = False
             btnCancelNew.Visible = False
             pnlAddNew.Visible = True
         End If
@@ -103,14 +96,14 @@ Public Class EIS_Users_Default
     ' Add new user
 
     Private Sub btnAddNew_Click(sender As Object, e As EventArgs) Handles btnAddNew.Click
-        btnAddNew.Visible = False
+        pAddNew.Visible = False
         pnlAddNew.Visible = True
         pnlEditUser.Visible = False
         btnProceed.Visible = False
     End Sub
 
     Private Sub CancelNewUser_Click(sender As Object, e As EventArgs) Handles btnCancelNew.Click
-        btnAddNew.Visible = True
+        pAddNew.Visible = True
         pnlAddNew.Visible = False
         btnProceed.Visible = True
     End Sub
@@ -155,7 +148,7 @@ Public Class EIS_Users_Default
                 SaveCaerContact(caerContact)
         End Select
 
-        btnAddNew.Visible = True
+        pAddNew.Visible = True
         pnlAddNew.Visible = False
         btnProceed.Visible = True
 
@@ -174,7 +167,7 @@ Public Class EIS_Users_Default
             pnlEditUser.Visible = True
             pnlAddNew.Visible = False
             hidEditId.Value = id.ToString
-            btnAddNew.Visible = False
+            pAddNew.Visible = False
             btnProceed.Visible = False
 
             txtStreetEdit.Text = user.Contact.Address.Street
@@ -204,11 +197,8 @@ Public Class EIS_Users_Default
 
     Private Sub btnCancelEdit_Click(sender As Object, e As EventArgs) Handles btnCancelEdit.Click
         pnlEditUser.Visible = False
-
-        If pAddNew.Visible Then
-            btnAddNew.Visible = True
-            btnProceed.Visible = True
-        End If
+        pAddNew.Visible = True
+        btnProceed.Visible = True
     End Sub
 
     Private Sub btnSaveEdit_Click(sender As Object, e As EventArgs) Handles btnSaveEdit.Click
@@ -242,10 +232,7 @@ Public Class EIS_Users_Default
 
         UpdateCaerContact(caerContact, New Guid(hidEditId.Value))
 
-        If pAddNew.Visible Then
-            btnAddNew.Visible = True
-        End If
-
+        pAddNew.Visible = True
         pnlAddNew.Visible = False
         pnlEditUser.Visible = False
         btnProceed.Visible = True

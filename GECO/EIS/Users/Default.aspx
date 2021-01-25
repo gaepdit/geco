@@ -398,8 +398,8 @@
             </asp:Panel>
 
             <% If IsBeginEisProcess AndAlso
-                    hidCertifiersCount.Value = 1 AndAlso
-                    hidPreparersCount.Value > 0 Then %>
+                  hidCertifiersCount.Value = 1 AndAlso
+                  hidPreparersCount.Value > 0 Then %>
             <p>
                 <asp:Button ID="btnProceed" runat="server" Text="Confirm CAERS Users and Continue →" CssClass="button-large button-proceed" />
             </p>
