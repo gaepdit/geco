@@ -42,6 +42,18 @@
             <p class="message-highlight">Verify the CAERS Users below. Make any additions or corrections as needed, then select the Continue button at the bottom of the page.</p>
             <% End If %>
 
+            <% Else %>
+
+            <% If hidCertifiersCount.Value = 0 Then %>
+            <p class="message-highlight">A certifier has not been added. Use of CAERS requires one certifier.</p>
+            <% ElseIf hidCertifiersCount.Value > 1 Then %>
+            <p class="message-warning">Only one certifier is allowed.</p>
+            <% End If %>
+
+            <% If hidPreparersCount.Value = 0 Then %>
+            <p class="message-highlight">A preparer has not been added. Use of CAERS requires at least one preparer.</p>
+            <% End If %>
+
             <% End If %>
 
             <p id="pAddNew" runat="server">
