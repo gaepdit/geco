@@ -22,10 +22,11 @@ Public Class PermitDefault
             End If
 
             currentAirs = New ApbFacilityId(airsString)
-            Master.CurrentAirs = currentAirs
             SetCookie(Cookie.AirsNumber, currentAirs.ShortString())
-            Master.IsFacilitySet = True
         End If
+
+        Master.CurrentAirs = currentAirs
+        Master.IsFacilitySet = True
 
         If Not AirsNumberExists(currentAirs) Then
             Throw New HttpException(404, "Not found")

@@ -1,6 +1,6 @@
-﻿<%@ Page Language="vb" MasterPageFile="~/MainMaster.master" AutoEventWireup="false" CodeBehind="Application.aspx.vb" Inherits="GECO.Permit_Application" %>
+﻿<%@ Page Language="vb" MasterPageFile="~/Main.master" AutoEventWireup="false" CodeBehind="Application.aspx.vb" Inherits="GECO.Permit_Application" %>
 
-<%@ MasterType VirtualPath="~/MainMaster.master" %>
+<%@ MasterType VirtualPath="~/Main.master" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="Server">
     <h1>Permit Application #<asp:Label ID="lblAppNum" runat="server" Text=""></asp:Label></h1>

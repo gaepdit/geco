@@ -123,4 +123,19 @@ Public Module eis_getcodedescriptions
         End Select
     End Function
 
+    Public Function DecodeOptOutReason(reason As Integer?) As String
+        If Not reason.HasValue Then
+            Return String.Empty
+        End If
+
+        Select Case reason.GetValueOrDefault
+            Case 1
+                Return "Facility did not operate"
+            Case 2
+                Return "Facility emissions below thresholds"
+            Case Else
+                Return String.Empty
+        End Select
+    End Function
+
 End Module

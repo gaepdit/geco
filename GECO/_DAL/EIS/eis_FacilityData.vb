@@ -1,9 +1,9 @@
-﻿Imports System.Data.SqlClient
+Imports System.Data.SqlClient
 Imports GECO.GecoModels
 
 Public Module eis_FacilityData
 
-    Public Function EisFacSiteAffExists(FacilitySiteID As String) As Boolean
+    Private Function EisFacSiteAffExists(FacilitySiteID As String) As Boolean
         Dim query = "select convert(bit, count(*)) " &
         " from EIS_FACILITYSITEAFFINDIV " &
         " where FACILITYSITEID = @FacilitySiteID "
@@ -27,8 +27,21 @@ Public Module eis_FacilityData
          ContactZipCode As String,
          ContactComment As String,
          UpdateUser As String,
-         FacilitySiteID As String
-        )
+         FacilitySiteID As String)
+
+        NotNull(ContactPrefix, NameOf(ContactPrefix))
+        NotNull(ContactFirstName, NameOf(ContactFirstName))
+        NotNull(ContactLastName, NameOf(ContactLastName))
+        NotNull(ContactTitle, NameOf(ContactTitle))
+        NotNull(ContactEmail, NameOf(ContactEmail))
+        NotNull(ContactAddress1, NameOf(ContactAddress1))
+        NotNull(ContactAddress2, NameOf(ContactAddress2))
+        NotNull(ContactCity, NameOf(ContactCity))
+        NotNull(ContactState, NameOf(ContactState))
+        NotNull(ContactZipCode, NameOf(ContactZipCode))
+        NotNull(ContactComment, NameOf(ContactComment))
+        NotNull(UpdateUser, NameOf(UpdateUser))
+
         Dim query As String
 
         If EisFacSiteAffExists(FacilitySiteID) Then

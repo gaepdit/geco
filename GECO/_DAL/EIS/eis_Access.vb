@@ -24,124 +24,104 @@ Public Module eis_Access
     ' | 4             | QA Process               |
     ' | 5             | Complete                 |
 
-    Public Function GetEiStatus(airs As ApbFacilityId) As DataRow
+    Private Function GetEiStatusDataRow(airs As ApbFacilityId) As DataRow
         NotNull(airs, NameOf(airs))
 
-        Dim query As String = "select FACILITYSITEID,
-                INVENTORYYEAR,
-                EISSTATUSCODE,
-                DATEISSTATUS,
-                EISACCESSCODE,
-                STROPTOUT,
-                STRENROLLMENT,
-                DATFINALIZE,
-                STRCONFIRMATIONNUMBER
-        FROM EIS_ADMIN
-        where FACILITYSITEID = @airs
-            and INVENTORYYEAR =
-                (select max(INVENTORYYEAR)
-                FROM EIS_ADMIN
-                where FACILITYSITEID = @airs)"
+        Dim query As String = "select INVENTORYYEAR, EISSTATUSCODE, EISACCESSCODE,
+               convert(bit, STROPTOUT) as OPTOUT, convert(bit, STRENROLLMENT) as ENROLLMENT,
+               DATFINALIZE, STRCONFIRMATIONNUMBER, STROPTOUTREASON
+            FROM EIS_ADMIN
+            where FACILITYSITEID = @airs
+              and INVENTORYYEAR =
+                  (select max(INVENTORYYEAR)
+                   FROM EIS_ADMIN
+                   where FACILITYSITEID = @airs)"
 
         Dim param As New SqlParameter("@airs", airs.ShortString)
 
         Return DB.GetDataRow(query, param)
     End Function
 
-    Public Function LoadEiStatusCookies(airs As ApbFacilityId, response As HttpResponse) As EiStatus
-        NotNull(response, NameOf(response))
+    Public Function GetEiStatus(airs As ApbFacilityId) As EisStatus
+        NotNull(airs, NameOf(airs))
 
-        Dim EISCookies As New HttpCookie("EISAccessInfo")
-
-        Dim enrolled As String = "NULL"
-        Dim status As String = "NULL"
-        Dim access As String = "NULL"
-        Dim optout As String = "NULL"
-        Dim dateFinalized As String = "NULL"
-        Dim confirmationnumber As String = "NULL"
-        Dim eiMaxYear As String = ""
-
-        Dim dr As DataRow = GetEiStatus(airs)
+        Dim dr As DataRow = GetEiStatusDataRow(airs)
 
         If dr Is Nothing Then
-            'Set EISAccess cookie to "3" if facility does not exist in EIS_Admin table
-            EISCookies.Values("EISAccess") = EncryptText("3")
-        Else
-            'get max year from EIS Admin table
-            eiMaxYear = GetNullableString(dr("InventoryYear"))
-            EISCookies.Values("EISMaxYear") = EncryptText(eiMaxYear)
+            Return New EisStatus With {.AccessCode = 3, .Enrolled = False}
+        End If
 
-            If CInt(eiMaxYear) = Now.Year - 1 Then
-                'Check enrollment
-                'get enrollment status: 0 = not enrolled; 1 = enrolled for EI year
-                If Not IsDBNull(dr("strEnrollment")) Then
-                    enrolled = dr.Item("strEnrollment")
-                End If
+        Dim eiStatus As New EisStatus With {
+            .MaxYear = dr("INVENTORYYEAR")
+        }
 
-                EISCookies.Values("Enrollment") = EncryptText(enrolled)
+        If eiStatus.MaxYear <> Now.Year - 1 Then
+            eiStatus.AccessCode = 0
+            eiStatus.StatusCode = 0
+            eiStatus.Enrolled = False
 
-                If enrolled = "1" Then
-                    'getEISStatus for EISMaxYear
-                    If Not IsDBNull(dr("EISStatusCode")) Then
-                        status = dr.Item("EISStatusCode")
-                    End If
+            Return eiStatus
+        End If
 
-                    EISCookies.Values("EISStatus") = EncryptText(status)
+        ' enrollment status: 0 = not enrolled; 1 = enrolled for EI year
+        eiStatus.Enrolled = dr.Item("ENROLLMENT")
 
-                    'get EIS Access Code from database
-                    If Not IsDBNull(dr("EISAccessCode")) Then
-                        access = dr.Item("EISAccessCode")
-                    End If
+        If eiStatus.Enrolled Then
+            eiStatus.StatusCode = dr.Item("EISSTATUSCODE")
+            eiStatus.AccessCode = dr.Item("EISACCESSCODE")
+            eiStatus.OptOut = GetNullable(Of Boolean?)(dr.Item("OPTOUT"))
+            eiStatus.DateFinalized = GetNullableDateTime(dr.Item("DATFINALIZE"))
+            eiStatus.ConfirmationNumber = GetNullableString(dr.Item("STRCONFIRMATIONNUMBER")).EmptyStringIfNothing()
 
-                    EISCookies.Values("EISAccess") = EncryptText(access)
-
-                    If Not IsDBNull(dr("strOptOut")) Then
-                        optout = dr.Item("strOptOut")
-                    End If
-
-                    EISCookies.Values("OptOut") = EncryptText(optout)
-
-                    If Not IsDBNull(dr("datFinalize")) Then
-                        dateFinalized = dr.Item("datFinalize")
-                    End If
-
-                    EISCookies.Values("DateFinalize") = EncryptText(dateFinalized)
-
-                    If Not IsDBNull(dr("strConfirmationNumber")) Then
-                        confirmationnumber = dr.Item("strConfirmationNumber")
-                    End If
-
-                    EISCookies.Values("ConfNumber") = EncryptText(confirmationnumber)
-                End If
+            Dim optOutReason As String = GetNullableString(dr.Item("STROPTOUTREASON"))
+            If String.IsNullOrEmpty(optOutReason) Then
+                eiStatus.OptOutReason = Nothing
             Else
-                'Set EISAccessCode = "0" for Facility Inventory Access only
-                EISCookies.Values("EISAccess") = EncryptText("0")
-                EISCookies.Values("EISStatus") = EncryptText("0")
-                EISCookies.Values("Enrollment") = EncryptText("0")
+                eiStatus.OptOutReason = CInt(optOutReason)
             End If
         End If
 
-        EISCookies.Expires = Date.Now.AddHours(8)
-        response.Cookies.Add(EISCookies)
-
-        Return New EiStatus With {
-            .Access = access,
-            .DateFinalized = dateFinalized,
-            .EIMaxYear = eiMaxYear,
-            .Enrolled = enrolled,
-            .Status = status
-        }
-
+        Return eiStatus
     End Function
+
+    Public Sub SetEiStatusCookies(airs As ApbFacilityId, response As HttpResponse)
+        NotNull(airs, NameOf(airs))
+        NotNull(response, NameOf(response))
+
+        Dim eiStatus As EisStatus = GetEiStatus(airs)
+
+        Dim enrollment As String = "0"
+        If eiStatus.Enrolled Then enrollment = "1"
+
+        Dim optOut As String = "NULL"
+        If eiStatus.OptOut.HasValue Then optOut = -CInt(eiStatus.OptOut)
+
+        Dim dateFinalized As String = ""
+        If eiStatus.DateFinalized.HasValue Then dateFinalized = eiStatus.DateFinalized.Value.ToString("g")
+
+        Dim EISCookies As New HttpCookie("EISAccessInfo")
+        EISCookies.Values(EisCookie.EISMaxYear.ToString) = EncryptText(eiStatus.MaxYear.ToString)
+        EISCookies.Values(EisCookie.Enrollment.ToString) = EncryptText(enrollment)
+        EISCookies.Values(EisCookie.EISStatus.ToString) = EncryptText(eiStatus.StatusCode.ToString)
+        EISCookies.Values(EisCookie.EISAccess.ToString) = EncryptText(eiStatus.AccessCode.ToString)
+        EISCookies.Values(EisCookie.OptOut.ToString) = EncryptText(optOut)
+        EISCookies.Values(EisCookie.DateFinalize.ToString) = EncryptText(dateFinalized)
+        EISCookies.Values(EisCookie.ConfNumber.ToString) = EncryptText(eiStatus.ConfirmationNumber)
+
+        EISCookies.Expires = Date.Now.AddHours(8)
+
+        response.Cookies.Add(EISCookies)
+    End Sub
 
 End Module
 
-Public Class EiStatus
-    'Return (accesscode, enrolled, eisStatus, dateFinalize, EISMaxYear)
-    Public Property Access As String
-    Public Property Enrolled As String
-    Public Property Status As String
-    Public Property DateFinalized As String
-    Public Property EIMaxYear As String
-
+Public Class EisStatus
+    Public Property AccessCode As Integer
+    Public Property Enrolled As Boolean
+    Public Property StatusCode As Integer
+    Public Property DateFinalized As Date?
+    Public Property MaxYear As Integer
+    Public Property OptOut As Boolean?
+    Public Property OptOutReason As Integer?
+    Public Property ConfirmationNumber As String = ""
 End Class

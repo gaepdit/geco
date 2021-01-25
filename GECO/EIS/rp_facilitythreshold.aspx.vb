@@ -168,7 +168,7 @@ Partial Class EIS_rp_threshold
             SaveEisOptOut(airs, False, currentUser.DbUpdateUser, eiYear)
         End If
 
-        LoadEiStatusCookies(airs, Response)
+        SetEiStatusCookies(airs, Response)
         Response.Redirect("Default.aspx")
     End Sub
 

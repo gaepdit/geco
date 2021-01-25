@@ -30,9 +30,11 @@ Partial Class FacilitySummary
             End If
 
             currentAirs = New ApbFacilityId(airsString)
-            Master.CurrentAirs = currentAirs
             SetCookie(Cookie.AirsNumber, currentAirs.ShortString())
         End If
+
+        Master.CurrentAirs = currentAirs
+        Master.IsFacilitySet = True
 
         MainLoginCheck(Page.ResolveUrl("~/Facility/Summary.aspx?airs=" & currentAirs.ShortString))
 
@@ -52,8 +54,6 @@ Partial Class FacilitySummary
 
             Title = "GECO Facility Summary - " & lblFacilityDisplay.Text
             lblAIRS.Text = currentAirs.FormattedString
-
-            Master.IsFacilitySet = True
         End If
     End Sub
 

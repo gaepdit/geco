@@ -1,6 +1,6 @@
-<%@ Page Language="VB" MasterPageFile="~/MainMaster.master" AutoEventWireup="false" Inherits="GECO.FacilityHome" Title="GECO Facility Home" CodeBehind="Default.aspx.vb" %>
+<%@ Page Language="VB" MasterPageFile="~/Main.master" AutoEventWireup="false" Inherits="GECO.FacilityHome" Title="GECO Facility Home" CodeBehind="Default.aspx.vb" %>
 
-<%@ MasterType VirtualPath="~/MainMaster.master" %>
+<%@ MasterType VirtualPath="~/Main.master" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="Server">
     <h1>Facility Home</h1>
 
@@ -14,7 +14,7 @@
 
     <ul class="menu-list-horizontal">
         <li>
-            <asp:HyperLink ID="lnkFacilityHome" runat="server" NavigateUrl="~/Facility/" Enabled="false" CssClass="selected-menu-item">Tools</asp:HyperLink>
+            <asp:HyperLink ID="lnkFacilityHome" runat="server" NavigateUrl="~/Facility/" Enabled="false" CssClass="selected-menu-item disabled">Menu</asp:HyperLink>
         </li>
         <li>
             <asp:HyperLink ID="lnkFacilityInfo" runat="server" NavigateUrl="~/Facility/Summary.aspx">Facility Info</asp:HyperLink>
@@ -82,7 +82,6 @@
                     </asp:TableHeaderCell>
                     <asp:TableCell runat="server">
                         <asp:Label ID="lblEIText" runat="server"></asp:Label>
-                        <br /><strong class="label-highlight" style="line-height:1.5">The 2020&nbsp;NEI will be available on Jan.&nbsp;25,&nbsp;2021.</strong>
                     </asp:TableCell>
                     <asp:TableCell runat="server">
                         <asp:Label ID="lblEIDate" runat="server"></asp:Label>

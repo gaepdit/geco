@@ -1,4 +1,4 @@
-﻿Public Class Memo
+﻿Public Class MemoLayout
     Inherits MasterPage
 
     Protected ReadOnly Property raygunInfo As New RaygunInfo()

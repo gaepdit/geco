@@ -1,6 +1,6 @@
-﻿<%@ Page Language="VB" MasterPageFile="~/MainMaster.master" AutoEventWireup="false" Inherits="GECO.Fees_Deposits" Title="GECO Invoices" CodeBehind="Deposits.aspx.vb" %>
+﻿<%@ Page Language="VB" MasterPageFile="~/Main.master" AutoEventWireup="false" Inherits="GECO.Fees_Deposits" Title="GECO Invoices" CodeBehind="Deposits.aspx.vb" %>
 
-<%@ MasterType VirtualPath="~/MainMaster.master" %>
+<%@ MasterType VirtualPath="~/Main.master" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="server">
     <h1>Permit Fee Deposits & Refunds</h1>

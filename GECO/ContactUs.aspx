@@ -1,7 +1,7 @@
-<%@ Page Title="GECO - Contact Us" Language="VB" MasterPageFile="~/MainMaster.master" AutoEventWireup="false"
+<%@ Page Title="GECO - Contact Us" Language="VB" MasterPageFile="~/Main.master" AutoEventWireup="false"
     Inherits="GECO.ContactUs" CodeBehind="ContactUs.aspx.vb" %>
 
-<%@ MasterType VirtualPath="~/MainMaster.master" %>
+<%@ MasterType VirtualPath="~/Main.master" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="Server">
     <h1>Georgia Air Protection Branch Contact Form</h1>
 

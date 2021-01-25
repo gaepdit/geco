@@ -49,12 +49,12 @@ Partial Class EIS_rp_facilitystatus
             Dim colocated As Boolean = (rblIsColocated.SelectedValue = "Yes")
             Dim colocation As String = Nothing
 
-            If rblIsColocated.SelectedValue = "Yes" Then
+            If colocated Then
                 colocation = txtColocatedWith.Text
             End If
 
             SaveEisOptOut(airs, True, currentUser.DbUpdateUser, eiYear, "1", colocated, colocation)
-            LoadEiStatusCookies(airs, Response)
+            SetEiStatusCookies(airs, Response)
             Response.Redirect("Default.aspx")
         Else
             Response.Redirect("rp_facilitythreshold.aspx")

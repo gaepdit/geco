@@ -11,41 +11,44 @@ Option Strict On
 Option Explicit On
 
 
-Partial Public Class MainMaster
+Partial Public Class EIS_History_Processes
 
     '''<summary>
-    '''form1 control.
+    '''ProcessesEmptyNotice control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents form1 As Global.System.Web.UI.HtmlControls.HtmlForm
+    Protected WithEvents ProcessesEmptyNotice As Global.System.Web.UI.HtmlControls.HtmlGenericControl
 
     '''<summary>
-    '''ScriptManager1 control.
+    '''ProcessesExport control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents ScriptManager1 As Global.System.Web.UI.ScriptManager
+    Protected WithEvents ProcessesExport As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
-    '''lblFacility control.
+    '''Processes control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lblFacility As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents Processes As Global.System.Web.UI.WebControls.GridView
 
     '''<summary>
-    '''Content control.
+    '''Master property.
     '''</summary>
     '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
+    '''Auto-generated property.
     '''</remarks>
-    Protected WithEvents Content As Global.System.Web.UI.WebControls.ContentPlaceHolder
+    Public Shadows ReadOnly Property Master() As GECO.EIS
+        Get
+            Return CType(MyBase.Master, GECO.EIS)
+        End Get
+    End Property
 End Class

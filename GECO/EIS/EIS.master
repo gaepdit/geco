@@ -1,0 +1,37 @@
+﻿<%@ Master Language="VB" MasterPageFile="~/Main.master" AutoEventWireup="false" CodeBehind="EIS.master.vb" Inherits="GECO.EIS" %>
+
+<%@ MasterType VirtualPath="~/Main.master" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="server">
+    <% If IsBeginEisProcess %>
+    <h1>Begin Emissions Inventory Process</h1>
+    <% Else %>
+    <h1>Emissions Inventory System</h1>
+    <% End If %>
+
+    <p>
+        <b>
+            <asp:Label ID="lblFacilityDisplay" runat="server"></asp:Label></b>
+        <br />
+        AIRS Number:
+        <asp:Label ID="lblAIRS" runat="server"></asp:Label>
+    </p>
+
+    <% If Not IsBeginEisProcess %>
+    <ul class="menu-list-horizontal">
+        <li>
+            <asp:HyperLink ID="lnkHome" runat="server" NavigateUrl="~/EIS/">EIS Home</asp:HyperLink>
+        </li>
+        <li>
+            <asp:HyperLink ID="lnkFacility" runat="server" NavigateUrl="~/EIS/Facility/">EIS Facility Info</asp:HyperLink>
+        </li>
+        <li>
+            <asp:HyperLink ID="lnkUsers" runat="server" NavigateUrl="~/EIS/Users/">CAERS Users</asp:HyperLink>
+        </li>
+        <li>
+            <asp:HyperLink ID="lnkHistory" runat="server" NavigateUrl="~/EIS/History/">Historical Data</asp:HyperLink>
+        </li>
+    </ul>
+    <% End If %>
+
+    <asp:ContentPlaceHolder ID="Content" runat="server"></asp:ContentPlaceHolder>
+</asp:Content>

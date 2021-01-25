@@ -1,6 +1,6 @@
-<%@ Page Title="" Language="VB" MasterPageFile="~/MainMaster.master" AutoEventWireup="false" Inherits="GECO.Home" CodeBehind="Default.aspx.vb" %>
+<%@ Page Title="" Language="VB" MasterPageFile="~/Main.master" AutoEventWireup="false" Inherits="GECO.Home" CodeBehind="Default.aspx.vb" %>
 
-<%@ MasterType VirtualPath="~/MainMaster.master" %>
+<%@ MasterType VirtualPath="~/Main.master" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="Server">
     <asp:UpdatePanel ID="UpdatePanel_top" runat="server">
         <ContentTemplate>

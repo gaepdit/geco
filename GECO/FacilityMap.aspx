@@ -1,4 +1,4 @@
-<%@ Page Language="VB" MasterPageFile="~/MainMaster.master" AutoEventWireup="false" Inherits="GECO.FacilityMap" Title="GECO - Facility Map" CodeBehind="FacilityMap.aspx.vb" %>
+<%@ Page Language="VB" MasterPageFile="~/Main.master" AutoEventWireup="false" Inherits="GECO.FacilityMap" Title="GECO - Facility Map" CodeBehind="FacilityMap.aspx.vb" %>
 
 <%@ Register Assembly="Reimers.Google.Map" Namespace="Reimers.Google.Map" TagPrefix="Reimers" %>
 

@@ -37,9 +37,9 @@ Partial Public Class InvoiceDefault
     '''<remarks>
     '''Auto-generated property.
     '''</remarks>
-    Public Shadows ReadOnly Property Master() As GECO.Memo
+    Public Shadows ReadOnly Property Master() As GECO.MemoLayout
         Get
-            Return CType(MyBase.Master,GECO.Memo)
+            Return CType(MyBase.Master,GECO.MemoLayout)
         End Get
     End Property
 End Class

@@ -14,15 +14,6 @@ Option Explicit On
 Partial Public Class EventRegistration_EventDetails
 
     '''<summary>
-    '''lnkEvents control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lnkEvents As Global.System.Web.UI.WebControls.HyperLink
-
-    '''<summary>
     '''lblTitle control.
     '''</summary>
     '''<remarks>
@@ -235,9 +226,9 @@ Partial Public Class EventRegistration_EventDetails
     '''<remarks>
     '''Auto-generated property.
     '''</remarks>
-    Public Shadows ReadOnly Property Master() As GECO.MainMaster
+    Public Shadows ReadOnly Property Master() As GECO.MainLayout
         Get
-            Return CType(MyBase.Master, GECO.MainMaster)
+            Return CType(MyBase.Master, GECO.MainLayout)
         End Get
     End Property
 End Class

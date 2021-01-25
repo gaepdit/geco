@@ -1,4 +1,4 @@
-﻿<%@ Master Language="VB" AutoEventWireup="false" CodeBehind="Memo.Master.vb" Inherits="GECO.Memo" %>
+﻿<%@ Master Language="VB" AutoEventWireup="false" CodeBehind="Memo.master.vb" Inherits="GECO.MemoLayout" %>
 
 <!DOCTYPE html>
 <html lang="en-us">

@@ -1,20 +1,20 @@
 ﻿Namespace MapHelper
 
     Public Interface ISpatialCoordinate
-        Property Latitude() As Decimal
-        Property Longitude() As Decimal
+        Property Latitude As Decimal
+        Property Longitude As Decimal
     End Interface
 
     Public Class Coordinate
         Implements ISpatialCoordinate
 
-        Public Sub New(ByVal latitude As Decimal, ByVal longitude As Decimal)
+        Public Sub New(latitude As Decimal, longitude As Decimal)
             Me.Latitude = latitude
             Me.Longitude = longitude
         End Sub
 
-        Public Property Latitude() As Decimal Implements ISpatialCoordinate.Latitude
-        Public Property Longitude() As Decimal Implements ISpatialCoordinate.Longitude
+        Public Property Latitude As Decimal Implements ISpatialCoordinate.Latitude
+        Public Property Longitude As Decimal Implements ISpatialCoordinate.Longitude
 
         Public Overrides Function ToString() As String
             Return Latitude.ToString & "," & Longitude.ToString
@@ -35,6 +35,7 @@
 #Enable Warning S1075 ' URIs should not be hardcoded
         Private Const _defaultSize As String = "600x200"
         Private Const _defaultZoom As Integer = 16
+        Private Const _defaultMapType As GoogleMapType = GoogleMapType.hybrid
 
         <CodeAnalysis.SuppressMessage("Design", "CA1055")>
         Public Function GetMapLinkUrl(coordinates As Coordinate) As String
@@ -52,7 +53,8 @@
         Public Function GetStaticMapUrl(coordinates As Coordinate,
                                         Optional size As String = _defaultSize,
                                         Optional zoom As Integer = _defaultZoom,
-                                        Optional mapType As GoogleMapType = GoogleMapType.hybrid) As String
+                                        Optional mapType As GoogleMapType = _defaultMapType
+                                        ) As String
             NotNull(coordinates, NameOf(coordinates))
 
             Dim key As String = ConfigurationManager.AppSettings("GoogleMapsAPIKey")
@@ -63,11 +65,11 @@
 
         <CodeAnalysis.SuppressMessage("Design", "CA1055")>
         Public Function GetStaticMapUrl(address As String,
-                                               city As String,
-                                               Optional size As String = _defaultSize,
-                                               Optional zoom As Integer = _defaultZoom,
-                                               Optional mapType As GoogleMapType = GoogleMapType.hybrid
-                                               ) As String
+                                        city As String,
+                                        Optional size As String = _defaultSize,
+                                        Optional zoom As Integer = _defaultZoom,
+                                        Optional mapType As GoogleMapType = GoogleMapType.hybrid
+                                        ) As String
             Dim center As String = address & "," & city & " GA"
             Dim key As String = ConfigurationManager.AppSettings("GoogleMapsAPIKey")
 

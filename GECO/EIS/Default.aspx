@@ -1,23 +1,19 @@
-<%@ Page Title="GECO Emissions Inventory" Language="VB" MasterPageFile="eismaster.master"
-    AutoEventWireup="false" Inherits="GECO.eis_Default" CodeBehind="Default.aspx.vb" %>
+<%@ Page MasterPageFile="~/EIS/EIS.master" Language="VB" AutoEventWireup="false"
+    Title="GECO Emissions Inventory System"
+    Inherits="GECO.EIS_Default" CodeBehind="Default.aspx.vb" %>
 
-<asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder3" runat="Server">
-    <act:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server"></act:ToolkitScriptManager>
-    <h1>Emissions Inventory</h1>
+<%@ MasterType VirtualPath="~/EIS/EIS.master" %>
+<asp:Content ID="Content" ContentPlaceHolderID="Content" runat="Server">
     <p>
-        Facilities whose potential emissions exceed the thresholds must report their 
+        Facilities whose potential emissions equal or exceed the thresholds must report their 
         actual emissions. For assistance with calculating PTE, please use the        
         <a href="https://epd.georgia.gov/documents/potential-emit-guidelines" target="_blank">Potential 
             to Emit Guidelines</a>.
-        Beginning with the 2019 Emissions Inventory, Georgia will be using the Combined Air Emissions 
-        Reporting System (CAERS) developed by U.S. EPA.
+        Since the 2019 Emissions Inventory, Georgia has used the <i>Combined Air Emissions 
+        Reporting System</i> (<abbr>CAERS</abbr>) developed by U.S. EPA.
     </p>
 
-    <div class="announcement">
-        <strong>GECO will be ready for the 2020&nbsp;NEI on January&nbsp;25,&nbsp;2021. Thanks for your patience.</strong>
-    </div>
-
-    <div id="divCaersInstructions" runat="server">
+    <div id="dNewProcess" runat="server">
         <p>
             The new Emissions Inventory process will be as follows:
         </p>
@@ -25,140 +21,144 @@
             <li>
                 <p>
                     Based on previously available information, the Georgia Air Protection Branch will enroll 
-                    facilities that may need to participate in the 2019 Emissions Inventory. (If your facility 
+                    facilities that may need to participate in the Emissions Inventory. (If your facility 
                     has not been enrolled, but you believe it should be participating in the EI, please 
-                    contact the APB.)
+                    email <a href="mailto:emissions.inventory@dnr.ga.gov">emissions.inventory@dnr.ga.gov</a>.)
                 </p>
             </li>
             <li>
                 <p>
-                    Begin the EI process below. You will be asked to review basic facility and contact 
-                    information. You will then be asked about facility emissions to determine if participation 
-                    in the Emissions Inventory process is necessary. 
-                    <em>All facilities must complete this step before proceeding to the CAERS.</em>
+                    Begin the EI process below. You will be asked to review basic facility information. 
+                    You will then be asked about facility PTE emissions to determine if participation in the 
+                    Emissions Inventory process is necessary. 
                 </p>
             </li>
             <li>
                 <p>
                     If it is determined that the facility will participate in the Emissions Inventory process, 
-                    you will be directed to EPA's CAERS to complete the Emissions Inventory.
+                    you will be directed to provide preparer and certifier information. If it is determined 
+                    that the facility will not participate in the Emissions Inventory process, the facility 
+                    will be complete with the 2020 Emissions Inventory, and steps 4 and 5 can be ignored.
+                </p>
+            </li>
+            <li>
+                <p>
+                    For facilities new to CDX/CAERS: Once you provide preparer and certifier information, you 
+                    will be directed to EPA’s CDX to provide the same information. For facilities who 
+                    participated in the 2019 EI, skip this step unless a new preparer/certifier needs to be added.
+                </p>
+            </li>
+            <li>
+                <p>
+                    A notification will be sent in March indicating when facilities can begin their 2020 
+                    Emissions Inventory in CAERS.
                 </p>
             </li>
         </ol>
     </div>
 
-    <asp:Panel ID="pnlStatus" runat="server" CssClass="rounded-panel rounded-panel-filled">
-        <h2>
-            <asp:Label ID="lblHeading" runat="server"></asp:Label>
-        </h2>
+    <asp:UpdatePanel ID="updPanel" runat="server">
+        <ContentTemplate>
+            <asp:Panel ID="pnlStatus" runat="server" CssClass="panel">
+                <h2><%= EiStatus.MaxYear.ToString %> Emissions Inventory Process</h2>
 
-        <div class="button-container-actions">
-            <asp:Button ID="btnBegin" runat="server" CssClass="button button-large" Visible="false" />
-            <asp:HyperLink ID="LinkToEpaCaers" runat="server" CssClass="button button-large" Visible="false"
-                Text="Proceed to the EPA Combined Air Emissions Reporting System" Target="_blank" />
-        </div>
+                <p>
+                    Current Status:
+                    <strong>
+                        <asp:Label ID="lblMainStatus" runat="server"></asp:Label>
+                    </strong>
+                </p>
 
-        <p>
-            <asp:Label ID="lblMainMessage" runat="server"></asp:Label>
-        </p>
+                <p>
+                    <asp:Label ID="lblMainMessage" runat="server"></asp:Label>
+                </p>
 
-        <table>
-            <tr>
-                <th>Facility Name:</th>
-                <td>
-                    <asp:Label ID="lblFacilityNameText" runat="server"></asp:Label>
-                </td>
-            </tr>
-            <tr>
-                <th>AIRS No:</th>
-                <td>
-                    <asp:Label ID="lblFacilityIDText" runat="server"></asp:Label>
-                </td>
-            </tr>
-            <tr id="trStatus" runat="server">
-                <th>Status:</th>
-                <td>
-                    <asp:Label ID="lblStatusText" runat="server"></asp:Label>
-                </td>
-            </tr>
-            <tr id="trOptOutReason" runat="server">
-                <th>Reason Not Participating:</th>
-                <td>
-                    <asp:Label ID="lblOptOutReasonText" runat="server"></asp:Label></td>
-            </tr>
-            <tr id="trConfNumber" runat="server">
-                <th>Confirmation #:</th>
-                <td>
-                    <asp:Label ID="lblConfNumberText" runat="server"></asp:Label>
-                </td>
-            </tr>
-            <tr id="trLastUpdate" runat="server">
-                <th>Submitted on:</th>
-                <td>
-                    <asp:Label ID="lblLastUpdateText" runat="server"></asp:Label>
-                </td>
-            </tr>
-        </table>
+                <p id="pBeginProcess" runat="server" visible="false">
+                    <asp:Button ID="btnBeginEiProcess" runat="server" Text="Begin EI Process" CssClass="button-large button-proceed" />
+                </p>
 
-        <div class="button-container-labeled">
-            <asp:Button ID="btnReset" runat="server" CssClass="button" Visible="false" />
-            <div>
-                <asp:Label ID="lblOther" runat="server"></asp:Label>
-            </div>
-        </div>
-    </asp:Panel>
+                <p id="pReset" runat="server" visible="false">
+                    <asp:Button ID="btnReset" runat="server" Text="Reset EIS Status" />
+                </p>
 
-    <asp:Panel ID="pnlResetStatus" runat="server" CssClass="rounded-panel" Visible="False">
-        <h2>
-            <asp:Label ID="lblChangeHeading" runat="server">Reset Status</asp:Label>
-        </h2>
+                <div id="dCdxNext" runat="server" visible="false">
+                    <p>
+                        The Emissions Inventory process will continue at EPA's <i>Central Data Exchange</i> (CDX).
+                        CDX is used to access CAERS. The preparers and certifiers you have specified should 
+                        follow this procedure if new to CDX/CAERS:
+                    </p>
+                    <ol>
+                        <li>Register in CDX using the link below.</li>
+                        <li>Set up CAERS in CDX.</li>
+                        <li>Await approval that your CAERS account is linked to the correct facilities.</li>
+                    </ol>
+                    <p>
+                        <asp:HyperLink ID="CdxLink" runat="server" Text="Link to EPA CDX" Target="_blank" CssClass="button" />
+                    </p>
+                </div>
 
-        <table>
-            <tr>
-                <th>Current Status:</th>
-                <td>
-                    <asp:Label ID="lblResetStatus" runat="server"></asp:Label>
-                </td>
-            </tr>
-            <tr>
-                <th>Submitted:</th>
-                <td>
-                    <asp:Label ID="lblResetDate" runat="server"></asp:Label>
-                </td>
-            </tr>
-        </table>
+                <table id="StatusTable" runat="server" class="table-simple table-list">
+                    <tr id="trOptOutReason" runat="server" visible="false">
+                        <th>Reason Not Participating:</th>
+                        <td>
+                            <asp:Label ID="lblOptOutReasonText" runat="server"></asp:Label>
+                        </td>
+                    </tr>
+                    <tr id="trConfNumber" runat="server">
+                        <th>Confirmation #:</th>
+                        <td>
+                            <asp:Label ID="lblConfNumberText" runat="server"></asp:Label>
+                        </td>
+                    </tr>
+                    <tr id="trLastUpdate" runat="server">
+                        <th>Submitted on:</th>
+                        <td>
+                            <asp:Label ID="lblLastUpdateText" runat="server"></asp:Label>
+                        </td>
+                    </tr>
+                </table>
+            </asp:Panel>
 
-        <p>
-            This will reset your facility status for the           
-            <asp:Label ID="lblResetYear" runat="server" />
-            EI.
-            Are you sure you want to continue?
-       
-        </p>
-        <div class="button-container-actions">
-            <asp:Button ID="btnConfirmResetStatus" runat="server" CausesValidation="False" Text="Continue" CssClass="button button-large" />
-            &nbsp;&nbsp;
-           
-            <asp:Button ID="btnCancelResetStatus" runat="server" CausesValidation="False" Text="Cancel" CssClass="button button-large button-cancel" />
-        </div>
-    </asp:Panel>
+            <asp:Panel ID="pnlResetStatus" runat="server" CssClass="panel panel-inprogress" Visible="False">
+                <h2>Reset <%= EiStatus.MaxYear.ToString %> Emissions Inventory Status</h2>
 
-    <asp:Panel ID="pnlEisNotAvailable" runat="server" CssClass="rounded-panel"
-        Visible="False" Style="display: inherit;">
-        <h2>Emissions Inventory Not Available</h2>
+                <table class="table-simple table-list">
+                    <tr>
+                        <th>Status:</th>
+                        <td>
+                            <asp:Label ID="lblResetStatus" runat="server"></asp:Label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Submitted on:</th>
+                        <td>
+                            <asp:Label ID="lblResetDate" runat="server"></asp:Label>
+                        </td>
+                    </tr>
+                </table>
+
+                <p>This will reset your facility status for the <%= EiStatus.MaxYear.ToString %> Emissions Inventory. Are you sure you want to continue?</p>
+                <p>
+                    <asp:Button ID="btnConfirmResetStatus" runat="server" CausesValidation="False" Text="Yes" CssClass="button-large" />
+                    <asp:Button ID="btnCancelResetStatus" runat="server" CausesValidation="False" Text="Cancel" CssClass="button-large button-cancel" />
+                </p>
+            </asp:Panel>
+        </ContentTemplate>
+    </asp:UpdatePanel>
+
+    <asp:Panel ID="pnlEisNotAvailable" runat="server" CssClass="panel panel-noaction" Visible="False">
+        <h2><%= EiStatus.MaxYear.ToString %> Emissions Inventory Not Available</h2>
         <p>
             The Emissions Inventory is currently unavailable to your facility.
-            If you have questions, please contact us using the &quot;Contact Us&quot; menu item above.
-       
+            If you have questions, please contact the Air Protection Branch.
         </p>
     </asp:Panel>
 
-    <asp:Panel ID="pnlError" runat="server" CssClass="rounded-panel rounded-panel-filled"
-        Visible="False">
-        <h2>Contact the Air Protection Branch</h2>
+    <asp:Panel ID="pnlError" runat="server" CssClass="panel panel-error" Visible="False">
+        <h2>Emissions Inventory Error</h2>
         <p>
-            <asp:Label ID="lblErrorMessage" runat="server"></asp:Label>
+            There is a data error. Please contact the Air Protection Branch for further assistance. 
+            (<asp:Label ID="lblErrorId" runat="server"></asp:Label>)
         </p>
     </asp:Panel>
-
 </asp:Content>

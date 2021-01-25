@@ -1,5 +1,4 @@
 ﻿Imports System.Data.SqlClient
-Imports EpdIt.DBUtilities
 Imports GECO.GecoModels
 
 Public Module eis_reportingperiod
@@ -90,7 +89,7 @@ Public Module eis_reportingperiod
 
         If colocated AndAlso Not String.IsNullOrWhiteSpace(colocation) Then
             'Send email to APB
-            Dim airs As String = New GecoModels.ApbFacilityId(fsid).FormattedString
+            Dim airs As String = fsid.FormattedString
             Dim facilityName As String = GetFacilityName(fsid)
             Dim reason As String = DecodeOptOutReason(ooreason)
 
@@ -114,19 +113,14 @@ Public Module eis_reportingperiod
         End If
     End Sub
 
-    Public Sub ResetEiStatus(fsid As ApbFacilityId, uuser As String, eiyr As String)
+    Public Sub ResetEiStatus(fsid As ApbFacilityId, uuser As String, eiyr As Integer)
         NotNull(fsid, NameOf(fsid))
 
-
         'Facility needs to start over; make optout null
-        Dim EISAccessCode As String = "1"
-        Dim EISStatus As String = "1"
-        Dim OptOut As String = Nothing
-
         Dim query = "Update eis_Admin set " &
-            " eisStatusCode = @EISStatus, " &
-            " eisAccessCode = @EISAccessCode, " &
-            " strOptout = @OptOut, " &
+            " eisStatusCode = '1', " &
+            " eisAccessCode = '1', " &
+            " strOptout = null, " &
             " strOptOutReason = null, " &
             " strConfirmationNumber = null, " &
             " datFinalize = null, " &
@@ -138,21 +132,31 @@ Public Module eis_reportingperiod
             " where FacilitySiteID = @fsid and " &
             " InventoryYear = @eiyr "
 
-        Dim params = {
-            New SqlParameter("@EISStatus", EISStatus),
-            New SqlParameter("@EISAccessCode", EISAccessCode),
-            New SqlParameter("@OptOut", OptOut),
+        Dim params As SqlParameter() = {
             New SqlParameter("@UpdateUser", uuser),
             New SqlParameter("@fsid", fsid.ShortString),
             New SqlParameter("@eiyr", eiyr)
         }
 
-        Try
-            DB.RunCommand(query, params)
-        Catch ex As Exception
-            ErrorReport(ex)
-        End Try
-
+        DB.RunCommand(query, params)
     End Sub
+
+    Public Function GetEiThresholds(year As Integer, naa As Boolean) As DataTable
+        Dim query As String = "select STRPOLLUTANT as [Pollutant],
+                   IIF(@naa = 1, NUMTHRESHOLDNAA, NUMTHRESHOLD) as [Threshold]
+            from EITHRESHOLDS t
+                inner join EITHRESHOLDYEARS y
+                on y.STREITYPE = t.STRTYPE
+            where STRYEAR = @year
+              and NUMTHRESHOLD is not null
+            order by STRYEAR"
+
+        Dim params As SqlParameter() = {
+            New SqlParameter("@year", year),
+            New SqlParameter("@naa", naa)
+        }
+
+        Return DB.GetDataTable(query, params)
+    End Function
 
 End Module

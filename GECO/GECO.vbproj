@@ -164,6 +164,19 @@
     <Content Include="Account\Email.aspx" />
     <Content Include="Account\Password.aspx" />
     <Content Include="assets\images\epd-icon.png" />
+    <Content Include="EIS\Default.aspx" />
+    <Content Include="EIS\Facility\Edit.aspx" />
+    <Content Include="EIS\Facility\Default.aspx" />
+    <Content Include="EIS\History\Default.aspx" />
+    <Content Include="EIS\History\ReportingPeriodEmissions.aspx" />
+    <Content Include="EIS\History\ReportingPeriodPollutants.aspx" />
+    <Content Include="EIS\History\ReportingPeriodProcesses.aspx" />
+    <Content Include="EIS\History\Processes.aspx" />
+    <Content Include="EIS\History\EmissionUnits.aspx" />
+    <Content Include="EIS\History\ReleasePoints.aspx" />
+    <Content Include="EIS\Process\Default.aspx" />
+    <Content Include="EIS\Process\Submit.aspx" />
+    <Content Include="EIS\Users\Default.aspx" />
     <Content Include="Home\FacilityRequest.aspx" />
     <Content Include="assets\css\eis_styles.css" />
     <Content Include="assets\css\memo.css" />
@@ -210,7 +223,7 @@
     <Content Include="Controls\PreventRePost.ascx" />
     <Content Include="Login.aspx" />
     <Content Include="Default.aspx" />
-    <Content Include="EIS\Default.aspx" />
+    <Content Include="EIS\Default_Old.aspx" />
     <Content Include="EIS\emissionunit_details.aspx" />
     <Content Include="EIS\emissionunit_summary.aspx" />
     <Content Include="EIS\facility_details.aspx" />
@@ -298,6 +311,104 @@
       <DependentUpon>Password.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="EIS\Default.aspx.designer.vb">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EIS\Default.aspx.vb">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="EIS\EIS.master.designer.vb">
+      <DependentUpon>EIS.master</DependentUpon>
+    </Compile>
+    <Compile Include="EIS\EIS.master.vb">
+      <DependentUpon>EIS.master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EIS\Facility\Edit.aspx.designer.vb">
+      <DependentUpon>Edit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EIS\Facility\Edit.aspx.vb">
+      <DependentUpon>Edit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EIS\Facility\Default.aspx.designer.vb">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EIS\Facility\Default.aspx.vb">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EIS\History\Default.aspx.designer.vb">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EIS\History\Default.aspx.vb">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="EIS\History\ReportingPeriodEmissions.aspx.designer.vb">
+      <DependentUpon>ReportingPeriodEmissions.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EIS\History\ReportingPeriodEmissions.aspx.vb">
+      <DependentUpon>ReportingPeriodEmissions.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="EIS\History\ReportingPeriodPollutants.aspx.designer.vb">
+      <DependentUpon>ReportingPeriodPollutants.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EIS\History\ReportingPeriodPollutants.aspx.vb">
+      <DependentUpon>ReportingPeriodPollutants.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="EIS\History\ReportingPeriodProcesses.aspx.designer.vb">
+      <DependentUpon>ReportingPeriodProcesses.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EIS\History\ReportingPeriodProcesses.aspx.vb">
+      <DependentUpon>ReportingPeriodProcesses.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="EIS\History\Processes.aspx.designer.vb">
+      <DependentUpon>Processes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EIS\History\Processes.aspx.vb">
+      <DependentUpon>Processes.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="EIS\History\EmissionUnits.aspx.designer.vb">
+      <DependentUpon>EmissionUnits.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EIS\History\EmissionUnits.aspx.vb">
+      <DependentUpon>EmissionUnits.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="EIS\History\ReleasePoints.aspx.designer.vb">
+      <DependentUpon>ReleasePoints.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EIS\History\ReleasePoints.aspx.vb">
+      <DependentUpon>ReleasePoints.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="EIS\Process\Default.aspx.designer.vb">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EIS\Process\Default.aspx.vb">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="EIS\Process\Submit.aspx.designer.vb">
+      <DependentUpon>Submit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EIS\Process\Submit.aspx.vb">
+      <DependentUpon>Submit.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="EIS\Users\Default.aspx.designer.vb">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EIS\Users\Default.aspx.vb">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="GlobalSuppressions.vb" />
     <Compile Include="Home\FacilityRequest.aspx.designer.vb">
       <DependentUpon>FacilityRequest.aspx</DependentUpon>
@@ -333,8 +444,8 @@
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="EIS\Default.aspx.designer.vb">
-      <DependentUpon>Default.aspx</DependentUpon>
+    <Compile Include="EIS\Default_Old.aspx.designer.vb">
+      <DependentUpon>Default_Old.aspx</DependentUpon>
     </Compile>
     <Compile Include="EIS\eismaster.master.designer.vb">
       <DependentUpon>eismaster.master</DependentUpon>
@@ -488,11 +599,11 @@
     <Compile Include="Global.asax.vb">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="MainMaster.master.designer.vb">
-      <DependentUpon>MainMaster.master</DependentUpon>
+    <Compile Include="Main.master.designer.vb">
+      <DependentUpon>Main.master</DependentUpon>
     </Compile>
-    <Compile Include="MainMaster.master.vb">
-      <DependentUpon>MainMaster.master</DependentUpon>
+    <Compile Include="Main.master.vb">
+      <DependentUpon>Main.master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="NoAccess.aspx.designer.vb">
@@ -526,11 +637,11 @@
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Memo.Master.designer.vb">
-      <DependentUpon>Memo.Master</DependentUpon>
+    <Compile Include="Memo.master.designer.vb">
+      <DependentUpon>Memo.master</DependentUpon>
     </Compile>
-    <Compile Include="Memo.Master.vb">
-      <DependentUpon>Memo.Master</DependentUpon>
+    <Compile Include="Memo.master.vb">
+      <DependentUpon>Memo.master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="TN\Default.aspx.designer.vb">
@@ -554,7 +665,11 @@
       <DependentUpon>Register.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="_Classes\AnnualFeeCalc.vb" />
+    <Compile Include="_DAL\EIS\CaerContacts.vb" />
+    <Compile Include="_DAL\EIS\Facility.vb" />
+    <Compile Include="_DAL\EIS\Process.vb" />
+    <Compile Include="_DAL\Facility\FacilityContacts.vb" />
+    <Compile Include="_Models\AnnualFees\AnnualFeeCalc.vb" />
     <Compile Include="_Code\ControlMethods.vb" />
     <Compile Include="_Code\DictionaryExtensions.vb" />
     <Compile Include="_Code\Guard.vb" />
@@ -563,7 +678,7 @@
     <Compile Include="_Code\CookieHelper.vb" />
     <Compile Include="_Code\DecimalFunctions.vb" />
     <Compile Include="_Code\HtmlTableFunctions.vb" />
-    <Compile Include="_Classes\RaygunInfo.vb" />
+    <Compile Include="_Models\App\RaygunInfo.vb" />
     <Compile Include="_DAL\DataBaseConnection.vb" />
     <Compile Include="_Code\EIS\eis_accesschecks.vb" />
     <Compile Include="_DAL\EIS\eis_Access.vb" />
@@ -598,6 +713,8 @@
     <Compile Include="_DAL\Finance\FacilityFinances.vb" />
     <Compile Include="_DAL\Logging\EmailLog.vb" />
     <Compile Include="_DAL\Organization\Organization.vb" />
+    <Compile Include="_Models\EIS\CaerContact.vb" />
+    <Compile Include="_Models\EIS\EisProcess.vb" />
     <Compile Include="_Models\Finance\DepositApplied.vb" />
     <Compile Include="_DAL\Finance\Invoices.vb" />
     <Compile Include="_DAL\Finance\ApplicationFees.vb" />
@@ -605,7 +722,7 @@
     <Compile Include="_DAL\Permits\IssuedAirPermits.vb" />
     <Compile Include="_DAL\Users\UserAccess.vb" />
     <Compile Include="_DAL\Users\UserAccounts.vb" />
-    <Compile Include="_Models\Address.vb" />
+    <Compile Include="_Models\Common\Address.vb" />
     <Compile Include="_Models\Facility\ApbFacilityId.vb" />
     <Compile Include="_Models\Finance\InvoiceItem.vb" />
     <Compile Include="_Models\Finance\Invoice.vb" />
@@ -616,7 +733,7 @@
     <Compile Include="_Models\People\GecoUser.vb" />
     <Compile Include="_Models\Permit\ApplicationFeeInfo.vb" />
     <Compile Include="_Models\Permit\PermitApplication.vb" />
-    <Compile Include="_Models\UserSession.vb" />
+    <Compile Include="_Models\App\UserSession.vb" />
     <Compile Include="_DAL\EIS\eis_NAICS.vb" />
     <Compile Include="_Code\ParseNullables.vb" />
     <Compile Include="_Code\RandomStrings.vb" />
@@ -630,8 +747,8 @@
       <DependentUpon>PreventRePost.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="EIS\Default.aspx.vb">
-      <DependentUpon>Default.aspx</DependentUpon>
+    <Compile Include="EIS\Default_Old.aspx.vb">
+      <DependentUpon>Default_Old.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="EIS\eismaster.master.vb">
@@ -789,10 +906,11 @@
   <ItemGroup>
     <Content Include="EIS\eismaster.master" />
     <Content Include="ES\es.master" />
-    <Content Include="MainMaster.master" />
+    <Content Include="Main.master" />
     <Content Include="IP.ashx" />
     <Content Include="GECO.vbproj.vsspell" />
     <Content Include="AnnualFees\FeeAmendmentForm.xlsx" />
+    <Content Include="EIS\EIS.master" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
@@ -809,7 +927,7 @@
     <None Include="packages.config" />
     <Content Include="vwd.webinfo" />
     <Content Include="Web.config" />
-    <Content Include="Memo.Master" />
+    <Content Include="Memo.master" />
     <None Include="Web.configBuilder.Debug.xml">
       <DependentUpon>Web.configBuilder.xml</DependentUpon>
       <IsTransformFile>true</IsTransformFile>
@@ -837,6 +955,7 @@
     <Analyzer Include="..\packages\SonarAnalyzer.VisualBasic.8.4.0.15306\analyzers\SonarAnalyzer.dll" />
     <Analyzer Include="..\packages\SonarAnalyzer.VisualBasic.8.4.0.15306\analyzers\SonarAnalyzer.VisualBasic.dll" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

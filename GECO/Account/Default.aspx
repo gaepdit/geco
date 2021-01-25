@@ -1,6 +1,6 @@
-﻿<%@ Page Title="GECO Account" Language="VB" MasterPageFile="~/MainMaster.master" AutoEventWireup="false" Inherits="GECO.Account_Default" CodeBehind="Default.aspx.vb" %>
+﻿<%@ Page Title="GECO Account" Language="VB" MasterPageFile="~/Main.master" AutoEventWireup="false" Inherits="GECO.Account_Default" CodeBehind="Default.aspx.vb" %>
 
-<%@ MasterType VirtualPath="~/MainMaster.master" %>
+<%@ MasterType VirtualPath="~/Main.master" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="Server">
     <h1>Account</h1>
 
@@ -15,7 +15,7 @@
 
     <ul class="menu-list-horizontal">
         <li>
-            <asp:HyperLink ID="lnkEditProfile" runat="server" NavigateUrl="~/Account/" Enabled="false" CssClass="selected-menu-item">Profile</asp:HyperLink>
+            <asp:HyperLink ID="lnkEditProfile" runat="server" NavigateUrl="~/Account/" Enabled="false" CssClass="selected-menu-item disabled">Profile</asp:HyperLink>
         </li>
         <li>
             <asp:HyperLink ID="lnkEditEmail" runat="server" NavigateUrl="~/Account/Email.aspx">Email</asp:HyperLink>

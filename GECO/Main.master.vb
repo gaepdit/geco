@@ -1,12 +1,13 @@
 ﻿Imports GECO.GecoModels
 
-Partial Class MainMaster
+Partial Class MainLayout
     Inherits MasterPage
 
     Public ReadOnly Property raygunInfo As New RaygunInfo()
     Public Property IsFacilitySet As Boolean = False
     Public Property IsLoggedIn As Boolean
     Public Property CurrentAirs As ApbFacilityId
+    Public ReadOnly Property Environment As String = ConfigurationManager.AppSettings("GECO_ENVIRONMENT")
 
     Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
         CurrentAirs = If(CurrentAirs, ApbFacilityId.IfValid(GetCookie(Cookie.AirsNumber)))
@@ -21,6 +22,16 @@ Partial Class MainMaster
                 ConcatNonEmptyStrings(", ", {GetFacilityName(CurrentAirs), GetFacilityCity(CurrentAirs)}) &
                 " (" & CurrentAirs.FormattedString() & ")"
         End If
+    End Sub
+
+    Public Sub SetDefaultButton(button As Button)
+        NotNull(button, NameOf(button))
+
+        MainForm.DefaultButton = button.UniqueID
+    End Sub
+
+    Public Sub ClearDefaultButton()
+        MainForm.DefaultButton = ""
     End Sub
 
 End Class

@@ -2,7 +2,7 @@
 
 Public Module eis_NAICS
 
-    Public Function GetNaicsCodeDesc(ByVal NaicsCode As String) As String
+    Public Function GetNaicsCodeDesc(NaicsCode As String) As String
         Dim query As String = "Select strDesc " &
             " FROM EISLK_NAICSCODE " &
             " Where NAICSCode = @code " &
@@ -29,9 +29,9 @@ Public Module eis_NAICS
 
     Public Function DoesNaicsCodeExist(NaicsCode As String) As Boolean
         Dim query As String = "Select CONVERT( bit, COUNT(*)) " &
-                " FROM EISLK_NAICSCODE " &
-                " where NAICSCode = @code " &
-                " and Active = '1' "
+            " FROM EISLK_NAICSCODE " &
+            " where NAICSCode = @code " &
+            " and Active = '1' "
 
         Dim param As New SqlParameter("@code", NaicsCode)
 

@@ -1,7 +1,7 @@
-<%@ Page Language="VB" MasterPageFile="~/MainMaster.master" AutoEventWireup="false"
+<%@ Page Language="VB" MasterPageFile="~/Main.master" AutoEventWireup="false"
     Inherits="GECO.TN_Default" Title="GECO - Test Notifications" CodeBehind="Default.aspx.vb" %>
 
-<%@ MasterType VirtualPath="~/MainMaster.master" %>
+<%@ MasterType VirtualPath="~/Main.master" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="Server">
     <acs:ModalUpdateProgress ID="ModalUpdateProgress1" runat="server" DisplayAfter="0"
         BackgroundCssClass="modalProgressGreyBackground">

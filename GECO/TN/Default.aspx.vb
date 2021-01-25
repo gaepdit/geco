@@ -26,10 +26,11 @@ Partial Class TN_Default
             End If
 
             currentAirs = New ApbFacilityId(airsString)
-            Master.CurrentAirs = currentAirs
             SetCookie(Cookie.AirsNumber, currentAirs.ShortString())
-            Master.IsFacilitySet = True
         End If
+
+        Master.CurrentAirs = currentAirs
+        Master.IsFacilitySet = True
 
         If Not IsPostBack Then
             loaddgrTestNotify()

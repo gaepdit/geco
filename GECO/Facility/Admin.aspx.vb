@@ -28,9 +28,11 @@ Partial Class FacilityAdmin
             End If
 
             currentAirs = New ApbFacilityId(airsString)
-            Master.CurrentAirs = currentAirs
             SetCookie(Cookie.AirsNumber, currentAirs.ShortString())
         End If
+
+        Master.CurrentAirs = currentAirs
+        Master.IsFacilitySet = True
 
         MainLoginCheck(Page.ResolveUrl("~/Facility/Admin.aspx?airs=" & currentAirs.ShortString))
 
@@ -49,8 +51,6 @@ Partial Class FacilityAdmin
 
             Title = "GECO Facility Admin - " & lblFacilityDisplay.Text
             lblAIRS.Text = currentAirs.FormattedString
-
-            Master.IsFacilitySet = True
         End If
     End Sub
 

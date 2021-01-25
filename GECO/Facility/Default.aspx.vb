@@ -11,8 +11,6 @@ Partial Class FacilityHome
     Private Property currentAirs As ApbFacilityId
     Private Property currentFacility As String = Nothing
 
-#Region " Page Load "
-
     Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
         If IsPostBack Then
             currentAirs = New ApbFacilityId(GetCookie(Cookie.AirsNumber))
@@ -31,10 +29,11 @@ Partial Class FacilityHome
             End If
 
             currentAirs = New ApbFacilityId(airsString)
-            Master.CurrentAirs = currentAirs
             SetCookie(Cookie.AirsNumber, currentAirs.ShortString())
-            Master.IsFacilitySet = True
         End If
+
+        Master.CurrentAirs = currentAirs
+        Master.IsFacilitySet = True
 
         MainLoginCheck(Page.ResolveUrl("~/Facility/?airs=" & currentAirs.ShortString))
 
@@ -71,10 +70,6 @@ Partial Class FacilityHome
         lblFacilityDisplay.Text = currentFacility
     End Sub
 
-#End Region
-
-#Region " Load data "
-
     Protected Sub LoadFacilityContact()
         Dim dr As DataRow = GetAPBContactInformation(hidContactKey.Value)
 
@@ -104,6 +99,8 @@ Partial Class FacilityHome
             Return
         End If
 
+        EisLink.NavigateUrl = "~/EIS/?airs=" & currentAirs.ShortString
+
         ' This procedure obtains variable values from the EIS_Admin table and saves values in cookies
         ' Steps: 1 - read stored database values for EISStatusCode, EISStatusCode date, EISAccessCode, OptOut, Enrollment status, date finalized, last conf number
         '        2 - Saves EISAccessCode for use on entering the EIS home page
@@ -112,21 +109,22 @@ Partial Class FacilityHome
         '        4 - If facility not enrolled - message indicating that the EI is not applicable is displayed
         Dim EIYear As Integer = Now.Year - 1
 
-        Dim eiStatus As EiStatus = LoadEiStatusCookies(currentAirs, Response)
+        Dim eiStatus As EisStatus = GetEiStatus(currentAirs)
+        SetEiStatusCookies(currentAirs, Response)
 
-        If eiStatus.Access = "3" Then
+        If eiStatus.AccessCode = 3 Then
             AppsEmissionInventory.Visible = False
             Return
         End If
 
         ' enrollment status: 0 = not enrolled; 1 = enrolled for EI year
-        If eiStatus.Enrolled <> "1" Then
+        If Not eiStatus.Enrolled Then
             lblEIText.Text = "Not enrolled in " & EIYear & " EI."
             lblEIDate.Text = ""
             Return
         End If
 
-        lblEIDate.Text = GetEIDeadline(eiStatus.EIMaxYear)
+        lblEIDate.Text = GetEIDeadline(eiStatus.MaxYear)
 
         ' | EISSTATUSCODE | STRDESC                  |
         ' |---------------|--------------------------|
@@ -137,17 +135,17 @@ Partial Class FacilityHome
         ' | 4             | QA Process               |
         ' | 5             | Complete                 |
 
-        Select Case eiStatus.Status
-            Case "0"
+        Select Case eiStatus.StatusCode
+            Case 0
                 lblEIText.Text = EIYear & " EI not applicable."
                 lblEIDate.Text = ""
-            Case "1"
+            Case 1
                 lblEIText.Text = "Ready for " & EIYear & " EI."
-            Case "2"
+            Case 2
                 lblEIText.Text = EIYear & " EI in progress."
-            Case "3", "4"
+            Case 3, 4
                 lblEIText.Text = EIYear & " EI submitted on " & eiStatus.DateFinalized & "."
-            Case "5"
+            Case 5
                 lblEIText.Text = EIYear & " EI completed on " & eiStatus.DateFinalized & "."
             Case Else
                 lblEIText.Text = "To be determined."
@@ -359,10 +357,6 @@ Partial Class FacilityHome
         End Try
     End Sub
 
-#End Region
-
-#Region " Contacts editing "
-
     Protected Sub rblContact_SelectedIndexChanged(sender As Object, e As EventArgs) Handles rblContact.SelectedIndexChanged
         LoadCurrentContact()
     End Sub
@@ -372,89 +366,12 @@ Partial Class FacilityHome
             Dim contactDescription As String = "Contact updated from GECO Facility Home page by " & currentUser.FullName &
                 " on " & Now.ToShortDateString()
 
-            Dim params As SqlParameter() = {
-                New SqlParameter("@strcontactfirstname", txtFName.Text),
-                New SqlParameter("@strcontactlastname", txtLName.Text),
-                New SqlParameter("@strcontacttitle", txtTitle.Text),
-                New SqlParameter("@strcontactphonenumber1", txtPhone.Text),
-                New SqlParameter("@strcontactfaxnumber", txtFax.Text),
-                New SqlParameter("@strcontactemail", txtEmailContact.Text),
-                New SqlParameter("@strcontactaddress1", txtAddress.Text),
-                New SqlParameter("@strcontactcity", txtCity.Text),
-                New SqlParameter("@strcontactstate", Address.ProbableStateCode(txtState.Text)),
-                New SqlParameter("@strcontactzipcode", txtZip.Text),
-                New SqlParameter("@strcontactcompanyname", txtCoName.Text),
-                New SqlParameter("@strcontactdescription", contactDescription),
-                New SqlParameter("@strmodifingperson", "0"),
-                New SqlParameter("@STRAIRSNUMBER", currentAirs.DbFormattedString),
-                New SqlParameter("@strkey", hidContactKey.Value),
-                New SqlParameter("@strcontactkey", currentAirs.DbFormattedString & hidContactKey.Value.ToString)
-            }
+            Dim result As Boolean = Facility.SaveApbContactInformation(currentAirs, hidContactKey.Value, Nothing,
+                txtFName.Text, txtLName.Text, txtTitle.Text, txtEmailContact.Text, txtAddress.Text, Nothing,
+                txtCity.Text, Address.ProbableStateCode(txtState.Text), txtZip.Text, txtPhone.Text, Nothing, txtFax.Text,
+                contactDescription, txtCoName.Text, "0")
 
-            Dim query As String = "select convert(bit, count(*)) " &
-            " FROM APBCONTACTINFORMATION " &
-            " where STRAIRSNUMBER = @STRAIRSNUMBER " &
-            " and STRKEY = convert(varchar(2), @strkey)"
-
-            If DB.GetBoolean(query, params) Then
-                query = "Update apbcontactinformation set " &
-                    "strcontactfirstname = @strcontactfirstname, " &
-                    "strcontactlastname = @strcontactlastname, " &
-                    "strcontacttitle = @strcontacttitle, " &
-                    "strcontactphonenumber1 = @strcontactphonenumber1, " &
-                    "strcontactfaxnumber = @strcontactfaxnumber, " &
-                    "strcontactemail = @strcontactemail, " &
-                    "strcontactaddress1 = @strcontactaddress1, " &
-                    "strcontactcity = @strcontactcity, " &
-                    "strcontactstate = @strcontactstate, " &
-                    "strcontactzipcode = @strcontactzipcode, " &
-                    "strcontactcompanyname = @strcontactcompanyname, " &
-                    "strcontactdescription = @strcontactdescription, " &
-                    "datmodifingdate = getdate(), " &
-                    "strmodifingperson = @strmodifingperson " &
-                    "where strcontactkey = @strcontactkey "
-            Else
-                query = " insert into APBCONTACTINFORMATION ( " &
-                    "     STRCONTACTKEY, " &
-                    "     STRAIRSNUMBER, " &
-                    "     STRKEY, " &
-                    "     STRCONTACTFIRSTNAME, " &
-                    "     STRCONTACTLASTNAME, " &
-                    "     STRCONTACTTITLE, " &
-                    "     STRCONTACTCOMPANYNAME, " &
-                    "     STRCONTACTPHONENUMBER1, " &
-                    "     STRCONTACTFAXNUMBER, " &
-                    "     STRCONTACTEMAIL, " &
-                    "     STRCONTACTADDRESS1, " &
-                    "     STRCONTACTCITY, " &
-                    "     STRCONTACTSTATE, " &
-                    "     STRCONTACTZIPCODE, " &
-                    "     STRMODIFINGPERSON, " &
-                    "     DATMODIFINGDATE, " &
-                    "     STRCONTACTDESCRIPTION " &
-                    " ) " &
-                    " values ( " &
-                    "     @STRCONTACTKEY, " &
-                    "     @STRAIRSNUMBER, " &
-                    "     @STRKEY, " &
-                    "     @STRCONTACTFIRSTNAME, " &
-                    "     @STRCONTACTLASTNAME, " &
-                    "     @STRCONTACTTITLE, " &
-                    "     @STRCONTACTCOMPANYNAME, " &
-                    "     @STRCONTACTPHONENUMBER1, " &
-                    "     @STRCONTACTFAXNUMBER, " &
-                    "     @STRCONTACTEMAIL, " &
-                    "     @STRCONTACTADDRESS1, " &
-                    "     @STRCONTACTCITY, " &
-                    "     @STRCONTACTSTATE, " &
-                    "     @STRCONTACTZIPCODE, " &
-                    "     0, " &
-                    "     getdate(), " &
-                    "     @STRCONTACTDESCRIPTION " &
-                    " ) "
-            End If
-
-            If DB.RunCommand(query, params) Then
+            If result Then
                 lblContactMsg.Visible = True
                 lblContactMsg.Text = "The current contact has been updated successfully."
 
@@ -677,7 +594,5 @@ Partial Class FacilityHome
         txtZip.Text = ""
         txtPhone.Text = ""
     End Sub
-
-#End Region
 
 End Class

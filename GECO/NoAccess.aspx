@@ -1,4 +1,4 @@
-<%@ Page Language="VB" MasterPageFile="~/MainMaster.master" AutoEventWireup="false" Inherits="GECO.NoAccess" Title="Access Denied" Codebehind="NoAccess.aspx.vb" %>
+<%@ Page Language="VB" MasterPageFile="~/Main.master" AutoEventWireup="false" Inherits="GECO.NoAccess" Title="Access Denied" Codebehind="NoAccess.aspx.vb" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="Server">
     You do not have sufficient rights to work on the page that you were trying to access.

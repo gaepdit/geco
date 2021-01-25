@@ -1,6 +1,6 @@
-﻿<%@ Master MasterPageFile="~/MainMaster.master" Language="VB" Inherits="GECO.APB_es" CodeBehind="es.master.vb" %>
+﻿<%@ Master MasterPageFile="~/Main.master" Language="VB" Inherits="GECO.APB_es" CodeBehind="es.master.vb" %>
 
-<%@ MasterType VirtualPath="~/MainMaster.master" %>
+<%@ MasterType VirtualPath="~/Main.master" %>
 <asp:Content ID="Content" runat="server" ContentPlaceHolderID="Content">
     <div class="outer-container" id="main-content">
         <!-- container for all 3 columns -->
