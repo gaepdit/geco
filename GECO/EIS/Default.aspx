@@ -51,7 +51,7 @@
             <li>
                 <p>
                     A notification will be sent in March indicating when facilities can begin their 2020 
-                    Emissions Inventory.
+                    Emissions Inventory in CAERS.
                 </p>
             </li>
         </ol>
