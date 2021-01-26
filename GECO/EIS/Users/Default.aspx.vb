@@ -65,6 +65,10 @@ Public Class EIS_Users_Default
             btnCancelNew.Visible = False
             pnlAddNew.Visible = True
         End If
+
+        rRoleNew.Visible = hidCertifiersCount.Value = 0
+        reqvRoleNew.Visible = hidCertifiersCount.Value = 0
+        rRolePreparer.Visible = hidCertifiersCount.Value > 0
     End Sub
 
     Private Sub LoadStates()
@@ -109,7 +113,8 @@ Public Class EIS_Users_Default
     End Sub
 
     Private Sub btnSaveNew_Click(sender As Object, e As EventArgs) Handles btnSaveNew.Click
-        Dim address As New Address With {
+        If Page.IsValid Then
+            Dim address As New Address With {
             .Street = txtStreetNew.Text,
             .Street2 = txtStreet2New.Text,
             .City = txtCityNew.Text,
@@ -117,42 +122,47 @@ Public Class EIS_Users_Default
             .PostalCode = txtPostalCodeNew.Text
         }
 
-        Dim contact As New Person With {
-            .Address = address,
-            .Company = txtCompanyNew.Text,
-            .Email = txtEmailNew.Text,
-            .Honorific = txtPrefixNew.Text,
-            .FirstName = txtFirstNameNew.Text,
-            .LastName = txtLastNameNew.Text,
-            .PhoneNumber = txtTelephoneNew.Text,
-            .Title = txtTitleNew.Text
-        }
+            Dim contact As New Person With {
+                .Address = address,
+                .Company = txtCompanyNew.Text,
+                .Email = txtEmailNew.Text,
+                .Honorific = txtPrefixNew.Text,
+                .FirstName = txtFirstNameNew.Text,
+                .LastName = txtLastNameNew.Text,
+                .PhoneNumber = txtTelephoneNew.Text,
+                .Title = txtTitleNew.Text
+            }
 
-        Dim caerContact As New CaerContact With {
-            .Active = True,
-            .Contact = contact,
-            .FacilitySiteId = CurrentAirs
-        }
+            Dim caerContact As New CaerContact With {
+                .Active = True,
+                .Contact = contact,
+                .FacilitySiteId = CurrentAirs
+            }
 
-        Select Case rRoleNew.SelectedValue
-            Case CaerRole.Certifier.ToString
-                caerContact.CaerRole = CaerRole.Certifier
-                SaveCaerContact(caerContact)
-            Case "Both"
-                caerContact.CaerRole = CaerRole.Preparer
-                SaveCaerContact(caerContact)
-                caerContact.CaerRole = CaerRole.Certifier
-                SaveCaerContact(caerContact)
-            Case Else
-                caerContact.CaerRole = CaerRole.Preparer
-                SaveCaerContact(caerContact)
-        End Select
+            Select Case rRoleNew.SelectedValue
+                Case CaerRole.Certifier.ToString
+                    caerContact.CaerRole = CaerRole.Certifier
+                    SaveCaerContact(caerContact)
+                Case "Both"
+                    caerContact.CaerRole = CaerRole.Preparer
+                    SaveCaerContact(caerContact)
+                    caerContact.CaerRole = CaerRole.Certifier
+                    SaveCaerContact(caerContact)
+                Case Else
+                    caerContact.CaerRole = CaerRole.Preparer
+                    SaveCaerContact(caerContact)
+            End Select
 
-        pAddNew.Visible = True
-        pnlAddNew.Visible = False
-        btnProceed.Visible = True
+            pAddNew.Visible = True
+            pnlAddNew.Visible = False
+            btnProceed.Visible = True
 
-        LoadCurrentUsers()
+            LoadCurrentUsers()
+        End If
+    End Sub
+
+    Private Sub custEmailNew_ServerValidate(source As Object, args As ServerValidateEventArgs) Handles custEmailNew.ServerValidate
+        args.IsValid = rRoleNew.SelectedValue = CaerRole.Certifier.ToString OrElse Not CaerPreparerExists(args.Value, CurrentAirs)
     End Sub
 
     ' Edit existing user
@@ -202,42 +212,49 @@ Public Class EIS_Users_Default
     End Sub
 
     Private Sub btnSaveEdit_Click(sender As Object, e As EventArgs) Handles btnSaveEdit.Click
-        Dim address As New Address With {
-            .Street = txtStreetEdit.Text,
-            .Street2 = txtStreet2Edit.Text,
-            .City = txtCityEdit.Text,
-            .State = ddlStateEdit.SelectedValue,
-            .PostalCode = txtPostalCodeEdit.Text
-        }
+        If Page.IsValid Then
+            Dim address As New Address With {
+                .Street = txtStreetEdit.Text,
+                .Street2 = txtStreet2Edit.Text,
+                .City = txtCityEdit.Text,
+                .State = ddlStateEdit.SelectedValue,
+                .PostalCode = txtPostalCodeEdit.Text
+            }
 
-        Dim contact As New Person With {
-            .Address = address,
-            .Company = txtCompanyEdit.Text,
-            .Email = txtEmailEdit.Text,
-            .Honorific = txtPrefixEdit.Text,
-            .FirstName = txtFirstNameEdit.Text,
-            .LastName = txtLastNameEdit.Text,
-            .PhoneNumber = txtTelephoneEdit.Text,
-            .Title = txtTitleEdit.Text
-        }
+            Dim contact As New Person With {
+                .Address = address,
+                .Company = txtCompanyEdit.Text,
+                .Email = txtEmailEdit.Text,
+                .Honorific = txtPrefixEdit.Text,
+                .FirstName = txtFirstNameEdit.Text,
+                .LastName = txtLastNameEdit.Text,
+                .PhoneNumber = txtTelephoneEdit.Text,
+                .Title = txtTitleEdit.Text
+            }
 
-        Dim role As CaerRole = [Enum].Parse(GetType(CaerRole), ddlRoleEdit.SelectedValue)
+            Dim role As CaerRole = [Enum].Parse(GetType(CaerRole), ddlRoleEdit.SelectedValue)
 
-        Dim caerContact As New CaerContact With {
-            .Active = True,
-            .CaerRole = role,
-            .Contact = contact,
-            .FacilitySiteId = CurrentAirs
-        }
+            Dim caerContact As New CaerContact With {
+                .Active = True,
+                .CaerRole = role,
+                .Contact = contact,
+                .FacilitySiteId = CurrentAirs
+            }
 
-        UpdateCaerContact(caerContact, New Guid(hidEditId.Value))
+            UpdateCaerContact(caerContact, New Guid(hidEditId.Value))
 
-        pAddNew.Visible = True
-        pnlAddNew.Visible = False
-        pnlEditUser.Visible = False
-        btnProceed.Visible = True
+            pAddNew.Visible = True
+            pnlAddNew.Visible = False
+            pnlEditUser.Visible = False
+            btnProceed.Visible = True
 
-        LoadCurrentUsers()
+            LoadCurrentUsers()
+        End If
+    End Sub
+
+    Private Sub custEmailEdit_ServerValidate(source As Object, args As ServerValidateEventArgs) Handles custEmailEdit.ServerValidate
+        args.IsValid = Not (ddlRoleEdit.SelectedValue = CaerRole.Preparer.ToString AndAlso
+            CaerPreparerExists(args.Value, CurrentAirs, New Guid(hidEditId.Value)))
     End Sub
 
     Private Sub btnProceed_Click(sender As Object, e As EventArgs) Handles btnProceed.Click

@@ -64,6 +64,16 @@ Namespace DAL.EIS
             End Select
         End Function
 
+        Public Function CaerPreparerExists(email As String, facilityId As ApbFacilityId, Optional ignoreId As Guid = Nothing) As Boolean
+            Dim params As SqlParameter() = {
+                New SqlParameter("@Email", email),
+                New SqlParameter("@FacilityId", facilityId.ShortString),
+                New SqlParameter("@IgnoreId", ignoreId)
+            }
+
+            Return DB.SPGetBoolean("geco.Caer_PreparerExists", params)
+        End Function
+
         Public Function DeleteCaerContact(id As Guid) As Boolean
             Dim query As String = "update EIS_CaerContacts
                 set Active         = 0,
@@ -76,7 +86,7 @@ Namespace DAL.EIS
                 New SqlParameter("@GecoUser", GetCurrentUser.UserId)
             }
 
-            Return DB.RunCommand(Query, param)
+            Return DB.RunCommand(query, param)
         End Function
 
         Public Function GetFacilityCaerContacts(facilityId As ApbFacilityId) As DataTable

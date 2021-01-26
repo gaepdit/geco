@@ -401,6 +401,15 @@ Partial Public Class EIS_Users_Default
     Protected WithEvents rgxvEmailNew As Global.System.Web.UI.WebControls.RegularExpressionValidator
 
     '''<summary>
+    '''custEmailNew control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents custEmailNew As Global.System.Web.UI.WebControls.CustomValidator
+
+    '''<summary>
     '''btnSaveNew control.
     '''</summary>
     '''<remarks>
@@ -768,6 +777,15 @@ Partial Public Class EIS_Users_Default
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rgxvEmailEdit As Global.System.Web.UI.WebControls.RegularExpressionValidator
+
+    '''<summary>
+    '''custEmailEdit control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents custEmailEdit As Global.System.Web.UI.WebControls.CustomValidator
 
     '''<summary>
     '''hidEditId control.

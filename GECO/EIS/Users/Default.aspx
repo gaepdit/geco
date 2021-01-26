@@ -1,4 +1,4 @@
-﻿<%@ Page MasterPageFile="~/EIS/EIS.master" Language="VB" AutoEventWireup="false"
+<%@ Page MasterPageFile="~/EIS/EIS.master" Language="VB" AutoEventWireup="false"
     Title="GECO EIS CAERS Users"
     Inherits="GECO.EIS_Users_Default" CodeBehind="Default.aspx.vb" %>
 
@@ -70,19 +70,18 @@
                             <asp:Label ID="lblRoleNew" runat="server" AssociatedControlID="rRoleNew">CAERS Role</asp:Label>
                         </th>
                         <td>
-                            <% If hidCertifiersCount.Value = 0 Then %>
                             <asp:RadioButtonList ID="rRoleNew" runat="server" RepeatLayout="Flow" RepeatDirection="Horizontal">
                                 <asp:ListItem>Preparer</asp:ListItem>
                                 <asp:ListItem>Certifier</asp:ListItem>
                                 <asp:ListItem>Both</asp:ListItem>
                             </asp:RadioButtonList>
-                            <asp:RequiredFieldValidator ID="reqvRoleNew" runat="server" ControlToValidate="rRoleNew"
+                            <asp:RequiredFieldValidator ID="reqvRoleNew" runat="server" ControlToValidate="rRoleNew" Display="Dynamic"
                                 ErrorMessage="The CAERS Role is required.">*</asp:RequiredFieldValidator>
-                            <% Else %>
-                            <asp:RadioButtonList ID="rRolePreparer" runat="server" RepeatLayout="Flow" RepeatDirection="Horizontal" Enabled="false">
+
+                            <asp:RadioButtonList ID="rRolePreparer" runat="server" RepeatLayout="Flow" RepeatDirection="Horizontal" 
+                                Enabled="false" Visible="false">
                                 <asp:ListItem Selected="True">Preparer</asp:ListItem>
                             </asp:RadioButtonList>
-                            <% End If %>
                         </td>
                     </tr>
                     <tr>
@@ -101,7 +100,7 @@
                         </th>
                         <td>
                             <asp:TextBox ID="txtFirstNameNew" runat="server" />
-                            <asp:RequiredFieldValidator ID="reqvFirstNameNew" runat="server" ControlToValidate="txtFirstNameNew"
+                            <asp:RequiredFieldValidator ID="reqvFirstNameNew" runat="server" ControlToValidate="txtFirstNameNew" Display="Dynamic"
                                 ErrorMessage="The first name is required.">*</asp:RequiredFieldValidator>
                         </td>
                     </tr>
@@ -112,7 +111,7 @@
                         </th>
                         <td>
                             <asp:TextBox ID="txtLastNameNew" runat="server" />
-                            <asp:RequiredFieldValidator ID="reqvLastNameNew" runat="server" ControlToValidate="txtLastNameNew"
+                            <asp:RequiredFieldValidator ID="reqvLastNameNew" runat="server" ControlToValidate="txtLastNameNew" Display="Dynamic"
                                 ErrorMessage="The last name is required.">*</asp:RequiredFieldValidator>
                         </td>
                     </tr>
@@ -141,7 +140,7 @@
                         </th>
                         <td>
                             <asp:TextBox ID="txtStreetNew" runat="server" />
-                            <asp:RequiredFieldValidator ID="reqvStreetNew" runat="server" ControlToValidate="txtStreetNew"
+                            <asp:RequiredFieldValidator ID="reqvStreetNew" runat="server" ControlToValidate="txtStreetNew" Display="Dynamic"
                                 ErrorMessage="The mailing address is required.">*</asp:RequiredFieldValidator>
                             <br />
                             <asp:TextBox ID="txtStreet2New" runat="server" />
@@ -154,7 +153,7 @@
                         </th>
                         <td>
                             <asp:TextBox ID="txtCityNew" runat="server" />
-                            <asp:RequiredFieldValidator ID="reqvCityNew" runat="server"
+                            <asp:RequiredFieldValidator ID="reqvCityNew" runat="server" Display="Dynamic"
                                 ControlToValidate="txtCityNew" ErrorMessage="The city is required.">*</asp:RequiredFieldValidator>
                         </td>
                     </tr>
@@ -165,9 +164,8 @@
                         </th>
                         <td>
                             <asp:DropDownList ID="ddlStateNew" runat="server" />
-                            <asp:RequiredFieldValidator ID="reqvStateNew" ControlToValidate="ddlStateNew"
-                                InitialValue="--Select a State--" runat="server" ErrorMessage="The state is required."
-                                Display="Dynamic">*</asp:RequiredFieldValidator>
+                            <asp:RequiredFieldValidator ID="reqvStateNew" ControlToValidate="ddlStateNew" Display="Dynamic"
+                                InitialValue="--Select a State--" runat="server" ErrorMessage="The state is required.">*</asp:RequiredFieldValidator>
                         </td>
                     </tr>
                     <tr>
@@ -177,11 +175,11 @@
                         </th>
                         <td>
                             <asp:TextBox ID="txtPostalCodeNew" runat="server" />
-                            <asp:RequiredFieldValidator ID="reqvPostalCodeNew" runat="server"
+                            <asp:RequiredFieldValidator ID="reqvPostalCodeNew" runat="server" Display="Dynamic"
                                 ControlToValidate="txtPostalCodeNew" ErrorMessage="The postal code is required.">*</asp:RequiredFieldValidator>
-                            <asp:RegularExpressionValidator ID="rgxvPostalCodeNew" runat="server"
+                            <asp:RegularExpressionValidator ID="rgxvPostalCodeNew" runat="server" Display="Dynamic"
                                 ControlToValidate="txtPostalCodeNew" ErrorMessage="Please check the contact mailing address postal code format."
-                                ValidationExpression="^(\d{5})(-\d{4})?$" Display="Dynamic">Format must be either 99999 or 99999-9999</asp:RegularExpressionValidator>
+                                ValidationExpression="^(\d{5})(-\d{4})?$">Format must be either 99999 or 99999-9999</asp:RegularExpressionValidator>
                         </td>
                     </tr>
                     <tr>
@@ -200,12 +198,13 @@
                         </th>
                         <td>
                             <asp:TextBox ID="txtEmailNew" runat="server" />
-                            <asp:RequiredFieldValidator ID="reqvEmailNew" runat="server" ControlToValidate="txtEmailNew"
+                            <asp:RequiredFieldValidator ID="reqvEmailNew" runat="server" ControlToValidate="txtEmailNew" Display="Dynamic"
                                 ErrorMessage="The email address is required.">*</asp:RequiredFieldValidator>
-                            <asp:RegularExpressionValidator ID="rgxvEmailNew" runat="server"
-                                ControlToValidate="txtEmailNew"
-                                ErrorMessage="Email address not valid."
+                            <asp:RegularExpressionValidator ID="rgxvEmailNew" runat="server" Display="Dynamic"
+                                ControlToValidate="txtEmailNew" ErrorMessage="Email address not valid."
                                 ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>
+                            <asp:CustomValidator ID="custEmailNew" runat="server" ControlToValidate="txtEmailNew" Display="Dynamic"
+                                ErrorMessage="A Preparer with that email already exists for this facility.">*</asp:CustomValidator>
                         </td>
                     </tr>
                 </table>
@@ -264,7 +263,7 @@
 
             <asp:Panel ID="pnlEditUser" runat="server" CssClass="panel" Visible="false" DefaultButton="btnSaveEdit">
                 <h3>Edit User</h3>
-                <asp:ValidationSummary ID="ValidationSummaryEdit" runat="server" HeaderText="Please correct the following errors:"></asp:ValidationSummary>
+                <asp:ValidationSummary ID="ValidationSummaryEdit" runat="server" HeaderText="Please correct the following errors" />
 
                 <table class="table-simple table-list">
                     <tr>
@@ -292,7 +291,7 @@
                         </th>
                         <td>
                             <asp:TextBox ID="txtFirstNameEdit" runat="server" />
-                            <asp:RequiredFieldValidator ID="reqvFirstNameEdit" runat="server" ControlToValidate="txtFirstNameEdit"
+                            <asp:RequiredFieldValidator ID="reqvFirstNameEdit" runat="server" ControlToValidate="txtFirstNameEdit" Display="Dynamic"
                                 ErrorMessage="The first name is required.">*</asp:RequiredFieldValidator>
                         </td>
                     </tr>
@@ -303,7 +302,7 @@
                         </th>
                         <td>
                             <asp:TextBox ID="txtLastNameEdit" runat="server" />
-                            <asp:RequiredFieldValidator ID="reqvLastNameEdit" runat="server" ControlToValidate="txtLastNameEdit"
+                            <asp:RequiredFieldValidator ID="reqvLastNameEdit" runat="server" ControlToValidate="txtLastNameEdit" Display="Dynamic"
                                 ErrorMessage="The last name is required.">*</asp:RequiredFieldValidator>
                         </td>
                     </tr>
@@ -332,7 +331,7 @@
                         </th>
                         <td>
                             <asp:TextBox ID="txtStreetEdit" runat="server" />
-                            <asp:RequiredFieldValidator ID="reqvStreetEdit" runat="server" ControlToValidate="txtStreetEdit"
+                            <asp:RequiredFieldValidator ID="reqvStreetEdit" runat="server" ControlToValidate="txtStreetEdit" Display="Dynamic"
                                 ErrorMessage="The mailing address is required.">*</asp:RequiredFieldValidator>
                             <br />
                             <asp:TextBox ID="txtStreet2Edit" runat="server" />
@@ -345,7 +344,7 @@
                         </th>
                         <td>
                             <asp:TextBox ID="txtCityEdit" runat="server" />
-                            <asp:RequiredFieldValidator ID="reqvCityEdit" runat="server"
+                            <asp:RequiredFieldValidator ID="reqvCityEdit" runat="server" Display="Dynamic"
                                 ControlToValidate="txtCityEdit" ErrorMessage="The city is required.">*</asp:RequiredFieldValidator>
                         </td>
                     </tr>
@@ -356,9 +355,8 @@
                         </th>
                         <td>
                             <asp:DropDownList ID="ddlStateEdit" runat="server" />
-                            <asp:RequiredFieldValidator ID="reqvStateEdit" ControlToValidate="ddlStateEdit"
-                                InitialValue="--Select a State--" runat="server" ErrorMessage="The state is required."
-                                Display="Dynamic">*</asp:RequiredFieldValidator>
+                            <asp:RequiredFieldValidator ID="reqvStateEdit" ControlToValidate="ddlStateEdit" Display="Dynamic"
+                                InitialValue="--Select a State--" runat="server" ErrorMessage="The state is required.">*</asp:RequiredFieldValidator>
                         </td>
                     </tr>
                     <tr>
@@ -368,11 +366,11 @@
                         </th>
                         <td>
                             <asp:TextBox ID="txtPostalCodeEdit" runat="server" />
-                            <asp:RequiredFieldValidator ID="reqvPostalCodeEdit" runat="server"
+                            <asp:RequiredFieldValidator ID="reqvPostalCodeEdit" runat="server" Display="Dynamic"
                                 ControlToValidate="txtPostalCodeEdit" ErrorMessage="The postal code is required.">*</asp:RequiredFieldValidator>
-                            <asp:RegularExpressionValidator ID="rgxvPostalCodeEdit" runat="server"
+                            <asp:RegularExpressionValidator ID="rgxvPostalCodeEdit" runat="server" Display="Dynamic"
                                 ControlToValidate="txtPostalCodeEdit" ErrorMessage="Please check the contact mailing address postal code format."
-                                ValidationExpression="^(\d{5})(-\d{4})?$" Display="Dynamic">Format must be either 99999 or 99999-9999</asp:RegularExpressionValidator>
+                                ValidationExpression="^(\d{5})(-\d{4})?$">Format must be either 99999 or 99999-9999</asp:RegularExpressionValidator>
                         </td>
                     </tr>
                     <tr>
@@ -391,12 +389,13 @@
                         </th>
                         <td>
                             <asp:TextBox ID="txtEmailEdit" runat="server" />
-                            <asp:RequiredFieldValidator ID="reqvEmailEdit" runat="server" ControlToValidate="txtEmailEdit"
+                            <asp:RequiredFieldValidator ID="reqvEmailEdit" runat="server" ControlToValidate="txtEmailEdit" Display="Dynamic"
                                 ErrorMessage="The email address is required.">*</asp:RequiredFieldValidator>
-                            <asp:RegularExpressionValidator ID="rgxvEmailEdit" runat="server"
-                                ControlToValidate="txtEmailEdit"
-                                ErrorMessage="Email address not valid."
-                                ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>
+                            <asp:RegularExpressionValidator ID="rgxvEmailEdit" runat="server" Display="Dynamic"
+                                ControlToValidate="txtEmailEdit" ErrorMessage="Email address not valid."
+                                ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" />
+                            <asp:CustomValidator ID="custEmailEdit" runat="server" ControlToValidate="txtEmailEdit" Display="Dynamic"
+                                ErrorMessage="A Preparer with that email already exists for this facility.">*</asp:CustomValidator>
                         </td>
                     </tr>
                 </table>
@@ -410,8 +409,8 @@
             </asp:Panel>
 
             <% If IsBeginEisProcess AndAlso
-                  hidCertifiersCount.Value = 1 AndAlso
-                  hidPreparersCount.Value > 0 Then %>
+                    hidCertifiersCount.Value = 1 AndAlso
+                    hidPreparersCount.Value > 0 Then %>
             <p>
                 <asp:Button ID="btnProceed" runat="server" Text="Confirm CAERS Users and Continue →" CssClass="button-large button-proceed" />
             </p>
