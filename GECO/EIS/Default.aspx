@@ -1,4 +1,4 @@
-<%@ Page MasterPageFile="~/EIS/EIS.master" Language="VB" AutoEventWireup="false"
+ï»¿<%@ Page MasterPageFile="~/EIS/EIS.master" Language="VB" AutoEventWireup="false"
     Title="GECO Emissions Inventory System"
     Inherits="GECO.EIS_Default" CodeBehind="Default.aspx.vb" %>
 
@@ -44,7 +44,7 @@
             <li>
                 <p>
                     For facilities new to CDX/CAERS: Once you provide preparer and certifier information, you 
-                    will be directed to EPA’s CDX to provide the same information. For facilities who 
+                    will be directed to EPA's CDX to provide the same information. For facilities who 
                     participated in the 2019 EI, skip this step unless a new preparer/certifier needs to be added.
                 </p>
             </li>
