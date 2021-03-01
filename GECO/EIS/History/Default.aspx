@@ -25,15 +25,22 @@
     </ul>
 
     <h3>Reporting Period Reports</h3>
-    <ul>
-        <li>
-            <p><a href="ReportingPeriodProcesses.aspx">Processes</a></p>
-        </li>
-        <li>
-            <p><a href="ReportingPeriodPollutants.aspx">Pollutants</a></p>
-        </li>
-        <li>
-            <p><a href="ReportingPeriodEmissions.aspx">Emissions</a></p>
-        </li>
-    </ul>
+
+    <div id="dNoDataExists" runat="server" visible="false">
+        <p>No historical data exists for this facility.</p>
+    </div>
+
+    <div id="dDataExists" runat="server">
+        <ul>
+            <li>
+                <p><a href="ReportingPeriodProcesses.aspx">Processes</a></p>
+            </li>
+            <li>
+                <p><a href="ReportingPeriodPollutants.aspx">Pollutants</a></p>
+            </li>
+            <li>
+                <p><a href="ReportingPeriodEmissions.aspx">Emissions</a></p>
+            </li>
+        </ul>
+    </div>
 </asp:Content>

@@ -5,6 +5,7 @@ Public Class EIS_History_ReportingPeriodEmissions
     Inherits Page
 
     Private Property CurrentAirs As ApbFacilityId
+    Private Property DataExists As Boolean
 
     Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
         MainLoginCheck()
@@ -20,14 +21,19 @@ Public Class EIS_History_ReportingPeriodEmissions
         Master.SelectedTab = EIS.EisTab.History
 
         If Not IsPostBack Then
-            LoadYears()
+            If LoadYears() Then
+                LoadDetails()
+            Else
+                dNoDataExists.Visible = True
+                dDataExists.Visible = False
+            End If
+        Else
+            LoadDetails()
         End If
-
-        LoadDetails()
     End Sub
 
 
-    Private Sub LoadYears()
+    Private Function LoadYears() As Boolean
         Dim query = "select distinct INTINVENTORYYEAR
             FROM VW_EIS_RPEMISSIONS
             where FACILITYSITEID = @FacilitySiteID
@@ -41,12 +47,14 @@ Public Class EIS_History_ReportingPeriodEmissions
             For Each dr As DataRow In dt.Rows
                 Years.Items.Add(dr("INTINVENTORYYEAR").ToString)
             Next
+
             Years.SelectedIndex = 0
-        Else
-            Years.Items.Add("No Data")
-            YearButton.Visible = False
+            Return True
         End If
-    End Sub
+
+        Years.Items.Add("No Data")
+        Return False
+    End Function
 
     Private Sub LoadDetails()
         Dim query = "SELECT STRPOLLUTANT as [Pollutant],

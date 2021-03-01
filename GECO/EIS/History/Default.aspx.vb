@@ -1,4 +1,5 @@
-﻿Imports GECO.GecoModels
+﻿Imports System.Data.SqlClient
+Imports GECO.GecoModels
 
 Public Class EIS_History_Default
     Inherits Page
@@ -14,6 +15,21 @@ Public Class EIS_History_Default
 
         Master.CurrentAirs = New ApbFacilityId(airs)
         Master.SelectedTab = EIS.EisTab.History
+
+        If Not HistoricalDataExists(airs) Then
+            dNoDataExists.Visible = True
+            dDataExists.Visible = False
+        End If
     End Sub
+
+    Private Function HistoricalDataExists(airs As ApbFacilityId) As Boolean
+        Dim query As String = "select convert(bit, count(*))
+            from EIS_REPORTINGPERIODEMISSIONS
+            where FACILITYSITEID = @FACILITYSITEID"
+
+        Dim param As New SqlParameter("@FACILITYSITEID", airs.ShortString)
+
+        Return DB.GetBoolean(query, param)
+    End Function
 
 End Class

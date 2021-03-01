@@ -14,6 +14,24 @@ Option Explicit On
 Partial Public Class EIS_History_Default
 
     '''<summary>
+    '''dNoDataExists control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents dNoDataExists As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
+    '''dDataExists control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents dDataExists As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
     '''Master property.
     '''</summary>
     '''<remarks>

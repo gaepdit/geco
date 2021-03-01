@@ -23,6 +23,24 @@ Partial Public Class EIS_History_ReportingPeriodEmissions
     Protected WithEvents YearUpdate As Global.System.Web.UI.UpdatePanel
 
     '''<summary>
+    '''dNoDataExists control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents dNoDataExists As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
+    '''dDataExists control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents dDataExists As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
     '''YearLabel control.
     '''</summary>
     '''<remarks>
