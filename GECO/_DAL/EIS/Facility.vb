@@ -12,8 +12,8 @@ Namespace DAL.EIS
                    strMailingAddressStateCode, strMailingAddressPostalCode, strLocationAddressText, strSupplementalLocationText,
                    strLocalityName, strLocationAddressPostalCode, strAddressComment, strFacilitySiteStatusDesc,
                    intFacilitySiteStatusCodeYear, strFacilitySiteDescription, strNAICSCode, strFacilitySiteComment,
-                   numLatitudeMeasure, numLongitudeMeasure, " &
-                   "HorCollMetCode, STRHORCOLLMETDesc, INTHORACCURACYMEASURE, HorRefDatumCode, STRHORREFDATUMDesc,
+                   numLatitudeMeasure, numLongitudeMeasure, 
+                   HorCollMetCode, STRHORCOLLMETDesc, INTHORACCURACYMEASURE, HorRefDatumCode, STRHORREFDATUMDesc,
                    strGeographicComment, strNamePrefixText, strFirstName, strLastName, strIndividualTitleText, strFSAIMAddressText,
                    strFSAISAddressText, strFSAIMAddressCityName, strFSAIMAddressStateCode, strFSAIMAddressPostalCode,
                    StrElectronicAddressText, UpdateUser_mailingAddress, UpdateDateTime_mailingAddress, LastEPASubmitDate_MAddress,
