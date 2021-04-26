@@ -91,7 +91,7 @@
           <conditions>
             <add input="{HTTPS}" pattern="on" ignoreCase="true" />
           </conditions>
-          <action type="Rewrite" value="max-age=2592000" />
+          <action type="Rewrite" value="max-age=63072000" />
         </rule>
       </outboundRules>
     </rewrite>
