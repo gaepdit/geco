@@ -24,20 +24,25 @@ Public Class EIS_History_EmissionUnits
 
 
     Private Sub LoadDetails()
-        Dim query = "select u.EmissionsUnitID, u.strUnitDescription,
-                   lu.STRDESC as strUnitType, u.fltUnitDesignCapacity,
-                   u.STRUNITDESIGNCAPACITYUOMCODE, u.NUMMAXIMUMNAMEPLATECAPACITY,
-                   ls.strDesc as strUnitStatusCode, u.DATUNITOPERATIONDATE,
-                   STRUNITCOMMENT, LASTEISSUBMITDATE
-            from EIS_EMISSIONSUNIT u
-                left join EISLK_UNITTYPECODE lu
-                on u.STRUNITTYPECODE = lu.UNITTYPECODE
-                    and lu.ACTIVE = '1'
-                left join EISLK_UNITSTATUSCODE ls
-                on u.STRUNITSTATUSCODE = ls.UNITSTATUSCODE
-                    and ls.ACTIVE = '1'
-            where FacilitySiteID = @FacilitySiteID
-              and u.Active = '1'"
+        Dim query = "select u.EmissionsUnitID              as [Emission Unit ID],
+               u.strUnitDescription           as [Description],
+               lu.STRDESC                     as [Unit Type],
+               u.fltUnitDesignCapacity        as [Design Capacity],
+               u.STRUNITDESIGNCAPACITYUOMCODE as [Design Capacity Units],
+               u.NUMMAXIMUMNAMEPLATECAPACITY  as [Max Nameplate Capacity (MW)],
+               u.DATUNITOPERATIONDATE         as [Placed in Operation],
+               ls.strDesc                     as [Operating Status],
+               LASTEISSUBMITDATE              as [Last EPA Submittal],
+               STRUNITCOMMENT                 as [Comment]
+        from EIS_EMISSIONSUNIT u
+            left join EISLK_UNITTYPECODE lu
+            on u.STRUNITTYPECODE = lu.UNITTYPECODE
+                and lu.ACTIVE = '1'
+            left join EISLK_UNITSTATUSCODE ls
+            on u.STRUNITSTATUSCODE = ls.UNITSTATUSCODE
+                and ls.ACTIVE = '1'
+        where FacilitySiteID = @FacilitySiteID
+          and u.Active = '1'"
 
         Dim param As New SqlParameter("@FacilitySiteID", CurrentAirs.ShortString)
         Dim dt As DataTable = DB.GetDataTable(query, param)

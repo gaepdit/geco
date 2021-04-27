@@ -55,15 +55,31 @@ Public Class EIS_History_ReportingPeriodPollutants
     End Function
 
     Private Sub LoadDetails()
-        Dim query = "SELECT FacilitySiteID, INTINVENTORYYEAR, EMISSIONSUNITID, STRUNITDESCRIPTION, PROCESSID, STRPROCESSDESCRIPTION,
-                   STRPOLLUTANT, IIF(RPTPeriodTypeCode = 'O3D', 'Summer Day', 'Annual') AS RPTPeriodType,
-                   IIF(RPTPeriodTypeCode = 'O3D', 'TPD *', 'TPY')                       AS PollutantUnit,
-                   FLTTOTALEMISSIONS, FLTEMISSIONFACTOR, STREMCALCMETHOD, EFUNITS, EFNUMDESC, EFDENDESC, STREMISSIONFACTORTEXT,
-                   STREMISSIONSCOMMENT, UPDATEUSER, UPDATEDATETIME, LASTEISSUBMITDATE
-            FROM VW_EIS_RPEMISSIONS
-            where FacilitySiteID = @FacilitySiteID
-              and intInventoryYear = @EIYear
-            order by EMISSIONSUNITID, PROCESSID, STRPOLLUTANT"
+        Dim query = "SELECT INTINVENTORYYEAR                 as [Inventory Year],
+               EMISSIONSUNITID                  as [Emissions Unit ID],
+               STRUNITDESCRIPTION               as [Emissions Unit Desc],
+               PROCESSID                        as [Process ID],
+               STRPROCESSDESCRIPTION            as [Process Desc],
+               STRPOLLUTANT                     as [Pollutant],
+               IIF(RPTPeriodTypeCode = 'O3D',
+                   'Summer Day',
+                   'Annual')                    as [Pollutant Period],
+               IIF(RPTPeriodTypeCode = 'O3D',
+                   'TPD *',
+                   'TPY')                       as [Total Emissions Units],
+               FLTTOTALEMISSIONS                as [Total Emissions],
+               FLTEMISSIONFACTOR                as [Emission Factor],
+               EFUNITS                          as [Emissions Factor Units],
+               STREMCALCMETHOD                  as [Emission Calculation Method],
+               EFNUMDESC                        as [Emission Factor Numerator],
+               EFDENDESC                        as [Emission Factor Denominator],
+               STREMISSIONFACTORTEXT            as [Emission Factor Text],
+               STREMISSIONSCOMMENT              as [Emissions Comment],
+               convert(date, LASTEISSUBMITDATE) as [Last EPA Submittal]
+        FROM VW_EIS_RPEMISSIONS
+        where FacilitySiteID = @FacilitySiteID
+          and intInventoryYear = @EIYear
+        order by EMISSIONSUNITID, PROCESSID, STRPOLLUTANT"
 
         Dim params As SqlParameter() = {
             New SqlParameter("@FacilitySiteID", CurrentAirs.ShortString),

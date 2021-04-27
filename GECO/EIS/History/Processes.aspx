@@ -15,14 +15,15 @@
     <asp:Button ID="ProcessesExport" runat="server" Text="Download as Excel" CausesValidation="False" UseSubmitBehavior="False" />
     <asp:GridView ID="Processes" runat="server" AutoGenerateColumns="False" CssClass="table-simple table-striped">
         <Columns>
-            <asp:BoundField DataField="EmissionsUnitID" HeaderText="Emission Unit ID" />
-            <asp:BoundField DataField="strUnitDesc" HeaderText="Unit Status" />
-            <asp:BoundField DataField="ProcessID" HeaderText="Process ID" />
-            <asp:BoundField DataField="strProcessDescription" HeaderText="Process Description" />
-            <asp:BoundField DataField="SourceClassCode" HeaderText="SCC" />
-            <asp:BoundField DataField="strSCCDesc" HeaderText="SCC Description" />
-            <asp:BoundField DataField="LastEISSubmitDate" DataFormatString="{0:d}" HeaderText="Last EPA Submittal" NullDisplayText="Not Submitted" />
-            <asp:BoundField DataField="strProcessComment" HeaderText="Comment" />
+            <asp:BoundField DataField="Emission Unit ID" HeaderText="Emission Unit ID" />
+            <asp:BoundField DataField="Unit Status" HeaderText="Unit Status" />
+            <asp:BoundField DataField="Process ID" HeaderText="Process ID" />
+            <asp:BoundField DataField="Process Description" HeaderText="Process Description" />
+            <asp:BoundField DataField="SCC" HeaderText="SCC" />
+            <asp:BoundField DataField="SCC Description" HeaderText="SCC Description" />
+            <asp:BoundField DataField="Last EPA Submittal" HeaderText="Last EPA Submittal"
+                DataFormatString="{0:d}" NullDisplayText="Not Submitted" />
+            <asp:BoundField DataField="Comment" HeaderText="Comment" />
         </Columns>
     </asp:GridView>
 </asp:Content>

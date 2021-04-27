@@ -24,11 +24,22 @@ Public Class EIS_History_ReleasePoints
     End Sub
 
     Private Sub LoadFugitives()
-        Dim query = "SELECT p.FacilitySiteID, p.strRPDescription, p.ReleasePointID, p.numRPFugitiveHeightMeasure,
-                p.numRPFugitiveWidthMeasure, p.numRPFugitiveLengthMeasure, p.numRPFugitiveAngleMeasure,
-                p.numRPFencelineDistMeasure, g.numLatitudeMeasure, g.numLongitudeMeasure, g.intHorAccuracyMeasure,
-                lh.strDesc AS HorCollMetDesc, ld.strDesc AS HorRefDatumDesc, p.strRPComment,
-                ls.strDesc AS strRPStatusCode, g.strGeographicComment, p.LastEISSubmitDate
+        Dim query = "SELECT p.ReleasePointID             as [Release Point ID],
+                   p.strRPDescription           as [Description],
+                   p.numRPFugitiveHeightMeasure as [Fugitive Height (ft)],
+                   p.numRPFugitiveWidthMeasure  as [Fugitive Width (ft)],
+                   p.numRPFugitiveLengthMeasure as [Fugitive Length (ft)],
+                   p.numRPFugitiveAngleMeasure  as [Fugitive Angle (0° to 89°)],
+                   p.numRPFenceLineDistMeasure  as [Fenceline Distance (ft)],
+                   ls.strDesc                   as [Operating Status],
+                   g.numLatitudeMeasure         as [Latitude],
+                   g.numLongitudeMeasure        as [Longitude],
+                   g.intHorAccuracyMeasure      as [Horiz Accuracy Measure (m)],
+                   lh.strDesc                   as [Horiz Collection Method],
+                   ld.strDesc                   as [Horiz Reference Datum],
+                   p.LastEISSubmitDate          as [Last EPA Submittal],
+                   p.strRPComment               as [Fugitive Comment],
+                   g.strGeographicComment       as [Geo Coord Comment]
             FROM EIS_RELEASEPOINT p
                 LEFT JOIN EIS_RPGEOCOORDINATES g
                 ON p.FacilitySiteID = g.FacilitySiteID
@@ -59,11 +70,24 @@ Public Class EIS_History_ReleasePoints
     End Sub
 
     Private Sub LoadStacks()
-        Dim query = "SELECT p.FacilitySiteID, p.strRPDescription, p.ReleasePointID, p.numRPStackHeightMeasure, p.numRPStackDiameterMeasure,
-                   p.numRPExitGasVelocityMeasure, p.numRPExitGasFlowRateMeasure, p.numRPExitGasTempMeasure,
-                   p.numRPFenceLineDistMeasure, g.numLatitudeMeasure, g.numLongitudeMeasure, g.intHorAccuracyMeasure,
-                   lh.strDesc AS HorCollMetDesc, ld.strDesc AS HorRefDatumDesc, lt.strDesc AS RPTypeDesc,
-                   lr.strDesc AS RPStatusDesc, p.strRPComment, g.strGeographicComment, p.LastEISSubmitDate
+        Dim query = "SELECT p.ReleasePointID              as [Release Point ID],
+                   p.strRPDescription            as [Description],
+                   lt.strDesc                    as [Stack Type],
+                   p.numRPStackHeightMeasure     as [Stack Height (ft)],
+                   p.numRPStackDiameterMeasure   as [Stack Diameter (ft)],
+                   p.numRPExitGasVelocityMeasure as [Exit Gas Velocity (fps)],
+                   p.numRPExitGasFlowRateMeasure as [Exit Gas Flow Rate (acfs)],
+                   p.numRPExitGasTempMeasure     as [Exit Gas Temp (°F)],
+                   p.numRPFenceLineDistMeasure   as [Fenceline Distance (ft)],
+                   lr.strDesc                    as [Operating Status],
+                   g.numLatitudeMeasure          as [Latitude],
+                   g.numLongitudeMeasure         as [Longitude],
+                   g.intHorAccuracyMeasure       as [Horiz Accuracy Measure (m)],
+                   lh.strDesc                    as [Horiz Collection Method],
+                   ld.strDesc                    as [Horiz Reference Datum],
+                   p.LastEISSubmitDate           as [Last EPA Submittal],
+                   p.strRPComment                as [Stack Comment],
+                   g.strGeographicComment        as [Geo Coord Comment]
             FROM EIS_RELEASEPOINT p
                 LEFT JOIN EIS_RPGEOCOORDINATES g
                 ON p.FacilitySiteID = g.FacilitySiteID

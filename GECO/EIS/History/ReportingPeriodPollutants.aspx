@@ -31,24 +31,23 @@
                 <asp:GridView ID="ReportingPeriod" runat="server" AutoGenerateColumns="False" CssClass="table-simple table-striped"
                     Caption="* Summer Day emissions = emissions on an average summer day May 1 through Sep 30. Units are in tons per day (TPD).">
                     <Columns>
-                        <asp:BoundField DataField="EMISSIONSUNITID" HeaderText="Emissions Unit ID" />
-                        <asp:BoundField DataField="STRUNITDESCRIPTION" HeaderText="Emissisons Unit Desc" />
-                        <asp:BoundField DataField="PROCESSID" HeaderText="Process ID" />
-                        <asp:BoundField DataField="STRPROCESSDESCRIPTION" HeaderText="Process Desc" />
-                        <asp:BoundField DataField="STRPOLLUTANT" HeaderText="Pollutant" />
-                        <asp:BoundField DataField="RPTPeriodType" HeaderText="Pollutant Period" />
-                        <asp:BoundField DataField="FLTTOTALEMISSIONS" HeaderText="Total Emissions" />
-                        <asp:BoundField DataField="PollutantUnit" />
-                        <asp:BoundField DataField="FLTEMISSIONFACTOR" HeaderText="Emission Factor" />
-                        <asp:BoundField DataField="EFUNITS" HeaderText="Emission Facotr Units" />
-                        <asp:BoundField DataField="STREMCALCMETHOD" HeaderText="Emission Calculation Method" />
-                        <asp:BoundField DataField="EFNUMDESC" HeaderText="Emission Factor Numerator" />
-                        <asp:BoundField DataField="EFDENDESC" HeaderText="Emission Factor Denominator" />
-                        <asp:BoundField DataField="STREMISSIONFACTORTEXT" HeaderText="Emission Factor Text" />
-                        <asp:BoundField DataField="STREMISSIONSCOMMENT" HeaderText="Emissions Comment" />
-                        <asp:BoundField DataField="UPDATEUSER" HeaderText="Update User" />
-                        <asp:BoundField DataField="UPDATEDATETIME" HeaderText="Update Date & Time" />
-                        <asp:BoundField DataField="LASTEISSUBMITDATE" HeaderText="Last Submit Date" />
+                        <asp:BoundField DataField="Inventory Year" HeaderText="Inventory Year" />
+                        <asp:BoundField DataField="Emissions Unit ID" HeaderText="Emissions Unit ID" />
+                        <asp:BoundField DataField="Emissions Unit Desc" HeaderText="Emissions Unit Desc" />
+                        <asp:BoundField DataField="Process ID" HeaderText="Process ID" />
+                        <asp:BoundField DataField="Process Desc" HeaderText="Process Desc" />
+                        <asp:BoundField DataField="Pollutant" HeaderText="Pollutant" />
+                        <asp:BoundField DataField="Pollutant Period" HeaderText="Pollutant Period" />
+                        <asp:BoundField DataField="Total Emissions Units" HeaderText="Total Emissions Units" />
+                        <asp:BoundField DataField="Total Emissions" HeaderText="Total Emissions" />
+                        <asp:BoundField DataField="Emission Factor" HeaderText="Emission Factor" />
+                        <asp:BoundField DataField="Emissions Factor Units" HeaderText="Emissions Factor Units" />
+                        <asp:BoundField DataField="Emission Calculation Method" HeaderText="Emission Calculation Method" />
+                        <asp:BoundField DataField="Emission Factor Numerator" HeaderText="Emission Factor Numerator" />
+                        <asp:BoundField DataField="Emission Factor Denominator" HeaderText="Emission Factor Denominator" />
+                        <asp:BoundField DataField="Emission Factor Text" HeaderText="Emission Factor Text" />
+                        <asp:BoundField DataField="Emissions Comment" HeaderText="Emissions Comment" />
+                        <asp:BoundField DataField="Last EPA Submittal" HeaderText="Last EPA Submittal" />
                     </Columns>
                 </asp:GridView>
             </div>

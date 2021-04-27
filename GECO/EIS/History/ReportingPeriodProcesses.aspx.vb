@@ -55,20 +55,38 @@ Public Class EIS_History_ReportingPeriodProcesses
     End Function
 
     Private Sub LoadDetails()
-        Dim query = "SELECT FACILITYSITEID, INTINVENTORYYEAR, EMISSIONSUNITID, STRUNITDESCRIPTION, PROCESSID, STRPROCESSDESCRIPTION,
-                   FLTCALCPARAMETERVALUE, STRCPUOMDESC, STRCPTYPEDESC, STRMATERIAL, STRREPORTINGPERIODCOMMENT,
-                   INTACTUALHOURSPERPERIOD, NUMAVERAGEDAYSPERWEEK, NUMAVERAGEHOURSPERDAY, NUMAVERAGEWEEKSPERPERIOD,
-                   NUMPERCENTWINTERACTIVITY, NUMPERCENTSPRINGACTIVITY, NUMPERCENTSUMMERACTIVITY, NUMPERCENTFALLACTIVITY,
-                   HEATCONTENT, IIF(HCNUMER = 'E6BTU', 'MILLION BTU', HCNUMER) as HCNUMER, c.STRDESC as HCDenom, ASHCONTENT,
-                   SULFURCONTENT
-            FROM VW_EIS_RPDETAILS d
-                left join EISLK_SCPDENOMUOMCODE c
-                on d.HCDENOM = c.SCPDENOMUOMCODE
-            where FacilitySiteID = @FacilitySiteID
-              and intInventoryYear = @EIYear
-              and d.EmissionUnitActive = '1'
-              and d.ProcessActive = '1'
-            order by EMISSIONSUNITID, PROCESSID"
+        Dim query = "SELECT INTINVENTORYYEAR          as [Inventory Year],
+               EMISSIONSUNITID           as [Emissions Unit ID],
+               STRUNITDESCRIPTION        as [Emissions Unit Desc],
+               PROCESSID                 as [Process ID],
+               STRPROCESSDESCRIPTION     as [Process Desc],
+               FLTCALCPARAMETERVALUE     as [Calculation Parameter Value],
+               STRCPUOMDESC              as [Calculation Parameter Unit of Measure],
+               STRCPTYPEDESC             as [Calculation Parameter Type Desc],
+               STRMATERIAL               as [Material Desc],
+               STRREPORTINGPERIODCOMMENT as [Reporting Period Comment],
+               INTACTUALHOURSPERPERIOD   as [Actual Hours Per Period],
+               NUMAVERAGEDAYSPERWEEK     as [Average Days Per Week],
+               NUMAVERAGEHOURSPERDAY     as [Average Hours per Day],
+               NUMAVERAGEWEEKSPERPERIOD  as [Average Weeks per Period],
+               NUMPERCENTWINTERACTIVITY  as [Winter Activity %],
+               NUMPERCENTSPRINGACTIVITY  as [Spring Activity %],
+               NUMPERCENTSUMMERACTIVITY  as [Summer Activity %],
+               NUMPERCENTFALLACTIVITY    as [Fall Activity %],
+               HEATCONTENT               as [Heat Content],
+               IIF(HCNUMER = 'E6BTU', 'MILLION BTU', HCNUMER)
+                                         as [Heat Content Numerator],
+               c.STRDESC                 as [Heat Content Denominator],
+               ASHCONTENT                as [Ash Content],
+               SULFURCONTENT             as [Sulfur Content]
+        FROM VW_EIS_RPDETAILS d
+            left join EISLK_SCPDENOMUOMCODE c
+            on d.HCDENOM = c.SCPDENOMUOMCODE
+        where FacilitySiteID = @FacilitySiteID
+          and intInventoryYear = @EIYear
+          and d.EmissionUnitActive = '1'
+          and d.ProcessActive = '1'
+        order by EMISSIONSUNITID, PROCESSID"
 
         Dim params As SqlParameter() = {
             New SqlParameter("@FacilitySiteID", CurrentAirs.ShortString),

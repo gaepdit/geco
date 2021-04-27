@@ -15,16 +15,20 @@
     <asp:Button ID="EmissionUnitsExport" runat="server" Text="Download as Excel" CausesValidation="False" UseSubmitBehavior="False" />
     <asp:GridView ID="EmissionUnits" runat="server" AutoGenerateColumns="False" CssClass="table-simple table-striped">
         <Columns>
-            <asp:BoundField DataField="EMISSIONSUNITID" HeaderText="Emission Unit ID" />
-            <asp:BoundField DataField="STRUNITDESCRIPTION" HeaderText="Description" />
-            <asp:BoundField DataField="strUnitType" HeaderText="Unit Type" />
-            <asp:BoundField DataField="FLTUNITDESIGNCAPACITY" HeaderText="Design Capacity" />
-            <asp:BoundField DataField="STRUNITDESIGNCAPACITYUOMCODE" HeaderText="Design Capacity Unit" />
-            <asp:BoundField DataField="NUMMAXIMUMNAMEPLATECAPACITY" HeaderText="Max Nameplate Capacity (MW)" NullDisplayText="Non Elec Gen" />
-            <asp:BoundField DataField="DATUNITOPERATIONDATE" HeaderText="Placed in Operation" SortExpression="DATUNITOPERATIONDATE" DataFormatString="{0:d}" />
-            <asp:BoundField DataField="strUnitStatusCode" HeaderText="Operating Status" NullDisplayText="No Data" />
-            <asp:BoundField DataField="LastEISSubmitDate" DataFormatString="{0:d}" HeaderText="Last EPA Submittal" NullDisplayText="Not Submitted" />
-            <asp:BoundField DataField="STRUNITCOMMENT" HeaderText="Comment" />
+            <asp:BoundField DataField="Emission Unit ID" HeaderText="Emission Unit ID" />
+            <asp:BoundField DataField="Description" HeaderText="Description" />
+            <asp:BoundField DataField="Unit Type" HeaderText="Unit Type" />
+            <asp:BoundField DataField="Design Capacity" HeaderText="Design Capacity" />
+            <asp:BoundField DataField="Design Capacity Units" HeaderText="Design Capacity Units" />
+            <asp:BoundField DataField="Max Nameplate Capacity (MW)" HeaderText="Max Nameplate Capacity (MW)"
+                NullDisplayText="Non Elec Gen" />
+            <asp:BoundField DataField="Placed in Operation" HeaderText="Placed in Operation"
+                DataFormatString="{0:d}" />
+            <asp:BoundField DataField="Operating Status" HeaderText="Operating Status"
+                NullDisplayText="No Data" />
+            <asp:BoundField DataField="Last EPA Submittal" HeaderText="Last EPA Submittal"
+                DataFormatString="{0:d}" NullDisplayText="Not Submitted" />
+            <asp:BoundField DataField="Comment" HeaderText="Comment" />
         </Columns>
     </asp:GridView>
 </asp:Content>
