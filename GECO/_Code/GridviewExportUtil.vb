@@ -1,4 +1,4 @@
-Imports System.IO
+﻿Imports System.IO
 Imports ClosedXML.Excel
 
 Public Module GridViewExportUtil
@@ -21,7 +21,8 @@ Public Module GridViewExportUtil
         Dim wb As New XLWorkbook(), ms As New MemoryStream()
 
         Try
-            wb.AddWorksheet(datatable)
+            Dim ws As IXLWorksheet = wb.AddWorksheet(datatable)
+            ws.Columns().AdjustToContents(8.0R, 80.0R)
 
             Dim httpResponse As HttpResponse = HttpContext.Current.Response
             httpResponse.Clear()
