@@ -44,8 +44,7 @@
           affects performance, set this value to true only
           during development.
     -->
-    <compilation debug="true" strict="false" explicit="true" targetFramework="4.6.1" />
-    <httpRuntime targetFramework="4.6.1" />
+    <compilation debug="true" strict="false" explicit="true" />
     <pages controlRenderingCompatibilityVersion="3.5" clientIDMode="AutoID">
       <controls>
         <add tagPrefix="act" namespace="AjaxControlToolkit" assembly="AjaxControlToolkit" />
