@@ -28,15 +28,15 @@ Partial Class APB_eismaster
             lblEISAirsNumber.Text = currentAirs.FormattedString
             lblFacilityName.Text = GetFacilityName(currentAirs)
 
-            EasyMenu1.MenuStyle.BorderStyle = "0px solid"
-            EasyMenu1.MenuStyle.MenuItemStyle = "color:#0000ff;font-family:Verdana;font-size:small;margin: 0px 0px 0px 1px;"
-            EasyMenu1.MenuStyle.BackgroundActiveColor = "#ffffff"
-            EasyMenu1.MenuStyle.BackgroundColor = "#9bd7ff;"
+            'EasyMenu1.MenuStyle.BorderStyle = "0px solid"
+            'EasyMenu1.MenuStyle.MenuItemStyle = "color:#0000ff;font-family:Verdana;font-size:small;margin: 0px 0px 0px 1px;"
+            'EasyMenu1.MenuStyle.BackgroundActiveColor = "#ffffff"
+            'EasyMenu1.MenuStyle.BackgroundColor = "#9bd7ff;"
 
-            EasyMenu1.MenuRoot.AddSubMenuItem("Facility Home", "../Facility/")
-            EasyMenu1.MenuRoot.AddSubMenuItem("Home", "../Home/")
-            EasyMenu1.MenuRoot.AddSubMenuItem("Contact Us", "../ContactUs.aspx")
-            EasyMenu1.MenuRoot.AddSubMenuItem("Account", "../Account/")
+            'EasyMenu1.MenuRoot.AddSubMenuItem("Facility Home", "../Facility/")
+            'EasyMenu1.MenuRoot.AddSubMenuItem("Home", "../Home/")
+            'EasyMenu1.MenuRoot.AddSubMenuItem("Contact Us", "../ContactUs.aspx")
+            'EasyMenu1.MenuRoot.AddSubMenuItem("Account", "../Account/")
         End If
     End Sub
 

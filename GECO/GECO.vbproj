@@ -65,10 +65,6 @@
     <Reference Include="DocumentFormat.OpenXml, Version=2.12.3.0, Culture=neutral, PublicKeyToken=8fb06cb64d019a17, processorArchitecture=MSIL">
       <HintPath>..\packages\DocumentFormat.OpenXml.2.12.3\lib\net46\DocumentFormat.OpenXml.dll</HintPath>
     </Reference>
-    <Reference Include="EasyMenu, Version=1.0.0.12, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>assets\DLLs\EasyMenu.dll</HintPath>
-    </Reference>
     <Reference Include="EpdIt.DbHelper, Version=3.0.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\EpdIt.DbHelper.3.0.2\lib\net452\EpdIt.DbHelper.dll</HintPath>
     </Reference>
@@ -180,7 +176,6 @@
     <Content Include="assets\css\printstyle.css" />
     <Content Include="assets\DLLs\AjaxControls.dll" />
     <Content Include="assets\DLLs\AjaxControlToolkit.dll" />
-    <Content Include="assets\DLLs\EasyMenu.dll" />
     <Content Include="assets\epd-favicons\android-chrome-192x192.png" />
     <Content Include="assets\epd-favicons\android-chrome-512x512.png" />
     <Content Include="assets\epd-favicons\apple-touch-icon.png" />

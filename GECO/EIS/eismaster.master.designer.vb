@@ -50,15 +50,6 @@ Partial Public Class APB_eismaster
     Protected WithEvents lblFacilityName As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''EasyMenu1 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents EasyMenu1 As Global.Sequentum.EasyMenu
-
-    '''<summary>
     '''lbtnHome control.
     '''</summary>
     '''<remarks>

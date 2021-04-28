@@ -42,7 +42,7 @@
                             </div>
                         </td>
                         <td align="right">
-                            <seq:EasyMenu ID="EasyMenu1" runat="server" />
+                            <%--<seq:EasyMenu ID="EasyMenu1" runat="server" />--%>
                         </td>
                     </tr>
                 </table>
