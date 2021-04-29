@@ -50,7 +50,7 @@ Partial Class AnnualFees_Default
                 'Don't pre-select any Year. Let the user select a year they want to work on.
                 For Each row As DataRow In dt.Rows
                     Dim intsubmittal As Integer = GetNullable(Of Integer)(row.Item("intsubmittal"))
-                    ddlFeeYear.Items.Add(New ListItem(row.Item("intyear"), intsubmittal.ToString))
+                    ddlFeeYear.Items.Add(New ListItem(row.Item("intyear").ToString, row.Item("intyear").ToString & intsubmittal.ToString))
                 Next
             End If
         End If
@@ -59,7 +59,7 @@ Partial Class AnnualFees_Default
             feeYear = Nothing
         Else
             feeYear = CInt(ddlFeeYear.SelectedItem.Text)
-            feeYearCompleted = (ddlFeeYear.SelectedValue = "1")
+            feeYearCompleted = Mid(ddlFeeYear.SelectedValue, 5) = 1
         End If
     End Sub
 
