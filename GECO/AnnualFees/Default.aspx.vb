@@ -392,6 +392,14 @@ Partial Class AnnualFees_Default
             lblNspsRemovalNotice.Text = "If it is believed that this stationary source is not subject to any NSPS standard, <br/>call the number listed in Section 6.0 of this manual."
             chkNSPSExempt.Visible = initNsps
 
+            If initNsps Then
+                chkNSPSExempt.Checked = GetNullable(Of Boolean)(dr.Item("NspsFeeExempt"))
+                If chkNSPSExempt.Checked Then
+                    LoadNSPSExemptList()
+                    NspsExemptionsChecklist.Visible = True
+                End If
+            End If
+
             chkPart70Source.Checked = GetNullable(Of Integer)(dr.Item("strpart70")) = 1
         End If
 
