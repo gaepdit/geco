@@ -64,7 +64,7 @@ Public Module AnnualFees
     End Function
 
     Public Function GetClassInfo(feeyear As Integer) As DataRow
-        Dim SQL = "Select strclass, strnsps, " &
+        Dim SQL = "Select strclass, strnsps, NspsFeeExempt, " &
             " strpart70 FROM fs_mailout " &
             " where strairsnumber = @airs and numfeeyear = @feeyear "
 
