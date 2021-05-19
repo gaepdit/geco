@@ -167,27 +167,6 @@
     <Content Include="Controls\PreventRePost.ascx" />
     <Content Include="Login.aspx" />
     <Content Include="Default.aspx" />
-    <Content Include="EIS\Default_Old.aspx" />
-    <Content Include="EIS\emissionunit_details.aspx" />
-    <Content Include="EIS\emissionunit_summary.aspx" />
-    <Content Include="EIS\facility_details.aspx" />
-    <Content Include="EIS\facility_edit.aspx" />
-    <Content Include="EIS\fugitive_details.aspx" />
-    <Content Include="EIS\process_details.aspx" />
-    <Content Include="EIS\process_summary.aspx" />
-    <Content Include="EIS\releasepoint_summary.aspx" />
-    <Content Include="EIS\reports.aspx" />
-    <Content Include="EIS\report_emissionunits.aspx" />
-    <Content Include="EIS\report_fw_emsummary.aspx" />
-    <Content Include="EIS\report_pollutantdetails.aspx" />
-    <Content Include="EIS\report_processes.aspx" />
-    <Content Include="EIS\report_proctputdetails.aspx" />
-    <Content Include="EIS\report_releasepoints.aspx" />
-    <Content Include="EIS\rpapportionment_view.aspx" />
-    <Content Include="EIS\rp_entry.aspx" />
-    <Content Include="EIS\rp_facilitystatus.aspx" />
-    <Content Include="EIS\rp_facilitythreshold.aspx" />
-    <Content Include="EIS\stack_details.aspx" />
     <Content Include="ErrorPage.aspx" />
     <Content Include="ES\confirm.aspx" />
     <Content Include="ES\default.aspx" />
@@ -388,72 +367,6 @@
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="EIS\Default_Old.aspx.designer.vb">
-      <DependentUpon>Default_Old.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="EIS\eismaster.master.designer.vb">
-      <DependentUpon>eismaster.master</DependentUpon>
-    </Compile>
-    <Compile Include="EIS\emissionunit_details.aspx.designer.vb">
-      <DependentUpon>emissionunit_details.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="EIS\emissionunit_summary.aspx.designer.vb">
-      <DependentUpon>emissionunit_summary.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="EIS\facility_details.aspx.designer.vb">
-      <DependentUpon>facility_details.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="EIS\facility_edit.aspx.designer.vb">
-      <DependentUpon>facility_edit.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="EIS\fugitive_details.aspx.designer.vb">
-      <DependentUpon>fugitive_details.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="EIS\process_details.aspx.designer.vb">
-      <DependentUpon>process_details.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="EIS\process_summary.aspx.designer.vb">
-      <DependentUpon>process_summary.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="EIS\releasepoint_summary.aspx.designer.vb">
-      <DependentUpon>releasepoint_summary.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="EIS\reports.aspx.designer.vb">
-      <DependentUpon>reports.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="EIS\report_emissionunits.aspx.designer.vb">
-      <DependentUpon>report_emissionunits.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="EIS\report_fw_emsummary.aspx.designer.vb">
-      <DependentUpon>report_fw_emsummary.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="EIS\report_pollutantdetails.aspx.designer.vb">
-      <DependentUpon>report_pollutantdetails.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="EIS\report_processes.aspx.designer.vb">
-      <DependentUpon>report_processes.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="EIS\report_proctputdetails.aspx.designer.vb">
-      <DependentUpon>report_proctputdetails.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="EIS\report_releasepoints.aspx.designer.vb">
-      <DependentUpon>report_releasepoints.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="EIS\rpapportionment_view.aspx.designer.vb">
-      <DependentUpon>rpapportionment_view.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="EIS\rp_entry.aspx.designer.vb">
-      <DependentUpon>rp_entry.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="EIS\rp_facilitystatus.aspx.designer.vb">
-      <DependentUpon>rp_facilitystatus.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="EIS\rp_facilitythreshold.aspx.designer.vb">
-      <DependentUpon>rp_facilitythreshold.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="EIS\stack_details.aspx.designer.vb">
-      <DependentUpon>stack_details.aspx</DependentUpon>
-    </Compile>
     <Compile Include="ErrorPage.aspx.designer.vb">
       <DependentUpon>ErrorPage.aspx</DependentUpon>
     </Compile>
@@ -624,18 +537,11 @@
     <Compile Include="_Code\HtmlTableFunctions.vb" />
     <Compile Include="_Models\App\RaygunInfo.vb" />
     <Compile Include="_DAL\DataBaseConnection.vb" />
-    <Compile Include="_Code\EIS\eis_accesschecks.vb" />
     <Compile Include="_DAL\EIS\eis_Access.vb" />
     <Compile Include="_DAL\EIS\eis_datetime.vb" />
-    <Compile Include="_DAL\EIS\eis_emissionunits.vb" />
-    <Compile Include="_DAL\EIS\eis_existchecks.vb" />
     <Compile Include="_DAL\EIS\eis_FacilityData.vb" />
-    <Compile Include="_Code\EIS\eis_formatfunctions.vb" />
-    <Compile Include="_DAL\EIS\eis_getadminuserinfo.vb" />
     <Compile Include="_DAL\EIS\eis_getcodedescriptions.vb" />
     <Compile Include="_DAL\EIS\eis_getCountyLatLong.vb" />
-    <Compile Include="_DAL\EIS\eis_getequipdescriptions.vb" />
-    <Compile Include="_DAL\EIS\eis_releasePoints.vb" />
     <Compile Include="_DAL\EIS\eis_reportingperiod.vb" />
     <Compile Include="_Code\EmailSender.vb" />
     <Compile Include="_Code\EncryptDecrypt.vb" />
@@ -681,7 +587,6 @@
     <Compile Include="_DAL\EIS\eis_NAICS.vb" />
     <Compile Include="_Code\ParseNullables.vb" />
     <Compile Include="_Code\RandomStrings.vb" />
-    <Compile Include="_DAL\EIS\eis_SCC.vb" />
     <Compile Include="_Code\SessionHelper.vb" />
     <Compile Include="_Code\StringFunctions.vb" />
     <Compile Include="_Code\UrlHelper.vb" />
@@ -689,94 +594,6 @@
     <Compile Include="_DAL\AnnualFees\ZipCode.vb" />
     <Compile Include="Controls\PreventRePost.ascx.vb">
       <DependentUpon>PreventRePost.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="EIS\Default_Old.aspx.vb">
-      <DependentUpon>Default_Old.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="EIS\eismaster.master.vb">
-      <DependentUpon>eismaster.master</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="EIS\emissionunit_details.aspx.vb">
-      <DependentUpon>emissionunit_details.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="EIS\emissionunit_summary.aspx.vb">
-      <DependentUpon>emissionunit_summary.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="EIS\facility_details.aspx.vb">
-      <DependentUpon>facility_details.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="EIS\facility_edit.aspx.vb">
-      <DependentUpon>facility_edit.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="EIS\fugitive_details.aspx.vb">
-      <DependentUpon>fugitive_details.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="EIS\process_details.aspx.vb">
-      <DependentUpon>process_details.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="EIS\process_summary.aspx.vb">
-      <DependentUpon>process_summary.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="EIS\releasepoint_summary.aspx.vb">
-      <DependentUpon>releasepoint_summary.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="EIS\reports.aspx.vb">
-      <DependentUpon>reports.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="EIS\report_emissionunits.aspx.vb">
-      <DependentUpon>report_emissionunits.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="EIS\report_fw_emsummary.aspx.vb">
-      <DependentUpon>report_fw_emsummary.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="EIS\report_pollutantdetails.aspx.vb">
-      <DependentUpon>report_pollutantdetails.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="EIS\report_processes.aspx.vb">
-      <DependentUpon>report_processes.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="EIS\report_proctputdetails.aspx.vb">
-      <DependentUpon>report_proctputdetails.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="EIS\report_releasepoints.aspx.vb">
-      <DependentUpon>report_releasepoints.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="EIS\rpapportionment_view.aspx.vb">
-      <DependentUpon>rpapportionment_view.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="EIS\rp_entry.aspx.vb">
-      <DependentUpon>rp_entry.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="EIS\rp_facilitystatus.aspx.vb">
-      <DependentUpon>rp_facilitystatus.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="EIS\rp_facilitythreshold.aspx.vb">
-      <DependentUpon>rp_facilitythreshold.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="EIS\stack_details.aspx.vb">
-      <DependentUpon>stack_details.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="ES\confirm.aspx.vb">
@@ -849,7 +666,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="EIS\eismaster.master" />
     <Content Include="ES\es.master" />
     <Content Include="Main.master" />
     <Content Include="IP.ashx" />
