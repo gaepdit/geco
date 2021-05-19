@@ -1,4 +1,4 @@
-﻿Imports System.Data.SqlClient
+Imports System.Data.SqlClient
 Imports EpdIt.DBUtilities
 Imports GECO.GecoModels
 
@@ -389,7 +389,7 @@ Partial Class AnnualFees_Default
             chkNSPS1.Visible = Not initNsps
             chkNSPS1.Enabled = Not initNsps
             lblNspsRemovalNotice.Visible = initNsps
-            lblNspsRemovalNotice.Text = "If it is believed that this stationary source is not subject to any NSPS standard, <br/>call the number listed in Section 6.0 of this manual."
+            lblNspsRemovalNotice.Text = "If it is believed that this stationary source is not subject to any NSPS standard, call the number listed in Section 6.0 of this manual."
             chkNSPSExempt.Visible = initNsps
 
             chkPart70Source.Checked = GetNullable(Of Integer)(dr.Item("strpart70")) = 1
