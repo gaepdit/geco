@@ -21,20 +21,20 @@ Partial Class Home
     End Sub
 
     Private Sub LoadYearLabels()
-        lblEIYear2.Text = Now.Year - 1 'This is the EI calendar year
-        lblEIYear3.Text = Now.Year - 1 'This is the EI calendar year
-        lblEIYear4.Text = Now.Year 'This is the EI due date
-        lblEIYear5.Text = Now.Year - 1 'This is the EI calendar year
-        lblEIYear6.Text = Now.Year - 1 'This is the EI calendar year
+        lblEIYear2.Text = CStr(Now.Year - 1) 'This is the EI calendar year
+        lblEIYear3.Text = CStr(Now.Year - 1) 'This is the EI calendar year
+        lblEIYear4.Text = CStr(Now.Year) 'This is the EI due date
+        lblEIYear5.Text = CStr(Now.Year - 1) 'This is the EI calendar year
+        lblEIYear6.Text = CStr(Now.Year - 1) 'This is the EI calendar year
 
-        lblESYear1.Text = Now.Year - 1 'This is the ES calendar year
-        lblESYear2.Text = Now.Year - 1 'This is the ES calendar year
-        lblESYear3.Text = Now.Year 'This is the ES due date
+        lblESYear1.Text = CStr(Now.Year - 1) 'This is the ES calendar year
+        lblESYear2.Text = CStr(Now.Year - 1) 'This is the ES calendar year
+        lblESYear3.Text = CStr(Now.Year) 'This is the ES due date
 
-        lblFeeYear1.Text = Now.Year - 1 ' Fee Calendar year
-        lblFeeYear2.Text = Now.Year - 1 ' Fee Calendar year
-        lblFeeYear3.Text = Now.Year ' Fees dues year
-        lblFeeYear4.Text = Now.Year ' Fees dues year
+        lblFeeYear1.Text = CStr(Now.Year - 1) ' Fee Calendar year
+        lblFeeYear2.Text = CStr(Now.Year - 1) ' Fee Calendar year
+        lblFeeYear3.Text = CStr(Now.Year) ' Fees dues year
+        lblFeeYear4.Text = CStr(Now.Year) ' Fees dues year
 
         If Now.Year Mod 3 = 2 Then
             lblTriennialEIText.Visible = True
@@ -63,18 +63,18 @@ Partial Class Home
         NotNull(e, NameOf(e))
 
         If e.Row.RowType = DataControlRowType.DataRow Then
-            Dim row As DataRowView = e.Row.DataItem
+            Dim row As DataRowView = CType(e.Row.DataItem, DataRowView)
             Dim facilityName As String = row.Item("Facility").ToString()
             Dim airsNumber As ApbFacilityId = New ApbFacilityId(row.Item("AirsNumber").ToString)
             Dim url As String = String.Format("~/Facility/?airs={0}", airsNumber.ShortString())
 
-            Dim hlFacility As HyperLink = e.Row.FindControl("hlFacility")
+            Dim hlFacility As HyperLink = CType(e.Row.FindControl("hlFacility"), HyperLink)
             If hlFacility IsNot Nothing Then
                 hlFacility.Text = facilityName
                 hlFacility.NavigateUrl = url
             End If
 
-            Dim hlAirs As HyperLink = e.Row.FindControl("hlAirs")
+            Dim hlAirs As HyperLink = CType(e.Row.FindControl("hlAirs"), HyperLink)
             If hlAirs IsNot Nothing Then
                 hlAirs.Text = airsNumber.FormattedString
                 hlAirs.NavigateUrl = url

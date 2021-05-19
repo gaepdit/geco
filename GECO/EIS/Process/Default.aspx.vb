@@ -35,7 +35,7 @@ Public Class EIS_Process_Default
     End Sub
 
     Private Sub LoadCurrentData()
-        Dim process As EisProcess = CType(Session("EisProcess"), EisProcess)
+        Dim process As EisProcess = GetSessionItem(Of EisProcess)("EisProcess")
 
         If process IsNot Nothing Then
             txtComment.Text = process.AdminComment

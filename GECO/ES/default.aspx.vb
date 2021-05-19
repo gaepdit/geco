@@ -1,4 +1,4 @@
-Imports System.Data.SqlClient
+﻿Imports System.Data.SqlClient
 Imports System.DateTime
 
 Partial Class es_default
@@ -10,9 +10,9 @@ Partial Class es_default
 
         Session("ESYear") = intESYear.ToString
         Session("esAirsNumber") = "0413" & GetCookie(Cookie.AirsNumber)
-        Session("AirsYear") = Session("esAirsNumber") & Session("ESYear")
+        Session("AirsYear") = GetSessionItem(Of String)("esAirsNumber") & GetSessionItem(Of String)("ESYear")
 
-        CountyName = GetCounty(Session("esAirsNumber"))
+        CountyName = GetCounty(GetSessionItem(Of String)("esAirsNumber"))
 
         Session("LongMin") = GetLongMin(CountyName)
         Session("LongMax") = GetLongMax(CountyName)
@@ -38,11 +38,11 @@ Partial Class es_default
         cboESYear.Items.Add(" -Select Year- ")
 
         Dim query = "Select intESYear FROM esSchema where strAirsNumber = @AirsNumber order by intESYear Desc"
-        Dim param As New SqlParameter("@AirsNumber", Session("esAirsNumber"))
+        Dim param As New SqlParameter("@AirsNumber", GetSessionItem(Of String)("esAirsNumber"))
         Dim dt = DB.GetDataTable(query, param)
 
         For Each dr As DataRow In dt.Rows
-            cboESYear.Items.Add(dr.Item("intESYear"))
+            cboESYear.Items.Add(dr.Item("intESYear").ToString)
         Next
 
     End Sub
@@ -96,8 +96,8 @@ Partial Class es_default
         Dim YearSelected As Integer
         Dim CurrentYear As Integer = Now.Year - 1
         Dim esYear As Integer
-        Dim AirsNumber As String = Session("esAirsNumber")
-        Dim esStatus As String = Session("esState")
+        Dim AirsNumber As String = GetSessionItem(Of String)("esAirsNumber")
+        Dim esStatus As String = GetSessionItem(Of String)("esState")
         Dim PastAirsYear As String
         Dim NOxAmt As String
         Dim VOCAmt As String
@@ -120,8 +120,8 @@ Partial Class es_default
             Else
                 ShowPast()
                 Session.Add("PastESYear", CStr(YearSelected))
-                lblPastYear1.Text = YearSelected
-                lblPastYear2.Text = YearSelected
+                lblPastYear1.Text = YearSelected.ToString
+                lblPastYear2.Text = YearSelected.ToString
                 lblAIRSNo.Text = AirsNumber
                 PastAirsYear = AirsNumber & CStr(YearSelected)
                 lblFacilityName.Text = GetFacilityName(AirsNumber)
@@ -170,8 +170,8 @@ Partial Class es_default
         pnlInitial.Visible = False
         pnlCurrentES.Visible = True
         pnlPastES.Visible = False
-        lblCurrentYear.Text = Now.Year - 1
-        lblCurrentYear2.Text = Now.Year - 1
+        lblCurrentYear.Text = CStr(Now.Year - 1)
+        lblCurrentYear2.Text = CStr(Now.Year - 1)
 
     End Sub
 
@@ -222,7 +222,7 @@ Partial Class es_default
         Dim fname As String = lblFacilityName.Text
         Dim vocnum As String = lblVOC.Text
         Dim noxnum As String = lblNOx.Text
-        Dim payr As String = Session("esAirsNumber") & Session("PastESYear")
+        Dim payr As String = GetSessionItem(Of String)("esAirsNumber") & GetSessionItem(Of String)("PastESYear")
 
         Session("fname") = fname
         Session("voc") = vocnum

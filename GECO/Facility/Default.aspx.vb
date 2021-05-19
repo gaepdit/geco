@@ -71,7 +71,7 @@ Partial Class FacilityHome
     End Sub
 
     Protected Sub LoadFacilityContact()
-        Dim dr As DataRow = GetAPBContactInformation(hidContactKey.Value)
+        Dim dr As DataRow = GetAPBContactInformation(CInt(hidContactKey.Value))
 
         If dr IsNot Nothing Then
             'Getting details for the user from table apbcontactinformation.
@@ -165,8 +165,8 @@ Partial Class FacilityHome
         Dim dr As DataRow = GetFeeStatus(currentAirs)
 
         If dr IsNot Nothing Then
-            Dim submittal As Boolean = dr.Item("intsubmittal")
-            Dim year As Integer = dr.Item("numFeeYear")
+            Dim submittal As Boolean = CBool(dr.Item("intsubmittal"))
+            Dim year As Integer = CInt(dr.Item("numFeeYear"))
             Dim dateSubmitted As Date? = GetNullableDateTime(dr.Item("datsubmittal"))
             Dim dateDue As Date? = GetNullableDateTime(dr.Item("datFeeDueDate"))
 
@@ -193,7 +193,7 @@ Partial Class FacilityHome
         End If
 
         Try
-            Dim esYear As String = Now.Year - 1
+            Dim esYear As String = CStr(Now.Year - 1)
             Dim AirsYear As String = currentAirs.DbFormattedString & esYear
             Dim esStatus As String = ""
             Dim inESCounty As Boolean = CheckFacilityEmissionStatement(currentAirs)
@@ -242,7 +242,7 @@ Partial Class FacilityHome
             Return
         End If
 
-        Dim pendingTests As Integer = dr("pending")
+        Dim pendingTests As Integer = CInt(dr("pending"))
 
         Select Case pendingTests
             Case 0
@@ -289,7 +289,7 @@ Partial Class FacilityHome
                     name = "None"
                 End If
 
-                Select Case dr.Item("Key")
+                Select Case CInt(dr.Item("Key"))
 
                     Case 40 'Fee Contact
                         If AppsEmissionFees.Visible Then
@@ -376,20 +376,20 @@ Partial Class FacilityHome
                 lblContactMsg.Text = "The current contact has been updated successfully."
 
                 Select Case hidContactKey.Value
-                    Case 40  ' emission fees
+                    Case "40"  ' emission fees
                         lbtnEFContact.Text = txtFName.Text & " " & txtLName.Text
                         lbtnPFContact.Text = txtFName.Text & " " & txtLName.Text
 
-                    Case 41 ' emission inventory
+                    Case "41" ' emission inventory
                         lbtnEIContact.Text = txtFName.Text & " " & txtLName.Text
 
-                    Case 42 ' emission statement
+                    Case "42" ' emission statement
                         lbtnESContact.Text = txtFName.Text & " " & txtLName.Text
 
-                    Case 10 ' testing
+                    Case "10" ' testing
                         TNContact.Text = txtFName.Text & " " & txtLName.Text
 
-                    Case 30 ' permitting
+                    Case "30" ' permitting
                         PAContact.Text = txtFName.Text & " " & txtLName.Text
 
                 End Select
@@ -415,7 +415,7 @@ Partial Class FacilityHome
             lblContactHeader.Text = "Update Permit Fees Contact"
 
             lblContactMsg.Visible = False
-            hidContactKey.Value = 40
+            hidContactKey.Value = "40"
 
             If lbtnEFContact.Text = "None" Then
                 ClearContact()
@@ -440,7 +440,7 @@ Partial Class FacilityHome
             lblContactHeader.Text = "Update Permit Fees Contact"
 
             lblContactMsg.Visible = False
-            hidContactKey.Value = 40
+            hidContactKey.Value = "40"
 
             If lbtnPFContact.Text = "None" Then
                 ClearContact()
@@ -465,7 +465,7 @@ Partial Class FacilityHome
             lblContactHeader.Text = "Update Emission Inventory Contact"
 
             lblContactMsg.Visible = False
-            hidContactKey.Value = 41
+            hidContactKey.Value = "41"
 
             If lbtnEIContact.Text = "None" Then
                 ClearContact()
@@ -490,7 +490,7 @@ Partial Class FacilityHome
             lblContactHeader.Text = "Update Emission Statement Contact"
 
             lblContactMsg.Visible = False
-            hidContactKey.Value = 42
+            hidContactKey.Value = "42"
 
             If lbtnESContact.Text = "None" Then
                 ClearContact()
@@ -515,7 +515,7 @@ Partial Class FacilityHome
             lblContactHeader.Text = "Update Testing Contact"
 
             lblContactMsg.Visible = False
-            hidContactKey.Value = 10
+            hidContactKey.Value = "10"
 
             If TNContact.Text = "None" Then
                 ClearContact()
@@ -540,7 +540,7 @@ Partial Class FacilityHome
             lblContactHeader.Text = "Update Permitting Contact"
 
             lblContactMsg.Visible = False
-            hidContactKey.Value = 30
+            hidContactKey.Value = "30"
 
             If PAContact.Text = "None" Then
                 ClearContact()

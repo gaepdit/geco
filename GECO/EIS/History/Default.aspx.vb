@@ -13,10 +13,11 @@ Public Class EIS_History_Default
             Response.Redirect("~/")
         End If
 
-        Master.CurrentAirs = New ApbFacilityId(airs)
+        Dim airsNum As ApbFacilityId = New ApbFacilityId(airs)
+        Master.CurrentAirs = airsNum
         Master.SelectedTab = EIS.EisTab.History
 
-        If Not HistoricalDataExists(airs) Then
+        If Not HistoricalDataExists(airsNum) Then
             dNoDataExists.Visible = True
             dDataExists.Visible = False
         End If

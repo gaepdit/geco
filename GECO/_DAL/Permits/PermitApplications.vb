@@ -1,4 +1,4 @@
-Imports System.Data.SqlClient
+﻿Imports System.Data.SqlClient
 Imports EpdIt.DBUtilities
 Imports GECO.GecoModels
 
@@ -49,7 +49,7 @@ Namespace DAL
                 .FirstName = GetNullableString(dr.Item("FirstName")),
                 .LastName = GetNullableString(dr.Item("LastName")),
                 .Email = GetNullableString(dr.Item("Email")),
-                .PhoneNumber = Person.FormatPhoneNumber(dr.Item("Phone")),
+                .PhoneNumber = Person.FormatPhoneNumber(GetNullableString(dr.Item("Phone"))),
                 .ActiveEmployee = CBool(dr.Item("ActiveEmployee"))
             }
 

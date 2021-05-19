@@ -13,7 +13,7 @@ Public Module DictionaryExtensions
     ''' <exception cref="NotSupportedException">The System.Collections.IDictionary is read-only. -or- The System.Collections.IDictionary
     ''' has a fixed size.</exception>
     <Extension>
-    Public Sub AddIfNotExists(ByRef d As IDictionary, key As Object, value As Object)
+    Public Sub AddIfNotExists(d As IDictionary, key As Object, value As Object)
         NotNull(key, NameOf(key))
         NotNull(d, NameOf(d))
 
@@ -33,7 +33,7 @@ Public Module DictionaryExtensions
     ''' <exception cref="NotSupportedException">The System.Collections.IDictionary is read-only. -or- The System.Collections.IDictionary
     ''' has a fixed size.</exception>
     <Extension>
-    Public Sub AddIfNotNullOrEmpty(ByRef d As IDictionary, key As Object, value As String)
+    Public Sub AddIfNotNullOrEmpty(d As IDictionary, key As Object, value As String)
         NotNull(key, NameOf(key))
         NotNull(d, NameOf(d))
 

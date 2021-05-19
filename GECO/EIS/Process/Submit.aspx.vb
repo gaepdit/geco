@@ -30,7 +30,7 @@ Public Class EIS_Process_Submit
     End Sub
 
     Private Sub LoadCurrentData()
-        Dim process As EisProcess = CType(Session("EisProcess"), EisProcess)
+        Dim process As EisProcess = GetSessionItem(Of EisProcess)("EisProcess")
 
         If process Is Nothing Then
             Response.Redirect("~/EIS/")
@@ -49,7 +49,7 @@ Public Class EIS_Process_Submit
     End Sub
 
     Private Sub btnSubmit_Click(sender As Object, e As EventArgs) Handles btnSubmit.Click
-        Dim process As EisProcess = CType(Session("EisProcess"), EisProcess)
+        Dim process As EisProcess = GetSessionItem(Of EisProcess)("EisProcess")
         SaveEisProcess(process)
         Session("EisProcess") = Nothing
         Response.Redirect("~/EIS/")

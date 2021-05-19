@@ -7,10 +7,10 @@ Public Module EmailSender
     Public ReadOnly GecoEmailSender As String = ConfigurationManager.AppSettings("GecoEmailSender")
     Public ReadOnly GecoContactEmail As String = ConfigurationManager.AppSettings("GecoContactEmail")
     Public ReadOnly GecoContactName As String = ConfigurationManager.AppSettings("GecoContactName")
-    Public ReadOnly SaveAllEmails As Boolean = ConfigurationManager.AppSettings("SaveAllEmails")
-    Public ReadOnly EnableSendingEmail As Boolean = ConfigurationManager.AppSettings("EnableSendingEmail")
+    Public ReadOnly SaveAllEmails As Boolean = CBool(ConfigurationManager.AppSettings("SaveAllEmails"))
+    Public ReadOnly EnableSendingEmail As Boolean = CBool(ConfigurationManager.AppSettings("EnableSendingEmail"))
     Public ReadOnly SmtpHost As String = ConfigurationManager.AppSettings("SmtpHost")
-    Public ReadOnly SmtpPort As Integer = ConfigurationManager.AppSettings("SmtpPort")
+    Public ReadOnly SmtpPort As Integer = CInt(ConfigurationManager.AppSettings("SmtpPort"))
 
     ''' <summary>
     ''' Sends an email and returns true if successful; otherwise false.

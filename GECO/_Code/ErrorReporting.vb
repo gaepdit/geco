@@ -11,7 +11,7 @@ Public Module ErrorReporting
             Return
         End If
 
-        Dim LogExceptionsToFile As Boolean = ConfigurationManager.AppSettings("LogExceptionsToFile")
+        Dim LogExceptionsToFile As Boolean = CBool(ConfigurationManager.AppSettings("LogExceptionsToFile"))
         If LogExceptionsToFile Then
             LogExceptionToTextFile(exc)
         End If

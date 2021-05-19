@@ -1,4 +1,4 @@
-Namespace DAL
+﻿Namespace DAL
     Public Module Organization
 
         Public Function GetEpdManagersAsDataTable() As DataTable
@@ -21,7 +21,7 @@ Namespace DAL
                 Return Nothing
             End If
 
-            Return dr("Name")
+            Return dr("Name").ToString
         End Function
 
     End Module

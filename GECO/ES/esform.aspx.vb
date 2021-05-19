@@ -17,18 +17,18 @@ Partial Class es_esform
 
         Session("ESYear") = strESYear
         Session("esAirsNumber") = "0413" & GetCookie(Cookie.AirsNumber)
-        Session("AirsYear") = Session("esAirsNumber") & Session("ESYear")
-        Dim AirsYear As String = Session("AirsYear")
+        Session("AirsYear") = GetSessionItem(Of String)("esAirsNumber") & GetSessionItem(Of String)("ESYear")
+        Dim AirsYear As String = GetSessionItem(Of String)("AirsYear")
 
         If Not IsPostBack Then
 
             LoadState()
             LoadHorizontalCollectionCode()
             LoadHorizontalDatumReferenceCode()
-            rngValXCoordinate.MinimumValue = Session("LongMin")
-            rngValXCoordinate.MaximumValue = Session("LongMax")
-            rngValYCoordinate.MinimumValue = Session("LatMin")
-            rngValYCoordinate.MaximumValue = Session("LatMax")
+            rngValXCoordinate.MinimumValue = GetSessionItem(Of String)("LongMin")
+            rngValXCoordinate.MaximumValue = GetSessionItem(Of String)("LongMax")
+            rngValYCoordinate.MinimumValue = GetSessionItem(Of String)("LatMin")
+            rngValYCoordinate.MaximumValue = GetSessionItem(Of String)("LatMax")
 
             ESExist = CheckESExist(AirsYear)
             EntryBegan = CheckESEntry(AirsYear)
@@ -62,9 +62,9 @@ Partial Class es_esform
 
         Dim dt = DB.GetDataTable(query)
 
-        For Each dr In dt.Rows
-            Dim desc = dr.Item("strHorizCollectionMethodDesc")
-            Dim code = dr.Item("strHorizCollectionMethodCode")
+        For Each dr As DataRow In dt.Rows
+            Dim desc As String = dr.Item("strHorizCollectionMethodDesc").ToString
+            Dim code As String = dr.Item("strHorizCollectionMethodCode").ToString
             cboHorizontalCollectionCode.Items.Add(desc & "  [" & code & "]")
         Next
 
@@ -78,9 +78,9 @@ Partial Class es_esform
 
         Dim dt = DB.GetDataTable(query)
 
-        For Each dr In dt.Rows
-            Dim desc = dr.Item("strHorizontalReferenceDesc")
-            Dim code = dr.Item("strHorizontalReferenceDatum")
+        For Each dr As DataRow In dt.Rows
+            Dim desc As String = dr.Item("strHorizontalReferenceDesc").ToString
+            Dim code As String = dr.Item("strHorizontalReferenceDatum").ToString
             cboHorizontalReferenceCode.Items.Add(desc & "  [" & code & "]")
         Next
 
@@ -94,8 +94,8 @@ Partial Class es_esform
 
         Dim dt = DB.GetDataTable(query)
 
-        For Each dr In dt.Rows
-            cboContactState.Items.Add(dr.Item("Abbreviation"))
+        For Each dr As DataRow In dt.Rows
+            cboContactState.Items.Add(dr.Item("Abbreviation").ToString)
         Next
 
         cboContactState.SelectedIndex = 0
@@ -191,8 +191,8 @@ Partial Class es_esform
     Private Sub LoadESSchema()
 
         Dim FacilityZip As String
-        Dim AirsNumber As String = Session("esAirsNumber")
-        Dim AirsYear As String = AirsNumber & Session("ESYear")
+        Dim AirsNumber As String = GetSessionItem(Of String)("esAirsNumber")
+        Dim AirsYear As String = AirsNumber & GetSessionItem(Of String)("ESYear")
         Dim ContactFaxNumber As String
         Dim ContactZip As String
         Dim YesNo As String
@@ -239,17 +239,17 @@ Partial Class es_esform
             If IsDBNull(dr("strFacilityName")) Then
                 txtFacilityName.Text = ""
             Else
-                txtFacilityName.Text = dr.Item("strFacilityName")
+                txtFacilityName.Text = dr.Item("strFacilityName").ToString
             End If
             If IsDBNull(dr("strFacilityAddress")) Then
                 txtLocationAddress.Text = ""
             Else
-                txtLocationAddress.Text = dr.Item("strFacilityAddress")
+                txtLocationAddress.Text = dr.Item("strFacilityAddress").ToString
             End If
             If IsDBNull(dr("strFacilityCity")) Then
                 txtCity.Text = ""
             Else
-                txtCity.Text = dr.Item("strFacilityCity")
+                txtCity.Text = dr.Item("strFacilityCity").ToString
             End If
 
             txtState.Text = "GA"
@@ -257,7 +257,7 @@ Partial Class es_esform
             If IsDBNull(dr("strFacilityZip")) Then
                 txtZipCode.Text = ""
             Else
-                FacilityZip = dr("strFacilityZip")
+                FacilityZip = dr("strFacilityZip").ToString
                 FacilityZip = Replace(FacilityZip, "-", "")
                 If Len(FacilityZip) > 5 Then
                     txtZipCode.Text = Left(FacilityZip, 5) & "-" & Mid(FacilityZip, 6, 4)
@@ -269,105 +269,105 @@ Partial Class es_esform
             If IsDBNull(dr("strCounty")) Then
                 txtCounty.Text = ""
             Else
-                txtCounty.Text = dr.Item("strCounty")
+                txtCounty.Text = dr.Item("strCounty").ToString
             End If
 
             If IsDBNull(dr("dblXCoordinate")) Then
                 txtXCoordinate.Text = ""
             Else
-                txtXCoordinate.Text = Round(Abs(dr.Item("dblXCoordinate")), 6)
+                txtXCoordinate.Text = Round(Abs(CDbl(dr.Item("dblXCoordinate"))), 6).ToString
             End If
             If IsDBNull(dr("dblYCoordinate")) Then
                 txtYCoordinate.Text = ""
             Else
-                txtYCoordinate.Text = Round(Abs(dr.Item("dblYCoordinate")), 6)
+                txtYCoordinate.Text = Round(Abs(CDbl(dr.Item("dblYCoordinate"))), 6).ToString
             End If
             If IsDBNull(dr("strHorizontalCollectionCode")) Then
                 cboHorizontalCollectionCode.SelectedIndex = 0
             Else
-                HCCcode = dr.Item("strHorizontalCollectionCode")
+                HCCcode = dr.Item("strHorizontalCollectionCode").ToString
                 HCCdesc = GetHorizCollDesc(HCCcode)
                 cboHorizontalCollectionCode.SelectedValue = HCCdesc & "  [" & HCCcode & "]"
             End If
             If IsDBNull(dr("strHorizontalReferenceCode")) Then
                 cboHorizontalReferenceCode.SelectedIndex = 0
             Else
-                HRCcode = dr.Item("strHorizontalReferenceCode")
+                HRCcode = dr.Item("strHorizontalReferenceCode").ToString
                 HRCdesc = GetHorizRefDesc(HRCcode)
                 cboHorizontalReferenceCode.SelectedValue = HRCdesc & "  [" & HRCcode & "]"
             End If
             If IsDBNull(dr("strHorizontalAccuracyMeasure")) Then
                 txtHorizontalAccuracyMeasure.Text = ""
             Else
-                txtHorizontalAccuracyMeasure.Text = dr.Item("strHorizontalAccuracyMeasure")
+                txtHorizontalAccuracyMeasure.Text = dr.Item("strHorizontalAccuracyMeasure").ToString
             End If
 
             If IsDBNull(dr("strContactPrefix")) Then
                 txtContactPrefix.Text = ""
             Else
-                txtContactPrefix.Text = dr.Item("strContactPrefix")
+                txtContactPrefix.Text = dr.Item("strContactPrefix").ToString
             End If
             If IsDBNull(dr("strContactTitle")) Then
                 txtContactTitle.Text = ""
             Else
-                txtContactTitle.Text = dr.Item("strContactTitle")
+                txtContactTitle.Text = dr.Item("strContactTitle").ToString
             End If
 
             If IsDBNull(dr("strContactFirstName")) Then
                 txtContactFirstName.Text = ""
             Else
-                txtContactFirstName.Text = dr.Item("strContactFirstName")
+                txtContactFirstName.Text = dr.Item("strContactFirstName").ToString
             End If
 
             If IsDBNull(dr("strContactLastName")) Then
                 txtContactLastName.Text = ""
             Else
-                txtContactLastName.Text = dr.Item("strContactLastName")
+                txtContactLastName.Text = dr.Item("strContactLastName").ToString
             End If
 
             If IsDBNull(dr("strContactCompany")) Then
                 txtContactCompanyName.Text = ""
             Else
-                txtContactCompanyName.Text = dr.Item("strContactCompany")
+                txtContactCompanyName.Text = dr.Item("strContactCompany").ToString
             End If
             If Not IsDBNull(dr("strContactPhoneNumber")) Then
-                txtOfficePhoneNbr.Text = dr.Item("strContactPhoneNumber")
+                txtOfficePhoneNbr.Text = dr.Item("strContactPhoneNumber").ToString
             End If
             If Not IsDBNull(dr("strContactFaxNumber")) Then
-                ContactFaxNumber = dr.Item("strContactFaxNumber")
+                ContactFaxNumber = dr.Item("strContactFaxNumber").ToString
                 txtFaxNbr.Text = Mid(ContactFaxNumber, 1, 10)
             End If
             If IsDBNull(dr("strContactEmail")) Then
                 txtContactEmail.Text = ""
             Else
-                txtContactEmail.Text = dr.Item("strContactEmail")
+                txtContactEmail.Text = dr.Item("strContactEmail").ToString
             End If
             If IsDBNull(dr("strContactAddress1")) Then
                 txtContactAddress1.Text = ""
             Else
-                txtContactAddress1.Text = dr.Item("strContactAddress1")
+                txtContactAddress1.Text = dr.Item("strContactAddress1").ToString
             End If
             If IsDBNull(dr("strContactCity")) Then
                 txtContactCity.Text = ""
             Else
-                txtContactCity.Text = dr.Item("strContactCity")
+                txtContactCity.Text = dr.Item("strContactCity").ToString
             End If
             If IsDBNull(dr("strContactState")) Then
                 cboContactState.SelectedIndex = 0
             Else
-                cboContactState.SelectedValue = dr.Item("strContactState")
+                cboContactState.SelectedValue = dr.Item("strContactState").ToString
             End If
 
             If IsDBNull(dr("strContactZip")) Then
                 txtContactZipCode.Text = ""
             Else
-                ContactZip = dr.Item("strContactZip")
+                ContactZip = dr.Item("strContactZip").ToString
                 ContactZip = Replace(ContactZip, "-", "")
                 If Len(ContactZip) > 5 Then
-                    txtContactZipCode.Text = Left(dr.Item("strContactZip"), 5)
-                    txtContactZipPlus4.Text = Mid(dr.Item("strContactZip"), 6, 4)
+                    txtContactZipCode.Text = Left(dr.Item("strContactZip").ToString, 5)
+                    txtContactZipPlus4.Text = Mid(dr.Item("strContactZip").ToString, 6, 4)
                 Else
-                    txtContactZipCode.Text = dr.Item("strContactZip")
+                    txtContactZipCode.Text = dr.Item("strContactZip").ToString
                 End If
             End If
 
@@ -376,7 +376,7 @@ Partial Class es_esform
                 cboYesNo.SelectedIndex = 0
                 pnlEmissions.Visible = True
             Else
-                YesNo = dr.Item("strOptOut")
+                YesNo = dr.Item("strOptOut").ToString
                 cboYesNo.SelectedValue = YesNo.ToUpper
                 If YesNo = "NO" Then
                     pnlEmissions.Visible = True
@@ -389,21 +389,21 @@ Partial Class es_esform
                 If IsDBNull(dr("dblVOCEmission")) Then
                     txtVOC.Text = "0"
                 Else
-                    VOCAmt = dr.Item("dblVOCEmission")
+                    VOCAmt = CDbl(dr.Item("dblVOCEmission"))
                     If VOCAmt <= 0 Then
                         txtVOC.Text = "0"
                     Else
-                        txtVOC.Text = Round(VOCAmt, 2)
+                        txtVOC.Text = Round(VOCAmt, 2).ToString
                     End If
                 End If
                 If IsDBNull(dr("dblNOXEmission")) Then
                     txtNOx.Text = "0"
                 Else
-                    NOXAmt = dr.Item("dblNOXEmission")
+                    NOXAmt = CDbl(dr.Item("dblNOXEmission"))
                     If NOXAmt < 0 Then
                         txtNOx.Text = "0"
                     Else
-                        txtNOx.Text = Round(NOXAmt, 2)
+                        txtNOx.Text = Round(NOXAmt, 2).ToString
                     End If
                 End If
                 pnlEmissions.Visible = True
@@ -415,21 +415,21 @@ Partial Class es_esform
                 If IsDBNull(dr("dblVOCEmission")) Then
                     txtVOC.Text = "0"
                 Else
-                    VOCAmt = dr.Item("dblVOCEmission")
+                    VOCAmt = CDbl(dr.Item("dblVOCEmission"))
                     If VOCAmt <= 0 Then
                         txtVOC.Text = "0"
                     Else
-                        txtVOC.Text = Round(VOCAmt, 2)
+                        txtVOC.Text = Round(VOCAmt, 2).ToString
                     End If
                 End If
                 If IsDBNull(dr("dblNOXEmission")) Then
                     txtNOx.Text = "0"
                 Else
-                    NOXAmt = dr.Item("dblNOXEmission")
+                    NOXAmt = CDbl(dr.Item("dblNOXEmission"))
                     If NOXAmt <= 0 Then
                         txtNOx.Text = "0"
                     Else
-                        txtNOx.Text = Round(NOXAmt, 2)
+                        txtNOx.Text = Round(NOXAmt, 2).ToString
                     End If
                 End If
                 pnlEmissions.Visible = True
@@ -443,7 +443,7 @@ Partial Class es_esform
         'Load facility and contact info FROM  apbFacilityInformation table
 
         Dim FacilityZip As String
-        Dim AirsNumber As String = Session("esAirsNumber")
+        Dim AirsNumber As String = GetSessionItem(Of String)("esAirsNumber")
         Dim HCCcode As String
         Dim HCCdesc As String
         Dim HRCcode As String
@@ -470,17 +470,17 @@ Partial Class es_esform
             If IsDBNull(dr("strFacilityName")) Then
                 txtFacilityName.Text = ""
             Else
-                txtFacilityName.Text = dr.Item("strFacilityName")
+                txtFacilityName.Text = dr.Item("strFacilityName").ToString
             End If
             If IsDBNull(dr("strFacilityStreet1")) Then
                 txtLocationAddress.Text = ""
             Else
-                txtLocationAddress.Text = dr.Item("strFacilityStreet1")
+                txtLocationAddress.Text = dr.Item("strFacilityStreet1").ToString
             End If
             If IsDBNull(dr("strFacilityCity")) Then
                 txtCity.Text = ""
             Else
-                txtCity.Text = dr.Item("strFacilityCity")
+                txtCity.Text = dr.Item("strFacilityCity").ToString
             End If
 
             txtState.Text = "GA"
@@ -488,7 +488,7 @@ Partial Class es_esform
             If IsDBNull(dr("strFacilityZipCode")) Then
                 txtZipCode.Text = ""
             Else
-                FacilityZip = dr("strFacilityZipCode")
+                FacilityZip = dr("strFacilityZipCode").ToString
                 FacilityZip = Replace(FacilityZip, "-", "")
                 If Len(FacilityZip) > 5 Then
                     txtZipCode.Text = Left(FacilityZip, 5) & "-" & Mid(FacilityZip, 6, 4)
@@ -502,31 +502,31 @@ Partial Class es_esform
             If IsDBNull(dr("numFacilityLongitude")) Then
                 txtXCoordinate.Text = ""
             Else
-                txtXCoordinate.Text = Round(Abs(dr.Item("numFacilityLongitude")), 6)
+                txtXCoordinate.Text = Round(Abs(CDec(dr.Item("numFacilityLongitude"))), 6).ToString
             End If
             If IsDBNull(dr("numFacilityLatitude")) Then
                 txtYCoordinate.Text = ""
             Else
-                txtYCoordinate.Text = Round(dr.Item("numFacilityLatitude"), 6)
+                txtYCoordinate.Text = Round(CDec(dr.Item("numFacilityLatitude")), 6).ToString
             End If
             If IsDBNull(dr("strHorizontalCollectionCode")) Then
                 cboHorizontalCollectionCode.SelectedIndex = 0
             Else
-                HCCcode = dr.Item("strHorizontalCollectionCode")
+                HCCcode = dr.Item("strHorizontalCollectionCode").ToString
                 HCCdesc = GetHorizCollDesc(HCCcode)
                 cboHorizontalCollectionCode.SelectedValue = HCCdesc & "  [" & HCCcode & "]"
             End If
             If IsDBNull(dr("strHorizontalReferenceCode")) Then
                 cboHorizontalReferenceCode.SelectedIndex = 0
             Else
-                HRCcode = dr.Item("strHorizontalReferenceCode")
+                HRCcode = dr.Item("strHorizontalReferenceCode").ToString
                 HRCdesc = GetHorizRefDesc(HRCcode)
                 cboHorizontalReferenceCode.SelectedValue = HRCdesc & "  [" & HRCcode & "]"
             End If
             If IsDBNull(dr("strHorizontalAccuracyMeasure")) Then
                 txtHorizontalAccuracyMeasure.Text = ""
             Else
-                txtHorizontalAccuracyMeasure.Text = dr.Item("strHorizontalAccuracyMeasure")
+                txtHorizontalAccuracyMeasure.Text = dr.Item("strHorizontalAccuracyMeasure").ToString
             End If
 
         End If
@@ -539,7 +539,7 @@ Partial Class es_esform
 
         Dim ContactFaxNumber As String
         Dim ContactZip As String
-        Dim ContactKey = Session("esAirsNumber") & "42"
+        Dim ContactKey As String = GetSessionItem(Of String)("esAirsNumber") & "42"
         Dim Exist As Boolean
 
         'Check if contact exists in apbContactInformation table.
@@ -572,66 +572,66 @@ Partial Class es_esform
                 If IsDBNull(dr("strContactPrefix")) Then
                     txtContactPrefix.Text = ""
                 Else
-                    txtContactPrefix.Text = dr.Item("strContactPrefix")
+                    txtContactPrefix.Text = dr.Item("strContactPrefix").ToString
                 End If
                 If IsDBNull(dr("strContactFirstName")) Then
                     txtContactFirstName.Text = ""
                 Else
-                    txtContactFirstName.Text = dr.Item("strContactFirstName")
+                    txtContactFirstName.Text = dr.Item("strContactFirstName").ToString
                 End If
                 If IsDBNull(dr("strContactLastName")) Then
                     txtContactLastName.Text = ""
                 Else
-                    txtContactLastName.Text = dr.Item("strContactLastName")
+                    txtContactLastName.Text = dr.Item("strContactLastName").ToString
                 End If
                 If IsDBNull(dr("strContactTitle")) Then
                     txtContactTitle.Text = ""
                 Else
-                    txtContactTitle.Text = dr.Item("strContactTitle")
+                    txtContactTitle.Text = dr.Item("strContactTitle").ToString
                 End If
                 If IsDBNull(dr("strContactCompanyName")) Then
                     txtContactCompanyName.Text = ""
                 Else
-                    txtContactCompanyName.Text = dr.Item("strContactCompanyName")
+                    txtContactCompanyName.Text = dr.Item("strContactCompanyName").ToString
                 End If
                 If Not IsDBNull(dr("strContactPhoneNumber1")) Then
-                    txtOfficePhoneNbr.Text = dr.Item("strContactPhoneNumber1")
+                    txtOfficePhoneNbr.Text = dr.Item("strContactPhoneNumber1").ToString
                 End If
                 If Not IsDBNull(dr("strContactFaxNumber")) Then
-                    ContactFaxNumber = dr.Item("strContactFaxNumber")
+                    ContactFaxNumber = dr.Item("strContactFaxNumber").ToString
                     txtFaxNbr.Text = Mid(ContactFaxNumber, 1, 10)
                 End If
                 If IsDBNull(dr("strContactEmail")) Then
                     txtContactEmail.Text = ""
                 Else
-                    txtContactEmail.Text = dr.Item("strContactEmail")
+                    txtContactEmail.Text = dr.Item("strContactEmail").ToString
                 End If
                 If IsDBNull(dr("strContactAddress1")) Then
                     txtContactAddress1.Text = ""
                 Else
-                    txtContactAddress1.Text = dr.Item("strContactAddress1")
+                    txtContactAddress1.Text = dr.Item("strContactAddress1").ToString
                 End If
                 If IsDBNull(dr("strContactCity")) Then
                     txtContactCity.Text = ""
                 Else
-                    txtContactCity.Text = dr.Item("strContactCity")
+                    txtContactCity.Text = dr.Item("strContactCity").ToString
                 End If
                 If IsDBNull(dr("strContactState")) Then
                     cboContactState.SelectedIndex = 0
                 Else
-                    cboContactState.SelectedValue = dr.Item("strContactState")
+                    cboContactState.SelectedValue = dr.Item("strContactState").ToString
                 End If
 
                 If IsDBNull(dr("strContactZipCode")) Then
                     txtContactZipCode.Text = ""
                 Else
-                    ContactZip = dr.Item("strContactZipCode")
+                    ContactZip = dr.Item("strContactZipCode").ToString
                     ContactZip = Replace(ContactZip, "-", "")
                     If Len(ContactZip) > 5 Then
-                        txtContactZipCode.Text = Left(dr.Item("strContactZipCode"), 5)
-                        txtContactZipPlus4.Text = Mid(dr.Item("strContactZipCode"), 6, 4)
+                        txtContactZipCode.Text = Left(dr.Item("strContactZipCode").ToString, 5)
+                        txtContactZipPlus4.Text = Mid(dr.Item("strContactZipCode").ToString, 6, 4)
                     Else
-                        txtContactZipCode.Text = dr.Item("strContactZipCode")
+                        txtContactZipCode.Text = dr.Item("strContactZipCode").ToString
                     End If
                 End If
 
@@ -681,8 +681,8 @@ Partial Class es_esform
 
     Private Sub SaveES()
 
-        Dim AirsNumber As String = Session("esAirsNumber")
-        Dim AirsYear As String = Session("AirsYear")
+        Dim AirsNumber As String = GetSessionItem(Of String)("esAirsNumber")
+        Dim AirsYear As String = GetSessionItem(Of String)("AirsYear")
         Dim LocationAddress As String
         Dim City As String
         Dim State As String
@@ -702,9 +702,9 @@ Partial Class es_esform
         Dim ContactZipCode As String
         Dim UserID As Integer = GetCurrentUser().UserId
         Dim day As String = Now.ToString("d-MMM-yyyy")
-        Dim hr As String = Now.Hour
-        Dim min As String = Now.Minute
-        Dim sec As String = Now.Second
+        Dim hr As String = Now.Hour.ToString
+        Dim min As String = Now.Minute.ToString
+        Dim sec As String = Now.Second.ToString
         If Len(hr) < 2 Then hr = "0" & hr
         If Len(min) < 2 Then min = "0" & min
         If Len(sec) < 2 Then sec = "0" & sec
@@ -880,8 +880,8 @@ Partial Class es_esform
 
     Private Sub SaveContactAPB()
 
-        Dim AirsNumber As String = Session("esAirsNumber")
-        Dim ContactKey As String = Session("esAirsNumber") & "42"
+        Dim AirsNumber As String = GetSessionItem(Of String)("esAirsNumber")
+        Dim ContactKey As String = GetSessionItem(Of String)("esAirsNumber") & "42"
         Dim Ckey As String = "42"
         Dim ContactPrefix As String = txtContactPrefix.Text
         Dim ContactFirstName As String = txtContactFirstName.Text
@@ -995,7 +995,7 @@ Partial Class es_esform
 
     Private Function ContactExistAPB() As Boolean
 
-        Dim key As String = Session("esAirsNumber") & "42"
+        Dim key As String = GetSessionItem(Of String)("esAirsNumber") & "42"
 
         Dim query = "Select strContactKey FROM apbContactInformation Where strContactKey = @key "
         Dim param As New SqlParameter("@key", key)
@@ -1081,8 +1081,8 @@ Partial Class es_esform
 #End Region
 
     Protected Sub btnConvert_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnConvert.Click
-        txtLongDec.Text = Abs(GetDecDegree(txtLonDeg.Text, txtLonMin.Text, txtLonSec.Text))
-        txtLatDec.Text = GetDecDegree(txtLatDeg.Text, txtLatMin.Text, txtLatSec.Text)
+        txtLongDec.Text = Abs(GetDecDegree(txtLonDeg.Text, txtLonMin.Text, txtLonSec.Text)).ToString
+        txtLatDec.Text = GetDecDegree(txtLatDeg.Text, txtLatMin.Text, txtLatSec.Text).ToString
     End Sub
 
     Protected Sub btnCancelLatLong_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnCancelLatLong.Click
@@ -1130,10 +1130,10 @@ Partial Class es_esform
 
     Protected Sub btnLatLongConvert_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnLatLongConvert.Click
 
-        rngValLongDec.MinimumValue = Session("LongMin")
-        rngValLongDec.MaximumValue = Session("LongMax")
-        rngValLatDec.MinimumValue = Session("LatMin")
-        rngValLatDec.MaximumValue = Session("LatMax")
+        rngValLongDec.MinimumValue = GetSessionItem(Of String)("LongMin")
+        rngValLongDec.MaximumValue = GetSessionItem(Of String)("LongMax")
+        rngValLatDec.MinimumValue = GetSessionItem(Of String)("LatMin")
+        rngValLatDec.MaximumValue = GetSessionItem(Of String)("LatMax")
         pnlFacility.Visible = False
         pnlLatLongConvert.Visible = True
 
@@ -1148,7 +1148,7 @@ Partial Class es_esform
         Dim HorizontalAccuracyMeasure As String
         Dim HorizontalReferenceCode As String
         Dim HRC As String
-        Dim AirsNumber As String = Session("esAirsNumber")
+        Dim AirsNumber As String = GetSessionItem(Of String)("esAirsNumber")
 
         HCC = cboHorizontalCollectionCode.SelectedValue
         HorizontalCollectionCode = Mid(HCC, InStr(HCC, "[") + 1, 3)

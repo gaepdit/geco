@@ -52,7 +52,7 @@ Public Module eis_Access
         End If
 
         Dim eiStatus As New EisStatus With {
-            .MaxYear = dr("INVENTORYYEAR")
+            .MaxYear = CInt(dr("INVENTORYYEAR"))
         }
 
         If eiStatus.MaxYear <> Now.Year - 1 Then
@@ -64,11 +64,11 @@ Public Module eis_Access
         End If
 
         ' enrollment status: 0 = not enrolled; 1 = enrolled for EI year
-        eiStatus.Enrolled = dr.Item("ENROLLMENT")
+        eiStatus.Enrolled = CBool(dr.Item("ENROLLMENT"))
 
         If eiStatus.Enrolled Then
-            eiStatus.StatusCode = dr.Item("EISSTATUSCODE")
-            eiStatus.AccessCode = dr.Item("EISACCESSCODE")
+            eiStatus.StatusCode = CInt(dr.Item("EISSTATUSCODE"))
+            eiStatus.AccessCode = CInt(dr.Item("EISACCESSCODE"))
             eiStatus.OptOut = GetNullable(Of Boolean?)(dr.Item("OPTOUT"))
             eiStatus.DateFinalized = GetNullableDateTime(dr.Item("DATFINALIZE"))
             eiStatus.ConfirmationNumber = GetNullableString(dr.Item("STRCONFIRMATIONNUMBER")).EmptyStringIfNothing()
@@ -94,7 +94,7 @@ Public Module eis_Access
         If eiStatus.Enrolled Then enrollment = "1"
 
         Dim optOut As String = "NULL"
-        If eiStatus.OptOut.HasValue Then optOut = -CInt(eiStatus.OptOut)
+        If eiStatus.OptOut.HasValue Then optOut = (-CInt(eiStatus.OptOut)).ToString
 
         Dim dateFinalized As String = ""
         If eiStatus.DateFinalized.HasValue Then dateFinalized = eiStatus.DateFinalized.Value.ToString("g")

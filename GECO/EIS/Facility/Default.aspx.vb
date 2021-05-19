@@ -24,7 +24,7 @@ Partial Class EIS_Facility_Default
         Dim eiStatus As EisStatus = GetEiStatus(CurrentAirs)
         If eiStatus.AccessCode > 1 Then btnEdit.Visible = False
 
-        If Session("FacilityUpdated") = True.ToString Then
+        If Session("FacilityUpdated") IsNot Nothing Then
             Session("FacilityUpdated") = Nothing
             updateMessage.Visible = True
         End If
@@ -95,10 +95,10 @@ Partial Class EIS_Facility_Default
         ' Location
         Dim latitude As Decimal? = GetNullable(Of Decimal?)(dr("numLatitudeMeasure"))
         Dim longitude As Decimal? = GetNullable(Of Decimal?)(dr("numLongitudeMeasure"))
-        lblLatitude.Text = latitude
-        lblLongitude.Text = longitude
+        lblLatitude.Text = latitude.ToString
+        lblLongitude.Text = longitude.ToString
         lblHorizontalCollectionMethod.Text = GetNullableString(dr("STRHORCOLLMETDesc"))
-        lblAccuracyMeasure.Text = GetNullable(Of Integer)(dr("INTHORACCURACYMEASURE"))
+        lblAccuracyMeasure.Text = GetNullable(Of Integer)(dr("INTHORACCURACYMEASURE")).ToString
         lblHorizontalReferenceDatum.Text = GetNullableString(dr("STRHORREFDATUMDesc"))
         lblLocationComment.Text = GetNullableString(dr("strGeographicComment"))
 

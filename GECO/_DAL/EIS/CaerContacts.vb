@@ -119,14 +119,14 @@ Namespace DAL.EIS
                 .Title = GetNullableString(dr.Item("Title"))
             }
 
-            Dim role As CaerRole = [Enum].Parse(GetType(CaerRole), dr.Item("CaerRole").ToString)
+            Dim role As CaerRole = CType([Enum].Parse(GetType(CaerRole), dr.Item("CaerRole").ToString), CaerRole)
 
             Dim caerContact As New CaerContact With {
-                .Active = dr.Item("Active"),
+                .Active = CBool(dr.Item("Active")),
                 .CaerRole = role,
                 .Contact = contact,
                 .FacilityName = GetNullableString(dr.Item("FacilityName")),
-                .FacilitySiteId = New ApbFacilityId(dr.Item("FacilitySiteId")),
+                .FacilitySiteId = New ApbFacilityId(dr.Item("FacilitySiteId").ToString),
                 .Id = id
             }
 

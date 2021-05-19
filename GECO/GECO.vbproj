@@ -34,8 +34,10 @@
     <OutputPath>bin\</OutputPath>
     <DocumentationFile>
     </DocumentationFile>
-    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <NoWarn>
+    </NoWarn>
     <CodeAnalysisRuleSet>..\Code Analysis\EPDIT.ruleset</CodeAnalysisRuleSet>
+    <WarningsAsErrors>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036</WarningsAsErrors>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -46,8 +48,10 @@
     <OutputPath>bin\</OutputPath>
     <DocumentationFile>
     </DocumentationFile>
-    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <NoWarn>
+    </NoWarn>
     <CodeAnalysisRuleSet>..\Code Analysis\EPDIT.ruleset</CodeAnalysisRuleSet>
+    <WarningsAsErrors>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036</WarningsAsErrors>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AjaxControls, Version=1.0.0.0, Culture=neutral, PublicKeyToken=10103bf0df26eb01, processorArchitecture=MSIL">
@@ -164,7 +168,6 @@
     <Content Include="assets\images\sort_none.gif" />
     <Content Include="browserconfig.xml" />
     <Content Include="ContactUs.aspx" />
-    <Content Include="Controls\PreventRePost.ascx" />
     <Content Include="Login.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="ErrorPage.aspx" />
@@ -346,9 +349,6 @@
     <Compile Include="ContactUs.aspx.vb">
       <DependentUpon>ContactUs.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Controls\PreventRePost.ascx.designer.vb">
-      <DependentUpon>PreventRePost.ascx</DependentUpon>
     </Compile>
     <Compile Include="IP.ashx.vb">
       <DependentUpon>IP.ashx</DependentUpon>
@@ -592,10 +592,6 @@
     <Compile Include="_Code\UrlHelper.vb" />
     <Compile Include="_Code\UserAccountEmails.vb" />
     <Compile Include="_DAL\AnnualFees\ZipCode.vb" />
-    <Compile Include="Controls\PreventRePost.ascx.vb">
-      <DependentUpon>PreventRePost.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
     <Compile Include="ES\confirm.aspx.vb">
       <DependentUpon>confirm.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -757,7 +753,7 @@
     <OptionCompare>Binary</OptionCompare>
   </PropertyGroup>
   <PropertyGroup>
-    <OptionStrict>Off</OptionStrict>
+    <OptionStrict>On</OptionStrict>
   </PropertyGroup>
   <PropertyGroup>
     <OptionInfer>On</OptionInfer>
@@ -769,11 +765,13 @@
     <OutputPath>bin\</OutputPath>
     <DocumentationFile>
     </DocumentationFile>
-    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <NoWarn>
+    </NoWarn>
     <DebugType>full</DebugType>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <CodeAnalysisRuleSet>..\Code Analysis\EPDIT.ruleset</CodeAnalysisRuleSet>
     <Optimize>true</Optimize>
+    <WarningsAsErrors>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036</WarningsAsErrors>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />

@@ -42,8 +42,8 @@ Public Class EIS_Users_Default
         Dim dt As DataTable = GetFacilityCaerContacts(CurrentAirs)
 
         If dt IsNot Nothing AndAlso dt.Rows.Count > 0 Then
-            hidCertifiersCount.Value = dt.Select($"CaerRole = '{CaerRole.Certifier}'").Length
-            hidPreparersCount.Value = dt.Select($"CaerRole = '{CaerRole.Preparer}'").Length
+            hidCertifiersCount.Value = dt.Select($"CaerRole = '{CaerRole.Certifier}'").Length.ToString
+            hidPreparersCount.Value = dt.Select($"CaerRole = '{CaerRole.Preparer}'").Length.ToString
 
             grdCaersUsers.Visible = True
             grdCaersUsers.DataSource = dt
@@ -54,8 +54,8 @@ Public Class EIS_Users_Default
             btnCancelNew.Visible = True
             pnlAddNew.Visible = False
         Else
-            hidCertifiersCount.Value = 0
-            hidPreparersCount.Value = 0
+            hidCertifiersCount.Value = "0"
+            hidPreparersCount.Value = "0"
 
             grdCaersUsers.DataSource = Nothing
             grdCaersUsers.Visible = False
@@ -66,9 +66,9 @@ Public Class EIS_Users_Default
             pnlAddNew.Visible = True
         End If
 
-        rRoleNew.Visible = hidCertifiersCount.Value = 0
-        reqvRoleNew.Visible = hidCertifiersCount.Value = 0
-        rRolePreparer.Visible = hidCertifiersCount.Value > 0
+        rRoleNew.Visible = CInt(hidCertifiersCount.Value) = 0
+        reqvRoleNew.Visible = CInt(hidCertifiersCount.Value) = 0
+        rRolePreparer.Visible = CInt(hidCertifiersCount.Value) > 0
     End Sub
 
     Private Sub LoadStates()
@@ -170,7 +170,7 @@ Public Class EIS_Users_Default
     Private Sub grdCaersUsers_RowEditing(sender As Object, e As GridViewEditEventArgs) Handles grdCaersUsers.RowEditing
         NotNull(e, NameOf(e))
 
-        Dim id = grdCaersUsers.DataKeys(e.NewEditIndex).Item("Id")
+        Dim id As Guid = CType(grdCaersUsers.DataKeys(e.NewEditIndex).Item("Id"), Guid)
         Dim user As CaerContact = GetCaerContact(id)
 
         If user IsNot Nothing AndAlso user.Active Then
@@ -195,7 +195,7 @@ Public Class EIS_Users_Default
 
             ddlRoleEdit.Items.Clear()
             ddlRoleEdit.Items.Add(CaerRole.Preparer.ToString)
-            If hidCertifiersCount.Value = 0 OrElse user.CaerRole = CaerRole.Certifier Then
+            If CInt(hidCertifiersCount.Value) = 0 OrElse user.CaerRole = CaerRole.Certifier Then
                 ddlRoleEdit.Items.Add(CaerRole.Certifier.ToString)
                 ddlRoleEdit.Enabled = True
             Else
@@ -232,7 +232,7 @@ Public Class EIS_Users_Default
                 .Title = txtTitleEdit.Text
             }
 
-            Dim role As CaerRole = [Enum].Parse(GetType(CaerRole), ddlRoleEdit.SelectedValue)
+            Dim role As CaerRole = CType([Enum].Parse(GetType(CaerRole), ddlRoleEdit.SelectedValue), CaerRole)
 
             Dim caerContact As New CaerContact With {
                 .Active = True,
@@ -258,7 +258,7 @@ Public Class EIS_Users_Default
     End Sub
 
     Private Sub btnProceed_Click(sender As Object, e As EventArgs) Handles btnProceed.Click
-        If hidCertifiersCount.Value = 1 AndAlso hidPreparersCount.Value >= 1 Then
+        If CInt(hidCertifiersCount.Value) = 1 AndAlso CInt(hidPreparersCount.Value) >= 1 Then
             Response.Redirect("~/EIS/Process/Submit.aspx")
         End If
     End Sub

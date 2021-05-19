@@ -6,13 +6,13 @@ Partial Class ES_espast
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         If Not IsPostBack Then
 
-            lblPastESYear.Text = Session("PastESYear")
-            lblESPastYear2.Text = Session("PastESYear")
-            lblConfNo.Text = GetConfirmNumber(Session("pastayr"))
-            lblFacilityName.Text = Session("fname")
-            lblAIRSNo.Text = Session("esAirsNumber")
-            lblNOx.Text = Session("nox")
-            lblVOC.Text = Session("voc")
+            lblPastESYear.Text = GetSessionItem(Of String)("PastESYear")
+            lblESPastYear2.Text = GetSessionItem(Of String)("PastESYear")
+            lblConfNo.Text = GetConfirmNumber(GetSessionItem(Of String)("pastayr"))
+            lblFacilityName.Text = GetSessionItem(Of String)("fname")
+            lblAIRSNo.Text = GetSessionItem(Of String)("esAirsNumber")
+            lblNOx.Text = GetSessionItem(Of String)("nox")
+            lblVOC.Text = GetSessionItem(Of String)("voc")
 
             If (lblNOx.Text = "0") AndAlso (lblVOC.Text = "0") Then
                 ShowOptedOut()

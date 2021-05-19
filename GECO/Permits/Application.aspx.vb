@@ -47,7 +47,7 @@ Public Class Permit_Application
 
     Private Sub DisplayPermitApplication()
         lblAppNum.Text = AppNumber.ToString
-        hAppNumber.Value = AppNumber
+        hAppNumber.Value = AppNumber.ToString
         Title = "Permit Application #" & AppNumber.ToString & " - GECO"
 
         DisplayApplicationDetails()

@@ -10,7 +10,7 @@ Partial Class APB_es
         AirsSelectedCheck()
 
         'Check if the user has access to the Application
-        Dim facilityAccess = GetCurrentUser().GetFacilityAccess(GetCookie(Cookie.AirsNumber))
+        Dim facilityAccess = GetCurrentUser().GetFacilityAccess(New ApbFacilityId(GetCookie(Cookie.AirsNumber).ToString))
 
         If Not facilityAccess.ESAccess Then
             Response.Redirect("~/NoAccess.aspx")

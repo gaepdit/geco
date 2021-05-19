@@ -1,4 +1,4 @@
-Imports System.Data.SqlClient
+﻿Imports System.Data.SqlClient
 Imports EpdIt.DBUtilities
 Imports GECO.GecoModels
 
@@ -37,11 +37,11 @@ Namespace DAL
                 New SqlParameter("@UserID", userId)
             }
 
-            Dim returnValue As Integer = -1
+            Dim returnValue As Integer
 
             invoiceId = DB.SPGetInteger(spName, params, returnValue)
 
-            Return returnValue
+            Return CType(returnValue, GenerateInvoiceResult)
         End Function
 
     End Module

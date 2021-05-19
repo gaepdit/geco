@@ -1,4 +1,4 @@
-Imports System.Runtime.CompilerServices
+﻿Imports System.Runtime.CompilerServices
 
 Public Module HtmlTableFunctions
 
@@ -56,7 +56,7 @@ Public Module HtmlTableFunctions
         If asCurrency Then
             table.AddTableRow(label, String.Format(Globalization.CultureInfo.CurrentCulture, "{0:C}", value), labelIsHeader, {"table-cell-alignright"})
         Else
-            table.AddTableRow(label, value, labelIsHeader, {"table-cell-alignright"})
+            table.AddTableRow(label, value.ToString, labelIsHeader, {"table-cell-alignright"})
         End If
     End Sub
 
@@ -125,7 +125,7 @@ Public Module HtmlTableFunctions
         If asCurrency Then
             td.Text = String.Format(Globalization.CultureInfo.CurrentCulture, "{0:C}", value)
         Else
-            td.Text = value
+            td.Text = value.ToString
         End If
 
         tr.Cells.Add(td)

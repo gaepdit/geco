@@ -1,4 +1,4 @@
-Imports System.Data.SqlClient
+﻿Imports System.Data.SqlClient
 Imports System.DateTime
 
 Partial Class es_confirm
@@ -10,25 +10,25 @@ Partial Class es_confirm
         If Not IsPostBack Then
 
             Dim ESExist As Boolean
-            Dim AirsYear As String = Session("AirsYear")
+            Dim AirsYear As String = GetSessionItem(Of String)("AirsYear")
 
-            If Session("ESOptOut") = "YES" Then
+            If GetSessionItem(Of String)("ESOptOut") = "YES" Then
                 pnlTop.Visible = True
                 pnlOptedOutYes.Visible = True
                 pnlConfFinal.Visible = False
                 GetConfirmNumber()
                 lblConfNum1.Text = ConfNum
-                lblESYear1.Text = Session("ESYear")
+                lblESYear1.Text = GetSessionItem(Of String)("ESYear")
                 lblDate1.Text = Now.ToString("d-MMM-yyyy")
-                lblAirsNo1.Text = Session("esAirsNumber")
-                lblFacility1.Text = GetFacilityName(Session("esAirsNumber"))
+                lblAirsNo1.Text = GetSessionItem(Of String)("esAirsNumber")
+                lblFacility1.Text = GetFacilityName(GetSessionItem(Of String)("esAirsNumber"))
             End If
 
-            If Session("ESOptOut") = "NO" Then
+            If GetSessionItem(Of String)("ESOptOut") = "NO" Then
                 pnlTop.Visible = True
                 pnlOptedOutYes.Visible = False
                 pnlConfFinal.Visible = True
-                lblESYear3.Text = Session("ESYear")
+                lblESYear3.Text = GetSessionItem(Of String)("ESYear")
                 ESExist = CheckESExist(AirsYear)
 
                 If Not ESExist Then
@@ -36,12 +36,12 @@ Partial Class es_confirm
                 End If
 
                 GetConfirmNumber()
-                lblVOCAmt2.Text = GetEmissionValue("VOC")
-                lblNOXAmt2.Text = GetEmissionValue("NOX")
+                lblVOCAmt2.Text = GetEmissionValue("VOC").ToString
+                lblNOXAmt2.Text = GetEmissionValue("NOX").ToString
                 lblConfNumFinalize.Text = ConfNum
                 lblDate2.Text = Now.ToString("d-MMM-yyyy")
-                lblAirsNo2.Text = Session("esAirsNumber")
-                lblFacility2.Text = GetFacilityName(Session("esAirsNumber"))
+                lblAirsNo2.Text = GetSessionItem(Of String)("esAirsNumber")
+                lblFacility2.Text = GetFacilityName(GetSessionItem(Of String)("esAirsNumber"))
             End If
 
             ShowSubmitHelp()
@@ -101,11 +101,11 @@ Partial Class es_confirm
 
     Private Sub CreateConfNum()
 
-        Dim esYear As String = Session("ESYear")
-        Dim AirsNumber As String = Session("esAirsNumber")
+        Dim esYear As String = GetSessionItem(Of String)("ESYear")
+        Dim AirsNumber As String = GetSessionItem(Of String)("esAirsNumber")
         Dim day As String = Now.ToString("d-MMM-yyyy")
-        Dim hr As String = Now.Hour
-        Dim min As String = Now.Minute
+        Dim hr As String = Now.Hour.ToString
+        Dim min As String = Now.Minute.ToString
         If Len(hr) < 2 Then hr = "0" & hr
         If Len(min) < 2 Then min = "0" & min
         Dim TransDate As String = day.ToUpper
@@ -129,7 +129,7 @@ Partial Class es_confirm
 
     Private Sub GetConfirmNumber()
 
-        Dim AirsYear As String = Session("AirsYear")
+        Dim AirsYear As String = GetSessionItem(Of String)("AirsYear")
 
         Dim query = "Select strConfirmationNbr FROM esSchema Where strAirsYear = @AirsYear "
         Dim param As New SqlParameter("@AirsYear", AirsYear)
@@ -162,9 +162,9 @@ Partial Class es_confirm
             query = "Select dblNOxEmission FROM esSchema Where strAirsYear = @AirsYear "
         End If
 
-        Dim param As New SqlParameter("@AirsYear", Session("AirsYear"))
+        Dim param As New SqlParameter("@AirsYear", GetSessionItem(Of String)("AirsYear"))
 
-        Return DB.GetString(query, param)
+        Return DB.GetSingleValue(Of Double)(query, param)
 
     End Function
 

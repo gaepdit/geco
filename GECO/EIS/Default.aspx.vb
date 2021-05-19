@@ -277,7 +277,7 @@ Public Class EIS_Default
             Return
         End If
 
-        lblResetDate.Text = EiStatus.DateFinalized
+        lblResetDate.Text = EiStatus.DateFinalized.ToString
 
         pnlResetStatus.Visible = True
         pnlStatus.Visible = False

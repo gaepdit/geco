@@ -1,4 +1,4 @@
-Imports System.Net.Mail
+﻿Imports System.Net.Mail
 Imports GECO.GecoModels
 
 Partial Class Home_FacilityRequest
@@ -73,7 +73,7 @@ Partial Class Home_FacilityRequest
 
         If dt IsNot Nothing Then
             For Each dr As DataRow In dt.Rows
-                recipientList.Add(dr(0))
+                recipientList.Add(dr(0).ToString)
             Next
         End If
 

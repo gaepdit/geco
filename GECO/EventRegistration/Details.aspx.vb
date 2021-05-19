@@ -97,9 +97,9 @@ Partial Class EventRegistration_EventDetails
             litEventDetails.Text &= "<strong>Additional Notes: </strong><br />" & GetNullableString(dr.Item("strNotes"))
         End If
 
-        Dim total As Integer = dr.Item("numCapacity")
-        Dim confirmed As Integer = dr.Item("NumConfirmed")
-        Dim waiting As Integer = dr.Item("NumWaitingList")
+        Dim total As Integer = CInt(dr.Item("numCapacity"))
+        Dim confirmed As Integer = CInt(dr.Item("NumConfirmed"))
+        Dim waiting As Integer = CInt(dr.Item("NumWaitingList"))
 
         If GetNullable(Of Integer)(dr("NUMEVENTSTATUSCODE")) <> 2 Then
             pCanceled.Visible = True
@@ -133,9 +133,9 @@ Partial Class EventRegistration_EventDetails
         Dim dr = GetEventAvailability(eventId)
 
         If dr IsNot Nothing Then
-            total = dr.Item("Total")
-            confirmed = dr.Item("Confirmed")
-            waiting = dr.Item("WaitingList")
+            total = CInt(dr.Item("Total"))
+            confirmed = CInt(dr.Item("Confirmed"))
+            waiting = CInt(dr.Item("WaitingList"))
         End If
 
         DisplayCapacity(total, confirmed, waiting)
@@ -178,8 +178,8 @@ Partial Class EventRegistration_EventDetails
         Dim dr = GetRegistrationStatus(eventId, currentUser.UserId)
 
         If dr IsNot Nothing Then
-            Dim status As Integer = dr.Item("StatusCode")
-            Dim regDate As Date = dr.Item("RegistrationDate")
+            Dim status As Integer = CInt(dr.Item("StatusCode"))
+            Dim regDate As Date = CDate(dr.Item("RegistrationDate"))
 
             litConfirmation.Text = "<b>Status:</b> " & If(status = 1, "REGISTERED", "WAITING LIST")
             litConfirmation.Text &= "<br />You registered for this event on "
@@ -202,7 +202,7 @@ Partial Class EventRegistration_EventDetails
     ' Registration
 
     Protected Sub btnPasscode_Click(sender As Object, e As EventArgs) Handles btnPasscode.Click
-        If txtPasscode.Text = GetSessionItem(GecoSession.EventPasscode).ToString Then
+        If txtPasscode.Text = GetSessionItem(Of String)(GecoSession.EventPasscode) Then
             pnlPasscode.Visible = False
             pnlRegister.Visible = True
         Else

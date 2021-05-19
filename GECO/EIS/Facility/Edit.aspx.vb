@@ -10,7 +10,6 @@ Partial Class EIS_Facility_EditPage
 
     Public Property CurrentAirs As ApbFacilityId
     Private Property CurrentUser As GecoUser
-    Private Property GMapApiKey = ConfigurationManager.AppSettings("GoogleMapsAPIKey")
     Public Property IsBeginEisProcess As Boolean = False
 
     Private NAICSExists As Boolean
@@ -78,8 +77,8 @@ Partial Class EIS_Facility_EditPage
         If dt IsNot Nothing Then
             For Each dr As DataRow In dt.Rows
                 Dim newListItem As New ListItem With {
-                    .Text = dr.Item("strdesc"),
-                    .Value = dr.Item("HorCollMetCode")
+                    .Text = dr.Item("strdesc").ToString,
+                    .Value = dr.Item("HorCollMetCode").ToString
                 }
                 ddlHorCollectionMetCode.Items.Add(newListItem)
             Next
@@ -95,8 +94,8 @@ Partial Class EIS_Facility_EditPage
         If dt IsNot Nothing Then
             For Each dr As DataRow In dt.Rows
                 Dim newListItem As New ListItem With {
-                    .Text = dr.Item("strdesc"),
-                    .Value = dr.Item("HorRefDatumCode")
+                    .Text = dr.Item("strdesc").ToString,
+                    .Value = dr.Item("HorRefDatumCode").ToString
                 }
                 ddlHorReferenceDatCode.Items.Add(newListItem)
             Next
@@ -142,13 +141,13 @@ Partial Class EIS_Facility_EditPage
 
         Dim mm As MinMaxLatLon = GetCountyLatLong(CurrentAirs.CountySubstring)
 
-        rngvLatitudeMeasure.MaximumValue = mm.MaxLat
-        rngvLatitudeMeasure.MinimumValue = mm.MinLat
+        rngvLatitudeMeasure.MaximumValue = mm.MaxLat.ToString
+        rngvLatitudeMeasure.MinimumValue = mm.MinLat.ToString
         rngvLatitudeMeasure.ErrorMessage = "The Latitude must be between " & mm.MinLat.ToString & " and " & mm.MaxLat.ToString & "."
         rngvLatitudeMeasure.Text = "Must be between " & mm.MinLat.ToString & " and " & mm.MaxLat.ToString
 
-        rngvLongitudeMeasure.MaximumValue = mm.MaxLon
-        rngvLongitudeMeasure.MinimumValue = mm.MinLon
+        rngvLongitudeMeasure.MaximumValue = mm.MaxLon.ToString
+        rngvLongitudeMeasure.MinimumValue = mm.MinLon.ToString
         rngvLongitudeMeasure.ErrorMessage = "The Latitude must be between " & mm.MinLon.ToString & " and " & mm.MaxLon.ToString & "."
         rngvLongitudeMeasure.Text = "Must be between " & mm.MinLon.ToString & " and " & mm.MaxLon.ToString
     End Sub
@@ -182,7 +181,7 @@ Partial Class EIS_Facility_EditPage
         If IsDBNull(dr("strMailingAddressStateCode")) Then
             ddlFacility_StateMail.SelectedValue = ""
         Else
-            ddlFacility_StateMail.SelectedValue = dr.Item("strMailingAddressStateCode")
+            ddlFacility_StateMail.SelectedValue = dr.Item("strMailingAddressStateCode").ToString
         End If
 
         ' Facility Description
@@ -193,12 +192,15 @@ Partial Class EIS_Facility_EditPage
 
         ' Geographic Coordinates
 
-        txtLatitudeMeasure.Text = GetNullableString(dr("numLatitudeMeasure"))
-        txtLongitudeMeasure.Text = GetNullableString(dr("numLongitudeMeasure"))
+        Dim latMeasure As Decimal = GetNullable(Of Decimal)(dr("numLatitudeMeasure"))
+        Dim lonMeasure As Decimal = GetNullable(Of Decimal)(dr("numLongitudeMeasure"))
 
-        If txtLatitudeMeasure.Text <> "" AndAlso txtLongitudeMeasure.Text <> "" Then
-            imgGoogleStaticMap.ImageUrl = GetStaticMapUrl(New Coordinate(txtLatitudeMeasure.Text, txtLongitudeMeasure.Text))
-            lnkGoogleMap.NavigateUrl = GetMapLinkUrl(New Coordinate(txtLatitudeMeasure.Text, txtLongitudeMeasure.Text))
+        txtLatitudeMeasure.Text = latMeasure.ToString
+        txtLongitudeMeasure.Text = lonMeasure.ToString
+
+        If latMeasure > 0 AndAlso lonMeasure > 0 Then
+            imgGoogleStaticMap.ImageUrl = GetStaticMapUrl(New Coordinate(latMeasure, lonMeasure))
+            lnkGoogleMap.NavigateUrl = GetMapLinkUrl(New Coordinate(latMeasure, lonMeasure))
         Else
             imgGoogleStaticMap.ImageUrl = GetStaticMapUrl(siteAddress.Street, siteAddress.City)
             lnkGoogleMap.NavigateUrl = GetMapLinkUrl(siteAddress.Street, siteAddress.City)
@@ -207,7 +209,7 @@ Partial Class EIS_Facility_EditPage
         If IsDBNull(dr("HorCollMetCode")) Then
             ddlHorCollectionMetCode.SelectedValue = ""
         Else
-            ddlHorCollectionMetCode.SelectedValue = dr.Item("HorCollMetCode")
+            ddlHorCollectionMetCode.SelectedValue = dr.Item("HorCollMetCode").ToString
         End If
 
         txtHorizontalAccuracyMeasure.Text = GetNullableString(dr("intHorAccuracyMeasure"))
@@ -219,7 +221,7 @@ Partial Class EIS_Facility_EditPage
         If IsDBNull(dr("HorRefDatumCode")) Then
             ddlHorReferenceDatCode.SelectedValue = ""
         Else
-            ddlHorReferenceDatCode.SelectedValue = dr.Item("HorRefDatumCode")
+            ddlHorReferenceDatCode.SelectedValue = dr.Item("HorRefDatumCode").ToString
         End If
 
         txtGeographicComment.Text = GetNullableString(dr.Item("strGeographicComment"))
@@ -237,7 +239,7 @@ Partial Class EIS_Facility_EditPage
         If IsDBNull(dr("STRFSAIMADDRESSSTATECODE")) Then
             ddlContact_MailState.SelectedValue = ""
         Else
-            ddlContact_MailState.SelectedValue = dr.Item("STRFSAIMADDRESSSTATECODE")
+            ddlContact_MailState.SelectedValue = dr.Item("STRFSAIMADDRESSSTATECODE").ToString
         End If
 
         txtMailingAddressPostalCode_Contact.Text = GetNullableString(dr.Item("STRFSAIMADDRESSPOSTALCODE"))
@@ -260,7 +262,7 @@ Partial Class EIS_Facility_EditPage
 
         If dt IsNot Nothing AndAlso dt.Rows.Count > 0 Then
             For Each dr As DataRow In dt.Rows
-                Select Case dr.Item("TELEPHONENUMBERTYPECODE")
+                Select Case dr.Item("TELEPHONENUMBERTYPECODE").ToString
                     Case "W"
                         txtTelephoneNumberText.Text = GetNullableString(dr.Item("STRTELEPHONENUMBERTEXT"))
                     Case "F"
@@ -296,10 +298,12 @@ Partial Class EIS_Facility_EditPage
             Session("MyNAICSView") = DirectCast(Cache("NAICSDataTable"), DataTable)
         End If
 
-        If Session("MyNAICSView").Rows.Count > 0 Then
-            gvwNAICS.DataSource = Session("MyNAICSView")
+        Dim dt As DataTable = GetSessionItem(Of DataTable)("MyNAICSView")
+        Dim rowCount = dt.Rows.Count
+        If rowCount > 0 Then
+            gvwNAICS.DataSource = dt
             gvwNAICS.DataBind()
-            lblRowCount.Text = "No. of NAICS Codes: " & Session("MyNAICSView").Rows.Count
+            lblRowCount.Text = "No. of NAICS Codes: " & rowCount
         Else
             gvwNAICS.DataSource = Nothing
             lblRowCount.Text = ""
@@ -357,7 +361,7 @@ Partial Class EIS_Facility_EditPage
 
         Dim curGoogleMapLink As String = "none"
         If Decimal.TryParse(hidLatitude.Value, Nothing) AndAlso Decimal.TryParse(hidLongitude.Value, Nothing) Then
-            curGoogleMapLink = GetMapLinkUrl(New Coordinate(hidLatitude.Value, hidLongitude.Value))
+            curGoogleMapLink = GetMapLinkUrl(New Coordinate(CDec(hidLatitude.Value), CDec(hidLongitude.Value)))
         End If
 
         Dim gcUpdated As Boolean =
@@ -371,8 +375,10 @@ Partial Class EIS_Facility_EditPage
             ' Email APB if any Geographic Coordinate Information changed
 
             Dim newGoogleMapLink As String = "none"
-            If Decimal.TryParse(txtLatitudeMeasure.Text, Nothing) AndAlso Decimal.TryParse(txtLongitudeMeasure.Text, Nothing) Then
-                newGoogleMapLink = GoogleMaps.GetMapLinkUrl(New Coordinate(txtLatitudeMeasure.Text, txtLongitudeMeasure.Text))
+            Dim latMeasure As Decimal
+            Dim lonMeasure As Decimal
+            If Decimal.TryParse(txtLatitudeMeasure.Text, latMeasure) AndAlso Decimal.TryParse(txtLongitudeMeasure.Text, lonMeasure) Then
+                newGoogleMapLink = GoogleMaps.GetMapLinkUrl(New Coordinate(latMeasure, lonMeasure))
             End If
 
             Dim plainBody As String = "An update has been submitted for the EIS Facility Geographic Coordinate Information " &
@@ -518,7 +524,7 @@ Partial Class EIS_Facility_EditPage
 
     Protected Sub btnSearchNAICS_Click(sender As Object, e As EventArgs) Handles btnSearchNAICS.Click
         Dim dview As New DataView With {
-            .Table = Cache("NAICSDataTable")
+            .Table = DirectCast(Cache("NAICSDataTable"), DataTable)
         }
 
         'No search text in any field
@@ -545,16 +551,17 @@ Partial Class EIS_Facility_EditPage
         Session("MyNAICSView") = dview.ToTable
 
         gvwNAICS.DataBind()
-        lblRowCount.Text = "No. of NAICS Codes: " & Session("MyNAICSView").Rows.Count
+        lblRowCount.Text = "No. of NAICS Codes: " & dview.ToTable.Rows.Count
     End Sub
 
     Protected Sub gvwNAICS_PageIndexChanging(sender As Object, e As GridViewPageEventArgs) Handles gvwNAICS.PageIndexChanging
         NotNull(e, NameOf(e))
 
-        gvwNAICS.DataSource = Session("MyNAICSView")
+        Dim dt As DataTable = GetSessionItem(Of DataTable)("MyNAICSView")
+        gvwNAICS.DataSource = dt
         gvwNAICS.PageIndex = e.NewPageIndex
         gvwNAICS.DataBind()
-        lblRowCount.Text = "No. of NAICS Codes: " & Session("MyNAICSView").Rows.Count
+        lblRowCount.Text = "No. of NAICS Codes: " & dt.Rows.Count
     End Sub
 
     Protected Sub btnCancelNAICS_Click(sender As Object, e As EventArgs) Handles btnCancelNAICS.Click
@@ -593,7 +600,7 @@ Partial Class EIS_Facility_EditPage
     End Sub
 
     Protected Sub gvwNAICS_SelectedIndexChanged(sender As Object, e As EventArgs) Handles gvwNAICS.SelectedIndexChanged
-        Dim NAICSCode As String = gvwNAICS.SelectedValue
+        Dim NAICSCode As String = gvwNAICS.SelectedValue.ToString
         pNaicsSelected.Visible = True
         lblSelectedNaicsCode.Text = NAICSCode
     End Sub
@@ -629,8 +636,8 @@ Partial Class EIS_Facility_EditPage
 
             If georesult.Status = GeocodeStatus.OK Then
                 GMap.Center = georesult.Locations.FirstOrDefault.Point.ToLatLng()
-                txtMapLat.Text = GMap.Center.Latitude
-                txtMapLon.Text = GMap.Center.Longitude
+                txtMapLat.Text = GMap.Center.Latitude.ToString
+                txtMapLon.Text = GMap.Center.Longitude.ToString
             End If
         End If
 
@@ -648,7 +655,7 @@ Partial Class EIS_Facility_EditPage
         Dim latitude As String = Left(e.Coordinates.Latitude.ToString, 8)
         Dim longitude As String = Left(e.Coordinates.Longitude.ToString, 9)
 
-        Dim myOverlay As New Marker(New Guid(), latitude, longitude)
+        Dim myOverlay As New Marker(New Guid(), CDbl(latitude), CDbl(longitude))
         GMap.Overlays.Add(myOverlay)
 
         Dim Mapcommand As String = GMap.UpdateOverlays()
@@ -666,8 +673,10 @@ Partial Class EIS_Facility_EditPage
         txtHorizontalAccuracyMeasure.Text = "25"
         ddlHorReferenceDatCode.SelectedValue = "002"
 
-        If txtLatitudeMeasure.Text <> "" AndAlso txtLongitudeMeasure.Text <> "" Then
-            imgGoogleStaticMap.ImageUrl = GetStaticMapUrl(New Coordinate(txtLatitudeMeasure.Text, txtLongitudeMeasure.Text))
+        Dim latMeasure As Decimal
+        Dim lonMeasure As Decimal
+        If Decimal.TryParse(txtLatitudeMeasure.Text, latMeasure) AndAlso Decimal.TryParse(txtLongitudeMeasure.Text, lonMeasure) Then
+            imgGoogleStaticMap.ImageUrl = GetStaticMapUrl(New Coordinate(latMeasure, lonMeasure))
         End If
 
         pnlFacilityEdit.Visible = True

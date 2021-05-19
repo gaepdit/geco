@@ -9,7 +9,7 @@ Public Module GridViewExportUtil
             Return
         End If
 
-        Dim datatable As DataTable = gridView.DataSource
+        Dim datatable As DataTable = CType(gridView.DataSource, DataTable)
         If datatable Is Nothing OrElse datatable.Rows.Count = 0 Then
             Return
         End If

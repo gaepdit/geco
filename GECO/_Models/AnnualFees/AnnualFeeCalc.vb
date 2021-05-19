@@ -10,7 +10,7 @@ Public Class AnnualFeeCalc
     Public Property RuleSmApplies As Boolean
     Public Property RuleNspsApplies As Boolean
 
-    Private ReadOnly Property DaysDelayed As Integer
+    Private ReadOnly Property DaysDelayed As Long
         Get
             If FeeRates Is Nothing OrElse FeeRates.AdminFeeDate = Nothing Then
                 Return 0

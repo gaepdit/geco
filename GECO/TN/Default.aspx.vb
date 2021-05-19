@@ -60,14 +60,14 @@ Partial Class TN_Default
                 If IsDBNull(dr.Item("STRPHONE")) Then
                     lblEPDTelephone.Text = "404-363-7000 (ask For Source Monitoring Unit)"
                 Else
-                    EPDTelephone = dr.Item("STRPHONE")
+                    EPDTelephone = CStr(dr.Item("STRPHONE"))
                     lblEPDTelephone.Text = Mid(EPDTelephone, 1, 3) & "-" & Mid(EPDTelephone, 4, 3) & "-" & Mid(EPDTelephone, 7)
                 End If
 
                 If IsDBNull(dr.Item("STRFAX")) Then
                     lblEPDFax.Text = "404-363-7100"
                 Else
-                    EPDFaxNumber = dr.Item("STRFAX")
+                    EPDFaxNumber = CStr(dr.Item("STRFAX"))
                     lblEPDFax.Text = Mid(EPDFaxNumber, 1, 3) & "-" & Mid(EPDFaxNumber, 4, 3) & "-" & Mid(EPDFaxNumber, 7)
                 End If
 
@@ -148,9 +148,9 @@ Partial Class TN_Default
             lblEmissionUnit.Text = GetNullableString(dr.Item("strEmissionUnit"))
             lblPollutants.Text = GetNullableString(dr.Item("strPollutants"))
             lblNotificationDate.Text = GetNullableString(dr.Item("datTestNotification"))
-            StartDate = GetNullableDateTime(dr.Item("datProposedStartDate"))
+            StartDate = CDate(dr.Item("datProposedStartDate"))
             lblStartDate.Text = StartDate.ToShortDateString
-            Dim endDate As Date = GetNullableDateTime(dr.Item("datProposedEndDate"))
+            Dim endDate As Date = CDate(dr.Item("datProposedEndDate"))
             lblEndDate.Text = endDate.ToShortDateString
             lblComment.Text = GetNullableString(dr.Item("strComments"))
             lblConfNo.Text = GetNullableString(dr.Item("strConfirmationNumber"))
@@ -191,7 +191,7 @@ Partial Class TN_Default
             If IsDBNull(dr("strFax")) Then
                 lblFax.Text = "404-363-7100"
             Else
-                Fax = dr.Item("strFax")
+                Fax = CStr(dr.Item("strFax"))
                 If Len(Fax) < 10 Then
                     lblFax.Text = ""
                 Else

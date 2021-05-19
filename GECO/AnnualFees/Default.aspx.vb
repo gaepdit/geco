@@ -1,4 +1,4 @@
-Imports System.Data.SqlClient
+﻿Imports System.Data.SqlClient
 Imports EpdIt.DBUtilities
 Imports GECO.GecoModels
 
@@ -16,7 +16,7 @@ Partial Class AnnualFees_Default
         AirsSelectedCheck()
 
         currentUser = GetCurrentUser()
-        currentAirs = GetCookie(Cookie.AirsNumber)
+        currentAirs = New ApbFacilityId(GetCookie(Cookie.AirsNumber))
 
         'Check if the user has access to the Application
         Dim facilityAccess = currentUser.GetFacilityAccess(currentAirs)
@@ -59,7 +59,7 @@ Partial Class AnnualFees_Default
             feeYear = Nothing
         Else
             feeYear = CInt(ddlFeeYear.SelectedItem.Text)
-            feeYearCompleted = Mid(ddlFeeYear.SelectedValue, 5) = 1
+            feeYearCompleted = Mid(ddlFeeYear.SelectedValue, 5) = "1"
         End If
     End Sub
 
@@ -226,15 +226,15 @@ Partial Class AnnualFees_Default
     Public Sub RecalculateFees()
         ' Calculate
         If ddlClass.SelectedValue = "A" Then
-            If Not IsNumeric(txtVOCTons.Text) Then txtVOCTons.Text = 0
-            If Not IsNumeric(txtNOxTons.Text) Then txtNOxTons.Text = 0
-            If Not IsNumeric(txtPMTons.Text) Then txtPMTons.Text = 0
-            If Not IsNumeric(txtSO2Tons.Text) Then txtSO2Tons.Text = 0
+            If Not IsNumeric(txtVOCTons.Text) Then txtVOCTons.Text = "0"
+            If Not IsNumeric(txtNOxTons.Text) Then txtNOxTons.Text = "0"
+            If Not IsNumeric(txtPMTons.Text) Then txtPMTons.Text = "0"
+            If Not IsNumeric(txtSO2Tons.Text) Then txtSO2Tons.Text = "0"
         Else
-            txtVOCTons.Text = 0
-            txtNOxTons.Text = 0
-            txtSO2Tons.Text = 0
-            txtPMTons.Text = 0
+            txtVOCTons.Text = "0"
+            txtNOxTons.Text = "0"
+            txtSO2Tons.Text = "0"
+            txtPMTons.Text = "0"
         End If
 
         feeCalc.Emissions.VocTons = CInt(txtVOCTons.Text)
@@ -253,7 +253,7 @@ Partial Class AnnualFees_Default
         lblPMFee.Text = feeCalc.CalcPmFee.ToString("c")
         lblSO2Fee.Text = feeCalc.CalcSo2Fee.ToString("c")
 
-        lblEmissionsTotal.Text = feeCalc.Emissions.Total
+        lblEmissionsTotal.Text = feeCalc.Emissions.Total.ToString
         lblEmissionFeeTotal.Text = feeCalc.CalcEmissionFee.ToString("c")
 
         lblpart70SMFee.Text = Math.Max(feeCalc.CalcPart70Fee, feeCalc.CalcSmFee).ToString("c")
@@ -312,10 +312,10 @@ Partial Class AnnualFees_Default
             txtPhone.Text = GetNullableString(dr.Item("strcontactphonenumber"))
             txtFax.Text = GetNullableString(dr.Item("strcontactfaxnumber"))
 
-            If IsDBNull(dr.Item("strcontactemail")) OrElse dr.Item("strcontactemail") = "N/A" Then
+            If IsDBNull(dr.Item("strcontactemail")) OrElse dr.Item("strcontactemail").ToString = "N/A" Then
                 txtEmail.Text = currentUser.Email
             Else
-                txtEmail.Text = dr.Item("strcontactemail")
+                txtEmail.Text = dr.Item("strcontactemail").ToString
             End If
 
             txtAddress.Text = GetNullableString(dr.Item("strcontactaddress"))
@@ -404,10 +404,10 @@ Partial Class AnnualFees_Default
                 feeCalc.FeeRates.PerTonRate = CDec(dr.Item("numfeerate"))
             End If
 
-            txtVOCTons.Text = GetNullable(Of Integer)(dr.Item("intvoctons"))
-            txtPMTons.Text = GetNullable(Of Integer)(dr.Item("intpmtons"))
-            txtSO2Tons.Text = GetNullable(Of Integer)(dr.Item("intso2tons"))
-            txtNOxTons.Text = GetNullable(Of Integer)(dr.Item("intnoxtons"))
+            txtVOCTons.Text = GetNullable(Of Integer)(dr.Item("intvoctons")).ToString
+            txtPMTons.Text = GetNullable(Of Integer)(dr.Item("intpmtons")).ToString
+            txtSO2Tons.Text = GetNullable(Of Integer)(dr.Item("intso2tons")).ToString
+            txtNOxTons.Text = GetNullable(Of Integer)(dr.Item("intnoxtons")).ToString
 
             If GetNullable(Of Integer)(dr.Item("strnsps")) = 1 Then
                 chkNSPS1.Checked = True
@@ -439,7 +439,7 @@ Partial Class AnnualFees_Default
             Dim nspsReason As String = GetNullableString(dr.Item("strnspsexemptreason"))
 
             If Not String.IsNullOrEmpty(nspsReason) Then
-                Dim items As String() = nspsReason.ToString().Split(",")
+                Dim items As String() = nspsReason.ToString().Split(","c)
                 For Each item As String In items
                     Dim currentCheckBox As ListItem = NspsExemptionsChecklist.Items.FindByValue(item)
 
@@ -471,9 +471,6 @@ Partial Class AnnualFees_Default
             lblZipError.Text = "Please make sure the zip code entered is correct"
             lblZipError.Visible = True
         End Try
-
-        Dim sm As ScriptManager = Master.FindControl("ScriptManager1")
-        sm.SetFocus(txtCity)
     End Sub
 
     Protected Sub LoadSignAndPay()
@@ -1029,7 +1026,7 @@ Partial Class AnnualFees_Default
             feeRatesSection.Visible = False
             tabFeeCalculation.Visible = False
         Else
-            feeCalc.FeeRates = GetFeeRates(feeYear)
+            feeCalc.FeeRates = GetFeeRates(feeYear.Value)
 
             txtFName.Text = ""
             NspsExemptionsChecklist.Items.Clear()

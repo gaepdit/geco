@@ -11,20 +11,31 @@
         HttpContext.Current.Session.Add(sessionItem.ToString, value)
     End Sub
 
-    Public Sub SessionRemove(sessionItem As GecoSession)
-        HttpContext.Current.Session.Remove(sessionItem.ToString)
-    End Sub
-
     Public Function GetSessionItem(sessionItem As GecoSession) As Object
-        If SessionItemExists(sessionItem) Then
-            Return HttpContext.Current.Session(sessionItem.ToString)
-        End If
+        Return GetSessionItem(sessionItem.ToString)
+    End Function
 
-        Return Nothing
+    Private Function GetSessionItem(sessionItem As String) As Object
+        If Not SessionItemExists(sessionItem) Then Return Nothing
+        Return HttpContext.Current.Session(sessionItem)
+    End Function
+
+    Public Function GetSessionItem(Of T)(sessionItem As GecoSession) As T
+        Return GetSessionItem(Of T)(sessionItem.ToString)
+    End Function
+
+    Public Function GetSessionItem(Of T)(sessionItem As String) As T
+        Dim sessionObject As Object = GetSessionItem(sessionItem.ToString)
+        If sessionObject Is Nothing Then Return Nothing
+        Return DirectCast(sessionObject, T)
     End Function
 
     Public Function SessionItemExists(sessionItem As GecoSession) As Boolean
-        Return (HttpContext.Current.Session?.Item(sessionItem.ToString) IsNot Nothing)
+        Return HttpContext.Current.Session?.Item(sessionItem.ToString) IsNot Nothing
+    End Function
+
+    Private Function SessionItemExists(sessionItem As String) As Boolean
+        Return HttpContext.Current.Session?.Item(sessionItem) IsNot Nothing
     End Function
 
 End Module

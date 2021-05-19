@@ -1,4 +1,4 @@
-Imports System.Data.SqlClient
+﻿Imports System.Data.SqlClient
 Imports EpdIt.DBUtilities
 Imports GECO.GecoModels
 
@@ -45,7 +45,7 @@ Public Module UserAccounts
     End Enum
 
     Public Function GetCurrentUser() As GecoUser
-        Return GetSessionItem(GecoSession.CurrentUser)
+        Return GetSessionItem(Of GecoUser)(GecoSession.CurrentUser)
     End Function
 
     Private Function ParseUserFromDataRow(dr As DataRow) As GecoUser

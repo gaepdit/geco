@@ -1,4 +1,4 @@
-Namespace GecoModels
+﻿Namespace GecoModels
     Public Class GecoUser
         Inherits Person
 
@@ -32,10 +32,10 @@ Namespace GecoModels
             End If
 
             Return New FacilityAccess(airsNumber) With {
-                .AdminAccess = dr.Item("AdminAccess"),
-                .FeeAccess = dr.Item("FeeAccess"),
-                .EisAccess = dr.Item("EIAccess"),
-                .ESAccess = dr.Item("ESAccess")
+                .AdminAccess = CBool(dr.Item("AdminAccess")),
+                .FeeAccess = CBool(dr.Item("FeeAccess")),
+                .EisAccess = CBool(dr.Item("EIAccess")),
+                .ESAccess = CBool(dr.Item("ESAccess"))
             }
         End Function
 

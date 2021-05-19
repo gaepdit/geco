@@ -8,11 +8,11 @@ Partial Class ei_reqchange
 
             pnlTop.Visible = True
             pnlConfirm.Visible = False
-            txtFacilityName.Text = Session("fname")
-            txtStreetAddress.Text = Session("faddress")
-            txtCity.Text = Session("fcity")
-            txtZipCode.Text = Session("fzip")
-            txtCounty.Text = Session("fcounty")
+            txtFacilityName.Text = GetSessionItem(Of String)("fname")
+            txtStreetAddress.Text = GetSessionItem(Of String)("faddress")
+            txtCity.Text = GetSessionItem(Of String)("fcity")
+            txtZipCode.Text = GetSessionItem(Of String)("fzip")
+            txtCounty.Text = GetSessionItem(Of String)("fcounty")
             LoadCounty()
             lblConfirmSubmit.Text = ""
             lblConfirmSubmit.Visible = False
@@ -82,8 +82,8 @@ Partial Class ei_reqchange
         Dim query = "Select strCountyName FROM EILookupCountyLatLon order by strCountyName"
         Dim dt = DB.GetDataTable(query)
 
-        For Each dr In dt.Rows
-            cboCountyNew.Items.Add(dr.Item("strCountyName"))
+        For Each dr As DataRow In dt.Rows
+            cboCountyNew.Items.Add(dr.Item("strCountyName").ToString)
         Next
 
     End Sub
@@ -159,7 +159,7 @@ Partial Class ei_reqchange
 
     Protected Sub btnSubmitRequest_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnSubmitRequest.Click
 
-        Dim AirsNumber As String = Session("esAirsNumber")
+        Dim AirsNumber As String = GetSessionItem(Of String)("esAirsNumber")
         Dim UserID As Integer = GetCurrentUser().UserId
         Dim FacilityName As String = txtFacilityNameNew.Text
         Dim StreetAddress As String = txtStreetAddressNew.Text
@@ -168,15 +168,15 @@ Partial Class ei_reqchange
         Dim County As String = cboCountyNew.SelectedValue
         Dim Comment As String = txtComments.Text
         Dim day As String = Now.ToString("d-MMM-yyyy")
-        Dim hr As String = Now.Hour
-        Dim min As String = Now.Minute
-        Dim sec As String = Now.Second
+        Dim hr As String = Now.Hour.ToString
+        Dim min As String = Now.Minute.ToString
+        Dim sec As String = Now.Second.ToString
         If Len(hr) < 2 Then hr = "0" & hr
         If Len(min) < 2 Then min = "0" & min
         If Len(sec) < 2 Then sec = "0" & sec
         Dim TransactionTime As String = hr & ":" & min & ":" & sec
         Dim TransactionDate As String = day.ToUpper
-        Dim ReqOrig As String = "ES" & Session("ESYear")
+        Dim ReqOrig As String = "ES" & GetSessionItem(Of String)("ESYear")
 
         If cboCountyNew.SelectedValue = " --Select a County-- " Then
             County = ""

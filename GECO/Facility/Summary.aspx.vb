@@ -86,7 +86,7 @@ Partial Class FacilitySummary
                 lblOffice.Text = GetNullableString(dr.Item("strOfficeName"))
 
                 If IsDBNull(dr.Item("strDistrictResponsible")) OrElse
-                    dr.Item("strDistrictResponsible") <> "True" Then
+                    dr.Item("strDistrictResponsible").ToString <> "True" Then
                     hlDistrict.Visible = False
                 Else
                     hlDistrict.Visible = True
@@ -152,28 +152,28 @@ Partial Class FacilitySummary
 
         Dim codes As New List(Of String)
 
-        If Mid(AirProgramCode, 1, 1) = 1 Then
+        If Mid(AirProgramCode, 1, 1) = "1" Then
             codes.Add("SIP")
         End If
-        If Mid(AirProgramCode, 5, 1) = 1 Then
+        If Mid(AirProgramCode, 5, 1) = "1" Then
             codes.Add("PSD")
         End If
-        If Mid(AirProgramCode, 6, 1) = 1 Then
+        If Mid(AirProgramCode, 6, 1) = "1" Then
             codes.Add("NSR")
         End If
-        If Mid(AirProgramCode, 7, 1) = 1 Then
+        If Mid(AirProgramCode, 7, 1) = "1" Then
             codes.Add("NESHAP")
         End If
-        If Mid(AirProgramCode, 8, 1) = 1 Then
+        If Mid(AirProgramCode, 8, 1) = "1" Then
             codes.Add("NSPS")
         End If
-        If Mid(AirProgramCode, 12, 1) = 1 Then
+        If Mid(AirProgramCode, 12, 1) = "1" Then
             codes.Add("MACT")
         End If
-        If Mid(AirProgramCode, 13, 1) = 1 Then
+        If Mid(AirProgramCode, 13, 1) = "1" Then
             codes.Add("Title V")
         End If
-        If Mid(AirProgramCode, 10, 1) = 1 Then
+        If Mid(AirProgramCode, 10, 1) = "1" Then
             codes.Add("Acid Precipitation")
         End If
 

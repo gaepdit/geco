@@ -113,7 +113,7 @@ Partial Class FacilityAdmin
         If facilityAccess.AdminAccess Then
             If e.Row.RowType = DataControlRowType.DataRow Then
                 Dim linkBtn As LinkButton = CType(e.Row.Cells.Item(0).Controls.Item(0), LinkButton)
-                linkBtn.ValidationGroup = False
+                linkBtn.ValidationGroup = String.Empty
             End If
         Else
             e.Row.Cells(0).Visible = False
