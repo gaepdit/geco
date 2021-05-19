@@ -68,7 +68,7 @@
 
             <nav class="sub-nav">
                 <a href="<%= Page.ResolveUrl("~/Home/") %>">Switch facility</a>
-                <a href="<%= Page.ResolveUrl("~/Facility/") %>">Facility home</a>
+                <strong><a href="<%= Page.ResolveUrl("~/Facility/") %>">Facility home</a></strong>
             </nav>
         </div>
         <% End If %>
