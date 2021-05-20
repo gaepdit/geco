@@ -1,6 +1,4 @@
-﻿Imports GECO.GecoModels
-
-Partial Class EventRegistration_Default
+﻿Partial Class EventRegistration_Default
     Inherits Page
 
     Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load

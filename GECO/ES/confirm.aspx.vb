@@ -6,7 +6,7 @@ Partial Class es_confirm
 
     Private ConfNum As String
 
-    Private Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+    Private Sub Page_Load(ByVal sender As Object, ByVal e As EventArgs) Handles Me.Load
         If Not IsPostBack Then
 
             Dim ESExist As Boolean
@@ -110,15 +110,15 @@ Partial Class es_confirm
         If Len(min) < 2 Then min = "0" & min
         Dim TransDate As String = day.ToUpper
         Dim TransTime As String = hr & min
-        Dim ConfNum As String
+        Dim newConfNum As String
 
         TransDate = TransDate.Replace("-", "")
-        ConfNum = AirsNumber & TransDate & TransTime
+        newConfNum = AirsNumber & TransDate & TransTime
 
         Dim query = "Update esSchema Set strConfirmationNbr = @ConfNum Where intESYear = @esYear And strAirsNumber = @AirsNumber "
 
         Dim params As SqlParameter() = {
-            New SqlParameter("@ConfNum", ConfNum),
+            New SqlParameter("@ConfNum", newConfNum),
             New SqlParameter("@esYear", esYear),
             New SqlParameter("@AirsNumber", AirsNumber)
         }
@@ -142,7 +142,7 @@ Partial Class es_confirm
 
 #Region " Button Routines "
 
-    Protected Sub btnOptOutChange1_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnOptOutChange1.Click, btnConfFinal.Click
+    Protected Sub btnOptOutChange1_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnOptOutChange1.Click, btnConfFinal.Click
 
         Session("eschanges") = "TRUE"
 

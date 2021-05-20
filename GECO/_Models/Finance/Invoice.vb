@@ -67,8 +67,7 @@ Namespace GecoModels
                         InvoiceCategory = InvoiceCategory.EmissionsFees
                     Case "P"c
                         InvoiceCategory = InvoiceCategory.PermitApplicationFees
-                    Case Else
-                End Select
+                    End Select
             End Set
         End Property
 

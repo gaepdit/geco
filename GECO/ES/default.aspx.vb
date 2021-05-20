@@ -91,7 +91,7 @@ Partial Class es_default
 
 #End Region
 
-    Protected Sub cboESYear_SelectedIndexChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles cboESYear.SelectedIndexChanged
+    Protected Sub cboESYear_SelectedIndexChanged(ByVal sender As Object, ByVal e As EventArgs) Handles cboESYear.SelectedIndexChanged
 
         Dim YearSelected As Integer
         Dim CurrentYear As Integer = Now.Year - 1
@@ -183,13 +183,13 @@ Partial Class es_default
 
     End Sub
 
-    Protected Sub btnCancel_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnCancel.Click
+    Protected Sub btnCancel_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnCancel.Click
 
         ShowInitial()
 
     End Sub
 
-    Protected Sub btnCurrentES_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnCurrentES.Click
+    Protected Sub btnCurrentES_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnCurrentES.Click
 
         Response.Redirect("esform.aspx")
 
@@ -211,13 +211,13 @@ Partial Class es_default
 
     End Function
 
-    Protected Sub btnCancelPast_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnCancelPast.Click
+    Protected Sub btnCancelPast_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnCancelPast.Click
 
         ShowInitial()
 
     End Sub
 
-    Protected Sub btnPrintPastES_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnPrintPastES.Click
+    Protected Sub btnPrintPastES_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnPrintPastES.Click
 
         Dim fname As String = lblFacilityName.Text
         Dim vocnum As String = lblVOC.Text

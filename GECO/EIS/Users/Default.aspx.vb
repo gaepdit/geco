@@ -170,38 +170,38 @@ Public Class EIS_Users_Default
     Private Sub grdCaersUsers_RowEditing(sender As Object, e As GridViewEditEventArgs) Handles grdCaersUsers.RowEditing
         NotNull(e, NameOf(e))
 
-        Dim id As Guid = CType(grdCaersUsers.DataKeys(e.NewEditIndex).Item("Id"), Guid)
-        Dim user As CaerContact = GetCaerContact(id)
+        Dim userId As Guid = CType(grdCaersUsers.DataKeys(e.NewEditIndex).Item("Id"), Guid)
+        Dim caerUser As CaerContact = GetCaerContact(userId)
 
-        If user IsNot Nothing AndAlso user.Active Then
+        If caerUser IsNot Nothing AndAlso caerUser.Active Then
             pnlEditUser.Visible = True
             pnlAddNew.Visible = False
-            hidEditId.Value = id.ToString
+            hidEditId.Value = userId.ToString
             pAddNew.Visible = False
             btnProceed.Visible = False
 
-            txtStreetEdit.Text = user.Contact.Address.Street
-            txtStreet2Edit.Text = user.Contact.Address.Street2
-            txtCityEdit.Text = user.Contact.Address.City
-            ddlStateEdit.SelectedValue = user.Contact.Address.State
-            txtPostalCodeEdit.Text = user.Contact.Address.PostalCode
-            txtCompanyEdit.Text = user.Contact.Company
-            txtEmailEdit.Text = user.Contact.Email
-            txtPrefixEdit.Text = user.Contact.Honorific
-            txtFirstNameEdit.Text = user.Contact.FirstName
-            txtLastNameEdit.Text = user.Contact.LastName
-            txtTelephoneEdit.Text = user.Contact.PhoneNumber
-            txtTitleEdit.Text = user.Contact.Title
+            txtStreetEdit.Text = caerUser.Contact.Address.Street
+            txtStreet2Edit.Text = caerUser.Contact.Address.Street2
+            txtCityEdit.Text = caerUser.Contact.Address.City
+            ddlStateEdit.SelectedValue = caerUser.Contact.Address.State
+            txtPostalCodeEdit.Text = caerUser.Contact.Address.PostalCode
+            txtCompanyEdit.Text = caerUser.Contact.Company
+            txtEmailEdit.Text = caerUser.Contact.Email
+            txtPrefixEdit.Text = caerUser.Contact.Honorific
+            txtFirstNameEdit.Text = caerUser.Contact.FirstName
+            txtLastNameEdit.Text = caerUser.Contact.LastName
+            txtTelephoneEdit.Text = caerUser.Contact.PhoneNumber
+            txtTitleEdit.Text = caerUser.Contact.Title
 
             ddlRoleEdit.Items.Clear()
             ddlRoleEdit.Items.Add(CaerRole.Preparer.ToString)
-            If CInt(hidCertifiersCount.Value) = 0 OrElse user.CaerRole = CaerRole.Certifier Then
+            If CInt(hidCertifiersCount.Value) = 0 OrElse caerUser.CaerRole = CaerRole.Certifier Then
                 ddlRoleEdit.Items.Add(CaerRole.Certifier.ToString)
                 ddlRoleEdit.Enabled = True
             Else
                 ddlRoleEdit.Enabled = False
             End If
-            ddlRoleEdit.SelectedValue = user.CaerRole.ToString()
+            ddlRoleEdit.SelectedValue = caerUser.CaerRole.ToString()
         End If
     End Sub
 

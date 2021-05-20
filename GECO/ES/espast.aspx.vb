@@ -3,7 +3,7 @@
 Partial Class ES_espast
     Inherits Page
 
-    Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+    Protected Sub Page_Load(ByVal sender As Object, ByVal e As EventArgs) Handles Me.Load
         If Not IsPostBack Then
 
             lblPastESYear.Text = GetSessionItem(Of String)("PastESYear")
@@ -45,7 +45,7 @@ Partial Class ES_espast
 
     End Function
 
-    Protected Sub btnEiHome_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnEiHome.Click
+    Protected Sub btnEiHome_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnEiHome.Click
 
         Response.Redirect("default.aspx")
 

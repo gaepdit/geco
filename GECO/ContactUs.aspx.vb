@@ -5,11 +5,11 @@ Partial Class ContactUs
 
     Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
         If Not IsPostBack Then
-            Dim user As GecoUser = GetCurrentUser()
+            Dim gecoUser As GecoUser = GetCurrentUser()
 
-            If user IsNot Nothing Then
-                txtEmail.Text = user.Email
-                txtName.Text = user.FullName
+            If gecoUser IsNot Nothing Then
+                txtEmail.Text = gecoUser.Email
+                txtName.Text = gecoUser.FullName
             End If
         End If
     End Sub

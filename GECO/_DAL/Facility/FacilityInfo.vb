@@ -30,7 +30,7 @@ Public Module FacilityInfo
     End Function
 
     Public Function GetFacilityName(airs As String) As String
-        If airs Is Nothing OrElse Not ApbFacilityId.IsValidAirsNumberFormat(airs) Then
+        If airs Is Nothing OrElse Not IsValidAirsNumberFormat(airs) Then
             Return Nothing
         End If
 

@@ -11,13 +11,14 @@ Partial Class FacilityMap
         Dim citystatezip = Request.QueryString("city")
         Dim latitude = CDbl(Request.QueryString("lat"))
         Dim longitude = CDbl(Request.QueryString("lon"))
+        Const epsilon = 0.0000000001#
 
         If Not Page.IsPostBack Then
-            If String.IsNullOrWhiteSpace(address) AndAlso latitude = 0 AndAlso longitude = 0 Then
+            If String.IsNullOrWhiteSpace(address) AndAlso Math.Abs(latitude) < epsilon AndAlso Math.Abs(longitude) < epsilon Then
                 HttpContext.Current.Response.Redirect("~/Default.aspx", True)
             End If
 
-            If latitude <> 0 AndAlso longitude <> 0 Then
+            If Math.Abs(latitude) > epsilon AndAlso Math.Abs(longitude) > epsilon Then
                 GMap.Center = LatLng.Create(latitude, longitude)
             Else
                 Dim geocoder = New Geocoding.GoogleGeocoder()

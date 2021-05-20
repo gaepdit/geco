@@ -195,10 +195,8 @@ Partial Class FacilityHome
         Try
             Dim esYear As String = CStr(Now.Year - 1)
             Dim AirsYear As String = currentAirs.DbFormattedString & esYear
-            Dim esStatus As String = ""
             Dim inESCounty As Boolean = CheckFacilityEmissionStatement(currentAirs)
-
-            esStatus = StatusES(AirsYear)
+            Dim esStatus As String = StatusES(AirsYear)
 
             If esStatus = "N/A" Then
                 AppsEmissionsStatement.Visible = False

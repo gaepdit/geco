@@ -76,9 +76,9 @@ Partial Class Account_Default
     End Sub
 
     Private Sub UpdateCurrentUser(newUser As GecoUser)
-        Dim currentUser As GecoUser = GetCurrentUser()
+        Dim gecoUser As GecoUser = GetCurrentUser()
 
-        With currentUser
+        With gecoUser
             .FirstName = newUser.FirstName
             .LastName = newUser.LastName
             .Company = newUser.Company
@@ -93,7 +93,7 @@ Partial Class Account_Default
 
         pUpdateRequired.Visible = False
 
-        SessionAdd(GecoSession.CurrentUser, currentUser)
+        SessionAdd(GecoSession.CurrentUser, gecoUser)
     End Sub
 
 End Class

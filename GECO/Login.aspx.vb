@@ -37,10 +37,10 @@ Partial Class Login
         lblMessage.Visible = False
         lblUnconfirmed.Visible = False
 
-        Dim user As New GecoUser
+        Dim gecoUser As New GecoUser
         Dim userSession As New UserSession
 
-        Dim loginResult As LoginResult = LogInUser(txtUserId.Text, txtPassword.Text, chkRememberMe.Checked, user, userSession)
+        Dim loginResult As LoginResult = LogInUser(txtUserId.Text, txtPassword.Text, chkRememberMe.Checked, gecoUser, userSession)
 
         Select Case loginResult
             Case LoginResult.Invalid
@@ -50,11 +50,11 @@ Partial Class Login
                 lblUnconfirmed.Visible = True
 
             Case LoginResult.Success
-                If user.UserId = 0 Then
+                If gecoUser.UserId = 0 Then
                     Response.Redirect("~/ErrorPage.aspx", False)
                 End If
 
-                SessionAdd(GecoSession.CurrentUser, user)
+                SessionAdd(GecoSession.CurrentUser, gecoUser)
 
                 If chkRememberMe.Checked Then
                     CreateSessionCookie(userSession)
@@ -62,7 +62,7 @@ Partial Class Login
                     ClearCookie(CookieCollection.SessionCookie)
                 End If
 
-                If user.ProfileUpdateRequired Then
+                If gecoUser.ProfileUpdateRequired Then
                     Response.Redirect("~/Account/?action=updateprofile")
                 End If
 
@@ -82,18 +82,18 @@ Partial Class Login
 
     Private Sub GetUserFromSession()
 
-        Dim id As String = GetCookie(SessionCookie.Series)
+        Dim series As String = GetCookie(SessionCookie.Series)
         Dim token As String = GetCookie(SessionCookie.Token)
 
-        If String.IsNullOrEmpty(id) OrElse String.IsNullOrEmpty(token) Then
+        If String.IsNullOrEmpty(series) OrElse String.IsNullOrEmpty(token) Then
             Return
         End If
 
-        Dim userSession As New UserSession(id, token)
-        Dim user As New GecoUser
+        Dim userSession As New UserSession(series, token)
+        Dim gecoUser As New GecoUser
 
-        If GetSavedUserSession(userSession, user) Then
-            SessionAdd(GecoSession.CurrentUser, user)
+        If GetSavedUserSession(userSession, gecoUser) Then
+            SessionAdd(GecoSession.CurrentUser, gecoUser)
             CreateSessionCookie(userSession)
 
             Dim strRedirect As String = Request.QueryString("ReturnUrl")

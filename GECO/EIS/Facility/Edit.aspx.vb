@@ -332,7 +332,7 @@ Partial Class EIS_Facility_EditPage
                 Response.Redirect("~/EIS/Process/")
             Else
                 Session("FacilityUpdated") = True.ToString
-                Response.Redirect("~/EIS/Facility")
+                Response.Redirect("~/EIS/Facility/")
             End If
         End If
 
@@ -378,7 +378,7 @@ Partial Class EIS_Facility_EditPage
             Dim latMeasure As Decimal
             Dim lonMeasure As Decimal
             If Decimal.TryParse(txtLatitudeMeasure.Text, latMeasure) AndAlso Decimal.TryParse(txtLongitudeMeasure.Text, lonMeasure) Then
-                newGoogleMapLink = GoogleMaps.GetMapLinkUrl(New Coordinate(latMeasure, lonMeasure))
+                newGoogleMapLink = GetMapLinkUrl(New Coordinate(latMeasure, lonMeasure))
             End If
 
             Dim plainBody As String = "An update has been submitted for the EIS Facility Geographic Coordinate Information " &
@@ -615,8 +615,9 @@ Partial Class EIS_Facility_EditPage
 
         Dim latitude = CDbl(txtLatitudeMeasure.Text)
         Dim longitude = CDbl(txtLongitudeMeasure.Text)
-
-        If latitude <> 0 AndAlso longitude <> 0 Then
+        Const epsilon = 0.0000000001#
+        
+        If Math.Abs(latitude) > epsilon AndAlso Math.Abs(longitude) > epsilon Then
             GMap.Center = LatLng.Create(latitude, longitude)
             txtMapLat.Text = Left(latitude.ToString(), 8)
             txtMapLon.Text = Left(longitude.ToString(), 9)

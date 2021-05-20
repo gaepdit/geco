@@ -59,7 +59,7 @@ Partial Class EIS_Facility_Default
         updateDateTime = GetNullableDateTime(dr.Item("UpdateDateTime_FacilitySite"))
         updateUser = GetNullableString(dr.Item("UpdateUser_FacilitySite"))
         If Not String.IsNullOrEmpty(updateUser) Then
-            updateUser = " by " & updateUser.Remove(0, updateUser.IndexOf("-") + 1)
+            updateUser = " by " & updateUser.Remove(0, updateUser.IndexOf("-", StringComparison.Ordinal) + 1)
         End If
         lblDescriptionUpdated.Text = updateDateTime?.ToString("G") & updateUser
 
@@ -88,7 +88,7 @@ Partial Class EIS_Facility_Default
         updateDateTime = GetNullableDateTime(dr.Item("UpdateDateTime_mailingAddress"))
         updateUser = GetNullableString(dr.Item("UpdateUser_mailingAddress"))
         If Not String.IsNullOrEmpty(updateUser) Then
-            updateUser = " by " & updateUser.Remove(0, updateUser.IndexOf("-") + 1)
+            updateUser = " by " & updateUser.Remove(0, updateUser.IndexOf("-", StringComparison.Ordinal) + 1)
         End If
         lblAddressUpdated.Text = updateDateTime?.ToString("G") & updateUser
 
@@ -105,7 +105,7 @@ Partial Class EIS_Facility_Default
         updateDateTime = GetNullableDateTime(dr.Item("UpdateDateTime_GeoCoord"))
         updateUser = GetNullableString(dr.Item("UpdateUser_GeoCoord"))
         If Not String.IsNullOrEmpty(updateUser) Then
-            updateUser = " by " & updateUser.Remove(0, updateUser.IndexOf("-") + 1)
+            updateUser = " by " & updateUser.Remove(0, updateUser.IndexOf("-", StringComparison.Ordinal) + 1)
         End If
         lblLocationUpdated.Text = updateDateTime?.ToString("G") & updateUser
 
@@ -140,7 +140,7 @@ Partial Class EIS_Facility_Default
         updateDateTime = GetNullableDateTime(dr.Item("UpdateDateTime_AffIndiv"))
         updateUser = GetNullableString(dr.Item("UpdateUser_AffIndiv"))
         If Not String.IsNullOrEmpty(updateUser) Then
-            updateUser = " by " & updateUser.Remove(0, updateUser.IndexOf("-") + 1)
+            updateUser = " by " & updateUser.Remove(0, updateUser.IndexOf("-", StringComparison.Ordinal) + 1)
         End If
         lblContactUpdated.Text = updateDateTime?.ToString("G") & updateUser
     End Sub

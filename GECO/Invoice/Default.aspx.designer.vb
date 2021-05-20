@@ -18,7 +18,7 @@ Partial Public Class InvoiceDefault
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
+    '''To modify, move the field declaration from the designer file to a code-behind file.
     '''</remarks>
     Protected WithEvents pnlNotFound As Global.System.Web.UI.WebControls.Panel
     
@@ -27,7 +27,7 @@ Partial Public Class InvoiceDefault
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
+    '''To modify, move the field declaration from the designer file to a code-behind file.
     '''</remarks>
     Protected WithEvents invoicePages As Global.System.Web.UI.WebControls.Repeater
     
@@ -39,7 +39,7 @@ Partial Public Class InvoiceDefault
     '''</remarks>
     Public Shadows ReadOnly Property Master() As GECO.MemoLayout
         Get
-            Return CType(MyBase.Master,GECO.MemoLayout)
+            Return CType(MyBase.Master, GECO.MemoLayout)
         End Get
     End Property
 End Class

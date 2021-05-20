@@ -9,7 +9,7 @@ Partial Class es_esform
     Private SavedAPB As Boolean
     Private ESExist As Boolean
 
-    Private Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+    Private Sub Page_Load(ByVal sender As Object, ByVal e As EventArgs) Handles Me.Load
         'Dim CountyName As String
         Dim intESYear As Integer = Now.Year - 1
         Dim strESYear As String = intESYear.ToString
@@ -106,7 +106,7 @@ Partial Class es_esform
 
 #Region " Button Routines "
 
-    Protected Sub cboYesNo_SelectedIndexChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles cboYesNo.SelectedIndexChanged
+    Protected Sub cboYesNo_SelectedIndexChanged(ByVal sender As Object, ByVal e As EventArgs) Handles cboYesNo.SelectedIndexChanged
 
         If cboYesNo.SelectedValue = "NO" Then
             pnlEmissions.Visible = True
@@ -118,7 +118,7 @@ Partial Class es_esform
 
     End Sub
 
-    Protected Sub btnContinue_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnContinue.Click
+    Protected Sub btnContinue_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnContinue.Click
 
         If cboYesNo.SelectedValue = "YES" Then
             Session("ESOptOut") = "YES"
@@ -129,7 +129,7 @@ Partial Class es_esform
 
     End Sub
 
-    Protected Sub btnContinueToContact_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnContinueToContact.Click
+    Protected Sub btnContinueToContact_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnContinueToContact.Click
         mltiViewESFacility.ActiveViewIndex = 1
         HideFacilityHelp()
         ShowContactHelp()
@@ -138,7 +138,7 @@ Partial Class es_esform
         lblTop.Focus()
     End Sub
 
-    Protected Sub btnContinueToEmissions_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnContinueToEmissions.Click
+    Protected Sub btnContinueToEmissions_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnContinueToEmissions.Click
         mltiViewESFacility.ActiveViewIndex = 2
         HideFacilityHelp()
         HideContactHelp()
@@ -147,33 +147,33 @@ Partial Class es_esform
         lblTop.Focus()
     End Sub
 
-    Protected Sub btnCancelLocation_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnCancelLocation.Click
+    Protected Sub btnCancelLocation_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnCancelLocation.Click
         Response.Redirect("~/Facility/")
     End Sub
 
-    Protected Sub btnCancelContact_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnCancelContact.Click
+    Protected Sub btnCancelContact_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnCancelContact.Click
         Response.Redirect("~/Facility/")
     End Sub
 
-    Protected Sub btnCancelEmission_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnCancelEmission.Click
+    Protected Sub btnCancelEmission_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnCancelEmission.Click
         Response.Redirect("~/Facility/")
     End Sub
 
-    Protected Sub btnbackToLocation_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnbackToLocation.Click
+    Protected Sub btnbackToLocation_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnbackToLocation.Click
         mltiViewESFacility.ActiveViewIndex = 0
         ShowFacilityHelp()
         HideContactHelp()
         HideEmissionsHelp()
     End Sub
 
-    Protected Sub btnBackToContactInfo_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnBackToContactInfo.Click
+    Protected Sub btnBackToContactInfo_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnBackToContactInfo.Click
         mltiViewESFacility.ActiveViewIndex = 1
         HideFacilityHelp()
         ShowContactHelp()
         HideEmissionsHelp()
     End Sub
 
-    Protected Sub btnRequestChange_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnRequestChange.Click
+    Protected Sub btnRequestChange_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnRequestChange.Click
 
         Session("fname") = txtFacilityName.Text
         Session("faddress") = txtLocationAddress.Text
@@ -645,7 +645,7 @@ Partial Class es_esform
 
 #Region " Save Facility & Contact Info "
 
-    Protected Sub btnSave_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnSave.Click
+    Protected Sub btnSave_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnSave.Click
 
         If String.IsNullOrWhiteSpace(txtNOx.Text) OrElse Not IsNumeric(txtNOx.Text) OrElse
            CDec(txtNOx.Text) < 0 Then
@@ -1080,12 +1080,12 @@ Partial Class es_esform
 
 #End Region
 
-    Protected Sub btnConvert_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnConvert.Click
+    Protected Sub btnConvert_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnConvert.Click
         txtLongDec.Text = Abs(GetDecDegree(txtLonDeg.Text, txtLonMin.Text, txtLonSec.Text)).ToString
         txtLatDec.Text = GetDecDegree(txtLatDeg.Text, txtLatMin.Text, txtLatSec.Text).ToString
     End Sub
 
-    Protected Sub btnCancelLatLong_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnCancelLatLong.Click
+    Protected Sub btnCancelLatLong_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnCancelLatLong.Click
 
         pnlFacility.Visible = True
         pnlLatLongConvert.Visible = False
@@ -1102,7 +1102,7 @@ Partial Class es_esform
 
     End Sub
 
-    Protected Sub btnUseLatLong_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnUseLatLong.Click
+    Protected Sub btnUseLatLong_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnUseLatLong.Click
 
         lblDecLatLongEmpty.Text = ""
 
@@ -1128,7 +1128,7 @@ Partial Class es_esform
 
     End Sub
 
-    Protected Sub btnLatLongConvert_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnLatLongConvert.Click
+    Protected Sub btnLatLongConvert_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnLatLongConvert.Click
 
         rngValLongDec.MinimumValue = GetSessionItem(Of String)("LongMin")
         rngValLongDec.MaximumValue = GetSessionItem(Of String)("LongMax")

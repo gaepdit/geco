@@ -17,14 +17,14 @@
                     </div>
                     <div class="grid__item grid__item_right">
                         <h1><%# DisplayObject(Eval("InvoiceID"), "Invoice #{0}") %></h1>
-                        <h2>Due Date: <%# DisplayDate(Eval("DueDate")) %></h2>
+                        <h2>Due Date: <%# DisplayDate(CType(Eval("DueDate"), Date)) %></h2>
                     </div>
                 </header>
 
                 <asp:Panel ID="pnlVoidedInvoice" runat="server" Visible="<%# DirectCast(Container.DataItem, Invoice).Voided %>" CssClass="banner">
                     <h1>Invoice Is Void</h1>
                     <asp:Panel ID="pnlVoidedDate" runat="server" Visible="<%# DirectCast(Container.DataItem, Invoice).VoidedDate.HasValue %>">
-                        <p><%# DisplayNullableDate(Eval("VoidedDate"), "Voided on {0}") %></p>
+                        <p><%# DisplayNullableDate(CType(Eval("VoidedDate"), Date?), "Voided on {0}") %></p>
                     </asp:Panel>
                 </asp:Panel>
 
@@ -41,11 +41,11 @@
                             </tr>
                             <tr>
                                 <th scope="row">Invoice Date</th>
-                                <td><%# DisplayDate(Eval("InvoiceDate")) %></td>
+                                <td><%# DisplayDate(CType(Eval("InvoiceDate"), Date)) %></td>
                             </tr>
                             <tr>
                                 <th scope="row">Invoice For</th>
-                                <td><%# DisplayWhatFor(Container.DataItem) %></td>
+                                <td><%# DisplayWhatFor(CType(Container.DataItem, Invoice)) %></td>
                             </tr>
                         </table>
                     </div>

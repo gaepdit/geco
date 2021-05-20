@@ -5,8 +5,7 @@ Public Class EIS_History_ReportingPeriodEmissions
     Inherits Page
 
     Private Property CurrentAirs As ApbFacilityId
-    Private Property DataExists As Boolean
-
+    
     Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
         MainLoginCheck()
 

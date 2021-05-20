@@ -26,18 +26,18 @@ Partial Class _Default
 
     Private Sub GetUserFromSession()
 
-        Dim id As String = GetCookie(SessionCookie.Series)
+        Dim series As String = GetCookie(SessionCookie.Series)
         Dim token As String = GetCookie(SessionCookie.Token)
 
-        If String.IsNullOrEmpty(id) OrElse String.IsNullOrEmpty(token) Then
+        If String.IsNullOrEmpty(series) OrElse String.IsNullOrEmpty(token) Then
             Return
         End If
 
-        Dim userSession As New UserSession(id, token)
-        Dim user As New GecoUser
+        Dim userSession As New UserSession(series, token)
+        Dim gecoUser As New GecoUser
 
-        If GetSavedUserSession(userSession, user) Then
-            SessionAdd(GecoSession.CurrentUser, user)
+        If GetSavedUserSession(userSession, gecoUser) Then
+            SessionAdd(GecoSession.CurrentUser, gecoUser)
             CreateSessionCookie(userSession)
 
             Dim strRedirect As String = Request.QueryString("ReturnUrl")

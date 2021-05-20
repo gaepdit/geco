@@ -3,7 +3,7 @@
 Partial Class ei_reqchange
     Inherits Page
 
-    Private Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+    Private Sub Page_Load(ByVal sender As Object, ByVal e As EventArgs) Handles Me.Load
         If Not IsPostBack Then
 
             pnlTop.Visible = True
@@ -25,7 +25,7 @@ Partial Class ei_reqchange
         End If
     End Sub
 
-    Protected Sub btnCancel_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnCancel.Click
+    Protected Sub btnCancel_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnCancel.Click
         Response.Redirect("esform.aspx")
     End Sub
 
@@ -91,7 +91,7 @@ Partial Class ei_reqchange
 #End Region
 
 #Region " Button Routines "
-    Protected Sub btnSubmit_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnSubmit.Click
+    Protected Sub btnSubmit_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnSubmit.Click
 
         Dim fn As Integer
         Dim sa As Integer
@@ -143,7 +143,7 @@ Partial Class ei_reqchange
 
     End Sub
 
-    Protected Sub btnCancelConf_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnCancelConf.Click
+    Protected Sub btnCancelConf_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnCancelConf.Click
 
         pnlTop.Visible = True
         pnlConfirm.Visible = False
@@ -157,7 +157,7 @@ Partial Class ei_reqchange
 
     End Sub
 
-    Protected Sub btnSubmitRequest_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnSubmitRequest.Click
+    Protected Sub btnSubmitRequest_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnSubmitRequest.Click
 
         Dim AirsNumber As String = GetSessionItem(Of String)("esAirsNumber")
         Dim UserID As Integer = GetCurrentUser().UserId
@@ -230,7 +230,7 @@ Partial Class ei_reqchange
 
     End Sub
 
-    Protected Sub btnReturn_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnReturn.Click
+    Protected Sub btnReturn_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnReturn.Click
 
         Response.Redirect("esform.aspx")
 

@@ -111,7 +111,7 @@ Partial Class Home_FacilityRequest
 
         Try
             Dim queryformat As String = " [{0}] = '{1}'"
-            Dim query As String = ""
+            Dim query As String
 
             lblSuccess.Visible = False
             lblError.Visible = False

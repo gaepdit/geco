@@ -1,6 +1,5 @@
 ﻿Imports System.IO
 Imports System.Net.Mail
-Imports System.Net.Mime
 
 Public Module EmailSender
 
@@ -119,7 +118,9 @@ Public Module EmailSender
         If String.IsNullOrEmpty(emailAddress) Then Return False
 
         Try
+#Disable Warning BC42024 ' Unused local variables should be removed
             Dim testEmail As New MailAddress(emailAddress)
+#Enable Warning BC42024 ' Unused local variables should be removed
         Catch ex As Exception
             Return False
         End Try

@@ -439,8 +439,8 @@ Partial Class AnnualFees_Default
             Dim nspsReason As String = GetNullableString(dr.Item("strnspsexemptreason"))
 
             If Not String.IsNullOrEmpty(nspsReason) Then
-                Dim items As String() = nspsReason.ToString().Split(","c)
-                For Each item As String In items
+                Dim nspsItems As String() = nspsReason.ToString().Split(","c)
+                For Each item As String In nspsItems
                     Dim currentCheckBox As ListItem = NspsExemptionsChecklist.Items.FindByValue(item)
 
                     If currentCheckBox IsNot Nothing Then
@@ -639,8 +639,8 @@ Partial Class AnnualFees_Default
         Dim SQL1 As String
         Dim FirstName As String = txtFName.Text
         Dim LastName As String = txtLName.Text
-        Dim User As String = "GECO||" & currentUser.Email
-        Dim Title As String = txtTitle.Text
+        Dim GecoUser As String = "GECO||" & currentUser.Email
+        Dim UserTitle As String = txtTitle.Text
         Dim Phone As String = txtPhone.Text
         Dim Fax As String = txtFax.Text
         Dim Email As String = txtEmail.Text
@@ -677,7 +677,7 @@ Partial Class AnnualFees_Default
             airsParam,
             New SqlParameter("@FirstName", FirstName),
             New SqlParameter("@LastName", LastName),
-            New SqlParameter("@Title", Title),
+            New SqlParameter("@Title", UserTitle),
             New SqlParameter("@Phone", Phone),
             New SqlParameter("@Fax", Fax),
             New SqlParameter("@Email", Email),
@@ -702,7 +702,7 @@ Partial Class AnnualFees_Default
 
         Dim params2 As SqlParameter() = {
             airsParam,
-            New SqlParameter("@User", User),
+            New SqlParameter("@User", GecoUser),
             New SqlParameter("@FeeYear", feeYear.Value)
         }
 
@@ -1055,20 +1055,20 @@ Partial Class AnnualFees_Default
         If rblFeeContact.SelectedIndex = 0 Then
             LoadFacilityContact()
         Else
-            Dim user As GecoUser = GetCurrentUser()
+            Dim gecoUser As GecoUser = GetCurrentUser()
 
-            If user IsNot Nothing Then
-                txtFName.Text = user.FirstName
-                txtLName.Text = user.LastName
-                txtTitle.Text = user.Title
-                txtCoName.Text = user.Company
-                txtEmail.Text = user.Email
+            If gecoUser IsNot Nothing Then
+                txtFName.Text = gecoUser.FirstName
+                txtLName.Text = gecoUser.LastName
+                txtTitle.Text = gecoUser.Title
+                txtCoName.Text = gecoUser.Company
+                txtEmail.Text = gecoUser.Email
                 txtFax.Text = ""
-                txtAddress.Text = user.Address.Street
-                txtCity.Text = user.Address.City
-                txtState.Text = Address.ProbableStateCode(user.Address.State)
-                txtZip.Text = user.Address.PostalCode
-                txtPhone.Text = user.PhoneNumber
+                txtAddress.Text = gecoUser.Address.Street
+                txtCity.Text = gecoUser.Address.City
+                txtState.Text = Address.ProbableStateCode(gecoUser.Address.State)
+                txtZip.Text = gecoUser.Address.PostalCode
+                txtPhone.Text = gecoUser.PhoneNumber
             End If
         End If
     End Sub

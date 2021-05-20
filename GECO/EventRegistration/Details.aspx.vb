@@ -288,20 +288,20 @@ Partial Class EventRegistration_EventDetails
     Private Sub SendMovedOffWaitListEmail(newConfirmedUser As Integer)
         Dim subject As String = "GA EPD Event Registration Updated"
 
-        Dim user As GecoUser = GetGecoUser(newConfirmedUser)
+        Dim gecoUser As GecoUser = GetGecoUser(newConfirmedUser)
 
-        If user IsNot Nothing Then
+        If gecoUser IsNot Nothing Then
             Dim linkPath As String = Page.ResolveUrl("~/EventRegistration/Details.aspx") & "?eventid=" & eventId.ToString
             Dim linkUri As Uri = New Uri(New Uri(Request.Url.GetLeftPart(UriPartial.Authority) & Request.ApplicationPath), linkPath)
 
-            Dim htmlBody As String = "<p>Dear " & user.FullName & ",</p>" &
+            Dim htmlBody As String = "<p>Dear " & gecoUser.FullName & ",</p>" &
             "<p>Thank you for registering for the following event. You have been moved off the waiting list, and your registration is now <b>confirmed.</b></p>"
 
             htmlBody &= "<p>To view your registration status or make changes, visit: <br />" & linkUri.ToString & " </p>" &
             "<p><b>Event Details:</b></p>" &
             litEventDetails.Text
 
-            SendEmail(user.Email, subject, Nothing, htmlBody, caller:="EventRegistration_EventDetails.SendMovedOffWaitListEmail")
+            SendEmail(gecoUser.Email, subject, Nothing, htmlBody, caller:="EventRegistration_EventDetails.SendMovedOffWaitListEmail")
         End If
     End Sub
 
