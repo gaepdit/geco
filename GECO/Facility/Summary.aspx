@@ -76,9 +76,12 @@
         </tbody>
     </table>
 
-    <p>
-        <a href="../FacilityMap.aspx?name=<% =lblFacilityDisplay.Text %>&address=<% =lblAddress.Text %>&city=<% =lblCityStateZip.Text %>&lat=<% =lblLatitude.Text %>&lon=<% =lblLongitude.Text %>" target="_blank">Open map in new window</a>
-    </p>
+    <div>
+        <asp:HyperLink ID="lnkGoogleMap" runat="server" Target="_blank" CssClass="no-visited">
+            <asp:Image ID="imgGoogleStaticMap" runat="server" BorderStyle="Solid" BorderWidth="2px" /><br />
+            Open map in new window
+        </asp:HyperLink>
+    </div>
 
     <h2>Facility Status</h2>
 

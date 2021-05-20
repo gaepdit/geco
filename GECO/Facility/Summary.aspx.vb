@@ -1,6 +1,7 @@
-﻿Imports System.Data.SqlClient
+Imports System.Data.SqlClient
 Imports EpdIt.DBUtilities
 Imports GECO.GecoModels
+Imports GECO.MapHelper
 
 Partial Class FacilitySummary
     Inherits Page
@@ -61,11 +62,11 @@ Partial Class FacilitySummary
 
 #Region " Load data "
 
-    Protected Sub LoadFacilityLocation()
+    Private Sub LoadFacilityLocation()
         Try
-            Dim query = "Select * " &
-            " FROM VW_APBFacilityLocation " &
-            " where strAIRSNumber = @airs "
+            Const query As String = "Select * " &
+                                    " FROM VW_APBFacilityLocation " &
+                                    " where strAIRSNumber = @airs "
 
             Dim param As New SqlParameter("@airs", currentAirs.DbFormattedString)
 
@@ -75,12 +76,16 @@ Partial Class FacilitySummary
                 currentFacility = GetNullableString(dr.Item("STRFACILITYNAME")) & ", " & GetNullableString(dr.Item("STRFACILITYCITY"))
                 lblFacilityDisplay.Text = currentFacility
 
-                lblAddress.Text = GetNullableString(dr.Item("strFacilityStreet1"))
-                lblCityStateZip.Text = GetNullableString(dr.Item("strFacilityCity")) & ", " &
-                    GetNullableString(dr.Item("strFacilityState")) & " " &
-                    Address.FormatPostalCode(GetNullableString(dr.Item("strFacilityZipCode")))
-                lblLatitude.Text = GetNullableString(dr.Item("numFacilityLatitude"))
-                lblLongitude.Text = GetNullableString(dr.Item("numFacilityLongitude"))
+                Dim street =  GetNullableString(dr.Item("strFacilityStreet1"))
+                lblAddress.Text = street
+                Dim city = GetNullableString(dr.Item("strFacilityCity"))
+                Dim state = GetNullableString(dr.Item("strFacilityState"))
+                Dim zip = Address.FormatPostalCode(GetNullableString(dr.Item("strFacilityZipCode")))
+                lblCityStateZip.Text = city & ", " & state & " " & zip
+                Dim latitude = GetNullable(Of Decimal?)(dr("numFacilityLatitude"))
+                Dim longitude = GetNullable(Of Decimal?)(dr("numFacilityLongitude"))
+                lblLatitude.Text = latitude.ToString()
+                lblLongitude.Text = longitude.ToString()
                 lblCounty.Text = GetNullableString(dr.Item("strCountyName"))
                 lblDistrict.Text = GetNullableString(dr.Item("strDistrictName"))
                 lblOffice.Text = GetNullableString(dr.Item("strOfficeName"))
@@ -90,6 +95,18 @@ Partial Class FacilitySummary
                     hlDistrict.Visible = False
                 Else
                     hlDistrict.Visible = True
+                End If
+                
+                Const size = "400x300"
+                Const zoom = 14
+            
+                If latitude.HasValue AndAlso longitude.HasValue Then
+                    Dim coords As New Coordinate(latitude.Value, longitude.Value)
+                    imgGoogleStaticMap.ImageUrl = GetStaticMapUrl(coords, size, zoom, GoogleMapType.roadmap)
+                    lnkGoogleMap.NavigateUrl = GetMapLinkUrl(coords)
+                Else
+                    imgGoogleStaticMap.ImageUrl = GetStaticMapUrl(street, city, size, zoom, GoogleMapType.roadmap)
+                    lnkGoogleMap.NavigateUrl = GetMapLinkUrl(street, city)
                 End If
             End If
 

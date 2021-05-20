@@ -93,8 +93,8 @@ Partial Class EIS_Facility_Default
         lblAddressUpdated.Text = updateDateTime?.ToString("G") & updateUser
 
         ' Location
-        Dim latitude As Decimal? = GetNullable(Of Decimal?)(dr("numLatitudeMeasure"))
-        Dim longitude As Decimal? = GetNullable(Of Decimal?)(dr("numLongitudeMeasure"))
+        Dim latitude = GetNullable(Of Decimal?)(dr("numLatitudeMeasure"))
+        Dim longitude = GetNullable(Of Decimal?)(dr("numLongitudeMeasure"))
         lblLatitude.Text = latitude.ToString
         lblLongitude.Text = longitude.ToString
         lblHorizontalCollectionMethod.Text = GetNullableString(dr("STRHORCOLLMETDesc"))

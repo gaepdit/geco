@@ -181,7 +181,6 @@
     <Content Include="Facility\Admin.aspx" />
     <Content Include="Facility\Summary.aspx" />
     <Content Include="Facility\Default.aspx" />
-    <Content Include="FacilityMap.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="AnnualFees\Default.aspx" />
     <Content Include="Fees\Deposits.aspx" />
@@ -421,13 +420,6 @@
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="FacilityMap.aspx.designer.vb">
-      <DependentUpon>FacilityMap.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="FacilityMap.aspx.vb">
-      <DependentUpon>FacilityMap.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
     <Compile Include="AnnualFees\Default.aspx.designer.vb">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
@@ -552,7 +544,6 @@
     <Compile Include="_DAL\Events\Events.vb" />
     <Compile Include="_DAL\Facility\FacilityInfo.vb" />
     <Compile Include="_DAL\AnnualFees\AnnualFees.vb" />
-    <Compile Include="_Code\Geocode.vb" />
     <Compile Include="_Code\Globals.vb" />
     <Compile Include="_Code\GridviewExportUtil.vb" />
     <Compile Include="_Code\LoginCheck.vb" />

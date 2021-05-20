@@ -1,20 +1,14 @@
 ﻿Namespace MapHelper
 
-    Public Interface ISpatialCoordinate
-        Property Latitude As Decimal
-        Property Longitude As Decimal
-    End Interface
-
     Public Class Coordinate
-        Implements ISpatialCoordinate
 
         Public Sub New(latitude As Decimal, longitude As Decimal)
             Me.Latitude = latitude
             Me.Longitude = longitude
         End Sub
 
-        Public Property Latitude As Decimal Implements ISpatialCoordinate.Latitude
-        Public Property Longitude As Decimal Implements ISpatialCoordinate.Longitude
+        Private Property Latitude As Decimal
+        Private Property Longitude As Decimal
 
         Public Overrides Function ToString() As String
             Return Latitude.ToString & "," & Longitude.ToString
@@ -58,7 +52,7 @@
             NotNull(coordinates, NameOf(coordinates))
 
             Dim key As String = ConfigurationManager.AppSettings("GoogleMapsAPIKey")
-            Dim marker As String = "color:blue|label:X|" & coordinates.ToString()
+            Dim marker As String = "color:0x01009A|label:X|" & coordinates.ToString()
 
             Return String.Format(_googleStaticMapUri, coordinates.ToString(), zoom, size, mapType, marker, key)
         End Function
@@ -72,8 +66,9 @@
                                         ) As String
             Dim center As String = address & "," & city & " GA"
             Dim key As String = ConfigurationManager.AppSettings("GoogleMapsAPIKey")
+            Dim marker As String = "color:0x01009A|label:X|" & center
 
-            Return String.Format(_googleStaticMapUri, center, zoom, size, mapType, "", key)
+            Return String.Format(_googleStaticMapUri, center, zoom, size, mapType, marker, key)
         End Function
 
     End Module
