@@ -18,7 +18,7 @@ Partial Public Class Account_Password
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
+    '''To modify, move the field declaration from the designer file to a code-behind file.
     '''</remarks>
     Protected WithEvents lblDisplayName As Global.System.Web.UI.WebControls.Label
     
@@ -27,7 +27,7 @@ Partial Public Class Account_Password
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
+    '''To modify, move the field declaration from the designer file to a code-behind file.
     '''</remarks>
     Protected WithEvents hlSignOut As Global.System.Web.UI.WebControls.Button
     
@@ -36,7 +36,7 @@ Partial Public Class Account_Password
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
+    '''To modify, move the field declaration from the designer file to a code-behind file.
     '''</remarks>
     Protected WithEvents lnkEditProfile As Global.System.Web.UI.WebControls.HyperLink
     
@@ -45,7 +45,7 @@ Partial Public Class Account_Password
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
+    '''To modify, move the field declaration from the designer file to a code-behind file.
     '''</remarks>
     Protected WithEvents lnkEditEmail As Global.System.Web.UI.WebControls.HyperLink
     
@@ -54,7 +54,7 @@ Partial Public Class Account_Password
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
+    '''To modify, move the field declaration from the designer file to a code-behind file.
     '''</remarks>
     Protected WithEvents lnkEditPassword As Global.System.Web.UI.WebControls.HyperLink
     
@@ -63,7 +63,7 @@ Partial Public Class Account_Password
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
+    '''To modify, move the field declaration from the designer file to a code-behind file.
     '''</remarks>
     Protected WithEvents UpdatePanel_password As Global.System.Web.UI.UpdatePanel
     
@@ -72,7 +72,7 @@ Partial Public Class Account_Password
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
+    '''To modify, move the field declaration from the designer file to a code-behind file.
     '''</remarks>
     Protected WithEvents subForm As Global.System.Web.UI.WebControls.Panel
     
@@ -81,7 +81,7 @@ Partial Public Class Account_Password
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
+    '''To modify, move the field declaration from the designer file to a code-behind file.
     '''</remarks>
     Protected WithEvents lblPasswordMessage As Global.System.Web.UI.WebControls.Label
     
@@ -90,7 +90,7 @@ Partial Public Class Account_Password
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
+    '''To modify, move the field declaration from the designer file to a code-behind file.
     '''</remarks>
     Protected WithEvents txtOldPassword As Global.System.Web.UI.WebControls.TextBox
     
@@ -99,7 +99,7 @@ Partial Public Class Account_Password
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
+    '''To modify, move the field declaration from the designer file to a code-behind file.
     '''</remarks>
     Protected WithEvents RequiredFieldValidator1 As Global.System.Web.UI.WebControls.RequiredFieldValidator
     
@@ -108,7 +108,7 @@ Partial Public Class Account_Password
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
+    '''To modify, move the field declaration from the designer file to a code-behind file.
     '''</remarks>
     Protected WithEvents txtNewPassword As Global.System.Web.UI.WebControls.TextBox
     
@@ -117,7 +117,7 @@ Partial Public Class Account_Password
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
+    '''To modify, move the field declaration from the designer file to a code-behind file.
     '''</remarks>
     Protected WithEvents RequiredFieldValidator15 As Global.System.Web.UI.WebControls.RequiredFieldValidator
     
@@ -126,7 +126,7 @@ Partial Public Class Account_Password
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
+    '''To modify, move the field declaration from the designer file to a code-behind file.
     '''</remarks>
     Protected WithEvents Regex3 As Global.System.Web.UI.WebControls.RegularExpressionValidator
     
@@ -135,7 +135,7 @@ Partial Public Class Account_Password
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
+    '''To modify, move the field declaration from the designer file to a code-behind file.
     '''</remarks>
     Protected WithEvents txtPwdConfirm As Global.System.Web.UI.WebControls.TextBox
     
@@ -144,7 +144,7 @@ Partial Public Class Account_Password
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
+    '''To modify, move the field declaration from the designer file to a code-behind file.
     '''</remarks>
     Protected WithEvents RequiredFieldValidator16 As Global.System.Web.UI.WebControls.RequiredFieldValidator
     
@@ -153,7 +153,7 @@ Partial Public Class Account_Password
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
+    '''To modify, move the field declaration from the designer file to a code-behind file.
     '''</remarks>
     Protected WithEvents CompareValidator1 As Global.System.Web.UI.WebControls.CompareValidator
     
@@ -162,7 +162,7 @@ Partial Public Class Account_Password
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
+    '''To modify, move the field declaration from the designer file to a code-behind file.
     '''</remarks>
     Protected WithEvents btnPwdUpdate As Global.System.Web.UI.WebControls.Button
     
@@ -171,7 +171,7 @@ Partial Public Class Account_Password
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
+    '''To modify, move the field declaration from the designer file to a code-behind file.
     '''</remarks>
     Protected WithEvents PasswordUpdateProgress As Global.System.Web.UI.UpdateProgress
     
@@ -183,7 +183,7 @@ Partial Public Class Account_Password
     '''</remarks>
     Public Shadows ReadOnly Property Master() As GECO.MainLayout
         Get
-            Return CType(MyBase.Master,GECO.MainLayout)
+            Return CType(MyBase.Master, GECO.MainLayout)
         End Get
     End Property
 End Class
