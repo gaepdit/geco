@@ -12,7 +12,7 @@ Option Explicit On
 
 
 Partial Public Class ei_reqchange
-    
+
     '''<summary>
     '''pnlTop control.
     '''</summary>
@@ -21,7 +21,7 @@ Partial Public Class ei_reqchange
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents pnlTop As Global.System.Web.UI.WebControls.Panel
-    
+
     '''<summary>
     '''txtFacilityName control.
     '''</summary>
@@ -30,7 +30,7 @@ Partial Public Class ei_reqchange
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtFacilityName As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''txtFacilityNameNew control.
     '''</summary>
@@ -39,7 +39,7 @@ Partial Public Class ei_reqchange
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtFacilityNameNew As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''txtStreetAddress control.
     '''</summary>
@@ -48,7 +48,7 @@ Partial Public Class ei_reqchange
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtStreetAddress As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''txtStreetAddressNew control.
     '''</summary>
@@ -57,7 +57,7 @@ Partial Public Class ei_reqchange
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtStreetAddressNew As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''txtCity control.
     '''</summary>
@@ -66,7 +66,7 @@ Partial Public Class ei_reqchange
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtCity As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''txtCityNew control.
     '''</summary>
@@ -75,7 +75,7 @@ Partial Public Class ei_reqchange
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtCityNew As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''txtZipCode control.
     '''</summary>
@@ -84,7 +84,7 @@ Partial Public Class ei_reqchange
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtZipCode As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''txtZipCodeNew control.
     '''</summary>
@@ -93,7 +93,7 @@ Partial Public Class ei_reqchange
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtZipCodeNew As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''txtZipCodeNew_FilteredTextBoxExtender control.
     '''</summary>
@@ -102,7 +102,7 @@ Partial Public Class ei_reqchange
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtZipCodeNew_FilteredTextBoxExtender As Global.AjaxControlToolkit.FilteredTextBoxExtender
-    
+
     '''<summary>
     '''txtZipPlus4New control.
     '''</summary>
@@ -111,7 +111,7 @@ Partial Public Class ei_reqchange
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtZipPlus4New As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''txtZipPlus4New_FilteredTextBoxExtender control.
     '''</summary>
@@ -120,7 +120,7 @@ Partial Public Class ei_reqchange
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtZipPlus4New_FilteredTextBoxExtender As Global.AjaxControlToolkit.FilteredTextBoxExtender
-    
+
     '''<summary>
     '''txtCounty control.
     '''</summary>
@@ -129,7 +129,7 @@ Partial Public Class ei_reqchange
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtCounty As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''cboCountyNew control.
     '''</summary>
@@ -138,7 +138,7 @@ Partial Public Class ei_reqchange
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents cboCountyNew As Global.System.Web.UI.WebControls.DropDownList
-    
+
     '''<summary>
     '''txtComments control.
     '''</summary>
@@ -147,25 +147,7 @@ Partial Public Class ei_reqchange
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtComments As Global.System.Web.UI.WebControls.TextBox
-    
-    '''<summary>
-    '''btnSubmit control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnSubmit As Global.System.Web.UI.WebControls.Button
-    
-    '''<summary>
-    '''btnCancel control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnCancel As Global.System.Web.UI.WebControls.Button
-    
+
     '''<summary>
     '''lblBlankWarning control.
     '''</summary>
@@ -174,7 +156,25 @@ Partial Public Class ei_reqchange
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblBlankWarning As Global.System.Web.UI.WebControls.Label
-    
+
+    '''<summary>
+    '''btnSubmit control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnSubmit As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''btnCancel control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnCancel As Global.System.Web.UI.WebControls.Button
+
     '''<summary>
     '''pnlConfirm control.
     '''</summary>
@@ -183,7 +183,7 @@ Partial Public Class ei_reqchange
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents pnlConfirm As Global.System.Web.UI.WebControls.Panel
-    
+
     '''<summary>
     '''txtFacilityNameConf control.
     '''</summary>
@@ -192,7 +192,7 @@ Partial Public Class ei_reqchange
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtFacilityNameConf As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''txtStreetAddressConf control.
     '''</summary>
@@ -201,7 +201,7 @@ Partial Public Class ei_reqchange
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtStreetAddressConf As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''txtCityConf control.
     '''</summary>
@@ -210,7 +210,7 @@ Partial Public Class ei_reqchange
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtCityConf As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''txtZipCodeConf control.
     '''</summary>
@@ -219,7 +219,7 @@ Partial Public Class ei_reqchange
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtZipCodeConf As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''txtZipPlus4Conf control.
     '''</summary>
@@ -228,7 +228,7 @@ Partial Public Class ei_reqchange
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtZipPlus4Conf As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''txtCountyConf control.
     '''</summary>
@@ -237,7 +237,7 @@ Partial Public Class ei_reqchange
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtCountyConf As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''txtCommentsConf control.
     '''</summary>
@@ -246,7 +246,7 @@ Partial Public Class ei_reqchange
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtCommentsConf As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''btnSubmitRequest control.
     '''</summary>
@@ -255,7 +255,7 @@ Partial Public Class ei_reqchange
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnSubmitRequest As Global.System.Web.UI.WebControls.Button
-    
+
     '''<summary>
     '''btnCancelConf control.
     '''</summary>
@@ -264,16 +264,7 @@ Partial Public Class ei_reqchange
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnCancelConf As Global.System.Web.UI.WebControls.Button
-    
-    '''<summary>
-    '''btnReturn control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnReturn As Global.System.Web.UI.WebControls.Button
-    
+
     '''<summary>
     '''lblConfirmSubmit control.
     '''</summary>
@@ -282,4 +273,13 @@ Partial Public Class ei_reqchange
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblConfirmSubmit As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''btnReturn control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnReturn As Global.System.Web.UI.WebControls.Button
 End Class

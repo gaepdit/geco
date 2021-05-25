@@ -9,10 +9,17 @@ Partial Class es_esform
     Private SavedES As Boolean
     Private SavedAPB As Boolean
     Private ESExist As Boolean
+
     Private Property CurrentAirs As ApbFacilityId
 
     Private Sub Page_Load(ByVal sender As Object, ByVal e As EventArgs) Handles Me.Load
-        CurrentAirs = New ApbFacilityId(GetSessionItem(Of String)("esAirsNumber"))
+        Dim airs As String = GetSessionItem(Of String)("esAirsNumber")
+
+        If String.IsNullOrEmpty(airs) Then
+            Response.Redirect("~/")
+        End If
+
+        CurrentAirs = New ApbFacilityId(airs)
 
         Dim esYear As String = (Now.Year - 1).ToString
         Session("ESYear") = esYear

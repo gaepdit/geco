@@ -1,9 +1,20 @@
 ﻿Imports System.Data.SqlClient
+Imports GECO.GecoModels
 
 Partial Class ei_reqchange
     Inherits Page
 
+    Private Property CurrentAirs As ApbFacilityId
+
     Private Sub Page_Load(ByVal sender As Object, ByVal e As EventArgs) Handles Me.Load
+        Dim airs As String = GetSessionItem(Of String)("esAirsNumber")
+
+        If String.IsNullOrEmpty(airs) Then
+            Response.Redirect("~/")
+        End If
+
+        CurrentAirs = New ApbFacilityId(airs)
+
         If Not IsPostBack Then
 
             pnlTop.Visible = True
@@ -159,7 +170,6 @@ Partial Class ei_reqchange
 
     Protected Sub btnSubmitRequest_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnSubmitRequest.Click
 
-        Dim AirsNumber As String = GetSessionItem(Of String)("esAirsNumber")
         Dim UserID As Integer = GetCurrentUser().UserId
         Dim FacilityName As String = txtFacilityNameNew.Text
         Dim StreetAddress As String = txtStreetAddressNew.Text
@@ -207,7 +217,7 @@ Partial Class ei_reqchange
             " @Comment ) "
 
         Dim params As SqlParameter() = {
-            New SqlParameter("@AirsNumber", AirsNumber),
+            New SqlParameter("@AirsNumber", CurrentAirs.DbFormattedString),
             New SqlParameter("@UserID", UserID),
             New SqlParameter("@FacilityName", FacilityName),
             New SqlParameter("@StreetAddress", StreetAddress),

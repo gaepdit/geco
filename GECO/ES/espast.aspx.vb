@@ -4,14 +4,24 @@ Imports GECO.GecoModels
 Partial Class ES_espast
     Inherits Page
 
+    Private Property CurrentAirs As ApbFacilityId
+
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As EventArgs) Handles Me.Load
+        Dim airs As String = GetSessionItem(Of String)("esAirsNumber")
+
+        If String.IsNullOrEmpty(airs) Then
+            Response.Redirect("~/")
+        End If
+
+        CurrentAirs = New ApbFacilityId(airs)
+
         If Not IsPostBack Then
 
             lblPastESYear.Text = GetSessionItem(Of String)("PastESYear")
             lblESPastYear2.Text = GetSessionItem(Of String)("PastESYear")
             lblConfNo.Text = GetConfirmNumber(GetSessionItem(Of String)("pastayr"))
             lblFacilityName.Text = GetSessionItem(Of String)("fname")
-            lblAIRSNo.Text = New ApbFacilityId(GetSessionItem(Of String)("esAirsNumber")).FormattedString
+            lblAIRSNo.Text = CurrentAirs.FormattedString
             lblNOx.Text = GetSessionItem(Of String)("nox")
             lblVOC.Text = GetSessionItem(Of String)("voc")
 

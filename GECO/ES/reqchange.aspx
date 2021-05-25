@@ -111,12 +111,11 @@
                 </tr>
                 <tr>
                     <td align="center">
+                        <asp:Label ID="lblBlankWarning" runat="server" Font-Bold="True" ForeColor="Red" Visible="False"></asp:Label>
                         <asp:Button ID="btnSubmit" runat="server" Text="Submit Request" TabIndex="7" />
                         &nbsp; &nbsp;
-                   
                         <asp:Button ID="btnCancel" runat="server" CausesValidation="False" Text="Cancel" TabIndex="8" />
-                        <asp:Label ID="lblBlankWarning" runat="server" Font-Bold="True"
-                            ForeColor="Red" Visible="False"></asp:Label></td>
+                    </td>
                 </tr>
                 <tr>
                     <td align="center">&nbsp;</td>
@@ -200,16 +199,17 @@
                 </tr>
                 <tr>
                     <td style="height: 26px">
-                        <asp:Button ID="btnSubmitRequest" runat="server" Text="Submit Change Request" Width="170px" TabIndex="7" />
+                        <asp:Button ID="btnSubmitRequest" runat="server" Text="Submit Change Request" Width="200px" TabIndex="7" />
                         &nbsp; &nbsp;
                        
                         <asp:Button ID="btnCancelConf" runat="server" CausesValidation="False" Text="Go back and make corrections" TabIndex="8" Width="200px" /></td>
                 </tr>
                 <tr>
                     <td>
-                        <asp:Button ID="btnReturn" runat="server" Text="Return to Emissions Statement" Width="206px" TabIndex="7" />
                         <asp:Label ID="lblConfirmSubmit" runat="server" Font-Bold="True"
-                            ForeColor="Red" Visible="False"></asp:Label></td>
+                            ForeColor="Red" Visible="False"></asp:Label><br />
+                        <asp:Button ID="btnReturn" runat="server" Text="Return to Emissions Statement" Width="206px" TabIndex="7" />
+                    </td>
                 </tr>
             </table>
         </div>

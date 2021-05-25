@@ -9,7 +9,13 @@ Partial Class es_confirm
     Private Property CurrentAirs As ApbFacilityId
 
     Private Sub Page_Load(ByVal sender As Object, ByVal e As EventArgs) Handles Me.Load
-        CurrentAirs = New ApbFacilityId(GetSessionItem(Of String)("esAirsNumber"))
+        Dim airs As String = GetSessionItem(Of String)("esAirsNumber")
+
+        If String.IsNullOrEmpty(airs) Then
+            Response.Redirect("~/")
+        End If
+
+        CurrentAirs = New ApbFacilityId(airs)
 
         If Not IsPostBack Then
 
