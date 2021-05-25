@@ -139,7 +139,7 @@ Partial Class EIS_Facility_EditPage
             Return
         End If
 
-        Dim mm As MinMaxLatLon = GetCountyLatLong(CurrentAirs.CountySubstring)
+        Dim mm As CountyBoundary = GetCountyBoundary(CurrentAirs.CountySubstring)
 
         rngvLatitudeMeasure.MaximumValue = mm.MaxLat.ToString
         rngvLatitudeMeasure.MinimumValue = mm.MinLat.ToString

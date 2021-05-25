@@ -79,7 +79,7 @@ Partial Class ei_reqchange
 
         cboCountyNew.Items.Add(" --Select a County-- ")
 
-        Dim query = "Select strCountyName FROM EILookupCountyLatLon order by strCountyName"
+        Dim query = "Select strCountyName FROM EISLK_COUNTYLATLON order by strCountyName"
         Dim dt = DB.GetDataTable(query)
 
         For Each dr As DataRow In dt.Rows

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -532,14 +532,13 @@
     <Compile Include="_DAL\EIS\eis_datetime.vb" />
     <Compile Include="_DAL\EIS\eis_FacilityData.vb" />
     <Compile Include="_DAL\EIS\eis_getcodedescriptions.vb" />
-    <Compile Include="_DAL\EIS\eis_getCountyLatLong.vb" />
+    <Compile Include="_DAL\EIS\eis_CountyBoundary.vb" />
     <Compile Include="_DAL\EIS\eis_reportingperiod.vb" />
     <Compile Include="_Code\EmailSender.vb" />
     <Compile Include="_Code\EncryptDecrypt.vb" />
     <Compile Include="_Code\EnumHelpers.vb" />
     <Compile Include="_Code\LogToTextFile.vb" />
     <Compile Include="_Code\ErrorReporting.vb" />
-    <Compile Include="_DAL\ES\ES_County.vb" />
     <Compile Include="_DAL\ES\ES_MiscCode.vb" />
     <Compile Include="_DAL\Events\Events.vb" />
     <Compile Include="_DAL\Facility\FacilityInfo.vb" />

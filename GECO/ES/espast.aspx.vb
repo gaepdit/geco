@@ -1,4 +1,5 @@
 ﻿Imports System.Data.SqlClient
+Imports GECO.GecoModels
 
 Partial Class ES_espast
     Inherits Page
@@ -10,7 +11,7 @@ Partial Class ES_espast
             lblESPastYear2.Text = GetSessionItem(Of String)("PastESYear")
             lblConfNo.Text = GetConfirmNumber(GetSessionItem(Of String)("pastayr"))
             lblFacilityName.Text = GetSessionItem(Of String)("fname")
-            lblAIRSNo.Text = GetSessionItem(Of String)("esAirsNumber")
+            lblAIRSNo.Text = New ApbFacilityId(GetSessionItem(Of String)("esAirsNumber")).FormattedString
             lblNOx.Text = GetSessionItem(Of String)("nox")
             lblVOC.Text = GetSessionItem(Of String)("voc")
 

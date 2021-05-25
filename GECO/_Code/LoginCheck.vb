@@ -1,10 +1,9 @@
-Public Module LoginCheck
+﻿Public Module LoginCheck
 
     Public Function UserIsLoggedIn() As Boolean
         Return SessionItemExists(GecoSession.CurrentUser)
     End Function
 
-    <CodeAnalysis.SuppressMessage("Design", "CA1054:Uri parameters should not be strings")>
     Public Sub MainLoginCheck(Optional returnUrl As String = Nothing)
         If Not UserIsLoggedIn() Then
             Dim path As String = "~/Login.aspx"

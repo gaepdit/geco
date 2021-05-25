@@ -1,12 +1,16 @@
 ﻿Imports System.Data.SqlClient
 Imports System.DateTime
+Imports GECO.GecoModels
 
 Partial Class es_confirm
     Inherits Page
 
     Private ConfNum As String
+    Private Property CurrentAirs As ApbFacilityId
 
     Private Sub Page_Load(ByVal sender As Object, ByVal e As EventArgs) Handles Me.Load
+        CurrentAirs = New ApbFacilityId(GetSessionItem(Of String)("esAirsNumber"))
+
         If Not IsPostBack Then
 
             Dim ESExist As Boolean
@@ -20,8 +24,8 @@ Partial Class es_confirm
                 lblConfNum1.Text = ConfNum
                 lblESYear1.Text = GetSessionItem(Of String)("ESYear")
                 lblDate1.Text = Now.ToString("d-MMM-yyyy")
-                lblAirsNo1.Text = GetSessionItem(Of String)("esAirsNumber")
-                lblFacility1.Text = GetFacilityName(GetSessionItem(Of String)("esAirsNumber"))
+                lblAirsNo1.Text = CurrentAirs.FormattedString
+                lblFacility1.Text = GetFacilityName(CurrentAirs)
             End If
 
             If GetSessionItem(Of String)("ESOptOut") = "NO" Then
@@ -40,8 +44,8 @@ Partial Class es_confirm
                 lblNOXAmt2.Text = GetEmissionValue("NOX").ToString
                 lblConfNumFinalize.Text = ConfNum
                 lblDate2.Text = Now.ToString("d-MMM-yyyy")
-                lblAirsNo2.Text = GetSessionItem(Of String)("esAirsNumber")
-                lblFacility2.Text = GetFacilityName(GetSessionItem(Of String)("esAirsNumber"))
+                lblAirsNo2.Text = CurrentAirs.FormattedString
+                lblFacility2.Text = GetFacilityName(CurrentAirs)
             End If
 
             ShowSubmitHelp()
@@ -102,7 +106,6 @@ Partial Class es_confirm
     Private Sub CreateConfNum()
 
         Dim esYear As String = GetSessionItem(Of String)("ESYear")
-        Dim AirsNumber As String = GetSessionItem(Of String)("esAirsNumber")
         Dim day As String = Now.ToString("d-MMM-yyyy")
         Dim hr As String = Now.Hour.ToString
         Dim min As String = Now.Minute.ToString
@@ -113,14 +116,14 @@ Partial Class es_confirm
         Dim newConfNum As String
 
         TransDate = TransDate.Replace("-", "")
-        newConfNum = AirsNumber & TransDate & TransTime
+        newConfNum = CurrentAirs.ShortString & TransDate & TransTime
 
         Dim query = "Update esSchema Set strConfirmationNbr = @ConfNum Where intESYear = @esYear And strAirsNumber = @AirsNumber "
 
         Dim params As SqlParameter() = {
             New SqlParameter("@ConfNum", newConfNum),
             New SqlParameter("@esYear", esYear),
-            New SqlParameter("@AirsNumber", AirsNumber)
+            New SqlParameter("@AirsNumber", CurrentAirs.DbFormattedString)
         }
 
         DB.RunCommand(query, params)

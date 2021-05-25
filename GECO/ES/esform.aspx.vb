@@ -1,6 +1,7 @@
-Imports System.Data.SqlClient
+﻿Imports System.Data.SqlClient
 Imports System.DateTime
 Imports System.Math
+Imports GECO.GecoModels
 
 Partial Class es_esform
     Inherits Page
@@ -8,17 +9,15 @@ Partial Class es_esform
     Private SavedES As Boolean
     Private SavedAPB As Boolean
     Private ESExist As Boolean
+    Private Property CurrentAirs As ApbFacilityId
 
     Private Sub Page_Load(ByVal sender As Object, ByVal e As EventArgs) Handles Me.Load
-        'Dim CountyName As String
-        Dim intESYear As Integer = Now.Year - 1
-        Dim strESYear As String = intESYear.ToString
-        Dim EntryBegan As Boolean
+        CurrentAirs = New ApbFacilityId(GetSessionItem(Of String)("esAirsNumber"))
 
-        Session("ESYear") = strESYear
-        Session("esAirsNumber") = "0413" & GetCookie(Cookie.AirsNumber)
-        Session("AirsYear") = GetSessionItem(Of String)("esAirsNumber") & GetSessionItem(Of String)("ESYear")
-        Dim AirsYear As String = GetSessionItem(Of String)("AirsYear")
+        Dim esYear As String = (Now.Year - 1).ToString
+        Session("ESYear") = esYear
+        Dim airsYear As String = CurrentAirs.DbFormattedString & esYear
+        Session("AirsYear") = airsYear
 
         If Not IsPostBack Then
 
@@ -30,10 +29,9 @@ Partial Class es_esform
             rngValYCoordinate.MinimumValue = CStr(GetSessionItem(Of Decimal)("LatMin"))
             rngValYCoordinate.MaximumValue = CStr(GetSessionItem(Of Decimal)("LatMax"))
 
-            ESExist = CheckESExist(AirsYear)
-            EntryBegan = CheckESEntry(AirsYear)
+            ESExist = CheckESExist(airsYear)
 
-            If ESExist AndAlso EntryBegan Then
+            If ESExist AndAlso CheckESEntry(airsYear) Then
                 LoadESSchema()
             Else
                 LoadFacilityLocation()
@@ -191,8 +189,7 @@ Partial Class es_esform
     Private Sub LoadESSchema()
 
         Dim FacilityZip As String
-        Dim AirsNumber As String = GetSessionItem(Of String)("esAirsNumber")
-        Dim AirsYear As String = AirsNumber & GetSessionItem(Of String)("ESYear")
+        Dim AirsYear As String = CurrentAirs.DbFormattedString & GetSessionItem(Of String)("ESYear")
         Dim ContactFaxNumber As String
         Dim ContactZip As String
         Dim YesNo As String
@@ -443,7 +440,6 @@ Partial Class es_esform
         'Load facility and contact info FROM  apbFacilityInformation table
 
         Dim FacilityZip As String
-        Dim AirsNumber As String = GetSessionItem(Of String)("esAirsNumber")
         Dim HCCcode As String
         Dim HCCdesc As String
         Dim HRCcode As String
@@ -461,7 +457,7 @@ Partial Class es_esform
             "numFacilityLatitude " &
             "FROM apbFacilityInformation where strAirsNumber = @AirsNumber "
 
-        Dim param As New SqlParameter("@AirsNumber", AirsNumber)
+        Dim param As New SqlParameter("@AirsNumber", CurrentAirs.DbFormattedString)
 
         Dim dr = DB.GetDataRow(query, param)
 
@@ -497,7 +493,7 @@ Partial Class es_esform
                 End If
             End If
 
-            txtCounty.Text = GetCounty(AirsNumber)
+            txtCounty.Text = GetCountyName(CurrentAirs.CountySubstring)
 
             If IsDBNull(dr("numFacilityLongitude")) Then
                 txtXCoordinate.Text = ""
@@ -539,7 +535,7 @@ Partial Class es_esform
 
         Dim ContactFaxNumber As String
         Dim ContactZip As String
-        Dim ContactKey As String = GetSessionItem(Of String)("esAirsNumber") & "42"
+        Dim ContactKey As String = CurrentAirs.DbFormattedString & "42"
         Dim Exist As Boolean
 
         'Check if contact exists in apbContactInformation table.
@@ -681,7 +677,6 @@ Partial Class es_esform
 
     Private Sub SaveES()
 
-        Dim AirsNumber As String = GetSessionItem(Of String)("esAirsNumber")
         Dim AirsYear As String = GetSessionItem(Of String)("AirsYear")
         Dim LocationAddress As String
         Dim City As String
@@ -723,7 +718,7 @@ Partial Class es_esform
         Dim HCD As String
         Dim HRD As String
 
-        ConfNum = Right(AirsNumber, 8) & Replace(DateLastLogin, "-", "") & Replace(TimeLastLogin, ":", "")
+        ConfNum = CurrentAirs.ShortString & Replace(DateLastLogin, "-", "") & Replace(TimeLastLogin, ":", "")
 
         SavedES = False
         ESExist = CheckESExist(AirsYear)
@@ -880,8 +875,7 @@ Partial Class es_esform
 
     Private Sub SaveContactAPB()
 
-        Dim AirsNumber As String = GetSessionItem(Of String)("esAirsNumber")
-        Dim ContactKey As String = GetSessionItem(Of String)("esAirsNumber") & "42"
+        Dim ContactKey As String = CurrentAirs.DbFormattedString & "42"
         Dim Ckey As String = "42"
         Dim ContactPrefix As String = txtContactPrefix.Text
         Dim ContactFirstName As String = txtContactFirstName.Text
@@ -966,7 +960,7 @@ Partial Class es_esform
         Dim params As SqlParameter() = {
             New SqlParameter("@ContactKey", ContactKey),
             New SqlParameter("@Ckey", Ckey),
-            New SqlParameter("@AirsNumber", AirsNumber),
+            New SqlParameter("@AirsNumber", CurrentAirs.DbFormattedString),
             New SqlParameter("@ContactPrefix", ContactPrefix),
             New SqlParameter("@ContactFirstName", ContactFirstName),
             New SqlParameter("@ContactLastName", ContactLastName),
@@ -995,7 +989,7 @@ Partial Class es_esform
 
     Private Function ContactExistAPB() As Boolean
 
-        Dim key As String = GetSessionItem(Of String)("esAirsNumber") & "42"
+        Dim key As String = CurrentAirs.DbFormattedString & "42"
 
         Dim query = "Select strContactKey FROM apbContactInformation Where strContactKey = @key "
         Dim param As New SqlParameter("@key", key)
@@ -1148,7 +1142,6 @@ Partial Class es_esform
         Dim HorizontalAccuracyMeasure As String
         Dim HorizontalReferenceCode As String
         Dim HRC As String
-        Dim AirsNumber As String = GetSessionItem(Of String)("esAirsNumber")
 
         HCC = cboHorizontalCollectionCode.SelectedValue
         HorizontalCollectionCode = Mid(HCC, InStr(HCC, "[") + 1, 3)
@@ -1172,7 +1165,7 @@ Partial Class es_esform
             New SqlParameter("@HorizontalReferenceCode", HorizontalReferenceCode),
             New SqlParameter("@XCoordinate", XCoordinate),
             New SqlParameter("@YCoordinate", YCoordinate),
-            New SqlParameter("@AirsNumber", AirsNumber)
+            New SqlParameter("@AirsNumber", CurrentAirs.DbFormattedString)
         }
 
         DB.RunCommand(query, params)

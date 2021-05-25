@@ -1,23 +1,32 @@
 ﻿Imports System.Data.SqlClient
 Imports System.DateTime
+Imports GECO.GecoModels
 
 Partial Class es_default
     Inherits Page
 
+    Private Property CurrentAirs As ApbFacilityId
+
     Private Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
-        Dim CountyName As String
-        Dim intESYear As Integer = Now.Year - 1
+        Dim airs As String = GetCookie(Cookie.AirsNumber)
 
-        Session("ESYear") = intESYear.ToString
-        Session("esAirsNumber") = "0413" & GetCookie(Cookie.AirsNumber)
-        Session("AirsYear") = GetSessionItem(Of String)("esAirsNumber") & GetSessionItem(Of String)("ESYear")
+        If String.IsNullOrEmpty(airs) Then
+            Response.Redirect("~/")
+        End If
 
-        CountyName = GetCounty(GetSessionItem(Of String)("esAirsNumber"))
+        CurrentAirs = New ApbFacilityId(airs)
+        Dim esYear As String = (Now.Year - 1).ToString
+        Session("ESYear") = esYear
+        Session("esAirsNumber") = CurrentAirs.DbFormattedString
+        Session("AirsYear") = CurrentAirs.DbFormattedString & esYear
 
-        Session("LongMin") = GetLongMin(CountyName)
-        Session("LongMax") = GetLongMax(CountyName)
-        Session("LatMin") = GetLatMin(CountyName)
-        Session("LatMax") = GetLatMax(CountyName)
+        Dim CountyBoundary = GetCountyBoundary(CurrentAirs.CountySubstring)
+
+        ' Remove negative sign and switch max/min for longitude
+        Session("LongMin") = -CountyBoundary.MaxLon
+        Session("LongMax") = -CountyBoundary.MinLon
+        Session("LatMin") = CountyBoundary.MinLat
+        Session("LatMax") = CountyBoundary.MaxLat
 
         If Not IsPostBack Then
 
@@ -38,7 +47,7 @@ Partial Class es_default
         cboESYear.Items.Add(" -Select Year- ")
 
         Dim query = "Select intESYear FROM esSchema where strAirsNumber = @AirsNumber order by intESYear Desc"
-        Dim param As New SqlParameter("@AirsNumber", GetSessionItem(Of String)("esAirsNumber"))
+        Dim param As New SqlParameter("@AirsNumber", CurrentAirs.DbFormattedString)
         Dim dt = DB.GetDataTable(query, param)
 
         For Each dr As DataRow In dt.Rows
@@ -96,7 +105,6 @@ Partial Class es_default
         Dim YearSelected As Integer
         Dim CurrentYear As Integer = Now.Year - 1
         Dim esYear As Integer
-        Dim AirsNumber As String = GetSessionItem(Of String)("esAirsNumber")
         Dim esStatus As String = GetSessionItem(Of String)("esState")
         Dim PastAirsYear As String
         Dim NOxAmt As String
@@ -122,9 +130,9 @@ Partial Class es_default
                 Session.Add("PastESYear", CStr(YearSelected))
                 lblPastYear1.Text = YearSelected.ToString
                 lblPastYear2.Text = YearSelected.ToString
-                lblAIRSNo.Text = AirsNumber
-                PastAirsYear = AirsNumber & CStr(YearSelected)
-                lblFacilityName.Text = GetFacilityName(AirsNumber)
+                lblAIRSNo.Text = CurrentAirs.FormattedString
+                PastAirsYear = CurrentAirs.DbFormattedString & CStr(YearSelected)
+                lblFacilityName.Text = GetFacilityName(CurrentAirs.DbFormattedString)
                 NOxAmt = GetEmissionValue("NOx", PastAirsYear)
                 VOCAmt = GetEmissionValue("VOC", PastAirsYear)
                 If NOxAmt = "-1" Then NOxAmt = "0"
@@ -195,7 +203,7 @@ Partial Class es_default
 
     End Sub
 
-    Private Function GetEmissionValue(ByVal emType As String, ByVal ay As String) As String
+    Private Shared Function GetEmissionValue(ByVal emType As String, ByVal ay As String) As String
 
         Dim query As String
 
@@ -219,15 +227,11 @@ Partial Class es_default
 
     Protected Sub btnPrintPastES_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnPrintPastES.Click
 
-        Dim fname As String = lblFacilityName.Text
-        Dim vocnum As String = lblVOC.Text
-        Dim noxnum As String = lblNOx.Text
-        Dim payr As String = GetSessionItem(Of String)("esAirsNumber") & GetSessionItem(Of String)("PastESYear")
 
-        Session("fname") = fname
-        Session("voc") = vocnum
-        Session("nox") = noxnum
-        Session("pastayr") = payr
+        MyBase.Session("fname") = lblFacilityName.Text
+        MyBase.Session("voc") = lblVOC.Text
+        MyBase.Session("nox") = lblNOx.Text
+        MyBase.Session("pastayr") = CurrentAirs.DbFormattedString & GetSessionItem(Of String)("PastESYear")
 
         Response.Redirect("espast.aspx")
 

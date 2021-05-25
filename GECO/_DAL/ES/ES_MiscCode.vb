@@ -1,4 +1,4 @@
-Imports System.Data.SqlClient
+﻿Imports System.Data.SqlClient
 Imports System.Math
 
 Public Module ES_MiscCode
@@ -53,7 +53,7 @@ Public Module ES_MiscCode
 
         Dim param As New SqlParameter("@ay", ay)
 
-        Dim result As String = DB.GetString(query, param)
+        Dim result As String = Trim(DB.GetString(query, param))
 
         If String.IsNullOrEmpty(result) Then
             Return "NULL"
