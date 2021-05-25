@@ -107,7 +107,7 @@ Partial Class TN_Default
     Protected Sub dgrTestNotify_PageIndexChanged(s As Object, e As DataGridPageChangedEventArgs)
         NotNull(e, NameOf(e))
 
-        dgrTestNotify.DataSource = GetSessionItem(GecoSession.TestNotifications)
+        dgrTestNotify.DataSource = GetSessionItem(Of DataView)(GecoSession.TestNotifications)
         dgrTestNotify.CurrentPageIndex = e.NewPageIndex
         dgrTestNotify.DataBind()
 

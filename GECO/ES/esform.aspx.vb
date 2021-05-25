@@ -1,4 +1,4 @@
-﻿Imports System.Data.SqlClient
+Imports System.Data.SqlClient
 Imports System.DateTime
 Imports System.Math
 
@@ -25,10 +25,10 @@ Partial Class es_esform
             LoadState()
             LoadHorizontalCollectionCode()
             LoadHorizontalDatumReferenceCode()
-            rngValXCoordinate.MinimumValue = GetSessionItem(Of String)("LongMin")
-            rngValXCoordinate.MaximumValue = GetSessionItem(Of String)("LongMax")
-            rngValYCoordinate.MinimumValue = GetSessionItem(Of String)("LatMin")
-            rngValYCoordinate.MaximumValue = GetSessionItem(Of String)("LatMax")
+            rngValXCoordinate.MinimumValue = CStr(GetSessionItem(Of Decimal)("LongMin"))
+            rngValXCoordinate.MaximumValue = CStr(GetSessionItem(Of Decimal)("LongMax"))
+            rngValYCoordinate.MinimumValue = CStr(GetSessionItem(Of Decimal)("LatMin"))
+            rngValYCoordinate.MaximumValue = CStr(GetSessionItem(Of Decimal)("LatMax"))
 
             ESExist = CheckESExist(AirsYear)
             EntryBegan = CheckESEntry(AirsYear)
@@ -1130,10 +1130,10 @@ Partial Class es_esform
 
     Protected Sub btnLatLongConvert_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnLatLongConvert.Click
 
-        rngValLongDec.MinimumValue = GetSessionItem(Of String)("LongMin")
-        rngValLongDec.MaximumValue = GetSessionItem(Of String)("LongMax")
-        rngValLatDec.MinimumValue = GetSessionItem(Of String)("LatMin")
-        rngValLatDec.MaximumValue = GetSessionItem(Of String)("LatMax")
+        rngValLongDec.MinimumValue = CStr(GetSessionItem(Of Decimal)("LongMin"))
+        rngValLongDec.MaximumValue = CStr(GetSessionItem(Of Decimal)("LongMax"))
+        rngValLatDec.MinimumValue = CStr(GetSessionItem(Of Decimal)("LatMin"))
+        rngValLatDec.MaximumValue = CStr(GetSessionItem(Of Decimal)("LatMax"))
         pnlFacility.Visible = False
         pnlLatLongConvert.Visible = True
 
