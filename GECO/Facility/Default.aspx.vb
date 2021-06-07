@@ -124,7 +124,7 @@ Partial Class FacilityHome
             Return
         End If
 
-        lblEIDate.Text = GetEIDeadline(eiStatus.MaxYear)
+        lblEIDate.Text = GetEIDeadline(eiStatus.MaxYear).ToShortDate()
 
         ' | EISSTATUSCODE | STRDESC                  |
         ' |---------------|--------------------------|

@@ -513,6 +513,7 @@
       <DependentUpon>Register.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="_Code\DateDisplayFormats.vb" />
     <Compile Include="_DAL\EIS\CaerContacts.vb" />
     <Compile Include="_DAL\EIS\Facility.vb" />
     <Compile Include="_DAL\EIS\Process.vb" />

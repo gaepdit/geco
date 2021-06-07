@@ -29,7 +29,7 @@ Partial Class es_confirm
                 GetConfirmNumber()
                 lblConfNum1.Text = ConfNum
                 lblESYear1.Text = GetSessionItem(Of String)("ESYear")
-                lblDate1.Text = Now.ToString("d-MMM-yyyy")
+                lblDate1.Text = Now.ToShortDate()
                 lblAirsNo1.Text = CurrentAirs.FormattedString
                 lblFacility1.Text = GetFacilityName(CurrentAirs)
             End If
@@ -49,7 +49,7 @@ Partial Class es_confirm
                 lblVOCAmt2.Text = GetEmissionValue("VOC").ToString
                 lblNOXAmt2.Text = GetEmissionValue("NOX").ToString
                 lblConfNumFinalize.Text = ConfNum
-                lblDate2.Text = Now.ToString("d-MMM-yyyy")
+                lblDate2.Text = Now.ToShortDate()
                 lblAirsNo2.Text = CurrentAirs.FormattedString
                 lblFacility2.Text = GetFacilityName(CurrentAirs)
             End If
