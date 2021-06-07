@@ -132,7 +132,7 @@ Partial Class es_default
                 lblPastYear2.Text = YearSelected.ToString
                 lblAIRSNo.Text = CurrentAirs.FormattedString
                 PastAirsYear = CurrentAirs.DbFormattedString & CStr(YearSelected)
-                lblFacilityName.Text = GetFacilityName(CurrentAirs.DbFormattedString)
+                lblFacilityName.Text = GetFacilityName(CurrentAirs)
                 NOxAmt = GetEmissionValue("NOx", PastAirsYear)
                 VOCAmt = GetEmissionValue("VOC", PastAirsYear)
                 If NOxAmt = "-1" Then NOxAmt = "0"

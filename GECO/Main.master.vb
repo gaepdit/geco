@@ -19,8 +19,7 @@ Partial Class MainLayout
     Public Sub SetFacility()
         If Not IsPostBack AndAlso IsFacilitySet AndAlso IsLoggedIn AndAlso CurrentAirs IsNot Nothing Then
             lblFacility.Text =
-                ConcatNonEmptyStrings(", ", {GetFacilityName(CurrentAirs), GetFacilityCity(CurrentAirs)}) &
-                " (" & CurrentAirs.FormattedString() & ")"
+                GetFacilityNameAndCity(CurrentAirs) & " (" & CurrentAirs.FormattedString() & ")"
         End If
     End Sub
 

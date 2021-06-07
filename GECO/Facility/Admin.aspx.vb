@@ -6,7 +6,6 @@ Partial Class FacilityAdmin
     Private Property currentUser As GecoUser
     Private Property facilityAccess As FacilityAccess
     Private Property currentAirs As ApbFacilityId
-    Private Property currentFacility As String = Nothing
 
 #Region " Page Load "
 
@@ -55,8 +54,7 @@ Partial Class FacilityAdmin
     End Sub
 
     Private Sub LoadFacilityInfo()
-        currentFacility = GetFacilityName(currentAirs) & ", " & GetFacilityCity(currentAirs)
-        lblFacilityDisplay.Text = currentFacility
+        lblFacilityDisplay.Text = GetFacilityNameAndCity(currentAirs)
     End Sub
 
 #End Region

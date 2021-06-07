@@ -6,10 +6,11 @@
 
     <p>
         <b>
-            <asp:Label ID="lblFacilityDisplay" runat="server"></asp:Label></b>
+            <asp:Label ID="lblFacilityDisplay" runat="server" />
+        </b>
         <br />
         AIRS Number:
-        <asp:Label ID="lblAIRS" runat="server"></asp:Label>
+        <asp:Label ID="lblAIRS" runat="server" />
     </p>
 
     <ul class="menu-list-horizontal">

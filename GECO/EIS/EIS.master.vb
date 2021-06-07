@@ -22,7 +22,7 @@ Public Class EIS
     End Sub
 
     Private Sub ShowFacilityInfo()
-        Dim currentFacility As String = GetFacilityName(CurrentAirs) & ", " & GetFacilityCity(CurrentAirs)
+        Dim currentFacility As String = GetFacilityNameAndCity(CurrentAirs)
         lblFacilityDisplay.Text = currentFacility
         lblAIRS.Text = CurrentAirs.FormattedString
     End Sub

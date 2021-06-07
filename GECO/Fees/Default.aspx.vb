@@ -53,7 +53,7 @@ Public Class Fees_Default
     End Sub
 
     Private Sub LoadFacilityInfo()
-        lblFacilityDisplay.Text = GetFacilityName(currentAirs) & ", " & GetFacilityCity(currentAirs)
+        lblFacilityDisplay.Text = GetFacilityNameAndCity(currentAirs)
         Title = "Air Quality Permits - " & lblFacilityDisplay.Text
         lblAIRS.Text = currentAirs.FormattedString
     End Sub

@@ -66,7 +66,7 @@ Partial Class FacilityHome
     End Sub
 
     Private Sub LoadFacilityInfo()
-        currentFacility = GetFacilityName(currentAirs) & ", " & GetFacilityCity(currentAirs)
+        currentFacility = GetFacilityNameAndCity(currentAirs)
         lblFacilityDisplay.Text = currentFacility
     End Sub
 
