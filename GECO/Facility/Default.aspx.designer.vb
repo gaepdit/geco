@@ -59,6 +59,15 @@ Partial Public Class FacilityHome
     Protected WithEvents lnkFacilityAdmin As Global.System.Web.UI.WebControls.HyperLink
 
     '''<summary>
+    '''lnkFacilityContacts control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lnkFacilityContacts As Global.System.Web.UI.WebControls.HyperLink
+
+    '''<summary>
     '''AppTable control.
     '''</summary>
     '''<remarks>

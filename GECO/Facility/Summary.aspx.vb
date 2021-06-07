@@ -1,4 +1,4 @@
-Imports System.Data.SqlClient
+﻿Imports System.Data.SqlClient
 Imports EpdIt.DBUtilities
 Imports GECO.GecoModels
 Imports GECO.MapHelper
@@ -26,11 +26,10 @@ Partial Class FacilitySummary
                 airsString = GetCookie(Cookie.AirsNumber)
             End If
 
-            If Not ApbFacilityId.IsValidAirsNumberFormat(airsString) Then
+            If Not ApbFacilityId.TryParse(airsString, currentAirs) Then
                 HttpContext.Current.Response.Redirect("~/Home/")
             End If
 
-            currentAirs = New ApbFacilityId(airsString)
             SetCookie(Cookie.AirsNumber, currentAirs.ShortString())
         End If
 

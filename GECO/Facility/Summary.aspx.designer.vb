@@ -12,286 +12,295 @@ Option Explicit On
 
 
 Partial Public Class FacilitySummary
-    
+
     '''<summary>
     '''lblFacilityDisplay control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
-    '''To modify, move the field declaration from the designer file to a code-behind file.
+    '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblFacilityDisplay As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''lblAIRS control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
-    '''To modify, move the field declaration from the designer file to a code-behind file.
+    '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblAIRS As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''lnkFacilityHome control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
-    '''To modify, move the field declaration from the designer file to a code-behind file.
+    '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lnkFacilityHome As Global.System.Web.UI.WebControls.HyperLink
-    
+
     '''<summary>
     '''lnkFacilityInfo control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
-    '''To modify, move the field declaration from the designer file to a code-behind file.
+    '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lnkFacilityInfo As Global.System.Web.UI.WebControls.HyperLink
-    
+
     '''<summary>
     '''lnkFacilityAdmin control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
-    '''To modify, move the field declaration from the designer file to a code-behind file.
+    '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lnkFacilityAdmin As Global.System.Web.UI.WebControls.HyperLink
-    
+
+    '''<summary>
+    '''lnkFacilityContacts control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lnkFacilityContacts As Global.System.Web.UI.WebControls.HyperLink
+
     '''<summary>
     '''lblAddress control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
-    '''To modify, move the field declaration from the designer file to a code-behind file.
+    '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblAddress As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''lblCityStateZip control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
-    '''To modify, move the field declaration from the designer file to a code-behind file.
+    '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblCityStateZip As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''lblCounty control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
-    '''To modify, move the field declaration from the designer file to a code-behind file.
+    '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblCounty As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''lblDistrict control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
-    '''To modify, move the field declaration from the designer file to a code-behind file.
+    '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblDistrict As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''hlDistrict control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
-    '''To modify, move the field declaration from the designer file to a code-behind file.
+    '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents hlDistrict As Global.System.Web.UI.WebControls.HyperLink
-    
+
     '''<summary>
     '''lblOffice control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
-    '''To modify, move the field declaration from the designer file to a code-behind file.
+    '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblOffice As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''lblLongitude control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
-    '''To modify, move the field declaration from the designer file to a code-behind file.
+    '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblLongitude As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''lblLatitude control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
-    '''To modify, move the field declaration from the designer file to a code-behind file.
+    '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblLatitude As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''lnkGoogleMap control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
-    '''To modify, move the field declaration from the designer file to a code-behind file.
+    '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lnkGoogleMap As Global.System.Web.UI.WebControls.HyperLink
-    
+
     '''<summary>
     '''imgGoogleStaticMap control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
-    '''To modify, move the field declaration from the designer file to a code-behind file.
+    '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents imgGoogleStaticMap As Global.System.Web.UI.WebControls.Image
-    
+
     '''<summary>
     '''lblClassification control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
-    '''To modify, move the field declaration from the designer file to a code-behind file.
+    '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblClassification As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''lblOpStatus control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
-    '''To modify, move the field declaration from the designer file to a code-behind file.
+    '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblOpStatus As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''lblSICCode control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
-    '''To modify, move the field declaration from the designer file to a code-behind file.
+    '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblSICCode As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''lblStartUp control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
-    '''To modify, move the field declaration from the designer file to a code-behind file.
+    '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblStartUp As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''lblClosed control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
-    '''To modify, move the field declaration from the designer file to a code-behind file.
+    '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblClosed As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''lblCMSStatus control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
-    '''To modify, move the field declaration from the designer file to a code-behind file.
+    '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblCMSStatus As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''lblAirProgramCodes control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
-    '''To modify, move the field declaration from the designer file to a code-behind file.
+    '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblAirProgramCodes As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''lblPermitContactName control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
-    '''To modify, move the field declaration from the designer file to a code-behind file.
+    '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblPermitContactName As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''lblPermitContactPhone control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
-    '''To modify, move the field declaration from the designer file to a code-behind file.
+    '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblPermitContactPhone As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''hlPermitContactEmail control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
-    '''To modify, move the field declaration from the designer file to a code-behind file.
+    '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents hlPermitContactEmail As Global.System.Web.UI.WebControls.HyperLink
-    
+
     '''<summary>
     '''lblComplianceContactName control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
-    '''To modify, move the field declaration from the designer file to a code-behind file.
+    '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblComplianceContactName As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''lblComplianceContactPhone control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
-    '''To modify, move the field declaration from the designer file to a code-behind file.
+    '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblComplianceContactPhone As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''hlComplianceContactEmail control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
-    '''To modify, move the field declaration from the designer file to a code-behind file.
+    '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents hlComplianceContactEmail As Global.System.Web.UI.WebControls.HyperLink
-    
+
     '''<summary>
     '''lblMonitoringContactName control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
-    '''To modify, move the field declaration from the designer file to a code-behind file.
+    '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblMonitoringContactName As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''lblMonitoringContactPhone control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
-    '''To modify, move the field declaration from the designer file to a code-behind file.
+    '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblMonitoringContactPhone As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''hlMonitoringContactEmail control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
-    '''To modify, move the field declaration from the designer file to a code-behind file.
+    '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents hlMonitoringContactEmail As Global.System.Web.UI.WebControls.HyperLink
-    
+
     '''<summary>
     '''Master property.
     '''</summary>

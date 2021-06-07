@@ -11,7 +11,7 @@ Option Strict On
 Option Explicit On
 
 
-Partial Public Class FacilityAdmin
+Partial Public Class FacilityContacts
 
     '''<summary>
     '''lblFacilityDisplay control.
@@ -68,76 +68,58 @@ Partial Public Class FacilityAdmin
     Protected WithEvents lnkFacilityContacts As Global.System.Web.UI.WebControls.HyperLink
 
     '''<summary>
-    '''FacilityAccessUpdatePanel control.
+    '''litPermitFeeCommPref control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents FacilityAccessUpdatePanel As Global.System.Web.UI.UpdatePanel
+    Protected WithEvents litPermitFeeCommPref As Global.System.Web.UI.WebControls.Literal
 
     '''<summary>
-    '''grdUsers control.
+    '''litPermitFeeContact control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents grdUsers As Global.System.Web.UI.WebControls.GridView
+    Protected WithEvents litPermitFeeContact As Global.System.Web.UI.WebControls.Literal
 
     '''<summary>
-    '''pnlAddNewUser control.
+    '''litPermitAppsCommPref control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents pnlAddNewUser As Global.System.Web.UI.WebControls.Panel
+    Protected WithEvents litPermitAppsCommPref As Global.System.Web.UI.WebControls.Literal
 
     '''<summary>
-    '''txtEmail control.
+    '''litPermitAppsContact control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtEmail As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents litPermitAppsContact As Global.System.Web.UI.WebControls.Literal
 
     '''<summary>
-    '''btnAddUser control.
+    '''litEICommPref control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents btnAddUser As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents litEICommPref As Global.System.Web.UI.WebControls.Literal
 
     '''<summary>
-    '''rfvEmail control.
+    '''litEIContact control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents rfvEmail As Global.System.Web.UI.WebControls.RequiredFieldValidator
-
-    '''<summary>
-    '''lblMessage control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblMessage As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''UpdateProgress1 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents UpdateProgress1 As Global.System.Web.UI.UpdateProgress
+    Protected WithEvents litEIContact As Global.System.Web.UI.WebControls.Literal
 
     '''<summary>
     '''Master property.

@@ -17,10 +17,14 @@
             <asp:HyperLink ID="lnkFacilityHome" runat="server" NavigateUrl="~/Facility/">Menu</asp:HyperLink>
         </li>
         <li>
-            <asp:HyperLink ID="lnkFacilityInfo" runat="server" NavigateUrl="~/Facility/Summary.aspx" Enabled="false" CssClass="selected-menu-item disabled">Facility Info</asp:HyperLink>
+            <asp:HyperLink ID="lnkFacilityInfo" runat="server" NavigateUrl="~/Facility/Summary.aspx" 
+                Enabled="false" CssClass="selected-menu-item disabled">Facility Info</asp:HyperLink>
         </li>
         <li>
             <asp:HyperLink ID="lnkFacilityAdmin" runat="server" NavigateUrl="~/Facility/Admin.aspx">User Access</asp:HyperLink>
+        </li>
+        <li>
+            <asp:HyperLink ID="lnkFacilityContacts" runat="server" NavigateUrl="~/Facility/Contacts.aspx">Communication Preferences</asp:HyperLink>
         </li>
     </ul>
 

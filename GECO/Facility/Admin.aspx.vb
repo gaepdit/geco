@@ -22,11 +22,10 @@ Partial Class FacilityAdmin
                 airsString = GetCookie(Cookie.AirsNumber)
             End If
 
-            If Not ApbFacilityId.IsValidAirsNumberFormat(airsString) Then
+            If Not ApbFacilityId.TryParse(airsString, currentAirs) Then
                 HttpContext.Current.Response.Redirect("~/Home/")
             End If
 
-            currentAirs = New ApbFacilityId(airsString)
             SetCookie(Cookie.AirsNumber, currentAirs.ShortString())
         End If
 
