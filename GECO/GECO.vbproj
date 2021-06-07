@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -518,6 +518,7 @@
     <Compile Include="_DAL\EIS\Facility.vb" />
     <Compile Include="_DAL\EIS\Process.vb" />
     <Compile Include="_DAL\Facility\FacilityContacts.vb" />
+    <Compile Include="_DAL\Testing\Testing.vb" />
     <Compile Include="_Models\AnnualFees\AnnualFeeCalc.vb" />
     <Compile Include="_Code\ControlMethods.vb" />
     <Compile Include="_Code\DictionaryExtensions.vb" />

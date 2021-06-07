@@ -1,5 +1,4 @@
-﻿Imports System.Data.SqlClient
-Imports EpdIt.DBUtilities
+﻿Imports EpdIt.DBUtilities
 Imports GECO.DAL
 Imports GECO.GecoModels
 
@@ -9,7 +8,6 @@ Partial Class FacilityHome
     Private Property currentUser As GecoUser
     Private Property facilityAccess As FacilityAccess
     Private Property currentAirs As ApbFacilityId
-    Private Property currentFacility As String = Nothing
 
     Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
         If IsPostBack Then
@@ -24,11 +22,10 @@ Partial Class FacilityHome
                 airsString = GetCookie(Cookie.AirsNumber)
             End If
 
-            If Not ApbFacilityId.IsValidAirsNumberFormat(airsString) Then
+            If Not ApbFacilityId.TryParse(airsString, currentAirs) Then
                 HttpContext.Current.Response.Redirect("~/Home/")
             End If
 
-            currentAirs = New ApbFacilityId(airsString)
             SetCookie(Cookie.AirsNumber, currentAirs.ShortString())
         End If
 
@@ -47,11 +44,11 @@ Partial Class FacilityHome
         End If
 
         If Not IsPostBack Then
-            LoadFacilityInfo()
-            GetApplicationStatus()
-
-            Title = "GECO Facility Summary - " & currentFacility
+            lblFacilityDisplay.Text = GetFacilityNameAndCity(currentAirs)
+            Title = "GECO Facility Summary - " & GetFacilityName(currentAirs)
             lblAIRS.Text = currentAirs.FormattedString
+
+            GetApplicationStatus()
         End If
     End Sub
 
@@ -61,36 +58,6 @@ Partial Class FacilityHome
         GetEmissionStatementStatus()
         GetTestNotificationStatus()
         GetPermitAppStatus()
-
-        GetCurrentContacts()
-    End Sub
-
-    Private Sub LoadFacilityInfo()
-        currentFacility = GetFacilityNameAndCity(currentAirs)
-        lblFacilityDisplay.Text = currentFacility
-    End Sub
-
-    Protected Sub LoadFacilityContact()
-        Dim dr As DataRow = GetAPBContactInformation(CInt(hidContactKey.Value))
-
-        If dr IsNot Nothing Then
-            'Getting details for the user from table apbcontactinformation.
-            'This table has all the information that goes into panel facility information.
-
-            txtFName.Text = GetNullableString(dr.Item("strcontactfirstname"))
-            txtLName.Text = GetNullableString(dr.Item("strcontactlastname"))
-            txtTitle.Text = GetNullableString(dr.Item("strcontacttitle"))
-            txtCoName.Text = GetNullableString(dr.Item("strcontactcompanyname"))
-            txtPhone.Text = GetNullableString(dr.Item("strcontactphonenumber"))
-            txtFax.Text = GetNullableString(dr.Item("strcontactfaxnumber"))
-            txtEmailContact.Text = GetNullableString(dr.Item("strcontactemail"))
-            txtAddress.Text = GetNullableString(dr.Item("strcontactaddress"))
-            txtCity.Text = GetNullableString(dr.Item("strcontactcity"))
-            txtState.Text = GetNullableString(dr.Item("strcontactstate"))
-            txtZip.Text = GetNullableString(dr.Item("strcontactzipcode"))
-        Else
-            ClearContact()
-        End If
     End Sub
 
     Protected Sub GetEisStatus()
@@ -102,13 +69,14 @@ Partial Class FacilityHome
         EisLink.NavigateUrl = "~/EIS/?airs=" & currentAirs.ShortString
 
         ' This procedure obtains variable values from the EIS_Admin table and saves values in cookies
-        ' Steps: 1 - read stored database values for EISStatusCode, EISStatusCode date, EISAccessCode, OptOut, Enrollment status, date finalized, last conf number
+        ' Steps: 1 - read stored database values for EISStatusCode, EISStatusCode date, EISAccessCode, OptOut,
+        '            Enrollment status, date finalized, last conf number
         '        2 - Saves EISAccessCode for use on entering the EIS home page
         '        3 - If facility is enrolled for current EI year, EISStatus, OptOut, date finalized and conf number cookies are created
         '            Based on values of above, EI status message is created and displayed on Facility Home page
         '        4 - If facility not enrolled - message indicating that the EI is not applicable is displayed
-        Dim EIYear As Integer = Now.Year - 1
 
+        Dim EIYear As Integer = Now.Year - 1
         Dim eiStatus As EisStatus = GetEiStatus(currentAirs)
         SetEiStatusCookies(currentAirs, Response)
 
@@ -119,12 +87,9 @@ Partial Class FacilityHome
 
         ' enrollment status: 0 = not enrolled; 1 = enrolled for EI year
         If Not eiStatus.Enrolled Then
-            lblEIText.Text = "Not enrolled in " & EIYear & " EI."
-            lblEIDate.Text = ""
+            litEmissionsInventory.Text = "Not enrolled in " & EIYear & " EI."
             Return
         End If
-
-        lblEIDate.Text = GetEIDeadline(eiStatus.MaxYear).ToShortDate()
 
         ' | EISSTATUSCODE | STRDESC                  |
         ' |---------------|--------------------------|
@@ -137,19 +102,21 @@ Partial Class FacilityHome
 
         Select Case eiStatus.StatusCode
             Case 0
-                lblEIText.Text = EIYear & " EI not applicable."
-                lblEIDate.Text = ""
+                litEmissionsInventory.Text = EIYear & " EI not applicable."
             Case 1
-                lblEIText.Text = "Ready for " & EIYear & " EI."
+                litEmissionsInventory.Text = "Ready for " & EIYear & " EI.<br />Due: " &
+                  GetEIDeadline(eiStatus.MaxYear).ToShortDate()
             Case 2
-                lblEIText.Text = EIYear & " EI in progress."
+                litEmissionsInventory.Text = EIYear & " EI in progress.<br />Due :" &
+                  GetEIDeadline(eiStatus.MaxYear).ToShortDate()
             Case 3, 4
-                lblEIText.Text = EIYear & " EI submitted on " & eiStatus.DateFinalized & "."
+                litEmissionsInventory.Text = EIYear & " EI submitted on " & eiStatus.DateFinalized &
+                    ".<br />Due: " & GetEIDeadline(eiStatus.MaxYear).ToShortDate()
             Case 5
-                lblEIText.Text = EIYear & " EI completed on " & eiStatus.DateFinalized & "."
+                litEmissionsInventory.Text = EIYear & " EI completed on " & eiStatus.DateFinalized &
+                    ".<br />Due: " & GetEIDeadline(eiStatus.MaxYear).ToShortDate()
             Case Else
-                lblEIText.Text = "To be determined."
-                lblEIDate.Text = ""
+                litEmissionsInventory.Text = "To be determined."
         End Select
     End Sub
 
@@ -164,25 +131,25 @@ Partial Class FacilityHome
 
         Dim dr As DataRow = GetFeeStatus(currentAirs)
 
-        If dr IsNot Nothing Then
-            Dim submittal As Boolean = CBool(dr.Item("intsubmittal"))
-            Dim year As Integer = CInt(dr.Item("numFeeYear"))
-            Dim dateSubmitted As Date? = GetNullableDateTime(dr.Item("datsubmittal"))
-            Dim dateDue As Date? = GetNullableDateTime(dr.Item("datFeeDueDate"))
+        If dr Is Nothing Then
+            litEmissionsFees.Text = "Not subject to fees."
+            Return
+        End If
 
-            If submittal AndAlso dateSubmitted.HasValue Then
-                litEFText.Text = GetNullableString(dr.Item("strGECODesc")) & " " & year.ToString & " on " & dateSubmitted.Value.ToShortDateString & "."
-            Else
-                litEFText.Text = GetNullableString(dr.Item("strGECODesc")) & " " & year.ToString & "."
-            End If
+        Dim submittal As Boolean = CBool(dr.Item("intsubmittal"))
+        Dim year As Integer = CInt(dr.Item("numFeeYear"))
+        Dim dateSubmitted As Date? = GetNullableDateTime(dr.Item("datsubmittal"))
+        Dim dateDue As Date? = GetNullableDateTime(dr.Item("datFeeDueDate"))
 
-            If dateDue.HasValue Then
-                lblEFDate.Text = dateDue.Value.ToShortDateString
-            Else
-                lblEFDate.Text = "N/A"
-            End If
+        If submittal AndAlso dateSubmitted.HasValue Then
+            litEmissionsFees.Text = GetNullableString(dr.Item("strGECODesc")) & " " & year.ToString &
+                    " on " & dateSubmitted.Value.ToShortDateString & "."
         Else
-            litEFText.Text = "Not subject to fees."
+            litEmissionsFees.Text = GetNullableString(dr.Item("strGECODesc")) & " " & year.ToString & "."
+        End If
+
+        If dateDue.HasValue Then
+            litEmissionsFees.Text &= "<br />Due: " & dateDue.Value.ToShortDate
         End If
     End Sub
 
@@ -192,48 +159,22 @@ Partial Class FacilityHome
             Return
         End If
 
-        Try
-            Dim esYear As String = CStr(Now.Year - 1)
-            Dim AirsYear As String = currentAirs.DbFormattedString & esYear
-            Dim inESCounty As Boolean = CheckFacilityEmissionStatement(currentAirs)
-            Dim esStatus As String = StatusES(AirsYear)
+        Dim inESCounty As Boolean = CheckFacilityEmissionStatement(currentAirs)
+        Dim esStatus As String = StatusES(currentAirs.DbFormattedString & CStr(Now.Year - 1))
+        MyBase.Session.Add("esState", esStatus)
 
-            If esStatus = "N/A" Then
-                AppsEmissionsStatement.Visible = False
-            Else
-                ESLink.Text = "Emission Statement"
-                lblESText.Text = esStatus
-                lblESDate.Text = "June&nbsp;15, " & Now.Year
-            End If
+        If esStatus = "N/A" OrElse Not inESCounty Then
+            AppsEmissionsStatement.Visible = False
+            Return
+        End If
 
-            If Not inESCounty Then
-                AppsEmissionsStatement.Visible = False
-            End If
-
-            Session.Add("esState", esStatus)
-#Disable Warning S108 ' Nested blocks of code should not be left empty
-        Catch exThreadAbort As Threading.ThreadAbortException
-#Enable Warning S108 ' Nested blocks of code should not be left empty
-        Catch ex As Exception
-            ErrorReport(ex)
-        End Try
-
+        litEmissionsStatement.Text = esStatus & "<br />Due: June&nbsp;15, " & Now.Year
     End Sub
 
     Private Sub GetTestNotificationStatus()
         TNLink.NavigateUrl = "~/TN/?airs=" & currentAirs.ShortString
 
-        Dim query As String = " select " &
-        "     count(*)        as total, " &
-        "     sum(case when DATPROPOSEDSTARTDATE >= getdate() " &
-        "         then 1 " &
-        "         else 0 end) as pending " &
-        " FROM ISMPTESTNOTIFICATION " &
-        " where STRAIRSNUMBER = @AirsNumber "
-
-        Dim param As New SqlParameter("@AirsNumber", currentAirs.DbFormattedString)
-
-        Dim dr As DataRow = DB.GetDataRow(query, param)
+        Dim dr As DataRow = GetPendingTestNotifications(currentAirs)
 
         If dr Is Nothing OrElse CInt(dr("total")) = 0 Then
             AppsTestNotifications.Visible = False
@@ -244,11 +185,11 @@ Partial Class FacilityHome
 
         Select Case pendingTests
             Case 0
-                TNText.Text = "No pending test notifications."
+                litTestNotifications.Text = "No pending test notifications."
             Case 1
-                TNText.Text = "One pending test notification."
+                litTestNotifications.Text = "One pending test notification."
             Case Else
-                TNText.Text = pendingTests.ToString & " pending test notifications."
+                litTestNotifications.Text = pendingTests & " pending test notifications."
         End Select
     End Sub
 
@@ -257,340 +198,12 @@ Partial Class FacilityHome
 
         Dim dr As DataRow = GetPermitApplicationCounts(currentAirs)
 
-        If dr IsNot Nothing Then
-            Dim openCount As Integer = CInt(dr.Item("OpenApplications"))
-            PAText.Text = openCount & " open permit application" & If(openCount = 1, "", "s") & "."
+        If dr Is Nothing Then
+            Return
         End If
 
-        If Not (facilityAccess.FeeAccess OrElse facilityAccess.AdminAccess) Then
-            PAContact.Enabled = False
-        End If
-    End Sub
-
-    Protected Sub GetCurrentContacts()
-        Try
-            Dim query = " SELECT " &
-            "     convert(int, STRKEY) as [Key], " &
-            "     STRCONTACTFIRSTNAME, " &
-            "     STRCONTACTLASTNAME " &
-            " FROM APBCONTACTINFORMATION " &
-            " where STRAIRSNUMBER = @airs " &
-            "       and STRKEY in ('40', '41', '42', '10', '30') "
-
-            Dim param As New SqlParameter("@airs", currentAirs.DbFormattedString)
-
-            Dim dt As DataTable = DB.GetDataTable(query, param)
-
-            For Each dr As DataRow In dt.Rows
-                Dim name As String = GetNullableString(dr.Item("STRCONTACTFIRSTNAME")) & " " & GetNullableString(dr.Item("STRCONTACTLASTNAME"))
-                If String.IsNullOrWhiteSpace(name) OrElse name = "N/A N/A" Then
-                    name = "None"
-                End If
-
-                Select Case CInt(dr.Item("Key"))
-
-                    Case 40 'Fee Contact
-                        If AppsEmissionFees.Visible Then
-                            lbtnEFContact.Text = name
-                        End If
-
-                        If AppsFeesSummary.Visible Then
-                            lbtnPFContact.Text = name
-                        End If
-
-                    Case 41 'EIS Contact
-                        If AppsEmissionInventory.Visible Then
-                            lbtnEIContact.Text = name
-                        End If
-
-                    Case 42 'ES Contact
-                        If AppsEmissionsStatement.Visible Then
-                            lbtnESContact.Text = name
-                            ESLink.Text = "Emission Statement"
-                            ESLink.Visible = True
-                        End If
-
-                    Case 10 'Testing Contact
-                        If AppsTestNotifications.Visible Then
-                            TNContact.Text = name
-                        End If
-
-                    Case 30 'Permitting Contact
-                        If AppsPermits.Visible Then
-                            PAContact.Text = name
-                        End If
-
-                End Select
-            Next
-
-            If String.IsNullOrWhiteSpace(lbtnEFContact.Text) Then
-                lbtnEFContact.Text = "None"
-            End If
-
-            If String.IsNullOrWhiteSpace(lbtnPFContact.Text) Then
-                lbtnPFContact.Text = "None"
-            End If
-
-            If String.IsNullOrWhiteSpace(lbtnEIContact.Text) Then
-                lbtnEIContact.Text = "None"
-            End If
-
-            If String.IsNullOrWhiteSpace(lbtnESContact.Text) Then
-                lbtnESContact.Text = "None"
-            End If
-
-            If String.IsNullOrWhiteSpace(TNContact.Text) Then
-                TNContact.Text = "None"
-            End If
-
-            If String.IsNullOrWhiteSpace(PAContact.Text) Then
-                PAContact.Text = "None"
-            End If
-
-#Disable Warning S108 ' Nested blocks of code should not be left empty
-        Catch exThreadAbort As Threading.ThreadAbortException
-#Enable Warning S108 ' Nested blocks of code should not be left empty
-        Catch ex As Exception
-            ErrorReport(ex)
-        End Try
-    End Sub
-
-    Protected Sub rblContact_SelectedIndexChanged(sender As Object, e As EventArgs) Handles rblContact.SelectedIndexChanged
-        LoadCurrentContact()
-    End Sub
-
-    Protected Sub btnUpdateContact_Click(sender As Object, e As EventArgs) Handles btnUpdateContact.Click
-        Try
-            Dim contactDescription As String = "Contact updated from GECO Facility Home page by " & currentUser.FullName &
-                " on " & Now.ToShortDateString()
-
-            Dim result As Boolean = Facility.SaveApbContactInformation(currentAirs, hidContactKey.Value, Nothing,
-                txtFName.Text, txtLName.Text, txtTitle.Text, txtEmailContact.Text, txtAddress.Text, Nothing,
-                txtCity.Text, Address.ProbableStateCode(txtState.Text), txtZip.Text, txtPhone.Text, Nothing, txtFax.Text,
-                contactDescription, txtCoName.Text, "0")
-
-            If result Then
-                lblContactMsg.Visible = True
-                lblContactMsg.Text = "The current contact has been updated successfully."
-
-                Select Case hidContactKey.Value
-                    Case "40"  ' emission fees
-                        lbtnEFContact.Text = txtFName.Text & " " & txtLName.Text
-                        lbtnPFContact.Text = txtFName.Text & " " & txtLName.Text
-
-                    Case "41" ' emission inventory
-                        lbtnEIContact.Text = txtFName.Text & " " & txtLName.Text
-
-                    Case "42" ' emission statement
-                        lbtnESContact.Text = txtFName.Text & " " & txtLName.Text
-
-                    Case "10" ' testing
-                        TNContact.Text = txtFName.Text & " " & txtLName.Text
-
-                    Case "30" ' permitting
-                        PAContact.Text = txtFName.Text & " " & txtLName.Text
-
-                End Select
-            Else
-                lblContactMsg.Visible = True
-                lblContactMsg.Text = "There was an error updating the contact."
-            End If
-
-#Disable Warning S108 ' Nested blocks of code should not be left empty
-        Catch exThreadAbort As Threading.ThreadAbortException
-#Enable Warning S108 ' Nested blocks of code should not be left empty
-        Catch ex As Exception
-            ErrorReport(ex)
-        End Try
-
-    End Sub
-
-    Protected Sub lbtnEFContact_Click(sender As Object, e As EventArgs) Handles lbtnEFContact.Click
-        Try
-            rblContact.SelectedIndex = 0
-            rblContact.Items(0).Text = "Use the current information for the Permit Fees Contact"
-            rblContact.Items(1).Text = "Use my GECO contact information for the Permit Fees Contact"
-            lblContactHeader.Text = "Update Permit Fees Contact"
-
-            lblContactMsg.Visible = False
-            hidContactKey.Value = "40"
-
-            If lbtnEFContact.Text = "None" Then
-                ClearContact()
-            Else
-                LoadCurrentContact()
-            End If
-
-            pnlContact.Visible = True
-#Disable Warning S108 ' Nested blocks of code should not be left empty
-        Catch exThreadAbort As Threading.ThreadAbortException
-#Enable Warning S108 ' Nested blocks of code should not be left empty
-        Catch ex As Exception
-            ErrorReport(ex)
-        End Try
-    End Sub
-
-    Protected Sub lbtnPFContact_Click(sender As Object, e As EventArgs) Handles lbtnPFContact.Click
-        Try
-            rblContact.SelectedIndex = 0
-            rblContact.Items(0).Text = "Use the current information for the Permit Fees Contact"
-            rblContact.Items(1).Text = "Use my GECO contact information for the Permit Fees Contact"
-            lblContactHeader.Text = "Update Permit Fees Contact"
-
-            lblContactMsg.Visible = False
-            hidContactKey.Value = "40"
-
-            If lbtnPFContact.Text = "None" Then
-                ClearContact()
-            Else
-                LoadCurrentContact()
-            End If
-
-            pnlContact.Visible = True
-#Disable Warning S108 ' Nested blocks of code should not be left empty
-        Catch exThreadAbort As Threading.ThreadAbortException
-#Enable Warning S108 ' Nested blocks of code should not be left empty
-        Catch ex As Exception
-            ErrorReport(ex)
-        End Try
-    End Sub
-
-    Protected Sub lbtnEIContact_Click(sender As Object, e As EventArgs) Handles lbtnEIContact.Click
-        Try
-            rblContact.SelectedIndex = 0
-            rblContact.Items(0).Text = "Use the current information for the Emission Inventory Contact"
-            rblContact.Items(1).Text = "Use my GECO contact information for the Emission Inventory Contact"
-            lblContactHeader.Text = "Update Emission Inventory Contact"
-
-            lblContactMsg.Visible = False
-            hidContactKey.Value = "41"
-
-            If lbtnEIContact.Text = "None" Then
-                ClearContact()
-            Else
-                LoadCurrentContact()
-            End If
-
-            pnlContact.Visible = True
-#Disable Warning S108 ' Nested blocks of code should not be left empty
-        Catch exThreadAbort As Threading.ThreadAbortException
-#Enable Warning S108 ' Nested blocks of code should not be left empty
-        Catch ex As Exception
-            ErrorReport(ex)
-        End Try
-    End Sub
-
-    Protected Sub lbtnESContact_Click(sender As Object, e As EventArgs) Handles lbtnESContact.Click
-        Try
-            rblContact.SelectedIndex = 0
-            rblContact.Items(0).Text = "Use the current information for the Emission Statement Contact"
-            rblContact.Items(1).Text = "Use my GECO contact information for the Emission Statement Contact"
-            lblContactHeader.Text = "Update Emission Statement Contact"
-
-            lblContactMsg.Visible = False
-            hidContactKey.Value = "42"
-
-            If lbtnESContact.Text = "None" Then
-                ClearContact()
-            Else
-                LoadCurrentContact()
-            End If
-
-            pnlContact.Visible = True
-#Disable Warning S108 ' Nested blocks of code should not be left empty
-        Catch exThreadAbort As Threading.ThreadAbortException
-#Enable Warning S108 ' Nested blocks of code should not be left empty
-        Catch ex As Exception
-            ErrorReport(ex)
-        End Try
-    End Sub
-
-    Protected Sub TNContact_Click(sender As Object, e As EventArgs) Handles TNContact.Click
-        Try
-            rblContact.SelectedIndex = 0
-            rblContact.Items(0).Text = "Use the current information for the Testing Contact"
-            rblContact.Items(1).Text = "Use my GECO contact information for the Testing Contact"
-            lblContactHeader.Text = "Update Testing Contact"
-
-            lblContactMsg.Visible = False
-            hidContactKey.Value = "10"
-
-            If TNContact.Text = "None" Then
-                ClearContact()
-            Else
-                LoadCurrentContact()
-            End If
-
-            pnlContact.Visible = True
-#Disable Warning S108 ' Nested blocks of code should not be left empty
-        Catch exThreadAbort As Threading.ThreadAbortException
-#Enable Warning S108 ' Nested blocks of code should not be left empty
-        Catch ex As Exception
-            ErrorReport(ex)
-        End Try
-    End Sub
-
-    Protected Sub PAContact_Click(sender As Object, e As EventArgs) Handles PAContact.Click
-        Try
-            rblContact.SelectedIndex = 0
-            rblContact.Items(0).Text = "Use the current information for the Permitting Contact"
-            rblContact.Items(1).Text = "Use my GECO contact information for the Permitting Contact"
-            lblContactHeader.Text = "Update Permitting Contact"
-
-            lblContactMsg.Visible = False
-            hidContactKey.Value = "30"
-
-            If PAContact.Text = "None" Then
-                ClearContact()
-            Else
-                LoadCurrentContact()
-            End If
-
-            pnlContact.Visible = True
-#Disable Warning S108 ' Nested blocks of code should not be left empty
-        Catch exThreadAbort As Threading.ThreadAbortException
-#Enable Warning S108 ' Nested blocks of code should not be left empty
-        Catch ex As Exception
-            ErrorReport(ex)
-        End Try
-    End Sub
-
-    Protected Sub btnCloseContact_Click(sender As Object, e As EventArgs) Handles btnCloseContact.Click
-        pnlContact.Visible = False
-    End Sub
-
-    Protected Sub LoadCurrentContact()
-        If rblContact.SelectedIndex = 0 Then
-            LoadFacilityContact()
-        Else
-            If currentUser IsNot Nothing Then
-                txtFName.Text = currentUser.FirstName
-                txtLName.Text = currentUser.LastName
-                txtTitle.Text = currentUser.Title
-                txtCoName.Text = currentUser.Company
-                txtEmailContact.Text = currentUser.Email
-                txtFax.Text = ""
-                txtAddress.Text = currentUser.Address.Street
-                txtCity.Text = currentUser.Address.City
-                txtState.Text = currentUser.Address.State
-                txtZip.Text = currentUser.Address.PostalCode
-                txtPhone.Text = currentUser.PhoneNumber
-            End If
-        End If
-    End Sub
-
-    Protected Sub ClearContact()
-        txtFName.Text = ""
-        txtLName.Text = ""
-        txtTitle.Text = ""
-        txtCoName.Text = ""
-        txtEmailContact.Text = ""
-        txtFax.Text = ""
-        txtAddress.Text = ""
-        txtCity.Text = ""
-        txtState.Text = ""
-        txtZip.Text = ""
-        txtPhone.Text = ""
+        Dim openCount As Integer = CInt(dr.Item("OpenApplications"))
+        litPermits.Text = openCount & " open permit application" & If(openCount = 1, "", "s") & "."
     End Sub
 
 End Class
