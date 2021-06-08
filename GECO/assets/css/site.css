@@ -1,4 +1,4 @@
-﻿/* Layout */
+/* Layout */
 html {
     box-sizing: border-box;
 }
@@ -114,6 +114,12 @@ h1 a, h2 a, h3 a {
     h1 a:focus, h2 a:focus, h3 a:focus {
         text-decoration: underline;
     }
+
+/* Lists */
+ul.flush {
+    margin-left: 1em;
+    padding-left: 0;
+}
 
 /* Test site banner */
 .banner-test-site {
@@ -729,6 +735,11 @@ textarea {
                 color: #00f;
                 background: #fdf2fd;
                 text-decoration: underline;
+            }
+
+            .table-cell-link a.selected {
+                color: #00f;
+                background: #fdf2fd;
             }
 
 .table-simple a[disabled] {

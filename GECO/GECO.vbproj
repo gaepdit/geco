@@ -127,6 +127,7 @@
     <Content Include="EIS\Process\Submit.aspx" />
     <Content Include="EIS\Users\Default.aspx" />
     <Content Include="Facility\Contacts.aspx" />
+    <Content Include="Facility\EditContacts.aspx" />
     <Content Include="Home\FacilityRequest.aspx" />
     <Content Include="assets\css\memo.css" />
     <Content Include="assets\images\epd-logo.png" />
@@ -339,6 +340,13 @@
     </Compile>
     <Compile Include="Facility\Contacts.aspx.vb">
       <DependentUpon>Contacts.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Facility\EditContacts.aspx.designer.vb">
+      <DependentUpon>EditContacts.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Facility\EditContacts.aspx.vb">
+      <DependentUpon>EditContacts.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="GlobalSuppressions.vb" />

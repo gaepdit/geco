@@ -1,4 +1,4 @@
-Imports GECO.GecoModels
+﻿Imports GECO.GecoModels
 
 Partial Class MainLayout
     Inherits MasterPage
@@ -10,10 +10,21 @@ Partial Class MainLayout
     Public ReadOnly Property Environment As String = ConfigurationManager.AppSettings("GECO_ENVIRONMENT")
 
     Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
+        ' TODO: REMOVE
+        LoadTempData()
+        Return
+
         CurrentAirs = If(CurrentAirs, ApbFacilityId.IfValid(GetCookie(Cookie.AirsNumber)))
         IsLoggedIn = UserIsLoggedIn()
 
         SetFacility()
+    End Sub
+
+    Private Sub LoadTempData()
+        CurrentAirs = New ApbFacilityId("999-00001")
+        lblFacilityDisplay.Text = "ABC Company, Atlanta"
+        lblAIRS.Text = CurrentAirs.FormattedString
+        IsFacilitySet = True
     End Sub
 
     Public Sub SetFacility()
