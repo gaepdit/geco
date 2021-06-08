@@ -2,21 +2,11 @@
 
 <%@ MasterType VirtualPath="~/Main.master" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="Server">
-    <h1>Facility Home</h1>
-
-    <p>
-        <b>
-            <asp:Label ID="lblFacilityDisplay" runat="server" />
-        </b>
-        <br />
-        AIRS Number:
-        <asp:Label ID="lblAIRS" runat="server" />
-    </p>
 
     <ul class="menu-list-horizontal">
         <li>
             <asp:HyperLink ID="lnkFacilityHome" runat="server" NavigateUrl="~/Facility/" 
-                Enabled="false" CssClass="selected-menu-item disabled">Menu</asp:HyperLink>
+                Enabled="false" CssClass="selected-menu-item disabled">Home</asp:HyperLink>
         </li>
         <li>
             <asp:HyperLink ID="lnkFacilityInfo" runat="server" NavigateUrl="~/Facility/Summary.aspx">Facility Info</asp:HyperLink>
@@ -29,7 +19,7 @@
         </li>
     </ul>
 
-    <h2>Application Menu</h2>
+    <h1>Facility Home</h1>
 
     <asp:Table ID="AppTable" runat="server" CssClass="table-simple table-menu table-bordered">
         <asp:TableHeaderRow ID="AppsHeader" runat="server" BackColor="#F0F0F6" CssClass="table-head">

@@ -44,16 +44,9 @@ Partial Class FacilityAdmin
         End If
 
         If Not IsPostBack Then
-            LoadFacilityInfo()
             LoadUserGrid()
-
-            Title = "GECO Facility Admin - " & lblFacilityDisplay.Text
-            lblAIRS.Text = currentAirs.FormattedString
+            Title = "GECO Facility Admin - " & GetFacilityNameAndCity(currentAirs)
         End If
-    End Sub
-
-    Private Sub LoadFacilityInfo()
-        lblFacilityDisplay.Text = GetFacilityNameAndCity(currentAirs)
     End Sub
 
 #End Region

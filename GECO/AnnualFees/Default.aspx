@@ -603,7 +603,7 @@
                                         ControlToValidate="rblPaymentType" ValidationGroup="SignPay">*</asp:RequiredFieldValidator>
                                 </p>
                                 <p>
-                                    <asp:RadioButtonList ID="rblPaymentType" runat="server" Font-Size="Smaller" ValidationGroup="SignPay">
+                                    <asp:RadioButtonList ID="rblPaymentType" runat="server" ValidationGroup="SignPay">
                                         <asp:ListItem Value="Entire Annual Year">Entire Annual Year</asp:ListItem>
                                         <asp:ListItem Value="Four Quarterly Payments">Four Quarterly Payments</asp:ListItem>
                                     </asp:RadioButtonList>

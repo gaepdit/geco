@@ -14,24 +14,6 @@ Option Explicit On
 Partial Public Class FacilityAdmin
 
     '''<summary>
-    '''lblFacilityDisplay control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblFacilityDisplay As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''lblAIRS control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblAIRS As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
     '''lnkFacilityHome control.
     '''</summary>
     '''<remarks>

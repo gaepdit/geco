@@ -1,21 +1,12 @@
-﻿<%@ Page Language="VB" MasterPageFile="~/Main.master" AutoEventWireup="false"
+<%@ Page Language="VB" MasterPageFile="~/Main.master" AutoEventWireup="false"
     Inherits="GECO.FacilityContacts" Title="GECO Facility Contacts" CodeBehind="Contacts.aspx.vb" %>
 
 <%@ MasterType VirtualPath="~/Main.master" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="Server">
-    <h1>Facility Contacts</h1>
-
-    <p>
-        <b>
-            <asp:Label ID="lblFacilityDisplay" runat="server"></asp:Label></b>
-        <br />
-        AIRS Number:
-        <asp:Label ID="lblAIRS" runat="server"></asp:Label>
-    </p>
 
     <ul class="menu-list-horizontal">
         <li>
-            <asp:HyperLink ID="lnkFacilityHome" runat="server" NavigateUrl="~/Facility/">Menu</asp:HyperLink>
+            <asp:HyperLink ID="lnkFacilityHome" runat="server" NavigateUrl="~/Facility/">Home</asp:HyperLink>
         </li>
         <li>
             <asp:HyperLink ID="lnkFacilityInfo" runat="server" NavigateUrl="~/Facility/Summary.aspx">Facility Info</asp:HyperLink>

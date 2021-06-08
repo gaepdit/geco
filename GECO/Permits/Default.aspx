@@ -5,14 +5,6 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="Server">
     <h1>Air Quality Permits and Permit Applications</h1>
 
-    <p>
-        <b>
-            <asp:Label ID="lblFacilityDisplay" runat="server"></asp:Label></b>
-        <br />
-        AIRS Number:
-        <asp:Label ID="lblAIRS" runat="server"></asp:Label>
-    </p>
-
     <h2>Open Permit Applications</h2>
     <p id="pNoOpenApps" runat="server">None.</p>
     <asp:GridView ID="grdOpenApps" runat="server" CssClass="table-simple table-menu" Visible="false" AutoGenerateColumns="False">

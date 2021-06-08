@@ -8,14 +8,6 @@
     <h1>Emissions Inventory System</h1>
     <% End If %>
 
-    <p>
-        <b>
-            <asp:Label ID="lblFacilityDisplay" runat="server"></asp:Label></b>
-        <br />
-        AIRS Number:
-        <asp:Label ID="lblAIRS" runat="server"></asp:Label>
-    </p>
-
     <% If Not IsBeginEisProcess %>
     <ul class="menu-list-horizontal">
         <li>

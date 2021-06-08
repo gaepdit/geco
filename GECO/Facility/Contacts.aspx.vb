@@ -8,7 +8,7 @@ Public Class FacilityContacts
     Private Property currentAirs As ApbFacilityId
 
     Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
-        LoadTempData()
+        ' TODO: REMOVE
         Return
 
         If IsPostBack Then
@@ -45,20 +45,8 @@ Public Class FacilityContacts
         End If
 
         If Not IsPostBack Then
-            LoadFacilityInfo()
-
-            Title = "GECO Facility Contacts - " & lblFacilityDisplay.Text
-            lblAIRS.Text = currentAirs.FormattedString
+            Title = "GECO Facility Contacts - " & GetFacilityNameAndCity(currentAirs)
         End If
-    End Sub
-
-    Private Sub LoadFacilityInfo()
-        lblFacilityDisplay.Text = GetFacilityNameAndCity(currentAirs)
-    End Sub
-
-    Private Sub LoadTempData()
-        lblFacilityDisplay.Text = "ABC Company, Atlanta"
-        lblAIRS.Text = "999-0001"
     End Sub
 
 End Class

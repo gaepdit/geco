@@ -44,10 +44,7 @@ Partial Class FacilityHome
         End If
 
         If Not IsPostBack Then
-            lblFacilityDisplay.Text = GetFacilityNameAndCity(currentAirs)
-            Title = "GECO Facility Summary - " & GetFacilityName(currentAirs)
-            lblAIRS.Text = currentAirs.FormattedString
-
+            Title = "GECO Facility Summary - " & GetFacilityNameAndCity(currentAirs)
             GetApplicationStatus()
         End If
     End Sub
@@ -104,17 +101,17 @@ Partial Class FacilityHome
             Case 0
                 litEmissionsInventory.Text = EIYear & " EI not applicable."
             Case 1
-                litEmissionsInventory.Text = "Ready for " & EIYear & " EI.<br />Due: " &
-                  GetEIDeadline(eiStatus.MaxYear).ToShortDate()
+                litEmissionsInventory.Text = "Ready for " & EIYear & " EI.<br /><em>Due: " &
+                  GetEIDeadline(eiStatus.MaxYear).ToLongDate() & "</em>"
             Case 2
-                litEmissionsInventory.Text = EIYear & " EI in progress.<br />Due :" &
-                  GetEIDeadline(eiStatus.MaxYear).ToShortDate()
+                litEmissionsInventory.Text = EIYear & " EI in progress.<br /><em>Due :" &
+                  GetEIDeadline(eiStatus.MaxYear).ToLongDate() & "</em>"
             Case 3, 4
                 litEmissionsInventory.Text = EIYear & " EI submitted on " & eiStatus.DateFinalized &
-                    ".<br />Due: " & GetEIDeadline(eiStatus.MaxYear).ToShortDate()
+                    ".<br /><em>Due: " & GetEIDeadline(eiStatus.MaxYear).ToLongDate() & "</em>"
             Case 5
                 litEmissionsInventory.Text = EIYear & " EI completed on " & eiStatus.DateFinalized &
-                    ".<br />Due: " & GetEIDeadline(eiStatus.MaxYear).ToShortDate()
+                    ".<br /><em>Due: " & GetEIDeadline(eiStatus.MaxYear).ToLongDate() & "</em>"
             Case Else
                 litEmissionsInventory.Text = "To be determined."
         End Select
@@ -143,13 +140,13 @@ Partial Class FacilityHome
 
         If submittal AndAlso dateSubmitted.HasValue Then
             litEmissionsFees.Text = GetNullableString(dr.Item("strGECODesc")) & " " & year.ToString &
-                    " on " & dateSubmitted.Value.ToShortDateString & "."
+                    " on " & dateSubmitted.Value.ToLongDate() & "."
         Else
             litEmissionsFees.Text = GetNullableString(dr.Item("strGECODesc")) & " " & year.ToString & "."
         End If
 
         If dateDue.HasValue Then
-            litEmissionsFees.Text &= "<br />Due: " & dateDue.Value.ToShortDate
+            litEmissionsFees.Text &= "<br /><em>Due: " & dateDue.Value.ToLongDate & "</em>"
         End If
     End Sub
 
@@ -168,7 +165,7 @@ Partial Class FacilityHome
             Return
         End If
 
-        litEmissionsStatement.Text = esStatus & "<br />Due: June&nbsp;15, " & Now.Year
+        litEmissionsStatement.Text = esStatus & "<br /><em>Due: " & New Date(Now.Year, 6, 15).ToLongDate() & "</em>"
     End Sub
 
     Private Sub GetTestNotificationStatus()

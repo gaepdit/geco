@@ -52,8 +52,7 @@ Partial Class FacilitySummary
             LoadFacilityHeaderData()
             LoadStateContactInformation()
 
-            Title = "GECO Facility Summary - " & lblFacilityDisplay.Text
-            lblAIRS.Text = currentAirs.FormattedString
+            Title = "GECO Facility Summary - " & GetFacilityNameAndCity(currentAirs)
         End If
     End Sub
 
@@ -73,7 +72,6 @@ Partial Class FacilitySummary
 
             If dr IsNot Nothing Then
                 currentFacility = GetNullableString(dr.Item("STRFACILITYNAME")) & ", " & GetNullableString(dr.Item("STRFACILITYCITY"))
-                lblFacilityDisplay.Text = currentFacility
 
                 Dim street =  GetNullableString(dr.Item("strFacilityStreet1"))
                 lblAddress.Text = street

@@ -1,6 +1,5 @@
 ﻿Imports System.Data.SqlClient
 Imports GECO.GecoModels
-Imports GECO.GecoModels.ApbFacilityId
 
 Public Module FacilityInfo
 

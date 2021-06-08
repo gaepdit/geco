@@ -5,14 +5,6 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="server">
     <h1>Permit Fees Invoices</h1>
 
-    <p>
-        <b>
-            <asp:Label ID="lblFacilityDisplay" runat="server"></asp:Label></b>
-        <br />
-        AIRS Number:
-        <asp:Label ID="lblAIRS" runat="server"></asp:Label>
-    </p>
-
     <ul class="menu-list-horizontal">
         <li><a href="Default.aspx">Summary</a></li>
         <li><span class="selected-menu-item">Invoices</span></li>

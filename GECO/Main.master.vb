@@ -1,4 +1,4 @@
-﻿Imports GECO.GecoModels
+Imports GECO.GecoModels
 
 Partial Class MainLayout
     Inherits MasterPage
@@ -18,8 +18,8 @@ Partial Class MainLayout
 
     Public Sub SetFacility()
         If Not IsPostBack AndAlso IsFacilitySet AndAlso IsLoggedIn AndAlso CurrentAirs IsNot Nothing Then
-            lblFacility.Text =
-                GetFacilityNameAndCity(CurrentAirs) & " (" & CurrentAirs.FormattedString() & ")"
+            lblFacilityDisplay.Text = GetFacilityNameAndCity(CurrentAirs)
+            lblAIRS.Text = CurrentAirs.FormattedString()
         End If
     End Sub
 

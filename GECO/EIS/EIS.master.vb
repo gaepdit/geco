@@ -16,15 +16,8 @@ Public Class EIS
         Master.IsFacilitySet = True
 
         If Not IsPostBack Then
-            ShowFacilityInfo()
             SetTabs()
         End If
-    End Sub
-
-    Private Sub ShowFacilityInfo()
-        Dim currentFacility As String = GetFacilityNameAndCity(CurrentAirs)
-        lblFacilityDisplay.Text = currentFacility
-        lblAIRS.Text = CurrentAirs.FormattedString
     End Sub
 
     Private Sub SetTabs()

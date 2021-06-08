@@ -61,8 +61,9 @@
         <% If IsFacilitySet Then %>
         <div class="header header-sub">
             <div class="header-full">
-                <em>Current facility:</em>
-                <asp:Label ID="lblFacility" runat="server" Text=""></asp:Label>
+                <em>Current facility:</em><br />
+                <b><asp:Label ID="lblFacilityDisplay" runat="server" /></b><br />
+                AIRS Number: <asp:Label ID="lblAIRS" runat="server" />
             </div>
 
             <nav class="sub-nav">

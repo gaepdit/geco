@@ -12,25 +12,7 @@ Option Explicit On
 
 
 Partial Public Class Fees_Default
-    
-    '''<summary>
-    '''lblFacilityDisplay control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblFacilityDisplay As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''lblAIRS control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblAIRS As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''pAnnualFees control.
     '''</summary>
@@ -39,7 +21,7 @@ Partial Public Class Fees_Default
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents pAnnualFees As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
+
     '''<summary>
     '''grdAnnualFees control.
     '''</summary>
@@ -48,7 +30,7 @@ Partial Public Class Fees_Default
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents grdAnnualFees As Global.System.Web.UI.WebControls.GridView
-    
+
     '''<summary>
     '''pApplicationDeposits control.
     '''</summary>
@@ -57,7 +39,7 @@ Partial Public Class Fees_Default
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents pApplicationDeposits As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
+
     '''<summary>
     '''grdApplicationDeposits control.
     '''</summary>
@@ -66,7 +48,7 @@ Partial Public Class Fees_Default
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents grdApplicationDeposits As Global.System.Web.UI.WebControls.GridView
-    
+
     '''<summary>
     '''Master property.
     '''</summary>
@@ -75,7 +57,7 @@ Partial Public Class Fees_Default
     '''</remarks>
     Public Shadows ReadOnly Property Master() As GECO.MainLayout
         Get
-            Return CType(MyBase.Master,GECO.MainLayout)
+            Return CType(MyBase.Master, GECO.MainLayout)
         End Get
     End Property
 End Class

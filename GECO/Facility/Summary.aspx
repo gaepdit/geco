@@ -2,19 +2,10 @@
 
 <%@ MasterType VirtualPath="~/Main.master" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="Server">
-    <h1>Facility Summary</h1>
-
-    <p>
-        <b>
-            <asp:Label ID="lblFacilityDisplay" runat="server"></asp:Label></b>
-        <br />
-        AIRS Number:
-        <asp:Label ID="lblAIRS" runat="server"></asp:Label>
-    </p>
 
     <ul class="menu-list-horizontal">
         <li>
-            <asp:HyperLink ID="lnkFacilityHome" runat="server" NavigateUrl="~/Facility/">Menu</asp:HyperLink>
+            <asp:HyperLink ID="lnkFacilityHome" runat="server" NavigateUrl="~/Facility/">Home</asp:HyperLink>
         </li>
         <li>
             <asp:HyperLink ID="lnkFacilityInfo" runat="server" NavigateUrl="~/Facility/Summary.aspx" 
@@ -28,7 +19,9 @@
         </li>
     </ul>
 
-    <h2>Facility Location</h2>
+    <h1>Facility Info</h1>
+
+    <h2>Location</h2>
 
     <table class="table-simple table-list">
         <tbody>
