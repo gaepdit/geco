@@ -65,20 +65,17 @@
             <br />
             <asp:Panel runat="server" ID="pnlAddNewUser">
                 User Email:
-                            <asp:TextBox ID="txtEmail" runat="server"></asp:TextBox>
-                <asp:Button ID="btnAddUser" runat="server" BackColor="Control" Text="Add New User" />
+                <asp:TextBox ID="txtEmail" runat="server" ValidationGroup="NewUser" />
+                <asp:Button ID="btnAddUser" runat="server" Text="Add New User" ValidationGroup="NewUser" />
                 <asp:RequiredFieldValidator ID="rfvEmail" runat="server" ControlToValidate="txtEmail"
-                    ErrorMessage="Valid email address is required." Font-Size="Small"></asp:RequiredFieldValidator>
+                    ErrorMessage="Valid email address is required." ValidationGroup="NewUser" />
                 <br />
-                <asp:Label ID="lblMessage" runat="server" ForeColor="#C00000" Visible="False">
-                                The user you are trying to add does not have a GECO account.
-                </asp:Label>
+                <asp:Label ID="lblMessage" runat="server" ForeColor="#C00000" Visible="False" />
             </asp:Panel>
 
             <asp:UpdateProgress ID="UpdateProgress1" runat="server" DisplayAfter="0">
                 <ProgressTemplate>
-                    <div id="progressBackgroundFilter">
-                    </div>
+                    <div id="progressBackgroundFilter"></div>
                     <div id="progressMessage">
                         Please Wait...
                         <br />

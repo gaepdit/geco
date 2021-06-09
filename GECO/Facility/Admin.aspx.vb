@@ -110,18 +110,14 @@ Partial Class FacilityAdmin
     Protected Sub grdUsers_RowDataBound(sender As Object, e As GridViewRowEventArgs) Handles grdUsers.RowDataBound
         NotNull(e, NameOf(e))
 
-        If facilityAccess.AdminAccess Then
-            If e.Row.RowType = DataControlRowType.DataRow Then
-                Dim linkBtn As LinkButton = CType(e.Row.Cells.Item(0).Controls.Item(0), LinkButton)
-                linkBtn.ValidationGroup = String.Empty
-            End If
-        Else
+        If Not facilityAccess.AdminAccess Then
             e.Row.Cells(0).Visible = False
             e.Row.Cells(1).Visible = False
         End If
     End Sub
 
     Protected Sub btnAddUser_Click(sender As Object, e As EventArgs) Handles btnAddUser.Click
+        lblMessage.Visible = False
         Dim returnValue As Integer = InsertUserAccess(txtEmail.Text, currentAirs)
 
         Select Case returnValue
@@ -131,15 +127,16 @@ Partial Class FacilityAdmin
                 LoadUserGrid()
 
             Case -1 'User not registered
+                lblMessage.Text = "The user you are trying to add does not have a GECO account."
                 lblMessage.Visible = True
 
             Case -2 'User access already exists
-                lblMessage.Visible = True
                 lblMessage.Text = "The user already has access to the facility."
+                lblMessage.Visible = True
 
             Case Else
+                lblMessage.Text = "There was an error adding the User. Please try again or contact us if the problem persists."
                 lblMessage.Visible = True
-                lblMessage.Text = "There was an error adding the User. Please try again or contact us if the problem persists"
 
         End Select
     End Sub
