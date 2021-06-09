@@ -1,4 +1,4 @@
-﻿<%@ Page Language="VB" MasterPageFile="~/Main.master" AutoEventWireup="false"
+﻿<%@ Page Language="VB" MasterPageFile="../Main.master" AutoEventWireup="false"
     Inherits="GECO.EditContacts" Title="GECO Edit Facility Contacts" CodeBehind="EditContacts.aspx.vb" %>
 
 <%@ MasterType VirtualPath="~/Main.master" %>
@@ -6,7 +6,7 @@
 
     <ul class="menu-list-horizontal">
         <li>
-            <asp:HyperLink ID="lnkFacilityHome" runat="server" NavigateUrl="~/Facility/">Home</asp:HyperLink>
+            <asp:HyperLink ID="lnkFacilityHome" runat="server" NavigateUrl="~/Facility/"><b>Home</b></asp:HyperLink>
         </li>
         <li>
             <asp:HyperLink ID="lnkFacilityInfo" runat="server" NavigateUrl="~/Facility/Summary.aspx">Facility Info</asp:HyperLink>
@@ -37,21 +37,22 @@
                     <a href="EditContacts.aspx" class="no-visited">Emissions Inventory</a>
                 </td>
                 <td>
-                    <h2>Communication Preference for <em>Permit Fees</em></h2>
+                    <h2 id="pref">Communication Preference for <em>Permit Fees</em></h2>
+
+                    <p>Note: Some communication may still be required to be sent by mail.</p>
 
                     <asp:RadioButtonList ID="rbCommPref" runat="server">
-                        <asp:ListItem Value="electronic">Receive electronic communications only. By selecting this options, you will no 
-                                longer receive mailed communications.</asp:ListItem>
-                        <asp:ListItem Value="mail">Continue to receive mailed communications only.</asp:ListItem>
-                        <asp:ListItem Value="both" Selected="True">Receive both electronic and mailed communications.</asp:ListItem>
+                        <asp:ListItem Value="electronic">Prefer to receive electronic communications <strong>only.</strong></asp:ListItem>
+                        <asp:ListItem Value="mail">Prefer to receive mailed communications <strong>only.</strong></asp:ListItem>
+                        <asp:ListItem Value="both" Selected="True">Prefer to receive <strong>both</strong> electronic and mailed communications.</asp:ListItem>
                     </asp:RadioButtonList>
 
-                    <p class="message-highlight">Communication will continue to be sent by mail until email recipients have been verified.</p>
+                    <p class="message-highlight">Communication will continue to be sent by mail until an email recipient has been verified.</p>
                     <p>
                         <asp:Button ID="btnSavePref" runat="server" Text="Save Communication Preferences" />
                     </p>
 
-                    <h3>Primary Contact</h3>
+                    <h3 id="contact">Primary Contact</h3>
 
                     <table class="table-simple table-list">
                         <tr>
@@ -139,7 +140,7 @@
                         <asp:Button ID="btnSaveContact" runat="server" Text="Save Contact" />
                     </p>
 
-                    <h3>Email Contacts</h3>
+                    <h3 id="emails">Email Contacts</h3>
 
                     <h4>Current recipients:</h4>
                     <ul class="flush">

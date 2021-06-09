@@ -6,10 +6,13 @@ Public Class FacilityContacts
     Private Property currentUser As GecoUser
     Private Property facilityAccess As FacilityAccess
     Private Property currentAirs As ApbFacilityId
+    Public Property Reconfirm As Boolean
 
     Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
-        ' TODO: REMOVE
+        ' TODO: REMOVE ==
+        Reconfirm = True
         Return
+        ' ==
 
         If IsPostBack Then
             currentAirs = New ApbFacilityId(GetCookie(Cookie.AirsNumber))
@@ -46,7 +49,11 @@ Public Class FacilityContacts
 
         If Not IsPostBack Then
             Title = "GECO Facility Contacts - " & GetFacilityNameAndCity(currentAirs)
+            Reconfirm = IsItTimeToReconfirm()
         End If
     End Sub
 
+    Private Function IsItTimeToReconfirm() As Boolean
+        Return True
+    End Function
 End Class

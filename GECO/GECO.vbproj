@@ -128,6 +128,7 @@
     <Content Include="EIS\Users\Default.aspx" />
     <Content Include="Facility\Contacts.aspx" />
     <Content Include="Facility\EditContacts.aspx" />
+    <Content Include="Facility\SetCommunicationPreferences.aspx" />
     <Content Include="Home\FacilityRequest.aspx" />
     <Content Include="assets\css\memo.css" />
     <Content Include="assets\images\epd-logo.png" />
@@ -347,6 +348,13 @@
     </Compile>
     <Compile Include="Facility\EditContacts.aspx.vb">
       <DependentUpon>EditContacts.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Facility\SetCommunicationPreferences.aspx.designer.vb">
+      <DependentUpon>SetCommunicationPreferences.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Facility\SetCommunicationPreferences.aspx.vb">
+      <DependentUpon>SetCommunicationPreferences.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="GlobalSuppressions.vb" />

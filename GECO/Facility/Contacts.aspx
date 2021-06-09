@@ -4,6 +4,20 @@
 <%@ MasterType VirtualPath="~/Main.master" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="Server">
 
+    <% If Reconfirm %>
+    <h1>Confirm Communication Preferences</h1>
+
+    <p>
+        Current communication preferences for this facility are shown below.
+        Please review and confirm their accuracy.
+    </p>
+
+    <p>
+        <asp:HyperLink runat="server" NavigateUrl="~/Facility/Default.aspx" CssClass="button no-visited">Looks good</asp:HyperLink>
+        &nbsp;
+        <asp:HyperLink runat="server" NavigateUrl="~/Facility/EditContacts.aspx" CssClass="button no-visited">Make changes</asp:HyperLink>
+    </p>
+    <% Else %>
     <ul class="menu-list-horizontal">
         <li>
             <asp:HyperLink ID="lnkFacilityHome" runat="server" NavigateUrl="~/Facility/">Home</asp:HyperLink>
@@ -24,15 +38,18 @@
 
     <p>
         Current communication preferences for this facility are shown below.
-            Preferences can be set separately for each type of communication by selecting the "Edit" button for each type.
+        Preferences can be set separately for each type of communication by selecting the "Edit" button for each type.
     </p>
+    <% End If %>
 
     <table class="table-simple table-rowsections">
         <tbody>
             <tr>
                 <td>
                     <h2>Permit Fees</h2>
+                    <% If Not Reconfirm %>
                     <a href="EditContacts.aspx" class="button button-small">Edit</a>
+                    <% End If %>
                 </td>
                 <td>
                     <h3>Communication preference:</h3>
@@ -50,7 +67,9 @@
             <tr>
                 <td>
                     <h2>Permit Applications</h2>
+                    <% If Not Reconfirm %>
                     <a href="EditContacts.aspx" class="button button-small">Edit</a>
+                    <% End If %>
                 </td>
                 <td>
                     <h3>Communication preference:</h3>
@@ -71,7 +90,9 @@
             <tr>
                 <td>
                     <h2>Emissions Inventory</h2>
+                    <% If Not Reconfirm %>
                     <a href="EditContacts.aspx" class="button button-small">Edit</a>
+                    <% End If %>
                 </td>
                 <td>
                     <h3>Communication preference:</h3>

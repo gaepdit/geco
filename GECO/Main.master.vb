@@ -25,6 +25,7 @@ Partial Class MainLayout
         lblFacilityDisplay.Text = "ABC Company, Atlanta"
         lblAIRS.Text = CurrentAirs.FormattedString
         IsFacilitySet = True
+        IsLoggedIn = True
     End Sub
 
     Public Sub SetFacility()

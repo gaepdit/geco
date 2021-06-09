@@ -117,6 +117,12 @@ h1 a, h2 a, h3 a {
         text-decoration: underline;
     }
 
+
+:target {
+    background: #ffa;
+    line-height:1.6;
+}
+
 /* Lists */
 ul.flush {
     margin-left: 1em;
@@ -1140,6 +1146,11 @@ button:disabled,
     max-width: 53rem;
 }
 
+.panel-centered {
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .panel-inprogress {
     border-color: #060;
 }
@@ -1180,6 +1191,8 @@ button:disabled,
 .panel h1, .panel h2, .panel h3 {
     margin-top: 0;
 }
+
+/* Draft mode */
 
 .draft-mode, .draft-mode * {
     font-family: "Balsamiq Sans", Verdana !important

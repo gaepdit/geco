@@ -44,9 +44,15 @@ Partial Class FacilityHome
         End If
 
         If Not IsPostBack Then
+            CheckForMandatoryUpdate()
+
             Title = "GECO Facility Summary - " & GetFacilityNameAndCity(currentAirs)
             GetApplicationStatus()
         End If
+    End Sub
+
+    Private Sub CheckForMandatoryUpdate()
+        Return
     End Sub
 
     Protected Sub GetApplicationStatus()
