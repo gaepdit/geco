@@ -58,7 +58,7 @@
         </tbody>
     </table>
 
-    <h3>Addresses</h3>
+    <h3>Location</h3>
 
     <table class="table-simple table-list">
         <tbody>
@@ -68,31 +68,6 @@
                     <asp:Label ID="lblSiteAddress" runat="server" />
                 </td>
             </tr>
-            <tr>
-                <th>Mailing Address</th>
-                <td>
-                    <asp:Label ID="lblMailingAddress" runat="server" />
-                </td>
-            </tr>
-            <tr>
-                <th>Address Comment</th>
-                <td>
-                    <asp:Label ID="lblAddressComment" runat="server" />
-                </td>
-            </tr>
-            <tr>
-                <th>Last Updated</th>
-                <td>
-                    <asp:Label ID="lblAddressUpdated" runat="server" />
-                </td>
-            </tr>
-        </tbody>
-    </table>
-
-    <h3>Location</h3>
-
-    <table class="table-simple table-list">
-        <tbody>
             <tr>
                 <th>Latitude</th>
                 <td>
@@ -144,66 +119,4 @@
             Open map in new window
         </asp:HyperLink>
     </div>
-
-    <h3>Emissions Inventory Contact</h3>
-
-    <table class="table-simple table-list">
-        <tbody>
-            <tr>
-                <th>Name</th>
-                <td>
-                    <asp:Label ID="lblContactName" runat="server" />
-                </td>
-            </tr>
-            <tr>
-                <th>Title</th>
-                <td>
-                    <asp:Label ID="lblContactTitle" runat="server" />
-                </td>
-            </tr>
-            <tr>
-                <th>Mailing Address</th>
-                <td>
-                    <asp:Label ID="lblContactAddress" runat="server" />
-                </td>
-            </tr>
-            <tr>
-                <th>Phone Number</th>
-                <td>
-                    <asp:Label ID="lblContactPhone" runat="server" />
-                </td>
-            </tr>
-            <tr>
-                <th>Mobile Phone</th>
-                <td>
-                    <asp:Label ID="lblContactMobile" runat="server" />
-                </td>
-            </tr>
-            <tr>
-                <th>Fax</th>
-                <td>
-                    <asp:Label ID="lblContactFax" runat="server" />
-                </td>
-            </tr>
-            <tr>
-                <th>Email</th>
-                <td>
-                    <asp:Label ID="lblContactEmail" runat="server" />
-                </td>
-            </tr>
-            <tr>
-                <th>Contact Comment</th>
-                <td>
-                    <asp:Label ID="lblContactComment" runat="server" />
-                </td>
-            </tr>
-            <tr>
-                <th>Last Updated</th>
-                <td>
-                    <asp:Label ID="lblContactUpdated" runat="server" />
-                </td>
-            </tr>
-        </tbody>
-    </table>
-
 </asp:Content>

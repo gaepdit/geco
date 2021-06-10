@@ -31,7 +31,6 @@ Partial Class EIS_Facility_Default
 
         If Not IsPostBack Then
             LoadFacilityDetails()
-            LoadPhoneNumbers()
         End If
     End Sub
 
@@ -63,8 +62,7 @@ Partial Class EIS_Facility_Default
         End If
         lblDescriptionUpdated.Text = updateDateTime?.ToString("G") & updateUser
 
-
-        ' Addresses
+        ' Location
         Dim locationAddress As New Address() With {
             .Street = GetNullableString(dr.Item("strLocationAddressText")).NonEmptyStringOrNothing(),
             .Street2 = GetNullableString(dr.Item("strSupplementalLocationText")).NonEmptyStringOrNothing(),
@@ -72,27 +70,8 @@ Partial Class EIS_Facility_Default
             .State = "GA",
             .PostalCode = GetNullableString(dr.Item("strLocationAddressPostalCode")).NonEmptyStringOrNothing()
         }
-
-        Dim mailingAddress As New Address() With {
-            .Street = GetNullableString(dr.Item("strMailingAddressText")).NonEmptyStringOrNothing(),
-            .Street2 = GetNullableString(dr.Item("strSupplementalAddressText")).NonEmptyStringOrNothing(),
-            .City = GetNullableString(dr.Item("strMailingAddressCityName")).NonEmptyStringOrNothing(),
-            .State = GetNullableString(dr.Item("strMailingAddressStateCode")).NonEmptyStringOrNothing(),
-            .PostalCode = GetNullableString(dr.Item("strMailingAddressPostalCode")).NonEmptyStringOrNothing()
-        }
-
         lblSiteAddress.Text = locationAddress.ToHtmlString()
-        lblMailingAddress.Text = mailingAddress.ToHtmlString()
-        lblAddressComment.Text = GetNullableString(dr.Item("strAddressComment"))
 
-        updateDateTime = GetNullableDateTime(dr.Item("UpdateDateTime_mailingAddress"))
-        updateUser = GetNullableString(dr.Item("UpdateUser_mailingAddress"))
-        If Not String.IsNullOrEmpty(updateUser) Then
-            updateUser = " by " & updateUser.Remove(0, updateUser.IndexOf("-", StringComparison.Ordinal) + 1)
-        End If
-        lblAddressUpdated.Text = updateDateTime?.ToString("G") & updateUser
-
-        ' Location
         Dim latitude = GetNullable(Of Decimal?)(dr("numLatitudeMeasure"))
         Dim longitude = GetNullable(Of Decimal?)(dr("numLongitudeMeasure"))
         lblLatitude.Text = latitude.ToString
@@ -115,50 +94,6 @@ Partial Class EIS_Facility_Default
         Else
             imgGoogleStaticMap.ImageUrl = GetStaticMapUrl(locationAddress.Street, locationAddress.City)
             lnkGoogleMap.NavigateUrl = GetMapLinkUrl(locationAddress.Street, locationAddress.City)
-        End If
-
-        ' Contact
-        Dim contactAddress As New Address() With {
-            .Street = GetNullableString(dr.Item("STRFSAIMADDRESSTEXT")).NonEmptyStringOrNothing(),
-            .Street2 = GetNullableString(dr.Item("STRFSAISADDRESSTEXT")).NonEmptyStringOrNothing(),
-            .City = GetNullableString(dr.Item("STRFSAIMADDRESSCITYNAME")).NonEmptyStringOrNothing(),
-            .State = GetNullableString(dr.Item("STRFSAIMADDRESSSTATECODE")).NonEmptyStringOrNothing(),
-            .PostalCode = GetNullableString(dr.Item("STRFSAIMADDRESSPOSTALCODE")).NonEmptyStringOrNothing()
-        }
-
-        Dim nameParts As String() = {
-            GetNullableString(dr.Item("strNamePrefixText")),
-            GetNullableString(dr.Item("strFirstName")),
-            GetNullableString(dr.Item("strLastName"))
-        }
-        lblContactName.Text = ConcatNonEmptyStrings(" ", nameParts)
-        lblContactTitle.Text = GetNullableString(dr("STRINDIVIDUALTITLETEXT"))
-        lblContactAddress.Text = contactAddress.ToHtmlString()
-        lblContactEmail.Text = GetNullableString(dr("StrElectronicAddressText"))
-        lblContactComment.Text = GetNullableString(dr("strFSAIAddressComment"))
-
-        updateDateTime = GetNullableDateTime(dr.Item("UpdateDateTime_AffIndiv"))
-        updateUser = GetNullableString(dr.Item("UpdateUser_AffIndiv"))
-        If Not String.IsNullOrEmpty(updateUser) Then
-            updateUser = " by " & updateUser.Remove(0, updateUser.IndexOf("-", StringComparison.Ordinal) + 1)
-        End If
-        lblContactUpdated.Text = updateDateTime?.ToString("G") & updateUser
-    End Sub
-
-    Private Sub LoadPhoneNumbers()
-        Dim dt As DataTable = GetEisContactPhoneNumbers(CurrentAirs)
-
-        If dt IsNot Nothing Then
-            For Each dr As DataRow In dt.Rows
-                Select Case GetNullableString(dr.Item("TELEPHONENUMBERTYPECODE"))
-                    Case "W"
-                        lblContactPhone.Text = GetNullableString(dr.Item("STRTELEPHONENUMBERTEXT"))
-                    Case "F"
-                        lblContactFax.Text = GetNullableString(dr.Item("STRTELEPHONENUMBERTEXT"))
-                    Case "M"
-                        lblContactMobile.Text = GetNullableString(dr.Item("STRTELEPHONENUMBERTEXT"))
-                End Select
-            Next
         End If
     End Sub
 

@@ -95,33 +95,6 @@ Partial Public Class EIS_Facility_Default
     Protected WithEvents lblSiteAddress As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''lblMailingAddress control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblMailingAddress As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''lblAddressComment control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblAddressComment As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''lblAddressUpdated control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblAddressUpdated As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
     '''lblLatitude control.
     '''</summary>
     '''<remarks>
@@ -201,87 +174,6 @@ Partial Public Class EIS_Facility_Default
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents imgGoogleStaticMap As Global.System.Web.UI.WebControls.Image
-
-    '''<summary>
-    '''lblContactName control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblContactName As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''lblContactTitle control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblContactTitle As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''lblContactAddress control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblContactAddress As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''lblContactPhone control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblContactPhone As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''lblContactMobile control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblContactMobile As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''lblContactFax control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblContactFax As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''lblContactEmail control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblContactEmail As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''lblContactComment control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblContactComment As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''lblContactUpdated control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblContactUpdated As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''Master property.

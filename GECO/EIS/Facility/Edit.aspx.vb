@@ -41,7 +41,7 @@ Partial Class EIS_Facility_EditPage
             LoadDropdownLists()
             LoadFacilityLatLongValidation()
             LoadFacilityDetails()
-            LoadPhoneNumbers()
+
             CheckIfFacilityLatLonIsLocked()
             PopulateNAICSGridView()
 
@@ -64,8 +64,6 @@ Partial Class EIS_Facility_EditPage
     Private Sub LoadDropdownLists()
         LoadHorCollectDDL()
         LoadHorRefDatumDDL()
-        LoadFacilityStateDDL()
-        LoadContactStateDDL()
     End Sub
 
     Private Sub LoadHorCollectDDL()
@@ -102,36 +100,6 @@ Partial Class EIS_Facility_EditPage
         End If
     End Sub
 
-    Private Sub LoadFacilityStateDDL()
-        ddlFacility_StateMail.Items.Add("--Select a State--")
-
-        Dim query As String = "Select strState, strAbbrev FROM LookUpStates order by strAbbrev"
-        Dim dt As DataTable = DB.GetDataTable(query)
-
-        For Each dr As DataRow In dt.Rows
-            Dim newListItem As New ListItem With {
-                .Text = dr.Item("strState").ToString,
-                .Value = dr.Item("strAbbrev").ToString
-            }
-            ddlFacility_StateMail.Items.Add(newListItem)
-        Next
-    End Sub
-
-    Private Sub LoadContactStateDDL()
-        ddlContact_MailState.Items.Add("--Select a State--")
-
-        Dim query As String = "Select strState, strAbbrev FROM LookUpStates order by strAbbrev"
-        Dim dt As DataTable = DB.GetDataTable(query)
-
-        For Each dr As DataRow In dt.Rows
-            Dim newListItem As New ListItem With {
-                .Text = dr.Item("strState").ToString,
-                .Value = dr.Item("strAbbrev").ToString
-            }
-            ddlContact_MailState.Items.Add(newListItem)
-        Next
-    End Sub
-
     Private Sub LoadFacilityLatLongValidation()
         If IsFacilityLatLonLocked(CurrentAirs) Then
             rngvLatitudeMeasure.Enabled = False
@@ -159,7 +127,7 @@ Partial Class EIS_Facility_EditPage
             Throw New ArgumentException($"EIS Facility Details not available for {CurrentAirs.FormattedString}")
         End If
 
-        ' Name and Address
+        ' Name and Location
         lblFacilityName.Text = GetNullableString(dr.Item("strFacilitySiteName"))
 
         Dim siteAddress As New Address() With {
@@ -170,19 +138,6 @@ Partial Class EIS_Facility_EditPage
             .PostalCode = GetNullableString(dr.Item("strLocationAddressPostalCode")).NonEmptyStringOrNothing()
         }
         lblSiteAddress.Text = siteAddress.ToHtmlString()
-
-        ' Mailing Address
-        txtMailingAddressText.Text = GetNullableString(dr.Item("strMailingAddressText"))
-        txtSupplementalAddressText.Text = GetNullableString(dr.Item("strSupplementalAddressText"))
-        txtMailingAddressCityName.Text = GetNullableString(dr.Item("strMailingAddressCityName"))
-        txtMailingAddressPostalCode.Text = GetNullableString(dr.Item("strMailingAddressPostalCode"))
-        txtMailingAddressComment.Text = GetNullableString(dr.Item("strAddressComment"))
-
-        If IsDBNull(dr("strMailingAddressStateCode")) Then
-            ddlFacility_StateMail.SelectedValue = ""
-        Else
-            ddlFacility_StateMail.SelectedValue = dr.Item("strMailingAddressStateCode").ToString
-        End If
 
         ' Facility Description
 
@@ -226,26 +181,6 @@ Partial Class EIS_Facility_EditPage
 
         txtGeographicComment.Text = GetNullableString(dr.Item("strGeographicComment"))
 
-        ' Contact
-        txtPrefix.Text = GetNullableString(dr.Item("strNamePrefixText"))
-        txtFirstName.Text = GetNullableString(dr.Item("strFirstName"))
-        txtLastName.Text = GetNullableString(dr.Item("strLastName"))
-        txtIndividualTitleText.Text = GetNullableString(dr.Item("STRINDIVIDUALTITLETEXT"))
-        txtMailingAddressText_Contact.Text = GetNullableString(dr.Item("STRFSAIMADDRESSTEXT"))
-        txtSupplementalAddressText_Contact.Text = GetNullableString(dr.Item("STRFSAISADDRESSTEXT"))
-        txtMailingAddressCityName_Contact.Text = GetNullableString(dr.Item("STRFSAIMADDRESSCITYNAME"))
-
-
-        If IsDBNull(dr("STRFSAIMADDRESSSTATECODE")) Then
-            ddlContact_MailState.SelectedValue = ""
-        Else
-            ddlContact_MailState.SelectedValue = dr.Item("STRFSAIMADDRESSSTATECODE").ToString
-        End If
-
-        txtMailingAddressPostalCode_Contact.Text = GetNullableString(dr.Item("STRFSAIMADDRESSPOSTALCODE"))
-        txtElectronicAddressText.Text = GetNullableString(dr.Item("StrElectronicAddressText"))
-        txtAddressComment_Contact.Text = GetNullableString(dr.Item("strFSAIAddressComment"))
-
         ' Store previous Geographic Data for comparison on submit
         hidLatitude.Value = txtLatitudeMeasure.Text
         hidLongitude.Value = txtLongitudeMeasure.Text
@@ -255,23 +190,6 @@ Partial Class EIS_Facility_EditPage
         hidHorReferenceDatCode.Value = ddlHorReferenceDatCode.SelectedValue
         hidHorReferenceDatDesc.Value = ddlHorReferenceDatCode.SelectedItem.Text
         hidGeographicComment.Value = txtGeographicComment.Text
-    End Sub
-
-    Private Sub LoadPhoneNumbers()
-        Dim dt As DataTable = GetEisContactPhoneNumbers(CurrentAirs)
-
-        If dt IsNot Nothing AndAlso dt.Rows.Count > 0 Then
-            For Each dr As DataRow In dt.Rows
-                Select Case dr.Item("TELEPHONENUMBERTYPECODE").ToString
-                    Case "W"
-                        txtTelephoneNumberText.Text = GetNullableString(dr.Item("STRTELEPHONENUMBERTEXT"))
-                    Case "F"
-                        txtTelephoneNumber_Fax.Text = GetNullableString(dr.Item("STRTELEPHONENUMBERTEXT"))
-                    Case "M"
-                        txtTelephoneNumber_Mobile.Text = GetNullableString(dr.Item("STRTELEPHONENUMBERTEXT"))
-                End Select
-            Next
-        End If
     End Sub
 
     Private Sub CheckIfFacilityLatLonIsLocked()
@@ -321,12 +239,8 @@ Partial Class EIS_Facility_EditPage
         If Not NAICSExists Then
             'Do nothing - enables display of custom validator message
         Else
-            SaveFacilityMailingAddress()
             SaveFacilitySiteinfo()
             SaveFacilityGCInfo()
-            SaveFacilityContact()
-            SaveContactPhoneNumber()
-            SaveAPBContactInformation()
 
             If IsBeginEisProcess Then
                 Response.Redirect("~/EIS/Process/")
@@ -342,18 +256,6 @@ Partial Class EIS_Facility_EditPage
     Private Sub SaveFacilitySiteinfo()
         SaveEisFacilitySiteInfo(CurrentAirs, txtFacilitySiteDescription.Text, txtNAICSCode.Text,
             txtFacilitySiteComment.Text, CurrentUser)
-    End Sub
-
-    Private Sub SaveFacilityMailingAddress()
-        Dim address As New Address With {
-            .Street = txtMailingAddressText.Text,
-            .Street2 = txtSupplementalAddressText.Text,
-            .City = txtMailingAddressCityName.Text,
-            .State = ddlFacility_StateMail.SelectedValue,
-            .PostalCode = txtMailingAddressPostalCode.Text
-        }
-
-        SaveEisFacilityMailingAddress(CurrentAirs, address, txtMailingAddressComment.Text, CurrentUser)
     End Sub
 
     Private Sub SaveFacilityGCInfo()
@@ -487,30 +389,6 @@ Partial Class EIS_Facility_EditPage
         If hidGeographicComment.Value <> txtGeographicComment.Text Then
             UpdateEisGeographicComment(CurrentAirs, txtGeographicComment.Text, CurrentUser)
         End If
-    End Sub
-
-    Private Sub SaveFacilityContact()
-        eis_FacilityData.SaveFacilityContact(txtPrefix.Text, txtFirstName.Text, txtLastName.Text,
-            txtIndividualTitleText.Text, txtElectronicAddressText.Text, txtMailingAddressText_Contact.Text,
-            txtSupplementalAddressText_Contact.Text, txtMailingAddressCityName_Contact.Text,
-            ddlContact_MailState.SelectedValue, txtMailingAddressPostalCode_Contact.Text, txtAddressComment_Contact.Text,
-            CurrentUser.DbUpdateUser, CurrentAirs.ShortString)
-    End Sub
-
-    Private Sub SaveContactPhoneNumber()
-        SaveEisContactPhoneNumbers(CurrentAirs, txtTelephoneNumberText.Text, txtTelephoneNumber_Mobile.Text,
-            txtTelephoneNumber_Fax.Text, CurrentUser)
-    End Sub
-
-    Private Sub SaveAPBContactInformation()
-        Dim contactComment As String = "Contact info updated from the GECO EIS Application on " &
-            Now.Date.ToString & ". Comments from GECO: " & txtAddressComment_Contact.Text
-
-        DAL.Facility.SaveApbContactInformation(CurrentAirs, "41", txtPrefix.Text, txtFirstName.Text, txtLastName.Text,
-            txtIndividualTitleText.Text, txtElectronicAddressText.Text, txtMailingAddressText_Contact.Text,
-            txtSupplementalAddressText_Contact.Text, txtMailingAddressCityName_Contact.Text,
-            ddlContact_MailState.SelectedValue, txtMailingAddressPostalCode_Contact.Text, txtTelephoneNumberText.Text,
-            txtTelephoneNumber_Mobile.Text, txtTelephoneNumber_Fax.Text, contactComment, Nothing, GecoUserID)
     End Sub
 
     ' NAICS search tool
