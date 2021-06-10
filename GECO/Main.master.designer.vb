@@ -12,40 +12,40 @@ Option Explicit On
 
 
 Partial Public Class MainLayout
-    
+
     '''<summary>
     '''MainForm control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
-    '''To modify, move the field declaration from the designer file to a code-behind file.
+    '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents MainForm As Global.System.Web.UI.HtmlControls.HtmlForm
-    
+
     '''<summary>
     '''ScriptManager1 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
-    '''To modify, move the field declaration from the designer file to a code-behind file.
+    '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ScriptManager1 As Global.System.Web.UI.ScriptManager
-    
+
     '''<summary>
     '''lblFacility control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
-    '''To modify, move the field declaration from the designer file to a code-behind file.
+    '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblFacility As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''Content control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
-    '''To modify, move the field declaration from the designer file to a code-behind file.
+    '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents Content As Global.System.Web.UI.WebControls.ContentPlaceHolder
 End Class

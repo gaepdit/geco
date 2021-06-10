@@ -20,7 +20,7 @@
                 <p>You have access to work on the following facilities:</p>
             </asp:Label>
 
-            <asp:GridView ID="grdAccess" runat="server" AutoGenerateColumns="False" CssClass="table-simple table-bordered table-menu"
+            <asp:GridView ID="grdAccess" runat="server" AutoGenerateColumns="False" CssClass="table-simple table-bordered table-menu table-checkbox-menu"
                 BackColor="White" BorderStyle="None" CellPadding="3" Visible="False">
                 <Columns>
                     <asp:TemplateField HeaderText="Facility Name" ItemStyle-CssClass="table-cell-link">
