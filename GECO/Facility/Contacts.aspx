@@ -13,9 +13,9 @@
     </p>
 
     <p>
-        <asp:HyperLink runat="server" NavigateUrl="~/Facility/Default.aspx" CssClass="button no-visited">Looks good</asp:HyperLink>
+        <asp:Button ID="btnLooksGood" runat="server" Text="Looks good" />
         &nbsp;
-        <asp:HyperLink runat="server" NavigateUrl="~/Facility/EditContacts.aspx" CssClass="button no-visited">Make changes</asp:HyperLink>
+        <asp:Button ID="btnMakeChanges" runat="server" Text="Make changes" />
     </p>
     <% Else %>
     <ul class="menu-list-horizontal">
@@ -44,77 +44,64 @@
 
     <table class="table-simple table-rowsections">
         <tbody>
+            <%
+                For Each category In GECO.GecoModels.Facility.CommunicationCategory.AllCategories
+                    Dim info = CommunicationInfo(category)
+            %>
             <tr>
                 <td>
-                    <h2>Permit Fees</h2>
-                    <% If Not Reconfirm %>
+                    <h2><%= category.Name %></h2>
+                    <% If Not Reconfirm AndAlso FacilityAccess.HasCommunicationPermission(category) Then %>
                     <a href="EditContacts.aspx" class="button button-small">Edit</a>
                     <% End If %>
                 </td>
                 <td>
-                    <h3>Communication preference:</h3>
-                    <asp:Literal ID="litPermitFeeCommPref" runat="server" Text="By mail only" />
+                    <h2>Communication preference:</h2>
+                    <p><%= info.Preference.CommunicationPreference.Display %></p>
 
                     <h3>Primary Contact:</h3>
+                    <% If info.Mail Is Nothing %>
+                    <p><em>Not set.</em></p>
+                    <% Else %>
                     <p>
-                        <asp:Literal ID="litPermitFeeContact" runat="server" Text="A. Person<br/>Plant Manager<br/>123 Main St.<br/>Atlanta, GA 30303" />
+                        <%= info.Mail.Name %><br />
+                        <% If info.Mail.Title IsNot Nothing %>
+                        <%= info.Mail.Title %><br />
+                        <% End If %>
+                        <% If info.Mail.Organization IsNot Nothing %>
+                        <%= info.Mail.Organization %><br />
+                        <% End If %>
+                        <%= info.Mail.Address1%><br />
+                        <% If info.Mail.Address2 IsNot Nothing %>
+                        <%= info.Mail.Address2%><br />
+                        <% End If %>
+                        <%= info.Mail.City %>, 
+                        <%= info.Mail.State %>
+                        <%= info.Mail.PostalCode %><br />
+                        <% If info.Mail.Telephone IsNot Nothing %>
+                        <br />
+                        <%= info.Mail.Telephone %>
+                        <% End If %>
                     </p>
-
-                    <h3>Email Contacts:</h3>
-                    <p>None.</p>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <h2>Permit Applications</h2>
-                    <% If Not Reconfirm %>
-                    <a href="EditContacts.aspx" class="button button-small">Edit</a>
                     <% End If %>
-                </td>
-                <td>
-                    <h3>Communication preference:</h3>
-                    <asp:Literal ID="litPermitAppsCommPref" runat="server" Text="Both electronic and mail" />
-
-                    <h3>Primary Contact:</h3>
-                    <p>
-                        <asp:Literal ID="litPermitAppsContact" runat="server" Text="A. Person<br/>Plant Manager<br/>123 Main St.<br/>Atlanta, GA 30303" />
-                    </p>
 
                     <h3>Email Contacts:</h3>
+                    <% If info.Emails.Count = 0 %>
+                    <p><em>None added.</em></p>
+                    <% Else %>
                     <ul class="flush">
-                        <li>a.person@example.com</li>
-                        <li>b.person@example.com <i>(not verified)</i></li>
+                        <% For Each email In CommunicationInfo(category).Emails %>
+                        <li><%= email.Email %>
+                            <% If Not email.Verified Then %>
+                            <i>(not verified)</i>
+                            <% End If %>
+                        </li>
+                        <% Next %>
                     </ul>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <h2>Emissions Inventory</h2>
-                    <% If Not Reconfirm %>
-                    <a href="EditContacts.aspx" class="button button-small">Edit</a>
                     <% End If %>
                 </td>
-                <td>
-                    <h3>Communication preference:</h3>
-                    <asp:Literal ID="litEICommPref" runat="server" Text="Electronic communication only" />
-
-                    <p class="message-warning">
-                        <b>Warning:</b> No email recipients have been verified.
-                            Communication will continue to be sent by mail.
-                    </p>
-
-                    <h3>Primary Contact:</h3>
-                    <p>
-                        <asp:Literal ID="litEIContact" runat="server" Text="A. Person<br/>Plant Manager<br/>123 Main St.<br/>Atlanta, GA 30303" />
-                    </p>
-
-                    <h3>Email Contacts:</h3>
-                    <ul class="flush">
-                        <li>b.person@example.com <i>(not verified)</i></li>
-                        <li>c.person@example.com <i>(not verified)</i></li>
-                    </ul>
-                </td>
             </tr>
+            <% Next %>
         </tbody>
     </table>
 </asp:Content>

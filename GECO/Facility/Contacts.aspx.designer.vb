@@ -14,6 +14,24 @@ Option Explicit On
 Partial Public Class FacilityContacts
 
     '''<summary>
+    '''btnLooksGood control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnLooksGood As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''btnMakeChanges control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnMakeChanges As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
     '''lnkFacilityHome control.
     '''</summary>
     '''<remarks>
@@ -48,60 +66,6 @@ Partial Public Class FacilityContacts
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lnkFacilityContacts As Global.System.Web.UI.WebControls.HyperLink
-
-    '''<summary>
-    '''litPermitFeeCommPref control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents litPermitFeeCommPref As Global.System.Web.UI.WebControls.Literal
-
-    '''<summary>
-    '''litPermitFeeContact control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents litPermitFeeContact As Global.System.Web.UI.WebControls.Literal
-
-    '''<summary>
-    '''litPermitAppsCommPref control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents litPermitAppsCommPref As Global.System.Web.UI.WebControls.Literal
-
-    '''<summary>
-    '''litPermitAppsContact control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents litPermitAppsContact As Global.System.Web.UI.WebControls.Literal
-
-    '''<summary>
-    '''litEICommPref control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents litEICommPref As Global.System.Web.UI.WebControls.Literal
-
-    '''<summary>
-    '''litEIContact control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents litEIContact As Global.System.Web.UI.WebControls.Literal
 
     '''<summary>
     '''Master property.

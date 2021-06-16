@@ -541,7 +541,7 @@
     <Compile Include="_DAL\EIS\CaerContacts.vb" />
     <Compile Include="_DAL\EIS\Facility.vb" />
     <Compile Include="_DAL\EIS\Process.vb" />
-    <Compile Include="_DAL\Facility\FacilityContacts.vb" />
+    <Compile Include="_DAL\Facility\FacilityCommunication.vb" />
     <Compile Include="_DAL\Testing\Testing.vb" />
     <Compile Include="_Models\AnnualFees\AnnualFeeCalc.vb" />
     <Compile Include="_Code\ControlMethods.vb" />
@@ -580,6 +580,12 @@
     <Compile Include="_DAL\Organization\Organization.vb" />
     <Compile Include="_Models\EIS\CaerContact.vb" />
     <Compile Include="_Models\EIS\EisProcess.vb" />
+    <Compile Include="_Models\Facility\CommunicationCategory.vb" />
+    <Compile Include="_Models\Facility\CommunicationPreference.vb" />
+    <Compile Include="_Models\Facility\FacilityCommunicationInfo.vb" />
+    <Compile Include="_Models\Facility\FacilityCommunicationPreference.vb" />
+    <Compile Include="_Models\Facility\FacilityEmailContact.vb" />
+    <Compile Include="_Models\Facility\FacilityMailContact.vb" />
     <Compile Include="_Models\Finance\DepositApplied.vb" />
     <Compile Include="_DAL\Finance\Invoices.vb" />
     <Compile Include="_DAL\Finance\ApplicationFees.vb" />

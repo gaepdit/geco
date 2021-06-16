@@ -28,15 +28,14 @@
             Dim dr As DataRow = FacilityAccessTable.Rows.Find(airsNumber)
 
             If dr Is Nothing Then
-                Return New FacilityAccess(airsNumber, False)
+                Return New FacilityAccess(airsNumber)
             End If
 
-            Return New FacilityAccess(airsNumber) With {
-                .AdminAccess = CBool(dr.Item("AdminAccess")),
-                .FeeAccess = CBool(dr.Item("FeeAccess")),
-                .EisAccess = CBool(dr.Item("EIAccess")),
-                .ESAccess = CBool(dr.Item("ESAccess"))
-            }
+            Return New FacilityAccess(airsNumber,
+                                      CBool(dr.Item("AdminAccess")),
+                                      CBool(dr.Item("FeeAccess")),
+                                      CBool(dr.Item("EIAccess")),
+                                      CBool(dr.Item("ESAccess")))
         End Function
 
     End Class

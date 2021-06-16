@@ -35,7 +35,7 @@ Public Class Permit_Application
         If PermitApplication.FacilityID IsNot Nothing AndAlso CurrentUser IsNot Nothing Then
             FacilityAccess = CurrentUser.GetFacilityAccess(PermitApplication.FacilityID)
         Else
-            FacilityAccess = New FacilityAccess(PermitApplication.FacilityID, False)
+            FacilityAccess = New FacilityAccess(PermitApplication.FacilityID)
         End If
 
         If Not IsPostBack Then
