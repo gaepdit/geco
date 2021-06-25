@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -140,28 +140,9 @@
     <Content Include="assets\epd-favicons\favicon-32x32.png" />
     <Content Include="assets\epd-favicons\mstile-150x150.png" />
     <Content Include="assets\epd-favicons\safari-pinned-tab.svg" />
-    <Content Include="assets\images\airbranch_header_bg.jpg" />
-    <Content Include="assets\images\arrow_127.gif" />
-    <Content Include="assets\images\arrow_88.gif" />
-    <Content Include="assets\images\b-069.gif" />
-    <Content Include="assets\images\bg-menu-main.png" />
-    <Content Include="assets\images\collapse.jpg" />
-    <Content Include="assets\images\EIS\egfr_calc.jpg" />
-    <Content Include="assets\images\EIS\equivarea.jpg" />
-    <Content Include="assets\images\EIS\equivareaexample.jpg" />
-    <Content Include="assets\images\EIS\fugitive-angle-diagram.png" />
-    <Content Include="assets\images\expand.jpg" />
-    <Content Include="assets\images\export.gif" />
-    <Content Include="assets\images\first.gif" />
-    <Content Include="assets\images\gotopage.gif" />
     <Content Include="assets\images\indicator_smallwaitanim.gif" />
-    <Content Include="assets\images\last.gif" />
     <Content Include="assets\images\loading.gif" />
-    <Content Include="assets\images\next.gif" />
-    <Content Include="assets\images\prev.gif" />
-    <Content Include="assets\images\print.gif" />
     <Content Include="assets\images\progressbar_green.gif" />
-    <Content Include="assets\images\search.gif" />
     <Content Include="assets\images\sort_asc.gif" />
     <Content Include="assets\images\sort_desc.gif" />
     <Content Include="assets\images\sort_none.gif" />
