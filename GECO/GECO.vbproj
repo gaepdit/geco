@@ -584,8 +584,8 @@
     <Compile Include="_Models\Facility\CommunicationPreference.vb" />
     <Compile Include="_Models\Facility\FacilityCommunicationInfo.vb" />
     <Compile Include="_Models\Facility\FacilityCommunicationPreference.vb" />
-    <Compile Include="_Models\Facility\FacilityEmailContact.vb" />
-    <Compile Include="_Models\Facility\FacilityMailContact.vb" />
+    <Compile Include="_Models\Facility\EmailContact.vb" />
+    <Compile Include="_Models\Facility\MailContact.vb" />
     <Compile Include="_Models\Finance\DepositApplied.vb" />
     <Compile Include="_DAL\Finance\Invoices.vb" />
     <Compile Include="_DAL\Finance\ApplicationFees.vb" />

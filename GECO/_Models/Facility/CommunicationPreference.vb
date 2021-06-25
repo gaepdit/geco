@@ -1,5 +1,5 @@
 ﻿Namespace GecoModels.Facility
-    Public Class CommunicationPreference
+    Public Structure CommunicationPreference
 
         ' "Values"
         Public Shared Property Mail As New CommunicationPreference("Mail", "By mail only.")
@@ -8,11 +8,11 @@
 
         ' Implementation
         Public ReadOnly Name As String
-        Public ReadOnly Display As String
+        Public ReadOnly Description As String
 
-        Private Sub New(category As String, display As String)
+        Private Sub New(category As String, description As String)
             Name = category
-            Me.Display = display
+            Me.Description = description
         End Sub
 
         Public Shared Property FromName As New Dictionary(Of String, CommunicationPreference) From
@@ -22,5 +22,15 @@
             {Both.Name, Both}
         }
 
-    End Class
+        Public Shared Function IsValidPreference(preference As String) As Boolean
+            Return Not String.IsNullOrEmpty(preference) AndAlso FromName.ContainsKey(preference)
+        End Function
+
+        Public ReadOnly Property IncludesElectronic As Boolean
+            Get
+                Return Not Name.Equals(Mail.Name)
+            End Get
+        End Property
+
+    End Structure
 End Namespace

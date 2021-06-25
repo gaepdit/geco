@@ -1,4 +1,6 @@
-﻿Imports GECO.GecoModels
+Imports GECO.DAL.Facility
+Imports GECO.GecoModels
+Imports GECO.GecoModels.Facility
 
 Public Class EditContacts
     Inherits Page
@@ -7,10 +9,10 @@ Public Class EditContacts
     Private Property facilityAccess As FacilityAccess
     Private Property currentAirs As ApbFacilityId
 
-    Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
-        ' TODO: REMOVE
-        Return
+    Public Property CurrentCategory As CommunicationCategory
+    Public Property CurrentCommunicationInfo As FacilityCommunicationInfo
 
+    Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
         If IsPostBack Then
             currentAirs = New ApbFacilityId(GetCookie(Cookie.AirsNumber))
         Else
@@ -45,8 +47,202 @@ Public Class EditContacts
         End If
 
         If Not IsPostBack Then
-            Title = "GECO Facility Contacts - " & GetFacilityNameAndCity(currentAirs)
+            Title = "GECO Edit Facility Contacts - " & GetFacilityNameAndCity(currentAirs)
         End If
+
+        Dim category As String = Nothing
+
+        If IsPostBack Then
+            category = GetCookie(Cookie.CommunicationCategory)
+        ElseIf Request.QueryString("category") IsNot Nothing Then
+            category = Request.QueryString("category")
+        End If
+
+        If Not CommunicationCategory.IsValidCategory(category) Then
+            HttpContext.Current.Response.Redirect("~/Facility/")
+        End If
+
+        CurrentCategory = CommunicationCategory.FromName(category)
+        SetCookie(Cookie.CommunicationCategory, category)
+
+        If Not IsPostBack Then
+            LoadCurrentData()
+        End If
+    End Sub
+
+    Private Sub LoadCurrentData()
+        CurrentCommunicationInfo = GetFacilityCommunicationInfo(currentAirs, CurrentCategory)
+
+        rbCommPref.SelectedValue = CurrentCommunicationInfo.Preference.CommunicationPreference.Name
+        pnlElectronicCommunication.Visible = CurrentCategory.ElectronicCommunicationAllowed AndAlso
+                CurrentCommunicationInfo.Preference.CommunicationPreference.IncludesElectronic
+
+        DisplayEmailLists()
+        DisplayMailContact()
+    End Sub
+
+    Private Sub DisplayMailContact()
+        If CurrentCommunicationInfo.Mail IsNot Nothing Then
+            With CurrentCommunicationInfo.Mail
+                txtAddress.Text = .Address1
+                txtAddress2.Text = .Address2
+                txtCity.Text = .City
+                txtName.Text = .Name
+                txtOrganization.Text = .Organization
+                txtPostalCode.Text = .PostalCode
+                txtState.Text = .State
+                txtTelephone.Text = .Telephone
+                txtTitle.Text = .Title
+            End With
+        End If
+    End Sub
+
+    Private Sub DisplayEmailLists()
+        If CurrentCategory.ElectronicCommunicationAllowed Then
+            rptVerifiedEmails.DataSource = CurrentCommunicationInfo.VerifiedEmails
+            rptVerifiedEmails.DataBind()
+
+            rptUnverifiedEmails.DataSource = CurrentCommunicationInfo.UnverifiedEmails
+            rptUnverifiedEmails.DataBind()
+        End If
+    End Sub
+
+    Protected Sub SavePreference(sender As Object, e As EventArgs) Handles btnSavePref.Click
+        ClearWarnings()
+
+        If Not CommunicationPreference.IsValidPreference(rbCommPref.SelectedValue) Then
+            Throw New ArgumentException($"Invalid preference selected: {rbCommPref.SelectedValue}")
+        End If
+
+        Dim preference As CommunicationPreference = CommunicationPreference.FromName(rbCommPref.SelectedValue)
+
+        If Not SaveCommunicationPreference(currentAirs, CurrentCategory, preference, currentUser.UserId) Then
+            pPrefSaveError.Visible = True
+        Else
+            pPrefSaveSuccess.Visible = True
+        End If
+
+        LoadCurrentData()
+    End Sub
+
+    Protected Sub SaveContact(sender As Object, e As EventArgs) Handles btnSaveContact.Click
+        ClearWarnings()
+
+        Dim contact As New MailContact With {
+            .Address1 = txtAddress.Text,
+            .Address2 = txtAddress2.Text,
+            .City = txtCity.Text,
+            .Name = txtName.Text,
+            .Organization = txtOrganization.Text,
+            .PostalCode = txtPostalCode.Text,
+            .State = txtState.Text,
+            .Telephone = txtTelephone.Text,
+            .Title = txtTitle.Text
+        }
+
+        If SaveMailContact(currentAirs, CurrentCategory, contact, currentUser.UserId) Then
+            pMailSaveSuccess.Visible = True
+        Else
+            pMailSaveError.Visible = True
+        End If
+
+        LoadCurrentData()
+    End Sub
+
+    Protected Sub RemoveEmail(sender As Object, e As EventArgs)
+        ClearWarnings()
+
+        Dim button As Button = CType(sender, Button)
+        Dim email As String = button.CommandArgument
+
+        If RemoveEmailContact(currentAirs, CurrentCategory, email, currentUser.UserId) Then
+            If button.ID = "btnRemoveUnverifiedEmail" Then
+                pUnverifiedEmailRemovedSuccess.Visible = True
+            Else
+                pVerifiedEmailRemovedSuccess.Visible = True
+            End If
+        Else
+            If button.ID = "btnRemoveUnverifiedEmail" Then
+                pUnverifiedEmailListError.Visible = True
+            Else
+                pVerifiedEmailListError.Visible = True
+            End If
+        End If
+
+        LoadCurrentData()
+    End Sub
+
+    Protected Sub ResendVerificationEmail(sender As Object, e As EventArgs)
+        ClearWarnings()
+
+        Dim button As Button = CType(sender, Button)
+        Dim email As String = button.CommandArgument
+
+        Dim result As ResendEmailVerificationResult = ResendEmailVerification(currentAirs, CurrentCategory, email, currentUser.UserId)
+
+        Select Case result
+            Case ResendEmailVerificationResult.DbError
+                If button.ID = "btnRemoveUnverifiedEmail" Then
+                    pUnverifiedEmailListError.Visible = True
+                Else
+                    pVerifiedEmailListError.Visible = True
+                End If
+
+            Case ResendEmailVerificationResult.EmailDoesNotExist
+                pEmailAlreadyRemoved.Visible = True
+
+            Case ResendEmailVerificationResult.Success
+                pEmailVerificationSuccess.Visible = True
+                pEmailVerificationSuccess.InnerText = $"A confirmation email has been sent to {email}."
+
+        End Select
+
+        LoadCurrentData()
+    End Sub
+
+    Protected Sub AddNewEmail(sender As Object, e As EventArgs) Handles btnAddNewEmail.Click
+        ClearWarnings()
+
+        If Not IsValidEmailAddress(txtNewEmail.Text) Then
+            pAddEmailInvalid.Visible = True
+        Else
+            Dim result As AddEmailContactResult = AddEmailContact(currentAirs, CurrentCategory, txtNewEmail.Text, currentUser.UserId)
+
+            Select Case result
+                Case AddEmailContactResult.DbError
+                    pAddEmailError.Visible = True
+
+                Case AddEmailContactResult.EmailExists
+                    pAddEmailExists.Visible = True
+
+                Case AddEmailContactResult.Success
+                    pAddEmailSuccess.Visible = True
+                    txtNewEmail.Text = ""
+
+            End Select
+        End If
+
+        LoadCurrentData()
+    End Sub
+
+    Private Sub ClearWarnings()
+        pAddEmailInvalid.Visible = False
+        pAddEmailError.Visible = False
+        pAddEmailExists.Visible = False
+        pAddEmailSuccess.Visible = False
+
+        pPrefSaveError.Visible = False
+        pPrefSaveSuccess.Visible = False
+
+        pMailSaveError.Visible = False
+        pMailSaveSuccess.Visible = False
+
+        pVerifiedEmailRemovedSuccess.Visible = False
+        pUnverifiedEmailRemovedSuccess.Visible = False
+        pVerifiedEmailListError.Visible = False
+        pUnverifiedEmailListError.Visible = False
+        pEmailVerificationSuccess.Visible = False
+        pEmailAlreadyRemoved.Visible = False
     End Sub
 
 End Class

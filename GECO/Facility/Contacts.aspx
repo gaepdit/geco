@@ -1,6 +1,6 @@
 ﻿<%@ Page Language="VB" MasterPageFile="~/Main.master" AutoEventWireup="false"
     Inherits="GECO.FacilityContacts" Title="GECO Facility Contacts" CodeBehind="Contacts.aspx.vb" %>
-
+<%@ Import Namespace="GECO.GecoModels.Facility" %>
 <%@ MasterType VirtualPath="~/Main.master" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="Server">
 
@@ -8,7 +8,7 @@
     <h1>Confirm Communication Preferences</h1>
 
     <p>
-        Current communication preferences for this facility are shown below.
+        Current communication preferences and contacts for this facility are shown below.
         Please review and confirm their accuracy.
     </p>
 
@@ -37,7 +37,7 @@
     <h1>Communication Preferences</h1>
 
     <p>
-        Current communication preferences for this facility are shown below.
+        Current communication preferences and contacts for this facility are shown below.
         Preferences can be set separately for each type of communication by selecting the "Edit" button for each type.
     </p>
     <% End If %>
@@ -45,22 +45,24 @@
     <table class="table-simple table-rowsections">
         <tbody>
             <%
-                For Each category In GECO.GecoModels.Facility.CommunicationCategory.AllCategories
+                For Each category In CommunicationCategory.AllCategories
                     Dim info = CommunicationInfo(category)
             %>
             <tr>
                 <td>
-                    <h2><%= category.Name %></h2>
+                    <h2><%= category.Description %></h2>
                     <% If Not Reconfirm AndAlso FacilityAccess.HasCommunicationPermission(category) Then %>
-                    <a href="EditContacts.aspx" class="button button-small">Edit</a>
+                    <a href="EditContacts.aspx?category=<%= category.Name %>" class="button button-small">Edit</a>
                     <% End If %>
                 </td>
                 <td>
-                    <h2>Communication preference:</h2>
-                    <p><%= info.Preference.CommunicationPreference.Display %></p>
+                    <% If category.ElectronicCommunicationAllowed Then %>
+                    <h3>Communication preference:</h3>
+                    <p><%= info.Preference.CommunicationPreference.Description %></p>
+                    <% End If %>
 
                     <h3>Primary Contact:</h3>
-                    <% If info.Mail Is Nothing %>
+                    <% If info.Mail Is Nothing Then %>
                     <p><em>Not set.</em></p>
                     <% Else %>
                     <p>
@@ -85,8 +87,9 @@
                     </p>
                     <% End If %>
 
+                    <% If category.ElectronicCommunicationAllowed AndAlso info.Preference.CommunicationPreference.IncludesElectronic Then %>
                     <h3>Email Contacts:</h3>
-                    <% If info.Emails.Count = 0 %>
+                    <% If info.Emails.Count = 0 Then %>
                     <p><em>None added.</em></p>
                     <% Else %>
                     <ul class="flush">
@@ -98,6 +101,7 @@
                         </li>
                         <% Next %>
                     </ul>
+                    <% End If %>
                     <% End If %>
                 </td>
             </tr>

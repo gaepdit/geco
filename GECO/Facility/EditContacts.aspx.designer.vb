@@ -50,6 +50,15 @@ Partial Public Class EditContacts
     Protected WithEvents lnkFacilityContacts As Global.System.Web.UI.WebControls.HyperLink
 
     '''<summary>
+    '''UpdatePanel1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents UpdatePanel1 As Global.System.Web.UI.UpdatePanel
+
+    '''<summary>
     '''rbCommPref control.
     '''</summary>
     '''<remarks>
@@ -57,6 +66,33 @@ Partial Public Class EditContacts
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rbCommPref As Global.System.Web.UI.WebControls.RadioButtonList
+
+    '''<summary>
+    '''pEmailPrefWarning control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents pEmailPrefWarning As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
+    '''pPrefSaveError control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents pPrefSaveError As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
+    '''pPrefSaveSuccess control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents pPrefSaveSuccess As Global.System.Web.UI.HtmlControls.HtmlGenericControl
 
     '''<summary>
     '''btnSavePref control.
@@ -68,13 +104,22 @@ Partial Public Class EditContacts
     Protected WithEvents btnSavePref As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
-    '''txtFName control.
+    '''pnlEditContact control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtFName As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents pnlEditContact As Global.System.Web.UI.WebControls.Panel
+
+    '''<summary>
+    '''txtName control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtName As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''RequiredFieldValidator3 control.
@@ -86,24 +131,6 @@ Partial Public Class EditContacts
     Protected WithEvents RequiredFieldValidator3 As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
-    '''txtLName control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtLName As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''RequiredFieldValidator2 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents RequiredFieldValidator2 As Global.System.Web.UI.WebControls.RequiredFieldValidator
-
-    '''<summary>
     '''txtTitle control.
     '''</summary>
     '''<remarks>
@@ -113,13 +140,13 @@ Partial Public Class EditContacts
     Protected WithEvents txtTitle As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''txtCoName control.
+    '''txtOrganization control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtCoName As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents txtOrganization As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''txtAddress control.
@@ -138,6 +165,15 @@ Partial Public Class EditContacts
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RequiredFieldValidator9 As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
+    '''txtAddress2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtAddress2 As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''txtCity control.
@@ -176,13 +212,13 @@ Partial Public Class EditContacts
     Protected WithEvents RequiredFieldValidator12 As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
-    '''txtZip control.
+    '''txtPostalCode control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtZip As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents txtPostalCode As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''RequiredFieldValidator10 control.
@@ -194,22 +230,13 @@ Partial Public Class EditContacts
     Protected WithEvents RequiredFieldValidator10 As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
-    '''FilteredTextBoxExtender1 control.
+    '''txtTelephone control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents FilteredTextBoxExtender1 As Global.AjaxControlToolkit.FilteredTextBoxExtender
-
-    '''<summary>
-    '''txtPhone control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtPhone As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents txtTelephone As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''RequiredFieldValidator5 control.
@@ -221,6 +248,24 @@ Partial Public Class EditContacts
     Protected WithEvents RequiredFieldValidator5 As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
+    '''pMailSaveError control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents pMailSaveError As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
+    '''pMailSaveSuccess control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents pMailSaveSuccess As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
     '''btnSaveContact control.
     '''</summary>
     '''<remarks>
@@ -228,6 +273,132 @@ Partial Public Class EditContacts
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnSaveContact As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''pnlElectronicCommunication control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents pnlElectronicCommunication As Global.System.Web.UI.WebControls.Panel
+
+    '''<summary>
+    '''pVerifiedEmailRemovedSuccess control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents pVerifiedEmailRemovedSuccess As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
+    '''pVerifiedEmailListError control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents pVerifiedEmailListError As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
+    '''rptVerifiedEmails control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rptVerifiedEmails As Global.System.Web.UI.WebControls.Repeater
+
+    '''<summary>
+    '''pUnverifiedEmailRemovedSuccess control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents pUnverifiedEmailRemovedSuccess As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
+    '''pUnverifiedEmailListError control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents pUnverifiedEmailListError As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
+    '''pEmailVerificationSuccess control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents pEmailVerificationSuccess As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
+    '''pEmailAlreadyRemoved control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents pEmailAlreadyRemoved As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
+    '''rptUnverifiedEmails control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rptUnverifiedEmails As Global.System.Web.UI.WebControls.Repeater
+
+    '''<summary>
+    '''pnlAddEmail control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents pnlAddEmail As Global.System.Web.UI.WebControls.Panel
+
+    '''<summary>
+    '''pAddEmailError control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents pAddEmailError As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
+    '''pAddEmailInvalid control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents pAddEmailInvalid As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
+    '''pAddEmailExists control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents pAddEmailExists As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
+    '''pAddEmailSuccess control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents pAddEmailSuccess As Global.System.Web.UI.HtmlControls.HtmlGenericControl
 
     '''<summary>
     '''txtNewEmail control.
@@ -246,6 +417,15 @@ Partial Public Class EditContacts
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnAddNewEmail As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''rfvEmail control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rfvEmail As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
     '''Master property.

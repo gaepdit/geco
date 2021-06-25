@@ -1,5 +1,5 @@
 ﻿Namespace GecoModels.Facility
-    Public Class FacilityMailContact
+    Public Class MailContact
 
         Public Property Id As Guid = Nothing
         Public Property Name As String = Nothing

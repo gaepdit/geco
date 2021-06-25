@@ -44,7 +44,7 @@ Public Module EmailSender
             mailSubject = "Message from " & GecoContactName
         End If
 
-        Dim msg As MailMessage = New MailMessage With {
+        Dim msg As New MailMessage With {
             .From = New MailAddress(GecoEmailSender, GecoContactName),
             .Subject = mailSubject,
             .SubjectEncoding = Encoding.UTF8,

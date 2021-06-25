@@ -1,21 +1,25 @@
 ﻿Namespace GecoModels.Facility
-    Public Class CommunicationCategory
+    Public Structure CommunicationCategory
 
         ' Instances
-        Public Shared Property Fees As New CommunicationCategory("Fees")
-        Public Shared Property PermitApplications As New CommunicationCategory("Permit Applications")
-        Public Shared Property EmissionsInventory As New CommunicationCategory("Emissions Inventory")
-        Public Shared Property EmissionsStatement As New CommunicationCategory("Emissions Statement")
-        Public Shared Property TestingMonitoring As New CommunicationCategory("Testing and Monitoring")
+        Public Shared Property Fees As New CommunicationCategory("Fees", "Permit Fees", True)
+        Public Shared Property PermitApplications As New CommunicationCategory("Permits", "Permit Applications", False)
+        Public Shared Property EmissionsInventory As New CommunicationCategory("EI", "Emissions Inventory", False)
+        Public Shared Property EmissionsStatement As New CommunicationCategory("ES", "Emissions Statement", False)
+        Public Shared Property TestingMonitoring As New CommunicationCategory("Testing", "Testing and Monitoring", False)
 
         ' Implementation
         Public ReadOnly Name As String
+        Public ReadOnly Description As String
+        Public ReadOnly ElectronicCommunicationAllowed As Boolean
 
-        Private Sub New(category As String)
+        Private Sub New(category As String, description As String, electronicAllowed As Boolean)
             Name = category
+            Me.Description = description
+            ElectronicCommunicationAllowed = electronicAllowed
         End Sub
 
-        Public Shared Property FromName As New Dictionary(Of String, CommunicationCategory) From
+        Public Shared ReadOnly Property FromName As New Dictionary(Of String, CommunicationCategory) From
         {
             {Fees.Name, Fees},
             {PermitApplications.Name, PermitApplications},
@@ -24,8 +28,12 @@
             {TestingMonitoring.Name, TestingMonitoring}
         }
 
-        Public Shared AllCategories As New List(Of CommunicationCategory) From
+        Public Shared ReadOnly AllCategories As New List(Of CommunicationCategory) From
             {Fees, PermitApplications, EmissionsInventory, EmissionsStatement, TestingMonitoring}
 
-    End Class
+        Public Shared Function IsValidCategory(category As String) As Boolean
+            Return Not String.IsNullOrEmpty(category) AndAlso FromName.ContainsKey(category)
+        End Function
+
+    End Structure
 End Namespace

@@ -8,6 +8,7 @@ Public Module CookieHelper
 
     Public Enum Cookie
         AirsNumber
+        CommunicationCategory
     End Enum
 
     Public Enum EisCookie
