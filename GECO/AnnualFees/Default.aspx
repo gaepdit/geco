@@ -67,8 +67,9 @@
                             </p>
                             <p>
                                 If you would like to make changes to any previously submitted fee form, you may do 
-                        so using the 
-                        <a href="FeeAmendmentForm.xlsx" download>Fee Amendment Form</a>.
+                                so using the 
+                                <a href="FeeAmendmentForm.xlsx" download>Fee Amendment Form</a>
+                                (last updated July&nbsp;7,&nbsp;2021).
                             </p>
 
                             <div runat="server" id="feeRatesSection" visible="false">
