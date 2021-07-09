@@ -55,7 +55,7 @@
                             </asp:RadioButtonList>
 
                             <% If CurrentCommunicationInfo.Preference.CommunicationPreference.IncludesElectronic AndAlso Not CurrentCommunicationInfo.AnyVerifiedEmails Then %>
-                            <p id="pEmailPrefWarning" runat="server" visible="false" class="message-highlight">
+                            <p id="pEmailPrefWarning" runat="server" class="message-highlight">
                                 Communication will continue to be sent by mail until an email recipient has been verified.
                             </p>
                             <% End If %>
