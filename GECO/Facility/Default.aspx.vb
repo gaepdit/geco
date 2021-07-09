@@ -1,6 +1,8 @@
 ﻿Imports EpdIt.DBUtilities
 Imports GECO.DAL
+Imports GECO.DAL.Facility
 Imports GECO.GecoModels
+Imports GECO.GecoModels.Facility
 
 Partial Class FacilityHome
     Inherits Page
@@ -44,15 +46,24 @@ Partial Class FacilityHome
         End If
 
         If Not IsPostBack Then
-            CheckForMandatoryUpdate()
+            CheckForMandatoryFeesCommunicationUpdate()
 
             Title = "GECO Facility Summary - " & GetFacilityNameAndCity(currentAirs)
             GetApplicationStatus()
         End If
     End Sub
 
-    Private Sub CheckForMandatoryUpdate()
-        Return
+    Private Sub CheckForMandatoryFeesCommunicationUpdate()
+        If Not facilityAccess.HasCommunicationPermission(CommunicationCategory.Fees) Then
+            Return
+        End If
+
+        Select Case CommunicationUpdateRequired(currentAirs, CommunicationCategory.Fees)
+            Case CommunicationUpdateRequiredResult.InitialFeeSettingRequired
+                HttpContext.Current.Response.Redirect("~/Facility/SetCommunicationPreferences.aspx")
+            Case CommunicationUpdateRequiredResult.RoutineConfirmationRequired
+                HttpContext.Current.Response.Redirect("~/Facility/Contacts.aspx?reconfirm")
+        End Select
     End Sub
 
     Protected Sub GetApplicationStatus()

@@ -41,6 +41,7 @@ Namespace DAL.Facility
 
                 With info.Preference
                     .Id = CType(dr1("Id"), Guid)
+                    .IsConfirmed = True
                     .CommunicationPreference = CommunicationPreference.FromName(CStr(dr1("CommunicationPreference")))
                     .InitialConfirmationDate = GetNullable(Of DateTimeOffset)(dr1("InitialConfirmationDate"))
                     .LatestConfirmationDate = GetNullable(Of DateTimeOffset)(dr1("LatestConfirmationDate"))
@@ -74,6 +75,32 @@ Namespace DAL.Facility
             Next
 
             Return info
+        End Function
+
+        Public Function GetFacilityCommunicationPreference(facilityId As ApbFacilityId,
+                                                           category As CommunicationCategory
+                                                           ) As FacilityCommunicationPreference
+
+            Dim pref As New FacilityCommunicationPreference()
+
+            Dim params As SqlParameter() = {
+                New SqlParameter("@facilityId", facilityId.DbFormattedString),
+                New SqlParameter("@category", category.Name)
+            }
+
+            Dim dr As DataRow = DB.SPGetDataRow("geco.GetFacilityCommunicationPreference", params)
+
+            If dr IsNot Nothing Then
+                With pref
+                    .Id = CType(dr("Id"), Guid)
+                    .IsConfirmed = True
+                    .CommunicationPreference = CommunicationPreference.FromName(CStr(dr("CommunicationPreference")))
+                    .InitialConfirmationDate = GetNullable(Of DateTimeOffset)(dr("InitialConfirmationDate"))
+                    .LatestConfirmationDate = GetNullable(Of DateTimeOffset)(dr("LatestConfirmationDate"))
+                End With
+            End If
+
+            Return pref
         End Function
 
         Public Function SaveCommunicationPreference(facilityId As ApbFacilityId,
@@ -189,6 +216,40 @@ Namespace DAL.Facility
             Success
             EmailDoesNotExist
         End Enum
+
+        Public Function CommunicationUpdateRequired(facilityId As ApbFacilityId, category As CommunicationCategory) As CommunicationUpdateRequiredResult
+            Dim pref As FacilityCommunicationPreference = GetFacilityCommunicationPreference(facilityId, category)
+
+            If Not pref.IsConfirmed Then
+                Return CommunicationUpdateRequiredResult.InitialFeeSettingRequired
+            End If
+
+            Dim param As New SqlParameter("@facilityId", facilityId.DbFormattedString)
+            Dim confirmationDate As DateTimeOffset = DB.SPGetSingleValue(Of DateTimeOffset)("geco.GetFacilityConfirmationDate", param)
+
+            If (DateTimeOffset.Now - confirmationDate).Days > 275 Then
+                Return CommunicationUpdateRequiredResult.RoutineConfirmationRequired
+            End If
+
+            Return CommunicationUpdateRequiredResult.NotRequired
+        End Function
+
+        Public Enum CommunicationUpdateRequiredResult
+            InitialFeeSettingRequired
+            RoutineConfirmationRequired
+            NotRequired
+        End Enum
+
+        Public Function ConfirmCommunicationSettings(facilityId As ApbFacilityId, userId As Integer) As Boolean
+            Dim params As SqlParameter() = {
+                New SqlParameter("@facilityId", facilityId.DbFormattedString),
+                New SqlParameter("@userId", userId)
+            }
+
+            Dim result As Integer = DB.SPReturnValue("geco.ConfirmCommunicationPreference", params)
+
+            Return result = 0
+        End Function
 
     End Module
 End Namespace

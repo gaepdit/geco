@@ -12,19 +12,34 @@
             preference for receiving communications below:
         </p>
 
-        <asp:RadioButtonList ID="rbCommPref" runat="server">
-            <asp:ListItem Value="electronic">Prefer to receive electronic communications <strong>only.</strong></asp:ListItem>
-            <asp:ListItem Value="mail">Continue to receive mailed communications <strong>only.</strong></asp:ListItem>
-            <asp:ListItem Value="both">Prefer to receive <strong>both</strong> electronic and mailed communications.</asp:ListItem>
-        </asp:RadioButtonList>
+        <asp:UpdatePanel ID="settings" runat="server">
+            <ContentTemplate>
 
-        <p>
-            Note: Communication will continue to be sent by mail until an email recipient has been verified.
-            Recipients can be added on the next page.
-        </p>
+                <p id="pNotSelected" runat="server" visible="false" class="message-warning">
+                    Please make a selection.
+                </p>
 
-        <p>
-            <asp:Button ID="btnSavePref" runat="server" CssClass="button-large" Text="Submit" />
-        </p>
+                <asp:RadioButtonList ID="rbCommPref" runat="server">
+                    <asp:ListItem Value="Electronic">Prefer to receive electronic communications <strong>only.</strong></asp:ListItem>
+                    <asp:ListItem Value="Mail">Continue to receive mailed communications <strong>only.</strong></asp:ListItem>
+                    <asp:ListItem Value="Both">Prefer to receive <strong>both</strong> electronic and mailed communications.</asp:ListItem>
+                </asp:RadioButtonList>
+
+                <p>
+                    Note: Communication will continue to be sent by mail until an email recipient has been verified.
+                    Recipients can be added on the next page.
+                </p>
+
+                <p id="pPrefSaveError" runat="server" visible="false" class="message-warning">
+                    There was an error while saving. Please try again.
+                </p>
+
+                <p>
+                    <asp:Button ID="btnSavePref" runat="server" CssClass="button-large" Text="Submit" />
+                    <asp:HiddenField ID="hidAirs" runat="server" />
+                </p>
+
+            </ContentTemplate>
+        </asp:UpdatePanel>
     </div>
 </asp:Content>

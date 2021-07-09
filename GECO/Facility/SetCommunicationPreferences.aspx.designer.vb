@@ -14,6 +14,24 @@ Option Explicit On
 Partial Public Class SetCommunicationPreferences
 
     '''<summary>
+    '''settings control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents settings As Global.System.Web.UI.UpdatePanel
+
+    '''<summary>
+    '''pNotSelected control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents pNotSelected As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
     '''rbCommPref control.
     '''</summary>
     '''<remarks>
@@ -23,6 +41,15 @@ Partial Public Class SetCommunicationPreferences
     Protected WithEvents rbCommPref As Global.System.Web.UI.WebControls.RadioButtonList
 
     '''<summary>
+    '''pPrefSaveError control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents pPrefSaveError As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
     '''btnSavePref control.
     '''</summary>
     '''<remarks>
@@ -30,6 +57,15 @@ Partial Public Class SetCommunicationPreferences
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnSavePref As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''hidAirs control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents hidAirs As Global.System.Web.UI.WebControls.HiddenField
 
     '''<summary>
     '''Master property.

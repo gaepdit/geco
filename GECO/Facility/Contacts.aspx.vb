@@ -28,6 +28,8 @@ Public Class FacilityContacts
             End If
 
             SetCookie(Cookie.AirsNumber, currentAirs.ShortString())
+
+            Reconfirm = Request.Url.Query.Contains("reconfirm")
         End If
 
         Master.CurrentAirs = currentAirs
@@ -43,6 +45,16 @@ Public Class FacilityContacts
 
         Title = "GECO Facility Contacts - " & GetFacilityNameAndCity(currentAirs)
         CommunicationInfo = GetFacilityCommunicationInfo(currentAirs)
+    End Sub
+
+    Private Sub btnLooksGood_Click(sender As Object, e As EventArgs) Handles btnLooksGood.Click
+        ConfirmCommunicationSettings(currentAirs, GetCurrentUser.UserId)
+        HttpContext.Current.Response.Redirect("~/Facility/")
+    End Sub
+
+    Private Sub btnMakeChanges_Click(sender As Object, e As EventArgs) Handles btnMakeChanges.Click
+        ConfirmCommunicationSettings(currentAirs, GetCurrentUser.UserId)
+        HttpContext.Current.Response.Redirect($"~/Facility/EditContacts.aspx?category={CommunicationCategory.Fees.Name}")
     End Sub
 
 End Class

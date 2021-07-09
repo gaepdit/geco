@@ -65,7 +65,7 @@ Partial Class Home
         If e.Row.RowType = DataControlRowType.DataRow Then
             Dim row As DataRowView = CType(e.Row.DataItem, DataRowView)
             Dim facilityName As String = row.Item("Facility").ToString()
-            Dim airsNumber As ApbFacilityId = New ApbFacilityId(row.Item("AirsNumber").ToString)
+            Dim airsNumber As New ApbFacilityId(row.Item("AirsNumber").ToString)
             Dim url As String = String.Format("~/Facility/?airs={0}", airsNumber.ShortString())
 
             Dim hlFacility As HyperLink = CType(e.Row.FindControl("hlFacility"), HyperLink)
