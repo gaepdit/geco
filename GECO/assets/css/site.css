@@ -226,26 +226,18 @@ ul.flush {
 
     .header p,
     .footer p {
-        margin-bottom: 0; /* prevent gaps between divs in some browsers */
+        margin-bottom: 0;
     }
 
 .clear {
     clear: both;
-    margin: 0; /* keep flush with adjacent containers */
+    margin: 0; 
     padding: 0;
     height: 0;
     overflow: hidden;
 }
 
-/* rules for WinIE only */
-@media screen, projection {
-    * html .clear {
-        display: none; /* prevent excessive gap at div bottom in WinIE5 */
-    }
-}
-/* end WinIE only rules */
-
-/* print only rules (per request) */
+/* print only rules */
 @media print {
     .nav {
         display: none;
@@ -261,55 +253,15 @@ ul.flush {
 }
 /* end print only rules */
 
-/*CollapsiblePanel*/
-.collapsePanel {
-    background-color: white;
-    overflow: hidden;
-}
-
-.collapsePanelHeader {
-    border: 1px solid #2F4F4F;
-    color: white;
-    background-color: #2E4d7B;
-    font-size: 12px;
-    font-weight: bold;
-    padding: 5px;
-    margin-top: 5px;
-    cursor: pointer;
-    background-image: url(../images/bg-menu-main.png);
-    background-repeat: repeat-x;
-}
-
-/*Modal Popup*/
-.modalBackground {
-    background-color: #ccccccb2;
-}
-
-.modalPopup {
-    background-color: #ffffdd;
-    border-width: 3px;
-    border-style: solid;
-    border-color: Gray;
-    padding: 3px;
-    width: 400px;
-    font-size: large;
-    border-style: solid;
-    border-width: 1px;
-}
-
-/*Textbox Watermark*/
+/* Textbox Watermark */
 
 .unwatermarked {
-    /*height:18px;
-	width:148px;*/
     font-weight: bold;
     font-size: 12px;
     width: 250px;
 }
 
 .watermarked {
-    /*height:20px;
-	width:150px;*/
     padding: 2px 0 0 2px;
     border: 1px solid #BEBEBE;
     background-color: #F0F8FF;
@@ -403,7 +355,7 @@ ul.flush {
 
 /* AutoComplete Extender */
 
-/*AutoComplete flyout */
+/* AutoComplete flyout */
 
 .autocomplete_completionListElement {
     visibility: hidden;
