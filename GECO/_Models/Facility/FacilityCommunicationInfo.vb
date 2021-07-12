@@ -18,15 +18,15 @@ Public Class FacilityCommunicationInfo
         End Get
     End Property
 
-    Public ReadOnly Property VerifiedEmails As List(Of EmailContact)
+    Public ReadOnly Property VerifiedEmails As List(Of String)
         Get
-            Return Emails.Where(Function(e) e.Verified).ToList()
+            Return Emails.Where(Function(e) e.Verified).Select(Function(e) e.Email).ToList()
         End Get
     End Property
 
-    Public ReadOnly Property UnverifiedEmails As List(Of EmailContact)
+    Public ReadOnly Property UnverifiedEmails As List(Of String)
         Get
-            Return Emails.Where(Function(e) Not e.Verified).ToList()
+            Return Emails.Where(Function(e) Not e.Verified).Select(Function(e) e.Email).ToList()
         End Get
     End Property
 

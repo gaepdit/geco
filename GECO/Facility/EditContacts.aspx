@@ -184,12 +184,12 @@
                                     <asp:Repeater ID="rptVerifiedEmails" runat="server">
                                         <ItemTemplate>
                                             <li>
-                                                <%# DataBinder.Eval(Container.DataItem, "Email") %>
+                                                <%# Container.DataItem %>
                                                 <details>
                                                     <summary class="button-link" role="button">Remove</summary>
                                                     <div class="anim-fade-in fast" role="dialog">
                                                         <p>Are you sure you want to remove this email address?</p>
-                                                        <asp:Button ID="btnRemoveVerifiedEmail" runat="server" Text="Remove" CommandArgument='<%# Eval("Email") %>' OnClick="RemoveEmail" UseSubmitBehavior="False" />
+                                                        <asp:Button ID="btnRemoveVerifiedEmail" runat="server" Text="Remove" CommandArgument='<%# Container.DataItem %>' OnClick="RemoveEmail" UseSubmitBehavior="False" />
                                                     </div>
                                                 </details>
                                             </li>
@@ -217,18 +217,23 @@
                                     <asp:Repeater ID="rptUnverifiedEmails" runat="server">
                                         <ItemTemplate>
                                             <li>
-                                                <%# DataBinder.Eval(Container.DataItem, "Email") %>
+                                                <%# Container.DataItem %>
                                                 <details>
                                                     <summary class="button-link" role="button">Remove</summary>
                                                     <div class="anim-fade-in fast" role="dialog">
                                                         <p>Are you sure you want to remove this email address?</p>
                                                         <asp:Button ID="btnRemoveUnverifiedEmail" runat="server"
-                                                            Text="Remove" OnClick="RemoveEmail" CommandArgument='<%# Eval("Email") %>' UseSubmitBehavior="False" />
+                                                            Text="Remove" OnClick="RemoveEmail" CommandArgument='<%# Container.DataItem %>' UseSubmitBehavior="False" />
                                                     </div>
                                                 </details>
                                                 <br />
+
+                                                <span id="a1" runat="server" visible="<%# Container.DataItem = ResentVerificationEmail %>" class="text-success"><i>Sent</i></span>
+                                                <span id="a2" runat="server" visible="<%# Container.DataItem = AddedEmail %>" class="text-success"><i>Added</i></span>
                                                 <asp:Button ID="btnResendVerification" runat="server" CssClass="button-link"
-                                                    Text="Resend verification email" OnClick="ResendVerificationEmail" CommandArgument='<%# Eval("Email") %>' UseSubmitBehavior="False" />
+                                                    Visible="<%# Container.DataItem <> AddedEmail AndAlso Container.DataItem <> ResentVerificationEmail %>"
+                                                    Text="Resend verification email" OnClick="ResendVerificationEmail"
+                                                    CommandArgument='<%# Container.DataItem %>' UseSubmitBehavior="False" />
                                             </li>
                                         </ItemTemplate>
                                     </asp:Repeater>

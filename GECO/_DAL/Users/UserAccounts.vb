@@ -100,10 +100,10 @@ Public Module UserAccounts
                 New SqlParameter("@Password", GetMd5Hash(password))
             }
 
-        Dim result As Integer
-        token = DB.SPGetString("geco.CreateUser", params, result)
+        Dim returnValue As Integer
+        token = DB.SPGetString("geco.CreateUser", params, returnValue)
 
-        Select Case result
+        Select Case returnValue
             Case 0
                 Return DbResult.Success
             Case 1

@@ -1,4 +1,5 @@
-﻿Imports GECO.GecoModels
+﻿Imports GECO.EmailTemplates
+Imports GECO.GecoModels
 
 Partial Class Account_Email
     Inherits Page

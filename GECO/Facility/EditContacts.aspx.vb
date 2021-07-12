@@ -1,4 +1,5 @@
-Imports GECO.DAL.Facility
+﻿Imports GECO.DAL.Facility
+Imports GECO.EmailTemplates
 Imports GECO.GecoModels
 Imports GECO.GecoModels.Facility
 
@@ -11,6 +12,8 @@ Public Class EditContacts
 
     Public Property CurrentCategory As CommunicationCategory
     Public Property CurrentCommunicationInfo As FacilityCommunicationInfo
+    Public Property ResentVerificationEmail As String
+    Public Property AddedEmail As String
 
     Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
         If IsPostBack Then
@@ -155,7 +158,7 @@ Public Class EditContacts
         Dim button As Button = CType(sender, Button)
         Dim email As String = button.CommandArgument
 
-        If RemoveEmailContact(currentAirs, CurrentCategory, email, currentUser.UserId) Then
+        If RemoveEmailContact(currentAirs, CurrentCategory, email) Then
             If button.ID = "btnRemoveUnverifiedEmail" Then
                 pUnverifiedEmailRemovedSuccess.Visible = True
             Else
@@ -178,20 +181,26 @@ Public Class EditContacts
         Dim button As Button = CType(sender, Button)
         Dim email As String = button.CommandArgument
 
-        Dim result As ResendEmailVerificationResult = ResendEmailVerification(currentAirs, CurrentCategory, email, currentUser.UserId)
+        If Not IsValidEmailAddress(email) Then
+            Throw New HttpException(400, "Bad request")
+        End If
 
-        Select Case result
-            Case ResendEmailVerificationResult.DbError
+        Dim result As ResendEmailVerificationResult = RefreshEmailContactToken(currentAirs, CurrentCategory, email, currentUser.UserId)
+
+        Select Case result.Status
+            Case ResendEmailVerificationResultStatus.DbError
                 If button.ID = "btnRemoveUnverifiedEmail" Then
                     pUnverifiedEmailListError.Visible = True
                 Else
                     pVerifiedEmailListError.Visible = True
                 End If
 
-            Case ResendEmailVerificationResult.EmailDoesNotExist
+            Case ResendEmailVerificationResultStatus.EmailDoesNotExist
                 pEmailAlreadyRemoved.Visible = True
 
-            Case ResendEmailVerificationResult.Success
+            Case ResendEmailVerificationResultStatus.Success
+                SendEmailContactConfirmationEmail(currentAirs, email, CurrentCategory, result.Seq, result.Token)
+                ResentVerificationEmail = email
                 pEmailVerificationSuccess.Visible = True
                 pEmailVerificationSuccess.InnerText = $"A confirmation email has been sent to {email}."
 
@@ -203,19 +212,23 @@ Public Class EditContacts
     Protected Sub AddNewEmail(sender As Object, e As EventArgs) Handles btnAddNewEmail.Click
         ClearWarnings()
 
-        If Not IsValidEmailAddress(txtNewEmail.Text) Then
+        Dim email As String = txtNewEmail.Text
+
+        If Not IsValidEmailAddress(email) Then
             pAddEmailInvalid.Visible = True
         Else
             Dim result As AddEmailContactResult = AddEmailContact(currentAirs, CurrentCategory, txtNewEmail.Text, currentUser.UserId)
 
-            Select Case result
-                Case AddEmailContactResult.DbError
+            Select Case result.Status
+                Case AddEmailContactResultStatus.DbError
                     pAddEmailError.Visible = True
 
-                Case AddEmailContactResult.EmailExists
+                Case AddEmailContactResultStatus.EmailExists
                     pAddEmailExists.Visible = True
 
-                Case AddEmailContactResult.Success
+                Case AddEmailContactResultStatus.Success
+                    SendEmailContactConfirmationEmail(currentAirs, email, CurrentCategory, result.Seq, result.Token)
+                    AddedEmail = email
                     pAddEmailSuccess.Visible = True
                     txtNewEmail.Text = ""
 

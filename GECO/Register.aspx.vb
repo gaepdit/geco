@@ -1,4 +1,5 @@
 ﻿Imports System.Reflection
+Imports GECO.EmailTemplates
 
 Partial Class Register
     Inherits Page

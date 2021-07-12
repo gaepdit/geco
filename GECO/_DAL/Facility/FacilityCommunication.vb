@@ -154,19 +154,32 @@ Namespace DAL.Facility
                 New SqlParameter("@userId", userId)
             }
 
-            Dim result As Integer = DB.SPReturnValue("geco.AddEmailContact", params)
+            Dim returnValue As Integer
+            Dim dr As DataRow = DB.SPGetDataRow("geco.AddEmailContact", params, returnValue)
 
-            Select Case result
+            Dim result As New AddEmailContactResult()
+
+            Select Case returnValue
                 Case 0
-                    Return AddEmailContactResult.Success
+                    result.Status = AddEmailContactResultStatus.Success
+                    result.Seq = CStr(dr("Seq"))
+                    result.Token = CStr(dr("Token"))
                 Case 1
-                    Return AddEmailContactResult.EmailExists
+                    result.Status = AddEmailContactResultStatus.EmailExists
                 Case Else
-                    Return AddEmailContactResult.DbError
+                    result.Status = AddEmailContactResultStatus.DbError
             End Select
+
+            Return result
         End Function
 
-        Public Enum AddEmailContactResult
+        Public Class AddEmailContactResult
+            Public Property Status As AddEmailContactResultStatus
+            Public Property Seq As String
+            Public Property Token As String
+        End Class
+
+        Public Enum AddEmailContactResultStatus
             DbError
             Success
             EmailExists
@@ -174,20 +187,18 @@ Namespace DAL.Facility
 
         Public Function RemoveEmailContact(facilityId As ApbFacilityId,
                                            category As CommunicationCategory,
-                                           email As String,
-                                           userId As Integer
-                                           ) As Boolean
+                                           email As String) As Boolean
+
             Dim params As SqlParameter() = {
                 New SqlParameter("@facilityId", facilityId.DbFormattedString),
                 New SqlParameter("@category", category.Name),
-                New SqlParameter("@email", email),
-                New SqlParameter("@userId", userId)
+                New SqlParameter("@email", email)
             }
 
             Return 0 = DB.SPReturnValue("geco.RemoveEmailContact", params)
         End Function
 
-        Public Function ResendEmailVerification(facilityId As ApbFacilityId,
+        Public Function RefreshEmailContactToken(facilityId As ApbFacilityId,
                                                 category As CommunicationCategory,
                                                 email As String,
                                                 userId As Integer
@@ -199,19 +210,32 @@ Namespace DAL.Facility
                 New SqlParameter("@userId", userId)
             }
 
-            Dim result As Integer = DB.SPReturnValue("geco.ResendEmailVerification", params)
+            Dim returnValue As Integer
+            Dim dr As DataRow = DB.SPGetDataRow("geco.RefreshEmailContactToken", params, returnValue)
 
-            Select Case result
+            Dim result As New ResendEmailVerificationResult
+
+            Select Case returnValue
                 Case 0
-                    Return ResendEmailVerificationResult.Success
+                    result.Status = ResendEmailVerificationResultStatus.Success
+                    result.Seq = CStr(dr("Seq"))
+                    result.Token = CStr(dr("Token"))
                 Case 1
-                    Return ResendEmailVerificationResult.EmailDoesNotExist
+                    result.Status = ResendEmailVerificationResultStatus.EmailDoesNotExist
                 Case Else
-                    Return ResendEmailVerificationResult.DbError
+                    result.Status = ResendEmailVerificationResultStatus.DbError
             End Select
+
+            Return result
         End Function
 
-        Public Enum ResendEmailVerificationResult
+        Public Class ResendEmailVerificationResult
+            Public Property Status As ResendEmailVerificationResultStatus
+            Public Property Seq As String
+            Public Property Token As String
+        End Class
+
+        Public Enum ResendEmailVerificationResultStatus
             DbError
             Success
             EmailDoesNotExist
@@ -250,6 +274,42 @@ Namespace DAL.Facility
 
             Return result = 0
         End Function
+
+        Public Function ConfirmContactEmail(seq As String, token As String) As ConfirmContactEmailResult
+            Dim params As SqlParameter() = {
+                New SqlParameter("@seq", seq),
+                New SqlParameter("@token", token)
+            }
+
+            Dim result As New ConfirmContactEmailResult
+            Dim returnValue As Integer
+            Dim dr As DataRow = DB.SPGetDataRow("geco.ConfirmContactEmail", params, returnValue)
+
+            If dr Is Nothing Then
+                result.Success = False
+            Else
+                Select Case returnValue
+                    Case 0
+                        result.Success = True
+                        result.FacilityId = New ApbFacilityId(dr("FacilityId").ToString)
+                        result.FacilityName = GetNullableString(dr("FacilityName"))
+                        result.FacilityCity = GetNullableString(dr("FacilityCity"))
+                        result.CategoryDesc = CommunicationCategory.FromName(CStr(dr("Category"))).Description
+                    Case -1
+                        result.Success = False
+                End Select
+            End If
+
+            Return result
+        End Function
+
+        Public Class ConfirmContactEmailResult
+            Public Property Success As Boolean
+            Public Property FacilityId As ApbFacilityId
+            Public Property FacilityName As String
+            Public Property FacilityCity As String
+            Public Property CategoryDesc As String
+        End Class
 
     End Module
 End Namespace

@@ -1,4 +1,4 @@
-Imports System.IO
+﻿Imports System.IO
 
 Public Module GecoLogging
 
@@ -8,7 +8,7 @@ Public Module GecoLogging
         Directory.CreateDirectory(folder)
 
         Try
-            Dim sw As StreamWriter = New StreamWriter(Path.Combine(folder, fileName), True)
+            Dim sw As New StreamWriter(Path.Combine(folder, fileName), True)
             sw.WriteLine("===== BEGIN LOG " & Date.Now.ToString)
             sw.WriteLine()
             sw.WriteLine(value)

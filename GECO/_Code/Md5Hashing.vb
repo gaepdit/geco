@@ -1,5 +1,4 @@
-Imports System.Diagnostics
-Imports System.Security.Cryptography
+﻿Imports System.Security.Cryptography
 
 Public Module Md5Hashing
 

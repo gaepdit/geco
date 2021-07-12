@@ -1,3 +1,5 @@
+﻿Imports GECO.EmailTemplates
+
 Partial Class Account
     Inherits Page
 

@@ -126,6 +126,7 @@
     <Content Include="EIS\Process\Default.aspx" />
     <Content Include="EIS\Process\Submit.aspx" />
     <Content Include="EIS\Users\Default.aspx" />
+    <Content Include="Facility\ConfirmEmail.aspx" />
     <Content Include="Facility\Contacts.aspx" />
     <Content Include="Facility\EditContacts.aspx" />
     <Content Include="Facility\SetCommunicationPreferences.aspx" />
@@ -315,6 +316,13 @@
     </Compile>
     <Compile Include="EIS\Users\Default.aspx.vb">
       <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Facility\ConfirmEmail.aspx.designer.vb">
+      <DependentUpon>ConfirmEmail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Facility\ConfirmEmail.aspx.vb">
+      <DependentUpon>ConfirmEmail.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="Facility\Contacts.aspx.designer.vb">
@@ -519,6 +527,7 @@
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="_Code\DateDisplayFormats.vb" />
+    <Compile Include="_Code\Email\FacilityContactEmails.vb" />
     <Compile Include="_DAL\EIS\CaerContacts.vb" />
     <Compile Include="_DAL\EIS\Facility.vb" />
     <Compile Include="_DAL\EIS\Process.vb" />
@@ -528,7 +537,6 @@
     <Compile Include="_Code\ControlMethods.vb" />
     <Compile Include="_Code\DictionaryExtensions.vb" />
     <Compile Include="_Code\Guard.vb" />
-    <Compile Include="_Code\CollectionExtensions.vb" />
     <Compile Include="_Code\CookieHelper.vb" />
     <Compile Include="_Code\DecimalFunctions.vb" />
     <Compile Include="_Code\HtmlTableFunctions.vb" />
@@ -540,7 +548,7 @@
     <Compile Include="_DAL\EIS\eis_getcodedescriptions.vb" />
     <Compile Include="_DAL\EIS\eis_CountyBoundary.vb" />
     <Compile Include="_DAL\EIS\eis_reportingperiod.vb" />
-    <Compile Include="_Code\EmailSender.vb" />
+    <Compile Include="_Code\Email\EmailSender.vb" />
     <Compile Include="_Code\EncryptDecrypt.vb" />
     <Compile Include="_Code\EnumHelpers.vb" />
     <Compile Include="_Code\LogToTextFile.vb" />
@@ -591,7 +599,7 @@
     <Compile Include="_Code\SessionHelper.vb" />
     <Compile Include="_Code\StringFunctions.vb" />
     <Compile Include="_Code\UrlHelper.vb" />
-    <Compile Include="_Code\UserAccountEmails.vb" />
+    <Compile Include="_Code\Email\UserAccountEmails.vb" />
     <Compile Include="_DAL\AnnualFees\ZipCode.vb" />
     <Compile Include="ES\confirm.aspx.vb">
       <DependentUpon>confirm.aspx</DependentUpon>
