@@ -6,7 +6,7 @@
         <ContentTemplate>
             <asp:MultiView ID="MultiView1" runat="server">
                 <asp:View ID="ErrorResult" runat="server">
-                    <h1 style="color: #ff0033">Error</h1>
+                    <h1 class="text-error">Error</h1>
                     <p>
                         There was an error during the process. Please try again
                     at a later time. If the problem persists, please contact us.
@@ -19,7 +19,7 @@
                 </asp:View>
 
                 <asp:View ID="RegisterExists" runat="server">
-                    <h1 style="color: #ff0033">Account Exists</h1>
+                    <h1 class="text-error">Account Exists</h1>
                     <p>
                         There is already an account registered with the email address that you provided.
                     </p>
@@ -31,7 +31,7 @@
                 </asp:View>
 
                 <asp:View ID="RegisterSuccess" runat="server">
-                    <h1 style="color: #339900">Registration Successful</h1>
+                    <h1 class="text-success">Registration Successful</h1>
                     <p>
                         An email has been sent to the email address you provided with an activation link
                         to confirm your account. The link will expire after 2 hours.
@@ -46,7 +46,7 @@
                 </asp:View>
 
                 <asp:View ID="NewEmailSent" runat="server">
-                    <h1 style="color: #339900">Email Address Change Confirmation Sent</h1>
+                    <h1 class="text-success">Email Address Change Confirmation Sent</h1>
                     <p>
                         An email with an activation link has been sent to the address you provided. 
                         The link will expire after 2 hours.
@@ -60,7 +60,7 @@
                 </asp:View>
 
                 <asp:View ID="ConfirmSuccess" runat="server">
-                    <h1 style="color: #339900">Account Confirmed</h1>
+                    <h1 class="text-success">Account Confirmed</h1>
                     <p>
                         Thank you for confirming your account; your account is now active.
                     </p>
@@ -72,7 +72,7 @@
                 </asp:View>
 
                 <asp:View ID="ConfirmFailed" runat="server">
-                    <h1 style="color: #ff0033">Account Confirmation Failed</h1>
+                    <h1 class="text-error">Account Confirmation Failed</h1>
                     <p>
                         Either the account does not exist or the account confirmation link has expired.
                     </p>
@@ -86,7 +86,7 @@
                 </asp:View>
 
                 <asp:View ID="ResendConfirmation" runat="server">
-                    <h1 style="color: #339900">Send Account Confirmation Email</h1>
+                    <h1 class="text-success">Send Account Confirmation Email</h1>
                     <p>
                         Enter the email address you used when registering for your GECO account.
                     </p>
@@ -128,7 +128,7 @@
                 </asp:View>
 
                 <asp:View ID="ConfirmEmailSuccess" runat="server">
-                    <h1 style="color: #339900">New Email Address Confirmed</h1>
+                    <h1 class="text-success">New Email Address Confirmed</h1>
                     <p>
                         Thank you for confirming your email address. Your new email should now be used when logging into GECO.
                     </p>
@@ -140,7 +140,7 @@
                 </asp:View>
 
                 <asp:View ID="ConfirmEmailFailed" runat="server">
-                    <h1 style="color: #ff0033">New Email Address Confirmation Failed</h1>
+                    <h1 class="text-error">New Email Address Confirmation Failed</h1>
                     <p>
                         An error occurred or the account confirmation link has expired.
                     </p>
@@ -181,7 +181,7 @@
                 </asp:View>
 
                 <asp:View ID="ResetFailed" runat="server">
-                    <h1 style="color: #ff0033">Password Reset Failed</h1>
+                    <h1 class="text-error">Password Reset Failed</h1>
                     <p>
                         Either the account does not exist or the password reset link has expired.
                     </p>
@@ -193,7 +193,7 @@
                 </asp:View>
 
                 <asp:View ID="ResetSuccess" runat="server">
-                    <h1 style="color: #339900">Password Reset Successful</h1>
+                    <h1 class="text-success">Password Reset Successful</h1>
                     <p>
                         Your password has been changed.
                     </p>
