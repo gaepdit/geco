@@ -3,13 +3,19 @@ Imports System.Net.Mail
 
 Public Module EmailSender
 
-    Public ReadOnly GecoEmailSender As String = ConfigurationManager.AppSettings("GecoEmailSender")
-    Public ReadOnly GecoContactEmail As String = ConfigurationManager.AppSettings("GecoContactEmail")
-    Public ReadOnly GecoContactName As String = ConfigurationManager.AppSettings("GecoContactName")
-    Public ReadOnly SaveAllEmails As Boolean = CBool(ConfigurationManager.AppSettings("SaveAllEmails"))
-    Public ReadOnly EnableSendingEmail As Boolean = CBool(ConfigurationManager.AppSettings("EnableSendingEmail"))
-    Public ReadOnly SmtpHost As String = ConfigurationManager.AppSettings("SmtpHost")
-    Public ReadOnly SmtpPort As Integer = CInt(ConfigurationManager.AppSettings("SmtpPort"))
+    ' If running locally, an SMTP server is probably not available. An exception will occur at `smtpClient.Send(msg)`,
+    ' and the email will be saved in the undeliverable email folder. To avoid the exception, either set 
+    ' `EnableSendingEmail` to false, or run a dev SMTP server such as https://github.com/rnwood/smtp4dev
+
+    Public ReadOnly Property GecoContactEmail As String = ConfigurationManager.AppSettings("GecoContactEmail")
+
+    Private ReadOnly GecoEmailSender As String = ConfigurationManager.AppSettings("GecoEmailSender")
+    Private ReadOnly GecoContactName As String = ConfigurationManager.AppSettings("GecoContactName")
+    Private ReadOnly SaveAllEmails As Boolean = CBool(ConfigurationManager.AppSettings("SaveAllEmails")) ' Useful for debugging but excessive for normal use.
+    Private ReadOnly EnableSendingEmail As Boolean = CBool(ConfigurationManager.AppSettings("EnableSendingEmail"))
+    Private ReadOnly SmtpHost As String = ConfigurationManager.AppSettings("SmtpHost")
+    Private ReadOnly SmtpPort As Integer = CInt(ConfigurationManager.AppSettings("SmtpPort"))
+    Private ReadOnly EmailAllowList As String() = ConfigurationManager.AppSettings("EmailAllowList").Split(";"c)
 
     ''' <summary>
     ''' Sends an email and returns true if successful; otherwise false.
@@ -72,55 +78,75 @@ Public Module EmailSender
 
         Dim environment As String = ConfigurationManager.AppSettings("GECO_ENVIRONMENT")
 
-        If HttpContext.Current.Request.IsLocal OrElse Not EnableSendingEmail Then
-            ' If running locally, just save file (there is probably no SMTP server)
-            SaveLocalEmail(msg)
-        Else
-            If environment <> "Production" Then
-                ' If not production, replace recipients with local contacts
-                msg.To.Clear()
-                msg.To.Add(GecoContactEmail)
-                msg.CC.Clear()
+        ' If email sending is disabled, save to file and return.
+        If Not EnableSendingEmail Then
+            Return SaveLocalEmail(msg)
+        End If
+
+        ' If not production, limit recipients to the "EmailAllowList".
+        If environment <> "Production" Then
+            Dim originalRecipients As MailAddress() = msg.To.ToArray
+
+            For Each recipient As MailAddress In originalRecipients
+                If Not EmailAllowList.Contains(recipient.Address) Then
+                    msg.To.Remove(recipient)
+                End If
+            Next
+
+            ' If no recipients are in allowlist, then add original recipients back and save to file.
+            If msg.To.Count = 0 Then
+                For Each recipient As MailAddress In originalRecipients
+                    msg.To.Add(recipient)
+                Next
+
+                Return SaveLocalEmail(msg)
             End If
 
-            Try
-                Using smtpClient As New SmtpClient(SmtpHost, SmtpPort)
-                    smtpClient.Send(msg)
-                End Using
-
-                If SaveAllEmails Then
-                    SaveLocalEmail(msg)
-                End If
-            Catch ex As Exception
-                ' If message send failure, save file, log & return
-                SaveLocalEmail(msg)
-                ErrorReport(ex, False)
-                Return False
-            End Try
+            ' Also clear CC list for non-production server before sending.
+            msg.CC.Clear()
         End If
+
+        Try
+            Using smtpClient As New SmtpClient(SmtpHost, SmtpPort)
+                smtpClient.Send(msg)
+            End Using
+
+            If SaveAllEmails Then
+                SaveLocalEmail(msg)
+            End If
+        Catch ex As Exception
+            ' If message send failure, save file, log & return
+            SaveLocalEmail(msg)
+            ErrorReport(ex, False)
+            Return False
+        End Try
 
         Return True
     End Function
 
-    Private Sub SaveLocalEmail(msg As MailMessage)
-        Dim folder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, ConfigurationManager.AppSettings("UndeliverableEmailFolder"))
+    Private Function SaveLocalEmail(msg As MailMessage) As Boolean
+        Try
+            Dim folder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, ConfigurationManager.AppSettings("UndeliverableEmailFolder"))
 
-        Using smtpClient As New SmtpClient()
-            Directory.CreateDirectory(folder)
-            smtpClient.DeliveryMethod = SmtpDeliveryMethod.SpecifiedPickupDirectory
-            smtpClient.PickupDirectoryLocation = folder
-            smtpClient.Send(msg)
-        End Using
-    End Sub
+            Using smtpClient As New SmtpClient()
+                Directory.CreateDirectory(folder)
+                smtpClient.DeliveryMethod = SmtpDeliveryMethod.SpecifiedPickupDirectory
+                smtpClient.PickupDirectoryLocation = folder
+                smtpClient.Send(msg)
+            End Using
+
+            Return True
+        Catch ex As Exception
+            Return False
+        End Try
+    End Function
 
     <CodeAnalysis.SuppressMessage("Minor Code Smell", "S1481:Unused local variables should be removed", Justification:="MailAddress created to test valid format")>
     Public Function IsValidEmailAddress(emailAddress As String) As Boolean
         If String.IsNullOrEmpty(emailAddress) Then Return False
 
         Try
-#Disable Warning BC42024 ' Unused local variables should be removed
             Dim testEmail As New MailAddress(emailAddress)
-#Enable Warning BC42024 ' Unused local variables should be removed
         Catch ex As Exception
             Return False
         End Try
