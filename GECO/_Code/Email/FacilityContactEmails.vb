@@ -19,6 +19,7 @@ Namespace EmailTemplates
                 "Georgia Environmental Connections Online (GECO) to receive " &
                 "electronic communication for the following facility. " &
                 vbNewLine & vbNewLine &
+                " * Email: " & email & vbNewLine &
                 " * AIRS Number: " & facilityId.FormattedString & vbNewLine &
                 " * Facility: " & GetFacilityNameAndCity(facilityId) & vbNewLine &
                 " * Category: " & category.Description &
@@ -31,7 +32,8 @@ Namespace EmailTemplates
             Dim htmlBody As String = "<p>Your email address has been added at " &
                 "Georgia Environmental Connections Online (GECO) to receive " &
                 "electronic communication for the following facility.</p> " &
-                "<ul><li>AIRS Number: " & facilityId.FormattedString &
+                "<ul><li>Email: " & email &
+                "</li><li>AIRS Number: " & facilityId.FormattedString &
                 "</li><li>Facility: " & GetFacilityNameAndCity(facilityId) &
                 "</li><li>Category: " & category.Description & "</li></ul>" &
                 "<p>Confirm and approve your email address using this link: <br /> " &
