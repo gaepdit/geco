@@ -251,7 +251,9 @@ Namespace DAL.Facility
 
                     Dim confirmationDate As DateTimeOffset? = DB.SPGetSingleValue(Of DateTimeOffset?)("geco.GetFacilityConfirmationDate", params)
 
-                    If Not confirmationDate.HasValue OrElse (DateTimeOffset.Now.Date - confirmationDate.Value.Date).Days > 275 Then
+                    ' TODO: restore date comparison in prod
+                    'If Not confirmationDate.HasValue OrElse (DateTimeOffset.Now.Date - confirmationDate.Value.Date).Days > 275 Then
+                    If Not confirmationDate.HasValue OrElse (DateTimeOffset.Now - confirmationDate.Value).Minutes > 10 Then
                         Return True
                     End If
                 End If
