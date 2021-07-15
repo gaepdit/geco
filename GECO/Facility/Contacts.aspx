@@ -1,10 +1,11 @@
 ﻿<%@ Page Language="VB" MasterPageFile="~/Main.master" AutoEventWireup="false"
     Inherits="GECO.FacilityContacts" Title="GECO Facility Contacts" CodeBehind="Contacts.aspx.vb" %>
+
 <%@ Import Namespace="GECO.GecoModels.Facility" %>
 <%@ MasterType VirtualPath="~/Main.master" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="Server">
 
-    <% If Reconfirm %>
+    <% If Reconfirm Then %>
     <h1>Confirm Communication Preferences</h1>
 
     <p>
@@ -46,7 +47,8 @@
         <tbody>
             <%
                 For Each category In CommunicationCategory.AllCategories
-                    Dim info = CommunicationInfo(category)
+                    If Not Reconfirm OrElse FacilityAccess.HasCommunicationPermission(category) Then
+                        Dim info = CommunicationInfo(category)
             %>
             <tr>
                 <td>
@@ -105,7 +107,10 @@
                     <% End If %>
                 </td>
             </tr>
-            <% Next %>
+            <% 
+                    End If
+                Next
+            %>
         </tbody>
     </table>
 </asp:Content>

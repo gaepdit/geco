@@ -7,9 +7,9 @@ Public Class EditContacts
     Inherits Page
 
     Private Property currentUser As GecoUser
-    Private Property facilityAccess As FacilityAccess
     Private Property currentAirs As ApbFacilityId
 
+    Public Property FacilityAccess As FacilityAccess
     Public Property CurrentCategory As CommunicationCategory
     Public Property CurrentCommunicationInfo As FacilityCommunicationInfo
     Public Property ResentVerificationEmail As String
@@ -43,9 +43,9 @@ Public Class EditContacts
         ' Current user and facility access
         currentUser = GetCurrentUser()
 
-        facilityAccess = currentUser.GetFacilityAccess(currentAirs)
+        FacilityAccess = currentUser.GetFacilityAccess(currentAirs)
 
-        If facilityAccess Is Nothing Then
+        If FacilityAccess Is Nothing Then
             HttpContext.Current.Response.Redirect("~/Facility/")
         End If
 
@@ -62,10 +62,15 @@ Public Class EditContacts
         End If
 
         If Not CommunicationCategory.IsValidCategory(category) Then
-            HttpContext.Current.Response.Redirect("~/Facility/")
+            HttpContext.Current.Response.Redirect("~/Facility/Contacts.aspx")
         End If
 
         CurrentCategory = CommunicationCategory.FromName(category)
+
+        If Not FacilityAccess.HasCommunicationPermission(CurrentCategory) Then
+            HttpContext.Current.Response.Redirect("~/Facility/Contacts.aspx")
+        End If
+
         SetCookie(Cookie.CommunicationCategory, category)
 
         If Not IsPostBack Then

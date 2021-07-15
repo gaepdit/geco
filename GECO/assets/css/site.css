@@ -706,6 +706,7 @@ textarea {
             .table-cell-link a.selected {
                 color: #00f;
                 background: #fdf2fd;
+                font-weight: bold;
             }
 
 .table-simple a[disabled] {

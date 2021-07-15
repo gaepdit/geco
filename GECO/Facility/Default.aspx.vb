@@ -54,16 +54,14 @@ Partial Class FacilityHome
     End Sub
 
     Private Sub CheckForMandatoryFeesCommunicationUpdate()
-        If Not facilityAccess.HasCommunicationPermission(CommunicationCategory.Fees) Then
-            Return
+        If facilityAccess.HasCommunicationPermission(CommunicationCategory.Fees) AndAlso
+          InitialCommunicationPreferenceSettingRequired(currentAirs, CommunicationCategory.Fees) Then
+            HttpContext.Current.Response.Redirect("~/Facility/SetCommunicationPreferences.aspx")
         End If
 
-        Select Case CommunicationUpdateRequired(currentAirs, CommunicationCategory.Fees)
-            Case CommunicationUpdateRequiredResult.InitialFeeSettingRequired
-                HttpContext.Current.Response.Redirect("~/Facility/SetCommunicationPreferences.aspx")
-            Case CommunicationUpdateRequiredResult.RoutineConfirmationRequired
-                HttpContext.Current.Response.Redirect("~/Facility/Contacts.aspx?reconfirm")
-        End Select
+        If RoutineConfirmationRequired(currentAirs, facilityAccess) Then
+            HttpContext.Current.Response.Redirect("~/Facility/Contacts.aspx?confirm")
+        End If
     End Sub
 
     Protected Sub GetApplicationStatus()

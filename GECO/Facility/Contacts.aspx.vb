@@ -29,7 +29,7 @@ Public Class FacilityContacts
 
             SetCookie(Cookie.AirsNumber, currentAirs.ShortString())
 
-            Reconfirm = Request.Url.Query.Contains("reconfirm")
+            Reconfirm = Request.Url.Query.Contains("confirm")
         End If
 
         Master.CurrentAirs = currentAirs
@@ -48,12 +48,12 @@ Public Class FacilityContacts
     End Sub
 
     Private Sub btnLooksGood_Click(sender As Object, e As EventArgs) Handles btnLooksGood.Click
-        ConfirmCommunicationSettings(currentAirs, GetCurrentUser.UserId)
+        ConfirmCommunicationSettings(currentAirs, GetCurrentUser.UserId, FacilityAccess)
         HttpContext.Current.Response.Redirect("~/Facility/")
     End Sub
 
     Private Sub btnMakeChanges_Click(sender As Object, e As EventArgs) Handles btnMakeChanges.Click
-        ConfirmCommunicationSettings(currentAirs, GetCurrentUser.UserId)
+        ConfirmCommunicationSettings(currentAirs, GetCurrentUser.UserId, FacilityAccess)
         HttpContext.Current.Response.Redirect($"~/Facility/EditContacts.aspx?category={CommunicationCategory.Fees.Name}")
     End Sub
 

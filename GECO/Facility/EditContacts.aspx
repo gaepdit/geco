@@ -32,13 +32,18 @@
         <tbody>
             <tr>
                 <td class="table-cell-link">
-                    <% For Each category In GECO.GecoModels.Facility.CommunicationCategory.AllCategories %>
-                    <% If category.Name = CurrentCategory.Name Then %>
+                    <% For Each category In GECO.GecoModels.Facility.CommunicationCategory.AllCategories
+                            If FacilityAccess.HasCommunicationPermission(category) Then
+                                If category.Name = CurrentCategory.Name Then
+                    %>
                     <a href="EditContacts.aspx?category=<%= category.Name %>" class="no-visited disabled selected" aria-disabled="true" disabled><%= category.Description %></a>
-                    <% Else %>
+                    <%          Else
+                    %>
                     <a href="EditContacts.aspx?category=<%= category.Name %>" class="no-visited"><%= category.Description %></a>
-                    <% End If %>
-                    <% Next %>
+                    <%          End If
+                            End If
+                        Next
+                    %>
                 </td>
                 <td>
                     <h2 id="pref">Communication Preference for <em><%= CurrentCategory.Description %></em></h2>
