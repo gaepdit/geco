@@ -12,7 +12,9 @@ Public Class FacilityContacts
 
     Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
         If IsPostBack Then
-            currentAirs = New ApbFacilityId(GetCookie(Cookie.AirsNumber))
+            If Not ApbFacilityId.TryParse(GetCookie(Cookie.AirsNumber), currentAirs) Then
+                HttpContext.Current.Response.Redirect("~/Home/")
+            End If
         Else
             ' AIRS number
             Dim airsString As String
