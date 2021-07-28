@@ -25,9 +25,7 @@ Namespace EmailTemplates
                 " * Category: " & category.Description &
                 vbNewLine & vbNewLine &
                 "Confirm and approve your email address using this link: " &
-                vbNewLine & "{0}" &
-                vbNewLine & vbNewLine &
-                "The link expires after 2 hours."
+                vbNewLine & "{0}" & vbNewLine
 
             Dim htmlBody As String = "<p>Your email address has been added at " &
                 "Georgia Environmental Connections Online (GECO) to receive " &
@@ -37,8 +35,7 @@ Namespace EmailTemplates
                 "</li><li>Facility: " & GetFacilityNameAndCity(facilityId) &
                 "</li><li>Category: " & category.Description & "</li></ul>" &
                 "<p>Confirm and approve your email address using this link: <br /> " &
-                "<a href='{0}' target='_blank'>Confirm email</a></p>" &
-                "<p>The link expires after 2 hours.</p>"
+                "<a href='{0}' target='_blank'>Confirm email</a></p>"
 
             Return SendEmail(Trim(email), subject,
                       String.Format(plainBody, confirmationUrl),
