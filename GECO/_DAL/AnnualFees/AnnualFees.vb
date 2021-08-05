@@ -1,4 +1,4 @@
-﻿Imports System.Data.SqlClient
+Imports System.Data.SqlClient
 Imports GECO.GecoModels
 
 Public Module AnnualFees
@@ -224,7 +224,7 @@ Public Module AnnualFees
     Public Function GetAnnualFeeHistory(airs As ApbFacilityId) As DataTable
         NotNull(airs, NameOf(airs))
 
-        Dim spName As String = "iaip_facility.GetAnnualFeesHistory"
+        Dim spName As String = "geco.GetAnnualFeesHistory"
         Return DB.SPGetDataTable(spName, New SqlParameter("@FacilityID", airs.DbFormattedString))
     End Function
 
