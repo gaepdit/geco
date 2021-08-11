@@ -97,7 +97,9 @@ Public Class EditContacts
                 txtAddress.Text = .Address1
                 txtAddress2.Text = .Address2
                 txtCity.Text = .City
-                txtName.Text = .Name
+                txtFirstName.Text = .FirstName
+                txtLastName.Text = .LastName
+                txtPrefix.Text = .Prefix
                 txtOrganization.Text = .Organization
                 txtPostalCode.Text = .PostalCode
                 txtState.Text = .State
@@ -142,7 +144,9 @@ Public Class EditContacts
             .Address1 = txtAddress.Text,
             .Address2 = txtAddress2.Text,
             .City = txtCity.Text,
-            .Name = txtName.Text,
+            .FirstName = txtFirstName.Text,
+            .LastName = txtLastName.Text,
+            .Prefix = txtPrefix.Text,
             .Organization = txtOrganization.Text,
             .PostalCode = txtPostalCode.Text,
             .State = txtState.Text,
@@ -219,12 +223,12 @@ Public Class EditContacts
     Protected Sub AddNewEmail(sender As Object, e As EventArgs) Handles btnAddNewEmail.Click
         ClearWarnings()
 
-        Dim email As String = txtNewEmail.Text
+        Dim email As String = Trim(txtNewEmail.Text)
 
         If Not IsValidEmailAddress(email) Then
             pAddEmailInvalid.Visible = True
         Else
-            Dim result As AddEmailContactResult = AddEmailContact(currentAirs, CurrentCategory, txtNewEmail.Text, currentUser.UserId)
+            Dim result As AddEmailContactResult = AddEmailContact(currentAirs, CurrentCategory, email, currentUser.UserId)
 
             Select Case result.Status
                 Case AddEmailContactResultStatus.DbError

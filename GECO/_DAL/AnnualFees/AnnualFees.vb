@@ -1,4 +1,4 @@
-Imports System.Data.SqlClient
+﻿Imports System.Data.SqlClient
 Imports GECO.GecoModels
 
 Public Module AnnualFees
@@ -78,7 +78,7 @@ Public Module AnnualFees
 
     Public Function GetFS_ContactInfo(feeyear As Integer) As DataRow
         'In the database table fs_contactinfo, the contact for
-        'Fees has a contact key of airsnumber and fee year
+        'Fees has a key of airsnumber and fee year
 
         Dim query = "Select strcontactfirstname, strcontactlastname, " &
             " strcontacttitle, strcontactcompanyname, " &
@@ -97,7 +97,7 @@ Public Module AnnualFees
     End Function
 
     Public Function GetAPBContactInformation(key As Integer) As DataRow
-        'In the database table fs_contactinfo, the contact for
+        'In the database table APBContactInformation, the contact for
         'Fees has a contact key of airsnumber and two digits (40)
 
         Dim query = "Select strcontactfirstname, strcontactlastname, " &
@@ -117,8 +117,6 @@ Public Module AnnualFees
     End Function
 
     Public Function GetFacilityInfo(feeyear As Integer) As DataRow
-        'In the database table apbcontactinformation, the contact for
-        'Fees has a contact key of airsnumber and two digits (40)
         Dim SQL = " Select strfacilityname, strfacilityaddress1, " &
             " strfacilitycity " &
             " FROM fs_mailout " &

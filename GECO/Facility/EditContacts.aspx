@@ -83,12 +83,25 @@
                             <asp:Panel ID="pnlEditContact" runat="server" DefaultButton="btnSaveContact">
                                 <table class="table-simple table-list text-small">
                                     <tr>
-                                        <th>Name</th>
+                                        <th>Salutation</th>
                                         <td>
-                                            <asp:TextBox ID="txtName" runat="server" ValidationGroup="Contact" />
+                                            <asp:TextBox ID="txtPrefix" runat="server" ValidationGroup="Contact" />
+                                            <small>("Ms.", "Dr.", etc.)</small>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>First Name</th>
+                                        <td>
+                                            <asp:TextBox ID="txtFirstName" runat="server" ValidationGroup="Contact" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Last Name</th>
+                                        <td>
+                                            <asp:TextBox ID="txtLastName" runat="server" ValidationGroup="Contact" />
                                             <i>required</i>
-                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ValidationGroup="Contact"
-                                                ControlToValidate="txtName" ErrorMessage="Name is required." />
+                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ValidationGroup="Contact"
+                                                ControlToValidate="txtLastName" ErrorMessage="Last Name is required." />
                                         </td>
                                     </tr>
                                     <tr>
