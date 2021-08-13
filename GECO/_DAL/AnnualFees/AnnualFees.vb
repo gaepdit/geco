@@ -14,7 +14,7 @@ Public Module AnnualFees
             "active = '1' " &
             "order by intyear desc"
 
-        Dim param As SqlParameter = New SqlParameter("@airsno", airs.DbFormattedString)
+        Dim param As New SqlParameter("@airsno", airs.DbFormattedString)
 
         Return DB.GetDataTable(SQL, param)
     End Function
@@ -25,7 +25,7 @@ Public Module AnnualFees
             DATFIRSTQRTDUE, DATSECONDQRTDUE, DATTHIRDQRTDUE, DATFOURTHQRTDUE, NUMAATHRES, NUMNATHRES, MaintenanceFeeRate
             from FS_FEERATE where NUMFEEYEAR = @FeeYear "
 
-        Dim param As SqlParameter = New SqlParameter("@FeeYear", feeyear)
+        Dim param As New SqlParameter("@FeeYear", feeyear)
 
         Dim dr As DataRow = DB.GetDataRow(SQL, param)
 
@@ -58,7 +58,7 @@ Public Module AnnualFees
             " where numFeeYear = @feeyear " &
             " order by fslk_NSPSReasonYear.DisplayOrder "
 
-        Dim param As SqlParameter = New SqlParameter("@feeyear", feeyear)
+        Dim param As New SqlParameter("@feeyear", feeyear)
 
         Return DB.GetDataTable(SQL, param)
     End Function
@@ -69,78 +69,11 @@ Public Module AnnualFees
             " where strairsnumber = @airs and numfeeyear = @feeyear "
 
         Dim params As SqlParameter() = {
-                New SqlParameter("@airs", "0413" & GetCookie(Cookie.AirsNumber)),
-                New SqlParameter("@feeyear", feeyear)
-            }
-
-        Return DB.GetDataRow(SQL, params)
-    End Function
-
-    Public Function GetFS_ContactInfo(feeyear As Integer) As DataRow
-        'In the database table fs_contactinfo, the contact for
-        'Fees has a key of airsnumber and fee year
-
-        Dim query = "Select strcontactfirstname, strcontactlastname, " &
-            " strcontacttitle, strcontactcompanyname, " &
-            " strcontactphonenumber, strcontactfaxnumber, strcontactemail, " &
-            " strcontactaddress, strcontactcity, " &
-            " strcontactstate, strcontactzipcode " &
-            " FROM fs_contactinfo " &
-            " where strairsnumber = @airs and numfeeyear = @feeyear "
-
-        Dim params As SqlParameter() = {
             New SqlParameter("@airs", "0413" & GetCookie(Cookie.AirsNumber)),
             New SqlParameter("@feeyear", feeyear)
         }
 
-        Return DB.GetDataRow(query, params)
-    End Function
-
-    Public Function GetAPBContactInformation(key As Integer) As DataRow
-        'In the database table APBContactInformation, the contact for
-        'Fees has a contact key of airsnumber and two digits (40)
-
-        Dim query = "Select strcontactfirstname, strcontactlastname, " &
-            " strcontacttitle, strcontactcompanyname, " &
-            " strcontactphonenumber1 as strcontactphonenumber, strcontactfaxnumber, strcontactemail, " &
-            " strcontactaddress1 as strcontactaddress, strcontactcity, " &
-            " strcontactstate, strcontactzipcode " &
-            " FROM APBContactInformation " &
-            " where strairsnumber = @airs and strkey = @key "
-
-        Dim params As SqlParameter() = {
-            New SqlParameter("@airs", "0413" & GetCookie(Cookie.AirsNumber)),
-            New SqlParameter("@key", key)
-        }
-
-        Return DB.GetDataRow(query, params)
-    End Function
-
-    Public Function GetFacilityInfo(feeyear As Integer) As DataRow
-        Dim SQL = " Select strfacilityname, strfacilityaddress1, " &
-            " strfacilitycity " &
-            " FROM fs_mailout " &
-            " where strairsnumber = @airs and numfeeyear = @feeyear "
-
-        Dim params As SqlParameter() = {
-                New SqlParameter("@airs", "0413" & GetCookie(Cookie.AirsNumber)),
-                New SqlParameter("@feeyear", feeyear)
-            }
-
         Return DB.GetDataRow(SQL, params)
-    End Function
-
-    Public Function GetFacilityInfoTemp() As DataRow
-        'In the database table apbcontactinformation, the contact for
-        'Fees has a contact key of airsnumber and two digits (40)
-        Dim SQL = "Select strfacilityname, strfacilitystreet1, " &
-            " strfacilitycity " &
-            " FROM apbfacilityinfotemp " &
-            " where strairsnumber = @airs "
-
-        Dim param As SqlParameter = New SqlParameter("@airs", "0413" & GetCookie(Cookie.AirsNumber))
-
-        Return DB.GetDataRow(SQL, param)
     End Function
 
     Public Function GetExistingFeeData(feeyear As Integer) As DataRow
@@ -153,9 +86,9 @@ Public Module AnnualFees
             " and numfeeyear = @feeyear "
 
         Dim params As SqlParameter() = {
-                New SqlParameter("@airs", "0413" & GetCookie(Cookie.AirsNumber)),
-                New SqlParameter("@feeyear", feeyear)
-            }
+            New SqlParameter("@airs", "0413" & GetCookie(Cookie.AirsNumber)),
+            New SqlParameter("@feeyear", feeyear)
+        }
 
         Return DB.GetDataRow(SQL, params)
     End Function
@@ -172,9 +105,9 @@ Public Module AnnualFees
             " And aud.numfeeyear = @feeyear"
 
         Dim params As SqlParameter() = {
-                New SqlParameter("@airs", "0413" & GetCookie(Cookie.AirsNumber)),
-                New SqlParameter("@feeyear", feeyear)
-            }
+            New SqlParameter("@airs", "0413" & GetCookie(Cookie.AirsNumber)),
+            New SqlParameter("@feeyear", feeyear)
+        }
 
         Return DB.GetDataRow(SQL, params)
     End Function
@@ -205,25 +138,10 @@ Public Module AnnualFees
         Return DB.GetDataRow(query, param)
     End Function
 
-    Public Function FeeDataExists(airs As ApbFacilityId, feeyear As Integer) As Boolean
-        NotNull(airs, NameOf(airs))
-
-        Dim SQL As String = "select convert(bit, count(*)) from FS_FEEDATA
-            where NUMFEEYEAR = @feeyear and STRAIRSNUMBER = @airsno"
-
-        Dim params As SqlParameter() = {
-            New SqlParameter("@airsno", airs.DbFormattedString),
-            New SqlParameter("@feeyear", feeyear)
-        }
-
-        Return DB.GetBoolean(SQL, params)
-    End Function
-
     Public Function GetAnnualFeeHistory(airs As ApbFacilityId) As DataTable
         NotNull(airs, NameOf(airs))
 
-        Dim spName As String = "geco.GetAnnualFeesHistory"
-        Return DB.SPGetDataTable(spName, New SqlParameter("@FacilityID", airs.DbFormattedString))
+        Return DB.SPGetDataTable("geco.GetAnnualFeesHistory", New SqlParameter("@FacilityID", airs.DbFormattedString))
     End Function
 
     Public Function ActiveInvoiceExists(airs As ApbFacilityId, feeYear As Integer) As Boolean

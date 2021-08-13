@@ -69,20 +69,20 @@
                     <% Else %>
                     <p>
                         <%= info.Mail.Name %><br />
-                        <% If info.Mail.Title IsNot Nothing %>
+                        <% If Not String.IsNullOrEmpty(info.Mail.Title) Then %>
                         <%= info.Mail.Title %><br />
                         <% End If %>
-                        <% If info.Mail.Organization IsNot Nothing %>
+                        <% If Not String.IsNullOrEmpty(info.Mail.Organization) Then %>
                         <%= info.Mail.Organization %><br />
                         <% End If %>
                         <%= info.Mail.Address1%><br />
-                        <% If info.Mail.Address2 IsNot Nothing %>
+                        <% If Not String.IsNullOrEmpty(info.Mail.Address2) Then %>
                         <%= info.Mail.Address2%><br />
                         <% End If %>
                         <%= info.Mail.City %>, 
                         <%= info.Mail.State %>
                         <%= info.Mail.PostalCode %><br />
-                        <% If info.Mail.Telephone IsNot Nothing %>
+                        <% If Not String.IsNullOrEmpty(info.Mail.Telephone) Then %>
                         <br />
                         <%= info.Mail.Telephone %>
                         <% End If %>
@@ -95,7 +95,7 @@
                     <p><em>None added.</em></p>
                     <% Else %>
                     <ul class="flush">
-                        <% For Each email In CommunicationInfo(category).Emails %>
+                        <% For Each email In info.Emails %>
                         <li><%= email.Email %>
                             <% If Not email.Verified Then %>
                             <i>(not verified)</i>

@@ -55,7 +55,7 @@
                    
                     <a href="https://epd.georgia.gov/air-permit-fees" target="_blank">Air Permit Fees</a>
                                 page. The Permit Fee Manual specifies the methods used to calculate the permit fees 
-                    requiredunder Georgia Air Quality Control Rule 391-3-1-.03(9), “Permit Fees.” 
+                    required under Georgia Air Quality Control Rule 391-3-1-.03(9), “Permit Fees.” 
                
                             </p>
                             <p>
@@ -159,6 +159,73 @@
                         </ContentTemplate>
                     </act:TabPanel>
 
+                    <act:TabPanel runat="server" ID="tabHistory" HeaderText="Submittal History">
+                        <ContentTemplate>
+                            <p>
+                                Following is annual permit fee information from the current year back to 2004. Past invoices and deposit information are located
+                    in the separate
+                   
+                    <asp:HyperLink ID="hlPermitFees" runat="server" NavigateUrl="~/Fees/">Permit Fees Summary</asp:HyperLink>
+                                section.)
+               
+                            </p>
+
+                            <asp:GridView ID="grdFeeHistory" runat="server" CssClass="table-simple" Visible="true" AutoGenerateColumns="False"
+                                UseAccessibleHeader="true" RowHeaderColumn="NUMFEEYEAR">
+                                <Columns>
+                                    <asp:BoundField DataField="NUMFEEYEAR" HeaderText="Fee Year" />
+                                    <asp:TemplateField HeaderText="Fee Contact">
+                                        <ItemTemplate>
+                                            <%# String.Format("{0} {1}", Eval("STRCONTACTFIRSTNAME"), Eval("STRCONTACTLASTNAME")) %><br />
+                                            <%# Eval("STRCONTACTCOMPANYNAME") %><br />
+                                            <%# Eval("STRCONTACTADDRESS") %><br />
+                                            <%# String.Format("{0}, {1} {2}", Eval("STRCONTACTCITY"), Eval("STRCONTACTSTATE"), Eval("STRCONTACTZIPCODE")) %>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Facility Status">
+                                        <ItemTemplate>
+                                            Classification:&nbsp;<b><%# Eval("STRCLASS") %></b><br />
+                                            Subject&nbsp;to&nbsp;NSPS:&nbsp;<b><%# Eval("STRNSPS") %></b><br />
+                                            NSPS&nbsp;Exempt:&nbsp;<b><%# Eval("STRNSPSEXEMPT") %></b><br />
+                                            <br />
+                                            Payment&nbsp;Type&nbsp;Selected:<br />
+                                            <b><%# Eval("STRPAYMENTPLAN") %></b>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Reported Emissions (tons)">
+                                        <ItemTemplate>
+                                            VOC:&nbsp;<b><%# Eval("INTVOCTONS") %></b><br />
+                                            NO<sub>x</sub>:&nbsp;<b><%# Eval("INTNOXTONS") %></b><br />
+                                            PM:&nbsp;<b><%# Eval("INTPMTONS") %></b><br />
+                                            SO<sub>2</sub>:&nbsp;<b><%# Eval("INTSO2TONS") %></b><br />
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Emissions Fees">
+                                        <ItemTemplate>
+                                            Fee&nbsp;Rate:&nbsp;<b><%# String.Format("{0:c}", Eval("NUMPERTONRATE")) %></b><br />
+                                            Fee&nbsp;for&nbsp;VOC:&nbsp;<b><%# String.Format("{0:c}", NullableDecimalProduct(Eval("INTVOCTONS"), Eval("NUMPERTONRATE"))) %></b><br />
+                                            Fee&nbsp;for&nbsp;NO<sub>x</sub>:&nbsp;<b><%# String.Format("{0:c}", NullableDecimalProduct(Eval("INTNOXTONS"), Eval("NUMPERTONRATE"))) %></b><br />
+                                            Fee&nbsp;for&nbsp;PM:&nbsp;<b><%# String.Format("{0:c}", NullableDecimalProduct(Eval("INTPMTONS"), Eval("NUMPERTONRATE"))) %></b><br />
+                                            Fee&nbsp;for&nbsp;SO<sub>2</sub>:&nbsp;<b><%# String.Format("{0:c}", NullableDecimalProduct(Eval("INTSO2TONS"), Eval("NUMPERTONRATE"))) %></b><br />
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Total Fees">
+                                        <ItemTemplate>
+                                            Total&nbsp;Part&nbsp;70&nbsp;Fee:&nbsp;<b><%# String.Format("{0:c}", Eval("NUMPART70FEE")) %></b><br />
+                                            Part&nbsp;70/SM&nbsp;Fee:&nbsp;<b><%# String.Format("{0:c}", Eval("NUMSMFEE")) %></b><br />
+                                            Part&nbsp;70 Maintenance&nbsp;Fee:&nbsp;<b><%# String.Format("{0:c}", Eval("MaintenanceFee")) %></b><br />
+                                            NSPS&nbsp;Fee:&nbsp;<b><%# String.Format("{0:c}", Eval("NUMNSPSFEE")) %></b><br />
+                                            Admin&nbsp;Fee:&nbsp;<b><%# String.Format("{0:c}", Eval("NUMADMINFEE")) %></b><br />
+                                            <br />
+                                            Total&nbsp;Fee&nbsp;Due:&nbsp;<b><%# String.Format("{0:c}", Eval("NUMTOTALFEE")) %></b>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                </Columns>
+                            </asp:GridView>
+
+                        </ContentTemplate>
+                    </act:TabPanel>
+
                     <act:TabPanel runat="Server" ID="tabFeeCalculation" HeaderText="Fee Reporting" Visible="false">
                         <ContentTemplate>
                             <asp:Panel ID="pnlFeeContact" runat="server">
@@ -168,225 +235,78 @@
                                     <li>Sign</li>
                                     <li>Submit</li>
                                 </ul>
+
+                                <% If info Is Nothing Then %>
+                                <p class="text-error">Error: Contact info not available.</p>
+                                <% Else %>
                                 <h3>Fee Contact</h3>
-                                <p>
-                                    These options will pre-load the contact form with either the current Fee Contact information or the 
-                            contact information from your GECO user profile:
-                                </p>
-                                <asp:RadioButtonList ID="rblFeeContact" runat="server" AutoPostBack="True">
-                                    <asp:ListItem Value="1">Use the Fee Contact information for the Permit Fees Contact</asp:ListItem>
-                                    <asp:ListItem Value="2">Use My GECO Contact information for the Permit Fees Contact</asp:ListItem>
-                                </asp:RadioButtonList>
-                                <br />
-                                <asp:ValidationSummary ID="ValidationSummary3" runat="server" ValidationGroup="Contact"
-                                    DisplayMode="BulletList" />
-
-                                <table id="Table1" class="sample">
-                                    <tr>
-                                        <td width="25%">First Name:</td>
-                                        <td>
-                                            <asp:TextBox ID="txtFName" runat="server" CssClass="unwatermarked" ValidationGroup="Contact"
-                                                MaxLength="35"></asp:TextBox>
-                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtFName"
-                                                ErrorMessage="First Name required" ValidationGroup="Contact">*</asp:RequiredFieldValidator>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Last Name:</td>
-                                        <td>
-                                            <asp:TextBox ID="txtLName" runat="server" CssClass="unwatermarked" ValidationGroup="Contact"
-                                                MaxLength="35"></asp:TextBox>
-                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtLName"
-                                                ErrorMessage="Last Name required" ValidationGroup="Contact">*</asp:RequiredFieldValidator>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Title:</td>
-                                        <td>
-                                            <asp:TextBox ID="txtTitle" runat="server" CssClass="unwatermarked" ValidationGroup="Contact"
-                                                MaxLength="100"></asp:TextBox>
-                                            <asp:RequiredFieldValidator
-                                                ID="RequiredFieldValidator4" runat="server" ControlToValidate="txtTitle" ErrorMessage="Title required"
-                                                Font-Size="Small" ValidationGroup="Contact">*</asp:RequiredFieldValidator>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Company Name (of Fee Contact):</td>
-                                        <td>
-                                            <asp:TextBox ID="txtCoName" runat="server" CssClass="unwatermarked" ValidationGroup="Contact"
-                                                MaxLength="100"></asp:TextBox>
-                                            <asp:RequiredFieldValidator
-                                                ID="RequiredFieldValidator8" runat="server" ControlToValidate="txtCoName" ErrorMessage="Company name required"
-                                                Font-Size="Small" ValidationGroup="Contact">*</asp:RequiredFieldValidator>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Street Address:</td>
-                                        <td>
-                                            <asp:TextBox ID="txtAddress" runat="server" CssClass="unwatermarked" ValidationGroup="Contact"
-                                                MaxLength="100"></asp:TextBox>
-                                            <asp:RequiredFieldValidator
-                                                ID="RequiredFieldValidator9" runat="server" ControlToValidate="txtAddress"
-                                                ErrorMessage="Street Address required" Font-Size="Small" ValidationGroup="Contact">*</asp:RequiredFieldValidator>
-                                        </td>
-                                    </tr>
-                                    <asp:UpdatePanel ID="ZipCityState" runat="server">
-                                        <ContentTemplate>
-                                            <tr>
-                                                <td>Zip Code:</td>
-                                                <td>
-                                                    <asp:TextBox ID="txtZip" AutoPostBack="true" runat="server" CssClass="unwatermarked"
-                                                        MaxLength="5" ValidationGroup="Contact"></asp:TextBox><asp:Label ID="lblZipError"
-                                                            runat="server" ForeColor="Red" Visible="False" Font-Size="Small"></asp:Label>
-                                                    <asp:RequiredFieldValidator
-                                                        ID="RequiredFieldValidator10" runat="server" ControlToValidate="txtzip" ErrorMessage="5-digit Zip Code required"
-                                                        Font-Size="Small" ValidationGroup="Contact">*</asp:RequiredFieldValidator>
-                                                    <act:FilteredTextBoxExtender ID="FilteredTextBoxExtender1" runat="server" TargetControlID="txtZip"
-                                                        FilterType="Numbers">
-                                                    </act:FilteredTextBoxExtender>
-                                                    &nbsp;&nbsp;
-                                            <asp:UpdateProgress ID="UpdateProgress2" runat="server" AssociatedUpdatePanelID="ZipCityState">
-                                                <ProgressTemplate>
-                                                    <div class="progress">
-                                                        <img alt="loading..." src='<%= Page.ResolveUrl("~/assets/images/indicator_smallwaitanim.gif") %>' />
-                                                        Loading City & State...                                           
-                                                    </div>
-                                                </ProgressTemplate>
-                                            </asp:UpdateProgress>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>City:</td>
-                                                <td>
-                                                    <asp:TextBox ID="txtCity" runat="server" CssClass="unwatermarked" ValidationGroup="Contact"
-                                                        MaxLength="50"></asp:TextBox>
-                                                    <asp:RequiredFieldValidator
-                                                        ID="RequiredFieldValidator11" runat="server" ControlToValidate="txtCity" ErrorMessage="City name required"
-                                                        Font-Size="Small" ValidationGroup="Contact">*</asp:RequiredFieldValidator>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>State:</td>
-                                                <td>
-                                                    <asp:TextBox ID="txtState" runat="server" CssClass="unwatermarked" MaxLength="2"
-                                                        ValidationGroup="Contact"></asp:TextBox>
-                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator12"
-                                                        runat="server" ControlToValidate="txtState" ErrorMessage="State required"
-                                                        Font-Size="Small" ValidationGroup="Contact">*</asp:RequiredFieldValidator>
-                                                </td>
-                                            </tr>
-                                        </ContentTemplate>
-                                    </asp:UpdatePanel>
-                                    <tr>
-                                        <td>Telephone Number:</td>
-                                        <td>
-                                            <asp:TextBox ID="txtPhone" runat="server" CssClass="unwatermarked" MaxLength="30" ValidationGroup="Contact" />
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Fax Number:</td>
-                                        <td>
-                                            <asp:TextBox ID="txtFax" runat="server" CssClass="unwatermarked" MaxLength="10" ValidationGroup="Contact"></asp:TextBox>
-                                            <act:FilteredTextBoxExtender ID="FilteredTextBoxExtender4" runat="server" TargetControlID="txtFax"
-                                                FilterType="Numbers">
-                                            </act:FilteredTextBoxExtender>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Email Address:</td>
-                                        <td>
-                                            <asp:TextBox ID="txtEmail" runat="server" CssClass="unwatermarked" ValidationGroup="Contact"
-                                                MaxLength="100"></asp:TextBox>
-                                            <asp:RequiredFieldValidator
-                                                ID="RequiredFieldValidator13" runat="server" ControlToValidate="txtEmail" ErrorMessage="Email required"
-                                                Font-Size="Small" ValidationGroup="Contact">*</asp:RequiredFieldValidator>
-                                            <asp:RegularExpressionValidator
-                                                ID="RegularExpressionValidator1" runat="server" ControlToValidate="txtEmail"
-                                                ErrorMessage="Type a valid Email address" Font-Size="Small" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"
-                                                Display="Dynamic" ValidationGroup="Contact"></asp:RegularExpressionValidator>
-                                        </td>
-                                    </tr>
-                                </table>
-                                <br />
-
-                                <h3>Facility Information</h3>
-                                <table id="Tabl2" class="sample">
-                                    <tr>
-                                        <td width="25%">Facility Name:
-                                        </td>
-                                        <td>
-                                            <asp:Label ID="lblFacilityName" runat="server" Font-Bold="True"></asp:Label>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Facility Location (Street):
-                                        </td>
-                                        <td>
-                                            <asp:Label ID="lblFacilityStreet" runat="server" Font-Bold="True"></asp:Label>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Facility Location (City):
-                                        </td>
-                                        <td>
-                                            <asp:Label ID="lblFacilityCity" runat="server" Font-Bold="True"></asp:Label>
-                                        </td>
-                                    </tr>
-                                </table>
-                                <br>
-                                <strong>* Is the above Facility Name, Street, or City information correct?</strong>
-                                <asp:DropDownList ID="ddlFacilityInfoChange" runat="server" AutoPostBack="True">
-                                    <asp:ListItem>YES</asp:ListItem>
-                                    <asp:ListItem>NO</asp:ListItem>
-                                </asp:DropDownList>
-
-                                <asp:Panel ID="pnlfacInfo" runat="server" Visible="False">
-                                    <p><strong>Please provide the correct facility information below:</strong></p>
-                                    <table id="Table3" class="sample">
-                                        <tr>
-                                            <td width="25%">Facility Name
-                                            </td>
-                                            <td>
-                                                <asp:TextBox ID="txtfacName" runat="server" CssClass="unwatermarked" MaxLength="90"></asp:TextBox>
-                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" Display="Dynamic"
-                                                    ErrorMessage="Facility name required" ControlToValidate="txtfacName">*</asp:RequiredFieldValidator>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Facility Location (Street)
-                                            </td>
-                                            <td>
-                                                <asp:TextBox ID="txtfacStreet" runat="server" CssClass="unwatermarked" MaxLength="90"></asp:TextBox>
-                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator14" runat="server" Display="Dynamic"
-                                                    ErrorMessage="Street address required" ControlToValidate="txtfacStreet">*</asp:RequiredFieldValidator>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Facility Location (City)
-                                            </td>
-                                            <td>
-                                                <asp:TextBox ID="txtfacCity" runat="server" CssClass="unwatermarked" MaxLength="50"></asp:TextBox>
-                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator15" runat="server" Display="Dynamic"
-                                                    ErrorMessage="City required" ControlToValidate="txtfacCity">*</asp:RequiredFieldValidator>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                    <br>
+                                <asp:Panel ID="pnlFeeContactInfo" runat="server">
+                                    <p>Verify the contact preferences below.</p>
                                     <p>
-                                        <strong>Please NOTE that this change will be made upon review and approval by our staff. 
-                                    If you also need to change this information on your permit, you must submit&nbsp;a
-                                    <asp:HyperLink ID="HyperLink4" runat="server" Target="_blank" NavigateUrl="https://epd.georgia.gov/forms-permits/air-protection-branch-forms-permits/air-permits/apply-air-permit/apply-sip">Facility Name Change Form</asp:HyperLink>.
-                                        </strong>
+                                        If anything needs to be changed, go to the 
+                                        <asp:HyperLink ID="hlContacts" runat="server" NavigateUrl="~/Facility/Contacts.aspx">Facility Communication Preferences</asp:HyperLink>
+                                        page and make changes there before proceeding.
                                     </p>
+
+                                    <h4>Communication preference:</h4>
+                                    <p><%= info.Preference.CommunicationPreference.Description %></p>
+
+                                    <h4>Primary Contact:</h4>
+                                    <% If info.Mail Is Nothing Then %>
+                                    <p><em>Not set.</em></p>
+                                    <% Else %>
+                                    <p>
+                                        <%= info.Mail.Name %><br />
+                                        <% If Not String.IsNullOrEmpty(info.Mail.Title) Then %>
+                                        <%= info.Mail.Title %><br />
+                                        <% End If %>
+                                        <% If Not String.IsNullOrEmpty(info.Mail.Organization) Then %>
+                                        <%= info.Mail.Organization %><br />
+                                        <% End If %>
+                                        <%= info.Mail.Address1%><br />
+                                        <% If Not String.IsNullOrEmpty(info.Mail.Address2) Then %>
+                                        <%= info.Mail.Address2%><br />
+                                        <% End If %>
+                                        <%= info.Mail.City %>, <%= info.Mail.State %> <%= info.Mail.PostalCode %><br />
+                                        <% If Not String.IsNullOrEmpty(info.Mail.Telephone) Then %>
+                                        <br />
+                                        <%= info.Mail.Telephone %>
+                                        <% End If %>
+                                    </p>
+                                    <% End If %>
+
+                                    <% If info.Preference.CommunicationPreference.IncludesElectronic Then %>
+                                    <h4>Email Contacts:</h4>
+                                    <% If info.Emails.Count = 0 Then %>
+                                    <p><em>None added.</em></p>
+                                    <% Else %>
+                                    <ul class="flush">
+                                        <% For Each email In info.Emails %>
+                                        <li><%= email.Email %>
+                                            <% If Not email.Verified Then %>
+                                            <i>(not verified)</i>
+                                            <% End If %>
+                                        </li>
+                                        <% Next %>
+                                    </ul>
+                                    <% End If %>
+                                    <% End If %>
                                 </asp:Panel>
-                                <br />
-                                <p>
-                                    <asp:Label ID="lblContactMsg" runat="server" ForeColor="#C000C0" Visible="False"></asp:Label>
+
+                                <p id="pContactInfoMissing" runat="server" visible="false">
+                                    Contact info is missing. Go to the 
+                                    <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/Facility/Contacts.aspx">Facility Communication Preferences</asp:HyperLink>
+                                    page and update the Fees Contact info before proceeding.
+                                </p>
+
+                                <p id="pFinalSubmitError" runat="server" visible="false" class="text-error">
+                                    There was an error saving your fees report. Please double-check your entries.
                                 </p>
                                 <p>
-                                    <asp:Button ID="btnUpdateContact" runat="server" ValidationGroup="Contact" CssClass="button-large button-proceed"
-                                        Text="Save Fee Contact and Continue →" /><br />
+                                    <asp:Button ID="btnVerifyContact" runat="server" ValidationGroup="Contact" CssClass="button-large button-proceed"
+                                        Text="Verify Fee Contact and Continue →" /><br />
                                 </p>
+                                <% End If %>
                             </asp:Panel>
 
                             <asp:Panel ID="pnlFeeCalculation" runat="server" Visible="false">
@@ -692,73 +612,6 @@
                                         Text="Submit Fees Report"></asp:Button>
                                 </p>
                             </asp:Panel>
-                        </ContentTemplate>
-                    </act:TabPanel>
-
-                    <act:TabPanel runat="server" ID="tabHistory" HeaderText="Submittal History">
-                        <ContentTemplate>
-                            <p>
-                                Following is annual permit fee information from the current year back to 2004. Past invoices and deposit information are located
-                    in the separate
-                   
-                    <asp:HyperLink ID="hlPermitFees" runat="server" NavigateUrl="~/Fees/">Permit Fees Summary</asp:HyperLink>
-                                section.)
-               
-                            </p>
-
-                            <asp:GridView ID="grdFeeHistory" runat="server" CssClass="table-simple" Visible="true" AutoGenerateColumns="False"
-                                UseAccessibleHeader="true" RowHeaderColumn="NUMFEEYEAR">
-                                <Columns>
-                                    <asp:BoundField DataField="NUMFEEYEAR" HeaderText="Fee Year" />
-                                    <asp:TemplateField HeaderText="Fee Contact">
-                                        <ItemTemplate>
-                                            <%# String.Format("{0} {1}", Eval("STRCONTACTFIRSTNAME"), Eval("STRCONTACTLASTNAME")) %><br />
-                                            <%# Eval("STRCONTACTCOMPANYNAME") %><br />
-                                            <%# Eval("STRCONTACTADDRESS") %><br />
-                                            <%# String.Format("{0}, {1} {2}", Eval("STRCONTACTCITY"), Eval("STRCONTACTSTATE"), Eval("STRCONTACTZIPCODE")) %>
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Facility Status">
-                                        <ItemTemplate>
-                                            Classification:&nbsp;<b><%# Eval("STRCLASS") %></b><br />
-                                            Subject&nbsp;to&nbsp;NSPS:&nbsp;<b><%# Eval("STRNSPS") %></b><br />
-                                            NSPS&nbsp;Exempt:&nbsp;<b><%# Eval("STRNSPSEXEMPT") %></b><br />
-                                            <br />
-                                            Payment&nbsp;Type&nbsp;Selected:<br />
-                                            <b><%# Eval("STRPAYMENTPLAN") %></b>
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Reported Emissions (tons)">
-                                        <ItemTemplate>
-                                            VOC:&nbsp;<b><%# Eval("INTVOCTONS") %></b><br />
-                                            NO<sub>x</sub>:&nbsp;<b><%# Eval("INTNOXTONS") %></b><br />
-                                            PM:&nbsp;<b><%# Eval("INTPMTONS") %></b><br />
-                                            SO<sub>2</sub>:&nbsp;<b><%# Eval("INTSO2TONS") %></b><br />
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Emissions Fees">
-                                        <ItemTemplate>
-                                            Fee&nbsp;Rate:&nbsp;<b><%# String.Format("{0:c}", Eval("NUMPERTONRATE")) %></b><br />
-                                            Fee&nbsp;for&nbsp;VOC:&nbsp;<b><%# String.Format("{0:c}", NullableDecimalProduct(Eval("INTVOCTONS"), Eval("NUMPERTONRATE"))) %></b><br />
-                                            Fee&nbsp;for&nbsp;NO<sub>x</sub>:&nbsp;<b><%# String.Format("{0:c}", NullableDecimalProduct(Eval("INTNOXTONS"), Eval("NUMPERTONRATE"))) %></b><br />
-                                            Fee&nbsp;for&nbsp;PM:&nbsp;<b><%# String.Format("{0:c}", NullableDecimalProduct(Eval("INTPMTONS"), Eval("NUMPERTONRATE"))) %></b><br />
-                                            Fee&nbsp;for&nbsp;SO<sub>2</sub>:&nbsp;<b><%# String.Format("{0:c}", NullableDecimalProduct(Eval("INTSO2TONS"), Eval("NUMPERTONRATE"))) %></b><br />
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Total Fees">
-                                        <ItemTemplate>
-                                            Total&nbsp;Part&nbsp;70&nbsp;Fee:&nbsp;<b><%# String.Format("{0:c}", Eval("NUMPART70FEE")) %></b><br />
-                                            Part&nbsp;70/SM&nbsp;Fee:&nbsp;<b><%# String.Format("{0:c}", Eval("NUMSMFEE")) %></b><br />
-                                            Part&nbsp;70 Maintenance&nbsp;Fee:&nbsp;<b><%# String.Format("{0:c}", Eval("MaintenanceFee")) %></b><br />
-                                            NSPS&nbsp;Fee:&nbsp;<b><%# String.Format("{0:c}", Eval("NUMNSPSFEE")) %></b><br />
-                                            Admin&nbsp;Fee:&nbsp;<b><%# String.Format("{0:c}", Eval("NUMADMINFEE")) %></b><br />
-                                            <br />
-                                            Total&nbsp;Fee&nbsp;Due:&nbsp;<b><%# String.Format("{0:c}", Eval("NUMTOTALFEE")) %></b>
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
-                                </Columns>
-                            </asp:GridView>
-
                         </ContentTemplate>
                     </act:TabPanel>
                 </act:TabContainer>
