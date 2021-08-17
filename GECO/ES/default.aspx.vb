@@ -30,10 +30,6 @@ Partial Class es_default
 
         If Not IsPostBack Then
 
-            HideSubmitHelp()
-            HideFacilityHelp()
-            HideContactHelp()
-            HideEmissionsHelp()
             LoadESYears()
             ShowInitial()
 
@@ -56,50 +52,6 @@ Partial Class es_default
 
     End Sub
 
-#Region " Help Panel Routines "
-
-    Private Sub HideFacilityHelp()
-
-        Dim FacilityHelp = CType(Master.FindControl("pnlFacilityHelp"), Panel)
-
-        If FacilityHelp IsNot Nothing Then
-            FacilityHelp.Visible = False
-        End If
-
-    End Sub
-
-    Private Sub HideContactHelp()
-
-        Dim ContactHelp = CType(Master.FindControl("pnlContactHelp"), Panel)
-
-        If ContactHelp IsNot Nothing Then
-            ContactHelp.Visible = False
-        End If
-
-    End Sub
-
-    Private Sub HideEmissionsHelp()
-
-        Dim EmissionsHelp = CType(Master.FindControl("pnlEmissionsHelp"), Panel)
-
-        If EmissionsHelp IsNot Nothing Then
-            EmissionsHelp.Visible = False
-        End If
-
-    End Sub
-
-    Private Sub HideSubmitHelp()
-
-        Dim SubmitHelp = CType(Master.FindControl("pnlSubmitHelp"), Panel)
-
-        If SubmitHelp IsNot Nothing Then
-            SubmitHelp.Visible = False
-        End If
-
-    End Sub
-
-#End Region
-
     Protected Sub cboESYear_SelectedIndexChanged(ByVal sender As Object, ByVal e As EventArgs) Handles cboESYear.SelectedIndexChanged
 
         Dim YearSelected As Integer
@@ -121,9 +73,13 @@ Partial Class es_default
                 lblCurrentStatus.Text = esStatus
                 If Left(esStatus, 5) = "Opted" Then
                     btnCurrentES.Text = "Make changes to " & Now.Year - 1 & " ES Data"
+                    btnCurrentES.CssClass = "button-large"
+                    pnlCurrentESStatus.CssClass = "panel panel-complete text-centered"
                 End If
                 If Left(esStatus, 10) = "Applicable" Then
                     btnCurrentES.Text = "Begin " & Now.Year - 1 & " ES"
+                    btnCurrentES.CssClass = "button-large button-proceed"
+                    pnlCurrentESStatus.CssClass = "panel panel-inprogress text-centered"
                 End If
             Else
                 ShowPast()
@@ -133,6 +89,8 @@ Partial Class es_default
                 lblAIRSNo.Text = CurrentAirs.FormattedString
                 PastAirsYear = CurrentAirs.DbFormattedString & CStr(YearSelected)
                 lblFacilityName.Text = GetFacilityName(CurrentAirs)
+                lblConfNo.Text = GetConfirmNumber(PastAirsYear)
+
                 NOxAmt = GetEmissionValue("NOx", PastAirsYear)
                 VOCAmt = GetEmissionValue("VOC", PastAirsYear)
                 If NOxAmt = "-1" Then NOxAmt = "0"
@@ -147,8 +105,15 @@ Partial Class es_default
                 End If
             End If
         End If
-
     End Sub
+
+    Private Shared Function GetConfirmNumber(ay As String) As String
+
+        Dim query As String = "Select strConfirmationNbr FROM esSchema Where strAirsYear = @ay "
+        Dim ConfNum As String = DB.GetString(query, New SqlParameter("@ay", ay))
+        Return If(String.IsNullOrEmpty(ConfNum), "No Data", ConfNum)
+
+    End Function
 
     Private Sub ShowOptedIn()
 
@@ -191,12 +156,6 @@ Partial Class es_default
 
     End Sub
 
-    Protected Sub btnCancel_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnCancel.Click
-
-        ShowInitial()
-
-    End Sub
-
     Protected Sub btnCurrentES_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnCurrentES.Click
 
         Response.Redirect("esform.aspx")
@@ -218,23 +177,5 @@ Partial Class es_default
         Return DB.GetString(query, param)
 
     End Function
-
-    Protected Sub btnCancelPast_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnCancelPast.Click
-
-        ShowInitial()
-
-    End Sub
-
-    Protected Sub btnPrintPastES_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnPrintPastES.Click
-
-
-        MyBase.Session("fname") = lblFacilityName.Text
-        MyBase.Session("voc") = lblVOC.Text
-        MyBase.Session("nox") = lblNOx.Text
-        MyBase.Session("pastayr") = CurrentAirs.DbFormattedString & GetSessionItem(Of String)("PastESYear")
-
-        Response.Redirect("espast.aspx")
-
-    End Sub
 
 End Class

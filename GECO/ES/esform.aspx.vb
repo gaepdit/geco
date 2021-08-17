@@ -8,7 +8,6 @@ Partial Class es_esform
 
     Private SavedES As Boolean
     Private SavedAPB As Boolean
-    Private ESExist As Boolean
 
     Private Property CurrentAirs As ApbFacilityId
 
@@ -36,9 +35,7 @@ Partial Class es_esform
             rngValYCoordinate.MinimumValue = CStr(GetSessionItem(Of Decimal)("LatMin"))
             rngValYCoordinate.MaximumValue = CStr(GetSessionItem(Of Decimal)("LatMax"))
 
-            ESExist = CheckESExist(airsYear)
-
-            If ESExist AndAlso CheckESEntry(airsYear) Then
+            If CheckESExist(airsYear) AndAlso CheckESEntry(airsYear) Then
                 LoadESSchema()
             Else
                 LoadFacilityLocation()
@@ -47,10 +44,6 @@ Partial Class es_esform
 
             pnlFacility.Visible = True
             pnlLatLongConvert.Visible = False
-            ShowFacilityHelp()
-            HideContactHelp()
-            HideEmissionsHelp()
-            HideSubmitHelp()
 
         End If
 
@@ -136,57 +129,30 @@ Partial Class es_esform
 
     Protected Sub btnContinueToContact_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnContinueToContact.Click
         mltiViewESFacility.ActiveViewIndex = 1
-        HideFacilityHelp()
-        ShowContactHelp()
-        HideEmissionsHelp()
-        HideSubmitHelp()
-        lblTop.Focus()
     End Sub
 
     Protected Sub btnContinueToEmissions_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnContinueToEmissions.Click
         mltiViewESFacility.ActiveViewIndex = 2
-        HideFacilityHelp()
-        HideContactHelp()
-        ShowEmissionsHelp()
-        HideSubmitHelp()
-        lblTop.Focus()
     End Sub
 
     Protected Sub btnCancelLocation_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnCancelLocation.Click
-        Response.Redirect("~/Facility/")
+        Response.Redirect("~/ES/")
     End Sub
 
     Protected Sub btnCancelContact_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnCancelContact.Click
-        Response.Redirect("~/Facility/")
+        Response.Redirect("~/ES/")
     End Sub
 
     Protected Sub btnCancelEmission_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnCancelEmission.Click
-        Response.Redirect("~/Facility/")
+        Response.Redirect("~/ES/")
     End Sub
 
     Protected Sub btnbackToLocation_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnbackToLocation.Click
         mltiViewESFacility.ActiveViewIndex = 0
-        ShowFacilityHelp()
-        HideContactHelp()
-        HideEmissionsHelp()
     End Sub
 
     Protected Sub btnBackToContactInfo_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnBackToContactInfo.Click
         mltiViewESFacility.ActiveViewIndex = 1
-        HideFacilityHelp()
-        ShowContactHelp()
-        HideEmissionsHelp()
-    End Sub
-
-    Protected Sub btnRequestChange_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnRequestChange.Click
-
-        Session("fname") = txtFacilityName.Text
-        Session("faddress") = txtLocationAddress.Text
-        Session("fcity") = txtCity.Text
-        Session("fzip") = txtZipCode.Text
-        Session("fcounty") = txtCounty.Text
-        Response.Redirect("reqchange.aspx")
-
     End Sub
 
 #End Region
@@ -537,111 +503,131 @@ Partial Class es_esform
     End Sub
 
     Private Sub LoadContactInfo()
-
-        'Load contact info FROM  apbContactInformation table
-
         Dim ContactFaxNumber As String
         Dim ContactZip As String
-        Dim ContactKey As String = CurrentAirs.DbFormattedString & "42"
-        Dim Exist As Boolean
 
-        'Check if contact exists in apbContactInformation table.
-        'If it does not, the database call for the contact info is skipped.
-        Exist = ContactExistAPB()
+        Dim query = "    select dbo.NullIfNaOrEmpty(
+                           IIF(m.Id is not null, m.Prefix,
+                               c.STRCONTACTPREFIX))          as strContactPrefix,
+                   dbo.NullIfNaOrEmpty(
+                           IIF(m.Id is not null, m.FirstName,
+                               c.STRCONTACTFIRSTNAME))       as strContactFirstName,
+                   dbo.NullIfNaOrEmpty(
+                           IIF(m.Id is not null, m.LastName,
+                               c.STRCONTACTLASTNAME))        as strContactLastName,
+                   dbo.NullIfNaOrEmpty(
+                           IIF(m.Id is not null, left(m.Title, 50),
+                               left(c.STRCONTACTTITLE, 50))) as strContactTitle,
+                   dbo.NullIfNaOrEmpty(
+                           IIF(m.Id is not null, m.Organization,
+                               c.STRCONTACTCOMPANYNAME))     as strContactCompanyName,
+                   dbo.NullIfNaOrEmpty(
+                           IIF(m.Id is not null, m.Telephone,
+                               c.STRCONTACTPHONENUMBER1))    as strContactPhoneNumber1,
+                   dbo.NullIfNaOrEmpty(
+                           IIF(m.Id is not null, null,
+                               c.STRCONTACTFAXNUMBER))       as strContactFaxNumber,
+                   dbo.NullIfNaOrEmpty(
+                           IIF(m.Id is not null, null,
+                               left(c.STRCONTACTEMAIL, 50))) as strContactEmail,
+                   dbo.NullIfNaOrEmpty(
+                           IIF(m.Id is not null, m.Address1,
+                               c.STRCONTACTADDRESS1))        as strContactAddress1,
+                   dbo.NullIfNaOrEmpty(
+                           IIF(m.Id is not null, m.City,
+                               c.STRCONTACTCITY))            as strContactCity,
+                   dbo.NullIfNaOrEmpty(
+                           IIF(m.Id is not null, m.State,
+                               c.STRCONTACTSTATE))           as strContactState,
+                   dbo.NullIfNaOrEmpty(
+                           IIF(m.Id is not null, m.PostalCode,
+                               c.STRCONTACTZIPCODE))         as strContactZipCode
+            from dbo.ESSCHEMA e
+                left join dbo.Geco_MailContact m
+                on e.STRAIRSNUMBER = m.FacilityId
+                    and m.Category = 'ES'
+                    and m.LatestConfirmationDate is not null
+                left join dbo.APBCONTACTINFORMATION c
+                on e.STRAIRSNUMBER = c.STRAIRSNUMBER
+                    and c.STRKEY = '42'
+            where e.INTESYEAR = @year
+              and e.STRAIRSNUMBER = @airs"
 
-        If Exist Then
+        Dim params As SqlParameter() = {
+            New SqlParameter("@year", (Now.Year - 1).ToString),
+            New SqlParameter("@airs", CurrentAirs.DbFormattedString)
+        }
 
-            Dim query = "select strContactPrefix, " &
-                "strContactFirstName, " &
-                "strContactLastName, " &
-                "strContactTitle, " &
-                "strContactCompanyName, " &
-                "strContactPhoneNumber1, " &
-                "strContactPhoneNumber2, " &
-                "strContactFaxNumber, " &
-                "strContactEmail, " &
-                "strContactAddress1, " &
-                "strContactCity, " &
-                "strContactState, " &
-                "strContactZipCode " &
-                "FROM apbContactInformation where strContactKey = @ContactKey "
+        Dim dr = DB.GetDataRow(query, params)
 
-            Dim param As New SqlParameter("@ContactKey", ContactKey)
+        If dr IsNot Nothing Then
 
-            Dim dr = DB.GetDataRow(query, param)
-
-            If dr IsNot Nothing Then
-
-                If IsDBNull(dr("strContactPrefix")) Then
-                    txtContactPrefix.Text = ""
-                Else
-                    txtContactPrefix.Text = dr.Item("strContactPrefix").ToString
-                End If
-                If IsDBNull(dr("strContactFirstName")) Then
-                    txtContactFirstName.Text = ""
-                Else
-                    txtContactFirstName.Text = dr.Item("strContactFirstName").ToString
-                End If
-                If IsDBNull(dr("strContactLastName")) Then
-                    txtContactLastName.Text = ""
-                Else
-                    txtContactLastName.Text = dr.Item("strContactLastName").ToString
-                End If
-                If IsDBNull(dr("strContactTitle")) Then
-                    txtContactTitle.Text = ""
-                Else
-                    txtContactTitle.Text = dr.Item("strContactTitle").ToString
-                End If
-                If IsDBNull(dr("strContactCompanyName")) Then
-                    txtContactCompanyName.Text = ""
-                Else
-                    txtContactCompanyName.Text = dr.Item("strContactCompanyName").ToString
-                End If
-                If Not IsDBNull(dr("strContactPhoneNumber1")) Then
-                    txtOfficePhoneNbr.Text = dr.Item("strContactPhoneNumber1").ToString
-                End If
-                If Not IsDBNull(dr("strContactFaxNumber")) Then
-                    ContactFaxNumber = dr.Item("strContactFaxNumber").ToString
-                    txtFaxNbr.Text = Mid(ContactFaxNumber, 1, 10)
-                End If
-                If IsDBNull(dr("strContactEmail")) Then
-                    txtContactEmail.Text = ""
-                Else
-                    txtContactEmail.Text = dr.Item("strContactEmail").ToString
-                End If
-                If IsDBNull(dr("strContactAddress1")) Then
-                    txtContactAddress1.Text = ""
-                Else
-                    txtContactAddress1.Text = dr.Item("strContactAddress1").ToString
-                End If
-                If IsDBNull(dr("strContactCity")) Then
-                    txtContactCity.Text = ""
-                Else
-                    txtContactCity.Text = dr.Item("strContactCity").ToString
-                End If
-                If IsDBNull(dr("strContactState")) Then
-                    cboContactState.SelectedIndex = 0
-                Else
-                    cboContactState.SelectedValue = dr.Item("strContactState").ToString
-                End If
-
-                If IsDBNull(dr("strContactZipCode")) Then
-                    txtContactZipCode.Text = ""
-                Else
-                    ContactZip = dr.Item("strContactZipCode").ToString
-                    ContactZip = Replace(ContactZip, "-", "")
-                    If Len(ContactZip) > 5 Then
-                        txtContactZipCode.Text = Left(dr.Item("strContactZipCode").ToString, 5)
-                        txtContactZipPlus4.Text = Mid(dr.Item("strContactZipCode").ToString, 6, 4)
-                    Else
-                        txtContactZipCode.Text = dr.Item("strContactZipCode").ToString
-                    End If
-                End If
-
+            If IsDBNull(dr("strContactPrefix")) Then
+                txtContactPrefix.Text = ""
+            Else
+                txtContactPrefix.Text = dr.Item("strContactPrefix").ToString
+            End If
+            If IsDBNull(dr("strContactFirstName")) Then
+                txtContactFirstName.Text = ""
+            Else
+                txtContactFirstName.Text = dr.Item("strContactFirstName").ToString
+            End If
+            If IsDBNull(dr("strContactLastName")) Then
+                txtContactLastName.Text = ""
+            Else
+                txtContactLastName.Text = dr.Item("strContactLastName").ToString
+            End If
+            If IsDBNull(dr("strContactTitle")) Then
+                txtContactTitle.Text = ""
+            Else
+                txtContactTitle.Text = dr.Item("strContactTitle").ToString
+            End If
+            If IsDBNull(dr("strContactCompanyName")) Then
+                txtContactCompanyName.Text = ""
+            Else
+                txtContactCompanyName.Text = dr.Item("strContactCompanyName").ToString
+            End If
+            If Not IsDBNull(dr("strContactPhoneNumber1")) Then
+                txtOfficePhoneNbr.Text = dr.Item("strContactPhoneNumber1").ToString
+            End If
+            If Not IsDBNull(dr("strContactFaxNumber")) Then
+                ContactFaxNumber = dr.Item("strContactFaxNumber").ToString
+                txtFaxNbr.Text = Mid(ContactFaxNumber, 1, 10)
+            End If
+            If IsDBNull(dr("strContactEmail")) Then
+                txtContactEmail.Text = ""
+            Else
+                txtContactEmail.Text = dr.Item("strContactEmail").ToString
+            End If
+            If IsDBNull(dr("strContactAddress1")) Then
+                txtContactAddress1.Text = ""
+            Else
+                txtContactAddress1.Text = dr.Item("strContactAddress1").ToString
+            End If
+            If IsDBNull(dr("strContactCity")) Then
+                txtContactCity.Text = ""
+            Else
+                txtContactCity.Text = dr.Item("strContactCity").ToString
+            End If
+            If IsDBNull(dr("strContactState")) Then
+                cboContactState.SelectedIndex = 0
+            Else
+                cboContactState.SelectedValue = dr.Item("strContactState").ToString
             End If
 
+            If IsDBNull(dr("strContactZipCode")) Then
+                txtContactZipCode.Text = ""
+            Else
+                ContactZip = dr.Item("strContactZipCode").ToString
+                ContactZip = Replace(ContactZip, "-", "")
+                If Len(ContactZip) > 5 Then
+                    txtContactZipCode.Text = Left(ContactZip, 5)
+                    txtContactZipPlus4.Text = Right(ContactZip, 4)
+                Else
+                    txtContactZipCode.Text = ContactZip
+                End If
+            End If
         End If
-
     End Sub
 
 #End Region
@@ -712,7 +698,6 @@ Partial Class es_esform
         If Len(sec) < 2 Then sec = "0" & sec
         Dim TimeLastLogin As String = hr & ":" & min & ":" & sec
         Dim DateLastLogin As String = day.ToUpper
-        Dim FirstConfirm As Boolean
         Dim VOCAmt As String
         Dim NOXAmt As String
         Dim OptOut As String
@@ -728,8 +713,8 @@ Partial Class es_esform
         ConfNum = CurrentAirs.ShortString & Replace(DateLastLogin, "-", "") & Replace(TimeLastLogin, ":", "")
 
         SavedES = False
-        ESExist = CheckESExist(AirsYear)
-        FirstConfirm = CheckFirstConfirm(AirsYear)
+
+        Dim FirstConfirm As Boolean = CheckFirstConfirm(AirsYear)
 
         LocationAddress = txtLocationAddress.Text
         City = txtCity.Text
@@ -770,7 +755,7 @@ Partial Class es_esform
 
         Dim query As String
 
-        If ESExist Then
+        If CheckESExist(AirsYear) Then
             If FirstConfirm Then
                 query = "Update esSchema " &
                     " Set STRFACILITYADDRESS = @LocationAddress, " &
@@ -1004,80 +989,6 @@ Partial Class es_esform
         Return DB.ValueExists(query, param)
 
     End Function
-
-#End Region
-
-#Region " Help Panel Routines "
-
-    Private Sub ShowFacilityHelp()
-
-        Dim FacilityHelp = CType(Master.FindControl("pnlFacilityHelp"), Panel)
-
-        If FacilityHelp IsNot Nothing Then
-            FacilityHelp.Visible = True
-        End If
-
-    End Sub
-
-    Private Sub HideFacilityHelp()
-
-        Dim FacilityHelp = CType(Master.FindControl("pnlFacilityHelp"), Panel)
-
-        If FacilityHelp IsNot Nothing Then
-            FacilityHelp.Visible = False
-        End If
-
-    End Sub
-
-    Private Sub ShowContactHelp()
-
-        Dim ContactHelp = CType(Master.FindControl("pnlContactHelp"), Panel)
-
-        If ContactHelp IsNot Nothing Then
-            ContactHelp.Visible = True
-        End If
-
-    End Sub
-
-    Private Sub HideContactHelp()
-
-        Dim ContactHelp = CType(Master.FindControl("pnlContactHelp"), Panel)
-
-        If ContactHelp IsNot Nothing Then
-            ContactHelp.Visible = False
-        End If
-
-    End Sub
-
-    Private Sub ShowEmissionsHelp()
-
-        Dim EmissionsHelp = CType(Master.FindControl("pnlEmissionsHelp"), Panel)
-
-        If EmissionsHelp IsNot Nothing Then
-            EmissionsHelp.Visible = True
-        End If
-
-    End Sub
-
-    Private Sub HideEmissionsHelp()
-
-        Dim EmissionsHelp = CType(Master.FindControl("pnlEmissionsHelp"), Panel)
-
-        If EmissionsHelp IsNot Nothing Then
-            EmissionsHelp.Visible = False
-        End If
-
-    End Sub
-
-    Private Sub HideSubmitHelp()
-
-        Dim SubmitHelp = CType(Master.FindControl("pnlSubmitHelp"), Panel)
-
-        If SubmitHelp IsNot Nothing Then
-            SubmitHelp.Visible = False
-        End If
-
-    End Sub
 
 #End Region
 

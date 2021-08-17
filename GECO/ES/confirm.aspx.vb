@@ -54,58 +54,9 @@ Partial Class es_confirm
                 lblFacility2.Text = GetFacilityName(CurrentAirs)
             End If
 
-            ShowSubmitHelp()
-            HideFacilityHelp()
-            HideContactHelp()
-            HideEmissionsHelp()
-
         End If
 
     End Sub
-
-#Region " Help Panel Routines "
-
-    Private Sub HideFacilityHelp()
-
-        Dim FacilityHelp = CType(Master.FindControl("pnlFacilityHelp"), Panel)
-
-        If FacilityHelp IsNot Nothing Then
-            FacilityHelp.Visible = False
-        End If
-
-    End Sub
-
-    Private Sub HideContactHelp()
-
-        Dim ContactHelp = CType(Master.FindControl("pnlContactHelp"), Panel)
-
-        If ContactHelp IsNot Nothing Then
-            ContactHelp.Visible = False
-        End If
-
-    End Sub
-
-    Private Sub HideEmissionsHelp()
-
-        Dim EmissionsHelp = CType(Master.FindControl("pnlEmissionsHelp"), Panel)
-
-        If EmissionsHelp IsNot Nothing Then
-            EmissionsHelp.Visible = False
-        End If
-
-    End Sub
-
-    Private Sub ShowSubmitHelp()
-
-        Dim SubmitHelp = CType(Master.FindControl("pnlSubmitHelp"), Panel)
-
-        If SubmitHelp IsNot Nothing Then
-            SubmitHelp.Visible = True
-        End If
-
-    End Sub
-
-#End Region
 
 #Region " Confirmation Number Routines "
 

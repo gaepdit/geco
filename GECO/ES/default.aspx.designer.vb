@@ -12,7 +12,7 @@ Option Explicit On
 
 
 Partial Public Class es_default
-    
+
     '''<summary>
     '''cboESYear control.
     '''</summary>
@@ -21,7 +21,7 @@ Partial Public Class es_default
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents cboESYear As Global.System.Web.UI.WebControls.DropDownList
-    
+
     '''<summary>
     '''pnlInitial control.
     '''</summary>
@@ -30,7 +30,7 @@ Partial Public Class es_default
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents pnlInitial As Global.System.Web.UI.WebControls.Panel
-    
+
     '''<summary>
     '''pnlCurrentES control.
     '''</summary>
@@ -39,7 +39,7 @@ Partial Public Class es_default
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents pnlCurrentES As Global.System.Web.UI.WebControls.Panel
-    
+
     '''<summary>
     '''lblCurrentYear control.
     '''</summary>
@@ -48,7 +48,7 @@ Partial Public Class es_default
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblCurrentYear As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''pnlCurrentESStatus control.
     '''</summary>
@@ -57,7 +57,7 @@ Partial Public Class es_default
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents pnlCurrentESStatus As Global.System.Web.UI.WebControls.Panel
-    
+
     '''<summary>
     '''lblCurrentYear2 control.
     '''</summary>
@@ -66,7 +66,7 @@ Partial Public Class es_default
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblCurrentYear2 As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''lblCurrentStatus control.
     '''</summary>
@@ -75,16 +75,7 @@ Partial Public Class es_default
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblCurrentStatus As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''pnlCurrentESStatus_RoundedCornersExtender control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents pnlCurrentESStatus_RoundedCornersExtender As Global.AjaxControlToolkit.RoundedCornersExtender
-    
+
     '''<summary>
     '''btnCurrentES control.
     '''</summary>
@@ -93,16 +84,7 @@ Partial Public Class es_default
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnCurrentES As Global.System.Web.UI.WebControls.Button
-    
-    '''<summary>
-    '''btnCancel control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnCancel As Global.System.Web.UI.WebControls.Button
-    
+
     '''<summary>
     '''pnlPastES control.
     '''</summary>
@@ -111,7 +93,7 @@ Partial Public Class es_default
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents pnlPastES As Global.System.Web.UI.WebControls.Panel
-    
+
     '''<summary>
     '''lblPastYear1 control.
     '''</summary>
@@ -120,7 +102,7 @@ Partial Public Class es_default
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblPastYear1 As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''lblFacilityName control.
     '''</summary>
@@ -129,7 +111,7 @@ Partial Public Class es_default
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblFacilityName As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''lblAIRSNo control.
     '''</summary>
@@ -138,7 +120,16 @@ Partial Public Class es_default
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblAIRSNo As Global.System.Web.UI.WebControls.Label
-    
+
+    '''<summary>
+    '''lblConfNo control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblConfNo As Global.System.Web.UI.WebControls.Label
+
     '''<summary>
     '''pnlOptedIn control.
     '''</summary>
@@ -147,7 +138,7 @@ Partial Public Class es_default
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents pnlOptedIn As Global.System.Web.UI.WebControls.Panel
-    
+
     '''<summary>
     '''lblVOC control.
     '''</summary>
@@ -156,7 +147,7 @@ Partial Public Class es_default
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblVOC As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''lblNOx control.
     '''</summary>
@@ -165,7 +156,7 @@ Partial Public Class es_default
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblNOx As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''pnlOptedOut control.
     '''</summary>
@@ -174,7 +165,7 @@ Partial Public Class es_default
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents pnlOptedOut As Global.System.Web.UI.WebControls.Panel
-    
+
     '''<summary>
     '''lblPastYear2 control.
     '''</summary>
@@ -183,31 +174,4 @@ Partial Public Class es_default
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblPastYear2 As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''btnPrintPastES control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnPrintPastES As Global.System.Web.UI.WebControls.Button
-    
-    '''<summary>
-    '''btnCancelPast control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnCancelPast As Global.System.Web.UI.WebControls.Button
-    
-    '''<summary>
-    '''pnl1 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents pnl1 As Global.System.Web.UI.WebControls.Panel
 End Class

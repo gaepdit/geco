@@ -12,7 +12,7 @@ Option Explicit On
 
 
 Partial Public Class es_confirm
-    
+
     '''<summary>
     '''pnlTop control.
     '''</summary>
@@ -21,7 +21,7 @@ Partial Public Class es_confirm
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents pnlTop As Global.System.Web.UI.WebControls.Panel
-    
+
     '''<summary>
     '''pnlOptedOutYes control.
     '''</summary>
@@ -30,7 +30,7 @@ Partial Public Class es_confirm
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents pnlOptedOutYes As Global.System.Web.UI.WebControls.Panel
-    
+
     '''<summary>
     '''lblESYear1 control.
     '''</summary>
@@ -39,7 +39,7 @@ Partial Public Class es_confirm
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblESYear1 As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''lblConfNum1 control.
     '''</summary>
@@ -48,25 +48,7 @@ Partial Public Class es_confirm
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblConfNum1 As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''lblDate1 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblDate1 As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''lblAirsNo1 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblAirsNo1 As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''lblFacility1 control.
     '''</summary>
@@ -75,7 +57,25 @@ Partial Public Class es_confirm
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblFacility1 As Global.System.Web.UI.WebControls.Label
-    
+
+    '''<summary>
+    '''lblAirsNo1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblAirsNo1 As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''lblDate1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblDate1 As Global.System.Web.UI.WebControls.Label
+
     '''<summary>
     '''btnOptOutChange1 control.
     '''</summary>
@@ -84,7 +84,7 @@ Partial Public Class es_confirm
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnOptOutChange1 As Global.System.Web.UI.WebControls.Button
-    
+
     '''<summary>
     '''pnlConfFinal control.
     '''</summary>
@@ -93,7 +93,7 @@ Partial Public Class es_confirm
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents pnlConfFinal As Global.System.Web.UI.WebControls.Panel
-    
+
     '''<summary>
     '''lblESYear3 control.
     '''</summary>
@@ -102,7 +102,7 @@ Partial Public Class es_confirm
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblESYear3 As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''lblConfNumFinalize control.
     '''</summary>
@@ -111,25 +111,7 @@ Partial Public Class es_confirm
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblConfNumFinalize As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''lblDate2 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblDate2 As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''lblAirsNo2 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblAirsNo2 As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''lblFacility2 control.
     '''</summary>
@@ -138,7 +120,25 @@ Partial Public Class es_confirm
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblFacility2 As Global.System.Web.UI.WebControls.Label
-    
+
+    '''<summary>
+    '''lblAirsNo2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblAirsNo2 As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''lblDate2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblDate2 As Global.System.Web.UI.WebControls.Label
+
     '''<summary>
     '''lblVOCAmt2 control.
     '''</summary>
@@ -147,7 +147,7 @@ Partial Public Class es_confirm
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblVOCAmt2 As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''lblNOXAmt2 control.
     '''</summary>
@@ -156,7 +156,7 @@ Partial Public Class es_confirm
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblNOXAmt2 As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''btnConfFinal control.
     '''</summary>

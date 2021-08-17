@@ -6,50 +6,21 @@
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
             <asp:Panel ID="pnlFacility" runat="server">
-                <div style="text-align: center">
-                    <table border="0" cellpadding="0" cellspacing="0" style="width: 100%">
-                        <tr>
-                            <td align="center">
-                                <span style="font-size: 16pt; color: #4169e1; font-family: Arial"><strong>
-                                    <asp:Label ID="lblTop" runat="server" Font-Size="Large" ForeColor="Blue"
-                                        Text="Facility Information"></asp:Label></strong></span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td align="center">
-                                <span style="font-size: 9pt; color: red">
-                                    <div style="text-align: center">
-                                        <table>
-                                            <tr>
-                                                <td align="center">Verify that the information on this form is correct and click the appropriate button
-                                                    below to continue.
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </div>
-                                </span>
-                            </td>
-                        </tr>
-                    </table>
-                </div>
+                <br />
+                <br />
                 <asp:MultiView ID="mltiViewESFacility" runat="server" ActiveViewIndex="0">
                     <asp:View ID="ViewESFacilityLocation" runat="server">
                         <table>
                             <tr>
-                                <td align="center" colspan="2">
-                                    <strong><span style="color: #4169e1; font-size: 12pt;">Location</span></strong>
+                                <td colspan="2">
+                                    <strong><span style="color: #4169e1; font-size: 12pt;">Facility Location</span></strong>
                                 </td>
                             </tr>
                             <tr>
                                 <td colspan="2"></td>
                             </tr>
                             <tr>
-                                <td colspan="2" style="height: 22px" valign="top">
-                                    <span style="font-size: 10pt;"><strong>Facility Name &amp; Address</strong> (Physical Location of Facility)</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td align="right" colspan="" valign="middle">Facility Name:
+                                <td align="right" valign="middle">Facility Name:
                                 </td>
                                 <td valign="middle">
                                     <asp:TextBox ID="txtFacilityName" runat="server" BorderColor="White" BorderStyle="Solid"
@@ -57,7 +28,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td align="right" colspan="" valign="middle">Street Address:
+                                <td align="right" valign="middle">Street Address:
                                 </td>
                                 <td valign="middle">
                                     <asp:TextBox ID="txtLocationAddress" runat="server" BorderColor="White" BorderStyle="Solid"
@@ -65,7 +36,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td align="right" colspan="" valign="middle" style="width: 35%; height: 26px;">City:
+                                <td align="right" valign="middle" style="width: 35%; height: 26px;">City:
                                 </td>
                                 <td valign="middle">
                                     <asp:TextBox ID="txtCity" runat="server" BorderColor="White" BorderStyle="Solid"
@@ -73,7 +44,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td align="right" colspan="" valign="middle">State:
+                                <td align="right" valign="middle">State:
                                 </td>
                                 <td valign="middle" style="height: 24px;">
                                     <asp:TextBox ID="txtState" runat="server" BorderColor="White" BorderStyle="Solid"
@@ -81,7 +52,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td align="right" colspan="" valign="middle">Zip:
+                                <td align="right" valign="middle">Zip:
                                 </td>
                                 <td valign="middle">
                                     <asp:TextBox ID="txtZipCode" runat="server" BorderColor="White" BorderStyle="Solid"
@@ -89,7 +60,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td align="right" colspan="" valign="middle">County:
+                                <td align="right" valign="middle">County:
                                 </td>
                                 <td valign="middle">
                                     <asp:TextBox ID="txtCounty" runat="server" BorderColor="White" BorderStyle="Solid"
@@ -97,32 +68,17 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td colspan="1" valign="top">&nbsp;
-                                </td>
-                                <td valign="top">The fields above are not editable. If any information is
-                                        incorrect, click the button below to request a change.
-                                </td>
-                            </tr>
-                            <tr>
-                                <td colspan="" valign="top">&nbsp;
-                                </td>
-                                <td valign="top">
-                                    <asp:Button ID="btnRequestChange" runat="server" Text="Request Name or Address Change"
-                                        CausesValidation="False" />
-                                </td>
-                            </tr>
-                            <tr>
-                                <td align="right" colspan="1" valign="top"></td>
+                                <td align="right" valign="top"></td>
                                 <td valign="top">&nbsp;
                                 </td>
                             </tr>
                             <tr>
-                                <td align="left" colspan="2" valign="top" style="height: 18px">
-                                    <strong>Global Positioning Information &nbsp; &nbsp; &nbsp; </strong>
+                                <td colspan="2">
+                                    <strong><span style="color: #4169e1; font-size: 12pt;">Geocoordinates</span></strong>
                                 </td>
                             </tr>
                             <tr>
-                                <td align="right" colspan="1" valign="middle">Latitude:
+                                <td align="right" valign="middle">Latitude:
                                 </td>
                                 <td valign="middle">
                                     <asp:TextBox ID="txtYCoordinate" runat="server" BorderColor="CornflowerBlue" BorderStyle="Solid"
@@ -131,7 +87,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td align="right" colspan="1" valign="middle"></td>
+                                <td align="right" valign="middle"></td>
                                 <td valign="middle">
                                     <act:FilteredTextBoxExtender ID="FilteredTextBoxExtender10" runat="server"
                                         EnableViewState="False" FilterType="Custom, Numbers" TargetControlID="txtYCoordinate"
@@ -145,7 +101,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td align="right" colspan="1" valign="middle">Longitude:
+                                <td align="right" valign="middle">Longitude:
                                 </td>
                                 <td valign="middle">
                                     <asp:TextBox ID="txtXCoordinate" runat="server" BorderColor="CornflowerBlue" BorderStyle="Solid"
@@ -154,7 +110,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td align="right" colspan="1" valign="middle"></td>
+                                <td align="right" valign="middle"></td>
                                 <td valign="middle">
                                     <act:FilteredTextBoxExtender ID="FilteredTextBoxExtender3" runat="server"
                                         FilterType="Custom, Numbers" TargetControlID="txtXCoordinate" ValidChars=".">
@@ -167,24 +123,24 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td align="right" colspan="1" valign="middle"></td>
+                                <td align="right" valign="middle"></td>
                                 <td valign="middle">
                                     <asp:Button ID="btnLatLongConvert" runat="server" CausesValidation="False"
                                         Text="Latitude-Longitude Converter" />
                                 </td>
                             </tr>
                             <tr>
-                                <td align="right" colspan="1" valign="middle">Horizontal Collection Method:
+                                <td align="right" valign="middle">Horizontal Collection Method:
                                 </td>
                                 <td valign="middle"></td>
                             </tr>
                             <tr>
-                                <td align="center" colspan="2" valign="middle">
+                                <td colspan="2" valign="middle">
                                     <asp:DropDownList ID="cboHorizontalCollectionCode" runat="server" Width="90%"></asp:DropDownList>
                                 </td>
                             </tr>
                             <tr>
-                                <td align="right" colspan="1" valign="middle"></td>
+                                <td align="right" valign="middle"></td>
                                 <td valign="middle">
                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="cboHorizontalCollectionCode"
                                         Display="Dynamic" Width="100%" ErrorMessage="Select horizontal collection method."
@@ -192,7 +148,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td align="right" colspan="1" valign="middle">Horizontal Accuracy Measure:
+                                <td align="right" valign="middle">Horizontal Accuracy Measure:
                                 </td>
                                 <td valign="middle">
                                     <asp:TextBox ID="txtHorizontalAccuracyMeasure" runat="server" BorderColor="CornflowerBlue"
@@ -201,7 +157,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td align="right" colspan="1" valign="middle"></td>
+                                <td align="right" valign="middle"></td>
                                 <td valign="middle">
                                     <act:FilteredTextBoxExtender ID="FilteredTextBoxExtender11" runat="server"
                                         EnableViewState="False" FilterType="Custom, Numbers" TargetControlID="txtHorizontalAccuracyMeasure"
@@ -215,14 +171,14 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td align="right" colspan="1" valign="middle">Horizontal Datum Reference Code:
+                                <td align="right" valign="middle">Horizontal Datum Reference Code:
                                 </td>
                                 <td valign="middle">
                                     <asp:DropDownList ID="cboHorizontalReferenceCode" runat="server"></asp:DropDownList>
                                 </td>
                             </tr>
                             <tr>
-                                <td align="right" colspan="1" valign="middle"></td>
+                                <td align="right" valign="middle"></td>
                                 <td valign="middle">
                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator11" runat="server" ControlToValidate="cboHorizontalReferenceCode"
                                         Display="Dynamic" Width="100%" ErrorMessage="Select horizontal datum reference."
@@ -230,36 +186,31 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td align="right" colspan="1" valign="middle"></td>
+                                <td align="right" valign="middle"></td>
                                 <td valign="middle">&nbsp;
                                 </td>
                             </tr>
                             <tr>
-                                <td align="center" colspan="2" valign="top">&nbsp;<asp:Button ID="btnContinueToContact" runat="server" Text="Continue to Contact Information" />
-                                    &nbsp; &nbsp;
-                                   
-                                    <asp:Button ID="btnCancelLocation" runat="server" Text="Cancel" CausesValidation="False" />
-                                </td>
-                            </tr>
-                            <tr>
-                                <td align="center" colspan="2" valign="top">&nbsp;
+                                <td colspan="2" valign="top">
+                                    <asp:Button ID="btnContinueToContact" runat="server" CssClass="button-large" 
+                                        Text="Continue to Contact Information" />
+                                    &nbsp;
+                                    <asp:Button ID="btnCancelLocation" runat="server" Text="Cancel" CausesValidation="False" CssClass="button-cancel" />
                                 </td>
                             </tr>
                         </table>
                     </asp:View>
+
                     <asp:View ID="ViewESFacilityContact" runat="server">
                         <table border="0" cellpadding="2" cellspacing="1" align="center">
                             <tr>
-                                <td align="center" colspan="2">
-                                    <strong><span style="color: #4169e1; font-size: 12pt;">Contact</span></strong>
+                                <td colspan="2">
+                                    <strong><span style="color: #4169e1; font-size: 12pt;">Contact Information</span></strong>
                                 </td>
                             </tr>
                             <tr>
-                                <td colspan="2"></td>
-                            </tr>
-                            <tr>
                                 <td colspan="2">
-                                    <span style="font-size: 10pt;"><strong>Company and Contact Information</strong> (Contact for the Emissions Statement)</span>
+                                    <span style="font-size: 10pt;">(Contact for the Emissions Statement)</span>
                                 </td>
                             </tr>
                             <tr>
@@ -467,45 +418,41 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td align="center" colspan="2" valign="top">
-                                    <asp:Button ID="btnContinueToEmissions" runat="server" Text="Continue to Emissions Information" />&nbsp;
-                                   
+                                <td colspan="2" valign="top">
+                                    <asp:Button ID="btnContinueToEmissions" runat="server" CssClass="button-large"
+                                        Text="Continue to Emissions Information" />
+                                    &nbsp;
                                     <asp:Button ID="btnbackToLocation" runat="server" Text="Back" CausesValidation="False" />
-                                    &nbsp; &nbsp;<asp:Button ID="btnCancelContact" runat="server" Text="Cancel" CausesValidation="False" />
-                                </td>
-                            </tr>
-                            <tr>
-                                <td align="center" colspan="2" valign="top">&nbsp;
+                                    &nbsp;
+                                    <asp:Button ID="btnCancelContact" runat="server" Text="Cancel" CausesValidation="False" CssClass="button-cancel" />
                                 </td>
                             </tr>
                         </table>
                     </asp:View>
+
                     <asp:View ID="ViewESFacilityDescription" runat="server">
-                        <table border="0" cellpadding="2" cellspacing="1" align="center">
+                        <table border="0" cellpadding="2" cellspacing="1">
                             <tr>
-                                <td align="center" style="width: 682px">
+                                <td style="width: 682px">
                                     <strong><span style="color: #4169e1; font-size: 12pt;">Emissions Information</span></strong>
+                                    <br />
                                 </td>
-                            </tr>
-                            <tr>
-                                <td style="height: 16px; width: 682px;"></td>
                             </tr>
                             <tr>
                                 <td style="width: 682px">
-                                    <strong>Facility-Wide VOC and NO<sub>x</sub> Emissions</strong>
+                                    <strong>Facility-wide VOC and NO<sub>x</sub> emissions</strong>
+                                    <br />
                                 </td>
                             </tr>
                             <tr>
-                                <td style="width: 682px">&nbsp;</td>
-                            </tr>
-                            <tr>
-                                <td align="center" style="width: 682px">
+                                <td style="width: 682px">
                                     <table>
                                         <tr>
-                                            <td align="right" style="width: 59%" valign="top">Were your facility&#39;s actual annual emissions of
-                                                VOCs and NO<sub>x</sub> both less than or equal to 25 tons per year in <% = Now.Year - 1 %>?
+                                            <td style="width: 59%" valign="top">Were the facility's actual annual emissions of
+                                                VOC and NO<sub>x</sub> both less than or equal to 25 tons per year in <% = Now.Year - 1 %>?
                                             </td>
                                             <td align="left" style="width: 50%" valign="top">
+                                                &nbsp;
                                                 <asp:DropDownList ID="cboYesNo" runat="server" AutoPostBack="True">
                                                     <asp:ListItem Selected="True">--</asp:ListItem>
                                                     <asp:ListItem>NO</asp:ListItem>
@@ -514,40 +461,38 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td align="right" style="width: 59%"></td>
-                                            <td align="left" style="width: 50%">
+                                            <td></td>
+                                            <td align="left">
                                                 <asp:RequiredFieldValidator ID="reqValYesNo" runat="server" ControlToValidate="cboYesNo"
-                                                    Display="Dynamic" ErrorMessage="Select Yes or No above." Font-Bold="False"
+                                                    Display="Dynamic" ErrorMessage="Select Yes or No." Font-Bold="False"
                                                     InitialValue="--"></asp:RequiredFieldValidator>
+                                                <br />
                                             </td>
                                         </tr>
                                     </table>
                                 </td>
                             </tr>
-                            <tr>
-                                <td align="center" style="width: 682px"></td>
-                            </tr>
                         </table>
                         <asp:Panel ID="pnlEmissions" runat="server" Visible="False">
-                            <table align="center">
+                            <table>
                                 <tr>
-                                    <td align="right" valign="middle">&nbsp;
-                                    </td>
-                                    <td align="left" valign="middle">
+                                    <td></td>
+                                    <td align="left">
                                         <asp:Label ID="lblVOCNOXZero" runat="server" ForeColor="Red"></asp:Label>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td align="right" valign="middle">Actual annual facility-wide VOC Emissions:
-                                    </td>
+                                    <td align="right" valign="middle">Actual annual facility-wide <br />
+                                        VOC emissions:</td>
                                     <td align="left" valign="middle">
+                                        &nbsp;
                                         <asp:TextBox ID="txtVOC" runat="server" MaxLength="7">0</asp:TextBox>
                                         &nbsp;tons/year
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td align="left" valign="middle"></td>
-                                    <td align="left" valign="middle">
+                                    <td></td>
+                                    <td align="left">
                                         <act:FilteredTextBoxExtender ID="FilteredTextBoxExtender1" runat="server" FilterType="Numbers, Custom"
                                             ValidChars="." TargetControlID="txtVOC">
                                         </act:FilteredTextBoxExtender>
@@ -557,18 +502,20 @@
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtVOC"
                                             Display="Dynamic" ErrorMessage="VOC quantity required." Font-Bold="False"
                                             Width="100%"></asp:RequiredFieldValidator>
+                                        <br />
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td align="right" valign="middle">Actual annual facility-wide NO<sub>x</sub> Emissions:
-                                    </td>
+                                    <td align="right" valign="middle">Actual annual facility-wide <br />
+                                        NO<sub>x</sub> emissions:</td>
                                     <td align="left" valign="middle">
+                                        &nbsp;
                                         <asp:TextBox ID="txtNOx" runat="server" MaxLength="7">0</asp:TextBox>
                                         &nbsp;tons/year
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td align="left" valign="middle"></td>
+                                    <td></td>
                                     <td align="left" valign="middle">
                                         <act:FilteredTextBoxExtender ID="FilteredTextBoxExtender2" runat="server" FilterType="Numbers, Custom"
                                             ValidChars="." TargetControlID="txtNOx">
@@ -583,34 +530,33 @@
                             </table>
                         </asp:Panel>
 
-                        <table align="center">
+                        <table>
                             <tr>
-                                <td align="center" colspan="2">
+                                <td colspan="2">
                                     <asp:Label ID="lblActionDone" runat="server" Font-Bold="False" ForeColor="Red"></asp:Label>
                                 </td>
                             </tr>
                             <tr>
-                                <td align="center" colspan="2">&nbsp;<asp:Button ID="btnSave" runat="server" Text="Save" />&nbsp;
-                                   
-                                    <asp:Button ID="btnBackToContactInfo" runat="server" Text="Back" CausesValidation="False" />&nbsp;
-                                   
-                                    <asp:Button ID="btnCancelEmission" runat="server" Text="Cancel" CausesValidation="False" />
+                                <td colspan="2">&nbsp;<asp:Button ID="btnSave" runat="server" CssClass="button-large button-proceed" 
+                                    Text="Submit Emissions Statement" />
+                                    &nbsp;
+                                    <asp:Button ID="btnBackToContactInfo" runat="server" Text="Back" CausesValidation="False" />
+                                    &nbsp;                                   
+                                    <asp:Button ID="btnCancelEmission" runat="server" Text="Cancel" CausesValidation="False" CssClass="button-cancel" />
                                 </td>
                             </tr>
                             <tr>
-                                <td align="center" colspan="2">&nbsp;
-                                   
+                                <td colspan="2">
+                                    &nbsp;
                                     <asp:Button ID="btnContinue" runat="server" Text="Continue to Confirmation Page"
                                         CausesValidation="False" Visible="False" />
                                 </td>
-                            </tr>
-                            <tr>
-                                <td align="center" colspan="2"></td>
                             </tr>
                         </table>
                     </asp:View>
                 </asp:MultiView>
             </asp:Panel>
+
             <asp:Panel ID="pnlLatLongConvert" runat="server">
                 <div>
                     <table align="center" width="70%">
@@ -618,10 +564,7 @@
                             <td align="center">
                                 <strong><span style="font-size: 16pt; color: #4169e1;">Longitude
                                     - Latitude Converter</span></strong>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>&nbsp;
+                                <br />
                             </td>
                         </tr>
                         <tr>
@@ -637,6 +580,7 @@
                                                 are outside the county in which the facility is located you will not be allowed
                                                 to use them. If acceptable, the values will be entered in the appropriate fields
                                                 on the Facility Information form on return. Click "Cancel" to go back.
+                                                <br />
                                             </td>
                                         </tr>
                                     </table>
@@ -644,27 +588,23 @@
                             </td>
                         </tr>
                         <tr>
-                            <td></td>
-                        </tr>
-                        <tr>
                             <td>
                                 <table style="width: 100%" align="center">
                                     <tr>
-                                        <td align="right" colspan="1" valign="middle" style="width: 214px">Longitude:
-                                        </td>
+                                        <td align="right" valign="middle" style="width: 214px">Longitude:</td>
                                         <td align="left" valign="middle">
                                             <asp:TextBox ID="txtLonDeg" runat="server" BorderColor="CornflowerBlue" BorderStyle="Solid"
                                                 BorderWidth="1px" MaxLength="2" Width="50px"></asp:TextBox>
                                             deg &nbsp;<asp:TextBox ID="txtLonMin" runat="server" BorderColor="CornflowerBlue"
                                                 BorderStyle="Solid" BorderWidth="1px" MaxLength="2" Width="50px"></asp:TextBox>
                                             min&nbsp;
-                                                        &nbsp;<asp:TextBox ID="txtLonSec" runat="server" BorderColor="CornflowerBlue" BorderStyle="Solid"
-                                                            BorderWidth="1px" MaxLength="2" Width="50px"></asp:TextBox>
+                                            &nbsp;<asp:TextBox ID="txtLonSec" runat="server" BorderColor="CornflowerBlue" BorderStyle="Solid"
+                                                BorderWidth="1px" MaxLength="2" Width="50px"></asp:TextBox>
                                             sec
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td align="right" colspan="1" valign="middle" style="width: 214px"></td>
+                                        <td align="right" valign="middle" style="width: 214px"></td>
                                         <td align="left" valign="middle">
                                             <act:FilteredTextBoxExtender ID="FilteredTextBoxExtender4" runat="server"
                                                 TargetControlID="txtLonDeg" FilterType="Numbers">
@@ -693,24 +633,21 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td align="right" colspan="1" valign="middle" style="width: 214px">Latitude:
-                                        </td>
+                                        <td align="right" valign="middle" style="width: 214px">Latitude:</td>
                                         <td style="height: 20px" align="left" valign="middle">
                                             <asp:TextBox ID="txtLatDeg" runat="server" BorderColor="CornflowerBlue" BorderStyle="Solid"
                                                 BorderWidth="1px" MaxLength="2" Width="50px"></asp:TextBox>
                                             deg&nbsp;
-                                                   
-                                                    <asp:TextBox ID="txtLatMin" runat="server" BorderColor="CornflowerBlue" BorderStyle="Solid"
-                                                        BorderWidth="1px" MaxLength="2" Width="50px"></asp:TextBox>
+                                            <asp:TextBox ID="txtLatMin" runat="server" BorderColor="CornflowerBlue" BorderStyle="Solid"
+                                                BorderWidth="1px" MaxLength="2" Width="50px"></asp:TextBox>
                                             min&nbsp;
-                                                           
-                                                            <asp:TextBox ID="txtLatSec" runat="server" BorderColor="CornflowerBlue" BorderStyle="Solid"
-                                                                BorderWidth="1px" MaxLength="2" Width="50px"></asp:TextBox>
+                                            <asp:TextBox ID="txtLatSec" runat="server" BorderColor="CornflowerBlue" BorderStyle="Solid"
+                                                BorderWidth="1px" MaxLength="2" Width="50px"></asp:TextBox>
                                             sec
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td align="right" colspan="1" valign="middle" style="width: 214px"></td>
+                                        <td align="right" valign="middle" style="width: 214px"></td>
                                         <td align="left" valign="middle">
                                             <act:FilteredTextBoxExtender ID="FilteredTextBoxExtender7" runat="server"
                                                 TargetControlID="txtLatDeg" FilterType="Numbers">
@@ -739,23 +676,20 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td align="center" colspan="2">&nbsp;
-                                        </td>
+                                        <td colspan="2"></td>
                                     </tr>
                                     <tr>
-                                        <td align="center" colspan="2">
+                                        <td colspan="2">
                                             <asp:Button ID="btnConvert" runat="server" Text="Convert" />
-                                            &nbsp;&nbsp;
-                                           
+                                            &nbsp;&nbsp;                                           
                                             <asp:Button ID="btnCancelLatLong" runat="server" Text="Cancel" CausesValidation="False" />
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td align="center" colspan="2">&nbsp; &nbsp; &nbsp; &nbsp;
-                                        </td>
+                                        <td colspan="2"></td>
                                     </tr>
                                     <tr>
-                                        <td align="right" colspan="1" valign="middle" style="width: 214px">Longitude:
+                                        <td align="right" valign="middle" style="width: 214px">Longitude:
                                         </td>
                                         <td align="left" valign="middle">
                                             <asp:TextBox ID="txtLongDec" runat="server" BorderColor="White" BorderStyle="None"
@@ -764,7 +698,7 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td align="right" colspan="1" valign="middle" style="width: 214px">Latitude:
+                                        <td align="right" valign="middle" style="width: 214px">Latitude:
                                         </td>
                                         <td align="left" valign="middle">
                                             <asp:TextBox ID="txtLatDec" runat="server" BorderColor="White" BorderStyle="None"
@@ -773,7 +707,7 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td align="right" colspan="1" valign="middle" style="width: 214px"></td>
+                                        <td align="right" valign="middle" style="width: 214px"></td>
                                         <td align="left" valign="middle">
                                             <asp:Label ID="lblDecLatLongEmpty" runat="server" ForeColor="Red"></asp:Label>
                                             <asp:RangeValidator ID="rngValLongDec" runat="server"
@@ -784,8 +718,7 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td align="center" colspan="2">&nbsp;
-                                        </td>
+                                        <td colspan="2"></td>
                                     </tr>
                                     <tr>
                                         <td align="center" colspan="2">
@@ -793,18 +726,6 @@
                                         </td>
                                     </tr>
                                 </table>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>&nbsp;
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>&nbsp;
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>&nbsp;
                             </td>
                         </tr>
                     </table>

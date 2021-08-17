@@ -129,6 +129,10 @@ h1:target, h2:target, h3:target {
     font-size: 12px;
 }
 
+.text-centered {
+    text-align: center;
+}
+
 /* Lists */
 ul.flush {
     margin-left: 1em;

@@ -14,15 +14,6 @@ Option Explicit On
 Partial Public Class APB_es
 
     '''<summary>
-    '''UpdatePanel1 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents UpdatePanel1 As Global.System.Web.UI.UpdatePanel
-
-    '''<summary>
     '''ContentPlaceHolder1 control.
     '''</summary>
     '''<remarks>
