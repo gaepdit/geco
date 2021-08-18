@@ -546,7 +546,7 @@ Partial Class es_esform
                 left join dbo.Geco_MailContact m
                 on e.STRAIRSNUMBER = m.FacilityId
                     and m.Category = 'ES'
-                    and m.LatestConfirmationDate is not null
+                    and m.Confirmed = 1
                 left join dbo.APBCONTACTINFORMATION c
                 on e.STRAIRSNUMBER = c.STRAIRSNUMBER
                     and c.STRKEY = '42'
