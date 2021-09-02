@@ -8,12 +8,12 @@
             Dim subject As String = "GECO: Confirm new email address"
 
             Dim plainBody As String =
-                "Confirm and activate your new email address using this link: " &
+                "Confirm and activate your new email address by clicking this link: " &
                 vbNewLine & "{0}" &
                 vbNewLine & vbNewLine &
                 "The link expires after 2 hours."
 
-            Dim htmlBody As String = "<p>Confirm and activate your new email address using this link: <br /> " &
+            Dim htmlBody As String = "<p>Confirm and activate your new email address by clicking this link: <br /> " &
                 "<a href='{0}' target='_blank'>Confirm your email address</a></p>" &
                 "<p>The link expires after 2 hours.</p>"
 
@@ -32,14 +32,14 @@
             Dim plainBody As String = "Thank you for creating an account at " &
                 "Georgia Environmental Connections Online (GECO). " &
                 vbNewLine & vbNewLine &
-                "Confirm and activate your account using this link: " &
+                "Confirm and activate your account by clicking this link: " &
                 vbNewLine & "{0}" &
                 vbNewLine & vbNewLine &
                 "The link expires after 2 hours."
 
             Dim htmlBody As String = "<p>Thank you for creating an account at " &
                 "Georgia Environmental Connections Online (GECO).</p> " &
-                "<p>Confirm and activate your account using this link: <br /> " &
+                "<p>Confirm and activate your account by clicking this link: <br /> " &
                 "<a href='{0}' target='_blank'>Confirm account</a></p>" &
                 "<p>The link expires after 2 hours.</p>"
 
@@ -56,14 +56,16 @@
             Dim subject As String = "GECO: Password Reset"
 
             Dim plainBody As String = "A password reset was requested for this account at " &
-                "Georgia Environmental Connections Online (GECO). This link expires after 2 hours." &
+                "Georgia Environmental Connections Online (GECO). You can reset your password " &
+                "by clicking this link. The link expires after 2 hours." &
                 vbNewLine & vbNewLine &
                 "{0}" &
                 vbNewLine & vbNewLine &
                 "If you did not request a password reset, you can ignore this message and your password will not change."
 
             Dim htmlBody As String = "<p>A password reset was requested for this account at " &
-                "Georgia Environmental Connections Online (GECO). This link expires after 2 hours.</p> " &
+                "Georgia Environmental Connections Online (GECO). You can reset your password " &
+                "by clicking this link. The link expires after 2 hours.</p> " &
                 "<p><a href='{0}' " &
                 "style='display:inline-block;border:10px solid darkblue;background:darkblue;color:white;border-radius:3px;border-left-width:15px;border-right-width:15px;'>" &
                 "Reset password</a></p>" &
