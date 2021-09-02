@@ -85,12 +85,16 @@
                         <% If Not String.IsNullOrEmpty(info.Mail.Telephone) Then %>
                         <br />
                         <%= info.Mail.Telephone %>
+                        <% If Not String.IsNullOrEmpty(info.Mail.Email) Then %>
+                        <br />
+                        <%= info.Mail.Email%><br />
+                        <% End If %>
                         <% End If %>
                     </p>
                     <% End If %>
 
                     <% If category.ElectronicCommunicationAllowed AndAlso info.Preference.CommunicationPreference.IncludesElectronic Then %>
-                    <h3>Email Contacts:</h3>
+                    <h3>Additional Email Contacts:</h3>
                     <% If info.Emails.Count = 0 Then %>
                     <p><em>None added.</em></p>
                     <% Else %>

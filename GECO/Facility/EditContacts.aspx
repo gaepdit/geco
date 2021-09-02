@@ -167,6 +167,12 @@
                                                 ControlToValidate="txtTelephone" ErrorMessage="Phone number is required." />
                                         </td>
                                     </tr>
+                                    <tr>
+                                        <th>Primary Contact Email</th>
+                                        <td>
+                                            <asp:TextBox ID="txtEmail" runat="server" MaxLength="100" ValidationGroup="Contact" />
+                                        </td>
+                                    </tr>
                                 </table>
 
                                 <p id="pMailSaveError" runat="server" visible="false" class="message-warning">
@@ -184,14 +190,13 @@
 
                             <% If CurrentCategory.ElectronicCommunicationAllowed Then %>
                             <asp:Panel ID="pnlElectronicCommunication" runat="server">
-                                <h3 id="emails">Email Contacts</h3>
+                                <h3 id="emails">Additional Email Contacts</h3>
 
                                 <% If CurrentCommunicationInfo.Emails.Count = 0 Then %>
                                 <p><em>None added.</em></p>
                                 <% Else %>
 
                                 <% If CurrentCommunicationInfo.AnyVerifiedEmails Then %>
-                                <h4>Current recipients:</h4>
                                 <p id="pVerifiedEmailRemovedSuccess" runat="server" visible="false" class="message-success">
                                     The email was removed.
                                 </p>
@@ -217,7 +222,6 @@
                                 <% End If %>
 
                                 <% If CurrentCommunicationInfo.AnyUnverifiedEmails Then %>
-                                <h4>Unverified recipients:</h4>
                                 <p id="pUnverifiedEmailRemovedSuccess" runat="server" visible="false" class="message-success">
                                     The email was removed.
                                 </p>

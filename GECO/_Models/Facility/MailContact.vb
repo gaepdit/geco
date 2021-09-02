@@ -13,6 +13,7 @@
         Public Property State As String = Nothing
         Public Property PostalCode As String = Nothing
         Public Property Telephone As String = Nothing
+        Public Property Email As String = Nothing
 
         Public ReadOnly Property Name As String
             Get

@@ -60,6 +60,7 @@ Namespace DAL.Facility
                     .PostalCode = CStr(dr2("PostalCode")),
                     .State = CStr(dr2("State")),
                     .Telephone = GetNullableString(dr2("Telephone")),
+                    .Email = GetNullableString(dr2("Email")),
                     .Title = GetNullableString(dr2("Title"))
                 }
             End If
@@ -135,6 +136,7 @@ Namespace DAL.Facility
                 New SqlParameter("@state", contact.State),
                 New SqlParameter("@postalcode", contact.PostalCode),
                 New SqlParameter("@telephone", contact.Telephone),
+                New SqlParameter("@email", contact.Email),
                 New SqlParameter("@userId", userId)
             }
 

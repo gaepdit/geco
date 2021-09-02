@@ -528,7 +528,7 @@ Partial Class es_esform
                            IIF(m.Id is not null, null,
                                c.STRCONTACTFAXNUMBER))       as strContactFaxNumber,
                    dbo.NullIfNaOrEmpty(
-                           IIF(m.Id is not null, null,
+                           IIF(m.Id is not null, m.Email,
                                left(c.STRCONTACTEMAIL, 50))) as strContactEmail,
                    dbo.NullIfNaOrEmpty(
                            IIF(m.Id is not null, m.Address1,

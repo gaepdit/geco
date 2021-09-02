@@ -151,6 +151,7 @@ Public Class EditContacts
             .PostalCode = txtPostalCode.Text,
             .State = txtState.Text,
             .Telephone = txtTelephone.Text,
+            .Email = txtEmail.Text,
             .Title = txtTitle.Text
         }
 
