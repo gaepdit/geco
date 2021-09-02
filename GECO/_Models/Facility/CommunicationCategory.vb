@@ -11,12 +11,12 @@
         ' Implementation
         Public ReadOnly Name As String
         Public ReadOnly Description As String
-        Public ReadOnly ElectronicCommunicationAllowed As Boolean
+        Public ReadOnly CommunicationPreferenceEnabled As Boolean
 
-        Private Sub New(category As String, description As String, electronicAllowed As Boolean)
+        Private Sub New(category As String, description As String, preferenceEnabled As Boolean)
             Name = category
             Me.Description = description
-            ElectronicCommunicationAllowed = electronicAllowed
+            CommunicationPreferenceEnabled = preferenceEnabled
         End Sub
 
         Public Shared ReadOnly Property FromName As New Dictionary(Of String, CommunicationCategory) From

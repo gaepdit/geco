@@ -12,7 +12,6 @@ Public Class EditContacts
     Public Property FacilityAccess As FacilityAccess
     Public Property CurrentCategory As CommunicationCategory
     Public Property CurrentCommunicationInfo As FacilityCommunicationInfo
-    Public Property ResentVerificationEmail As String
     Public Property AddedEmail As String
 
     Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
@@ -84,7 +83,7 @@ Public Class EditContacts
         CurrentCommunicationInfo = GetFacilityCommunicationInfo(currentAirs, CurrentCategory)
 
         rbCommPref.SelectedValue = CurrentCommunicationInfo.Preference.CommunicationPreference.Name
-        pnlElectronicCommunication.Visible = CurrentCategory.ElectronicCommunicationAllowed AndAlso
+        pnlElectronicCommunication.Visible = CurrentCategory.CommunicationPreferenceEnabled AndAlso
                 CurrentCommunicationInfo.Preference.CommunicationPreference.IncludesElectronic
 
         DisplayEmailLists()
@@ -97,6 +96,7 @@ Public Class EditContacts
                 txtAddress.Text = .Address1
                 txtAddress2.Text = .Address2
                 txtCity.Text = .City
+                txtEmail.Text = .Email
                 txtFirstName.Text = .FirstName
                 txtLastName.Text = .LastName
                 txtPrefix.Text = .Prefix
@@ -110,12 +110,9 @@ Public Class EditContacts
     End Sub
 
     Private Sub DisplayEmailLists()
-        If CurrentCategory.ElectronicCommunicationAllowed Then
-            rptVerifiedEmails.DataSource = CurrentCommunicationInfo.VerifiedEmails
-            rptVerifiedEmails.DataBind()
-
-            rptUnverifiedEmails.DataSource = CurrentCommunicationInfo.UnverifiedEmails
-            rptUnverifiedEmails.DataBind()
+        If CurrentCategory.CommunicationPreferenceEnabled Then
+            rptEmails.DataSource = CurrentCommunicationInfo.EmailList
+            rptEmails.DataBind()
         End If
     End Sub
 
@@ -144,6 +141,7 @@ Public Class EditContacts
             .Address1 = txtAddress.Text,
             .Address2 = txtAddress2.Text,
             .City = txtCity.Text,
+            .Email = txtEmail.Text,
             .FirstName = txtFirstName.Text,
             .LastName = txtLastName.Text,
             .Prefix = txtPrefix.Text,
@@ -151,14 +149,13 @@ Public Class EditContacts
             .PostalCode = txtPostalCode.Text,
             .State = txtState.Text,
             .Telephone = txtTelephone.Text,
-            .Email = txtEmail.Text,
             .Title = txtTitle.Text
         }
 
         If SaveMailContact(currentAirs, CurrentCategory, contact, currentUser.UserId) Then
-            pMailSaveSuccess.Visible = True
+            pContactSaveSuccess.Visible = True
         Else
-            pMailSaveError.Visible = True
+            pContactSaveError.Visible = True
         End If
 
         LoadCurrentData()
@@ -167,56 +164,13 @@ Public Class EditContacts
     Protected Sub RemoveEmail(sender As Object, e As EventArgs)
         ClearWarnings()
 
-        Dim button As Button = CType(sender, Button)
-        Dim email As String = button.CommandArgument
+        Dim email As String = CType(sender, Button).CommandArgument
 
-        If RemoveEmailContact(currentAirs, CurrentCategory, email) Then
-            If button.ID = "btnRemoveUnverifiedEmail" Then
-                pUnverifiedEmailRemovedSuccess.Visible = True
-            Else
-                pVerifiedEmailRemovedSuccess.Visible = True
-            End If
+        If RemoveEmailContact(currentAirs, CurrentCategory, email, currentUser.UserId) Then
+            pEmailRemovedSuccess.Visible = True
         Else
-            If button.ID = "btnRemoveUnverifiedEmail" Then
-                pUnverifiedEmailListError.Visible = True
-            Else
-                pVerifiedEmailListError.Visible = True
-            End If
+            pEmailListError.Visible = True
         End If
-
-        LoadCurrentData()
-    End Sub
-
-    Protected Sub ResendVerificationEmail(sender As Object, e As EventArgs)
-        ClearWarnings()
-
-        Dim button As Button = CType(sender, Button)
-        Dim email As String = button.CommandArgument
-
-        If Not IsValidEmailAddress(email) Then
-            Throw New HttpException(400, "Bad request")
-        End If
-
-        Dim result As ResendEmailVerificationResult = RefreshEmailContactToken(currentAirs, CurrentCategory, email, currentUser.UserId)
-
-        Select Case result.Status
-            Case ResendEmailVerificationResultStatus.DbError
-                If button.ID = "btnRemoveUnverifiedEmail" Then
-                    pUnverifiedEmailListError.Visible = True
-                Else
-                    pVerifiedEmailListError.Visible = True
-                End If
-
-            Case ResendEmailVerificationResultStatus.EmailDoesNotExist
-                pEmailAlreadyRemoved.Visible = True
-
-            Case ResendEmailVerificationResultStatus.Success
-                SendEmailContactConfirmationEmail(currentAirs, email, CurrentCategory, result.Seq, result.Token)
-                ResentVerificationEmail = email
-                pEmailVerificationSuccess.Visible = True
-                pEmailVerificationSuccess.InnerText = $"A confirmation email has been sent to {email}."
-
-        End Select
 
         LoadCurrentData()
     End Sub
@@ -229,9 +183,9 @@ Public Class EditContacts
         If Not IsValidEmailAddress(email) Then
             pAddEmailInvalid.Visible = True
         Else
-            Dim result As AddEmailContactResult = AddEmailContact(currentAirs, CurrentCategory, email, currentUser.UserId)
+            Dim result As AddEmailContactResultStatus = AddEmailContact(currentAirs, CurrentCategory, email, currentUser.UserId)
 
-            Select Case result.Status
+            Select Case result
                 Case AddEmailContactResultStatus.DbError
                     pAddEmailError.Visible = True
 
@@ -239,7 +193,7 @@ Public Class EditContacts
                     pAddEmailExists.Visible = True
 
                 Case AddEmailContactResultStatus.Success
-                    SendEmailContactConfirmationEmail(currentAirs, email, CurrentCategory, result.Seq, result.Token)
+                    SendEmailContactNotificationEmail(currentAirs, email, CurrentCategory)
                     AddedEmail = email
                     pAddEmailSuccess.Visible = True
                     txtNewEmail.Text = ""
@@ -259,14 +213,12 @@ Public Class EditContacts
         pPrefSaveError.Visible = False
         pPrefSaveSuccess.Visible = False
 
-        pMailSaveError.Visible = False
-        pMailSaveSuccess.Visible = False
+        pContactSaveError.Visible = False
+        pContactSaveSuccess.Visible = False
 
-        pVerifiedEmailRemovedSuccess.Visible = False
-        pUnverifiedEmailRemovedSuccess.Visible = False
-        pVerifiedEmailListError.Visible = False
-        pUnverifiedEmailListError.Visible = False
-        pEmailVerificationSuccess.Visible = False
+        pEmailRemovedSuccess.Visible = False
+        pEmailListError.Visible = False
+        pEmailAddedSuccess.Visible = False
         pEmailAlreadyRemoved.Visible = False
     End Sub
 

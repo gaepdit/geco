@@ -20,14 +20,13 @@
                 </p>
 
                 <asp:RadioButtonList ID="rbCommPref" runat="server">
-                    <asp:ListItem Value="Electronic">Prefer to receive electronic communications <strong>only.</strong></asp:ListItem>
-                    <asp:ListItem Value="Mail">Continue to receive mailed communications <strong>only.</strong></asp:ListItem>
+                    <asp:ListItem Value="Electronic">Prefer to receive electronic communications.</asp:ListItem>
+                    <asp:ListItem Value="Mail">Prefer to receive mailed communications.</asp:ListItem>
                     <asp:ListItem Value="Both">Prefer to receive <strong>both</strong> electronic and mailed communications.</asp:ListItem>
                 </asp:RadioButtonList>
 
                 <p>
-                    Note: Communication will continue to be sent by mail until an email recipient has been verified.
-                    Recipients can be added on the next page.
+                    Note: You will be required to confirm recipient addresses on the next page.
                 </p>
 
                 <p id="pPrefSaveError" runat="server" visible="false" class="message-warning">

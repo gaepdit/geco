@@ -126,7 +126,6 @@
     <Content Include="EIS\Process\Default.aspx" />
     <Content Include="EIS\Process\Submit.aspx" />
     <Content Include="EIS\Users\Default.aspx" />
-    <Content Include="Facility\ConfirmEmail.aspx" />
     <Content Include="Facility\Contacts.aspx" />
     <Content Include="Facility\EditContacts.aspx" />
     <Content Include="Facility\SetCommunicationPreferences.aspx" />
@@ -223,7 +222,7 @@
     </Compile>
     <Compile Include="EIS\Default.aspx.vb">
       <DependentUpon>Default.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="EIS\EIS.master.designer.vb">
       <DependentUpon>EIS.master</DependentUpon>
@@ -251,98 +250,91 @@
     </Compile>
     <Compile Include="EIS\History\Default.aspx.vb">
       <DependentUpon>Default.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="EIS\History\ReportingPeriodEmissions.aspx.designer.vb">
       <DependentUpon>ReportingPeriodEmissions.aspx</DependentUpon>
     </Compile>
     <Compile Include="EIS\History\ReportingPeriodEmissions.aspx.vb">
       <DependentUpon>ReportingPeriodEmissions.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="EIS\History\ReportingPeriodPollutants.aspx.designer.vb">
       <DependentUpon>ReportingPeriodPollutants.aspx</DependentUpon>
     </Compile>
     <Compile Include="EIS\History\ReportingPeriodPollutants.aspx.vb">
       <DependentUpon>ReportingPeriodPollutants.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="EIS\History\ReportingPeriodProcesses.aspx.designer.vb">
       <DependentUpon>ReportingPeriodProcesses.aspx</DependentUpon>
     </Compile>
     <Compile Include="EIS\History\ReportingPeriodProcesses.aspx.vb">
       <DependentUpon>ReportingPeriodProcesses.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="EIS\History\Processes.aspx.designer.vb">
       <DependentUpon>Processes.aspx</DependentUpon>
     </Compile>
     <Compile Include="EIS\History\Processes.aspx.vb">
       <DependentUpon>Processes.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="EIS\History\EmissionUnits.aspx.designer.vb">
       <DependentUpon>EmissionUnits.aspx</DependentUpon>
     </Compile>
     <Compile Include="EIS\History\EmissionUnits.aspx.vb">
       <DependentUpon>EmissionUnits.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="EIS\History\ReleasePoints.aspx.designer.vb">
       <DependentUpon>ReleasePoints.aspx</DependentUpon>
     </Compile>
     <Compile Include="EIS\History\ReleasePoints.aspx.vb">
       <DependentUpon>ReleasePoints.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="EIS\Process\Default.aspx.designer.vb">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
     <Compile Include="EIS\Process\Default.aspx.vb">
       <DependentUpon>Default.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="EIS\Process\Submit.aspx.designer.vb">
       <DependentUpon>Submit.aspx</DependentUpon>
     </Compile>
     <Compile Include="EIS\Process\Submit.aspx.vb">
       <DependentUpon>Submit.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="EIS\Users\Default.aspx.designer.vb">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
     <Compile Include="EIS\Users\Default.aspx.vb">
       <DependentUpon>Default.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
-    </Compile>
-    <Compile Include="Facility\ConfirmEmail.aspx.designer.vb">
-      <DependentUpon>ConfirmEmail.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Facility\ConfirmEmail.aspx.vb">
-      <DependentUpon>ConfirmEmail.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Facility\Contacts.aspx.designer.vb">
       <DependentUpon>Contacts.aspx</DependentUpon>
     </Compile>
     <Compile Include="Facility\Contacts.aspx.vb">
       <DependentUpon>Contacts.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Facility\EditContacts.aspx.designer.vb">
       <DependentUpon>EditContacts.aspx</DependentUpon>
     </Compile>
     <Compile Include="Facility\EditContacts.aspx.vb">
       <DependentUpon>EditContacts.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Facility\SetCommunicationPreferences.aspx.designer.vb">
       <DependentUpon>SetCommunicationPreferences.aspx</DependentUpon>
     </Compile>
     <Compile Include="Facility\SetCommunicationPreferences.aspx.vb">
       <DependentUpon>SetCommunicationPreferences.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="GlobalSuppressions.vb" />
     <Compile Include="Home\FacilityRequest.aspx.designer.vb">

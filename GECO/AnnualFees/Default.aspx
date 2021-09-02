@@ -271,22 +271,22 @@
                                         <% If Not String.IsNullOrEmpty(info.Mail.Telephone) Then %>
                                         <br />
                                         <%= info.Mail.Telephone %>
+                                        <% If Not String.IsNullOrEmpty(info.Mail.Email) Then %>
+                                        <br />
+                                        <%= info.Mail.Email%><br />
+                                        <% End If %>
                                         <% End If %>
                                     </p>
                                     <% End If %>
 
                                     <% If info.Preference.CommunicationPreference.IncludesElectronic Then %>
-                                    <h4>Email Contacts:</h4>
+                                    <h4>Additional Email Recipients:</h4>
                                     <% If info.Emails.Count = 0 Then %>
                                     <p><em>None added.</em></p>
                                     <% Else %>
                                     <ul class="flush">
                                         <% For Each email In info.Emails %>
-                                        <li><%= email.Email %>
-                                            <% If Not email.Verified Then %>
-                                            <i>(not verified)</i>
-                                            <% End If %>
-                                        </li>
+                                        <li><%= email.Email %></li>
                                         <% Next %>
                                     </ul>
                                     <% End If %>

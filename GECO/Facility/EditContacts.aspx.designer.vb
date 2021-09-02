@@ -68,15 +68,6 @@ Partial Public Class EditContacts
     Protected WithEvents rbCommPref As Global.System.Web.UI.WebControls.RadioButtonList
 
     '''<summary>
-    '''pEmailPrefWarning control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents pEmailPrefWarning As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-
-    '''<summary>
     '''pPrefSaveError control.
     '''</summary>
     '''<remarks>
@@ -275,22 +266,22 @@ Partial Public Class EditContacts
     Protected WithEvents txtEmail As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''pMailSaveError control.
+    '''pContactSaveError control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents pMailSaveError As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+    Protected WithEvents pContactSaveError As Global.System.Web.UI.HtmlControls.HtmlGenericControl
 
     '''<summary>
-    '''pMailSaveSuccess control.
+    '''pContactSaveSuccess control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents pMailSaveSuccess As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+    Protected WithEvents pContactSaveSuccess As Global.System.Web.UI.HtmlControls.HtmlGenericControl
 
     '''<summary>
     '''btnSaveContact control.
@@ -311,58 +302,31 @@ Partial Public Class EditContacts
     Protected WithEvents pnlElectronicCommunication As Global.System.Web.UI.WebControls.Panel
 
     '''<summary>
-    '''pVerifiedEmailRemovedSuccess control.
+    '''pEmailRemovedSuccess control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents pVerifiedEmailRemovedSuccess As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+    Protected WithEvents pEmailRemovedSuccess As Global.System.Web.UI.HtmlControls.HtmlGenericControl
 
     '''<summary>
-    '''pVerifiedEmailListError control.
+    '''pEmailListError control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents pVerifiedEmailListError As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+    Protected WithEvents pEmailListError As Global.System.Web.UI.HtmlControls.HtmlGenericControl
 
     '''<summary>
-    '''rptVerifiedEmails control.
+    '''pEmailAddedSuccess control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents rptVerifiedEmails As Global.System.Web.UI.WebControls.Repeater
-
-    '''<summary>
-    '''pUnverifiedEmailRemovedSuccess control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents pUnverifiedEmailRemovedSuccess As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-
-    '''<summary>
-    '''pUnverifiedEmailListError control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents pUnverifiedEmailListError As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-
-    '''<summary>
-    '''pEmailVerificationSuccess control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents pEmailVerificationSuccess As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+    Protected WithEvents pEmailAddedSuccess As Global.System.Web.UI.HtmlControls.HtmlGenericControl
 
     '''<summary>
     '''pEmailAlreadyRemoved control.
@@ -374,13 +338,13 @@ Partial Public Class EditContacts
     Protected WithEvents pEmailAlreadyRemoved As Global.System.Web.UI.HtmlControls.HtmlGenericControl
 
     '''<summary>
-    '''rptUnverifiedEmails control.
+    '''rptEmails control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents rptUnverifiedEmails As Global.System.Web.UI.WebControls.Repeater
+    Protected WithEvents rptEmails As Global.System.Web.UI.WebControls.Repeater
 
     '''<summary>
     '''pnlAddEmail control.

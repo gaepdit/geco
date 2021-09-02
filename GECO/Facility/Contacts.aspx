@@ -58,7 +58,7 @@
                     <% End If %>
                 </td>
                 <td>
-                    <% If category.ElectronicCommunicationAllowed Then %>
+                    <% If category.CommunicationPreferenceEnabled Then %>
                     <h3>Communication preference:</h3>
                     <p><%= info.Preference.CommunicationPreference.Description %></p>
                     <% End If %>
@@ -93,18 +93,14 @@
                     </p>
                     <% End If %>
 
-                    <% If category.ElectronicCommunicationAllowed AndAlso info.Preference.CommunicationPreference.IncludesElectronic Then %>
-                    <h3>Additional Email Contacts:</h3>
+                    <% If category.CommunicationPreferenceEnabled AndAlso info.Preference.CommunicationPreference.IncludesElectronic Then %>
+                    <h3>Additional Email Recipients:</h3>
                     <% If info.Emails.Count = 0 Then %>
                     <p><em>None added.</em></p>
                     <% Else %>
                     <ul class="flush">
                         <% For Each email In info.Emails %>
-                        <li><%= email.Email %>
-                            <% If Not email.Verified Then %>
-                            <i>(not verified)</i>
-                            <% End If %>
-                        </li>
+                        <li><%= email.Email %></li>
                         <% Next %>
                     </ul>
                     <% End If %>

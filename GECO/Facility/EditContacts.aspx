@@ -46,24 +46,23 @@
                     %>
                 </td>
                 <td>
-                    <h2 id="pref">Communication Preference for <em><%= CurrentCategory.Description %></em></h2>
+                    <h2 id="pref">Edit Preferences for <em><%= CurrentCategory.Description %></em></h2>
 
                     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                         <ContentTemplate>
-                            <% If CurrentCategory.ElectronicCommunicationAllowed Then %>
-                            <p>Note: Some communication may still be required to be sent by mail.</p>
+                            <% If CurrentCategory.CommunicationPreferenceEnabled Then %>
+                            <h3 id="method">Preferred Method of Communication</h3>
+
+                            <p>
+                                Select your preferred method of communication for <%= CurrentCategory.Description %>.
+                                Please note that regardless of selection, a primary mail and email contact are still required.
+                            </p>
 
                             <asp:RadioButtonList ID="rbCommPref" runat="server" ValidationGroup="Preference" CssClass="text-small">
-                                <asp:ListItem Value="Electronic">Prefer to receive electronic communications <strong>only.</strong></asp:ListItem>
-                                <asp:ListItem Value="Mail">Prefer to receive mailed communications <strong>only.</strong></asp:ListItem>
+                                <asp:ListItem Value="Electronic">Prefer to receive electronic communications.</asp:ListItem>
+                                <asp:ListItem Value="Mail">Prefer to receive mailed communications.</asp:ListItem>
                                 <asp:ListItem Value="Both">Prefer to receive <strong>both</strong> electronic and mailed communications.</asp:ListItem>
                             </asp:RadioButtonList>
-
-                            <% If CurrentCommunicationInfo.Preference.CommunicationPreference.IncludesElectronic AndAlso Not CurrentCommunicationInfo.AnyVerifiedEmails Then %>
-                            <p id="pEmailPrefWarning" runat="server" class="message-highlight">
-                                Communication will continue to be sent by mail until an email recipient has been verified.
-                            </p>
-                            <% End If %>
 
                             <p id="pPrefSaveError" runat="server" visible="false" class="message-warning">
                                 There was an error while saving. Please try again.
@@ -175,68 +174,42 @@
                                     </tr>
                                 </table>
 
-                                <p id="pMailSaveError" runat="server" visible="false" class="message-warning">
+                                <p id="pContactSaveError" runat="server" visible="false" class="message-warning">
                                     There was an error while saving. Please try again.
                                 </p>
 
-                                <p id="pMailSaveSuccess" runat="server" visible="false" class="message-success">
-                                    Mail contact saved.
+                                <p id="pContactSaveSuccess" runat="server" visible="false" class="message-success">
+                                    Primary contact saved.
                                 </p>
 
                                 <p>
-                                    <asp:Button ID="btnSaveContact" runat="server" Text="Save Contact" ValidationGroup="Contact" />
+                                    <asp:Button ID="btnSaveContact" runat="server" Text="Save Contact Info" ValidationGroup="Contact" />
                                 </p>
                             </asp:Panel>
 
-                            <% If CurrentCategory.ElectronicCommunicationAllowed Then %>
+                            <% If CurrentCategory.CommunicationPreferenceEnabled Then %>
                             <asp:Panel ID="pnlElectronicCommunication" runat="server">
-                                <h3 id="emails">Additional Email Contacts</h3>
+                                <h3 id="emails">Additional Email Recipients</h3>
 
                                 <% If CurrentCommunicationInfo.Emails.Count = 0 Then %>
                                 <p><em>None added.</em></p>
                                 <% Else %>
 
-                                <% If CurrentCommunicationInfo.AnyVerifiedEmails Then %>
-                                <p id="pVerifiedEmailRemovedSuccess" runat="server" visible="false" class="message-success">
+                                <p id="pEmailRemovedSuccess" runat="server" visible="false" class="message-success">
                                     The email was removed.
                                 </p>
-                                <p id="pVerifiedEmailListError" runat="server" visible="false" class="message-warning">
+                                <p id="pEmailListError" runat="server" visible="false" class="message-warning">
                                     There was an error. Please try again.
                                 </p>
-                                <ul class="list-with-actions text-small">
-                                    <asp:Repeater ID="rptVerifiedEmails" runat="server">
-                                        <ItemTemplate>
-                                            <li>
-                                                <%# Container.DataItem %>
-                                                <details>
-                                                    <summary class="button-link" role="button">Remove</summary>
-                                                    <div class="anim-fade-in fast" role="dialog">
-                                                        <p>Are you sure you want to remove this email address?</p>
-                                                        <asp:Button ID="btnRemoveVerifiedEmail" runat="server" Text="Remove" CommandArgument='<%# Container.DataItem %>' OnClick="RemoveEmail" UseSubmitBehavior="False" />
-                                                    </div>
-                                                </details>
-                                            </li>
-                                        </ItemTemplate>
-                                    </asp:Repeater>
-                                </ul>
-                                <% End If %>
-
-                                <% If CurrentCommunicationInfo.AnyUnverifiedEmails Then %>
-                                <p id="pUnverifiedEmailRemovedSuccess" runat="server" visible="false" class="message-success">
-                                    The email was removed.
-                                </p>
-                                <p id="pUnverifiedEmailListError" runat="server" visible="false" class="message-warning">
-                                    There was an error. Please try again.
-                                </p>
-                                <p id="pEmailVerificationSuccess" runat="server" visible="false" class="message-success">
-                                    A confirmation email has been sent.
+                                <p id="pEmailAddedSuccess" runat="server" visible="false" class="message-success">
+                                    The address has been added, and a notification email has been sent.
                                 </p>
                                 <p id="pEmailAlreadyRemoved" runat="server" visible="false" class="message-warning">
-                                    The email selected was previously removed.
+                                    The email selected has already been removed.
                                 </p>
-                                <p>The following email addresses have been added but have not yet been verified.</p>
+
                                 <ul class="list-with-actions text-small">
-                                    <asp:Repeater ID="rptUnverifiedEmails" runat="server">
+                                    <asp:Repeater ID="rptEmails" runat="server">
                                         <ItemTemplate>
                                             <li>
                                                 <%# Container.DataItem %>
@@ -244,23 +217,15 @@
                                                     <summary class="button-link" role="button">Remove</summary>
                                                     <div class="anim-fade-in fast" role="dialog">
                                                         <p>Are you sure you want to remove this email address?</p>
-                                                        <asp:Button ID="btnRemoveUnverifiedEmail" runat="server"
+                                                        <asp:Button ID="btnRemoveEmail" runat="server"
                                                             Text="Remove" OnClick="RemoveEmail" CommandArgument='<%# Container.DataItem %>' UseSubmitBehavior="False" />
                                                     </div>
                                                 </details>
-                                                <br />
-
-                                                <span id="a1" runat="server" visible="<%# Container.DataItem = ResentVerificationEmail %>" class="text-success"><i>Sent</i></span>
                                                 <span id="a2" runat="server" visible="<%# Container.DataItem = AddedEmail %>" class="text-success"><i>Added</i></span>
-                                                <asp:Button ID="btnResendVerification" runat="server" CssClass="button-link"
-                                                    Visible="<%# Container.DataItem <> AddedEmail AndAlso Container.DataItem <> ResentVerificationEmail %>"
-                                                    Text="Resend verification email" OnClick="ResendVerificationEmail"
-                                                    CommandArgument='<%# Container.DataItem %>' UseSubmitBehavior="False" />
                                             </li>
                                         </ItemTemplate>
                                     </asp:Repeater>
                                 </ul>
-                                <% End If %>
 
                                 <% End If %>
 
@@ -273,19 +238,22 @@
                                         The email entered is invalid. Please try again.
                                     </p>
                                     <p id="pAddEmailExists" runat="server" visible="false" class="message-highlight">
-                                        The email has already been added.
+                                        That email has already been added.
                                     </p>
                                     <p id="pAddEmailSuccess" runat="server" visible="false" class="message-success">
-                                        The email address has been added, and a confirmation email has been sent to the recipient.
+                                        The email address has been added, and a notification email has been sent to the recipient.
                                     </p>
                                     <p>
                                         <asp:TextBox ID="txtNewEmail" runat="server" ValidationGroup="NewEmail" />
                                         <asp:Button ID="btnAddNewEmail" runat="server" ValidationGroup="NewEmail" Text="Add" />
                                         <asp:RequiredFieldValidator ID="rfvEmail" runat="server" ValidationGroup="NewEmail"
                                             ControlToValidate="txtNewEmail" ErrorMessage="Email address is required." />
+                                        <br />
+                                        A notification email will be sent to the recipient.
                                     </p>
                                 </asp:Panel>
                             </asp:Panel>
+
                             <% End If %>
                         </ContentTemplate>
                     </asp:UpdatePanel>
