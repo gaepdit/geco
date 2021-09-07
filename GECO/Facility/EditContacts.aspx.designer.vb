@@ -266,6 +266,24 @@ Partial Public Class EditContacts
     Protected WithEvents txtEmail As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
+    '''lPrimaryEmailRequired control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lPrimaryEmailRequired As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
+    '''reqPrimaryEmail control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents reqPrimaryEmail As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
     '''pContactSaveError control.
     '''</summary>
     '''<remarks>

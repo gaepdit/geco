@@ -5,19 +5,28 @@
 <%@ MasterType VirtualPath="~/Main.master" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="Server">
 
-    <% If Reconfirm Then %>
+    <% If CommunicationUpdate.ResponseRequired Then %>
+
+    <% If CommunicationUpdate.UpdateRequired Then %>
+    <h1>Update Communication Preferences</h1>
+
+    <p>
+        The communication preferences or contact information for this facility need to be updated.
+        Please review the issues below and make corrections as needed.
+    </p>
+    <% Else %>
     <h1>Confirm Communication Preferences</h1>
 
     <p>
         Current communication preferences and contacts for this facility are shown below.
-        Please review and confirm their accuracy.
+        Please review and confirm their accuracy or click the "Edit" button to make changes.
     </p>
 
     <p>
         <asp:Button ID="btnLooksGood" runat="server" Text="Looks good" />
-        &nbsp;
-        <asp:Button ID="btnMakeChanges" runat="server" Text="Make changes" />
     </p>
+    <% End If %>
+
     <% Else %>
     <ul class="menu-list-horizontal">
         <li>
@@ -47,13 +56,19 @@
         <tbody>
             <%
                 For Each category In CommunicationCategory.AllCategories
-                    If Not Reconfirm OrElse FacilityAccess.HasCommunicationPermission(category) Then
-                        Dim info = CommunicationInfo(category)
+
+                    If CommunicationUpdate.ResponseRequired AndAlso Not FacilityAccess.HasCommunicationPermission(category) Then
+                        ' Display all categories on normal viewing. If a confirmation or update is required, then only show 
+                        ' editable categories.
+                        Continue For
+                    End If
+
+                    Dim info = CommunicationInfo(category)
             %>
             <tr>
                 <td>
                     <h2><%= category.Description %></h2>
-                    <% If Not Reconfirm AndAlso FacilityAccess.HasCommunicationPermission(category) Then %>
+                    <% If FacilityAccess.HasCommunicationPermission(category) Then %>
                     <a href="EditContacts.aspx?category=<%= category.Name %>" class="button button-small">Edit</a>
                     <% End If %>
                 </td>
@@ -62,6 +77,27 @@
                     <h3>Communication preference:</h3>
                     <p><%= info.Preference.CommunicationPreference.Description %></p>
                     <% End If %>
+
+                    <% If CommunicationUpdate.UpdateRequired AndAlso CommunicationUpdate.CategoryUpdates.ContainsKey(category) Then
+                            Select Case CommunicationUpdate.CategoryUpdates(category)
+                                Case CommunicationUpdateResponse.CategoryUpdateStatus.AddressIncomplete
+                    %>
+                    <p class="message-warning">The mailing address is incomplete.</p>
+                    <%
+                        Case CommunicationUpdateResponse.CategoryUpdateStatus.EmailMissing
+                    %>
+                    <p class="message-warning">Electronic communication has been requested but no email addresses have been entered.</p>
+                    <%
+                        Case CommunicationUpdateResponse.CategoryUpdateStatus.AddressIncompleteAndEmailMissing
+                    %>
+                    <p class="message-warning">
+                        The mailing address is incomplete. Also, electronic communication has been requested 
+                        but no email addresses have been entered.
+                    </p>
+                    <%
+                            End Select
+                        End If
+                    %>
 
                     <h3>Primary Contact:</h3>
                     <% If info.Mail Is Nothing Then %>
@@ -108,7 +144,6 @@
                 </td>
             </tr>
             <% 
-                    End If
                 Next
             %>
         </tbody>

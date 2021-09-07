@@ -61,8 +61,8 @@ Partial Class FacilityHome
             HttpContext.Current.Response.Redirect("~/Facility/SetCommunicationPreferences.aspx")
         End If
 
-        If RoutineConfirmationRequired(currentAirs, facilityAccess) Then
-            HttpContext.Current.Response.Redirect("~/Facility/Contacts.aspx?confirm")
+        If GetCommunicationUpdate(currentAirs, facilityAccess).ResponseRequired Then
+            HttpContext.Current.Response.Redirect("~/Facility/Contacts.aspx")
         End If
     End Sub
 

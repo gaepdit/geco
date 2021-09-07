@@ -63,7 +63,7 @@ Public Class SetCommunicationPreferences
         End If
 
         SetCookie(Cookie.AirsNumber, airs.ShortString)
-        HttpContext.Current.Response.Redirect($"~/Facility/EditContacts.aspx?category={CommunicationCategory.Fees.Name}")
+        HttpContext.Current.Response.Redirect($"~/Facility/Contacts.aspx")
     End Sub
 
 End Class

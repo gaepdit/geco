@@ -64,11 +64,11 @@
                                 <asp:ListItem Value="Both">Prefer to receive <strong>both</strong> electronic and mailed communications.</asp:ListItem>
                             </asp:RadioButtonList>
 
-                            <p id="pPrefSaveError" runat="server" visible="false" class="message-warning">
+                            <p id="pPrefSaveError" runat="server" visible="false" class="message-warning anim-fade-in fast">
                                 There was an error while saving. Please try again.
                             </p>
 
-                            <p id="pPrefSaveSuccess" runat="server" visible="false" class="message-success">
+                            <p id="pPrefSaveSuccess" runat="server" visible="false" class="message-success anim-fade-in fast">
                                 Communication preference saved.
                             </p>
 
@@ -170,15 +170,18 @@
                                         <th>Primary Contact Email</th>
                                         <td>
                                             <asp:TextBox ID="txtEmail" runat="server" MaxLength="100" ValidationGroup="Contact" />
+                                            <i id="lPrimaryEmailRequired" runat="server" visible="false">required</i>
+                                            <asp:RequiredFieldValidator ID="reqPrimaryEmail" runat="server" ValidationGroup="Contact"
+                                                ControlToValidate="txtEmail" ErrorMessage="Email address is required." Enabled="false" />
                                         </td>
                                     </tr>
                                 </table>
 
-                                <p id="pContactSaveError" runat="server" visible="false" class="message-warning">
+                                <p id="pContactSaveError" runat="server" visible="false" class="message-warning anim-fade-in fast">
                                     There was an error while saving. Please try again.
                                 </p>
 
-                                <p id="pContactSaveSuccess" runat="server" visible="false" class="message-success">
+                                <p id="pContactSaveSuccess" runat="server" visible="false" class="message-success anim-fade-in fast">
                                     Primary contact saved.
                                 </p>
 
@@ -187,26 +190,25 @@
                                 </p>
                             </asp:Panel>
 
-                            <% If CurrentCategory.CommunicationPreferenceEnabled Then %>
-                            <asp:Panel ID="pnlElectronicCommunication" runat="server">
-                                <h3 id="emails">Additional Email Recipients</h3>
+                            <asp:Panel ID="pnlElectronicCommunication" runat="server" Visible="false">
+                                <h3 id="emails">Additional Email Recipients (optional)</h3>
+
+                                <p id="pEmailRemovedSuccess" runat="server" visible="false" class="message-success anim-fade-in fast">
+                                    The email was removed.
+                                </p>
+                                <p id="pEmailListError" runat="server" visible="false" class="message-warning anim-fade-in fast">
+                                    There was an error. Please try again.
+                                </p>
+                                <p id="pEmailAddedSuccess" runat="server" visible="false" class="message-success anim-fade-in fast">
+                                    The address has been added, and a notification email has been sent.
+                                </p>
+                                <p id="pEmailAlreadyRemoved" runat="server" visible="false" class="message-warning anim-fade-in fast">
+                                    The email selected has already been removed.
+                                </p>
 
                                 <% If CurrentCommunicationInfo.Emails.Count = 0 Then %>
                                 <p><em>None added.</em></p>
                                 <% Else %>
-
-                                <p id="pEmailRemovedSuccess" runat="server" visible="false" class="message-success">
-                                    The email was removed.
-                                </p>
-                                <p id="pEmailListError" runat="server" visible="false" class="message-warning">
-                                    There was an error. Please try again.
-                                </p>
-                                <p id="pEmailAddedSuccess" runat="server" visible="false" class="message-success">
-                                    The address has been added, and a notification email has been sent.
-                                </p>
-                                <p id="pEmailAlreadyRemoved" runat="server" visible="false" class="message-warning">
-                                    The email selected has already been removed.
-                                </p>
 
                                 <ul class="list-with-actions text-small">
                                     <asp:Repeater ID="rptEmails" runat="server">
@@ -231,16 +233,16 @@
 
                                 <h4>Add a new email recipient:</h4>
                                 <asp:Panel ID="pnlAddEmail" runat="server" DefaultButton="btnAddNewEmail">
-                                    <p id="pAddEmailError" runat="server" visible="false" class="message-warning">
+                                    <p id="pAddEmailError" runat="server" visible="false" class="message-warning anim-fade-in fast">
                                         There was an error while saving. Please try again.
                                     </p>
-                                    <p id="pAddEmailInvalid" runat="server" visible="false" class="message-highlight">
+                                    <p id="pAddEmailInvalid" runat="server" visible="false" class="message-highlight anim-fade-in fast">
                                         The email entered is invalid. Please try again.
                                     </p>
-                                    <p id="pAddEmailExists" runat="server" visible="false" class="message-highlight">
+                                    <p id="pAddEmailExists" runat="server" visible="false" class="message-highlight anim-fade-in fast">
                                         That email has already been added.
                                     </p>
-                                    <p id="pAddEmailSuccess" runat="server" visible="false" class="message-success">
+                                    <p id="pAddEmailSuccess" runat="server" visible="false" class="message-success anim-fade-in fast">
                                         The email address has been added, and a notification email has been sent to the recipient.
                                     </p>
                                     <p>
@@ -254,7 +256,6 @@
                                 </asp:Panel>
                             </asp:Panel>
 
-                            <% End If %>
                         </ContentTemplate>
                     </asp:UpdatePanel>
                 </td>

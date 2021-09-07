@@ -7,8 +7,8 @@ Public Class FacilityContacts
 
     Private Property currentAirs As ApbFacilityId
     Public Property FacilityAccess As FacilityAccess
-    Public Property Reconfirm As Boolean
     Public Property CommunicationInfo As New Dictionary(Of CommunicationCategory, FacilityCommunicationInfo)
+    Public Property CommunicationUpdate As CommunicationUpdateResponse
 
     Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
         If IsPostBack Then
@@ -30,8 +30,6 @@ Public Class FacilityContacts
             End If
 
             SetCookie(Cookie.AirsNumber, currentAirs.ShortString())
-
-            Reconfirm = Request.Url.Query.Contains("confirm")
         End If
 
         Master.CurrentAirs = currentAirs
@@ -47,16 +45,15 @@ Public Class FacilityContacts
 
         Title = "GECO Facility Contacts - " & GetFacilityNameAndCity(currentAirs)
         CommunicationInfo = GetFacilityCommunicationInfo(currentAirs)
+
+        If Not IsPostBack Then
+            CommunicationUpdate = GetCommunicationUpdate(currentAirs, FacilityAccess)
+        End If
     End Sub
 
     Private Sub btnLooksGood_Click(sender As Object, e As EventArgs) Handles btnLooksGood.Click
         ConfirmCommunicationSettings(currentAirs, GetCurrentUser.UserId, FacilityAccess)
         HttpContext.Current.Response.Redirect("~/Facility/")
-    End Sub
-
-    Private Sub btnMakeChanges_Click(sender As Object, e As EventArgs) Handles btnMakeChanges.Click
-        ConfirmCommunicationSettings(currentAirs, GetCurrentUser.UserId, FacilityAccess)
-        HttpContext.Current.Response.Redirect($"~/Facility/EditContacts.aspx?category={CommunicationCategory.Fees.Name}")
     End Sub
 
 End Class

@@ -191,23 +191,23 @@ Namespace DAL.Facility
             Return Not GetFacilityCommunicationPreference(facilityId, category).IsConfirmed
         End Function
 
-        Public Function RoutineConfirmationRequired(facilityId As ApbFacilityId, access As FacilityAccess) As Boolean
+        Public Function GetCommunicationUpdate(facilityId As ApbFacilityId, access As FacilityAccess) As CommunicationUpdateResponse
+            Dim response As New CommunicationUpdateResponse()
+
             For Each category In CommunicationCategory.AllCategories
-                If access.HasCommunicationPermission(category) Then
+                If category.CommunicationPreferenceEnabled AndAlso access.HasCommunicationPermission(category) Then
                     Dim params As SqlParameter() = {
                         New SqlParameter("@category", category.Name),
                         New SqlParameter("@facilityId", facilityId.DbFormattedString)
                     }
 
-                    Dim confirmationDate As DateTimeOffset? = DB.SPGetSingleValue(Of DateTimeOffset?)("geco.GetFacilityConfirmationDate", params)
+                    Dim status As Integer = DB.SPReturnValue("geco.IsCommunicationUpdateRequired", params)
 
-                    If Not confirmationDate.HasValue OrElse (DateTimeOffset.Now.Date - confirmationDate.Value.Date).Days > 275 Then
-                        Return True
-                    End If
+                    response.Add(category, CType(status, CommunicationUpdateResponse.CategoryUpdateStatus))
                 End If
             Next
 
-            Return False
+            Return response
         End Function
 
         Public Sub ConfirmCommunicationSettings(facilityId As ApbFacilityId, userId As Integer, access As FacilityAccess)

@@ -554,6 +554,7 @@
     <Compile Include="_Models\EIS\EisProcess.vb" />
     <Compile Include="_Models\Facility\CommunicationCategory.vb" />
     <Compile Include="_Models\Facility\CommunicationPreference.vb" />
+    <Compile Include="_Models\Facility\CommunicationUpdateResponse.vb" />
     <Compile Include="_Models\Facility\FacilityCommunicationInfo.vb" />
     <Compile Include="_Models\Facility\FacilityCommunicationPreference.vb" />
     <Compile Include="_Models\Facility\EmailContact.vb" />
