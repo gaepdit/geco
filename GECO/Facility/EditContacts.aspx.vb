@@ -87,12 +87,8 @@ Public Class EditContacts
         If CurrentCategory.CommunicationPreferenceEnabled AndAlso
                 CurrentCommunicationInfo.Preference.CommunicationPreference.IncludesElectronic Then
             pnlElectronicCommunication.Visible = True
-            reqPrimaryEmail.Enabled = True
-            lPrimaryEmailRequired.Visible = True
         Else
             pnlElectronicCommunication.Visible = False
-            reqPrimaryEmail.Enabled = False
-            lPrimaryEmailRequired.Visible = False
         End If
 
         DisplayEmailLists()

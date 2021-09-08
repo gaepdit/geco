@@ -11,7 +11,7 @@
     <h1>Update Communication Preferences</h1>
 
     <p>
-        The communication preferences or contact information for this facility need to be updated.
+        The contact information for this facility needs to be updated.
         Please review the issues below and make corrections as needed.
     </p>
     <% Else %>
@@ -78,26 +78,9 @@
                     <p><%= info.Preference.CommunicationPreference.Description %></p>
                     <% End If %>
 
-                    <% If CommunicationUpdate.UpdateRequired AndAlso CommunicationUpdate.CategoryUpdates.ContainsKey(category) Then
-                            Select Case CommunicationUpdate.CategoryUpdates(category)
-                                Case CommunicationUpdateResponse.CategoryUpdateStatus.AddressIncomplete
-                    %>
-                    <p class="message-warning">The mailing address is incomplete.</p>
-                    <%
-                        Case CommunicationUpdateResponse.CategoryUpdateStatus.EmailMissing
-                    %>
-                    <p class="message-warning">Electronic communication has been requested but no email addresses have been entered.</p>
-                    <%
-                        Case CommunicationUpdateResponse.CategoryUpdateStatus.AddressIncompleteAndEmailMissing
-                    %>
-                    <p class="message-warning">
-                        The mailing address is incomplete. Also, electronic communication has been requested 
-                        but no email addresses have been entered.
-                    </p>
-                    <%
-                            End Select
-                        End If
-                    %>
+                    <% If CommunicationUpdate.UpdateRequired AndAlso CommunicationUpdate.CategoryUpdates.ContainsKey(category) Then %>
+                    <p class="message-warning">The contact information is incomplete.</p>
+                    <% End If %>
 
                     <h3>Primary Contact:</h3>
                     <% If info.Mail Is Nothing Then %>

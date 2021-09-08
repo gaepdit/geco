@@ -170,9 +170,9 @@
                                         <th>Primary Contact Email</th>
                                         <td>
                                             <asp:TextBox ID="txtEmail" runat="server" MaxLength="100" ValidationGroup="Contact" />
-                                            <i id="lPrimaryEmailRequired" runat="server" visible="false">required</i>
+                                            <i id="lPrimaryEmailRequired" runat="server">required</i>
                                             <asp:RequiredFieldValidator ID="reqPrimaryEmail" runat="server" ValidationGroup="Contact"
-                                                ControlToValidate="txtEmail" ErrorMessage="Email address is required." Enabled="false" />
+                                                ControlToValidate="txtEmail" ErrorMessage="Email address is required." />
                                         </td>
                                     </tr>
                                 </table>
