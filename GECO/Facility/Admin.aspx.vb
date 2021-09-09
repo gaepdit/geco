@@ -1,4 +1,4 @@
-Imports GECO.GecoModels
+﻿Imports GECO.GecoModels
 
 Partial Class FacilityAdmin
     Inherits Page
@@ -45,6 +45,7 @@ Partial Class FacilityAdmin
         End If
 
         UserIsAdmin = facilityAccess.AdminAccess
+        pnlAddNewUser.Visible = UserIsAdmin
 
         If Not IsPostBack Then
             LoadFacilityInfo()

@@ -74,7 +74,7 @@
             </asp:GridView>
             <br />
 
-            <asp:Panel runat="server" ID="pnlAddNewUser">
+            <asp:Panel runat="server" ID="pnlAddNewUser" Visible="false">
                 <h3>Add New User</h3>
                 <p>
                     To grant another user access to this facility, enter their email below. 
