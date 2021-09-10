@@ -312,7 +312,7 @@ Partial Class AnnualFees_Default
             txtPhone.Text = GetNullableString(dr.Item("strcontactphonenumber"))
             txtFax.Text = GetNullableString(dr.Item("strcontactfaxnumber"))
 
-            If IsDBNull(dr.Item("strcontactemail")) OrElse dr.Item("strcontactemail").ToString = "N/A" Then
+            If Convert.IsDBNull(dr.Item("strcontactemail")) OrElse dr.Item("strcontactemail").ToString = "N/A" Then
                 txtEmail.Text = currentUser.Email
             Else
                 txtEmail.Text = dr.Item("strcontactemail").ToString
@@ -408,7 +408,7 @@ Partial Class AnnualFees_Default
 
         If dr IsNot Nothing Then
             'If the NumFeeRate in the AuditedData table is different, then replace the pertonrate with the new value
-            If Not IsDBNull(dr.Item("numfeerate")) AndAlso CDec(dr.Item("numfeerate")) <> 0 Then
+            If Not Convert.IsDBNull(dr.Item("numfeerate")) AndAlso CDec(dr.Item("numfeerate")) <> 0 Then
                 feeCalc.FeeRates.PerTonRate = CDec(dr.Item("numfeerate"))
             End If
 
@@ -436,7 +436,7 @@ Partial Class AnnualFees_Default
             chkPart70Source.Checked = GetNullable(Of Integer)(dr.Item("strpart70")) = 1
             chkSmSource.Checked = GetNullable(Of Integer)(dr.Item("strsyntheticminor")) = 1
 
-            If IsDBNull(dr.Item("strclass")) Then
+            If Convert.IsDBNull(dr.Item("strclass")) Then
                 ddlClass.SelectedValue = initClass
             Else
                 ddlClass.SelectedValue = dr.Item("strclass").ToString

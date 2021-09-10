@@ -178,7 +178,7 @@ Partial Class EIS_Facility_EditPage
         txtMailingAddressPostalCode.Text = GetNullableString(dr.Item("strMailingAddressPostalCode"))
         txtMailingAddressComment.Text = GetNullableString(dr.Item("strAddressComment"))
 
-        If IsDBNull(dr("strMailingAddressStateCode")) Then
+        If Convert.IsDBNull(dr("strMailingAddressStateCode")) Then
             ddlFacility_StateMail.SelectedValue = ""
         Else
             ddlFacility_StateMail.SelectedValue = dr.Item("strMailingAddressStateCode").ToString
@@ -206,7 +206,7 @@ Partial Class EIS_Facility_EditPage
             lnkGoogleMap.NavigateUrl = GetMapLinkUrl(siteAddress.Street, siteAddress.City)
         End If
 
-        If IsDBNull(dr("HorCollMetCode")) Then
+        If Convert.IsDBNull(dr("HorCollMetCode")) Then
             ddlHorCollectionMetCode.SelectedValue = ""
         Else
             ddlHorCollectionMetCode.SelectedValue = dr.Item("HorCollMetCode").ToString
@@ -218,7 +218,7 @@ Partial Class EIS_Facility_EditPage
             txtHorizontalAccuracyMeasure.Text = ""
         End If
 
-        If IsDBNull(dr("HorRefDatumCode")) Then
+        If Convert.IsDBNull(dr("HorRefDatumCode")) Then
             ddlHorReferenceDatCode.SelectedValue = ""
         Else
             ddlHorReferenceDatCode.SelectedValue = dr.Item("HorRefDatumCode").ToString
@@ -236,7 +236,7 @@ Partial Class EIS_Facility_EditPage
         txtMailingAddressCityName_Contact.Text = GetNullableString(dr.Item("STRFSAIMADDRESSCITYNAME"))
 
 
-        If IsDBNull(dr("STRFSAIMADDRESSSTATECODE")) Then
+        If Convert.IsDBNull(dr("STRFSAIMADDRESSSTATECODE")) Then
             ddlContact_MailState.SelectedValue = ""
         Else
             ddlContact_MailState.SelectedValue = dr.Item("STRFSAIMADDRESSSTATECODE").ToString

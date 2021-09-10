@@ -49,7 +49,7 @@ Partial Class EIS_Facility_Default
         lblFacilityName.Text = GetNullableString(dr.Item("strFacilitySiteName"))
         lblDescription.Text = GetNullableString(dr.Item("strFacilitySiteDescription"))
         lblOperatingStatus.Text = GetNullableString(dr.Item("strFacilitySiteStatusDesc"))
-        If Not IsDBNull(dr("intFacilitySiteStatusCodeYear")) Then
+        If Not Convert.IsDBNull(dr("intFacilitySiteStatusCodeYear")) Then
             lblOperatingStatus.Text &= " as reported in " & dr("intFacilitySiteStatusCodeYear").ToString
         End If
         lblNAICS.Text = GetNullableString(dr.Item("strNAICSCode")) &

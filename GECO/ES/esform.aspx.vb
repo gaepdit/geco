@@ -240,17 +240,17 @@ Partial Class es_esform
 
         If dr IsNot Nothing Then
 
-            If IsDBNull(dr("strFacilityName")) Then
+            If Convert.IsDBNull(dr("strFacilityName")) Then
                 txtFacilityName.Text = ""
             Else
                 txtFacilityName.Text = dr.Item("strFacilityName").ToString
             End If
-            If IsDBNull(dr("strFacilityAddress")) Then
+            If Convert.IsDBNull(dr("strFacilityAddress")) Then
                 txtLocationAddress.Text = ""
             Else
                 txtLocationAddress.Text = dr.Item("strFacilityAddress").ToString
             End If
-            If IsDBNull(dr("strFacilityCity")) Then
+            If Convert.IsDBNull(dr("strFacilityCity")) Then
                 txtCity.Text = ""
             Else
                 txtCity.Text = dr.Item("strFacilityCity").ToString
@@ -258,7 +258,7 @@ Partial Class es_esform
 
             txtState.Text = "GA"
 
-            If IsDBNull(dr("strFacilityZip")) Then
+            If Convert.IsDBNull(dr("strFacilityZip")) Then
                 txtZipCode.Text = ""
             Else
                 FacilityZip = dr("strFacilityZip").ToString
@@ -270,99 +270,99 @@ Partial Class es_esform
                 End If
             End If
 
-            If IsDBNull(dr("strCounty")) Then
+            If Convert.IsDBNull(dr("strCounty")) Then
                 txtCounty.Text = ""
             Else
                 txtCounty.Text = dr.Item("strCounty").ToString
             End If
 
-            If IsDBNull(dr("dblXCoordinate")) Then
+            If Convert.IsDBNull(dr("dblXCoordinate")) Then
                 txtXCoordinate.Text = ""
             Else
                 txtXCoordinate.Text = Round(Abs(CDbl(dr.Item("dblXCoordinate"))), 6).ToString
             End If
-            If IsDBNull(dr("dblYCoordinate")) Then
+            If Convert.IsDBNull(dr("dblYCoordinate")) Then
                 txtYCoordinate.Text = ""
             Else
                 txtYCoordinate.Text = Round(Abs(CDbl(dr.Item("dblYCoordinate"))), 6).ToString
             End If
-            If IsDBNull(dr("strHorizontalCollectionCode")) Then
+            If Convert.IsDBNull(dr("strHorizontalCollectionCode")) Then
                 cboHorizontalCollectionCode.SelectedIndex = 0
             Else
                 HCCcode = dr.Item("strHorizontalCollectionCode").ToString
                 HCCdesc = GetHorizCollDesc(HCCcode)
                 cboHorizontalCollectionCode.SelectedValue = HCCdesc & "  [" & HCCcode & "]"
             End If
-            If IsDBNull(dr("strHorizontalReferenceCode")) Then
+            If Convert.IsDBNull(dr("strHorizontalReferenceCode")) Then
                 cboHorizontalReferenceCode.SelectedIndex = 0
             Else
                 HRCcode = dr.Item("strHorizontalReferenceCode").ToString
                 HRCdesc = GetHorizRefDesc(HRCcode)
                 cboHorizontalReferenceCode.SelectedValue = HRCdesc & "  [" & HRCcode & "]"
             End If
-            If IsDBNull(dr("strHorizontalAccuracyMeasure")) Then
+            If Convert.IsDBNull(dr("strHorizontalAccuracyMeasure")) Then
                 txtHorizontalAccuracyMeasure.Text = ""
             Else
                 txtHorizontalAccuracyMeasure.Text = dr.Item("strHorizontalAccuracyMeasure").ToString
             End If
 
-            If IsDBNull(dr("strContactPrefix")) Then
+            If Convert.IsDBNull(dr("strContactPrefix")) Then
                 txtContactPrefix.Text = ""
             Else
                 txtContactPrefix.Text = dr.Item("strContactPrefix").ToString
             End If
-            If IsDBNull(dr("strContactTitle")) Then
+            If Convert.IsDBNull(dr("strContactTitle")) Then
                 txtContactTitle.Text = ""
             Else
                 txtContactTitle.Text = dr.Item("strContactTitle").ToString
             End If
 
-            If IsDBNull(dr("strContactFirstName")) Then
+            If Convert.IsDBNull(dr("strContactFirstName")) Then
                 txtContactFirstName.Text = ""
             Else
                 txtContactFirstName.Text = dr.Item("strContactFirstName").ToString
             End If
 
-            If IsDBNull(dr("strContactLastName")) Then
+            If Convert.IsDBNull(dr("strContactLastName")) Then
                 txtContactLastName.Text = ""
             Else
                 txtContactLastName.Text = dr.Item("strContactLastName").ToString
             End If
 
-            If IsDBNull(dr("strContactCompany")) Then
+            If Convert.IsDBNull(dr("strContactCompany")) Then
                 txtContactCompanyName.Text = ""
             Else
                 txtContactCompanyName.Text = dr.Item("strContactCompany").ToString
             End If
-            If Not IsDBNull(dr("strContactPhoneNumber")) Then
+            If Not Convert.IsDBNull(dr("strContactPhoneNumber")) Then
                 txtOfficePhoneNbr.Text = dr.Item("strContactPhoneNumber").ToString
             End If
-            If Not IsDBNull(dr("strContactFaxNumber")) Then
+            If Not Convert.IsDBNull(dr("strContactFaxNumber")) Then
                 ContactFaxNumber = dr.Item("strContactFaxNumber").ToString
                 txtFaxNbr.Text = ContactFaxNumber.Substring(0, 10)
             End If
-            If IsDBNull(dr("strContactEmail")) Then
+            If Convert.IsDBNull(dr("strContactEmail")) Then
                 txtContactEmail.Text = ""
             Else
                 txtContactEmail.Text = dr.Item("strContactEmail").ToString
             End If
-            If IsDBNull(dr("strContactAddress1")) Then
+            If Convert.IsDBNull(dr("strContactAddress1")) Then
                 txtContactAddress1.Text = ""
             Else
                 txtContactAddress1.Text = dr.Item("strContactAddress1").ToString
             End If
-            If IsDBNull(dr("strContactCity")) Then
+            If Convert.IsDBNull(dr("strContactCity")) Then
                 txtContactCity.Text = ""
             Else
                 txtContactCity.Text = dr.Item("strContactCity").ToString
             End If
-            If IsDBNull(dr("strContactState")) Then
+            If Convert.IsDBNull(dr("strContactState")) Then
                 cboContactState.SelectedIndex = 0
             Else
                 cboContactState.SelectedValue = dr.Item("strContactState").ToString
             End If
 
-            If IsDBNull(dr("strContactZip")) Then
+            If Convert.IsDBNull(dr("strContactZip")) Then
                 txtContactZipCode.Text = ""
             Else
                 ContactZip = dr.Item("strContactZip").ToString
@@ -375,7 +375,7 @@ Partial Class es_esform
                 End If
             End If
 
-            If IsDBNull(dr("strOptOut")) Then
+            If Convert.IsDBNull(dr("strOptOut")) Then
                 YesNo = ""
                 cboYesNo.SelectedIndex = 0
                 pnlEmissions.Visible = True
@@ -390,7 +390,7 @@ Partial Class es_esform
             End If
 
             If YesNo = "NO" Then
-                If IsDBNull(dr("dblVOCEmission")) Then
+                If Convert.IsDBNull(dr("dblVOCEmission")) Then
                     txtVOC.Text = "0"
                 Else
                     VOCAmt = CDbl(dr.Item("dblVOCEmission"))
@@ -400,7 +400,7 @@ Partial Class es_esform
                         txtVOC.Text = Round(VOCAmt, 2).ToString
                     End If
                 End If
-                If IsDBNull(dr("dblNOXEmission")) Then
+                If Convert.IsDBNull(dr("dblNOXEmission")) Then
                     txtNOx.Text = "0"
                 Else
                     NOXAmt = CDbl(dr.Item("dblNOXEmission"))
@@ -416,7 +416,7 @@ Partial Class es_esform
                 txtNOx.Text = "0"
                 'pnlEmissions.Visible = False
             ElseIf YesNo = "--" Then
-                If IsDBNull(dr("dblVOCEmission")) Then
+                If Convert.IsDBNull(dr("dblVOCEmission")) Then
                     txtVOC.Text = "0"
                 Else
                     VOCAmt = CDbl(dr.Item("dblVOCEmission"))
@@ -426,7 +426,7 @@ Partial Class es_esform
                         txtVOC.Text = Round(VOCAmt, 2).ToString
                     End If
                 End If
-                If IsDBNull(dr("dblNOXEmission")) Then
+                If Convert.IsDBNull(dr("dblNOXEmission")) Then
                     txtNOx.Text = "0"
                 Else
                     NOXAmt = CDbl(dr.Item("dblNOXEmission"))
@@ -470,17 +470,17 @@ Partial Class es_esform
 
         If dr IsNot Nothing Then
 
-            If IsDBNull(dr("strFacilityName")) Then
+            If Convert.IsDBNull(dr("strFacilityName")) Then
                 txtFacilityName.Text = ""
             Else
                 txtFacilityName.Text = dr.Item("strFacilityName").ToString
             End If
-            If IsDBNull(dr("strFacilityStreet1")) Then
+            If Convert.IsDBNull(dr("strFacilityStreet1")) Then
                 txtLocationAddress.Text = ""
             Else
                 txtLocationAddress.Text = dr.Item("strFacilityStreet1").ToString
             End If
-            If IsDBNull(dr("strFacilityCity")) Then
+            If Convert.IsDBNull(dr("strFacilityCity")) Then
                 txtCity.Text = ""
             Else
                 txtCity.Text = dr.Item("strFacilityCity").ToString
@@ -488,7 +488,7 @@ Partial Class es_esform
 
             txtState.Text = "GA"
 
-            If IsDBNull(dr("strFacilityZipCode")) Then
+            If Convert.IsDBNull(dr("strFacilityZipCode")) Then
                 txtZipCode.Text = ""
             Else
                 FacilityZip = dr("strFacilityZipCode").ToString
@@ -502,31 +502,31 @@ Partial Class es_esform
 
             txtCounty.Text = GetCountyName(CurrentAirs.CountySubstring)
 
-            If IsDBNull(dr("numFacilityLongitude")) Then
+            If Convert.IsDBNull(dr("numFacilityLongitude")) Then
                 txtXCoordinate.Text = ""
             Else
                 txtXCoordinate.Text = Round(Abs(CDec(dr.Item("numFacilityLongitude"))), 6).ToString
             End If
-            If IsDBNull(dr("numFacilityLatitude")) Then
+            If Convert.IsDBNull(dr("numFacilityLatitude")) Then
                 txtYCoordinate.Text = ""
             Else
                 txtYCoordinate.Text = Round(CDec(dr.Item("numFacilityLatitude")), 6).ToString
             End If
-            If IsDBNull(dr("strHorizontalCollectionCode")) Then
+            If Convert.IsDBNull(dr("strHorizontalCollectionCode")) Then
                 cboHorizontalCollectionCode.SelectedIndex = 0
             Else
                 HCCcode = dr.Item("strHorizontalCollectionCode").ToString
                 HCCdesc = GetHorizCollDesc(HCCcode)
                 cboHorizontalCollectionCode.SelectedValue = HCCdesc & "  [" & HCCcode & "]"
             End If
-            If IsDBNull(dr("strHorizontalReferenceCode")) Then
+            If Convert.IsDBNull(dr("strHorizontalReferenceCode")) Then
                 cboHorizontalReferenceCode.SelectedIndex = 0
             Else
                 HRCcode = dr.Item("strHorizontalReferenceCode").ToString
                 HRCdesc = GetHorizRefDesc(HRCcode)
                 cboHorizontalReferenceCode.SelectedValue = HRCdesc & "  [" & HRCcode & "]"
             End If
-            If IsDBNull(dr("strHorizontalAccuracyMeasure")) Then
+            If Convert.IsDBNull(dr("strHorizontalAccuracyMeasure")) Then
                 txtHorizontalAccuracyMeasure.Text = ""
             Else
                 txtHorizontalAccuracyMeasure.Text = dr.Item("strHorizontalAccuracyMeasure").ToString
@@ -572,60 +572,60 @@ Partial Class es_esform
 
             If dr IsNot Nothing Then
 
-                If IsDBNull(dr("strContactPrefix")) Then
+                If Convert.IsDBNull(dr("strContactPrefix")) Then
                     txtContactPrefix.Text = ""
                 Else
                     txtContactPrefix.Text = dr.Item("strContactPrefix").ToString
                 End If
-                If IsDBNull(dr("strContactFirstName")) Then
+                If Convert.IsDBNull(dr("strContactFirstName")) Then
                     txtContactFirstName.Text = ""
                 Else
                     txtContactFirstName.Text = dr.Item("strContactFirstName").ToString
                 End If
-                If IsDBNull(dr("strContactLastName")) Then
+                If Convert.IsDBNull(dr("strContactLastName")) Then
                     txtContactLastName.Text = ""
                 Else
                     txtContactLastName.Text = dr.Item("strContactLastName").ToString
                 End If
-                If IsDBNull(dr("strContactTitle")) Then
+                If Convert.IsDBNull(dr("strContactTitle")) Then
                     txtContactTitle.Text = ""
                 Else
                     txtContactTitle.Text = dr.Item("strContactTitle").ToString
                 End If
-                If IsDBNull(dr("strContactCompanyName")) Then
+                If Convert.IsDBNull(dr("strContactCompanyName")) Then
                     txtContactCompanyName.Text = ""
                 Else
                     txtContactCompanyName.Text = dr.Item("strContactCompanyName").ToString
                 End If
-                If Not IsDBNull(dr("strContactPhoneNumber1")) Then
+                If Not Convert.IsDBNull(dr("strContactPhoneNumber1")) Then
                     txtOfficePhoneNbr.Text = dr.Item("strContactPhoneNumber1").ToString
                 End If
-                If Not IsDBNull(dr("strContactFaxNumber")) Then
+                If Not Convert.IsDBNull(dr("strContactFaxNumber")) Then
                     ContactFaxNumber = dr.Item("strContactFaxNumber").ToString
                     txtFaxNbr.Text = ContactFaxNumber.Substring(0, 10)
                 End If
-                If IsDBNull(dr("strContactEmail")) Then
+                If Convert.IsDBNull(dr("strContactEmail")) Then
                     txtContactEmail.Text = ""
                 Else
                     txtContactEmail.Text = dr.Item("strContactEmail").ToString
                 End If
-                If IsDBNull(dr("strContactAddress1")) Then
+                If Convert.IsDBNull(dr("strContactAddress1")) Then
                     txtContactAddress1.Text = ""
                 Else
                     txtContactAddress1.Text = dr.Item("strContactAddress1").ToString
                 End If
-                If IsDBNull(dr("strContactCity")) Then
+                If Convert.IsDBNull(dr("strContactCity")) Then
                     txtContactCity.Text = ""
                 Else
                     txtContactCity.Text = dr.Item("strContactCity").ToString
                 End If
-                If IsDBNull(dr("strContactState")) Then
+                If Convert.IsDBNull(dr("strContactState")) Then
                     cboContactState.SelectedIndex = 0
                 Else
                     cboContactState.SelectedValue = dr.Item("strContactState").ToString
                 End If
 
-                If IsDBNull(dr("strContactZipCode")) Then
+                If Convert.IsDBNull(dr("strContactZipCode")) Then
                     txtContactZipCode.Text = ""
                 Else
                     ContactZip = dr.Item("strContactZipCode").ToString

@@ -57,14 +57,14 @@ Partial Class TN_Default
             Else
                 lblEPDContact.Text = GetNullableString(dr.Item("STRFIRSTNAME")) & " " & GetNullableString(dr.Item("STRLASTNAME"))
 
-                If IsDBNull(dr.Item("STRPHONE")) Then
+                If Convert.IsDBNull(dr.Item("STRPHONE")) Then
                     lblEPDTelephone.Text = "404-363-7000 (ask For Source Monitoring Unit)"
                 Else
                     EPDTelephone = CStr(dr.Item("STRPHONE"))
                     lblEPDTelephone.Text = EPDTelephone.Substring(0, 3) & "-" & EPDTelephone.Substring(3, 3) & "-" & EPDTelephone.SubstringFrom(6)
                 End If
 
-                If IsDBNull(dr.Item("STRFAX")) Then
+                If Convert.IsDBNull(dr.Item("STRFAX")) Then
                     lblEPDFax.Text = "404-363-7100"
                 Else
                     EPDFaxNumber = CStr(dr.Item("STRFAX"))
@@ -158,7 +158,7 @@ Partial Class TN_Default
             LastName = GetNullableString(dr.Item("strOnlineLastName"))
             lblContactName.Text = FirstName & " " & LastName
 
-            If IsDBNull(dr("strTelephone")) Then
+            If Convert.IsDBNull(dr("strTelephone")) Then
                 lblTelephone.Text = "404-363-7000 (ask for Source Monitoring Unit)"
                 lblExt.Text = ""
             Else
@@ -188,7 +188,7 @@ Partial Class TN_Default
                 lblExt.Text = TelExt
             End If
 
-            If IsDBNull(dr("strFax")) Then
+            If Convert.IsDBNull(dr("strFax")) Then
                 lblFax.Text = "404-363-7100"
             Else
                 Fax = CStr(dr.Item("strFax"))
