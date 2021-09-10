@@ -104,7 +104,7 @@ Namespace DAL.Facility
                 New SqlParameter("@ContactAddress2", address2),
                 New SqlParameter("@ContactCity", city),
                 New SqlParameter("@ContactState", state),
-                New SqlParameter("@ContactZipCode", Replace(zipCode, "-", "")),
+                New SqlParameter("@ContactZipCode", zipCode.Replace("-", "")),
                 New SqlParameter("@CompanyName", companyName),
                 New SqlParameter("@IAIPUserID", updateUserId),
                 New SqlParameter("@contactComment", Left(comment, 400))

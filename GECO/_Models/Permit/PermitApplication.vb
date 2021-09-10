@@ -26,7 +26,7 @@
         Public Property PermitNumberInDB As String
             Get
                 ' Permit number stored in DB has had hyphens removed 😒
-                Return Replace(PermitNumber, "-", "")
+                Return PermitNumber.Replace("-", "")
             End Get
             Set(value As String)
                 PermitNumber = FormatPermitNumber(value.Trim())

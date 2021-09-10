@@ -262,7 +262,7 @@ Partial Class es_esform
                 txtZipCode.Text = ""
             Else
                 FacilityZip = dr("strFacilityZip").ToString
-                FacilityZip = Replace(FacilityZip, "-", "")
+                FacilityZip = FacilityZip.Replace("-", "")
                 If FacilityZip.Length() > 5 Then
                     txtZipCode.Text = Left(FacilityZip, 5) & "-" & FacilityZip.Substring(5, 4)
                 Else
@@ -366,7 +366,7 @@ Partial Class es_esform
                 txtContactZipCode.Text = ""
             Else
                 ContactZip = dr.Item("strContactZip").ToString
-                ContactZip = Replace(ContactZip, "-", "")
+                ContactZip = ContactZip.Replace("-", "")
                 If ContactZip.Length() > 5 Then
                     txtContactZipCode.Text = Left(dr.Item("strContactZip").ToString, 5)
                     txtContactZipPlus4.Text = dr.Item("strContactZip").ToString.Substring(5, 4)
@@ -492,7 +492,7 @@ Partial Class es_esform
                 txtZipCode.Text = ""
             Else
                 FacilityZip = dr("strFacilityZipCode").ToString
-                FacilityZip = Replace(FacilityZip, "-", "")
+                FacilityZip = FacilityZip.Replace("-", "")
                 If FacilityZip.Length() > 5 Then
                     txtZipCode.Text = Left(FacilityZip, 5) & "-" & FacilityZip.Substring(5, 4)
                 Else
@@ -629,7 +629,7 @@ Partial Class es_esform
                     txtContactZipCode.Text = ""
                 Else
                     ContactZip = dr.Item("strContactZipCode").ToString
-                    ContactZip = Replace(ContactZip, "-", "")
+                    ContactZip = ContactZip.Replace("-", "")
                     If ContactZip.Length() > 5 Then
                         txtContactZipCode.Text = Left(dr.Item("strContactZipCode").ToString, 5)
                         txtContactZipPlus4.Text = dr.Item("strContactZipCode").ToString.Substring(5, 4)
@@ -725,7 +725,7 @@ Partial Class es_esform
         Dim HCD As String
         Dim HRD As String
 
-        ConfNum = CurrentAirs.ShortString & Replace(DateLastLogin, "-", "") & Replace(TimeLastLogin, ":", "")
+        ConfNum = CurrentAirs.ShortString & DateLastLogin.Replace("-", "") & TimeLastLogin.Replace(":", "")
 
         SavedES = False
         ESExist = CheckESExist(AirsYear)
@@ -734,7 +734,7 @@ Partial Class es_esform
         LocationAddress = txtLocationAddress.Text
         City = txtCity.Text
         State = txtState.Text
-        ZipCode = Replace(txtZipCode.Text, "-", "")
+        ZipCode = txtZipCode.Text.Replace("-", "")
         County = txtCounty.Text
         ContactPrefix = txtContactPrefix.Text
         ContactTitle = txtContactTitle.Text
