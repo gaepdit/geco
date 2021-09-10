@@ -644,7 +644,6 @@
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
     </None>
     <None Include="My Project\PublishProfiles\Publish-Development.pubxml" />
-    <None Include="My Project\PublishProfiles\FolderProfileDev.pubxml" />
     <None Include="My Project\PublishProfiles\Publish-Production.pubxml" />
     <None Include="My Project\PublishProfiles\Publish-Staging.pubxml" />
     <None Include="My Project\Settings.settings">
