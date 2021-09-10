@@ -32,8 +32,8 @@
                 Return unformattedPhone
             End If
 
-            Dim PhoneMain As String = Mid(unformattedPhone, 1, 10).Insert(6, "-").Insert(3, "-")
-            Dim PhoneExt As String = Mid(unformattedPhone, 11)
+            Dim PhoneMain As String = unformattedPhone.Substring(0, 10).Insert(6, "-").Insert(3, "-")
+            Dim PhoneExt As String = unformattedPhone.SubstringFrom(10)
 
             Return ConcatNonEmptyStrings(" x ", {PhoneMain, PhoneExt})
         End Function

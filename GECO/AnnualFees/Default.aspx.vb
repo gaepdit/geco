@@ -29,7 +29,7 @@ Partial Class AnnualFees_Default
 
         If ViewState(NameOf(feeCalc)) Is Nothing Then
             feeCalc = New AnnualFeeCalc With {
-                .CountyCode = Mid(GetCookie(Cookie.AirsNumber), 1, 3),
+                .CountyCode = GetCookie(Cookie.AirsNumber).Substring(3, 3),
                 .EntryDate = Now.Date
             }
         Else
@@ -59,7 +59,7 @@ Partial Class AnnualFees_Default
             feeYear = Nothing
         Else
             feeYear = CInt(ddlFeeYear.SelectedItem.Text)
-            feeYearCompleted = Mid(ddlFeeYear.SelectedValue, 5) = "1"
+            feeYearCompleted = ddlFeeYear.SelectedValue.SubstringFrom(4) = "1"
         End If
     End Sub
 

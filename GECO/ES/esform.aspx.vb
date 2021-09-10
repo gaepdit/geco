@@ -264,7 +264,7 @@ Partial Class es_esform
                 FacilityZip = dr("strFacilityZip").ToString
                 FacilityZip = Replace(FacilityZip, "-", "")
                 If Len(FacilityZip) > 5 Then
-                    txtZipCode.Text = Left(FacilityZip, 5) & "-" & Mid(FacilityZip, 6, 4)
+                    txtZipCode.Text = Left(FacilityZip, 5) & "-" & FacilityZip.Substring(5, 4)
                 Else
                     txtZipCode.Text = FacilityZip
                 End If
@@ -339,7 +339,7 @@ Partial Class es_esform
             End If
             If Not IsDBNull(dr("strContactFaxNumber")) Then
                 ContactFaxNumber = dr.Item("strContactFaxNumber").ToString
-                txtFaxNbr.Text = Mid(ContactFaxNumber, 1, 10)
+                txtFaxNbr.Text = ContactFaxNumber.Substring(0, 10)
             End If
             If IsDBNull(dr("strContactEmail")) Then
                 txtContactEmail.Text = ""
@@ -369,7 +369,7 @@ Partial Class es_esform
                 ContactZip = Replace(ContactZip, "-", "")
                 If Len(ContactZip) > 5 Then
                     txtContactZipCode.Text = Left(dr.Item("strContactZip").ToString, 5)
-                    txtContactZipPlus4.Text = Mid(dr.Item("strContactZip").ToString, 6, 4)
+                    txtContactZipPlus4.Text = dr.Item("strContactZip").ToString.Substring(5, 4)
                 Else
                     txtContactZipCode.Text = dr.Item("strContactZip").ToString
                 End If
@@ -494,7 +494,7 @@ Partial Class es_esform
                 FacilityZip = dr("strFacilityZipCode").ToString
                 FacilityZip = Replace(FacilityZip, "-", "")
                 If Len(FacilityZip) > 5 Then
-                    txtZipCode.Text = Left(FacilityZip, 5) & "-" & Mid(FacilityZip, 6, 4)
+                    txtZipCode.Text = Left(FacilityZip, 5) & "-" & FacilityZip.Substring(5, 4)
                 Else
                     txtZipCode.Text = FacilityZip
                 End If
@@ -602,7 +602,7 @@ Partial Class es_esform
                 End If
                 If Not IsDBNull(dr("strContactFaxNumber")) Then
                     ContactFaxNumber = dr.Item("strContactFaxNumber").ToString
-                    txtFaxNbr.Text = Mid(ContactFaxNumber, 1, 10)
+                    txtFaxNbr.Text = ContactFaxNumber.Substring(0, 10)
                 End If
                 If IsDBNull(dr("strContactEmail")) Then
                     txtContactEmail.Text = ""
@@ -632,7 +632,7 @@ Partial Class es_esform
                     ContactZip = Replace(ContactZip, "-", "")
                     If Len(ContactZip) > 5 Then
                         txtContactZipCode.Text = Left(dr.Item("strContactZipCode").ToString, 5)
-                        txtContactZipPlus4.Text = Mid(dr.Item("strContactZipCode").ToString, 6, 4)
+                        txtContactZipPlus4.Text = dr.Item("strContactZipCode").ToString.Substring(5, 4)
                     Else
                         txtContactZipCode.Text = dr.Item("strContactZipCode").ToString
                     End If
@@ -751,10 +751,10 @@ Partial Class es_esform
         YCoordinate = CDec(txtYCoordinate.Text)
 
         HCD = cboHorizontalCollectionCode.SelectedValue
-        HorizontalCollectionCode = Mid(HCD, Len(HCD) - 3, 3)
+        HorizontalCollectionCode = HCD.Substring(Len(HCD) - 4, 3)
 
         HRD = cboHorizontalReferenceCode.SelectedValue
-        HorizontalReferenceCode = Mid(HRD, Len(HRD) - 3, 3)
+        HorizontalReferenceCode = HRD.Substring(Len(HRD) - 4, 3)
 
         HorizontalAccuracyMeasure = txtHorizontalAccuracyMeasure.Text
 
@@ -1151,10 +1151,10 @@ Partial Class es_esform
         Dim HRC As String
 
         HCC = cboHorizontalCollectionCode.SelectedValue
-        HorizontalCollectionCode = Mid(HCC, InStr(HCC, "[") + 1, 3)
+        HorizontalCollectionCode = HCC.Substring(HCC.IndexOf("[") + 1, 3)
         HorizontalAccuracyMeasure = txtHorizontalAccuracyMeasure.Text
         HRC = cboHorizontalReferenceCode.SelectedValue
-        HorizontalReferenceCode = Mid(HRC, InStr(HRC, "[") + 1, 3)
+        HorizontalReferenceCode = HRC.Substring(HRC.IndexOf("[") + 0, 3)
         XCoordinate = -1 * Abs(CDec(txtXCoordinate.Text))
         YCoordinate = CDec(txtYCoordinate.Text)
 

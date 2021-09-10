@@ -1,4 +1,4 @@
-Imports System.Data.SqlClient
+﻿Imports System.Data.SqlClient
 Imports EpdIt.DBUtilities
 Imports GECO.GecoModels
 Imports GECO.MapHelper
@@ -169,28 +169,28 @@ Partial Class FacilitySummary
 
         Dim codes As New List(Of String)
 
-        If Mid(AirProgramCode, 1, 1) = "1" Then
+        If AirProgramCode.Substring(0, 1) = "1" Then
             codes.Add("SIP")
         End If
-        If Mid(AirProgramCode, 5, 1) = "1" Then
+        If AirProgramCode.Substring(4, 1) = "1" Then
             codes.Add("PSD")
         End If
-        If Mid(AirProgramCode, 6, 1) = "1" Then
+        If AirProgramCode.Substring(5, 1) = "1" Then
             codes.Add("NSR")
         End If
-        If Mid(AirProgramCode, 7, 1) = "1" Then
+        If AirProgramCode.Substring(6, 1) = "1" Then
             codes.Add("NESHAP")
         End If
-        If Mid(AirProgramCode, 8, 1) = "1" Then
+        If AirProgramCode.Substring(7, 1) = "1" Then
             codes.Add("NSPS")
         End If
-        If Mid(AirProgramCode, 12, 1) = "1" Then
+        If AirProgramCode.Substring(11, 1) = "1" Then
             codes.Add("MACT")
         End If
-        If Mid(AirProgramCode, 13, 1) = "1" Then
+        If AirProgramCode.Substring(12, 1) = "1" Then
             codes.Add("Title V")
         End If
-        If Mid(AirProgramCode, 10, 1) = "1" Then
+        If AirProgramCode.Substring(9, 1) = "1" Then
             codes.Add("Acid Precipitation")
         End If
 
