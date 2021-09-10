@@ -55,7 +55,7 @@ Public Module eis_Access
             .MaxYear = CInt(dr("INVENTORYYEAR"))
         }
 
-        If eiStatus.MaxYear <> Now.Year - 1 Then
+        If eiStatus.MaxYear <> Date.Now.Year - 1 Then
             eiStatus.AccessCode = 0
             eiStatus.StatusCode = 0
             eiStatus.Enrolled = False

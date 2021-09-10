@@ -1,4 +1,5 @@
-﻿Imports EpdIt.DBUtilities
+﻿Imports System.DateTime
+Imports EpdIt.DBUtilities
 Imports GECO.DAL.EIS
 Imports GECO.GecoModels
 Imports GECO.MapHelper
@@ -616,7 +617,7 @@ Partial Class EIS_Facility_EditPage
         Dim latitude = CDbl(txtLatitudeMeasure.Text)
         Dim longitude = CDbl(txtLongitudeMeasure.Text)
         Const epsilon = 0.0000000001#
-        
+
         If Math.Abs(latitude) > epsilon AndAlso Math.Abs(longitude) > epsilon Then
             GMap.Center = LatLng.Create(latitude, longitude)
             txtMapLat.Text = Left(latitude.ToString(), 8)

@@ -1,4 +1,5 @@
-﻿Imports System.Data.SqlClient
+﻿Imports System.DateTime
+Imports System.Data.SqlClient
 Imports GECO.GecoModels
 
 Partial Class ei_reqchange
