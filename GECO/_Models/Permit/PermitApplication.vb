@@ -76,7 +76,7 @@
                 Return value
             End If
 
-            If Len(value) = 15 AndAlso IsNumeric(Left(value, 11)) AndAlso Not IsNumeric(value.Substring(11, 1)) Then
+            If value.Length() = 15 AndAlso IsNumeric(Left(value, 11)) AndAlso Not IsNumeric(value.Substring(11, 1)) Then
                 Return ConcatNonEmptyStrings("-", {value.Substring(0, 4), value.Substring(4, 3), value.Substring(7, 4),
                                              value.Substring(11, 1), value.Substring(12, 2), value.SubstringFrom(14)})
             End If

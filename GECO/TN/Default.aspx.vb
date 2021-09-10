@@ -163,21 +163,21 @@ Partial Class TN_Default
                 lblExt.Text = ""
             Else
                 Telephone = GetNullableString(dr.Item("strTelephone"))
-                If Len(Telephone) > 10 Then
+                If Telephone.Length() > 10 Then
                     AreaCode = Left(Telephone, 3)
                     Prefix = Telephone.Substring(3, 3)
                     TelNbr = Telephone.Substring(6, 4)
                     TelExt = Telephone.Substring(10)
                 End If
 
-                If Len(Telephone) = 10 Then
+                If Telephone.Length() = 10 Then
                     AreaCode = Left(Telephone, 3)
                     Prefix = Telephone.Substring(3, 3)
                     TelNbr = Telephone.SubstringFrom(6)
                     TelExt = ""
                 End If
 
-                If Len(Telephone) < 10 Then
+                If Telephone.Length() < 10 Then
                     AreaCode = ""
                     Prefix = ""
                     TelNbr = ""
@@ -192,7 +192,7 @@ Partial Class TN_Default
                 lblFax.Text = "404-363-7100"
             Else
                 Fax = CStr(dr.Item("strFax"))
-                If Len(Fax) < 10 Then
+                If Fax.Length() < 10 Then
                     lblFax.Text = ""
                 Else
                     lblFax.Text = Fax.Substring(0, 3) & "-" & Fax.Substring(3, 3) & "-" & Fax.Substring(6, 4)

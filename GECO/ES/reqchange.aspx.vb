@@ -114,14 +114,14 @@ Partial Class ei_reqchange
         Dim empty As Integer
 
         'Get string lengths for entries on form to see if anything entered.
-        fn = Len(txtFacilityNameNew.Text)
-        sa = Len(txtStreetAddressNew.Text)
-        cy = Len(txtCityNew.Text)
-        zc = Len(txtZipCodeNew.Text)
-        z4 = Len(txtZipPlus4New.Text)
-        ct = Len(cboCountyNew.SelectedValue)
+        fn = txtFacilityNameNew.Text.Length()
+        sa = txtStreetAddressNew.Text.Length()
+        cy = txtCityNew.Text.Length()
+        zc = txtZipCodeNew.Text.Length()
+        z4 = txtZipPlus4New.Text.Length()
+        ct = cboCountyNew.SelectedValue.Length()
         If cboCountyNew.SelectedValue = " --Select a County-- " Then ct = 0
-        cm = Len(txtComments.Text)
+        cm = txtComments.Text.Length()
         empty = fn + sa + cy + zc + z4 + ct + cm
 
         If empty = 0 Then
@@ -181,9 +181,9 @@ Partial Class ei_reqchange
         Dim hr As String = Now.Hour.ToString
         Dim min As String = Now.Minute.ToString
         Dim sec As String = Now.Second.ToString
-        If Len(hr) < 2 Then hr = "0" & hr
-        If Len(min) < 2 Then min = "0" & min
-        If Len(sec) < 2 Then sec = "0" & sec
+        If hr.Length() < 2 Then hr = "0" & hr
+        If min.Length() < 2 Then min = "0" & min
+        If sec.Length() < 2 Then sec = "0" & sec
         Dim TransactionTime As String = hr & ":" & min & ":" & sec
         Dim TransactionDate As String = day.ToUpper
         Dim ReqOrig As String = "ES" & GetSessionItem(Of String)("ESYear")

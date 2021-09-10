@@ -263,7 +263,7 @@ Partial Class es_esform
             Else
                 FacilityZip = dr("strFacilityZip").ToString
                 FacilityZip = Replace(FacilityZip, "-", "")
-                If Len(FacilityZip) > 5 Then
+                If FacilityZip.Length() > 5 Then
                     txtZipCode.Text = Left(FacilityZip, 5) & "-" & FacilityZip.Substring(5, 4)
                 Else
                     txtZipCode.Text = FacilityZip
@@ -367,7 +367,7 @@ Partial Class es_esform
             Else
                 ContactZip = dr.Item("strContactZip").ToString
                 ContactZip = Replace(ContactZip, "-", "")
-                If Len(ContactZip) > 5 Then
+                If ContactZip.Length() > 5 Then
                     txtContactZipCode.Text = Left(dr.Item("strContactZip").ToString, 5)
                     txtContactZipPlus4.Text = dr.Item("strContactZip").ToString.Substring(5, 4)
                 Else
@@ -493,7 +493,7 @@ Partial Class es_esform
             Else
                 FacilityZip = dr("strFacilityZipCode").ToString
                 FacilityZip = Replace(FacilityZip, "-", "")
-                If Len(FacilityZip) > 5 Then
+                If FacilityZip.Length() > 5 Then
                     txtZipCode.Text = Left(FacilityZip, 5) & "-" & FacilityZip.Substring(5, 4)
                 Else
                     txtZipCode.Text = FacilityZip
@@ -630,7 +630,7 @@ Partial Class es_esform
                 Else
                     ContactZip = dr.Item("strContactZipCode").ToString
                     ContactZip = Replace(ContactZip, "-", "")
-                    If Len(ContactZip) > 5 Then
+                    If ContactZip.Length() > 5 Then
                         txtContactZipCode.Text = Left(dr.Item("strContactZipCode").ToString, 5)
                         txtContactZipPlus4.Text = dr.Item("strContactZipCode").ToString.Substring(5, 4)
                     Else
@@ -707,9 +707,9 @@ Partial Class es_esform
         Dim hr As String = Now.Hour.ToString
         Dim min As String = Now.Minute.ToString
         Dim sec As String = Now.Second.ToString
-        If Len(hr) < 2 Then hr = "0" & hr
-        If Len(min) < 2 Then min = "0" & min
-        If Len(sec) < 2 Then sec = "0" & sec
+        If hr.Length() < 2 Then hr = "0" & hr
+        If min.Length() < 2 Then min = "0" & min
+        If sec.Length() < 2 Then sec = "0" & sec
         Dim TimeLastLogin As String = hr & ":" & min & ":" & sec
         Dim DateLastLogin As String = day.ToUpper
         Dim FirstConfirm As Boolean
@@ -751,10 +751,10 @@ Partial Class es_esform
         YCoordinate = CDec(txtYCoordinate.Text)
 
         HCD = cboHorizontalCollectionCode.SelectedValue
-        HorizontalCollectionCode = HCD.Substring(Len(HCD) - 4, 3)
+        HorizontalCollectionCode = HCD.Substring(HCD.Length() - 4, 3)
 
         HRD = cboHorizontalReferenceCode.SelectedValue
-        HorizontalReferenceCode = HRD.Substring(Len(HRD) - 4, 3)
+        HorizontalReferenceCode = HRD.Substring(HRD.Length() - 4, 3)
 
         HorizontalAccuracyMeasure = txtHorizontalAccuracyMeasure.Text
 
