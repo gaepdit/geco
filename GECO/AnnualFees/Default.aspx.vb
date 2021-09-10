@@ -1093,9 +1093,9 @@ Partial Class AnnualFees_Default
 #Region "Validation Functions"
 
     Private Function ValidateFacilityInfoChange() As Boolean
-        If UCase(lblFacilityName.Text) = UCase(txtfacName.Text) AndAlso
-            UCase(lblFacilityStreet.Text) = UCase(txtfacStreet.Text) AndAlso
-            UCase(lblFacilityCity.Text) = UCase(txtfacCity.Text) Then
+        If lblFacilityName.Text.ToUpper() = txtfacName.Text.ToUpper() AndAlso
+            lblFacilityStreet.Text.ToUpper() = txtfacStreet.Text.ToUpper() AndAlso
+            lblFacilityCity.Text.ToUpper() = txtfacCity.Text.ToUpper() Then
             'No change in Facility Info
             Return False
         End If
