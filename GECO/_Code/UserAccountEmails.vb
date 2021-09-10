@@ -8,8 +8,8 @@ Public Module UserAccountEmails
 
         Dim plainBody As String =
             "Confirm and activate your new email address using this link: " &
-            vbNewLine & "{0}" &
-            vbNewLine & vbNewLine &
+            NewLine & "{0}" &
+            NewLine & NewLine &
             "The link expires after 2 hours."
 
         Dim htmlBody As String = "<p>Confirm and activate your new email address using this link: <br /> " &
@@ -30,10 +30,10 @@ Public Module UserAccountEmails
 
         Dim plainBody As String = "Thank you for creating an account at " &
             "Georgia Environmental Connections Online (GECO). " &
-            vbNewLine & vbNewLine &
+            NewLine & NewLine &
             "Confirm and activate your account using this link: " &
-            vbNewLine & "{0}" &
-            vbNewLine & vbNewLine &
+            NewLine & "{0}" &
+            NewLine & NewLine &
             "The link expires after 2 hours."
 
         Dim htmlBody As String = "<p>Thank you for creating an account at " &
@@ -56,9 +56,9 @@ Public Module UserAccountEmails
 
         Dim plainBody As String = "A password reset was requested for this account at " &
             "Georgia Environmental Connections Online (GECO). This link expires after 2 hours." &
-            vbNewLine & vbNewLine &
+            NewLine & NewLine &
             "{0}" &
-            vbNewLine & vbNewLine &
+            NewLine & NewLine &
             "If you did not request a password reset, you can ignore this message and your password will not change."
 
         Dim htmlBody As String = "<p>A password reset was requested for this account at " &
@@ -80,9 +80,9 @@ Public Module UserAccountEmails
 
         Dim plainBody As String = "The password for this account at " &
             "Georgia Environmental Connections Online (GECO) was recently changed. " &
-            vbNewLine & vbNewLine &
+            NewLine & NewLine &
             "Account: {0}" &
-            vbNewLine & vbNewLine &
+            NewLine & NewLine &
             "If you did not initiate this change, please contact the Air Protection Branch."
 
         Dim htmlBody As String = "<p>The password for this account at " &
@@ -101,10 +101,10 @@ Public Module UserAccountEmails
 
         Dim plainBody As String = "The email address for this account at " &
             "Georgia Environmental Connections Online (GECO) was recently changed. " &
-            vbNewLine & vbNewLine &
-            "Old email: {0} " & vbNewLine &
+            NewLine & NewLine &
+            "Old email: {0} " & NewLine &
             "New email: {1} " &
-            vbNewLine & vbNewLine &
+            NewLine & NewLine &
             "If you did not initiate this change, please contact the Air Protection Branch."
 
         Dim htmlBody As String = "<p>The email address for this account at " &

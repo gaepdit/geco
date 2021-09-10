@@ -383,33 +383,33 @@ Partial Class EIS_Facility_EditPage
 
             Dim plainBody As String = "An update has been submitted for the EIS Facility Geographic Coordinate Information " &
                     "for the following facility. The updated information has NOT been saved in the database. If approved, you must " &
-                    "manually update the facility using the IAIP EIS Tool." & vbNewLine &
-                    vbNewLine &
-                    "Facility Site ID: " & CurrentAirs.FormattedString & vbNewLine &
-                    vbNewLine &
-                    "Update User: " & CurrentUser.FullName & " (" & CurrentUser.UserId & ")" & vbNewLine &
-                    vbNewLine &
-                    "Current Geographic Coordinate Information: " & vbNewLine &
-                    vbNewLine &
-                    "    Latitude: " & hidLatitude.Value & vbNewLine &
-                    "    Longitude: " & hidLongitude.Value & vbNewLine &
-                    "    Horizontal Collection Method: " & hidHorCollectionMetCode.Value & " - " & hidHorCollectionMetDesc.Value & vbNewLine &
-                    "    Accuracy Measure: " & hidHorizontalAccuracyMeasure.Value & vbNewLine &
-                    "    Horizontal Reference Datum: " & hidHorReferenceDatCode.Value & " - " & hidHorReferenceDatDesc.Value & vbNewLine &
-                    "    Google Map: " & curGoogleMapLink & vbNewLine &
-                    vbNewLine &
-                    "Updated Geographic Coordinate Information submitted by user: " & vbNewLine &
-                    vbNewLine &
-                    "    Latitude: " & txtLatitudeMeasure.Text & vbNewLine &
-                    "    Longitude: " & txtLongitudeMeasure.Text & vbNewLine &
-                    "    Horizontal Collection Method: " & ddlHorCollectionMetCode.SelectedValue & " - " & ddlHorCollectionMetCode.SelectedItem.Text & vbNewLine &
-                    "    Accuracy Measure: " & txtHorizontalAccuracyMeasure.Text & vbNewLine &
-                    "    Horizontal Reference Datum: " & ddlHorReferenceDatCode.SelectedValue & " - " & ddlHorReferenceDatCode.SelectedItem.Text & vbNewLine &
-                    "    Google Map: " & newGoogleMapLink & vbNewLine &
-                    vbNewLine &
-                    "Comment submitted by user: " & vbNewLine &
-                    vbNewLine &
-                    txtGeographicComment.Text & vbNewLine
+                    "manually update the facility using the IAIP EIS Tool." & NewLine &
+                    NewLine &
+                    "Facility Site ID: " & CurrentAirs.FormattedString & NewLine &
+                    NewLine &
+                    "Update User: " & CurrentUser.FullName & " (" & CurrentUser.UserId & ")" & NewLine &
+                    NewLine &
+                    "Current Geographic Coordinate Information: " & NewLine &
+                    NewLine &
+                    "    Latitude: " & hidLatitude.Value & NewLine &
+                    "    Longitude: " & hidLongitude.Value & NewLine &
+                    "    Horizontal Collection Method: " & hidHorCollectionMetCode.Value & " - " & hidHorCollectionMetDesc.Value & NewLine &
+                    "    Accuracy Measure: " & hidHorizontalAccuracyMeasure.Value & NewLine &
+                    "    Horizontal Reference Datum: " & hidHorReferenceDatCode.Value & " - " & hidHorReferenceDatDesc.Value & NewLine &
+                    "    Google Map: " & curGoogleMapLink & NewLine &
+                    NewLine &
+                    "Updated Geographic Coordinate Information submitted by user: " & NewLine &
+                    NewLine &
+                    "    Latitude: " & txtLatitudeMeasure.Text & NewLine &
+                    "    Longitude: " & txtLongitudeMeasure.Text & NewLine &
+                    "    Horizontal Collection Method: " & ddlHorCollectionMetCode.SelectedValue & " - " & ddlHorCollectionMetCode.SelectedItem.Text & NewLine &
+                    "    Accuracy Measure: " & txtHorizontalAccuracyMeasure.Text & NewLine &
+                    "    Horizontal Reference Datum: " & ddlHorReferenceDatCode.SelectedValue & " - " & ddlHorReferenceDatCode.SelectedItem.Text & NewLine &
+                    "    Google Map: " & newGoogleMapLink & NewLine &
+                    NewLine &
+                    "Comment submitted by user: " & NewLine &
+                    NewLine &
+                    txtGeographicComment.Text & NewLine
 
             Dim htmlBody As String = "<p>An update has been submitted for the EIS Facility Geographic Coordinate Information " &
                     "for the following facility. The updated information has <em>NOT</em> been saved in the database. If approved, you must " &
@@ -444,24 +444,24 @@ Partial Class EIS_Facility_EditPage
             ' Send a different email to APB if only the Geographic Coordinate Information comment was changed
 
             Dim plainBody As String = "A comment has been submitted for the EIS Facility Geographic Coordinate Information " &
-                    "for the following facility. No other geographic information was changed." & vbNewLine &
-                    vbNewLine &
-                    "Facility Site ID: " & CurrentAirs.FormattedString & vbNewLine &
-                    vbNewLine &
-                    "Update User: " & CurrentUser.FullName & " (" & CurrentUser.UserId & ")" & vbNewLine &
-                    vbNewLine &
-                    "Current Geographic Coordinate Information: " & vbNewLine &
-                    vbNewLine &
-                    "    Latitude: " & hidLatitude.Value & vbNewLine &
-                    "    Longitude: " & hidLongitude.Value & vbNewLine &
-                    "    Horizontal Collection Method: " & hidHorCollectionMetCode.Value & " - " & hidHorCollectionMetDesc.Value & vbNewLine &
-                    "    Accuracy Measure: " & hidHorizontalAccuracyMeasure.Value & vbNewLine &
-                    "    Horizontal Reference Datum: " & hidHorReferenceDatCode.Value & " - " & hidHorReferenceDatDesc.Value & vbNewLine &
-                    "    Google Map: " & curGoogleMapLink & vbNewLine &
-                    vbNewLine &
-                    "Comment submitted by user: " & vbNewLine &
-                    vbNewLine &
-                    txtGeographicComment.Text & vbNewLine
+                    "for the following facility. No other geographic information was changed." & NewLine &
+                    NewLine &
+                    "Facility Site ID: " & CurrentAirs.FormattedString & NewLine &
+                    NewLine &
+                    "Update User: " & CurrentUser.FullName & " (" & CurrentUser.UserId & ")" & NewLine &
+                    NewLine &
+                    "Current Geographic Coordinate Information: " & NewLine &
+                    NewLine &
+                    "    Latitude: " & hidLatitude.Value & NewLine &
+                    "    Longitude: " & hidLongitude.Value & NewLine &
+                    "    Horizontal Collection Method: " & hidHorCollectionMetCode.Value & " - " & hidHorCollectionMetDesc.Value & NewLine &
+                    "    Accuracy Measure: " & hidHorizontalAccuracyMeasure.Value & NewLine &
+                    "    Horizontal Reference Datum: " & hidHorReferenceDatCode.Value & " - " & hidHorReferenceDatDesc.Value & NewLine &
+                    "    Google Map: " & curGoogleMapLink & NewLine &
+                    NewLine &
+                    "Comment submitted by user: " & NewLine &
+                    NewLine &
+                    txtGeographicComment.Text & NewLine
 
             Dim htmlBody As String = "<p>A comment has been submitted for the EIS Facility Geographic Coordinate Information " &
                     "for the following facility. No other geographic information was changed.</p>" &

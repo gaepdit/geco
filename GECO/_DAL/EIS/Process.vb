@@ -76,11 +76,11 @@ Namespace DAL.EIS
                 Dim facilityName As String = GetFacilityName(process.FacilitySiteId)
 
                 Dim plainBody As String = "The following facility has opted out of the Emissions Inventory for " &
-                    process.InventoryYear & " and has provided co-location information." & vbNewLine & vbNewLine &
-                    "Facility: " & process.FacilitySiteId.FormattedString & ", " & facilityName & vbNewLine &
-                    "Opt-out reason: " & process.GetOptOutReason() & vbNewLine &
-                    "Co-location info: " & vbNewLine &
-                    process.Colocation & vbNewLine
+                    process.InventoryYear & " and has provided co-location information." & NewLine & NewLine &
+                    "Facility: " & process.FacilitySiteId.FormattedString & ", " & facilityName & NewLine &
+                    "Opt-out reason: " & process.GetOptOutReason() & NewLine &
+                    "Co-location info: " & NewLine &
+                    process.Colocation & NewLine
 
                 Dim htmlBody As String = "<p>The following facility has opted out of the Emissions Inventory for " &
                     process.InventoryYear & " and has provided co-location information.</p>" &
