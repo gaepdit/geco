@@ -29,7 +29,7 @@
                 Return Replace(PermitNumber, "-", "")
             End Get
             Set(value As String)
-                PermitNumber = FormatPermitNumber(Trim(value))
+                PermitNumber = FormatPermitNumber(value.Trim())
             End Set
         End Property
 

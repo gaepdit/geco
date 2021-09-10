@@ -1,7 +1,7 @@
-Public Module UserAccountEmails
+﻿Public Module UserAccountEmails
 
     Public Sub SendConfirmEmailUpdateEmail(email As String, token As String)
-        Dim partialUrl As String = String.Format("~/Account.aspx?action=update&acct={0}&token={1}", Trim(email), token)
+        Dim partialUrl As String = String.Format("~/Account.aspx?action=update&acct={0}&token={1}", email.Trim(), token)
         Dim confirmationUrl As String = FullyQualifiedUrl(partialUrl)
 
         Dim subject As String = "GECO: Confirm new email address"
@@ -16,14 +16,14 @@ Public Module UserAccountEmails
             "<a href='{0}' target='_blank'>Confirm your email address</a></p>" &
             "<p>The link expires after 2 hours.</p>"
 
-        SendEmail(Trim(email), subject,
+        SendEmail(email.Trim(), subject,
                   String.Format(plainBody, confirmationUrl),
                   String.Format(htmlBody, confirmationUrl),
                   caller:="UserAccountEmails.SendConfirmEmailUpdateEmail")
     End Sub
 
     Public Function SendConfirmAccountEmail(email As String, token As String) As Boolean
-        Dim partialUrl As String = String.Format("~/Account.aspx?action=confirm&acct={0}&token={1}", Trim(email), token)
+        Dim partialUrl As String = String.Format("~/Account.aspx?action=confirm&acct={0}&token={1}", email.Trim(), token)
         Dim confirmationUrl As String = FullyQualifiedUrl(partialUrl)
 
         Dim subject As String = "GECO: Confirm new account"
@@ -42,14 +42,14 @@ Public Module UserAccountEmails
             "<a href='{0}' target='_blank'>Confirm account</a></p>" &
             "<p>The link expires after 2 hours.</p>"
 
-        Return SendEmail(Trim(email), subject,
+        Return SendEmail(email.Trim(), subject,
                   String.Format(plainBody, confirmationUrl),
                   String.Format(htmlBody, confirmationUrl),
                   caller:="UserAccountEmails.SendConfirmAccountEmail")
     End Function
 
     Public Sub SendPasswordResetEmail(email As String, token As String)
-        Dim partialUrl As String = String.Format("~/Account.aspx?action=reset&acct={0}&token={1}", Trim(email), token)
+        Dim partialUrl As String = String.Format("~/Account.aspx?action=reset&acct={0}&token={1}", email.Trim(), token)
         Dim confirmationUrl As String = FullyQualifiedUrl(partialUrl)
 
         Dim subject As String = "GECO: Password Reset"
@@ -69,7 +69,7 @@ Public Module UserAccountEmails
             "<p>If you did not request a password reset, you can ignore this message and your password will not change.</p>" &
             "<p>If the above link doesn't work, copy and paste the following into your web browser:<br /> {0} </p>"
 
-        SendEmail(Trim(email), subject,
+        SendEmail(email.Trim(), subject,
                   String.Format(plainBody, confirmationUrl),
                   String.Format(htmlBody, confirmationUrl),
                   caller:="UserAccountEmails.SendPasswordResetEmail")
@@ -90,7 +90,7 @@ Public Module UserAccountEmails
             "<p>Account: {0}</p>" &
             "<p>If you did not initiate this change, please contact the Air Protection Branch.</p>"
 
-        SendEmail(Trim(email), subject,
+        SendEmail(email.Trim(), subject,
                   String.Format(plainBody, email),
                   String.Format(htmlBody, email),
                   caller:="UserAccountEmails.SendPasswordChangeNotification")
@@ -113,7 +113,7 @@ Public Module UserAccountEmails
             "New email: {1} </p>" &
             "<p>If you did not initiate this change, please contact the Air Protection Branch.</p>"
 
-        SendEmail(ConcatNonEmptyStrings(",", {Trim(newEmail), Trim(oldEmail)}), subject,
+        SendEmail(ConcatNonEmptyStrings(",", {newEmail.Trim(), oldEmail.Trim()}), subject,
                   String.Format(plainBody, oldEmail, newEmail),
                   String.Format(htmlBody, oldEmail, newEmail),
                   caller:="UserAccountEmails.SendEmailChangeNotification")

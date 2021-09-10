@@ -6,7 +6,7 @@ Public Module UserAccounts
 
     Public Function LogInUser(email As String, password As String, remember As Boolean, ByRef user As GecoUser, ByRef userSession As UserSession) As LoginResult
         Dim params As SqlParameter() = {
-            New SqlParameter("@Email", Trim(email)),
+            New SqlParameter("@Email", email.Trim()),
             New SqlParameter("@Password", GetMd5Hash(password)),
             New SqlParameter("@CreateSession", remember)
         }
@@ -56,7 +56,7 @@ Public Module UserAccounts
         End If
 
         Dim user As New GecoUser(userId) With {
-            .Email = Trim(GetNullableString(dr("Email"))),
+            .Email = GetNullableString(dr("Email")).Trim(),
             .FirstName = GetNullableString(dr("FirstName")),
             .LastName = GetNullableString(dr("LastName")),
             .Title = GetNullableString(dr("Title")),
@@ -89,7 +89,7 @@ Public Module UserAccounts
     Public Function GecoUserExists(email As String) As Boolean
         Dim query = "select geco.UserExists(@email)"
 
-        Dim param As New SqlParameter("@email", Trim(email))
+        Dim param As New SqlParameter("@email", email.Trim())
 
         Return DB.GetBoolean(query, param)
     End Function
@@ -131,7 +131,7 @@ Public Module UserAccounts
 
     Public Function ConfirmAccount(email As String, token As String) As DbResult
         Dim params As SqlParameter() = {
-            New SqlParameter("@Email", Trim(email)),
+            New SqlParameter("@Email", email.Trim()),
             New SqlParameter("@Token", token)
         }
 
@@ -149,7 +149,7 @@ Public Module UserAccounts
 
     Public Function ConfirmEmailChange(email As String, token As String, ByRef oldEmail As String) As DbResult
         Dim params As SqlParameter() = {
-            New SqlParameter("@NewEmail", Trim(email)),
+            New SqlParameter("@NewEmail", email.Trim()),
             New SqlParameter("@Token", token)
         }
 
@@ -168,7 +168,7 @@ Public Module UserAccounts
 
     Public Function SetAccountPassword(email As String, password As String) As DbResult
         Dim params As SqlParameter() = {
-            New SqlParameter("@Email", Trim(email)),
+            New SqlParameter("@Email", email.Trim()),
             New SqlParameter("@Password", GetMd5Hash(password))
         }
 
@@ -186,7 +186,7 @@ Public Module UserAccounts
 
     Public Function UpdatePassword(email As String, oldPassword As String, newPassword As String) As UpdatePasswordResult
         Dim params As SqlParameter() = {
-            New SqlParameter("@Email", Trim(email)),
+            New SqlParameter("@Email", email.Trim()),
             New SqlParameter("@OldPassword", GetMd5Hash(oldPassword)),
             New SqlParameter("@NewPassword", GetMd5Hash(newPassword))
         }
@@ -218,8 +218,8 @@ Public Module UserAccounts
 
     Public Function UpdateUserEmail(email As String, newEmail As String, ByRef token As String) As UpdateUserEmailResult
         Dim params As SqlParameter() = {
-            New SqlParameter("@OldEmail", Trim(email)),
-            New SqlParameter("@NewEmail", Trim(newEmail))
+            New SqlParameter("@OldEmail", email.Trim()),
+            New SqlParameter("@NewEmail", newEmail.Trim())
         }
 
         Dim result As Integer
