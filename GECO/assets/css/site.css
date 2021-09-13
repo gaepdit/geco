@@ -303,14 +303,14 @@ h1 a, h2 a, h3 a {
     background-color: #0008;
 }
 
-    .progressIndicator-inner {
-        margin: 300px auto;
-        width: 300px;
-        padding: 20px;
-        background: #fff8;
-        border-radius: 10px;
-        text-align: center;
-    }
+.progressIndicator-inner {
+    margin: 300px auto;
+    width: 300px;
+    padding: 20px;
+    background: #fff8;
+    border-radius: 10px;
+    text-align: center;
+}
 
 /* AutoComplete Extender */
 
@@ -1000,6 +1000,141 @@ button:disabled,
     box-shadow: 0 1px 3px -2px #2e3646;
 }
 
+
+/* 
+    AjaxControlToolkit TabContainer layout 
+    Moved here from the CSS WebResource to reduce overhead and enable favicon switching
+*/
+
+/* default layout */
+.ajax__tab_default .ajax__tab_header {
+    white-space: normal !important
+}
+
+.ajax__tab_default .ajax__tab_outer {
+    display: -moz-inline-box;
+    display: inline-block
+}
+
+.ajax__tab_default .ajax__tab_inner {
+    display: -moz-inline-box;
+    display: inline-block
+}
+
+.ajax__tab_default .ajax__tab_tab {
+    overflow: hidden;
+    text-align: center;
+    display: -moz-inline-box;
+    display: inline-block
+}
+
+/* xp theme */
+.ajax__tab_xp .ajax__tab_header {
+    font-family: verdana,tahoma,helvetica;
+    font-size: 11px;
+    background: url(data:image/gif;base64,R0lGODlhAQABAJEAAJGbnAAAAAAAAAAAACwAAAAAAQABAAAIBAABBAQA) repeat-x bottom;
+}
+
+.ajax__tab_xp .ajax__tab_outer {
+    padding-right: 4px;
+    background: url(data:image/gif;base64,R0lGODlhBAAVANUAAJGbnJGntKGzu6m5v76+2LbEzcbI3czN4tXX6dvc7dvd7d/f8efq5+Pp6+Xm9Orq+Orq+e3x8/b08vHx/fX0/fr5/v7+/f///wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP8AgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAkAACAALAAAAAAEABUAAAhHAEEIHChQwMAIBQRaaDAAxAUJARxeiHhhIogKFSJSoBBxwoSIECBEfPAgogMHERcsiKggQUQECCIeOBDRgIGIBAhEBMATQEAAOw==) no-repeat right;
+    height: 21px;
+}
+
+.ajax__tab_xp .ajax__tab_inner {
+    padding-left: 3px;
+    background: url(data:image/gif;base64,R0lGODlhAwAVANUAAJGbnJGntKm5v76+2LbEzcbI3czN4tXX6dvd7d/f8efq5+Pp7OTp7OXm9Orq+Orq+fHx/fX0/fb0/fr5/v39/P7+/v///wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP8AgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAkAACAALAAAAAADABUAAAhCAEEIHChQAAgCDAQsqBCAgoUAFh5GDDBhQoAIEgJAgBDgwYMADhwEaNAgQIIEARAgCHDgQAADBgIUKBBgwAAAOAMCADs=) no-repeat;
+}
+
+.ajax__tab_xp .ajax__tab_tab {
+    height: 13px;
+    padding: 4px;
+    margin: 0px;
+    background: url(data:image/gif;base64,R0lGODlhAQAVALMAAJGbnJGntL6/2MbI3czN4tXX6dvd7d/f8eXm9Orq+Orq+fHx/fX0/fr5/roAAAAAACH5BAkAAA4ALAAAAAABABUAAAgXAB04CNCgoEEGCxQkQHDAQAECAwQACAgAOw==) repeat-x;
+}
+
+.ajax__tab_xp .ajax__tab_hover .ajax__tab_outer {
+    cursor: pointer;
+    background: url(data:image/gif;base64,R0lGODlhBAAVANUAAO6fMeSXPPm4OPu+Of/HPN2hU5GbnJmgo93CjeHGjtXV5trc6d7f7OTl8ejo8+jp8+rq9u7v+PHx+vHx+/b2/vn4/vz7/v///wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP8AgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAkAACAALAAAAAAEABUAAAhFAEEIHCgwwMABAAQSEFAAxIULBxxClBjRgoWIFSpEpEAh4oQJESVIiBghQkQIECI+cBCxQYOIDBhEXLAgogIFEQ3oNBAQADs=) no-repeat right;
+}
+
+.ajax__tab_xp .ajax__tab_hover .ajax__tab_inner {
+    cursor: pointer;
+    background: url(data:image/gif;base64,R0lGODlhAwAVANUAAOuXLu6fMfm4OPm5OP/HPN2hU5GbnJmgo52xuuHGjtXV5trc6d7f7OTl8ejp8+rq9u7v+PHx+vHx+/b2/vn4/vz7/v///wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP8AgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAkAACAALAAAAAADABUAAAhBAEEIHCgQAIgAAwoIIHDAgoWGDx0eqFDhAAUKByZMOCBBwoEIEQ5AgHDgwYMDDhwcaNDgAAMGBxYsQKBAgYGbAQEAOw==) no-repeat;
+}
+
+.ajax__tab_xp .ajax__tab_hover .ajax__tab_tab {
+    cursor: pointer;
+    background: url(data:image/gif;base64,R0lGODlhAQAVANUAAOaLLP/HPP/IPJGbnNXW5trc6d7f7OTl8ejp8+rq9u7v+PHx+vHx+/b2/vn4/vz7/v///wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP8AgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAkAACAALAAAAAABABUAAAgZAEGAACAgAISDDxw0YLBAQQIEBwwUIDAgIAA7) repeat-x;
+}
+
+.ajax__tab_xp .ajax__tab_active .ajax__tab_outer {
+    background: url(data:image/gif;base64,R0lGODlhBAAVALMAAO6fMeSXPPm4OPu+Of/HPN2hU5GbnN3CjeHGjv///wAAAAAAAAAAAAAAAAAAAAAAACH5BAEAAA8ALAAAAAAEABUAAAQZMJz3BkCPiPJSMt0Xgh4plmOKrmdrvqprRAA7) no-repeat right;
+}
+
+.ajax__tab_xp .ajax__tab_active .ajax__tab_inner {
+    background: url(data:image/gif;base64,R0lGODlhAwAVALMAAOuXLu6fMfm4OPm5OP/HPN2hU5GbnOHGjv///wAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAEAAA8ALAAAAAADABUAAAQT8B1wwiiCGIR2514Ijl8pmuTpRQA7) no-repeat;
+}
+
+.ajax__tab_xp .ajax__tab_active .ajax__tab_tab {
+    background: url(data:image/gif;base64,R0lGODlhAQAVAJEAAOaLLP/HPP/IPP///ywAAAAAAQAVAAAIDQABCAgwoKDBgwgNBgQAOw==) repeat-x;
+}
+
+.ajax__tab_xp .ajax__tab_disabled {
+    color: #A0A0A0;
+}
+
+.ajax__tab_xp .ajax__tab_body {
+    font-family: verdana,tahoma,helvetica;
+    font-size: 10pt;
+    border: 1px solid #999999;
+    border-top: 0;
+    padding: 8px;
+    background-color: #ffffff;
+}
+
+/* scrolling */
+.ajax__scroll_horiz {
+    overflow-x: scroll;
+}
+
+.ajax__scroll_vert {
+    overflow-y: scroll;
+}
+
+.ajax__scroll_both {
+    overflow: scroll
+}
+
+.ajax__scroll_auto {
+    overflow: auto
+}
+
+/* plain theme */
+.ajax__tab_plain .ajax__tab_outer {
+    text-align: center;
+    vertical-align: middle;
+    border: 2px solid #999999;
+}
+
+.ajax__tab_plain .ajax__tab_inner {
+    text-align: center;
+    vertical-align: middle;
+}
+
+.ajax__tab_plain .ajax__tab_body {
+    text-align: center;
+    vertical-align: middle;
+}
+
+.ajax__tab_plain .ajax__tab_header {
+    text-align: center;
+    vertical-align: middle;
+}
+
+.ajax__tab_plain .ajax__tab_active .ajax__tab_outer {
+    background: #FFFFE1;
+}
 
 /* AjaxControlToolkit TabContainer layout fixes */
 .ajax__tab_header {

@@ -11,6 +11,7 @@
 <configuration>
   <configSections>
     <section name="RaygunSettings" type="Mindscape.Raygun4Net.RaygunSettings, Mindscape.Raygun4Net" />
+    <section name="ajaxControlToolkit" type="AjaxControlToolkit.AjaxControlToolkitConfigSection, AjaxControlToolkit" />
   </configSections>
 
   <connectionStrings>
@@ -36,6 +37,7 @@
   </appSettings>
 
   <RaygunSettings apikey="" excludeHttpStatusCodes="404" excludeErrorsFromLocal="true" />
+  <ajaxControlToolkit renderStyleLinks="false" />
 
   <system.web>
     <!--
