@@ -668,7 +668,7 @@
       <Version>0.95.4</Version>
     </PackageReference>
     <PackageReference Include="DocumentFormat.OpenXml">
-      <Version>2.12.3</Version>
+      <Version>2.13.1</Version>
     </PackageReference>
     <PackageReference Include="EpdIt.DbHelper">
       <Version>3.0.2</Version>
@@ -702,7 +702,7 @@
       <Version>5.3.95.699</Version>
     </PackageReference>
     <PackageReference Include="SonarAnalyzer.VisualBasic">
-      <Version>8.22.0.31243</Version>
+      <Version>8.28.0.36354</Version>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
