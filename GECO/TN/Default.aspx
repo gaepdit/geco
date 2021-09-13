@@ -24,47 +24,26 @@
                 available. This will enable us to help you more efficiently.
             </p>
 
-            <asp:DataGrid ID="dgrTestNotify" runat="server" Width="100%" CellSpacing="1" CellPadding="3"
-                AutoGenerateColumns="False" Font-Size="Small" AllowPaging="True"
+            <asp:DataGrid ID="dgrTestNotify" runat="server"
+                AutoGenerateColumns="False" AllowPaging="True"
                 OnPageIndexChanged="dgrTestNotify_PageIndexChanged" OnItemCommand="RequestDetails"
-                BackColor="White" Font-Names="Arial" BorderColor="#999999" BorderWidth="1px" AlternatingItemStyle-BackColor="White" CssClass="button-small">
-                <FooterStyle Wrap="False" ForeColor="Black" BackColor="#CCCCCC"></FooterStyle>
-                <SelectedItemStyle Font-Bold="True" Wrap="False" ForeColor="White" BackColor="#008A8C"></SelectedItemStyle>
-                <AlternatingItemStyle Wrap="False" BackColor="White"></AlternatingItemStyle>
-                <ItemStyle Wrap="False" ForeColor="Black" BackColor="#EEEEEE"></ItemStyle>
-                <HeaderStyle Font-Bold="True" Wrap="False" BackColor="#01009A" ForeColor="White"></HeaderStyle>
+                CssClass="button-small table-simple table-full-width">
+                <HeaderStyle CssClass="table-head" />
+                <PagerStyle HorizontalAlign="Center" Mode="NumericPages" CssClass="table-head datagrid-pager" />
                 <Columns>
-                    <asp:ButtonColumn Text="strTestLogNumber" DataTextField="strTestLogNumber" HeaderText="Test Log No."
+                    <asp:ButtonColumn DataTextField="strTestLogNumber" HeaderText="Test Log No."
                         ButtonType="PushButton">
-                        <ItemStyle Wrap="True" HorizontalAlign="Center" VerticalAlign="Top"></ItemStyle>
-                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                        <ItemStyle HorizontalAlign="Center" />
                     </asp:ButtonColumn>
-                    <asp:BoundColumn DataField="strEmissionUnit" HeaderText="Emission Unit">
-                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
-                    </asp:BoundColumn>
-                    <asp:BoundColumn DataField="strPollutants" HeaderText="Pollutants">
-                        <HeaderStyle Font-Bold="False" Font-Italic="False" Font-Overline="False" Font-Strikeout="False"
-                            Font-Underline="False" HorizontalAlign="Center" VerticalAlign="Middle" />
-                    </asp:BoundColumn>
-                    <asp:BoundColumn DataField="datTestNotification" HeaderText="Notify Date" DataFormatString="{0:MM-dd-yyyy}">
-                        <HeaderStyle Font-Bold="False" Font-Italic="False" Font-Overline="False" Font-Strikeout="False"
-                            Font-Underline="False" HorizontalAlign="Center" VerticalAlign="Middle" />
-                    </asp:BoundColumn>
+                    <asp:BoundColumn DataField="strEmissionUnit" HeaderText="Emission Unit" />
+                    <asp:BoundColumn DataField="strPollutants" HeaderText="Pollutants" />
+                    <asp:BoundColumn DataField="datTestNotification" HeaderText="Notify Date"
+                        DataFormatString="{0:MM-dd-yyyy}" />
                     <asp:BoundColumn DataField="datProposedStartDate" ReadOnly="True" HeaderText="Start Date"
-                        DataFormatString="{0:MM-dd-yyyy}">
-                        <ItemStyle Wrap="False" HorizontalAlign="Center" VerticalAlign="Top"></ItemStyle>
-                        <HeaderStyle Font-Bold="False" Font-Italic="False" Font-Overline="False" Font-Strikeout="False"
-                            Font-Underline="False" HorizontalAlign="Center" VerticalAlign="Middle" />
-                    </asp:BoundColumn>
+                        DataFormatString="{0:MM-dd-yyyy}" />
                     <asp:BoundColumn DataField="datProposedEndDate" ReadOnly="True" HeaderText="End Date"
-                        DataFormatString="{0:MM-dd-yyyy}">
-                        <ItemStyle Wrap="False" HorizontalAlign="Center" VerticalAlign="Top"></ItemStyle>
-                        <HeaderStyle Font-Bold="False" Font-Italic="False" Font-Overline="False" Font-Strikeout="False"
-                            Font-Underline="False" HorizontalAlign="Center" VerticalAlign="Middle" />
-                    </asp:BoundColumn>
+                        DataFormatString="{0:MM-dd-yyyy}" />
                 </Columns>
-                <PagerStyle NextPageText="Next" PrevPageText="Prev" HorizontalAlign="Center" ForeColor="Black"
-                    Position="TopAndBottom" BackColor="Gainsboro" Wrap="False" Mode="NumericPages"></PagerStyle>
             </asp:DataGrid>
 
             <asp:Panel ID="pnlDetails" runat="server" Width="100%" Visible="False">

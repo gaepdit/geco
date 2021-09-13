@@ -211,7 +211,7 @@ h1 a, h2 a, h3 a {
 
 .clear {
     clear: both;
-    margin: 0; 
+    margin: 0;
     padding: 0;
     height: 0;
     overflow: hidden;
@@ -620,7 +620,8 @@ textarea {
     }
 
         .table-simple thead th,
-        .table-simple .table-head th {
+        .table-simple .table-head th,
+        .table-simple .table-head td {
             vertical-align: middle;
             text-align: center;
         }
@@ -983,6 +984,43 @@ button:disabled,
     color: #777;
     box-shadow: none;
 }
+
+/* DataGrid Pager */
+
+.datagrid-pager td {
+    padding: 8px;
+}
+
+.datagrid-pager a,
+.datagrid-pager span {
+    padding: 1px 6px;
+    margin: 0 2px;
+    border: none;
+    border-radius: 3px;
+    color: #211FE8;
+    text-decoration: none;
+    background: #fff;
+    box-shadow: 0 1px 1px -1px #999;
+}
+
+.datagrid-pager span {
+    color: #000;
+    border: 1px solid #777;
+}
+
+.datagrid-pager a:hover, .datagrid-pager a:focus {
+    background: #06e;
+    color: #fff;
+    box-shadow: 0 1px 3px -1px #2e3646;
+}
+
+.datagrid-pager a:active {
+    position: relative;
+    top: 1px;
+    background: #17f;
+    box-shadow: 0 1px 3px -2px #2e3646;
+}
+
 
 /* AjaxControlToolkit TabContainer layout fixes */
 .ajax__tab_header {
