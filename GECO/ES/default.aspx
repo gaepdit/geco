@@ -61,23 +61,15 @@
                         </tr>
                         <tr>
                             <td align="center" valign="middle">
-                                <asp:Panel ID="pnlCurrentESStatus" runat="server" Width="400px"
-                                    BackColor="#CE2800">
-                                    <span style="color: #FFFFFF"><strong>
-                                        <br />
-                                    </strong><b>Status for                                   
-                                        <asp:Label ID="lblCurrentYear2" runat="server"></asp:Label>
-                                        <br />
-                                        Emissions Statement</b></span><br /><br />
-                                    <asp:Label ID="lblCurrentStatus" runat="server" BackColor="#FFC9BB" ForeColor="Black"></asp:Label>
+                                <asp:Panel ID="pnlCurrentESStatus" runat="server" Width="400px" CssClass="panel">
+                                    Status for
+                                    <asp:Label ID="lblCurrentYear2" runat="server" />
                                     <br />
-                                    &nbsp;
-                               
+                                    Emissions Statement:<br />
+                                    <br />
+                                    <b><asp:Label ID="lblCurrentStatus" runat="server" /></b>
+                                    <br />
                                 </asp:Panel>
-
-                                <act:RoundedCornersExtender ID="pnlCurrentESStatus_RoundedCornersExtender"
-                                    runat="server" Enabled="True" Radius="7" TargetControlID="pnlCurrentESStatus">
-                                </act:RoundedCornersExtender>
                             </td>
                         </tr>
                         <tr>
