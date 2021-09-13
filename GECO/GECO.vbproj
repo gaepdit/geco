@@ -104,6 +104,7 @@
     <Content Include="Account\Default.aspx" />
     <Content Include="Account\Email.aspx" />
     <Content Include="Account\Password.aspx" />
+    <Content Include="apple-touch-icon.png" />
     <Content Include="assets\images\epd-icon.png" />
     <Content Include="EIS\Default.aspx" />
     <Content Include="EIS\Facility\Edit.aspx" />
@@ -124,13 +125,6 @@
     <Content Include="assets\images\epd-logo.png" />
     <Content Include="assets\css\site.css" />
     <Content Include="assets\css\printstyle.css" />
-    <Content Include="assets\epd-favicons\android-chrome-192x192.png" />
-    <Content Include="assets\epd-favicons\android-chrome-512x512.png" />
-    <Content Include="assets\epd-favicons\apple-touch-icon.png" />
-    <Content Include="assets\epd-favicons\favicon-16x16.png" />
-    <Content Include="assets\epd-favicons\favicon-32x32.png" />
-    <Content Include="assets\epd-favicons\mstile-150x150.png" />
-    <Content Include="assets\epd-favicons\safari-pinned-tab.svg" />
     <Content Include="assets\images\indicator_smallwaitanim.gif" />
     <Content Include="assets\images\loading.gif" />
     <Content Include="assets\images\progressbar_green.gif" />
@@ -139,6 +133,11 @@
     <Content Include="assets\images\sort_none.gif" />
     <Content Include="browserconfig.xml" />
     <Content Include="ContactUs.aspx" />
+    <Content Include="icon-192.png" />
+    <Content Include="icon-512.png" />
+    <Content Include="icon-dev.svg" />
+    <Content Include="icon-uat.svg" />
+    <Content Include="icon.svg" />
     <Content Include="Login.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="ErrorPage.aspx" />
@@ -629,6 +628,7 @@
     <Content Include="GECO.vbproj.vsspell" />
     <Content Include="AnnualFees\FeeAmendmentForm.xlsx" />
     <Content Include="EIS\EIS.master" />
+    <Content Include="manifest.webmanifest" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
