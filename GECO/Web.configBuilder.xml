@@ -45,7 +45,7 @@
           during development.
     -->
     <compilation debug="true" strict="false" explicit="true" />
-    <pages controlRenderingCompatibilityVersion="3.5" clientIDMode="AutoID">
+    <pages>
       <controls>
         <add tagPrefix="act" namespace="AjaxControlToolkit" assembly="AjaxControlToolkit" />
       </controls>

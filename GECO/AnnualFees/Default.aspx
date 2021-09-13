@@ -1,4 +1,4 @@
-<%@ Page Language="VB" MasterPageFile="~/Main.master" AutoEventWireup="false" Inherits="GECO.AnnualFees_Default" Title="GECO Emissions Fees" CodeBehind="Default.aspx.vb" %>
+﻿<%@ Page Language="VB" MasterPageFile="~/Main.master" AutoEventWireup="false" Inherits="GECO.AnnualFees_Default" Title="GECO Emissions Fees" CodeBehind="Default.aspx.vb" %>
 
 <%@ Import Namespace="GECO" %>
 <%@ MasterType VirtualPath="~/Main.master" %>
@@ -242,8 +242,7 @@
                                                         ID="RequiredFieldValidator10" runat="server" ControlToValidate="txtzip" ErrorMessage="5-digit Zip Code required"
                                                         Font-Size="Small" ValidationGroup="Contact">*</asp:RequiredFieldValidator>
                                                     <act:FilteredTextBoxExtender ID="FilteredTextBoxExtender1" runat="server" TargetControlID="txtZip"
-                                                        FilterType="Numbers">
-                                                    </act:FilteredTextBoxExtender>
+                                                        FilterType="Numbers"></act:FilteredTextBoxExtender>
                                                     &nbsp;&nbsp;
                                                     <asp:UpdateProgress ID="ModalUpdateProgress1" runat="server" AssociatedUpdatePanelID="ZipCityState" DisplayAfter="200" class="progressIndicator">
                                                         <ProgressTemplate>
@@ -288,8 +287,7 @@
                                         <td>
                                             <asp:TextBox ID="txtFax" runat="server" CssClass="unwatermarked" MaxLength="10" ValidationGroup="Contact"></asp:TextBox>
                                             <act:FilteredTextBoxExtender ID="FilteredTextBoxExtender4" runat="server" TargetControlID="txtFax"
-                                                FilterType="Numbers">
-                                            </act:FilteredTextBoxExtender>
+                                                FilterType="Numbers"></act:FilteredTextBoxExtender>
                                         </td>
                                     </tr>
                                     <tr>
