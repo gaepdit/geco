@@ -12,7 +12,7 @@ Option Explicit On
 
 
 Partial Public Class FacilityAdmin
-    
+
     '''<summary>
     '''lblFacilityDisplay control.
     '''</summary>
@@ -21,7 +21,7 @@ Partial Public Class FacilityAdmin
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblFacilityDisplay As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''lblAIRS control.
     '''</summary>
@@ -30,7 +30,7 @@ Partial Public Class FacilityAdmin
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblAIRS As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''lnkFacilityHome control.
     '''</summary>
@@ -39,7 +39,7 @@ Partial Public Class FacilityAdmin
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lnkFacilityHome As Global.System.Web.UI.WebControls.HyperLink
-    
+
     '''<summary>
     '''lnkFacilityInfo control.
     '''</summary>
@@ -48,7 +48,7 @@ Partial Public Class FacilityAdmin
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lnkFacilityInfo As Global.System.Web.UI.WebControls.HyperLink
-    
+
     '''<summary>
     '''lnkFacilityAdmin control.
     '''</summary>
@@ -57,7 +57,7 @@ Partial Public Class FacilityAdmin
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lnkFacilityAdmin As Global.System.Web.UI.WebControls.HyperLink
-    
+
     '''<summary>
     '''FacilityAccessUpdatePanel control.
     '''</summary>
@@ -66,7 +66,7 @@ Partial Public Class FacilityAdmin
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents FacilityAccessUpdatePanel As Global.System.Web.UI.UpdatePanel
-    
+
     '''<summary>
     '''grdUsers control.
     '''</summary>
@@ -75,7 +75,7 @@ Partial Public Class FacilityAdmin
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents grdUsers As Global.System.Web.UI.WebControls.GridView
-    
+
     '''<summary>
     '''pnlAddNewUser control.
     '''</summary>
@@ -84,7 +84,7 @@ Partial Public Class FacilityAdmin
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents pnlAddNewUser As Global.System.Web.UI.WebControls.Panel
-    
+
     '''<summary>
     '''txtEmail control.
     '''</summary>
@@ -93,7 +93,7 @@ Partial Public Class FacilityAdmin
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtEmail As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''btnAddUser control.
     '''</summary>
@@ -102,7 +102,7 @@ Partial Public Class FacilityAdmin
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnAddUser As Global.System.Web.UI.WebControls.Button
-    
+
     '''<summary>
     '''rfvEmail control.
     '''</summary>
@@ -111,7 +111,7 @@ Partial Public Class FacilityAdmin
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rfvEmail As Global.System.Web.UI.WebControls.RequiredFieldValidator
-    
+
     '''<summary>
     '''lblMessage control.
     '''</summary>
@@ -120,16 +120,16 @@ Partial Public Class FacilityAdmin
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblMessage As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
-    '''UpdateProgress1 control.
+    '''ModalUpdateProgress1 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents UpdateProgress1 As Global.System.Web.UI.UpdateProgress
-    
+    Protected WithEvents ModalUpdateProgress1 As Global.System.Web.UI.UpdateProgress
+
     '''<summary>
     '''Master property.
     '''</summary>
@@ -138,7 +138,7 @@ Partial Public Class FacilityAdmin
     '''</remarks>
     Public Shadows ReadOnly Property Master() As GECO.MainLayout
         Get
-            Return CType(MyBase.Master,GECO.MainLayout)
+            Return CType(MyBase.Master, GECO.MainLayout)
         End Get
     End Property
 End Class

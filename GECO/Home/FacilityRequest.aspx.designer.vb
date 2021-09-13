@@ -12,7 +12,7 @@ Option Explicit On
 
 
 Partial Public Class Home_FacilityRequest
-    
+
     '''<summary>
     '''pUpdateRequired control.
     '''</summary>
@@ -21,7 +21,7 @@ Partial Public Class Home_FacilityRequest
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents pUpdateRequired As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
+
     '''<summary>
     '''lnkUpdateProfile control.
     '''</summary>
@@ -30,7 +30,7 @@ Partial Public Class Home_FacilityRequest
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lnkUpdateProfile As Global.System.Web.UI.WebControls.HyperLink
-    
+
     '''<summary>
     '''upRequestAccess control.
     '''</summary>
@@ -39,7 +39,7 @@ Partial Public Class Home_FacilityRequest
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents upRequestAccess As Global.System.Web.UI.UpdatePanel
-    
+
     '''<summary>
     '''lblAirsNo control.
     '''</summary>
@@ -48,7 +48,7 @@ Partial Public Class Home_FacilityRequest
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblAirsNo As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''lblFacility control.
     '''</summary>
@@ -57,7 +57,7 @@ Partial Public Class Home_FacilityRequest
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblFacility As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''txtAirsNo control.
     '''</summary>
@@ -66,7 +66,7 @@ Partial Public Class Home_FacilityRequest
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtAirsNo As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''aceAIRS control.
     '''</summary>
@@ -75,7 +75,7 @@ Partial Public Class Home_FacilityRequest
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents aceAIRS As Global.AjaxControlToolkit.AutoCompleteExtender
-    
+
     '''<summary>
     '''txtFacility control.
     '''</summary>
@@ -84,7 +84,7 @@ Partial Public Class Home_FacilityRequest
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtFacility As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''aceFacility control.
     '''</summary>
@@ -93,7 +93,7 @@ Partial Public Class Home_FacilityRequest
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents aceFacility As Global.AjaxControlToolkit.AutoCompleteExtender
-    
+
     '''<summary>
     '''lblName control.
     '''</summary>
@@ -102,7 +102,7 @@ Partial Public Class Home_FacilityRequest
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblName As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''txtName control.
     '''</summary>
@@ -111,7 +111,7 @@ Partial Public Class Home_FacilityRequest
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtName As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''RequiredFieldValidator19 control.
     '''</summary>
@@ -120,7 +120,7 @@ Partial Public Class Home_FacilityRequest
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RequiredFieldValidator19 As Global.System.Web.UI.WebControls.RequiredFieldValidator
-    
+
     '''<summary>
     '''lblEmail control.
     '''</summary>
@@ -129,7 +129,7 @@ Partial Public Class Home_FacilityRequest
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblEmail As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''txtEmail control.
     '''</summary>
@@ -138,7 +138,7 @@ Partial Public Class Home_FacilityRequest
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtEmail As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''RequiredFieldValidator20 control.
     '''</summary>
@@ -147,7 +147,7 @@ Partial Public Class Home_FacilityRequest
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RequiredFieldValidator20 As Global.System.Web.UI.WebControls.RequiredFieldValidator
-    
+
     '''<summary>
     '''RegularExpressionValidator2 control.
     '''</summary>
@@ -156,7 +156,7 @@ Partial Public Class Home_FacilityRequest
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RegularExpressionValidator2 As Global.System.Web.UI.WebControls.RegularExpressionValidator
-    
+
     '''<summary>
     '''lblAccess control.
     '''</summary>
@@ -165,7 +165,7 @@ Partial Public Class Home_FacilityRequest
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblAccess As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''lstbAccess control.
     '''</summary>
@@ -174,7 +174,7 @@ Partial Public Class Home_FacilityRequest
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lstbAccess As Global.System.Web.UI.WebControls.CheckBoxList
-    
+
     '''<summary>
     '''lblComments control.
     '''</summary>
@@ -183,7 +183,7 @@ Partial Public Class Home_FacilityRequest
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblComments As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''txtComments control.
     '''</summary>
@@ -192,7 +192,7 @@ Partial Public Class Home_FacilityRequest
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtComments As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''bqMessage control.
     '''</summary>
@@ -201,7 +201,7 @@ Partial Public Class Home_FacilityRequest
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents bqMessage As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
+
     '''<summary>
     '''ltlMessage control.
     '''</summary>
@@ -210,7 +210,7 @@ Partial Public Class Home_FacilityRequest
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ltlMessage As Global.System.Web.UI.WebControls.Literal
-    
+
     '''<summary>
     '''btnSend control.
     '''</summary>
@@ -219,7 +219,7 @@ Partial Public Class Home_FacilityRequest
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnSend As Global.System.Web.UI.WebControls.Button
-    
+
     '''<summary>
     '''lblSuccess control.
     '''</summary>
@@ -228,7 +228,7 @@ Partial Public Class Home_FacilityRequest
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblSuccess As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''lblError control.
     '''</summary>
@@ -237,16 +237,16 @@ Partial Public Class Home_FacilityRequest
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblError As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
-    '''UpdateProgress3 control.
+    '''ModalUpdateProgress1 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents UpdateProgress3 As Global.System.Web.UI.UpdateProgress
-    
+    Protected WithEvents ModalUpdateProgress1 As Global.System.Web.UI.UpdateProgress
+
     '''<summary>
     '''Master property.
     '''</summary>
@@ -255,7 +255,7 @@ Partial Public Class Home_FacilityRequest
     '''</remarks>
     Public Shadows ReadOnly Property Master() As GECO.MainLayout
         Get
-            Return CType(MyBase.Master,GECO.MainLayout)
+            Return CType(MyBase.Master, GECO.MainLayout)
         End Get
     End Property
 End Class

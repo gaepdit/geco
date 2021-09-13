@@ -20,7 +20,7 @@ Partial Public Class TN_Default
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents ModalUpdateProgress1 As Global.AjaxControls.ModalUpdateProgress
+    Protected WithEvents ModalUpdateProgress1 As Global.System.Web.UI.UpdateProgress
 
     '''<summary>
     '''UpdatePanel1 control.

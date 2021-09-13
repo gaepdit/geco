@@ -77,11 +77,12 @@
                 emails from "GeorgiaAirProtectionBranch@dnr.ga.gov".
     </p>
 
-    <asp:UpdateProgress ID="CaptchaUpdateProgress" runat="server" AssociatedUpdatePanelID="CaptchaUpdatePanel">
+    <asp:UpdateProgress ID="CaptchaUpdateProgress" runat="server" AssociatedUpdatePanelID="CaptchaUpdatePanel" DisplayAfter="200" class="progressIndicator">
         <ProgressTemplate>
-            <div class="ProgressIndicator">
-                <img src="<%= Page.ResolveUrl("~/assets/images/progressbar_green.gif") %>" alt="Loading" />
-            Please Wait...
+            <div class="progressIndicator-inner">
+                Please Wait...<br />
+                <img src="<%= Page.ResolveUrl("~/assets/images/progressbar_green.gif") %>" alt="" />
+            </div>
         </ProgressTemplate>
     </asp:UpdateProgress>
 </asp:Content>

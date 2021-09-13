@@ -3,14 +3,11 @@
 <%@ MasterType VirtualPath="~/Main.master" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="Server">
-    <asp:UpdateProgress ID="UpdateProgress1" runat="server" DisplayAfter="1">
+    <asp:UpdateProgress ID="ModalUpdateProgress1" runat="server" DisplayAfter="200" class="progressIndicator">
         <ProgressTemplate>
-            <div id="progressBackgroundFilter">
-            </div>
-            <div id="progressMessage">
-                Please Wait...
-                <br />
-                <img src="<%= Page.ResolveUrl("~/assets/images/progressbar_green.gif") %>" alt="Loading" />
+            <div class="progressIndicator-inner">
+                Please Wait...<br />
+                <img src="<%= Page.ResolveUrl("~/assets/images/progressbar_green.gif") %>" alt="" />
             </div>
         </ProgressTemplate>
     </asp:UpdateProgress>

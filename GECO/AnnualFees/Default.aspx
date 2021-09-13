@@ -1,16 +1,16 @@
-﻿<%@ Page Language="VB" MasterPageFile="~/Main.master" AutoEventWireup="false" Inherits="GECO.AnnualFees_Default" Title="GECO Emissions Fees" CodeBehind="Default.aspx.vb" %>
+<%@ Page Language="VB" MasterPageFile="~/Main.master" AutoEventWireup="false" Inherits="GECO.AnnualFees_Default" Title="GECO Emissions Fees" CodeBehind="Default.aspx.vb" %>
 
 <%@ Import Namespace="GECO" %>
 <%@ MasterType VirtualPath="~/Main.master" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="Server">
-    <acs:ModalUpdateProgress ID="ModalUpdateProgress1" runat="server" DisplayAfter="1500" BackgroundCssClass="modalProgressGreyBackground">
+    <asp:UpdateProgress ID="CaptchaUpdateProgress" runat="server" DisplayAfter="200" class="progressIndicator">
         <ProgressTemplate>
-            <div class="modalPopup">
-                Please Wait...
-                <img src="<%= Page.ResolveUrl("~/assets/images/progressbar_green.gif") %>" align="middle" alt="working..." />
+            <div class="progressIndicator-inner">
+                Please Wait...<br />
+                <img src="<%= Page.ResolveUrl("~/assets/images/progressbar_green.gif") %>" alt="" />
             </div>
         </ProgressTemplate>
-    </acs:ModalUpdateProgress>
+    </asp:UpdateProgress>
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
         <ContentTemplate>
@@ -245,14 +245,14 @@
                                                         FilterType="Numbers">
                                                     </act:FilteredTextBoxExtender>
                                                     &nbsp;&nbsp;
-                                            <asp:UpdateProgress ID="UpdateProgress2" runat="server" AssociatedUpdatePanelID="ZipCityState">
-                                                <ProgressTemplate>
-                                                    <div class="progress">
-                                                        <img alt="loading..." src='<%= Page.ResolveUrl("~/assets/images/indicator_smallwaitanim.gif") %>' />
-                                                        Loading City & State...                                           
-                                                    </div>
-                                                </ProgressTemplate>
-                                            </asp:UpdateProgress>
+                                                    <asp:UpdateProgress ID="ModalUpdateProgress1" runat="server" AssociatedUpdatePanelID="ZipCityState" DisplayAfter="200" class="progressIndicator">
+                                                        <ProgressTemplate>
+                                                            <div class="progressIndicator-inner">
+                                                                Loading City & State...<br />
+                                                                <img src="<%= Page.ResolveUrl("~/assets/images/progressbar_green.gif") %>" alt="" />
+                                                            </div>
+                                                        </ProgressTemplate>
+                                                    </asp:UpdateProgress>
                                                 </td>
                                             </tr>
                                             <tr>

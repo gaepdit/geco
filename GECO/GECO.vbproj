@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -54,10 +54,6 @@
     <WarningsAsErrors>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036</WarningsAsErrors>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AjaxControls, Version=1.0.0.0, Culture=neutral, PublicKeyToken=10103bf0df26eb01, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>assets\DLLs\AjaxControls.dll</HintPath>
-    </Reference>
     <Reference Include="AjaxControlToolkit, Version=3.0.30930.28736, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>assets\DLLs\AjaxControlToolkit.dll</HintPath>
@@ -132,7 +128,6 @@
     <Content Include="assets\images\epd-logo.png" />
     <Content Include="assets\css\site.css" />
     <Content Include="assets\css\printstyle.css" />
-    <Content Include="assets\DLLs\AjaxControls.dll" />
     <Content Include="assets\DLLs\AjaxControlToolkit.dll" />
     <Content Include="assets\epd-favicons\android-chrome-192x192.png" />
     <Content Include="assets\epd-favicons\android-chrome-512x512.png" />
@@ -222,7 +217,7 @@
     </Compile>
     <Compile Include="EIS\Default.aspx.vb">
       <DependentUpon>Default.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="EIS\EIS.master.designer.vb">
       <DependentUpon>EIS.master</DependentUpon>
@@ -250,70 +245,70 @@
     </Compile>
     <Compile Include="EIS\History\Default.aspx.vb">
       <DependentUpon>Default.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="EIS\History\ReportingPeriodEmissions.aspx.designer.vb">
       <DependentUpon>ReportingPeriodEmissions.aspx</DependentUpon>
     </Compile>
     <Compile Include="EIS\History\ReportingPeriodEmissions.aspx.vb">
       <DependentUpon>ReportingPeriodEmissions.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="EIS\History\ReportingPeriodPollutants.aspx.designer.vb">
       <DependentUpon>ReportingPeriodPollutants.aspx</DependentUpon>
     </Compile>
     <Compile Include="EIS\History\ReportingPeriodPollutants.aspx.vb">
       <DependentUpon>ReportingPeriodPollutants.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="EIS\History\ReportingPeriodProcesses.aspx.designer.vb">
       <DependentUpon>ReportingPeriodProcesses.aspx</DependentUpon>
     </Compile>
     <Compile Include="EIS\History\ReportingPeriodProcesses.aspx.vb">
       <DependentUpon>ReportingPeriodProcesses.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="EIS\History\Processes.aspx.designer.vb">
       <DependentUpon>Processes.aspx</DependentUpon>
     </Compile>
     <Compile Include="EIS\History\Processes.aspx.vb">
       <DependentUpon>Processes.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="EIS\History\EmissionUnits.aspx.designer.vb">
       <DependentUpon>EmissionUnits.aspx</DependentUpon>
     </Compile>
     <Compile Include="EIS\History\EmissionUnits.aspx.vb">
       <DependentUpon>EmissionUnits.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="EIS\History\ReleasePoints.aspx.designer.vb">
       <DependentUpon>ReleasePoints.aspx</DependentUpon>
     </Compile>
     <Compile Include="EIS\History\ReleasePoints.aspx.vb">
       <DependentUpon>ReleasePoints.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="EIS\Process\Default.aspx.designer.vb">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
     <Compile Include="EIS\Process\Default.aspx.vb">
       <DependentUpon>Default.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="EIS\Process\Submit.aspx.designer.vb">
       <DependentUpon>Submit.aspx</DependentUpon>
     </Compile>
     <Compile Include="EIS\Process\Submit.aspx.vb">
       <DependentUpon>Submit.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="EIS\Users\Default.aspx.designer.vb">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
     <Compile Include="EIS\Users\Default.aspx.vb">
       <DependentUpon>Default.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="GlobalSuppressions.vb" />
     <Compile Include="Home\FacilityRequest.aspx.designer.vb">

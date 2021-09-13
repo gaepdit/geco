@@ -56,14 +56,11 @@
                     CssClass="button button-large">Request access to a facility</asp:HyperLink>
             </p>
 
-            <asp:UpdateProgress ID="UpdateProgress1" runat="server" DisplayAfter="0">
+            <asp:UpdateProgress ID="ModalUpdateProgress1" runat="server" DisplayAfter="200" class="progressIndicator">
                 <ProgressTemplate>
-                    <div id="progressBackgroundFilter">
-                    </div>
-                    <div id="progressMessage">
-                        Please Wait...
-                        <br />
-                        <img alt="Loading" src="<%= Page.ResolveUrl("~/assets/images/progressbar_green.gif") %>" />
+                    <div class="progressIndicator-inner">
+                        Please Wait...<br />
+                        <img src="<%= Page.ResolveUrl("~/assets/images/progressbar_green.gif") %>" alt="" />
                     </div>
                 </ProgressTemplate>
             </asp:UpdateProgress>
@@ -146,10 +143,9 @@
         <strong>September&nbsp;1,&nbsp;<asp:Label ID="lblFeeYear4" runat="server" Text=""></asp:Label></strong>. 
     </p>
 
-    <h2>
-        Emissions Statement
-    </h2>
-    <p>Facilities in the Atlanta metro maintenance area whose NO<sub>x</sub> and/or VOC actual emissions are 
+    <h2>Emissions Statement</h2>
+    <p>
+        Facilities in the Atlanta metro maintenance area whose NO<sub>x</sub> and/or VOC actual emissions are 
         greater than 25 tons per year are required to submit an annual Emissions Statement (ES). The Emissions 
         Statement is due on or about June 15 each year.
     </p>
