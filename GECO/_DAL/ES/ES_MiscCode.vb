@@ -53,7 +53,7 @@ Public Module ES_MiscCode
 
         Dim param As New SqlParameter("@ay", ay)
 
-        Dim result As String = Trim(DB.GetString(query, param))
+        Dim result As String = DB.GetString(query, param).Trim()
 
         If String.IsNullOrEmpty(result) Then
             Return "NULL"

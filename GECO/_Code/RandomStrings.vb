@@ -9,7 +9,7 @@
         Dim chrChars As Char() = strAllowedCharacters.ToCharArray
         Dim strReturn As New StringBuilder
 
-        Do Until Len(strReturn.ToString) = intLength
+        Do Until strReturn.ToString.Length() = intLength
             Dim x As Integer = CInt(Rnd() * (chrChars.Length - 1))
             strReturn.Append(chrChars(x))
         Loop

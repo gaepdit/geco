@@ -90,13 +90,11 @@
                     Visible="False"></asp:Label>
             </p>
 
-            <asp:UpdateProgress ID="UpdateProgress3" runat="server" DisplayAfter="50" AssociatedUpdatePanelID="upRequestAccess">
+            <asp:UpdateProgress ID="ModalUpdateProgress1" runat="server" DisplayAfter="200" class="progressIndicator">
                 <ProgressTemplate>
-                    <div id="progressBackgroundFilter"></div>
-                    <div id="progressMessage">
-                        Please Wait...
-                        <br />
-                        <img alt="Loading" src="<%= Page.ResolveUrl("~/assets/images/progressbar_green.gif") %>" />
+                    <div class="progressIndicator-inner">
+                        Please Wait...<br />
+                        <img src="<%= Page.ResolveUrl("~/assets/images/progressbar_green.gif") %>" alt="" />
                     </div>
                 </ProgressTemplate>
             </asp:UpdateProgress>

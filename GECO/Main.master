@@ -4,16 +4,20 @@
 <html lang="en-us">
 <head runat="server">
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
     <title>Georgia Environmental Connections Online</title>
-    <link rel="apple-touch-icon" sizes="180x180" href="~/assets/epd-favicons/apple-touch-icon.png?v=69kRrvbXdL" />
-    <link rel="icon" type="image/png" href="~/assets/epd-favicons/favicon-32x32.png?v=69kRrvbXdL" sizes="32x32" />
-    <link rel="icon" type="image/png" href="~/assets/epd-favicons/favicon-16x16.png?v=69kRrvbXdL" sizes="16x16" />
-    <link rel="mask-icon" href="~/assets/epd-favicons/safari-pinned-tab.svg?v=69kRrvbXdL" color="#5bbad5" />
-    <link rel="shortcut icon" href="~/favicon.ico?v=69kRrvbXdL" />
+    <link href="~/assets/css/site.css?v=20210913" rel="stylesheet" type="text/css" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" href="/icon.svg" type="image/svg+xml" charset="utf-8" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/manifest.webmanifest" />
     <meta name="theme-color" content="#e5f6fa" />
-    <link href="~/assets/css/site.css?v=20210817" rel="stylesheet" type="text/css" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Access to various Georgia Air Protection Branch applications">
+    <% If CurrentEnvironment = "Development" Then %>
+    <link rel="icon" href="/icon-dev.svg" type="image/svg+xml" charset="utf-8" />
+    <% ElseIf CurrentEnvironment = "Staging" Then %>
+    <link rel="icon" href="/icon-uat.svg" type="image/svg+xml" charset="utf-8" />
+    <% End If %>
+    <meta name="description" content="Access to various Georgia Air Protection Branch applications" />
     <script type="text/javascript">
         !function (a, b, c, d, e, f, g, h) {
             a.RaygunObject = e, a[e] = a[e] || function () {
@@ -28,7 +32,7 @@
     </script>
 </head>
 <body>
-    <% If Environment <> "Production" Then %>
+    <% If CurrentEnvironment <> "Production" Then %>
     <div class="banner-test-site">Test Site</div>
     <% End If %>
 

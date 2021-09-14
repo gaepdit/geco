@@ -77,14 +77,11 @@
 
     <p>NOTE: New password must contain at least 8 characters with at least 1 uppercase letter, 1 lowercase letter and 1 number.</p>
 
-    <asp:UpdateProgress ID="PasswordUpdateProgress" runat="server" DisplayAfter="0">
+    <asp:UpdateProgress ID="ModalUpdateProgress1" runat="server" DisplayAfter="200" class="progressIndicator">
         <ProgressTemplate>
-            <div id="progressBackgroundFilter">
-            </div>
-            <div id="progressMessage">
-                Please Wait...
-                        <br />
-                <img alt="Loading" src="<%= Page.ResolveUrl("~/assets/images/progressbar_green.gif") %>" />
+            <div class="progressIndicator-inner">
+                Please Wait...<br />
+                <img src="<%= Page.ResolveUrl("~/assets/images/progressbar_green.gif") %>" alt="" />
             </div>
         </ProgressTemplate>
     </asp:UpdateProgress>

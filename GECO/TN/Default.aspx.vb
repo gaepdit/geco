@@ -57,18 +57,18 @@ Partial Class TN_Default
             Else
                 lblEPDContact.Text = GetNullableString(dr.Item("STRFIRSTNAME")) & " " & GetNullableString(dr.Item("STRLASTNAME"))
 
-                If IsDBNull(dr.Item("STRPHONE")) Then
+                If Convert.IsDBNull(dr.Item("STRPHONE")) Then
                     lblEPDTelephone.Text = "404-363-7000 (ask For Source Monitoring Unit)"
                 Else
                     EPDTelephone = CStr(dr.Item("STRPHONE"))
-                    lblEPDTelephone.Text = Mid(EPDTelephone, 1, 3) & "-" & Mid(EPDTelephone, 4, 3) & "-" & Mid(EPDTelephone, 7)
+                    lblEPDTelephone.Text = EPDTelephone.Substring(0, 3) & "-" & EPDTelephone.Substring(3, 3) & "-" & EPDTelephone.SubstringFrom(6)
                 End If
 
-                If IsDBNull(dr.Item("STRFAX")) Then
+                If Convert.IsDBNull(dr.Item("STRFAX")) Then
                     lblEPDFax.Text = "404-363-7100"
                 Else
                     EPDFaxNumber = CStr(dr.Item("STRFAX"))
-                    lblEPDFax.Text = Mid(EPDFaxNumber, 1, 3) & "-" & Mid(EPDFaxNumber, 4, 3) & "-" & Mid(EPDFaxNumber, 7)
+                    lblEPDFax.Text = EPDFaxNumber.Substring(0, 3) & "-" & EPDFaxNumber.Substring(3, 3) & "-" & EPDFaxNumber.SubstringFrom(6)
                 End If
 
                 lblEPDEmail.Text = GetNullableString(dr.Item("STREMAILADDRESS"))
@@ -158,26 +158,26 @@ Partial Class TN_Default
             LastName = GetNullableString(dr.Item("strOnlineLastName"))
             lblContactName.Text = FirstName & " " & LastName
 
-            If IsDBNull(dr("strTelephone")) Then
+            If Convert.IsDBNull(dr("strTelephone")) Then
                 lblTelephone.Text = "404-363-7000 (ask for Source Monitoring Unit)"
                 lblExt.Text = ""
             Else
                 Telephone = GetNullableString(dr.Item("strTelephone"))
-                If Len(Telephone) > 10 Then
+                If Telephone.Length() > 10 Then
                     AreaCode = Left(Telephone, 3)
-                    Prefix = Mid(Telephone, 4, 3)
-                    TelNbr = Mid(Telephone, 7, 4)
-                    TelExt = Mid(Telephone, 11)
+                    Prefix = Telephone.Substring(3, 3)
+                    TelNbr = Telephone.Substring(6, 4)
+                    TelExt = Telephone.Substring(10)
                 End If
 
-                If Len(Telephone) = 10 Then
+                If Telephone.Length() = 10 Then
                     AreaCode = Left(Telephone, 3)
-                    Prefix = Mid(Telephone, 4, 3)
-                    TelNbr = Mid(Telephone, 7)
+                    Prefix = Telephone.Substring(3, 3)
+                    TelNbr = Telephone.SubstringFrom(6)
                     TelExt = ""
                 End If
 
-                If Len(Telephone) < 10 Then
+                If Telephone.Length() < 10 Then
                     AreaCode = ""
                     Prefix = ""
                     TelNbr = ""
@@ -188,14 +188,14 @@ Partial Class TN_Default
                 lblExt.Text = TelExt
             End If
 
-            If IsDBNull(dr("strFax")) Then
+            If Convert.IsDBNull(dr("strFax")) Then
                 lblFax.Text = "404-363-7100"
             Else
                 Fax = CStr(dr.Item("strFax"))
-                If Len(Fax) < 10 Then
+                If Fax.Length() < 10 Then
                     lblFax.Text = ""
                 Else
-                    lblFax.Text = Mid(Fax, 1, 3) & "-" & Mid(Fax, 4, 3) & "-" & Mid(Fax, 7, 4)
+                    lblFax.Text = Fax.Substring(0, 3) & "-" & Fax.Substring(3, 3) & "-" & Fax.Substring(6, 4)
                 End If
             End If
 

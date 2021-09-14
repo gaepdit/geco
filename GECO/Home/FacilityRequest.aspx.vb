@@ -124,7 +124,7 @@ Partial Class Home_FacilityRequest
                 query = String.Format(queryformat, "airsnumber", txtAirsNo.Text)
             Else
                 txtAirsNo.Text = ""
-                query = String.Format(queryformat, "facilityname", Replace(txtFacility.Text, "'", "''"))
+                query = String.Format(queryformat, "facilityname", txtFacility.Text.Replace("'", "''"))
             End If
 
             Dim dt As DataTable = GetCachedFacilityTable()

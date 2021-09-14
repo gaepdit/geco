@@ -54,14 +54,6 @@
     <WarningsAsErrors>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036</WarningsAsErrors>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AjaxControls, Version=1.0.0.0, Culture=neutral, PublicKeyToken=10103bf0df26eb01, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>assets\DLLs\AjaxControls.dll</HintPath>
-    </Reference>
-    <Reference Include="AjaxControlToolkit, Version=3.0.30930.28736, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>assets\DLLs\AjaxControlToolkit.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -112,6 +104,7 @@
     <Content Include="Account\Default.aspx" />
     <Content Include="Account\Email.aspx" />
     <Content Include="Account\Password.aspx" />
+    <Content Include="apple-touch-icon.png" />
     <Content Include="assets\images\epd-icon.png" />
     <Content Include="EIS\Default.aspx" />
     <Content Include="EIS\Facility\Edit.aspx" />
@@ -129,20 +122,12 @@
     <Content Include="Facility\Contacts.aspx" />
     <Content Include="Facility\EditContacts.aspx" />
     <Content Include="Facility\SetCommunicationPreferences.aspx" />
+    <Content Include="google5acc82aef12cf7c5.html" />
     <Content Include="Home\FacilityRequest.aspx" />
     <Content Include="assets\css\memo.css" />
     <Content Include="assets\images\epd-logo.png" />
     <Content Include="assets\css\site.css" />
     <Content Include="assets\css\printstyle.css" />
-    <Content Include="assets\DLLs\AjaxControls.dll" />
-    <Content Include="assets\DLLs\AjaxControlToolkit.dll" />
-    <Content Include="assets\epd-favicons\android-chrome-192x192.png" />
-    <Content Include="assets\epd-favicons\android-chrome-512x512.png" />
-    <Content Include="assets\epd-favicons\apple-touch-icon.png" />
-    <Content Include="assets\epd-favicons\favicon-16x16.png" />
-    <Content Include="assets\epd-favicons\favicon-32x32.png" />
-    <Content Include="assets\epd-favicons\mstile-150x150.png" />
-    <Content Include="assets\epd-favicons\safari-pinned-tab.svg" />
     <Content Include="assets\images\indicator_smallwaitanim.gif" />
     <Content Include="assets\images\loading.gif" />
     <Content Include="assets\images\progressbar_green.gif" />
@@ -151,6 +136,11 @@
     <Content Include="assets\images\sort_none.gif" />
     <Content Include="browserconfig.xml" />
     <Content Include="ContactUs.aspx" />
+    <Content Include="icon-192.png" />
+    <Content Include="icon-512.png" />
+    <Content Include="icon-dev.svg" />
+    <Content Include="icon-uat.svg" />
+    <Content Include="icon.svg" />
     <Content Include="Login.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="ErrorPage.aspx" />
@@ -654,12 +644,12 @@
     <Content Include="GECO.vbproj.vsspell" />
     <Content Include="AnnualFees\FeeAmendmentForm.xlsx" />
     <Content Include="EIS\EIS.master" />
+    <Content Include="manifest.webmanifest" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
     </None>
     <None Include="My Project\PublishProfiles\Publish-Development.pubxml" />
-    <None Include="My Project\PublishProfiles\FolderProfileDev.pubxml" />
     <None Include="My Project\PublishProfiles\Publish-Production.pubxml" />
     <None Include="My Project\PublishProfiles\Publish-Staging.pubxml" />
     <None Include="My Project\Settings.settings">
@@ -685,11 +675,14 @@
     <None Include="Web.configBuilder.Server-sample.xml" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="AjaxControlToolkit">
+      <Version>20.1.0</Version>
+    </PackageReference>
     <PackageReference Include="ClosedXML">
       <Version>0.95.4</Version>
     </PackageReference>
     <PackageReference Include="DocumentFormat.OpenXml">
-      <Version>2.12.3</Version>
+      <Version>2.13.1</Version>
     </PackageReference>
     <PackageReference Include="EpdIt.DbHelper">
       <Version>3.0.2</Version>
@@ -723,7 +716,7 @@
       <Version>5.3.95.699</Version>
     </PackageReference>
     <PackageReference Include="SonarAnalyzer.VisualBasic">
-      <Version>8.22.0.31243</Version>
+      <Version>8.28.0.36354</Version>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>

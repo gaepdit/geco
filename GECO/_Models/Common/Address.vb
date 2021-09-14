@@ -41,7 +41,7 @@
                 Case CompileStringType.Linear
                     separator = ", "
                 Case CompileStringType.NewLine
-                    separator = vbNewLine
+                    separator = NewLine
             End Select
 
             Return ConcatNonEmptyStrings(separator, {Street, Street2, cityState & " " & zip})

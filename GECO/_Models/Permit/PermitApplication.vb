@@ -26,10 +26,10 @@
         Public Property PermitNumberInDB As String
             Get
                 ' Permit number stored in DB has had hyphens removed 😒
-                Return Replace(PermitNumber, "-", "")
+                Return PermitNumber.Replace("-", "")
             End Get
             Set(value As String)
-                PermitNumber = FormatPermitNumber(Trim(value))
+                PermitNumber = FormatPermitNumber(value.Trim())
             End Set
         End Property
 
@@ -68,19 +68,20 @@
                 Return Nothing
             End If
 
-            If Mid(value, 1, 3) = "ERC" Then
-                Return ConcatNonEmptyStrings("-", {Mid(value, 1, 3), Mid(value, 4)})
+            If value.Substring(0, 3) = "ERC" Then
+                Return ConcatNonEmptyStrings("-", {value.Substring(0, 3), value.SubstringFrom(3)})
             End If
 
             If Not Char.IsDigit(value(0)) OrElse value.Contains(" ") Then
                 Return value
             End If
 
-            If Len(value) = 15 AndAlso IsNumeric(Left(value, 11)) AndAlso Not IsNumeric(Mid(value, 12, 1)) Then
-                Return ConcatNonEmptyStrings("-", {Mid(value, 1, 4), Mid(value, 5, 3), Mid(value, 8, 4), Mid(value, 12, 1), Mid(value, 13, 2), Mid(value, 15)})
+            If value.Length() = 15 AndAlso IsNumeric(Left(value, 11)) AndAlso Not IsNumeric(value.Substring(11, 1)) Then
+                Return ConcatNonEmptyStrings("-", {value.Substring(0, 4), value.Substring(4, 3), value.Substring(7, 4),
+                                             value.Substring(11, 1), value.Substring(12, 2), value.SubstringFrom(14)})
             End If
 
-            Return ConcatNonEmptyStrings("-", {Mid(value, 1, 4), Mid(value, 5, 3), Mid(value, 8)})
+            Return ConcatNonEmptyStrings("-", {value.Substring(0, 4), value.Substring(4, 3), value.SubstringFrom(7)})
         End Function
 
         Public Function GetPermitFileLink() As String

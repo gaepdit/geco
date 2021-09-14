@@ -77,13 +77,13 @@ Partial Public Class Home
     Protected WithEvents lnkRequestAccess As Global.System.Web.UI.WebControls.HyperLink
 
     '''<summary>
-    '''UpdateProgress1 control.
+    '''ModalUpdateProgress1 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents UpdateProgress1 As Global.System.Web.UI.UpdateProgress
+    Protected WithEvents ModalUpdateProgress1 As Global.System.Web.UI.UpdateProgress
 
     '''<summary>
     '''linkEvents control.

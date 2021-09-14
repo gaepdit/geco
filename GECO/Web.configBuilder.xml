@@ -11,6 +11,7 @@
 <configuration>
   <configSections>
     <section name="RaygunSettings" type="Mindscape.Raygun4Net.RaygunSettings, Mindscape.Raygun4Net" />
+    <section name="ajaxControlToolkit" type="AjaxControlToolkit.AjaxControlToolkitConfigSection, AjaxControlToolkit" />
   </configSections>
 
   <connectionStrings>
@@ -37,6 +38,7 @@
   </appSettings>
 
   <RaygunSettings apikey="" excludeHttpStatusCodes="404" excludeErrorsFromLocal="true" />
+  <ajaxControlToolkit renderStyleLinks="false" />
 
   <system.web>
     <!--
@@ -46,10 +48,9 @@
           during development.
     -->
     <compilation debug="true" strict="false" explicit="true" />
-    <pages controlRenderingCompatibilityVersion="3.5" clientIDMode="AutoID">
+    <pages>
       <controls>
         <add tagPrefix="act" namespace="AjaxControlToolkit" assembly="AjaxControlToolkit" />
-        <add tagPrefix="acs" namespace="AjaxControls" assembly="AjaxControls" />
       </controls>
     </pages>
     <httpHandlers>

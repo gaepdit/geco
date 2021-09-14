@@ -1,4 +1,4 @@
-Imports GECO.GecoModels
+﻿Imports GECO.GecoModels
 
 Partial Class ContactUs
     Inherits Page
@@ -21,7 +21,7 @@ Partial Class ContactUs
         Dim Subject As String = "GECO Contact Form - " & ddlSubject.Text
 
         Dim Body As String = "From: " & txtName.Text & " (" & txtEmail.Text & ") " &
-            vbNewLine & vbNewLine &
+            NewLine & NewLine &
             txtMessage.Text
 
         If SendEmail(GecoContactEmail, Subject, Body, caller:="ContactUs.btnSend_Click") Then

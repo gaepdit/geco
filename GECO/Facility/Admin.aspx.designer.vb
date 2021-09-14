@@ -113,13 +113,13 @@ Partial Public Class FacilityAdmin
     Protected WithEvents lblMessage As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''UpdateProgress1 control.
+    '''ModalUpdateProgress1 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents UpdateProgress1 As Global.System.Web.UI.UpdateProgress
+    Protected WithEvents ModalUpdateProgress1 As Global.System.Web.UI.UpdateProgress
 
     '''<summary>
     '''Master property.

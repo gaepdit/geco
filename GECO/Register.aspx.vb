@@ -17,7 +17,7 @@ Partial Class Register
 
     Protected Sub btnRegister_Click(sender As Object, e As EventArgs) Handles btnRegister.Click
         If IsValid Then
-            Dim email As String = Trim(txtEmail.Text)
+            Dim email As String = txtEmail.Text.Trim()
 
             Dim token As String = Nothing
             Dim returnvalue As DbResult = CreateGecoAccount(email, txtPwd.Text, token)

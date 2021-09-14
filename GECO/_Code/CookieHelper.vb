@@ -123,7 +123,7 @@ Public Module CookieHelper
         With c
             .Values(SessionCookie.Series.ToString) = EncryptText(userSession.Series)
             .Values(SessionCookie.Token.ToString) = EncryptText(userSession.Token)
-            .Expires = Now.AddDays(COOKIE_EXPIRATION_LONGTERM)
+            .Expires = Date.Now.AddDays(COOKIE_EXPIRATION_LONGTERM)
         End With
 
         response.Cookies.Add(c)

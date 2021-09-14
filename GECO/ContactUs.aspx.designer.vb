@@ -12,7 +12,7 @@ Option Explicit On
 
 
 Partial Public Class ContactUs
-    
+
     '''<summary>
     '''MessageUpdatePanel control.
     '''</summary>
@@ -21,7 +21,7 @@ Partial Public Class ContactUs
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents MessageUpdatePanel As Global.System.Web.UI.UpdatePanel
-    
+
     '''<summary>
     '''lblName control.
     '''</summary>
@@ -30,7 +30,7 @@ Partial Public Class ContactUs
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblName As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''txtName control.
     '''</summary>
@@ -39,7 +39,7 @@ Partial Public Class ContactUs
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtName As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''lblEmail control.
     '''</summary>
@@ -48,7 +48,7 @@ Partial Public Class ContactUs
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblEmail As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''txtEmail control.
     '''</summary>
@@ -57,7 +57,7 @@ Partial Public Class ContactUs
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtEmail As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''lblSubject control.
     '''</summary>
@@ -66,7 +66,7 @@ Partial Public Class ContactUs
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblSubject As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''ddlSubject control.
     '''</summary>
@@ -75,7 +75,7 @@ Partial Public Class ContactUs
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ddlSubject As Global.System.Web.UI.WebControls.DropDownList
-    
+
     '''<summary>
     '''RequiredFieldValidator13 control.
     '''</summary>
@@ -84,7 +84,7 @@ Partial Public Class ContactUs
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RequiredFieldValidator13 As Global.System.Web.UI.WebControls.RequiredFieldValidator
-    
+
     '''<summary>
     '''lblMessage control.
     '''</summary>
@@ -93,7 +93,7 @@ Partial Public Class ContactUs
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblMessage As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''txtMessage control.
     '''</summary>
@@ -102,7 +102,7 @@ Partial Public Class ContactUs
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtMessage As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''RequiredFieldValidator2 control.
     '''</summary>
@@ -111,7 +111,7 @@ Partial Public Class ContactUs
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RequiredFieldValidator2 As Global.System.Web.UI.WebControls.RequiredFieldValidator
-    
+
     '''<summary>
     '''lblSuccess control.
     '''</summary>
@@ -120,7 +120,7 @@ Partial Public Class ContactUs
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblSuccess As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''lblError control.
     '''</summary>
@@ -129,7 +129,7 @@ Partial Public Class ContactUs
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblError As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''btnSend control.
     '''</summary>
@@ -138,16 +138,16 @@ Partial Public Class ContactUs
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnSend As Global.System.Web.UI.WebControls.Button
-    
+
     '''<summary>
-    '''UpdateProgress1 control.
+    '''ModalUpdateProgress1 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents UpdateProgress1 As Global.System.Web.UI.UpdateProgress
-    
+    Protected WithEvents ModalUpdateProgress1 As Global.System.Web.UI.UpdateProgress
+
     '''<summary>
     '''Master property.
     '''</summary>
@@ -156,7 +156,7 @@ Partial Public Class ContactUs
     '''</remarks>
     Public Shadows ReadOnly Property Master() As GECO.MainLayout
         Get
-            Return CType(MyBase.Master,GECO.MainLayout)
+            Return CType(MyBase.Master, GECO.MainLayout)
         End Get
     End Property
 End Class

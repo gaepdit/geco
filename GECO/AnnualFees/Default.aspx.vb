@@ -1,4 +1,5 @@
 ﻿Imports System.Data.SqlClient
+Imports System.DateTime
 Imports EpdIt.DBUtilities
 Imports GECO.GecoModels
 Imports GECO.DAL.Facility
@@ -31,7 +32,7 @@ Partial Class AnnualFees_Default
 
         If ViewState(NameOf(feeCalc)) Is Nothing Then
             feeCalc = New AnnualFeeCalc With {
-                .CountyCode = Mid(GetCookie(Cookie.AirsNumber), 1, 3),
+                .CountyCode = GetCookie(Cookie.AirsNumber).Substring(3, 3),
                 .EntryDate = Now.Date
             }
         Else
@@ -61,7 +62,7 @@ Partial Class AnnualFees_Default
             feeYear = Nothing
         Else
             feeYear = CInt(ddlFeeYear.SelectedItem.Text)
-            feeYearCompleted = Mid(ddlFeeYear.SelectedValue, 5) = "1"
+            feeYearCompleted = ddlFeeYear.SelectedValue.SubstringFrom(4) = "1"
         End If
     End Sub
 
@@ -335,7 +336,7 @@ Partial Class AnnualFees_Default
 
         If dr IsNot Nothing Then
             'If the NumFeeRate in the AuditedData table is different, then replace the pertonrate with the new value
-            If Not IsDBNull(dr.Item("numfeerate")) AndAlso CDec(dr.Item("numfeerate")) <> 0 Then
+            If Not Convert.IsDBNull(dr.Item("numfeerate")) AndAlso CDec(dr.Item("numfeerate")) <> 0 Then
                 feeCalc.FeeRates.PerTonRate = CDec(dr.Item("numfeerate"))
             End If
 
@@ -363,7 +364,7 @@ Partial Class AnnualFees_Default
             chkPart70Source.Checked = GetNullable(Of Integer)(dr.Item("strpart70")) = 1
             chkSmSource.Checked = GetNullable(Of Integer)(dr.Item("strsyntheticminor")) = 1
 
-            If IsDBNull(dr.Item("strclass")) Then
+            If Convert.IsDBNull(dr.Item("strclass")) Then
                 ddlClass.SelectedValue = initClass
             Else
                 ddlClass.SelectedValue = dr.Item("strclass").ToString

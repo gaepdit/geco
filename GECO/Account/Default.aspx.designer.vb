@@ -12,7 +12,7 @@ Option Explicit On
 
 
 Partial Public Class Account_Default
-    
+
     '''<summary>
     '''lblDisplayName control.
     '''</summary>
@@ -21,7 +21,7 @@ Partial Public Class Account_Default
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblDisplayName As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''hlSignOut control.
     '''</summary>
@@ -30,7 +30,7 @@ Partial Public Class Account_Default
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents hlSignOut As Global.System.Web.UI.WebControls.Button
-    
+
     '''<summary>
     '''lnkEditProfile control.
     '''</summary>
@@ -39,7 +39,7 @@ Partial Public Class Account_Default
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lnkEditProfile As Global.System.Web.UI.WebControls.HyperLink
-    
+
     '''<summary>
     '''lnkEditEmail control.
     '''</summary>
@@ -48,7 +48,7 @@ Partial Public Class Account_Default
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lnkEditEmail As Global.System.Web.UI.WebControls.HyperLink
-    
+
     '''<summary>
     '''lnkEditPassword control.
     '''</summary>
@@ -57,7 +57,7 @@ Partial Public Class Account_Default
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lnkEditPassword As Global.System.Web.UI.WebControls.HyperLink
-    
+
     '''<summary>
     '''UpdatePanel_profile control.
     '''</summary>
@@ -66,7 +66,7 @@ Partial Public Class Account_Default
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents UpdatePanel_profile As Global.System.Web.UI.UpdatePanel
-    
+
     '''<summary>
     '''pUpdateRequired control.
     '''</summary>
@@ -75,7 +75,7 @@ Partial Public Class Account_Default
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents pUpdateRequired As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
+
     '''<summary>
     '''subForm control.
     '''</summary>
@@ -84,7 +84,7 @@ Partial Public Class Account_Default
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents subForm As Global.System.Web.UI.WebControls.Panel
-    
+
     '''<summary>
     '''lblProfileMessage control.
     '''</summary>
@@ -93,7 +93,7 @@ Partial Public Class Account_Default
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblProfileMessage As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''txtFName control.
     '''</summary>
@@ -102,7 +102,7 @@ Partial Public Class Account_Default
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtFName As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''RequiredFieldValidator3 control.
     '''</summary>
@@ -111,7 +111,7 @@ Partial Public Class Account_Default
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RequiredFieldValidator3 As Global.System.Web.UI.WebControls.RequiredFieldValidator
-    
+
     '''<summary>
     '''txtLName control.
     '''</summary>
@@ -120,7 +120,7 @@ Partial Public Class Account_Default
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtLName As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''RequiredFieldValidator2 control.
     '''</summary>
@@ -129,7 +129,7 @@ Partial Public Class Account_Default
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RequiredFieldValidator2 As Global.System.Web.UI.WebControls.RequiredFieldValidator
-    
+
     '''<summary>
     '''txtTitle control.
     '''</summary>
@@ -138,7 +138,7 @@ Partial Public Class Account_Default
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtTitle As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''txtCoName control.
     '''</summary>
@@ -147,7 +147,7 @@ Partial Public Class Account_Default
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtCoName As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''txtAddress control.
     '''</summary>
@@ -156,7 +156,7 @@ Partial Public Class Account_Default
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtAddress As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''txtCity control.
     '''</summary>
@@ -165,7 +165,7 @@ Partial Public Class Account_Default
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtCity As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''txtState control.
     '''</summary>
@@ -174,7 +174,7 @@ Partial Public Class Account_Default
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtState As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''txtZip control.
     '''</summary>
@@ -183,7 +183,7 @@ Partial Public Class Account_Default
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtZip As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''txtPhone control.
     '''</summary>
@@ -192,7 +192,7 @@ Partial Public Class Account_Default
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtPhone As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''ddlUserType control.
     '''</summary>
@@ -201,7 +201,7 @@ Partial Public Class Account_Default
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ddlUserType As Global.System.Web.UI.WebControls.DropDownList
-    
+
     '''<summary>
     '''RequiredFieldValidator13 control.
     '''</summary>
@@ -210,7 +210,7 @@ Partial Public Class Account_Default
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RequiredFieldValidator13 As Global.System.Web.UI.WebControls.RequiredFieldValidator
-    
+
     '''<summary>
     '''btnUpdateProfile control.
     '''</summary>
@@ -219,16 +219,16 @@ Partial Public Class Account_Default
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnUpdateProfile As Global.System.Web.UI.WebControls.Button
-    
+
     '''<summary>
-    '''ProfileUpdateProgress control.
+    '''ModalUpdateProgress1 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents ProfileUpdateProgress As Global.System.Web.UI.UpdateProgress
-    
+    Protected WithEvents ModalUpdateProgress1 As Global.System.Web.UI.UpdateProgress
+
     '''<summary>
     '''Master property.
     '''</summary>
@@ -237,7 +237,7 @@ Partial Public Class Account_Default
     '''</remarks>
     Public Shadows ReadOnly Property Master() As GECO.MainLayout
         Get
-            Return CType(MyBase.Master,GECO.MainLayout)
+            Return CType(MyBase.Master, GECO.MainLayout)
         End Get
     End Property
 End Class

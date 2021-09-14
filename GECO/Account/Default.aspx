@@ -131,14 +131,11 @@
         </ContentTemplate>
     </asp:UpdatePanel>
 
-    <asp:UpdateProgress ID="ProfileUpdateProgress" runat="server" DisplayAfter="0">
+    <asp:UpdateProgress ID="ModalUpdateProgress1" runat="server" DisplayAfter="200" class="progressIndicator">
         <ProgressTemplate>
-            <div id="progressBackgroundFilter">
-            </div>
-            <div id="progressMessage">
-                Please Wait...
-                        <br />
-                <img alt="Loading" src="<%= Page.ResolveUrl("~/assets/images/progressbar_green.gif") %>" />
+            <div class="progressIndicator-inner">
+                Please Wait...<br />
+                <img src="<%= Page.ResolveUrl("~/assets/images/progressbar_green.gif") %>" alt="" />
             </div>
         </ProgressTemplate>
     </asp:UpdateProgress>

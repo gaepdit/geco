@@ -89,7 +89,7 @@ Partial Class FacilitySummary
                 lblDistrict.Text = GetNullableString(dr.Item("strDistrictName"))
                 lblOffice.Text = GetNullableString(dr.Item("strOfficeName"))
 
-                If IsDBNull(dr.Item("strDistrictResponsible")) OrElse
+                If Convert.IsDBNull(dr.Item("strDistrictResponsible")) OrElse
                     dr.Item("strDistrictResponsible").ToString <> "True" Then
                     hlDistrict.Visible = False
                 Else
@@ -168,28 +168,28 @@ Partial Class FacilitySummary
 
         Dim codes As New List(Of String)
 
-        If Mid(AirProgramCode, 1, 1) = "1" Then
+        If AirProgramCode.Substring(0, 1) = "1" Then
             codes.Add("SIP")
         End If
-        If Mid(AirProgramCode, 5, 1) = "1" Then
+        If AirProgramCode.Substring(4, 1) = "1" Then
             codes.Add("PSD")
         End If
-        If Mid(AirProgramCode, 6, 1) = "1" Then
+        If AirProgramCode.Substring(5, 1) = "1" Then
             codes.Add("NSR")
         End If
-        If Mid(AirProgramCode, 7, 1) = "1" Then
+        If AirProgramCode.Substring(6, 1) = "1" Then
             codes.Add("NESHAP")
         End If
-        If Mid(AirProgramCode, 8, 1) = "1" Then
+        If AirProgramCode.Substring(7, 1) = "1" Then
             codes.Add("NSPS")
         End If
-        If Mid(AirProgramCode, 12, 1) = "1" Then
+        If AirProgramCode.Substring(11, 1) = "1" Then
             codes.Add("MACT")
         End If
-        If Mid(AirProgramCode, 13, 1) = "1" Then
+        If AirProgramCode.Substring(12, 1) = "1" Then
             codes.Add("Title V")
         End If
-        If Mid(AirProgramCode, 10, 1) = "1" Then
+        If AirProgramCode.Substring(9, 1) = "1" Then
             codes.Add("Acid Precipitation")
         End If
 
@@ -296,55 +296,55 @@ Partial Class FacilitySummary
 
             If dr IsNot Nothing Then
 
-                If IsDBNull(dr.Item("SSCPengineer")) OrElse
+                If Convert.IsDBNull(dr.Item("SSCPengineer")) OrElse
                     Left(GetNullableString(dr.Item("SSCPengineer")), 10) = "Unassigned" Then
                     lblComplianceContactName.Text = "Unassigned"
                 Else
                     lblComplianceContactName.Text = GetNullableString(dr.Item("SSCPengineer"))
                 End If
-                If IsDBNull(dr.Item("SSCPemailaddress")) Then
+                If Convert.IsDBNull(dr.Item("SSCPemailaddress")) Then
                     hlComplianceContactEmail.Text = "N/A"
                 Else
                     hlComplianceContactEmail.Text = GetNullableString(dr.Item("SSCPemailaddress"))
                     hlComplianceContactEmail.NavigateUrl = "mailto:" & GetNullableString(dr.Item("SSCPemailaddress"))
                 End If
-                If IsDBNull(dr.Item("SSCPphone")) Then
+                If Convert.IsDBNull(dr.Item("SSCPphone")) Then
                     lblComplianceContactPhone.Text = "N/A"
                 Else
                     lblComplianceContactPhone.Text = GecoUser.FormatPhoneNumber(GetNullableString(dr.Item("SSCPphone")))
                 End If
 
-                If IsDBNull(dr.Item("ISMPengineer")) OrElse
+                If Convert.IsDBNull(dr.Item("ISMPengineer")) OrElse
                     Left(GetNullableString(dr.Item("ISMPengineer")), 10) = "Unassigned" Then
                     lblMonitoringContactName.Text = "Unassigned"
                 Else
                     lblMonitoringContactName.Text = GetNullableString(dr.Item("ISMPengineer"))
                 End If
-                If IsDBNull(dr.Item("ISMPemailaddress")) Then
+                If Convert.IsDBNull(dr.Item("ISMPemailaddress")) Then
                     hlMonitoringContactEmail.Text = "N/A"
                 Else
                     hlMonitoringContactEmail.Text = GetNullableString(dr.Item("ISMPemailaddress"))
                     hlMonitoringContactEmail.NavigateUrl = "mailto:" & GetNullableString(dr.Item("ISMPemailaddress"))
                 End If
-                If IsDBNull(dr.Item("ISMPphone")) Then
+                If Convert.IsDBNull(dr.Item("ISMPphone")) Then
                     lblMonitoringContactPhone.Text = "N/A"
                 Else
                     lblMonitoringContactPhone.Text = GecoUser.FormatPhoneNumber(GetNullableString(dr.Item("ISMPphone")))
                 End If
 
-                If IsDBNull(dr.Item("SSPPengineer")) OrElse
+                If Convert.IsDBNull(dr.Item("SSPPengineer")) OrElse
                     Left(GetNullableString(dr.Item("SSPPengineer")), 10) = "Unassigned" Then
                     lblPermitContactName.Text = "Unassigned"
                 Else
                     lblPermitContactName.Text = GetNullableString(dr.Item("SSPPengineer"))
                 End If
-                If IsDBNull(dr.Item("SSPPemailaddress")) Then
+                If Convert.IsDBNull(dr.Item("SSPPemailaddress")) Then
                     hlPermitContactEmail.Text = "N/A"
                 Else
                     hlPermitContactEmail.Text = GetNullableString(dr.Item("SSPPemailaddress"))
                     hlPermitContactEmail.NavigateUrl = "mailto:" & GetNullableString(dr.Item("SSPPemailaddress"))
                 End If
-                If IsDBNull(dr.Item("SSPPphone")) Then
+                If Convert.IsDBNull(dr.Item("SSPPphone")) Then
                     lblPermitContactPhone.Text = "N/A"
                 Else
                     lblPermitContactPhone.Text = GecoUser.FormatPhoneNumber(GetNullableString(dr.Item("SSPPphone")))

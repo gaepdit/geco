@@ -14,13 +14,13 @@ Option Explicit On
 Partial Public Class AnnualFees_Default
 
     '''<summary>
-    '''ModalUpdateProgress1 control.
+    '''CaptchaUpdateProgress control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents ModalUpdateProgress1 As Global.AjaxControls.ModalUpdateProgress
+    Protected WithEvents CaptchaUpdateProgress As Global.System.Web.UI.UpdateProgress
 
     '''<summary>
     '''UpdatePanel1 control.

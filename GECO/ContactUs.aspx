@@ -50,13 +50,11 @@
                 <asp:Button ID="btnSend" runat="server" Text="Send Message" OnClick="btnSend_Click" CssClass="button-large" />
             </p>
 
-            <asp:UpdateProgress ID="UpdateProgress1" AssociatedUpdatePanelID="MessageUpdatePanel" runat="server" DisplayAfter="50">
+            <asp:UpdateProgress ID="ModalUpdateProgress1" runat="server" DisplayAfter="200" class="progressIndicator">
                 <ProgressTemplate>
-                    <div class="ProgressIndicator">
-                        <p>
-                            Sending Message...<br />
-                            <img src="<%= Page.ResolveUrl("~/assets/images/loading.gif") %>" />
-                        </p>
+                    <div class="progressIndicator-inner">
+                        Sending Message...<br />
+                        <img src="<%= Page.ResolveUrl("~/assets/images/progressbar_green.gif") %>" alt="" />
                     </div>
                 </ProgressTemplate>
             </asp:UpdateProgress>

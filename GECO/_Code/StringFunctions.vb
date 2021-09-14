@@ -24,7 +24,7 @@ Public Module StringFunctions
         Return ConcatNonEmptyStrings(separator, items.ToArray())
     End Function
 
-    <Extension()>
+    <Extension>
     Public Function NonEmptyStringOrNothing(s As String) As String
         If String.IsNullOrEmpty(s) Then
             Return Nothing
@@ -33,7 +33,7 @@ Public Module StringFunctions
         Return s
     End Function
 
-    <Extension()>
+    <Extension>
     Public Function EmptyStringIfNothing(s As String) As String
         If s Is Nothing Then
             Return ""
@@ -52,6 +52,15 @@ Public Module StringFunctions
         End If
 
         Return s
+    End Function
+
+    <Extension>
+    Public Function SubstringFrom(s As String, startIndex As Integer) As String
+        If s Is Nothing OrElse s.Length < startIndex Then
+            Return String.Empty
+        End If
+
+        Return s.Substring(startIndex, s.Length - startIndex)
     End Function
 
 End Module

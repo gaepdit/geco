@@ -3,14 +3,14 @@
 <%@ Import Namespace="GECO" %>
 <%@ MasterType VirtualPath="~/Main.master" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="Server">
-    <acs:ModalUpdateProgress ID="ModalUpdateProgress1" runat="server" DisplayAfter="1500" BackgroundCssClass="modalProgressGreyBackground">
+    <asp:UpdateProgress ID="CaptchaUpdateProgress" runat="server" DisplayAfter="200" class="progressIndicator">
         <ProgressTemplate>
-            <div class="modalPopup">
-                Please Wait...
-                <img src="<%= Page.ResolveUrl("~/assets/images/progressbar_green.gif") %>" align="middle" alt="working..." />
+            <div class="progressIndicator-inner">
+                Please Wait...<br />
+                <img src="<%= Page.ResolveUrl("~/assets/images/progressbar_green.gif") %>" alt="" />
             </div>
         </ProgressTemplate>
-    </acs:ModalUpdateProgress>
+    </asp:UpdateProgress>
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
         <ContentTemplate>
