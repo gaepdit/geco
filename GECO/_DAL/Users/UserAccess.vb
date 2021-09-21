@@ -117,4 +117,33 @@ Public Module UserAccess
         Return DB.GetBoolean(query, params)
     End Function
 
+    Public Function UserAccessReviewRequested(airs As ApbFacilityId) As Boolean
+        NotNull(airs, NameOf(airs))
+
+        Dim query As String = "select UserAccessLastReviewed
+            from dbo.Geco_FacilityInformation
+            where FacilityId = @facilityId"
+
+        Dim param As New SqlParameter("@facilityId", airs.ShortString)
+
+        Dim dateLastReviewed As DateTimeOffset? = DB.GetSingleValue(Of DateTimeOffset)(query, param)
+
+        If Not dateLastReviewed.HasValue Then
+            Return True
+        End If
+
+        Return (DateTimeOffset.Now.Date - dateLastReviewed.Value.Date).TotalDays > 365
+    End Function
+
+    Public Sub UpdateUserAccessAsReviewed(airs As ApbFacilityId, userId As Integer)
+        NotNull(airs, NameOf(airs))
+
+        Dim params As SqlParameter() = {
+            New SqlParameter("@facilityId", airs.ShortString),
+            New SqlParameter("@userId", userId)
+        }
+
+        DB.SPRunCommand("geco.FacilityUserAccessReviewed", params)
+    End Sub
+
 End Module

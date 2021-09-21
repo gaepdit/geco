@@ -49,21 +49,28 @@ Partial Class FacilityHome
         End If
 
         If Not IsPostBack Then
-            CheckForMandatoryFeesCommunicationUpdate()
+            CheckForMandatoryUpdates()
 
             Title = "GECO Facility Summary - " & GetFacilityNameAndCity(currentAirs)
             GetApplicationStatus()
         End If
     End Sub
 
-    Private Sub CheckForMandatoryFeesCommunicationUpdate()
+    Private Sub CheckForMandatoryUpdates()
+        ' Require user to set communication preferences if they have never been set.
         If facilityAccess.HasCommunicationPermission(CommunicationCategory.Fees) AndAlso
           InitialCommunicationPreferenceSettingRequired(currentAirs, CommunicationCategory.Fees) Then
             HttpContext.Current.Response.Redirect("~/Facility/SetCommunicationPreferences.aspx")
         End If
 
+        ' Require user to confirm preferences every 275 days.
         If GetCommunicationUpdate(currentAirs, facilityAccess).ResponseRequired Then
             HttpContext.Current.Response.Redirect("~/Facility/Contacts.aspx")
+        End If
+
+        ' Require user to review facility user access annually.
+        If facilityAccess.AdminAccess AndAlso UserAccessReviewRequested(currentAirs) Then
+            HttpContext.Current.Response.Redirect("~/Facility/Admin.aspx")
         End If
     End Sub
 
