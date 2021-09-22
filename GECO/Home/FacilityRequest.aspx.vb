@@ -1,5 +1,4 @@
-﻿Imports System.Net.Mail
-Imports GECO.GecoModels
+﻿Imports GECO.GecoModels
 
 Partial Class Home_FacilityRequest
     Inherits Page
@@ -17,18 +16,13 @@ Partial Class Home_FacilityRequest
 
         currentUser = GetCurrentUser()
 
-        If Not IsPostBack Then
-            If currentUser.ProfileUpdateRequired Then
-                pUpdateRequired.Visible = True
-                upRequestAccess.Visible = False
-            End If
-
-            txtEmail.Text = currentUser.Email
-            txtName.Text = currentUser.FullName
+        If Not IsPostBack AndAlso currentUser.ProfileUpdateRequired Then
+            pUpdateRequired.Visible = True
+            pnlRequestAccess.Visible = False
         End If
     End Sub
 
-    Protected Sub btnSend_Click(sender As Object, e As EventArgs)
+    Protected Sub btnSend_Click(sender As Object, e As EventArgs) Handles btnSend.Click
         lblSuccess.Visible = False
         lblError.Visible = False
 
@@ -38,35 +32,7 @@ Partial Class Home_FacilityRequest
             Return
         End If
 
-        Dim access As New List(Of String)
-
-        For i = 0 To lstbAccess.Items.Count - 1
-            If lstbAccess.Items(i).Selected Then
-                access.Add(lstbAccess.Items(i).Text)
-            End If
-        Next
-
-        If txtEmail.Text = "" Then
-            lblError.Visible = True
-            lblError.Text = "Please enter your registered email address."
-            Return
-        End If
-
-        Dim ccList As New List(Of String)
-
-        Dim originator As MailAddress
-
-        Try
-            If Not String.IsNullOrWhiteSpace(txtEmail.Text) Then
-                originator = New MailAddress(txtEmail.Text)
-                ccList.Add(originator.Address)
-            End If
-        Catch ex As FormatException
-            lblError.Visible = True
-            lblError.Text = "Please enter a valid email address."
-            Return
-        End Try
-
+        Dim ccList As New List(Of String) From {currentUser.Email}
         Dim recipientList As New List(Of String)
 
         Dim dt As DataTable = GetFacilityAdminUsers(New ApbFacilityId(txtAirsNo.Text))
@@ -84,14 +50,13 @@ Partial Class Home_FacilityRequest
             ccList.Add(GecoContactEmail)
         End If
 
-        Dim subject As String = "GECO - Facility Access Request"
+        Dim subject As String = "GECO Facility Access Request"
 
         Dim htmlBody As String = ltlMessage.Text
 
-        htmlBody &= "<p><b>Requested access:</b> " & ConcatNonEmptyStrings("; ", access) & "</p>"
-
         If Not String.IsNullOrWhiteSpace(txtComments.Text) Then
-            htmlBody &= "<p><b>Additional comments from user:</b> <br />" & txtComments.Text & "</p>"
+            htmlBody &= "<p><b>Additional comments from the requesting user:</b></p>" &
+                "<blockquote>" & Server.HtmlEncode(txtComments.Text) & "</blockquote>"
         End If
 
         If SendEmail(ConcatNonEmptyStrings(",", recipientList), subject, Nothing, htmlBody, ConcatNonEmptyStrings(",", ccList),
@@ -106,85 +71,128 @@ Partial Class Home_FacilityRequest
 
     End Sub
 
-    Private Sub ShowEmailMessage(what As LookupWhat)
+    Private Sub LookUpFacility(what As LookupWhat)
         LookingUp = True
 
-        Try
-            Dim queryformat As String = " [{0}] = '{1}'"
-            Dim query As String
+        HideMessage()
 
-            lblSuccess.Visible = False
-            lblError.Visible = False
-            btnSend.Enabled = False
-            ltlMessage.Text = ""
-            bqMessage.Visible = False
+        Try
+            Dim facilityTable As DataTable = GetCachedFacilityTable()
+            If facilityTable Is Nothing Then Return
+
+            Dim query As String
 
             If what = LookupWhat.Airs Then
                 txtFacility.Text = ""
-                query = String.Format(queryformat, "airsnumber", txtAirsNo.Text)
+                query = $"[airsnumber] = '{txtAirsNo.Text}'"
             Else
                 txtAirsNo.Text = ""
-                query = String.Format(queryformat, "facilityname", txtFacility.Text.Replace("'", "''"))
+                query = $"[facilityname] = '{txtFacility.Text.Replace("'", "''")}'"
             End If
 
-            Dim dt As DataTable = GetCachedFacilityTable()
+            Dim rows As DataRow() = facilityTable.Select(query)
+            If rows Is Nothing OrElse rows.Length = 0 Then Return
 
-            If dt IsNot Nothing Then
-                Dim rows As DataRow() = dt.Select(query)
+            Dim dr As DataRow = rows(0)
+            If dr Is Nothing Then Return
 
-                If rows IsNot Nothing AndAlso rows.Length > 0 Then
-                    Dim dr As DataRow = rows(0)
+            txtAirsNo.Text = dr(0).ToString()
+            txtFacility.Text = dr(1).ToString()
 
-                    If dr IsNot Nothing Then
-                        txtFacility.Text = dr(1).ToString()
-                        txtAirsNo.Text = dr(0).ToString()
+            ComposeEmailMessage()
 
-                        ltlMessage.Text = "<p>Dear GECO Administrator, <br /><br />" &
-                        "You are receiving this email because you are currently the assigned GECO Administrator for " &
-                        "the following facility, and " & Server.HtmlEncode(txtName.Text) & " is requesting access: <br /><br />" &
-                        Server.HtmlEncode(txtFacility.Text) & " <br />" &
-                        "AIRS Number: " & Server.HtmlEncode(New ApbFacilityId(txtAirsNo.Text).FormattedString) & " <br /><br /> " &
-                        "To provide access to the requested facility in GECO, please follow these instructions: <br /><br />" &
-                        "- Sign into your GECO Account at: https://geco.gaepd.org<br />" &
-                        "- On the Home page, select the requested facility. <br />" &
-                        "- On the Facility Home Page, select User Access. <br />" &
-                        "- Enter the requesting user's email address: " & Server.HtmlEncode(txtEmail.Text) & "<br />" &
-                        "- Select Add New User. <br /><br />" &
-                        "The email address should now appear in the list of current users. " &
-                        "To adjust which GECO applications the user has access to: <br /><br />" &
-                        "- Select Edit next to the email address. <br />" &
-                        "- Select which applications the user can access by checking the appropriate boxes. <br />" &
-                        "- Select Update to save the new application permissions. <br /><br />" &
-                        "The user will have access to the facility the next time they sign into GECO. <br /><br />" &
-                        "Thank you.</p>"
-
-                        bqMessage.Visible = True
-
-                        btnSend.Enabled = True
-                    End If
-                End If
-            End If
-
-#Disable Warning S108 ' Nested blocks of code should not be left empty
-        Catch exThreadAbort As Threading.ThreadAbortException
-#Enable Warning S108 ' Nested blocks of code should not be left empty
         Catch ex As Exception
             ErrorReport(ex)
+        Finally
+            LookingUp = False
         End Try
+    End Sub
 
-        LookingUp = False
+    Private Sub HideMessage()
+        lblSuccess.Visible = False
+        lblError.Visible = False
+        btnSend.Enabled = False
+        ltlMessage.Text = ""
+        bqMessage.Visible = False
+        lblSuccess.Visible = False
+        lblError.Visible = False
+    End Sub
+
+    Private Sub ComposeEmailMessage()
+        If String.IsNullOrEmpty(txtAirsNo.Text) OrElse String.IsNullOrEmpty(txtFacility.Text) OrElse
+          Not ApbFacilityId.IsValidAirsNumberFormat(txtAirsNo.Text) Then
+            HideMessage()
+            Return
+        End If
+
+        lblSuccess.Visible = False
+        lblError.Visible = False
+
+        Dim adminUsersTable As DataTable = GetFacilityAdminUsers(New ApbFacilityId(txtAirsNo.Text))
+        Dim hasAdminUsers As Boolean = adminUsersTable IsNot Nothing AndAlso adminUsersTable.Rows.Count > 0
+
+        Dim message As New StringBuilder()
+
+        If hasAdminUsers Then
+            lblMessageLabel.Text = "This message will be sent to the facility administrator(s):"
+            message.AppendLine("<p>Dear Facility Administrator,</p>")
+            message.AppendLine(
+                    "<p>You are receiving this email because you are currently an assigned administrator for " &
+                    "the following facility in GECO.</p>")
+        Else
+            lblMessageLabel.Text = "This message will be sent to the EPD GECO administrator:"
+            message.AppendLine("<p>Dear GECO Administrator,</p>")
+            message.AppendLine("<p>The following facility does not have an assigned administrator in GECO.</p>")
+        End If
+
+        message.AppendLine(
+                "<p><b>Facility:</b> " & Server.HtmlEncode(txtFacility.Text) & "<br />" &
+                "<b>AIRS Number:</b> " & Server.HtmlEncode(New ApbFacilityId(txtAirsNo.Text).FormattedString) & "</p>")
+        message.AppendLine("<p>GECO user <b>" & Server.HtmlEncode(currentUser.FullName) & "</b> is requesting the following:")
+
+        For Each item As ListItem In lstbAccess.Items
+            If item.Selected Then message.AppendLine("<br />- " & item.Text)
+        Next
+
+        message.AppendLine(
+                "</p>" &
+                "<p>To provide access to the requested facility in GECO, please follow these instructions:</p>" &
+                "<p>- Sign into your GECO Account at: https://geco.gaepd.org <br />" &
+                "- On the Home page, select the requested facility.<br />" &
+                "- On the Facility Home page, select User Access.<br />" &
+                "- Enter the requesting user's email address: <b>" & Server.HtmlEncode(currentUser.Email) & "</b><br />" &
+                "- Select ""Add New User"".</p>" &
+                "<p>The email address should now appear in the list of current users. " &
+                "To adjust which GECO applications the user has access to:</p>" &
+                "- Select ""Edit"" next to the user.<br />" &
+                "- Select which applications the user can access by checking the appropriate boxes.<br />" &
+                "- Select ""Update"" to save the new application permissions.</p>" &
+                "<p>The user will have access to the facility the next time they sign into GECO. Thank you.</p>")
+
+        ltlMessage.Text = message.ToString()
+        bqMessage.Visible = True
+        btnSend.Enabled = True
+
     End Sub
 
     Protected Sub txtAirsNo_TextChanged(sender As Object, e As EventArgs) Handles txtAirsNo.TextChanged
         If Not LookingUp Then
-            ShowEmailMessage(LookupWhat.Airs)
+            LookUpFacility(LookupWhat.Airs)
         End If
     End Sub
 
     Protected Sub txtFacility_TextChanged(sender As Object, e As EventArgs) Handles txtFacility.TextChanged
         If Not LookingUp Then
-            ShowEmailMessage(LookupWhat.Facility)
+            LookUpFacility(LookupWhat.Facility)
         End If
+    End Sub
+
+    Protected Sub txtComments_TextChanged(sender As Object, e As EventArgs) Handles txtComments.TextChanged
+        ComposeEmailMessage()
+    End Sub
+
+    Protected Sub lstbAccess_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lstbAccess.SelectedIndexChanged
+        ComposeEmailMessage()
     End Sub
 
     <CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId:="count")>
