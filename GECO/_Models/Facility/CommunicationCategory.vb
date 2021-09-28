@@ -2,7 +2,7 @@
     Public Structure CommunicationCategory
 
         ' Instances
-        Public Shared Property Fees As New CommunicationCategory("Fees", "Permit Fees", True)
+        Public Shared Property Fees As New CommunicationCategory("Fees", "Permit Fees", False)
         Public Shared Property PermitApplications As New CommunicationCategory("Permits", "Permit Applications", False)
         Public Shared Property EmissionsInventory As New CommunicationCategory("EI", "Emissions Inventory", False)
         Public Shared Property EmissionsStatement As New CommunicationCategory("ES", "Emissions Statement", False)

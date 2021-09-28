@@ -57,12 +57,11 @@ Partial Class FacilityHome
     End Sub
 
     Private Sub CheckForMandatoryFeesCommunicationUpdate()
-        If facilityAccess.HasCommunicationPermission(CommunicationCategory.Fees) AndAlso
-          InitialCommunicationPreferenceSettingRequired(currentAirs, CommunicationCategory.Fees) Then
+        If InitialCommunicationPreferenceSettingRequired(currentAirs, facilityAccess, CommunicationCategory.Fees) Then
             HttpContext.Current.Response.Redirect("~/Facility/SetCommunicationPreferences.aspx")
         End If
 
-        If GetCommunicationUpdate(currentAirs, facilityAccess).ResponseRequired Then
+        If CommunicationUpdateResponseRequired(currentAirs, facilityAccess) Then
             HttpContext.Current.Response.Redirect("~/Facility/Contacts.aspx")
         End If
     End Sub

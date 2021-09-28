@@ -5,15 +5,8 @@
             CategoryUpdates = New Dictionary(Of CommunicationCategory, CategoryUpdateStatus)
         End Sub
 
-        Public Property RoutineConfirmationRequired As Boolean
-        Public Property UpdateRequired As Boolean
-
-        Public ReadOnly Property ResponseRequired As Boolean
-            Get
-                Return RoutineConfirmationRequired OrElse UpdateRequired
-            End Get
-        End Property
-
+        Public Property UpdateRequired As Boolean ' Indicates contact information is incomplete and must be updated
+        Public Property ResponseRequired As Boolean ' Indicates facility response is required (either routine review or mandatory update)
         Public ReadOnly Property CategoryUpdates As New Dictionary(Of CommunicationCategory, CategoryUpdateStatus)
 
         Public Enum CategoryUpdateStatus
@@ -24,13 +17,9 @@
             AddressIncompleteAndEmailMissing = 4
         End Enum
 
-        Public Sub Add(category As CommunicationCategory, status As CategoryUpdateStatus)
-            If status = 1 Then
-                RoutineConfirmationRequired = True
-            ElseIf status > 1 Then
-                UpdateRequired = True
-            End If
-
+        Public Sub AddCategoryUpdate(category As CommunicationCategory, status As CategoryUpdateStatus)
+            If status >= 1 Then ResponseRequired = True
+            If status > 1 Then UpdateRequired = True
             CategoryUpdates.Add(category, status)
         End Sub
 

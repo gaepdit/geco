@@ -187,8 +187,16 @@ Namespace DAL.Facility
             Return 0 = DB.SPReturnValue("geco.RemoveEmailContact", params)
         End Function
 
-        Public Function InitialCommunicationPreferenceSettingRequired(facilityId As ApbFacilityId, category As CommunicationCategory) As Boolean
-            Return Not GetFacilityCommunicationPreference(facilityId, category).IsConfirmed
+        Public Function InitialCommunicationPreferenceSettingRequired(facilityId As ApbFacilityId,
+                                                                      access As FacilityAccess,
+                                                                      category As CommunicationCategory) As Boolean
+            Return category.CommunicationPreferenceEnabled AndAlso
+                access.HasCommunicationPermission(category) AndAlso
+                Not GetFacilityCommunicationPreference(facilityId, category).IsConfirmed
+        End Function
+
+        Public Function CommunicationUpdateResponseRequired(facilityId As ApbFacilityId, access As FacilityAccess) As Boolean
+            Return GetCommunicationUpdate(facilityId, access).ResponseRequired
         End Function
 
         Public Function GetCommunicationUpdate(facilityId As ApbFacilityId, access As FacilityAccess) As CommunicationUpdateResponse
@@ -203,7 +211,7 @@ Namespace DAL.Facility
 
                     Dim status As Integer = DB.SPReturnValue("geco.IsCommunicationUpdateRequired", params)
 
-                    response.Add(category, CType(status, CommunicationUpdateResponse.CategoryUpdateStatus))
+                    response.AddCategoryUpdate(category, CType(status, CommunicationUpdateResponse.CategoryUpdateStatus))
                 End If
             Next
 
