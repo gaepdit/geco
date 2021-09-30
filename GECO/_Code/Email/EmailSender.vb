@@ -50,6 +50,16 @@ Public Module EmailSender
             mailSubject = "Message from " & GecoContactName
         End If
 
+        Dim environment As String = ConfigurationManager.AppSettings("GECO_ENVIRONMENT")
+
+        If environment = "Development" Then
+            mailSubject = "[GECO DEV] " & mailSubject
+        End If
+
+        If environment = "Staging" Then
+            mailSubject = "[GECO UAT] " & mailSubject
+        End If
+
         Dim msg As New MailMessage With {
             .From = New MailAddress(GecoEmailSender, GecoContactName),
             .Subject = mailSubject,
@@ -76,7 +86,6 @@ Public Module EmailSender
 
         DAL.LogEmail(msg, plainTextBody, htmlBody, origin)
 
-        Dim environment As String = ConfigurationManager.AppSettings("GECO_ENVIRONMENT")
 
         ' If email sending is disabled, save to file and return.
         If Not EnableSendingEmail Then

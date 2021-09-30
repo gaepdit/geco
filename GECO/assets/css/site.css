@@ -1012,6 +1012,24 @@ a.button-cancel,
         box-shadow: 0 1px 3px -2px #3e2927;
     }
 
+a.button-danger,
+.button-danger {
+    color: #aa0000;
+    box-shadow: 0 1px 1px -1px #999;
+}
+
+    .button-danger:hover,
+    .button-danger:focus {
+        color: #fff;
+        background: #aa0000;
+        box-shadow: 0 1px 3px -1px #aa0000;
+    }
+
+    .button-danger:active {
+        background: #4d4341;
+        box-shadow: 0 1px 3px -2px #aa0000;
+    }
+
 .button:disabled,
 button:disabled,
 [type="button"]:disabled,

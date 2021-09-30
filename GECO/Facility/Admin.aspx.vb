@@ -7,6 +7,7 @@ Partial Class FacilityAdmin
     Private Property currentAirs As ApbFacilityId
 
     Public Property UserIsAdmin As Boolean
+    Public Property ReviewRequested As Boolean
 
 #Region " Page Load "
 
@@ -38,7 +39,8 @@ Partial Class FacilityAdmin
         MainLoginCheck(Page.ResolveUrl("~/Facility/Admin.aspx?airs=" & currentAirs.ShortString))
 
         ' Current user facility access
-        facilityAccess = GetCurrentUser().GetFacilityAccess(currentAirs)
+        Dim currentUser As GecoUser = GetCurrentUser()
+        facilityAccess = currentUser.GetFacilityAccess(currentAirs)
 
         If facilityAccess Is Nothing Then
             HttpContext.Current.Response.Redirect("~/Facility/")
@@ -46,6 +48,12 @@ Partial Class FacilityAdmin
 
         UserIsAdmin = facilityAccess.AdminAccess
         pnlAddNewUser.Visible = UserIsAdmin
+
+        ReviewRequested = UserIsAdmin AndAlso UserAccessReviewRequested(currentAirs)
+
+        If ReviewRequested Then
+            UpdateUserAccessAsReviewed(currentAirs, currentUser.UserId)
+        End If
 
         If Not IsPostBack Then
             LoadUserGrid()
@@ -58,6 +66,10 @@ Partial Class FacilityAdmin
 #Region " Admin/User Tools "
 
     Private Sub LoadUserGrid()
+        If Not facilityAccess.AdminAccess Then
+            grdUsers.Columns.Item(0).Visible = False
+        End If
+
         grdUsers.DataSource = GetUserAccess(currentAirs)
         grdUsers.DataBind()
     End Sub
@@ -75,10 +87,10 @@ Partial Class FacilityAdmin
         NotNull(e, NameOf(e))
 
         Dim userid As Integer = CInt(grdUsers.DataKeys(e.RowIndex).Values("NUMUSERID"))
-        Dim intAdminAccess As Boolean = TryCast(grdUsers.Rows(e.RowIndex).Cells(4).Controls(0), CheckBox).Checked
-        Dim intFeeAccess As Boolean = TryCast(grdUsers.Rows(e.RowIndex).Cells(5).Controls(0), CheckBox).Checked
-        Dim intEIAccess As Boolean = TryCast(grdUsers.Rows(e.RowIndex).Cells(6).Controls(0), CheckBox).Checked
-        Dim intESAccess As Boolean = TryCast(grdUsers.Rows(e.RowIndex).Cells(7).Controls(0), CheckBox).Checked
+        Dim intAdminAccess As Boolean = TryCast(grdUsers.Rows(e.RowIndex).Cells(3).Controls(0), CheckBox).Checked
+        Dim intFeeAccess As Boolean = TryCast(grdUsers.Rows(e.RowIndex).Cells(4).Controls(0), CheckBox).Checked
+        Dim intEIAccess As Boolean = TryCast(grdUsers.Rows(e.RowIndex).Cells(5).Controls(0), CheckBox).Checked
+        Dim intESAccess As Boolean = TryCast(grdUsers.Rows(e.RowIndex).Cells(6).Controls(0), CheckBox).Checked
 
         UpdateUserAccess(intAdminAccess, intFeeAccess, intEIAccess, intESAccess, userid, currentAirs)
 
@@ -100,11 +112,16 @@ Partial Class FacilityAdmin
 
     Protected Sub grdUsers_RowDataBound(sender As Object, e As GridViewRowEventArgs) Handles grdUsers.RowDataBound
         NotNull(e, NameOf(e))
+        If e.Row.RowType <> DataControlRowType.DataRow Then Return
 
-        If Not facilityAccess.AdminAccess Then
-            e.Row.Cells(0).Visible = False
-            e.Row.Cells(1).Visible = False
-        End If
+        For Each button As Button In e.Row.Cells(0).Controls.OfType(Of Button)
+            If button.CommandName = "Delete" Then
+                button.Attributes("onclick") = "if (!confirm('Are you sure you want to remove this user?')) {return false;} "
+                button.Attributes("class") = "button-small button-danger"
+            Else
+                button.Attributes("class") = "button-small"
+            End If
+        Next
     End Sub
 
     Protected Sub btnAddUser_Click(sender As Object, e As EventArgs) Handles btnAddUser.Click
