@@ -59,45 +59,45 @@
                         <td>
                             <p>
                                 Test Log No:
-                                <asp:Label ID="lblTestLogNumber" runat="server" ForeColor="Blue"></asp:Label>&nbsp;(refer to this number when calling EPD)<br />
+                                <asp:Label ID="lblTestLogNumber" runat="server"></asp:Label>&nbsp;(refer to this number when calling EPD)<br />
                                 Emission Unit(s):
-                                <asp:Label ID="lblEmissionUnit" runat="server" ForeColor="Blue"></asp:Label><br />
+                                <asp:Label ID="lblEmissionUnit" runat="server"></asp:Label><br />
                                 <strong>Pollutant(s):</strong>
-                                <asp:Label ID="lblPollutants" runat="server" ForeColor="Blue"></asp:Label><br />
+                                <asp:Label ID="lblPollutants" runat="server"></asp:Label><br />
                                 Notification Date:
-                                <asp:Label ID="lblNotificationDate" runat="server" ForeColor="Blue"></asp:Label><br />
+                                <asp:Label ID="lblNotificationDate" runat="server"></asp:Label><br />
                                 <strong>Test Start Date:</strong>
-                                <asp:Label ID="lblStartDate" runat="server" ForeColor="Blue"></asp:Label><br />
+                                <asp:Label ID="lblStartDate" runat="server"></asp:Label><br />
                                 Test End Date:
-                                <asp:Label ID="lblEndDate" runat="server" ForeColor="Blue"></asp:Label><br />
+                                <asp:Label ID="lblEndDate" runat="server"></asp:Label><br />
                                 Comments:
-                                <asp:Label ID="lblComment" runat="server" ForeColor="Blue"></asp:Label><br />
+                                <asp:Label ID="lblComment" runat="server"></asp:Label><br />
                                 Confirmation No:
-                                <asp:Label ID="lblConfNo" runat="server" ForeColor="Blue"></asp:Label>
+                                <asp:Label ID="lblConfNo" runat="server"></asp:Label>
                             </p>
                             <p>
                                 <strong>Facility's Contact for Test</strong><br />
                                 Name:
-                                <asp:Label ID="lblContactName" runat="server" ForeColor="Blue"></asp:Label><br />
+                                <asp:Label ID="lblContactName" runat="server"></asp:Label><br />
                                 Telephone:
-                                <asp:Label ID="lblTelephone" runat="server" ForeColor="Blue"></asp:Label>&nbsp;
+                                <asp:Label ID="lblTelephone" runat="server"></asp:Label>&nbsp;
                                 Ext:
-                                <asp:Label ID="lblExt" runat="server" ForeColor="Blue"></asp:Label><br />
+                                <asp:Label ID="lblExt" runat="server"></asp:Label><br />
                                 Fax:
-                                <asp:Label ID="lblFax" runat="server" ForeColor="Blue"></asp:Label><br />
+                                <asp:Label ID="lblFax" runat="server"></asp:Label><br />
                                 Email:
-                                <asp:Label ID="lblEmail" runat="server" ForeColor="Blue"></asp:Label>
+                                <asp:Label ID="lblEmail" runat="server"></asp:Label>
                             </p>
                             <p>
                                 <strong>EPD Contact for Test</strong><br />
                                 Name:
-                                <asp:Label ID="lblEPDContact" runat="server" ForeColor="Blue"></asp:Label><br />
+                                <asp:Label ID="lblEPDContact" runat="server"></asp:Label><br />
                                 Telephone:
-                                <asp:Label ID="lblEPDTelephone" runat="server" ForeColor="Blue"></asp:Label><br />
+                                <asp:Label ID="lblEPDTelephone" runat="server"></asp:Label><br />
                                 Fax:
-                                <asp:Label ID="lblEPDFax" runat="server" ForeColor="Blue"></asp:Label><br />
+                                <asp:Label ID="lblEPDFax" runat="server"></asp:Label><br />
                                 Email:
-                                <asp:Label ID="lblEPDEmail" runat="server" ForeColor="Blue"></asp:Label>
+                                <asp:Label ID="lblEPDEmail" runat="server"></asp:Label>
                             </p>
                         </td>
                     </tr>

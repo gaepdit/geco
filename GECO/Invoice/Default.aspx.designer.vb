@@ -12,25 +12,25 @@ Option Explicit On
 
 
 Partial Public Class InvoiceDefault
-    
+
     '''<summary>
     '''pnlNotFound control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
-    '''To modify, move the field declaration from the designer file to a code-behind file.
+    '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents pnlNotFound As Global.System.Web.UI.WebControls.Panel
-    
+
     '''<summary>
     '''invoicePages control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
-    '''To modify, move the field declaration from the designer file to a code-behind file.
+    '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents invoicePages As Global.System.Web.UI.WebControls.Repeater
-    
+
     '''<summary>
     '''Master property.
     '''</summary>

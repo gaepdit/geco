@@ -29,7 +29,7 @@
                 Return PermitNumber.Replace("-", "")
             End Get
             Set(value As String)
-                PermitNumber = FormatPermitNumber(value.Trim())
+                PermitNumber = FormatPermitNumber(value)
             End Set
         End Property
 
@@ -67,6 +67,8 @@
             If String.IsNullOrWhiteSpace(value) Then
                 Return Nothing
             End If
+
+            value = value.Trim()
 
             If value.Substring(0, 3) = "ERC" Then
                 Return ConcatNonEmptyStrings("-", {value.Substring(0, 3), value.SubstringFrom(3)})
