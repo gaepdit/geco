@@ -62,7 +62,7 @@
             </nav>
         </div>
 
-        <% If IsFacilitySet Then %>
+        <% If IsFacilitySet AndAlso IsLoggedIn Then %>
         <div class="header header-sub">
             <div class="header-full">
                 <em>Current facility:</em>
