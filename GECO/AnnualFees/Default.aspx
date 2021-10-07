@@ -1,6 +1,7 @@
 ﻿<%@ Page Language="VB" MasterPageFile="~/Main.master" AutoEventWireup="false" Inherits="GECO.AnnualFees_Default" Title="GECO Emissions Fees" CodeBehind="Default.aspx.vb" %>
 
 <%@ Import Namespace="GECO" %>
+<%@ Import Namespace="GECO.GecoModels.Facility" %>
 <%@ MasterType VirtualPath="~/Main.master" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="Server">
     <asp:UpdateProgress ID="CaptchaUpdateProgress" runat="server" DisplayAfter="200" class="progressIndicator">
@@ -248,8 +249,10 @@
                                         page and make changes there before proceeding.
                                     </p>
 
+                                    <% If CommunicationCategory.Fees.CommunicationPreferenceEnabled Then  %>
                                     <h4>Communication preference:</h4>
                                     <p><%= info.Preference.CommunicationPreference.Description %></p>
+                                    <% End If %>
 
                                     <h4>Primary Contact:</h4>
                                     <% If info.Mail Is Nothing Then %>
@@ -279,7 +282,10 @@
                                     </p>
                                     <% End If %>
 
-                                    <% If info.Preference.CommunicationPreference.IncludesElectronic Then %>
+                                    <% 
+                                        If CommunicationCategory.Fees.CommunicationPreferenceEnabled AndAlso
+                                            info.Preference.CommunicationPreference.IncludesElectronic Then
+                                    %>
                                     <h4>Additional Email Recipients:</h4>
                                     <% If info.Emails.Count = 0 Then %>
                                     <p><em>None added.</em></p>

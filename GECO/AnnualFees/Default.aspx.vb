@@ -1,8 +1,9 @@
 ﻿Imports System.Data.SqlClient
 Imports System.DateTime
 Imports EpdIt.DBUtilities
-Imports GECO.GecoModels
 Imports GECO.DAL.Facility
+Imports GECO.GecoModels
+Imports GECO.GecoModels.Facility
 
 Partial Class AnnualFees_Default
     Inherits Page
@@ -92,11 +93,12 @@ Partial Class AnnualFees_Default
         If Not DoubleCheckFeeYear() Then Return
 
         If info Is Nothing Then
-            info = GetFacilityCommunicationInfo(currentAirs, Facility.CommunicationCategory.Fees)
+            info = GetFacilityCommunicationInfo(currentAirs, CommunicationCategory.Fees)
         End If
 
         If info Is Nothing OrElse
-          Not info.Preference.IsConfirmed OrElse
+          (CommunicationCategory.Fees.CommunicationPreferenceEnabled AndAlso
+            Not info.Preference.IsConfirmed) OrElse
           info.Mail Is Nothing Then
 
             pnlFeeContactInfo.Visible = False
