@@ -8,13 +8,12 @@
     "cypress": "^5.0.0"
   },
   "scripts": {
-    "cypress": "cypress open",
-    "cypress:run": "cypress run",
-    "cypress:dev": "cypress open --env configFile=dev",
-    "cypress:dev-run": "cypress run --env configFile=dev",
-    "cypress:uat": "cypress open --env configFile=uat",
-    "cypress:uat-run": "cypress run --env configFile=uat",
-    "cypress:prod": "cypress open --env configFile=prod",
-    "cypress:prod-run": "cypress run --env configFile=prod"
+    "dev": "cypress open --env configFile=dev",
+    "dev-run": "cypress run --env configFile=dev",
+    "uat": "cypress open --env configFile=uat",
+    "uat-run": "cypress run --env configFile=uat",
+    "prod": "cypress open --env configFile=prod",
+    "prod-run": "cypress run --env configFile=prod",
+    "dr": "cypress run --env configFile=dr"
   }
 }
