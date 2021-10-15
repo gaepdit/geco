@@ -75,7 +75,7 @@ Partial Class FacilitySummary
             If dr IsNot Nothing Then
                 currentFacility = GetNullableString(dr.Item("STRFACILITYNAME")) & ", " & GetNullableString(dr.Item("STRFACILITYCITY"))
 
-                Dim street =  GetNullableString(dr.Item("strFacilityStreet1"))
+                Dim street = GetNullableString(dr.Item("strFacilityStreet1"))
                 lblAddress.Text = street
                 Dim city = GetNullableString(dr.Item("strFacilityCity"))
                 Dim state = GetNullableString(dr.Item("strFacilityState"))
@@ -95,10 +95,10 @@ Partial Class FacilitySummary
                 Else
                     hlDistrict.Visible = True
                 End If
-                
+
                 Const size = "400x300"
                 Const zoom = 14
-            
+
                 If latitude.HasValue AndAlso longitude.HasValue Then
                     Dim coords As New Coordinate(latitude.Value, longitude.Value)
                     imgGoogleStaticMap.ImageUrl = GetStaticMapUrl(coords, size, zoom, GoogleMapType.roadmap)
@@ -197,178 +197,12 @@ Partial Class FacilitySummary
     End Sub
 
     Protected Sub LoadStateContactInformation()
-        Try
-            Dim query As String = "SELECT allAirs.strAIRSNumber,
-                       SSCPEngineer,
-                       SSCPUnit,
-                       SSCPEmailAddress,
-                       SSCPPhone,
-                       ISMPEngineer,
-                       ISMPUnit,
-                       ISMPEmailAddress,
-                       ISMPPhone,
-                       SSPPEngineer,
-                       SSPPUnit,
-                       SSPPEmailAddress,
-                       SSPPPhone,
-                       DistrictOffice
-                FROM (select STRAIRSNUMBER from APBMASTERAIRS where STRAIRSNUMBER = @airs) allAirs
-                     left join
-                     (
-                         SELECT ((strLastName + ', ' + strFirstName)) AS SSPPEngineer,
-                                SSPPApplicationMaster.strAIRSnumber,
-                                strEmailAddress                       AS SSPPEmailAddress,
-                                strPhone                              AS SSPPPhone,
-                                strUnitDesc                           AS SSPPUnit
-                         FROM EPDUserProfiles
-                              LEFT JOIN LookUpEPDUnits
-                                        ON EPDUserProfiles.numUnit = LookUpEPDUnits.numUnitCode
-                              inner JOIN SSPPApplicationMaster
-                                         ON EPDUserProfiles.numUserID = strStaffResponsible
-                                             AND SSPPApplicationMaster.strApplicationNumber =
-                                                 (SELECT MAX(CAST(strApplicationNumber AS int))
-                                                  FROM SSPPApplicationMaster
-                                                  WHERE SSPPApplicationMaster.strAIRSNumber = @airs)
-                         WHERE SSPPApplicationMaster.strAIRSnumber = @airs
-                     ) PermittingStaff
-                     on allAirs.STRAIRSNUMBER = PermittingStaff.STRAIRSNUMBER
-                     LEFT JOIN
-                     (
-                         SELECT (strLastName + ', ' + strFirstName) AS SSCPEngineer,
-                                strEmailAddress                     AS SSCPEmailAddress,
-                                strPhone                            AS SSCPPhone,
-                                SSCPFacilityAssignment.strAIRSNumber,
-                                strUnitDesc                         AS SSCPUnit
-                         FROM EPDUserProfiles
-                              LEFT JOIN LookUpEPDUnits
-                                        ON EPDUserProfiles.numUnit = LookUpEPDUnits.numUnitCode
-                              LEFT JOIN SSCPFacilityAssignment
-                                        ON EPDUserProfiles.numUserID = SSCPFacilityAssignment.strSSCPEngineer
-                         WHERE SSCPFacilityAssignment.strAIRSNumber = @airs
-                     ) ComplianceStaff
-                     ON PermittingStaff.strairsnumber = ComplianceStaff.strairsnumber
-                     LEFT JOIN
-                     (
-                         SELECT top 1 ((strLastName + ', ' + strFirstName)) AS ISMPEngineer,
-                                      m.strAIRSNumber,
-                                      strEmailAddress                       AS ISMPEmailAddress,
-                                      strPhone                              AS ISMPPhone,
-                                      strUnitDesc                           AS ISMPUnit
-                         FROM EPDUSERPROFILES e
-                              LEFT JOIN LookUpEPDUnits u
-                                        ON e.numUnit = u.numunitCode
-                              inner JOIN ISMPREPORTINFORMATION i
-                                         ON e.numUserID = strReviewingEngineer
-                              INNER JOIN ISMPMASTER m
-                                         ON m.strReferenceNumber = i.strReferenceNumber
-                                             AND strClosed = 'True'
-                         WHERE i.datCompleteDate =
-                               (SELECT MAX(datCompleteDate)
-                                FROM ISMPREPORTINFORMATION r
-                                     inner join ISMPMASTER m
-                                                on r.strReferenceNumber = m.strReferenceNumber
-                                where m.strAIRSNumber = @airs
-                                  AND strClosed = 'True')
-                           AND m.strAIRSNumber = @airs
-                         order by m.STRREFERENCENUMBER desc
-                     ) MonitoringStaff
-                     ON PermittingStaff.strairsnumber = monitoringstaff.strairsnumber
-                     LEFT JOIN
-                     (
-                         SELECT SSCPDistrictResponsible.strAIRSNumber,
-                                CASE
-                                    WHEN strDistrictResponsible = 'True'
-                                        THEN strOfficeName
-                                    ELSE ''
-                                END AS DistrictOffice
-                         FROM SSCPDistrictResponsible,
-                              LookUpDistrictInformation,
-                              LookUpDistrictOffice
-                         WHERE LookUpDistrictOffice.strDistrictCode = LookUpDistrictInformation.strDistrictCode
-                           AND LookUpDistrictInformation.strDistrictCounty = SUBSTRING(SSCPDistrictResponsible.strAIRSNumber, 5, 3)
-                           AND SSCPDistrictResponsible.strAIRSNumber = @airs
-                     ) DistrictStaff
-                     ON PermittingStaff.strairsnumber = DistrictStaff.strairsnumber"
-
-            Dim param As New SqlParameter("@airs", currentAirs.DbFormattedString)
-
-            Dim dr As DataRow = DB.GetDataRow(query, param)
-
-            If dr IsNot Nothing Then
-
-                If Convert.IsDBNull(dr.Item("SSCPengineer")) OrElse
-                    Left(GetNullableString(dr.Item("SSCPengineer")), 10) = "Unassigned" Then
-                    lblComplianceContactName.Text = "Unassigned"
-                Else
-                    lblComplianceContactName.Text = GetNullableString(dr.Item("SSCPengineer"))
-                End If
-                If Convert.IsDBNull(dr.Item("SSCPemailaddress")) Then
-                    hlComplianceContactEmail.Text = "N/A"
-                Else
-                    hlComplianceContactEmail.Text = GetNullableString(dr.Item("SSCPemailaddress"))
-                    hlComplianceContactEmail.NavigateUrl = "mailto:" & GetNullableString(dr.Item("SSCPemailaddress"))
-                End If
-                If Convert.IsDBNull(dr.Item("SSCPphone")) Then
-                    lblComplianceContactPhone.Text = "N/A"
-                Else
-                    lblComplianceContactPhone.Text = GecoUser.FormatPhoneNumber(GetNullableString(dr.Item("SSCPphone")))
-                End If
-
-                If Convert.IsDBNull(dr.Item("ISMPengineer")) OrElse
-                    Left(GetNullableString(dr.Item("ISMPengineer")), 10) = "Unassigned" Then
-                    lblMonitoringContactName.Text = "Unassigned"
-                Else
-                    lblMonitoringContactName.Text = GetNullableString(dr.Item("ISMPengineer"))
-                End If
-                If Convert.IsDBNull(dr.Item("ISMPemailaddress")) Then
-                    hlMonitoringContactEmail.Text = "N/A"
-                Else
-                    hlMonitoringContactEmail.Text = GetNullableString(dr.Item("ISMPemailaddress"))
-                    hlMonitoringContactEmail.NavigateUrl = "mailto:" & GetNullableString(dr.Item("ISMPemailaddress"))
-                End If
-                If Convert.IsDBNull(dr.Item("ISMPphone")) Then
-                    lblMonitoringContactPhone.Text = "N/A"
-                Else
-                    lblMonitoringContactPhone.Text = GecoUser.FormatPhoneNumber(GetNullableString(dr.Item("ISMPphone")))
-                End If
-
-                If Convert.IsDBNull(dr.Item("SSPPengineer")) OrElse
-                    Left(GetNullableString(dr.Item("SSPPengineer")), 10) = "Unassigned" Then
-                    lblPermitContactName.Text = "Unassigned"
-                Else
-                    lblPermitContactName.Text = GetNullableString(dr.Item("SSPPengineer"))
-                End If
-                If Convert.IsDBNull(dr.Item("SSPPemailaddress")) Then
-                    hlPermitContactEmail.Text = "N/A"
-                Else
-                    hlPermitContactEmail.Text = GetNullableString(dr.Item("SSPPemailaddress"))
-                    hlPermitContactEmail.NavigateUrl = "mailto:" & GetNullableString(dr.Item("SSPPemailaddress"))
-                End If
-                If Convert.IsDBNull(dr.Item("SSPPphone")) Then
-                    lblPermitContactPhone.Text = "N/A"
-                Else
-                    lblPermitContactPhone.Text = GecoUser.FormatPhoneNumber(GetNullableString(dr.Item("SSPPphone")))
-                End If
-            Else
-                lblPermitContactPhone.Text = "N/A"
-                hlPermitContactEmail.Text = "N/A"
-                lblPermitContactName.Text = "Unassigned"
-                lblMonitoringContactPhone.Text = "N/A"
-                hlMonitoringContactEmail.Text = "N/A"
-                lblMonitoringContactName.Text = "Unassigned"
-                lblComplianceContactPhone.Text = "N/A"
-                hlComplianceContactEmail.Text = "N/A"
-                lblComplianceContactName.Text = "Unassigned"
-            End If
-
-#Disable Warning S108 ' Nested blocks of code should not be left empty
-        Catch exThreadAbort As Threading.ThreadAbortException
-#Enable Warning S108 ' Nested blocks of code should not be left empty
-        Catch ex As Exception
-            ErrorReport(ex)
-        End Try
-
+        Dim param As New SqlParameter("@AirsNumber", currentAirs.DbFormattedString)
+        gvStateContacts.DataSource = DB.SPGetDataTable("iaip_facility.GetContactsStaff", param)
+        gvStateContacts.DataBind()
     End Sub
+
+
 
 #End Region
 

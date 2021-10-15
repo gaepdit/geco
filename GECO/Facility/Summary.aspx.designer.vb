@@ -203,85 +203,13 @@ Partial Public Class FacilitySummary
     Protected WithEvents lblAirProgramCodes As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''lblPermitContactName control.
+    '''gvStateContacts control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lblPermitContactName As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''lblPermitContactPhone control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblPermitContactPhone As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''hlPermitContactEmail control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents hlPermitContactEmail As Global.System.Web.UI.WebControls.HyperLink
-
-    '''<summary>
-    '''lblComplianceContactName control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblComplianceContactName As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''lblComplianceContactPhone control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblComplianceContactPhone As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''hlComplianceContactEmail control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents hlComplianceContactEmail As Global.System.Web.UI.WebControls.HyperLink
-
-    '''<summary>
-    '''lblMonitoringContactName control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblMonitoringContactName As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''lblMonitoringContactPhone control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblMonitoringContactPhone As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''hlMonitoringContactEmail control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents hlMonitoringContactEmail As Global.System.Web.UI.WebControls.HyperLink
+    Protected WithEvents gvStateContacts As Global.System.Web.UI.WebControls.GridView
 
     '''<summary>
     '''Master property.

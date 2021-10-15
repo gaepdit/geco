@@ -8,7 +8,7 @@
             <asp:HyperLink ID="lnkFacilityHome" runat="server" NavigateUrl="~/Facility/">Home</asp:HyperLink>
         </li>
         <li>
-            <asp:HyperLink ID="lnkFacilityInfo" runat="server" NavigateUrl="~/Facility/Summary.aspx" 
+            <asp:HyperLink ID="lnkFacilityInfo" runat="server" NavigateUrl="~/Facility/Summary.aspx"
                 Enabled="false" CssClass="selected-menu-item disabled">Facility Info</asp:HyperLink>
         </li>
         <li>
@@ -129,54 +129,20 @@
         </tbody>
     </table>
 
-    <h2>State Contacts</h2>
-
-    <table class="table-simple">
-        <thead>
-            <tr>
-                <th scope="col">Program</th>
-                <th scope="col">Contact Name</th>
-                <th scope="col">Contact Phone</th>
-                <th scope="col">Contact Email</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <th scope="row">Permitting</th>
-                <td>
-                    <asp:Label ID="lblPermitContactName" runat="server"></asp:Label>
-                </td>
-                <td>
-                    <asp:Label ID="lblPermitContactPhone" runat="server"></asp:Label>
-                </td>
-                <td>
-                    <asp:HyperLink ID="hlPermitContactEmail" runat="server"></asp:HyperLink>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">Compliance</th>
-                <td>
-                    <asp:Label ID="lblComplianceContactName" runat="server"></asp:Label>
-                </td>
-                <td>
-                    <asp:Label ID="lblComplianceContactPhone" runat="server"></asp:Label>
-                </td>
-                <td>
-                    <asp:HyperLink ID="hlComplianceContactEmail" runat="server"></asp:HyperLink>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">Monitoring</th>
-                <td>
-                    <asp:Label ID="lblMonitoringContactName" runat="server"></asp:Label>
-                </td>
-                <td>
-                    <asp:Label ID="lblMonitoringContactPhone" runat="server"></asp:Label>
-                </td>
-                <td>
-                    <asp:HyperLink ID="hlMonitoringContactEmail" runat="server"></asp:HyperLink>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+    <h2>Most Recent State Contacts</h2>
+    <p>This table lists Air Protection Branch staff who have most recently worked on this facility.</p>
+    <asp:GridView ID="gvStateContacts" runat="server" AutoGenerateColumns="false" CssClass="table-simple">
+        <Columns>
+            <asp:BoundField DataField="Program" HeaderText="Program" />
+            <asp:TemplateField HeaderText="Assigned staff">
+                <ItemTemplate>
+                    <asp:Label ID="Label1" runat="server" Text='<%# Eval("Assigned staff") %>' /><br />
+                    <asp:Label ID="Lable3" runat="server" Text='<%# Eval("Staff phone number") %>' /><br />
+                    <asp:Label ID="Label2" runat="server" Text='<%# Eval("Staff email") %>' />
+                </ItemTemplate>
+            </asp:TemplateField>
+            <asp:BoundField DataField="Assignment date" HeaderText="Assignment date" DataFormatString="{0:d}" />
+            <asp:BoundField DataField="Work item" HeaderText="Work item" />
+        </Columns>
+    </asp:GridView>
 </asp:Content>
