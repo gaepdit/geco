@@ -25,20 +25,20 @@
     <p>
         <asp:Label ID="lblPwd" AssociatedControlID="txtPwd" runat="server" Text="Password:" />
         <br />
-        <asp:TextBox ID="txtPwd" runat="server" TextMode="Password" autocomplete="current-password" />
+        <asp:TextBox ID="txtPwd" runat="server" TextMode="Password" autocomplete="new-password" aria-describedby="password-constraints" />
         <asp:RequiredFieldValidator ID="RequiredFieldValidator15" runat="server" Display="Dynamic"
             ControlToValidate="txtPwd" ErrorMessage="Password is required." />
         <asp:RegularExpressionValidator ID="Regex3" runat="server"
             ControlToValidate="txtPwd" ErrorMessage="Password does not meet complexity requirements."
             ValidationExpression="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$" />
         <br />
-        <i>Password must contain at least 8 characters with at least 1 uppercase letter, 1 lowercase letter and 1 number.</i>
+        <i id="password-constraints">Password must contain at least 8 characters with at least 1 uppercase letter, 1 lowercase letter and 1 number.</i>
     </p>
 
     <p>
         <asp:Label ID="lblPwdConfirm" AssociatedControlID="txtPwdConfirm" runat="server" Text="Confirm Password:" />
         <br />
-        <asp:TextBox ID="txtPwdConfirm" runat="server" TextMode="Password" autocomplete="current-password" />
+        <asp:TextBox ID="txtPwdConfirm" runat="server" TextMode="Password" autocomplete="new-password" />
         <asp:RequiredFieldValidator ID="RequiredFieldValidator16" runat="server" Display="Dynamic"
             ControlToValidate="txtPwdConfirm" ErrorMessage="Password confirmation is required." />
         <asp:CompareValidator ID="CompareValidator1" runat="server" Display="Dynamic"

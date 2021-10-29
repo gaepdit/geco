@@ -50,7 +50,7 @@
                             <asp:Label ID="lblNewPassword" AssociatedControlID="txtNewPassword" runat="server" Text="New Password" />
                         </th>
                         <td>
-                            <asp:TextBox ID="txtNewPassword" runat="server" TextMode="Password" autocomplete="new-password" />
+                            <asp:TextBox ID="txtNewPassword" runat="server" TextMode="Password" autocomplete="new-password" aria-describedby="password-constraints" />
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator15" runat="server" ControlToValidate="txtNewPassword" Display="Dynamic"
                                 ErrorMessage="New Password is required." Font-Size="Small" ValidationGroup="Password"></asp:RequiredFieldValidator>
                             <asp:RegularExpressionValidator ID="Regex3" runat="server" ControlToValidate="txtNewPassword"
@@ -81,7 +81,7 @@
         </ContentTemplate>
     </asp:UpdatePanel>
 
-    <p>NOTE: New password must contain at least 8 characters with at least 1 uppercase letter, 1 lowercase letter and 1 number.</p>
+    <p id="password-constraints">NOTE: New password must contain at least 8 characters with at least 1 uppercase letter, 1 lowercase letter and 1 number.</p>
 
     <asp:UpdateProgress ID="ModalUpdateProgress1" runat="server" DisplayAfter="200" class="progressIndicator">
         <ProgressTemplate>
