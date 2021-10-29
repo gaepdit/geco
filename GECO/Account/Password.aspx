@@ -36,7 +36,9 @@
 
                 <table class="table-simple table-list">
                     <tr>
-                        <th>Old Password</th>
+                        <th>
+                            <asp:Label ID="lblOldPassword" AssociatedControlID="txtOldPassword" runat="server" Text="Old Password" />
+                        </th>
                         <td>
                             <asp:TextBox ID="txtOldPassword" runat="server" TextMode="Password" autocomplete="current-password" />
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtOldPassword" Display="Dynamic"
@@ -44,7 +46,9 @@
                         </td>
                     </tr>
                     <tr>
-                        <th>New Password</th>
+                        <th>
+                            <asp:Label ID="lblNewPassword" AssociatedControlID="txtNewPassword" runat="server" Text="New Password" />
+                        </th>
                         <td>
                             <asp:TextBox ID="txtNewPassword" runat="server" TextMode="Password" autocomplete="new-password" />
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator15" runat="server" ControlToValidate="txtNewPassword" Display="Dynamic"
@@ -57,7 +61,9 @@
                         </td>
                     </tr>
                     <tr>
-                        <th>Confirm New Password</th>
+                        <th>
+                            <asp:Label ID="lblPwdConfirm" AssociatedControlID="txtPwdConfirm" runat="server" Text="Confirm New Password" />
+                        </th>
                         <td>
                             <asp:TextBox ID="txtPwdConfirm" runat="server" TextMode="Password" autocomplete="new-password" />
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator16" runat="server" ControlToValidate="txtPwdConfirm" Display="Dynamic"
