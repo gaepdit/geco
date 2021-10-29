@@ -12,7 +12,7 @@
     <p>
         <asp:Label ID="lblEmail" AssociatedControlID="txtEmail" runat="server" Text="Email:" />
         <br />
-        <asp:TextBox ID="txtEmail" runat="server" />
+        <asp:TextBox ID="txtEmail" runat="server" TextMode="Email" autocomplete="username" />
         <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" Display="Dynamic"
             ControlToValidate="txtEmail" ErrorMessage="Email is required." />
         <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" Display="Dynamic"
@@ -25,7 +25,7 @@
     <p>
         <asp:Label ID="lblPwd" AssociatedControlID="txtPwd" runat="server" Text="Password:" />
         <br />
-        <asp:TextBox ID="txtPwd" runat="server" TextMode="Password" />
+        <asp:TextBox ID="txtPwd" runat="server" TextMode="Password" autocomplete="current-password" />
         <asp:RequiredFieldValidator ID="RequiredFieldValidator15" runat="server" Display="Dynamic"
             ControlToValidate="txtPwd" ErrorMessage="Password is required." />
         <asp:RegularExpressionValidator ID="Regex3" runat="server"
@@ -38,7 +38,7 @@
     <p>
         <asp:Label ID="lblPwdConfirm" AssociatedControlID="txtPwdConfirm" runat="server" Text="Confirm Password:" />
         <br />
-        <asp:TextBox ID="txtPwdConfirm" runat="server" TextMode="Password" />
+        <asp:TextBox ID="txtPwdConfirm" runat="server" TextMode="Password" autocomplete="current-password" />
         <asp:RequiredFieldValidator ID="RequiredFieldValidator16" runat="server" Display="Dynamic"
             ControlToValidate="txtPwdConfirm" ErrorMessage="Password confirmation is required." />
         <asp:CompareValidator ID="CompareValidator1" runat="server" Display="Dynamic"
@@ -50,7 +50,7 @@
             <p>
                 <asp:Label ID="lblCaptcha" AssociatedControlID="txtCaptcha" runat="server" Text="Enter code as displayed in the image:" />
                 <br />
-                <asp:TextBox ID="txtCaptcha" runat="server" AutoCompleteType="None" />
+                <asp:TextBox ID="txtCaptcha" runat="server" />
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator19" runat="server" Display="Dynamic"
                     ControlToValidate="txtCaptcha" ErrorMessage="Enter code as displayed in the image." />
                 <asp:CustomValidator ID="cvCaptcha" runat="server" Display="Dynamic"

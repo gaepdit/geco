@@ -101,7 +101,7 @@
                     </p>
                     <p>
                         Enter code as displayed in the image:<br />
-                        <asp:TextBox ID="txtCaptcha" runat="server" AutoCompleteType="None" />
+                        <asp:TextBox ID="txtCaptcha" runat="server" />
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator19" runat="server" ControlToValidate="txtCaptcha"
                             ValidationGroup="Resend" ErrorMessage="Enter code as displayed in the image." />
                         <br />

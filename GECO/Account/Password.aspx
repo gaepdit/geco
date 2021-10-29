@@ -38,7 +38,7 @@
                     <tr>
                         <th>Old Password</th>
                         <td>
-                            <asp:TextBox ID="txtOldPassword" runat="server" TextMode="Password"></asp:TextBox>
+                            <asp:TextBox ID="txtOldPassword" runat="server" TextMode="Password" autocomplete="current-password" />
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtOldPassword" Display="Dynamic"
                                 ErrorMessage="Old Password is required." Font-Size="Small" ValidationGroup="Password"></asp:RequiredFieldValidator>&nbsp;
                         </td>
@@ -46,7 +46,7 @@
                     <tr>
                         <th>New Password</th>
                         <td>
-                            <asp:TextBox ID="txtNewPassword" runat="server" TextMode="Password"></asp:TextBox>
+                            <asp:TextBox ID="txtNewPassword" runat="server" TextMode="Password" autocomplete="new-password" />
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator15" runat="server" ControlToValidate="txtNewPassword" Display="Dynamic"
                                 ErrorMessage="New Password is required." Font-Size="Small" ValidationGroup="Password"></asp:RequiredFieldValidator>
                             <asp:RegularExpressionValidator ID="Regex3" runat="server" ControlToValidate="txtNewPassword"
@@ -59,7 +59,7 @@
                     <tr>
                         <th>Confirm New Password</th>
                         <td>
-                            <asp:TextBox ID="txtPwdConfirm" runat="server" TextMode="Password"></asp:TextBox>
+                            <asp:TextBox ID="txtPwdConfirm" runat="server" TextMode="Password" autocomplete="new-password" />
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator16" runat="server" ControlToValidate="txtPwdConfirm" Display="Dynamic"
                                 ErrorMessage="Password Confirmation is required." Font-Size="Small" ValidationGroup="Password"></asp:RequiredFieldValidator>
                             <asp:CompareValidator ID="CompareValidator1" runat="server" ControlToCompare="txtNewPassword" ControlToValidate="txtPwdConfirm"

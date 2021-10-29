@@ -22,7 +22,7 @@
                                 <p>
                                     <asp:Label ID="lblEmail" AssociatedControlID="txtUserId" runat="server" Text="Email:" />
                                     <br />
-                                    <asp:TextBox ID="txtUserId" runat="server" ValidationGroup="Login" AutoCompleteType="Email" />
+                                    <asp:TextBox ID="txtUserId" runat="server" ValidationGroup="Login" TextMode="Email" autocomplete="username" />
                                     <br />
                                     <asp:RequiredFieldValidator ID="reqUserId" runat="server" Display="Dynamic"
                                         ControlToValidate="txtUserId" ErrorMessage="Email is required." ValidationGroup="Login" />
@@ -30,7 +30,7 @@
                                 <p>
                                     <asp:Label ID="lblPassword" AssociatedControlID="txtPassword" runat="server" Text="Password:" />
                                     <br />
-                                    <asp:TextBox ID="txtPassword" runat="server" TextMode="Password" ValidationGroup="Login" />
+                                    <asp:TextBox ID="txtPassword" runat="server" TextMode="Password" ValidationGroup="Login" autocomplete="current-password" />
                                     <br />
                                     <asp:RequiredFieldValidator ID="reqUserPwd" runat="server" Display="Dynamic"
                                         ControlToValidate="txtPassword" ErrorMessage="Password is required." ValidationGroup="Login" />
@@ -66,7 +66,7 @@
                                         <p>
                                             <asp:Label ID="lblEmailAddress" AssociatedControlID="txtEmailAddress" runat="server" Text="Email:" />
                                             <br />
-                                            <asp:TextBox ID="txtEmailAddress" runat="server" ValidationGroup="Password" />
+                                            <asp:TextBox ID="txtEmailAddress" runat="server" ValidationGroup="Password" TextMode="Email" autocomplete="username" />
                                             <br />
                                             <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtEmailAddress"
                                                 Display="Dynamic" ErrorMessage="Email is required." ValidationGroup="Password" />
