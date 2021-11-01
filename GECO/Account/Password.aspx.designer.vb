@@ -59,15 +59,6 @@ Partial Public Class Account_Password
     Protected WithEvents lnkEditPassword As Global.System.Web.UI.WebControls.HyperLink
 
     '''<summary>
-    '''UpdatePanel_password control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents UpdatePanel_password As Global.System.Web.UI.UpdatePanel
-
-    '''<summary>
     '''subForm control.
     '''</summary>
     '''<remarks>
@@ -192,15 +183,6 @@ Partial Public Class Account_Password
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnPwdUpdate As Global.System.Web.UI.WebControls.Button
-
-    '''<summary>
-    '''ModalUpdateProgress1 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents ModalUpdateProgress1 As Global.System.Web.UI.UpdateProgress
 
     '''<summary>
     '''Master property.
