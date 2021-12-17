@@ -539,7 +539,6 @@
     <Compile Include="_DAL\Finance\CombinedFeesSummary.vb" />
     <Compile Include="_DAL\Finance\FacilityFinances.vb" />
     <Compile Include="_DAL\Logging\EmailLog.vb" />
-    <Compile Include="_DAL\Organization\Organization.vb" />
     <Compile Include="_Models\EIS\CaerContact.vb" />
     <Compile Include="_Models\EIS\EisProcess.vb" />
     <Compile Include="_Models\Facility\CommunicationCategory.vb" />
