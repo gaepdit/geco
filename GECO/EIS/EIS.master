@@ -2,28 +2,18 @@
 
 <%@ MasterType VirtualPath="~/Main.master" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="server">
-    <% If IsBeginEisProcess %>
-    <h1>Begin Emissions Inventory Process</h1>
-    <% Else %>
-    <h1>Emissions Inventory System</h1>
-    <% End If %>
+    <asp:Panel ID="eisDefaultHeader" runat="server">
+        <h1>Emissions Inventory</h1>
 
-    <% If Not IsBeginEisProcess %>
-    <ul class="menu-list-horizontal">
-        <li>
-            <asp:HyperLink ID="lnkHome" runat="server" NavigateUrl="~/EIS/">EIS Home</asp:HyperLink>
-        </li>
-        <li>
-            <asp:HyperLink ID="lnkFacility" runat="server" NavigateUrl="~/EIS/Facility/">EIS Facility Info</asp:HyperLink>
-        </li>
-        <li>
-            <asp:HyperLink ID="lnkUsers" runat="server" NavigateUrl="~/EIS/Users/">CAERS Users</asp:HyperLink>
-        </li>
-        <li>
-            <asp:HyperLink ID="lnkHistory" runat="server" NavigateUrl="~/EIS/History/">Historical Data</asp:HyperLink>
-        </li>
-    </ul>
-    <% End If %>
+        <ul class="menu-list-horizontal">
+            <li>
+                <asp:HyperLink ID="lnkHome" runat="server" NavigateUrl="~/EIS/">EI Home</asp:HyperLink>
+            </li>
+            <li>
+                <asp:HyperLink ID="lnkHistory" runat="server" NavigateUrl="~/EIS/History/">Historical Data</asp:HyperLink>
+            </li>
+        </ul>
+    </asp:Panel>
 
     <asp:ContentPlaceHolder ID="Content" runat="server"></asp:ContentPlaceHolder>
 </asp:Content>

@@ -1,4 +1,5 @@
-<%@ Page Language="VB" MasterPageFile="~/Main.master" AutoEventWireup="false" Inherits="GECO.FacilityAdmin" Title="GECO Facility Admin" CodeBehind="Admin.aspx.vb" %>
+<%@ Page Language="VB" MasterPageFile="~/Main.master" AutoEventWireup="false" Inherits="GECO.FacilityAdmin"
+    Title="GECO User Access Admin" CodeBehind="Admin.aspx.vb" %>
 
 <%@ MasterType VirtualPath="~/Main.master" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="Server">
@@ -20,23 +21,34 @@
         </li>
     </ul>
 
-    <h1>User Access</h1>
+    <h1>GECO User Access Admin</h1>
 
     <asp:UpdatePanel ID="FacilityAccessUpdatePanel" runat="server">
         <ContentTemplate>
 
-            <p>The following users have access rights to this facility in GECO.</p>
+            <p>
+                The following GECO users have access rights to this facility.
+                <% If FacilityAccess.AdminAccess Then %>
+                To change which section a user can access, use the "Edit" button next to their name. 
+                To remove all access for a user, use the "Delete" button.
+                <% End If %>
+            </p>
+
+            <p>
+                <em>Note: This page is only for showing access rights in GECO.</em>
+                To edit facility contact information, use the
+                <asp:HyperLink runat="server" NavigateUrl="~/Facility/Contacts.aspx">Communication Preferences</asp:HyperLink>
+                tab.
+                <% If FacilityAccess.AdminAccess Then %>
+                To edit CAERS Users, go to the
+                <asp:HyperLink runat="server" NavigateUrl="~/EIS/Default.aspx">Emissions Inventory</asp:HyperLink>
+                page.
+                <% End If %>
+            </p>
 
             <% If ReviewRequested Then %>
             <p class="message-highlight">
                 Please review the user access table below for accuracy and make changes as needed.
-            </p>
-            <% End If %>
-
-            <% If UserIsAdmin Then %>
-            <p>
-                To change which section a user can access, use the "Edit" button next to their name. 
-                To remove all access for a user, use the "Delete" button.
             </p>
             <% End If %>
 

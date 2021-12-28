@@ -21,15 +21,12 @@ Public Module CookieHelper
         OptOut
     End Enum
 
-    Public Enum SessionCookie
+    Public Enum UserSessionCookie
         Series
         Token
     End Enum
 
-    Public Enum CookieCollection
-        EISAccessInfo
-        SessionCookie
-    End Enum
+    Public Const SessionCookie = "SessionCookie"
 
     Public Function GetCookie(cookie As Cookie) As String
         Dim c = GetHttpCookie(cookie.ToString)
@@ -41,12 +38,8 @@ Public Module CookieHelper
         Return DecryptText(c.Value)
     End Function
 
-    Public Function GetCookie(cookie As EisCookie) As String
-        Return GetCookieCollectionItem(CookieCollection.EISAccessInfo.ToString, cookie.ToString)
-    End Function
-
-    Public Function GetCookie(cookie As SessionCookie) As String
-        Return GetCookieCollectionItem(CookieCollection.SessionCookie.ToString, cookie.ToString)
+    Public Function GetCookie(cookie As UserSessionCookie) As String
+        Return GetCookieCollectionItem(SessionCookie, cookie.ToString)
     End Function
 
     Private Function GetCookieCollectionItem(name As String, item As String) As String
@@ -84,7 +77,8 @@ Public Module CookieHelper
 
         Dim c As New HttpCookie(cookie.ToString) With {
             .Value = EncryptText(value),
-            .Expires = Date.Now.AddDays(COOKIE_EXPIRATION_DAYS)
+            .Expires = Date.Now.AddDays(COOKIE_EXPIRATION_DAYS),
+            .SameSite = SameSiteMode.Strict
         }
 
         response.Cookies.Add(c)
@@ -94,11 +88,7 @@ Public Module CookieHelper
         ClearCookie(cookie.ToString)
     End Sub
 
-    Public Sub ClearCookie(cookie As CookieCollection)
-        ClearCookie(cookie.ToString)
-    End Sub
-
-    Private Sub ClearCookie(cookieName As String)
+    Public Sub ClearCookie(cookieName As String)
         If GetHttpCookie(cookieName) IsNot Nothing Then
             HttpContext.Current.Response.Cookies.Add(New HttpCookie(cookieName) With {.Expires = Date.Now.AddDays(-1D)})
         End If
@@ -118,11 +108,11 @@ Public Module CookieHelper
 
         Dim response = HttpContext.Current.Response
 
-        Dim c As New HttpCookie(CookieCollection.SessionCookie.ToString)
+        Dim c As New HttpCookie(SessionCookie)
 
         With c
-            .Values(SessionCookie.Series.ToString) = EncryptText(userSession.Series)
-            .Values(SessionCookie.Token.ToString) = EncryptText(userSession.Token)
+            .Values(UserSessionCookie.Series.ToString) = EncryptText(userSession.Series)
+            .Values(UserSessionCookie.Token.ToString) = EncryptText(userSession.Token)
             .Expires = Date.Now.AddDays(COOKIE_EXPIRATION_LONGTERM)
         End With
 

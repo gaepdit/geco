@@ -1,5 +1,5 @@
 ﻿<%@ Page MasterPageFile="~/EIS/EIS.master" Language="VB" AutoEventWireup="false"
-    Title="GECO EIS Historical Data: Release Points"
+    Title="GECO EI Historical Data: Release Points"
     Inherits="GECO.EIS_History_ReleasePoints" CodeBehind="ReleasePoints.aspx.vb" %>
 
 <%@ MasterType VirtualPath="~/EIS/EIS.master" %>
@@ -10,13 +10,13 @@
     </h2>
 
     <ul>
-        <li><a href="#fugitive" class="no-visited">Fugitive Release Points</a></li>
-        <li><a href="#stack" class="no-visited">Stack Release Points</a></li>
+        <li><a href="#fugitive" class="inner-anchor-link no-visited">Fugitive Release Points</a></li>
+        <li><a href="#stack" class="inner-anchor-link no-visited">Stack Release Points</a></li>
     </ul>
 
     <h3 id="fugitive">Fugitive Release Points</h3>
     <p id="FugitivesEmptyNotice" runat="server" visible="False">
-        No fugitive release points exist for this facility in the EIS.
+        No fugitive release points exist for this facility in the EI.
     </p>
     <asp:Button ID="FugitivesExport" runat="server" Text="Download as Excel" CausesValidation="False" UseSubmitBehavior="False" />
     <asp:GridView ID="Fugitives" runat="server" AutoGenerateColumns="False" CssClass="table-simple table-striped">
@@ -43,7 +43,7 @@
 
     <h3 id="stack">Stack Release Points</h3>
     <p id="StacksEmptyNotice" runat="server" visible="False">
-        No stacks exist for this facility in the EIS.
+        No stacks exist for this facility in the EI.
     </p>
     <asp:Button ID="StacksExport" runat="server" Text="Download as Excel"
         CausesValidation="False" UseSubmitBehavior="False" />

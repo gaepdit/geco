@@ -25,12 +25,4 @@
         End If
     End Sub
 
-    Public Sub EisLoginCheck()
-        AirsSelectedCheck()
-
-        If GetCookie(EisCookie.EISAccess) Is Nothing Then
-            HttpContext.Current.Response.Redirect("~/Facility/")
-        End If
-    End Sub
-
 End Module

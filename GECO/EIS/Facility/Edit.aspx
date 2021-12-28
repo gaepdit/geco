@@ -1,29 +1,14 @@
 ﻿<%@ Page MasterPageFile="~/EIS/EIS.master" Language="VB" AutoEventWireup="false"
-    Title="GECO EIS: Edit Facility Details"
+    Title="GECO EI: Edit Facility Information"
     Inherits="GECO.EIS_Facility_EditPage" CodeBehind="Edit.aspx.vb" %>
 
 <%@ MasterType VirtualPath="~/EIS/EIS.master" %>
 <%@ Register Assembly="Reimers.Google.Map" Namespace="Reimers.Google.Map" TagPrefix="Reimers" %>
 <asp:Content ID="Content3" ContentPlaceHolderID="Content" runat="Server">
-    <% If IsBeginEisProcess %>
-    <ul class="form-progress">
-        <li class="current">Facility Information</li>
-        <li>Facility Status</li>
-        <li>CAERS Users</li>
-        <li>Submit</li>
-    </ul>
-
-    <h2>Verify Facility Information</h2>
-    <% Else %>
-    <h2>Edit Facility Information</h2>
-    <% End If %>
+    <h1>Edit EI Facility Information</h1>
 
     <asp:Panel ID="pnlFacilityEdit" runat="server">
-        <% If IsBeginEisProcess %>
-        <p class="message-highlight">Verify the facility and contact information below. Make any corrections needed, then select the Continue button at the bottom of the page.</p>
-        <% Else %>
-        <p><a href="<%= Page.ResolveUrl("~/EIS/Facility/") %>" class="button button-cancel">Cancel</a></p>
-        <% End If %>
+        <p><a href="<%= Page.ResolveUrl("~/EIS/") %>" class="button button-cancel">Cancel</a></p>
 
         <asp:ValidationSummary ID="ValidationSummary" runat="server" HeaderText="Please correct the following errors:"></asp:ValidationSummary>
 
@@ -205,13 +190,8 @@
         <asp:HiddenField ID="hidGeographicComment" runat="server" Visible="false" />
 
         <p>
-            <% If IsBeginEisProcess Then %>
-            <a href="<%= Page.ResolveUrl("~/EIS/") %>" class="button button-large button-cancel">Cancel</a>
-            <% End If %>
             <asp:Button ID="btnSave" runat="server" Text="Save" CssClass="button-large" />
-            <% If Not IsBeginEisProcess Then %>
-            <a href="<%= Page.ResolveUrl("~/EIS/Facility/") %>" class="button button-large button-cancel">Cancel</a>
-            <% End If %>
+            <a href="<%= Page.ResolveUrl("~/EIS/") %>" class="button button-large button-cancel">Cancel</a>
         </p>
     </asp:Panel>
 

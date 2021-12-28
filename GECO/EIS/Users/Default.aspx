@@ -1,21 +1,14 @@
 ﻿<%@ Page MasterPageFile="~/EIS/EIS.master" Language="VB" AutoEventWireup="false"
-    Title="GECO EIS CAERS Users"
+    Title="GECO EI CAERS Users"
     Inherits="GECO.EIS_Users_Default" CodeBehind="Default.aspx.vb" %>
 
 <%@ MasterType VirtualPath="~/EIS/EIS.master" %>
 <asp:Content ID="Content" ContentPlaceHolderID="Content" runat="Server">
-    <% If IsBeginEisProcess %>
-    <ul class="form-progress">
-        <li class="done"><a href="<%= Page.ResolveUrl("~/EIS/Facility/Edit.aspx") %>">Facility Information</a></li>
-        <li class="done"><a href="<%= Page.ResolveUrl("~/EIS/Process/") %>">Facility Status</a></li>
-        <li class="current">CAERS Users</li>
-        <li>Submit</li>
-    </ul>
+    <p runat="server">
+        <asp:HyperLink ID="Back" runat="server" Text="← Back to EI Home" NavigateUrl="~/EIS/Default.aspx" CssClass="button button-large button-proceed" />
+    </p>
 
-    <h2>Verify CAERS Users</h2>
-    <% Else %>
-    <h2>CAERS Users</h2>
-    <% End If %>
+    <h1>CAERS Users</h1>
 
     <p>
         Use of CAERS requires only one certifier and at least one preparer
@@ -28,22 +21,6 @@
             <asp:HiddenField ID="hidCertifiersCount" runat="server" />
             <asp:HiddenField ID="hidPreparersCount" runat="server" />
 
-            <% If IsBeginEisProcess Then %>
-
-            <% If hidCertifiersCount.Value = 0 Then %>
-            <p class="message-warning">One certifier must be added before proceeding.</p>
-            <% ElseIf hidCertifiersCount.Value > 1 Then %>
-            <p class="message-warning">Only one certifier is allowed.</p>
-            <% End If %>
-
-            <% If hidPreparersCount.Value = 0 Then %>
-            <p class="message-warning">At least one preparer must be added before proceeding.</p>
-            <% ElseIf hidCertifiersCount.Value = 1 Then %>
-            <p class="message-highlight">Verify the CAERS Users below. Make any additions or corrections as needed, then select the Continue button at the bottom of the page.</p>
-            <% End If %>
-
-            <% Else %>
-
             <% If hidCertifiersCount.Value = 0 Then %>
             <p class="message-highlight">A certifier has not been added. Use of CAERS requires one certifier.</p>
             <% ElseIf hidCertifiersCount.Value > 1 Then %>
@@ -53,12 +30,6 @@
             <% If hidPreparersCount.Value = 0 Then %>
             <p class="message-highlight">A preparer has not been added. Use of CAERS requires at least one preparer.</p>
             <% End If %>
-
-            <% End If %>
-
-            <p id="pAddNew" runat="server">
-                <asp:Button ID="btnAddNew" runat="server" Text="Add New CAERS User" />
-            </p>
 
             <asp:Panel ID="pnlAddNew" runat="server" CssClass="panel" Visible="false" DefaultButton="btnSaveNew">
                 <h3>Add New User</h3>
@@ -78,7 +49,7 @@
                             <asp:RequiredFieldValidator ID="reqvRoleNew" runat="server" ControlToValidate="rRoleNew" Display="Dynamic"
                                 ErrorMessage="The CAERS Role is required.">*</asp:RequiredFieldValidator>
 
-                            <asp:RadioButtonList ID="rRolePreparer" runat="server" RepeatLayout="Flow" RepeatDirection="Horizontal" 
+                            <asp:RadioButtonList ID="rRolePreparer" runat="server" RepeatLayout="Flow" RepeatDirection="Horizontal"
                                 Enabled="false" Visible="false">
                                 <asp:ListItem Selected="True">Preparer</asp:ListItem>
                             </asp:RadioButtonList>
@@ -408,13 +379,10 @@
                 </p>
             </asp:Panel>
 
-            <% If IsBeginEisProcess AndAlso
-                    hidCertifiersCount.Value = 1 AndAlso
-                    hidPreparersCount.Value > 0 Then %>
-            <p>
-                <asp:Button ID="btnProceed" runat="server" Text="Confirm CAERS Users and Continue →" CssClass="button-large button-proceed" />
+            <p id="pAddNew" runat="server">
+                <asp:Button ID="btnAddNew" runat="server" Text="Add New CAERS User" />
             </p>
-            <% End If %>
+
         </ContentTemplate>
     </asp:UpdatePanel>
 </asp:Content>

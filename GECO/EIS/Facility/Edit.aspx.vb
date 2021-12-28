@@ -11,9 +11,7 @@ Partial Class EIS_Facility_EditPage
 
     Public Property CurrentAirs As ApbFacilityId
     Private Property CurrentUser As GecoUser
-    Public Property IsBeginEisProcess As Boolean = False
-
-    Private NAICSExists As Boolean
+    Private Property NAICSExists As Boolean
 
     Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
         MainLoginCheck()
@@ -27,16 +25,10 @@ Partial Class EIS_Facility_EditPage
         CurrentAirs = New ApbFacilityId(airs)
         CurrentUser = GetCurrentUser()
         Master.CurrentAirs = CurrentAirs
-        Master.SelectedTab = EIS.EisTab.Facility
+        Master.SelectedTab = EIS.EisTab.None
 
         Dim eiStatus As EisStatus = GetEiStatus(CurrentAirs)
-        If eiStatus.AccessCode > 1 Then Response.Redirect("~/EIS/Facility/")
-
-        If Session("EisProcessStarted") IsNot Nothing Then
-            IsBeginEisProcess = True
-            Master.IsBeginEisProcess = True
-            SetUpEisProcess()
-        End If
+        If eiStatus.AccessCode > 1 Then Response.Redirect("~/EIS/")
 
         If Not IsPostBack Then
             LoadDropdownLists()
@@ -55,11 +47,6 @@ Partial Class EIS_Facility_EditPage
 
             Master.Master.SetDefaultButton(btnSave)
         End If
-    End Sub
-
-    Private Sub SetUpEisProcess()
-        btnSave.CssClass = "button-large button-proceed"
-        btnSave.Text = "Save Facility Information and Continue →"
     End Sub
 
     Private Sub LoadDropdownLists()
@@ -236,23 +223,14 @@ Partial Class EIS_Facility_EditPage
     End Sub
 
     Private Sub SaveAll()
+        If Not NAICSExists Then Return ' Do nothing; enables display of custom validator message
 
-        If Not NAICSExists Then
-            'Do nothing - enables display of custom validator message
-        Else
-            SaveFacilitySiteinfo()
-            SaveFacilityGCInfo()
+        SaveFacilitySiteinfo()
+        SaveFacilityGCInfo()
 
-            If IsBeginEisProcess Then
-                Response.Redirect("~/EIS/Process/")
-            Else
-                Session("FacilityUpdated") = True.ToString
-                Response.Redirect("~/EIS/Facility/")
-            End If
-        End If
-
+        Session("FacilityUpdated") = True.ToString
+        Response.Redirect("~/EIS/")
     End Sub
-
 
     Private Sub SaveFacilitySiteinfo()
         SaveEisFacilitySiteInfo(CurrentAirs, txtFacilitySiteDescription.Text, txtNAICSCode.Text,

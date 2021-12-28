@@ -5,7 +5,6 @@ Public Class EIS
 
     Public Property CurrentAirs As ApbFacilityId
     Public Property SelectedTab As EisTab = EisTab.Home
-    Public Property IsBeginEisProcess As Boolean = False
 
     Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
         If CurrentAirs Is Nothing Then
@@ -24,20 +23,17 @@ Public Class EIS
         Select Case SelectedTab
             Case EisTab.Home
                 lnkHome.CssClass = "selected-menu-item"
-            Case EisTab.Facility
-                lnkFacility.CssClass = "selected-menu-item"
-            Case EisTab.Users
-                lnkUsers.CssClass = "selected-menu-item"
             Case EisTab.History
                 lnkHistory.CssClass = "selected-menu-item"
+            Case EisTab.None
+                eisDefaultHeader.Visible = False
         End Select
     End Sub
 
     Public Enum EisTab
         Home
-        Facility
-        Users
         History
+        None
     End Enum
 
 End Class

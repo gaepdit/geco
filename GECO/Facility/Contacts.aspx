@@ -50,6 +50,19 @@
         Current communication preferences and contacts for this facility are shown below.
         Preferences can be set separately for each type of communication by selecting the "Edit" button for each type.
     </p>
+
+    <p>
+        <em>Note: This page is for editing facility contact information.</em>
+        To edit GECO user access, use the
+        <asp:HyperLink runat="server" NavigateUrl="~/Facility/Admin.aspx">User Access</asp:HyperLink>
+        tab.
+        <% If FacilityAccess.EisAccess Then %>
+        To edit CAERS Users, go to the
+        <asp:HyperLink runat="server" NavigateUrl="~/EIS/Default.aspx">Emissions Inventory</asp:HyperLink>
+        page.
+    <% End If %>
+    </p>
+
     <% End If %>
 
     <table class="table-simple table-rowsections">

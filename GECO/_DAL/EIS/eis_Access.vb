@@ -24,7 +24,7 @@ Public Module eis_Access
     ' | 4             | QA Process               |
     ' | 5             | Complete                 |
 
-    Private Function GetEiStatusDataRow(airs As ApbFacilityId) As DataRow
+    Public Function GetEiStatus(airs As ApbFacilityId) As EisStatus
         NotNull(airs, NameOf(airs))
 
         Dim query As String = "select INVENTORYYEAR, EISSTATUSCODE, EISACCESSCODE,
@@ -39,13 +39,7 @@ Public Module eis_Access
 
         Dim param As New SqlParameter("@airs", airs.ShortString)
 
-        Return DB.GetDataRow(query, param)
-    End Function
-
-    Public Function GetEiStatus(airs As ApbFacilityId) As EisStatus
-        NotNull(airs, NameOf(airs))
-
-        Dim dr As DataRow = GetEiStatusDataRow(airs)
+        Dim dr As DataRow = DB.GetDataRow(query, param)
 
         If dr Is Nothing Then
             Return New EisStatus With {.AccessCode = 3, .Enrolled = False}
@@ -83,35 +77,6 @@ Public Module eis_Access
 
         Return eiStatus
     End Function
-
-    Public Sub SetEiStatusCookies(airs As ApbFacilityId, response As HttpResponse)
-        NotNull(airs, NameOf(airs))
-        NotNull(response, NameOf(response))
-
-        Dim eiStatus As EisStatus = GetEiStatus(airs)
-
-        Dim enrollment As String = "0"
-        If eiStatus.Enrolled Then enrollment = "1"
-
-        Dim optOut As String = "NULL"
-        If eiStatus.OptOut.HasValue Then optOut = (-CInt(eiStatus.OptOut)).ToString
-
-        Dim dateFinalized As String = ""
-        If eiStatus.DateFinalized.HasValue Then dateFinalized = eiStatus.DateFinalized.Value.ToString("g")
-
-        Dim EISCookies As New HttpCookie("EISAccessInfo")
-        EISCookies.Values(EisCookie.EISMaxYear.ToString) = EncryptText(eiStatus.MaxYear.ToString)
-        EISCookies.Values(EisCookie.Enrollment.ToString) = EncryptText(enrollment)
-        EISCookies.Values(EisCookie.EISStatus.ToString) = EncryptText(eiStatus.StatusCode.ToString)
-        EISCookies.Values(EisCookie.EISAccess.ToString) = EncryptText(eiStatus.AccessCode.ToString)
-        EISCookies.Values(EisCookie.OptOut.ToString) = EncryptText(optOut)
-        EISCookies.Values(EisCookie.DateFinalize.ToString) = EncryptText(dateFinalized)
-        EISCookies.Values(EisCookie.ConfNumber.ToString) = EncryptText(eiStatus.ConfirmationNumber)
-
-        EISCookies.Expires = Date.Now.AddHours(8)
-
-        response.Cookies.Add(EISCookies)
-    End Sub
 
 End Module
 

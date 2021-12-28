@@ -14,6 +14,15 @@ Option Explicit On
 Partial Public Class EIS
 
     '''<summary>
+    '''eisDefaultHeader control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents eisDefaultHeader As Global.System.Web.UI.WebControls.Panel
+
+    '''<summary>
     '''lnkHome control.
     '''</summary>
     '''<remarks>
@@ -21,24 +30,6 @@ Partial Public Class EIS
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lnkHome As Global.System.Web.UI.WebControls.HyperLink
-
-    '''<summary>
-    '''lnkFacility control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lnkFacility As Global.System.Web.UI.WebControls.HyperLink
-
-    '''<summary>
-    '''lnkUsers control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lnkUsers As Global.System.Web.UI.WebControls.HyperLink
 
     '''<summary>
     '''lnkHistory control.

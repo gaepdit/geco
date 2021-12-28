@@ -1,5 +1,5 @@
 <%@ Page MasterPageFile="~/EIS/EIS.master" Language="VB" AutoEventWireup="false"
-    Title="GECO EIS Historical Data: Reporting Period Process Details"
+    Title="GECO EI Historical Data: Reporting Period Process Details"
     Inherits="GECO.EIS_History_ReportingPeriodProcesses" CodeBehind="ReportingPeriodProcesses.aspx.vb" %>
 
 <%@ MasterType VirtualPath="~/EIS/EIS.master" %>

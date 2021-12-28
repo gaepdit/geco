@@ -99,9 +99,8 @@ Partial Class FacilityHome
 
         Dim EIYear As Integer = Now.Year - 1
         Dim eiStatus As EisStatus = GetEiStatus(currentAirs)
-        SetEiStatusCookies(currentAirs, Response)
 
-        If eiStatus.AccessCode = 3 Then
+        If eiStatus.AccessCode >= 3 Then
             AppsEmissionInventory.Visible = False
             Return
         End If
@@ -124,20 +123,9 @@ Partial Class FacilityHome
         Select Case eiStatus.StatusCode
             Case 0
                 litEmissionsInventory.Text = EIYear & " EI not applicable."
-            Case 1
-                litEmissionsInventory.Text = "Ready for " & EIYear & " EI.<br /><em>Due: " &
-                  GetEIDeadline(eiStatus.MaxYear).ToLongDate() & "</em>"
-            Case 2
-                litEmissionsInventory.Text = EIYear & " EI in progress.<br /><em>Due :" &
-                  GetEIDeadline(eiStatus.MaxYear).ToLongDate() & "</em>"
-            Case 3, 4
-                litEmissionsInventory.Text = EIYear & " EI submitted on " & eiStatus.DateFinalized &
-                    ".<br /><em>Due: " & GetEIDeadline(eiStatus.MaxYear).ToLongDate() & "</em>"
-            Case 5
-                litEmissionsInventory.Text = EIYear & " EI completed on " & eiStatus.DateFinalized &
-                    ".<br /><em>Due: " & GetEIDeadline(eiStatus.MaxYear).ToLongDate() & "</em>"
             Case Else
-                litEmissionsInventory.Text = "To be determined."
+                litEmissionsInventory.Text = "Enrolled in " & EIYear & " EI.<br /><em>Due: " &
+                  GetEIDeadline(eiStatus.MaxYear).ToLongDate() & "</em>"
         End Select
     End Sub
 

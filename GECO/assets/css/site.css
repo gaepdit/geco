@@ -108,6 +108,11 @@ a, a:visited.no-visited {
         color: #CC0000;
     }
 
+    a.inner-anchor-link {
+        text-decoration: none;
+        border-bottom: 1px dashed;
+    }
+
 h1 a, h2 a, h3 a {
     text-decoration: none;
 }
@@ -116,7 +121,6 @@ h1 a, h2 a, h3 a {
     h1 a:focus, h2 a:focus, h3 a:focus {
         text-decoration: underline;
     }
-
 
 h1:target, h2:target, h3:target {
     background: #ffa;
@@ -978,6 +982,7 @@ button,
     }
 
 /* Button intents */
+a.button-proceed,
 .button-proceed {
     color: #283c15;
     background: #a0ea57;
@@ -1440,6 +1445,12 @@ details summary {
         border-radius: 5px;
         background: #ffc;
     }
+
+/* Ordered lists */
+
+ol ol {
+    list-style-type: lower-alpha;
+}
 
 /* Fix animation bug (?) in Firefox */
 details .anim-fade-in {

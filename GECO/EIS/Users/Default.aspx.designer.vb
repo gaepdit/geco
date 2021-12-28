@@ -14,6 +14,15 @@ Option Explicit On
 Partial Public Class EIS_Users_Default
 
     '''<summary>
+    '''Back control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Back As Global.System.Web.UI.WebControls.HyperLink
+
+    '''<summary>
     '''updAddNew control.
     '''</summary>
     '''<remarks>
@@ -39,24 +48,6 @@ Partial Public Class EIS_Users_Default
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents hidPreparersCount As Global.System.Web.UI.WebControls.HiddenField
-
-    '''<summary>
-    '''pAddNew control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents pAddNew As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-
-    '''<summary>
-    '''btnAddNew control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnAddNew As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
     '''pnlAddNew control.
@@ -815,13 +806,22 @@ Partial Public Class EIS_Users_Default
     Protected WithEvents btnCancelEdit As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
-    '''btnProceed control.
+    '''pAddNew control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents btnProceed As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents pAddNew As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
+    '''btnAddNew control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnAddNew As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
     '''Master property.

@@ -13,7 +13,7 @@ Public Class EIS_History_Default
             Response.Redirect("~/")
         End If
 
-        Dim airsNum As ApbFacilityId = New ApbFacilityId(airs)
+        Dim airsNum As New ApbFacilityId(airs)
         Master.CurrentAirs = airsNum
         Master.SelectedTab = EIS.EisTab.History
 
@@ -23,7 +23,7 @@ Public Class EIS_History_Default
         End If
     End Sub
 
-    Private Function HistoricalDataExists(airs As ApbFacilityId) As Boolean
+    Private Shared Function HistoricalDataExists(airs As ApbFacilityId) As Boolean
         Dim query As String = "select convert(bit, count(*))
             from EIS_REPORTINGPERIODEMISSIONS
             where FACILITYSITEID = @FACILITYSITEID"
