@@ -86,7 +86,10 @@
                 Open map in new window
             </asp:HyperLink>
         </div>
-        <p class="label" id="pLatLonLocked" runat="server" visible="false"><i>Coordinates are locked for this facility.</i></p>
+        <p class="label" id="pLatLonLocked" runat="server" visible="false">
+            <i>Coordinates are locked for this facility.</i>
+            If this info is incorrect, please email <a href="mailto:emissions.inventory@dnr.ga.gov">emissions.inventory@dnr.ga.gov</a>.
+        </p>
         <p class="label" id="pGeoInfo" runat="server">
             <em>Geographic information updates must be reviewed by APB staff.</em>
             If the existing values are incorrect, enter your corrections below and include a comment in the 

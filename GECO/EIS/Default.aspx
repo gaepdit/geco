@@ -30,14 +30,13 @@
         </li>
         <li>
             <p>
-                In GECO, review basic <a href="#facility-info" class="inner-anchor-link no-visited">Facility Information</a>
-                below and update as needed.
+                Review basic <a href="#facility-info" class="inner-anchor-link no-visited">Facility Information</a>
+                below and update as needed. Update the 
+                <a href="#caers-users" class="inner-anchor-link no-visited">CAERS Users</a> below. Please ensure 
+                <asp:HyperLink ID="lnkOtherContactInfo" runat="server" NavigateUrl="~/Facility/Contacts.aspx">all other contact information</asp:HyperLink>
+                is correct.
             </p>
-            <p>
-                Update the <a href="#caers-users" class="inner-anchor-link no-visited">CAERS Users</a> below. Please ensure 
-                <i>all other contact information</i> is correct. For users new to CDX and CAERS, 
-                please be aware of the following roles:
-            </p>
+            <p>For users new to CDX and CAERS, please be aware of the following roles:</p>
             <ol>
                 <li>
                     <p>

@@ -23,6 +23,15 @@ Partial Public Class EIS_Default
     Protected WithEvents pFacUpdateMessage As Global.System.Web.UI.HtmlControls.HtmlGenericControl
 
     '''<summary>
+    '''lnkOtherContactInfo control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lnkOtherContactInfo As Global.System.Web.UI.WebControls.HyperLink
+
+    '''<summary>
     '''CdxLink control.
     '''</summary>
     '''<remarks>
