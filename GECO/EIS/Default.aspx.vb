@@ -75,7 +75,7 @@ Public Class EIS_Default
         Dim EiStatus As EisStatus = GetEiStatus(CurrentAirs)
 
         If Not EiStatus.Enrolled OrElse EiStatus.AccessCode >= 3 Then
-            Response.Redirect("~/Home/")
+            Response.Redirect("~/Facility/")
         End If
 
         If EiStatus.StatusCode = 0 Then

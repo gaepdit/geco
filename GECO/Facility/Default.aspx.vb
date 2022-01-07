@@ -108,6 +108,7 @@ Partial Class FacilityHome
         ' enrollment status: 0 = not enrolled; 1 = enrolled for EI year
         If Not eiStatus.Enrolled Then
             litEmissionsInventory.Text = "Not enrolled in " & EIYear & " EI."
+            EisLink.Enabled = False
             Return
         End If
 
