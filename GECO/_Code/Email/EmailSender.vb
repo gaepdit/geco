@@ -102,13 +102,9 @@ Public Module EmailSender
                 End If
             Next
 
-            ' If no recipients are in allowlist, then add original recipients back and save to file.
+            ' If no recipients are in allowlist, then add default contact email.
             If msg.To.Count = 0 Then
-                For Each recipient As MailAddress In originalRecipients
-                    msg.To.Add(recipient)
-                Next
-
-                Return SaveLocalEmail(msg)
+                msg.To.Add(GecoContactEmail)
             End If
 
             ' Also clear CC list for non-production server before sending.
