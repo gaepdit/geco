@@ -67,6 +67,16 @@
                 your facility will opt in or opt out.
             </p>
             <p>
+                If you are new to CAERS, you can click on 
+                <a href="https://docs.google.com/gview?url=https://epd.georgia.gov/document/document/geco-eicaers-troubleshooting-matrix"
+                    target="_blank">GECO EI/CAERS Troubleshooting Matrix</a>
+                to help you determine how to get started in CAERS. If your facility may qualify to opt out,
+                please download the 
+                <a href="2021-opt-out-form.xlsx" download="2021-opt-out-form.xlsx">Opt-out form</a> 
+                to start your 2021 EI reporting and then upload this form to CAERS when you complete the 
+                required opt-out form.
+            </p>
+            <p>
                 Note: The preparers and certifiers you have specified should follow this procedure if new 
                 to CDX/CAERS:
             </p>
