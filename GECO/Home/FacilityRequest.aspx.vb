@@ -247,7 +247,7 @@ Partial Class Home_FacilityRequest
     End Sub
 
     Protected Sub lstbAccess_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lstbAccess.SelectedIndexChanged
-        ComposeEmailMessagePart2()
+        If pnlNextSteps.Visible Then ComposeEmailMessagePart2()
     End Sub
 
     <CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId:="count")>
