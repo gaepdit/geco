@@ -19,7 +19,8 @@
                 <table class="table-simple">
                     <tr>
                         <th scope="col">
-                            <asp:Label ID="lblAirsNo" AssociatedControlID="txtAirsNo" runat="server">By AIRS Number</asp:Label>
+                            <asp:Label ID="lblAirsNo" AssociatedControlID="txtAirsNo" runat="server">By AIRS Number</asp:Label><br />
+                            <b class="table-cell-subhead">(without dashes)</b>
                         </th>
                         <th scope="col">
                             <asp:Label ID="lblFacility" AssociatedControlID="txtFacility" runat="server">By Facility Name</asp:Label>
