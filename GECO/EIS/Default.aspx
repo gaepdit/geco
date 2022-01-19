@@ -68,7 +68,7 @@
             </p>
             <p>
                 If you are new to CAERS, you can click on 
-                <a href="https://docs.google.com/gview?url=https://epd.georgia.gov/document/document/geco-eicaers-troubleshooting-matrix"
+                <a href="https://docs.google.com/gview?url=https://epd.georgia.gov/document/document/2021gecocaerstablefinalpdf"
                     target="_blank">GECO EI/CAERS Troubleshooting Matrix</a>
                 to help you determine how to get started in CAERS. If your facility may qualify to opt out,
                 please download the 
