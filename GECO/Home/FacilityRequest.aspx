@@ -13,7 +13,6 @@
     <asp:Panel ID="pnlRequestAccess" runat="server">
         <asp:UpdatePanel ID="upRequestAccess" runat="server" UpdateMode="Conditional">
             <ContentTemplate>
-                <p class="announcement announcement-severe">All access requests must be reviewed and approved. Please allow at least 24 hours for requests to be processed.</p>
                 <p>To begin, find the facility by AIRS number or name and select the type of access requested.</p>
 
                 <table class="table-simple">
@@ -73,6 +72,11 @@
                         Use this form to send your request to the Georgia Air Protection Branch to be processed.
                     </p>
 
+                    <p id="pContactEpdWarning" runat="server" visible="false" class="announcement announcement-severe">
+                        All access requests sent to the Air Protection Branch must be reviewed and approved. <br />
+                        Please allow at least 24 hours for requests to be processed.
+                    </p>
+
                     <b>
                         <asp:Label ID="lblComments" runat="server" AssociatedControlID="txtComments">Additional Comments</asp:Label></b>
                     <em>(Optional; these comments will be attached to the message.)</em><br />
@@ -93,11 +97,11 @@
                         </asp:Label>
                     </p>
 
-                <blockquote id="bqMessage" runat="server" visible="false" class="document">
-                    <asp:Literal ID="ltlMessage" runat="server" />
-                    <asp:Literal ID="ltlMessagePart2" runat="server" />
-                    <asp:Literal ID="ltlMessagePart3" runat="server" />
-                </blockquote>
+                    <blockquote id="bqMessage" runat="server" visible="false" class="document">
+                        <asp:Literal ID="ltlMessage" runat="server" />
+                        <asp:Literal ID="ltlMessagePart2" runat="server" />
+                        <asp:Literal ID="ltlMessagePart3" runat="server" />
+                    </blockquote>
                 </asp:Panel>
 
                 <asp:UpdateProgress ID="ModalUpdateProgress1" runat="server" DisplayAfter="200" class="progressIndicator">

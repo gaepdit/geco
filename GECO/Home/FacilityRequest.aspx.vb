@@ -124,6 +124,7 @@ Partial Class Home_FacilityRequest
         pnlHasAdmin.Visible = False
         lblAdminInstructions.Visible = False
         pNoAdmin.Visible = False
+        pContactEpdWarning.Visible = False
         lblApbInstructions.Visible = False
         pnlNextSteps.Visible = False
         chkAssistanceNeeded.Checked = False
@@ -136,6 +137,7 @@ Partial Class Home_FacilityRequest
 
         If dt Is Nothing OrElse dt.Rows.Count = 0 Then
             pNoAdmin.Visible = True
+            pContactEpdWarning.Visible = True
             lblAdminInstructions.Visible = False
             lblApbInstructions.Visible = True
 
@@ -226,10 +228,12 @@ Partial Class Home_FacilityRequest
         If chkAssistanceNeeded.Checked Then
             lblAdminInstructions.Visible = False
             lblApbInstructions.Visible = True
+            pContactEpdWarning.Visible = True
             ComposeEmailMessage(False)
         Else
             lblAdminInstructions.Visible = True
             lblApbInstructions.Visible = False
+            pContactEpdWarning.Visible = False
             ComposeEmailMessage(True)
         End If
     End Sub

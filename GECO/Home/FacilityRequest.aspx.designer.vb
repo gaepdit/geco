@@ -167,6 +167,15 @@ Partial Public Class Home_FacilityRequest
     Protected WithEvents pNoAdmin As Global.System.Web.UI.HtmlControls.HtmlGenericControl
 
     '''<summary>
+    '''pContactEpdWarning control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents pContactEpdWarning As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
     '''lblComments control.
     '''</summary>
     '''<remarks>

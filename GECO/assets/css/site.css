@@ -554,7 +554,6 @@ textarea {
 /* Announcements */
 
 .announcement {
-    display: inline-block;
     max-width: 25rem;
     margin-top: 5px;
     margin-right: 13px;
