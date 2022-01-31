@@ -60,7 +60,7 @@ Partial Class Login
                 If chkRememberMe.Checked Then
                     CreateSessionCookie(userSession)
                 Else
-                    ClearCookie(CookieCollection.SessionCookie)
+                    ClearCookie(SessionCookie)
                 End If
 
                 If gecoUser.ProfileUpdateRequired Then
@@ -83,8 +83,8 @@ Partial Class Login
 
     Private Sub GetUserFromSession()
 
-        Dim series As String = GetCookie(SessionCookie.Series)
-        Dim token As String = GetCookie(SessionCookie.Token)
+        Dim series As String = GetCookie(UserSessionCookie.Series)
+        Dim token As String = GetCookie(UserSessionCookie.Token)
 
         If String.IsNullOrEmpty(series) OrElse String.IsNullOrEmpty(token) Then
             Return

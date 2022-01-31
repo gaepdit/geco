@@ -116,8 +116,6 @@
     <Content Include="EIS\History\Processes.aspx" />
     <Content Include="EIS\History\EmissionUnits.aspx" />
     <Content Include="EIS\History\ReleasePoints.aspx" />
-    <Content Include="EIS\Process\Default.aspx" />
-    <Content Include="EIS\Process\Submit.aspx" />
     <Content Include="EIS\Users\Default.aspx" />
     <Content Include="Facility\Contacts.aspx" />
     <Content Include="Facility\EditContacts.aspx" />
@@ -282,20 +280,6 @@
     </Compile>
     <Compile Include="EIS\History\ReleasePoints.aspx.vb">
       <DependentUpon>ReleasePoints.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="EIS\Process\Default.aspx.designer.vb">
-      <DependentUpon>Default.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="EIS\Process\Default.aspx.vb">
-      <DependentUpon>Default.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="EIS\Process\Submit.aspx.designer.vb">
-      <DependentUpon>Submit.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="EIS\Process\Submit.aspx.vb">
-      <DependentUpon>Submit.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="EIS\Users\Default.aspx.designer.vb">
@@ -644,6 +628,7 @@
     <Content Include="AnnualFees\FeeAmendmentForm.xlsx" />
     <Content Include="EIS\EIS.master" />
     <Content Include="manifest.webmanifest" />
+    <Content Include="EIS\2021-opt-out-form.xlsx" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>

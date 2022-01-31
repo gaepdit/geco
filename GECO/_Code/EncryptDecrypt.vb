@@ -1,4 +1,4 @@
-Imports System.Convert
+﻿Imports System.Convert
 Imports System.IO
 Imports System.Security.Cryptography
 Imports System.Text.Encoding
@@ -20,6 +20,8 @@ Public Module EncryptDecrypt
     End Function
 
     'The function used to encrypt the text
+    <CodeAnalysis.SuppressMessage("Critical Vulnerability", "S5547:Cipher algorithms should be robust",
+                                  Justification:="Algorithm is only used to obscure cookie data; no sensitive info is involved.")>
     Private Function Encrypt(strText As String, strEncrKey As String) As String
         Dim byKey = UTF8.GetBytes(Left(strEncrKey, 8)),
             inputByteArray = UTF8.GetBytes(strText),
@@ -40,6 +42,8 @@ Public Module EncryptDecrypt
     End Function
 
     'The function used to decrypt the text
+    <CodeAnalysis.SuppressMessage("Critical Vulnerability", "S5547:Cipher algorithms should be robust",
+                                  Justification:="Algorithm is only used to obscure cookie data; no sensitive info is involved.")>
     Private Function Decrypt(strText As String, sDecrKey As String) As String
 
         Dim byKey = UTF8.GetBytes(Left(sDecrKey, 8)),

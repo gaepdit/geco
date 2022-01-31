@@ -14,94 +14,22 @@ Option Explicit On
 Partial Public Class EIS_Default
 
     '''<summary>
-    '''dNewProcess control.
+    '''pFacUpdateMessage control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents dNewProcess As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+    Protected WithEvents pFacUpdateMessage As Global.System.Web.UI.HtmlControls.HtmlGenericControl
 
     '''<summary>
-    '''updPanel control.
+    '''lnkOtherContactInfo control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents updPanel As Global.System.Web.UI.UpdatePanel
-
-    '''<summary>
-    '''pnlStatus control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents pnlStatus As Global.System.Web.UI.WebControls.Panel
-
-    '''<summary>
-    '''lblMainStatus control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblMainStatus As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''lblMainMessage control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblMainMessage As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''pBeginProcess control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents pBeginProcess As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-
-    '''<summary>
-    '''btnBeginEiProcess control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnBeginEiProcess As Global.System.Web.UI.WebControls.Button
-
-    '''<summary>
-    '''pReset control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents pReset As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-
-    '''<summary>
-    '''btnReset control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnReset As Global.System.Web.UI.WebControls.Button
-
-    '''<summary>
-    '''dCdxNext control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents dCdxNext As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+    Protected WithEvents lnkOtherContactInfo As Global.System.Web.UI.WebControls.HyperLink
 
     '''<summary>
     '''CdxLink control.
@@ -113,139 +41,121 @@ Partial Public Class EIS_Default
     Protected WithEvents CdxLink As Global.System.Web.UI.WebControls.HyperLink
 
     '''<summary>
-    '''StatusTable control.
+    '''lblCdxAlt control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents StatusTable As Global.System.Web.UI.HtmlControls.HtmlTable
+    Protected WithEvents lblCdxAlt As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''trOptOutReason control.
+    '''lblDescription control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents trOptOutReason As Global.System.Web.UI.HtmlControls.HtmlTableRow
+    Protected WithEvents lblDescription As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''lblOptOutReasonText control.
+    '''lblOperatingStatus control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lblOptOutReasonText As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lblOperatingStatus As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''trConfNumber control.
+    '''lblNAICS control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents trConfNumber As Global.System.Web.UI.HtmlControls.HtmlTableRow
+    Protected WithEvents lblNAICS As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''lblConfNumberText control.
+    '''lblSiteAddress control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lblConfNumberText As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lblSiteAddress As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''trLastUpdate control.
+    '''lblLatitude control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents trLastUpdate As Global.System.Web.UI.HtmlControls.HtmlTableRow
+    Protected WithEvents lblLatitude As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''lblLastUpdateText control.
+    '''lblLongitude control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lblLastUpdateText As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lblLongitude As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''pnlResetStatus control.
+    '''lnkGoogleMap control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents pnlResetStatus As Global.System.Web.UI.WebControls.Panel
+    Protected WithEvents lnkGoogleMap As Global.System.Web.UI.WebControls.HyperLink
 
     '''<summary>
-    '''lblResetStatus control.
+    '''imgGoogleStaticMap control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lblResetStatus As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents imgGoogleStaticMap As Global.System.Web.UI.WebControls.Image
 
     '''<summary>
-    '''lblResetDate control.
+    '''btnEditFacilityInfo control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lblResetDate As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents btnEditFacilityInfo As Global.System.Web.UI.WebControls.HyperLink
 
     '''<summary>
-    '''btnConfirmResetStatus control.
+    '''pNoUsersNotice control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents btnConfirmResetStatus As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents pNoUsersNotice As Global.System.Web.UI.HtmlControls.HtmlGenericControl
 
     '''<summary>
-    '''btnCancelResetStatus control.
+    '''grdCaersUsers control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents btnCancelResetStatus As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents grdCaersUsers As Global.System.Web.UI.WebControls.GridView
 
     '''<summary>
-    '''pnlEisNotAvailable control.
+    '''btnEditCaersUsers control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents pnlEisNotAvailable As Global.System.Web.UI.WebControls.Panel
-
-    '''<summary>
-    '''pnlError control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents pnlError As Global.System.Web.UI.WebControls.Panel
-
-    '''<summary>
-    '''lblErrorId control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblErrorId As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents btnEditCaersUsers As Global.System.Web.UI.WebControls.HyperLink
 
     '''<summary>
     '''Master property.

@@ -3,10 +3,9 @@
 Partial Class FacilityAdmin
     Inherits Page
 
-    Private Property facilityAccess As FacilityAccess
+    Public Property FacilityAccess As FacilityAccess
     Private Property currentAirs As ApbFacilityId
 
-    Public Property UserIsAdmin As Boolean
     Public Property ReviewRequested As Boolean
 
 #Region " Page Load "
@@ -40,16 +39,14 @@ Partial Class FacilityAdmin
 
         ' Current user facility access
         Dim currentUser As GecoUser = GetCurrentUser()
-        facilityAccess = currentUser.GetFacilityAccess(currentAirs)
+        FacilityAccess = currentUser.GetFacilityAccess(currentAirs)
 
-        If facilityAccess Is Nothing Then
+        If FacilityAccess Is Nothing Then
             HttpContext.Current.Response.Redirect("~/Facility/")
         End If
 
-        UserIsAdmin = facilityAccess.AdminAccess
-        pnlAddNewUser.Visible = UserIsAdmin
-
-        ReviewRequested = UserIsAdmin AndAlso UserAccessReviewRequested(currentAirs)
+        pnlAddNewUser.Visible = FacilityAccess.AdminAccess
+        ReviewRequested = FacilityAccess.AdminAccess AndAlso UserAccessReviewRequested(currentAirs)
 
         If ReviewRequested Then
             UpdateUserAccessAsReviewed(currentAirs, currentUser.UserId)
@@ -66,7 +63,7 @@ Partial Class FacilityAdmin
 #Region " Admin/User Tools "
 
     Private Sub LoadUserGrid()
-        If Not facilityAccess.AdminAccess Then
+        If Not FacilityAccess.AdminAccess Then
             grdUsers.Columns.Item(0).Visible = False
         End If
 

@@ -1,29 +1,14 @@
 ﻿<%@ Page MasterPageFile="~/EIS/EIS.master" Language="VB" AutoEventWireup="false"
-    Title="GECO EIS: Edit Facility Details"
+    Title="GECO EI: Edit Facility Information"
     Inherits="GECO.EIS_Facility_EditPage" CodeBehind="Edit.aspx.vb" %>
 
 <%@ MasterType VirtualPath="~/EIS/EIS.master" %>
 <%@ Register Assembly="Reimers.Google.Map" Namespace="Reimers.Google.Map" TagPrefix="Reimers" %>
 <asp:Content ID="Content3" ContentPlaceHolderID="Content" runat="Server">
-    <% If IsBeginEisProcess %>
-    <ul class="form-progress">
-        <li class="current">Facility Information</li>
-        <li>Facility Status</li>
-        <li>CAERS Users</li>
-        <li>Submit</li>
-    </ul>
-
-    <h2>Verify Facility Information</h2>
-    <% Else %>
-    <h2>Edit Facility Information</h2>
-    <% End If %>
+    <h1>Edit EI Facility Information</h1>
 
     <asp:Panel ID="pnlFacilityEdit" runat="server">
-        <% If IsBeginEisProcess %>
-        <p class="message-highlight">Verify the facility and contact information below. Make any corrections needed, then select the Continue button at the bottom of the page.</p>
-        <% Else %>
-        <p><a href="<%= Page.ResolveUrl("~/EIS/Facility/") %>" class="button button-cancel">Cancel</a></p>
-        <% End If %>
+        <p><a href="<%= Page.ResolveUrl("~/EIS/") %>" class="button button-cancel">Cancel</a></p>
 
         <asp:ValidationSummary ID="ValidationSummary" runat="server" HeaderText="Please correct the following errors:"></asp:ValidationSummary>
 
@@ -101,7 +86,10 @@
                 Open map in new window
             </asp:HyperLink>
         </div>
-        <p class="label" id="pLatLonLocked" runat="server" visible="false"><i>Coordinates are locked for this facility.</i></p>
+        <p class="label" id="pLatLonLocked" runat="server" visible="false">
+            <i>Coordinates are locked for this facility.</i>
+            If this info is incorrect, please email <a href="mailto:emissions.inventory@dnr.ga.gov">emissions.inventory@dnr.ga.gov</a>.
+        </p>
         <p class="label" id="pGeoInfo" runat="server">
             <em>Geographic information updates must be reviewed by APB staff.</em>
             If the existing values are incorrect, enter your corrections below and include a comment in the 
@@ -205,13 +193,8 @@
         <asp:HiddenField ID="hidGeographicComment" runat="server" Visible="false" />
 
         <p>
-            <% If IsBeginEisProcess Then %>
-            <a href="<%= Page.ResolveUrl("~/EIS/") %>" class="button button-large button-cancel">Cancel</a>
-            <% End If %>
             <asp:Button ID="btnSave" runat="server" Text="Save" CssClass="button-large" />
-            <% If Not IsBeginEisProcess Then %>
-            <a href="<%= Page.ResolveUrl("~/EIS/Facility/") %>" class="button button-large button-cancel">Cancel</a>
-            <% End If %>
+            <a href="<%= Page.ResolveUrl("~/EIS/") %>" class="button button-large button-cancel">Cancel</a>
         </p>
     </asp:Panel>
 

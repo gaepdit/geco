@@ -1,12 +1,11 @@
-﻿Imports GECO.GecoModels.EIS
+﻿Imports GECO.DAL.EIS
 Imports GECO.GecoModels
-Imports GECO.DAL.EIS
+Imports GECO.GecoModels.EIS
 
 Public Class EIS_Users_Default
     Inherits Page
 
     Public Property CurrentAirs As ApbFacilityId
-    Public Property IsBeginEisProcess As Boolean = False
 
     Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
         MainLoginCheck()
@@ -19,26 +18,17 @@ Public Class EIS_Users_Default
 
         CurrentAirs = New ApbFacilityId(airs)
         Master.CurrentAirs = CurrentAirs
-        Master.SelectedTab = EIS.EisTab.Users
-
-        If Session("EisProcessStarted") IsNot Nothing Then
-            If Session("EisProcess") Is Nothing Then
-                Response.Redirect("~/EIS/")
-            End If
-
-            IsBeginEisProcess = True
-            Master.IsBeginEisProcess = True
-        End If
+        Master.SelectedTab = EIS.EisTab.None
 
         Master.Master.ClearDefaultButton()
 
         If Not IsPostBack Then
             LoadStates()
-            LoadCurrentUsers()
+            LoadCurrentCaersUsers()
         End If
     End Sub
 
-    Private Sub LoadCurrentUsers()
+    Private Sub LoadCurrentCaersUsers()
         Dim dt As DataTable = GetFacilityCaerContacts(CurrentAirs)
 
         If dt IsNot Nothing AndAlso dt.Rows.Count > 0 Then
@@ -94,7 +84,7 @@ Public Class EIS_Users_Default
         NotNull(e, NameOf(e))
         Dim userid As Guid = Guid.Parse(grdCaersUsers.DataKeys(e.RowIndex).Values("Id").ToString())
         DeleteCaerContact(userid)
-        LoadCurrentUsers()
+        LoadCurrentCaersUsers()
     End Sub
 
     ' Add new user
@@ -103,13 +93,11 @@ Public Class EIS_Users_Default
         pAddNew.Visible = False
         pnlAddNew.Visible = True
         pnlEditUser.Visible = False
-        btnProceed.Visible = False
     End Sub
 
     Private Sub CancelNewUser_Click(sender As Object, e As EventArgs) Handles btnCancelNew.Click
         pAddNew.Visible = True
         pnlAddNew.Visible = False
-        btnProceed.Visible = True
     End Sub
 
     Private Sub btnSaveNew_Click(sender As Object, e As EventArgs) Handles btnSaveNew.Click
@@ -155,9 +143,8 @@ Public Class EIS_Users_Default
 
             pAddNew.Visible = True
             pnlAddNew.Visible = False
-            btnProceed.Visible = True
 
-            LoadCurrentUsers()
+            LoadCurrentCaersUsers()
         End If
     End Sub
 
@@ -178,7 +165,6 @@ Public Class EIS_Users_Default
             pnlAddNew.Visible = False
             hidEditId.Value = userId.ToString
             pAddNew.Visible = False
-            btnProceed.Visible = False
 
             txtStreetEdit.Text = caerUser.Contact.Address.Street
             txtStreet2Edit.Text = caerUser.Contact.Address.Street2
@@ -208,7 +194,6 @@ Public Class EIS_Users_Default
     Private Sub btnCancelEdit_Click(sender As Object, e As EventArgs) Handles btnCancelEdit.Click
         pnlEditUser.Visible = False
         pAddNew.Visible = True
-        btnProceed.Visible = True
     End Sub
 
     Private Sub btnSaveEdit_Click(sender As Object, e As EventArgs) Handles btnSaveEdit.Click
@@ -246,21 +231,14 @@ Public Class EIS_Users_Default
             pAddNew.Visible = True
             pnlAddNew.Visible = False
             pnlEditUser.Visible = False
-            btnProceed.Visible = True
 
-            LoadCurrentUsers()
+            LoadCurrentCaersUsers()
         End If
     End Sub
 
     Private Sub custEmailEdit_ServerValidate(source As Object, args As ServerValidateEventArgs) Handles custEmailEdit.ServerValidate
         args.IsValid = Not (ddlRoleEdit.SelectedValue = CaerRole.Preparer.ToString AndAlso
             CaerPreparerExists(args.Value, CurrentAirs, New Guid(hidEditId.Value)))
-    End Sub
-
-    Private Sub btnProceed_Click(sender As Object, e As EventArgs) Handles btnProceed.Click
-        If CInt(hidCertifiersCount.Value) = 1 AndAlso CInt(hidPreparersCount.Value) >= 1 Then
-            Response.Redirect("~/EIS/Process/Submit.aspx")
-        End If
     End Sub
 
 End Class

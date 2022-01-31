@@ -1,5 +1,5 @@
 ﻿<%@ Page MasterPageFile="~/EIS/EIS.master" Language="VB" AutoEventWireup="false"
-    Title="GECO EIS Historical Data: Processes"
+    Title="GECO EI Historical Data: Processes"
     Inherits="GECO.EIS_History_Processes" CodeBehind="Processes.aspx.vb" %>
 
 <%@ MasterType VirtualPath="~/EIS/EIS.master" %>
@@ -10,7 +10,7 @@
     </h2>
 
     <p id="ProcessesEmptyNotice" runat="server" visible="False">
-        No emission units exist for this facility in the EIS.
+        No emission units exist for this facility in the EI.
     </p>
     <asp:Button ID="ProcessesExport" runat="server" Text="Download as Excel" CausesValidation="False" UseSubmitBehavior="False" />
     <asp:GridView ID="Processes" runat="server" AutoGenerateColumns="False" CssClass="table-simple table-striped">
