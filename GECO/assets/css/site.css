@@ -539,7 +539,7 @@ textarea {
 .login-page {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    grid-gap: 2rem;
+    gap: 2rem;
     margin: 2rem auto;
     max-width: 54rem;
 }
@@ -569,7 +569,6 @@ textarea {
 /* Announcements */
 
 .announcement {
-    display: inline-block;
     max-width: 25rem;
     margin-top: 5px;
     margin-right: 13px;
@@ -597,20 +596,33 @@ textarea {
     }
 
     .announcement.announcement-mild {
-        border: 3px solid #eeeece;
+        border: 2px solid #eee;
+        background: #fff;
     }
 
     .announcement.announcement-severe {
-        background: #ffd9df;
-        border: 3px solid #ac3e3e;
+        background-color: #ffcccc;
+        border: 1px solid #ac3e3e;
     }
 
-        .announcement.announcement-severe h2 {
-            color: #8e1e1e;
-        }
+/* Inline checkbox paragraph */
+.inline-checkbox {
+    white-space: nowrap;
+}
+
+    .inline-checkbox input[type="checkbox"] {
+        display: inline-block;
+        vertical-align: middle;
+        margin-right: 10px;
+    }
+
+    .inline-checkbox label {
+        white-space: normal;
+        display: inline-block;
+        vertical-align: top;
+    }
 
 /* Simple tables */
-
 .table-full-width {
     width: 100%;
 }
@@ -852,6 +864,10 @@ td.table-cell-checkbox {
     padding: 2px 3px;
 }
 
+.label-highlight-mild {
+    background: lightyellow;
+}
+
 /* Text color utilities */
 
 .text-error {
@@ -924,7 +940,12 @@ blockquote {
     margin: 1em 0;
     padding: .5em 1em;
     background-color: #f3f3f7;
+    max-width: 53rem;
 }
+
+    blockquote.document {
+        box-shadow: 0 0 1px rgba(0,0,0,0.12), 0 0 2px rgba(0,0,0,0.12), 0 2px 4px rgba(0,0,0,0.12), 0 6px 8px rgba(0,0,0,0.12)
+    }
 
 /* Buttons */
 
@@ -1058,6 +1079,27 @@ button:disabled,
     box-shadow: none;
 }
 
+/* Link-style button */
+
+.button-link {
+    display: inline-block;
+    cursor: pointer;
+    text-decoration: none;
+    margin: 0;
+    padding: 0;
+    white-space: nowrap;
+    color: #00e;
+    background-color: transparent;
+    box-shadow: none;
+}
+
+    .button-link:hover, .button-link:focus {
+        color: #00e;
+        background-color: transparent;
+        text-decoration: underline;
+        box-shadow: none;
+    }
+
 /* DataGrid Pager */
 
 .datagrid-pager td {
@@ -1093,7 +1135,6 @@ button:disabled,
     background: #17f;
     box-shadow: 0 1px 3px -2px #2e3646;
 }
-
 
 /* 
     AjaxControlToolkit TabContainer layout 
@@ -1463,6 +1504,8 @@ ol ol {
     list-style-type: lower-alpha;
 }
 
+/* Animation */
+
 /* Fix animation bug (?) in Firefox */
 details .anim-fade-in {
     animation-name: none;
@@ -1471,29 +1514,6 @@ details .anim-fade-in {
 details[open] .anim-fade-in {
     animation-name: fade-in;
 }
-
-/* Link-style button */
-
-.button-link {
-    display: inline-block;
-    cursor: pointer;
-    text-decoration: none;
-    margin: 0;
-    padding: 0;
-    white-space: nowrap;
-    color: #00e;
-    background-color: transparent;
-    box-shadow: none;
-}
-
-    .button-link:hover, .button-link:focus {
-        color: #00e;
-        background-color: transparent;
-        text-decoration: underline;
-        box-shadow: none;
-    }
-
-/* Animation */
 
 .anim-fade-in {
     animation-name: fade-in;

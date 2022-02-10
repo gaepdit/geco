@@ -35,16 +35,18 @@ Partial Class Home_FacilityRequest
         Dim ccList As New List(Of String) From {currentUser.Email}
         Dim recipientList As New List(Of String)
 
-        Dim dt As DataTable = GetFacilityAdminUsers(New ApbFacilityId(txtAirsNo.Text))
+        If Not chkAssistanceNeeded.Checked Then
+            Dim dt As DataTable = GetFacilityAdminUsers(New ApbFacilityId(txtAirsNo.Text))
 
-        If dt IsNot Nothing Then
-            For Each dr As DataRow In dt.Rows
-                recipientList.Add(dr(0).ToString)
-            Next
+            If dt IsNot Nothing Then
+                For Each dr As DataRow In dt.Rows
+                    recipientList.Add(dr(0).ToString)
+                Next
+            End If
         End If
 
         If recipientList.Count = 0 Then
-            'No Admin User in DB
+            ' No Admin User in DB or assistance needed
             recipientList.Add(GecoContactEmail)
         Else
             ccList.Add(GecoContactEmail)
@@ -52,7 +54,7 @@ Partial Class Home_FacilityRequest
 
         Dim subject As String = "GECO Facility Access Request"
 
-        Dim htmlBody As String = ltlMessage.Text
+        Dim htmlBody As String = ltlMessage.Text & ltlMessagePart2.Text & ltlMessagePart3.Text
 
         If Not String.IsNullOrWhiteSpace(txtComments.Text) Then
             htmlBody &= "<p><b>Additional comments from the requesting user:</b></p>" &
@@ -62,11 +64,13 @@ Partial Class Home_FacilityRequest
         If SendEmail(ConcatNonEmptyStrings(",", recipientList), subject, Nothing, htmlBody, ConcatNonEmptyStrings(",", ccList),
                      caller:="Home_FacilityRequest.btnSend_Click") Then
             lblSuccess.Visible = True
-            lblSuccess.Text = "Success! Your message has been sent."
+            lblApbInstructions.Visible = False
+            lblAdminInstructions.Visible = False
             btnSend.Enabled = False
         Else
             lblError.Visible = True
-            lblError.Text = "There was an error sending the email."
+            lblApbInstructions.Visible = False
+            lblAdminInstructions.Visible = False
         End If
 
     End Sub
@@ -74,7 +78,7 @@ Partial Class Home_FacilityRequest
     Private Sub LookUpFacility(what As LookupWhat)
         LookingUp = True
 
-        HideMessage()
+        HideNextSteps()
 
         Try
             Dim facilityTable As DataTable = GetCachedFacilityTable()
@@ -99,7 +103,8 @@ Partial Class Home_FacilityRequest
             txtAirsNo.Text = dr(0).ToString()
             txtFacility.Text = dr(1).ToString()
 
-            ComposeEmailMessage()
+            Dim hasAdminUsers As Boolean = DisplayNextSteps()
+            ComposeEmailMessage(hasAdminUsers)
 
         Catch ex As Exception
             ErrorReport(ex)
@@ -108,7 +113,7 @@ Partial Class Home_FacilityRequest
         End Try
     End Sub
 
-    Private Sub HideMessage()
+    Private Sub HideNextSteps()
         lblSuccess.Visible = False
         lblError.Visible = False
         btnSend.Enabled = False
@@ -116,46 +121,69 @@ Partial Class Home_FacilityRequest
         bqMessage.Visible = False
         lblSuccess.Visible = False
         lblError.Visible = False
+        pnlHasAdmin.Visible = False
+        lblAdminInstructions.Visible = False
+        pNoAdmin.Visible = False
+        pContactEpdWarning.Visible = False
+        lblApbInstructions.Visible = False
+        pnlNextSteps.Visible = False
+        chkAssistanceNeeded.Checked = False
     End Sub
 
-    Private Sub ComposeEmailMessage()
+    Private Function DisplayNextSteps() As Boolean
+        pnlNextSteps.Visible = True
+
+        Dim dt As DataTable = GetFacilityAdminUsers(New ApbFacilityId(txtAirsNo.Text))
+
+        If dt Is Nothing OrElse dt.Rows.Count = 0 Then
+            pNoAdmin.Visible = True
+            pContactEpdWarning.Visible = True
+            lblAdminInstructions.Visible = False
+            lblApbInstructions.Visible = True
+
+            Return False
+        End If
+
+        lstAdminUsers.DataSource = dt
+        lstAdminUsers.DataTextField = "Name"
+        lstAdminUsers.DataBind()
+        pnlHasAdmin.Visible = True
+        lblAdminInstructions.Visible = True
+        lblApbInstructions.Visible = False
+
+        Return True
+    End Function
+
+    Private Sub ComposeEmailMessage(hasAdminUsers As Boolean)
         If String.IsNullOrEmpty(txtAirsNo.Text) OrElse String.IsNullOrEmpty(txtFacility.Text) OrElse
           Not ApbFacilityId.IsValidAirsNumberFormat(txtAirsNo.Text) Then
-            HideMessage()
+            HideNextSteps()
             Return
         End If
 
         lblSuccess.Visible = False
         lblError.Visible = False
 
-        Dim adminUsersTable As DataTable = GetFacilityAdminUsers(New ApbFacilityId(txtAirsNo.Text))
-        Dim hasAdminUsers As Boolean = adminUsersTable IsNot Nothing AndAlso adminUsersTable.Rows.Count > 0
-
         Dim message As New StringBuilder()
 
         If hasAdminUsers Then
-            lblMessageLabel.Text = "This message will be sent to the facility administrator(s):"
             message.AppendLine("<p>Dear Facility Administrator,</p>")
             message.AppendLine(
-                    "<p>You are receiving this email because you are currently an assigned administrator for " &
-                    "the following facility in GECO.</p>")
+                "<p>You are receiving this email because you are currently an assigned administrator for " &
+                "the following facility in GECO.</p>")
         Else
-            lblMessageLabel.Text = "This message will be sent to the EPD GECO administrator:"
             message.AppendLine("<p>Dear GECO Administrator,</p>")
-            message.AppendLine("<p>The following facility does not have an assigned administrator in GECO.</p>")
+            message.AppendLine("<p>A user is requesting assistance from the Air Protection Branch related to the following facility access request.</p>")
         End If
 
-        message.AppendLine(
-                "<p><b>Facility:</b> " & Server.HtmlEncode(txtFacility.Text) & "<br />" &
-                "<b>AIRS Number:</b> " & Server.HtmlEncode(New ApbFacilityId(txtAirsNo.Text).FormattedString) & "</p>")
-        message.AppendLine("<p>GECO user <b>" & Server.HtmlEncode(currentUser.FullName) & "</b> is requesting the following:")
+        ltlMessage.Text = message.ToString()
 
-        For Each item As ListItem In lstbAccess.Items
-            If item.Selected Then message.AppendLine("<br />- " & item.Text)
-        Next
+        ComposeEmailMessagePart2()
 
-        message.AppendLine(
-                "</p>" &
+        Dim message3 As New StringBuilder()
+
+        If hasAdminUsers Then
+            message3.AppendLine(
                 "<p>To provide access to the requested facility in GECO, please follow these instructions:</p>" &
                 "<p>- Sign into your GECO Account at: https://geco.gaepd.org <br />" &
                 "- On the Home page, select the requested facility.<br />" &
@@ -168,11 +196,46 @@ Partial Class Home_FacilityRequest
                 "- Select which applications the user can access by checking the appropriate boxes.<br />" &
                 "- Select ""Update"" to save the new application permissions.</p>" &
                 "<p>The user will have access to the facility the next time they sign into GECO. Thank you.</p>")
+        Else
+            message3.AppendLine("<p>Thank you.</p>")
+        End If
 
-        ltlMessage.Text = message.ToString()
+        ltlMessagePart3.Text = message3.ToString()
+
         bqMessage.Visible = True
         btnSend.Enabled = True
+    End Sub
 
+    Private Sub ComposeEmailMessagePart2()
+        Dim message2 As New StringBuilder()
+
+        message2.AppendLine(
+            "<p><b>Facility:</b> " & Server.HtmlEncode(txtFacility.Text) & "<br />" &
+            "<b>AIRS Number:</b> " & Server.HtmlEncode(New ApbFacilityId(txtAirsNo.Text).FormattedString) & "</p>")
+        message2.AppendLine("<p>GECO user <b>" & Server.HtmlEncode(currentUser.FullName) & "</b> " &
+                            "&lt;" & Server.HtmlEncode(currentUser.Email) & "&gt; is requesting the following:")
+
+        For Each item As ListItem In lstbAccess.Items
+            If item.Selected Then message2.AppendLine("<br />- " & item.Text)
+        Next
+
+        message2.AppendLine("</p>")
+
+        ltlMessagePart2.Text = message2.ToString()
+    End Sub
+
+    Private Sub chkAssistanceNeeded_CheckedChanged(sender As Object, e As EventArgs) Handles chkAssistanceNeeded.CheckedChanged
+        If chkAssistanceNeeded.Checked Then
+            lblAdminInstructions.Visible = False
+            lblApbInstructions.Visible = True
+            pContactEpdWarning.Visible = True
+            ComposeEmailMessage(False)
+        Else
+            lblAdminInstructions.Visible = True
+            lblApbInstructions.Visible = False
+            pContactEpdWarning.Visible = False
+            ComposeEmailMessage(True)
+        End If
     End Sub
 
     Protected Sub txtAirsNo_TextChanged(sender As Object, e As EventArgs) Handles txtAirsNo.TextChanged
@@ -187,12 +250,8 @@ Partial Class Home_FacilityRequest
         End If
     End Sub
 
-    Protected Sub txtComments_TextChanged(sender As Object, e As EventArgs) Handles txtComments.TextChanged
-        ComposeEmailMessage()
-    End Sub
-
     Protected Sub lstbAccess_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lstbAccess.SelectedIndexChanged
-        ComposeEmailMessage()
+        If pnlNextSteps.Visible Then ComposeEmailMessagePart2()
     End Sub
 
     <CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId:="count")>

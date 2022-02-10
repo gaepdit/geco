@@ -122,6 +122,60 @@ Partial Public Class Home_FacilityRequest
     Protected WithEvents lstbAccess As Global.System.Web.UI.WebControls.CheckBoxList
 
     '''<summary>
+    '''pnlNextSteps control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents pnlNextSteps As Global.System.Web.UI.WebControls.Panel
+
+    '''<summary>
+    '''pnlHasAdmin control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents pnlHasAdmin As Global.System.Web.UI.WebControls.Panel
+
+    '''<summary>
+    '''lstAdminUsers control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lstAdminUsers As Global.System.Web.UI.WebControls.BulletedList
+
+    '''<summary>
+    '''chkAssistanceNeeded control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents chkAssistanceNeeded As Global.System.Web.UI.WebControls.CheckBox
+
+    '''<summary>
+    '''pNoAdmin control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents pNoAdmin As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
+    '''pContactEpdWarning control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents pContactEpdWarning As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
     '''lblComments control.
     '''</summary>
     '''<remarks>
@@ -140,33 +194,6 @@ Partial Public Class Home_FacilityRequest
     Protected WithEvents txtComments As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''bqMessage control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents bqMessage As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-
-    '''<summary>
-    '''lblMessageLabel control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblMessageLabel As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''ltlMessage control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents ltlMessage As Global.System.Web.UI.WebControls.Literal
-
-    '''<summary>
     '''btnSend control.
     '''</summary>
     '''<remarks>
@@ -174,6 +201,24 @@ Partial Public Class Home_FacilityRequest
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnSend As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''lblAdminInstructions control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblAdminInstructions As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''lblApbInstructions control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblApbInstructions As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''lblSuccess control.
@@ -192,6 +237,42 @@ Partial Public Class Home_FacilityRequest
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblError As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''bqMessage control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents bqMessage As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
+    '''ltlMessage control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ltlMessage As Global.System.Web.UI.WebControls.Literal
+
+    '''<summary>
+    '''ltlMessagePart2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ltlMessagePart2 As Global.System.Web.UI.WebControls.Literal
+
+    '''<summary>
+    '''ltlMessagePart3 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ltlMessagePart3 As Global.System.Web.UI.WebControls.Literal
 
     '''<summary>
     '''ModalUpdateProgress1 control.

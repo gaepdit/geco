@@ -33,7 +33,7 @@
                             <asp:HyperLink ID="hlAirs" runat="server"></asp:HyperLink>
                         </ItemTemplate>
                     </asp:TemplateField>
-                    <asp:CheckBoxField DataField="AdminAccess" HeaderText="Admin Access">
+                    <asp:CheckBoxField DataField="AdminAccess" HeaderText="User Admin">
                         <ItemStyle HorizontalAlign="Center" CssClass="table-cell-checkbox" />
                     </asp:CheckBoxField>
                     <asp:CheckBoxField DataField="FeeAccess" HeaderText="Permit Fees">

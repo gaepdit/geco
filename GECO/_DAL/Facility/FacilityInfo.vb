@@ -64,12 +64,15 @@ Public Module FacilityInfo
     Public Function GetFacilityAdminUsers(airs As ApbFacilityId) As DataTable
         NotNull(airs, NameOf(airs))
 
-        Dim query As String = "SELECT l.STRUSEREMAIL as email
-            FROM dbo.OLAPUSERACCESS a
-                 INNER JOIN dbo.OLAPUSERLOGIN l
-                            ON a.NUMUSERID = l.NUMUSERID
-            WHERE a.STRAIRSNUMBER = @airs
-              AND a.INTADMINACCESS = 1"
+        Dim query As String = "select l.STRUSEREMAIL,
+           concat_ws(' ', p.STRFIRSTNAME, p.STRLASTNAME) as Name
+        from dbo.OLAPUSERACCESS a
+            inner join dbo.OLAPUSERLOGIN l
+            on a.NUMUSERID = l.NUMUSERID
+            inner join dbo.OLAPUSERPROFILE p
+            on l.NUMUSERID = p.NUMUSERID
+        where a.STRAIRSNUMBER = @airs
+          and a.INTADMINACCESS = 1"
 
         Dim param As New SqlParameter("@airs", airs.DbFormattedString)
 
