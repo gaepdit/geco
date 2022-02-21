@@ -1,12 +1,16 @@
 ﻿Namespace GecoModels.Facility
     Public Structure CommunicationCategory
 
+        Private Shared ReadOnly prefs As CommunicationPrefsConfigSection =
+            CType(ConfigurationManager.GetSection("communicationPrefs"),
+            CommunicationPrefsConfigSection)
+
         ' Instances
-        Public Shared Property Fees As New CommunicationCategory("Fees", "Permit Fees", False)
-        Public Shared Property PermitApplications As New CommunicationCategory("Permits", "Permit Applications", False)
-        Public Shared Property EmissionsInventory As New CommunicationCategory("EI", "Emissions Inventory", False)
-        Public Shared Property EmissionsStatement As New CommunicationCategory("ES", "Emissions Statement", False)
-        Public Shared Property TestingMonitoring As New CommunicationCategory("Testing", "Testing and Monitoring", False)
+        Public Shared Property Fees As New CommunicationCategory("Fees", "Permit Fees", prefs.FeesEnabled)
+        Public Shared Property PermitApplications As New CommunicationCategory("Permits", "Permit Applications", prefs.PermitApplicationsEnabled)
+        Public Shared Property EmissionsInventory As New CommunicationCategory("EI", "Emissions Inventory", prefs.EmissionsInventoryEnabled)
+        Public Shared Property EmissionsStatement As New CommunicationCategory("ES", "Emissions Statement", prefs.EmissionsStatementEnabled)
+        Public Shared Property TestingMonitoring As New CommunicationCategory("Testing", "Testing and Monitoring", prefs.TestingMonitoringEnabled)
 
         ' Implementation
         Public ReadOnly Name As String
@@ -36,4 +40,44 @@
         End Function
 
     End Structure
+
+    Class CommunicationPrefsConfigSection
+        Inherits ConfigurationSection
+
+        <ConfigurationProperty("feesEnabled", IsRequired:=True)>
+        Public ReadOnly Property FeesEnabled As Boolean
+            Get
+                Return CType(Me("feesEnabled"), Boolean)
+            End Get
+        End Property
+
+        <ConfigurationProperty("permitApplicationsEnabled", IsRequired:=True)>
+        Public ReadOnly Property PermitApplicationsEnabled As Boolean
+            Get
+                Return CType(Me("permitApplicationsEnabled"), Boolean)
+            End Get
+        End Property
+
+        <ConfigurationProperty("emissionsInventoryEnabled", IsRequired:=True)>
+        Public ReadOnly Property EmissionsInventoryEnabled As Boolean
+            Get
+                Return CType(Me("emissionsInventoryEnabled"), Boolean)
+            End Get
+        End Property
+
+        <ConfigurationProperty("emissionsStatementEnabled", IsRequired:=True)>
+        Public ReadOnly Property EmissionsStatementEnabled As Boolean
+            Get
+                Return CType(Me("emissionsStatementEnabled"), Boolean)
+            End Get
+        End Property
+
+        <ConfigurationProperty("testingMonitoringEnabled", IsRequired:=True)>
+        Public ReadOnly Property TestingMonitoringEnabled As Boolean
+            Get
+                Return CType(Me("testingMonitoringEnabled"), Boolean)
+            End Get
+        End Property
+    End Class
+
 End Namespace

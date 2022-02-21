@@ -9,110 +9,118 @@
 -->
 
 <configuration>
-  <configSections>
-    <section name="RaygunSettings" type="Mindscape.Raygun4Net.RaygunSettings, Mindscape.Raygun4Net" />
-    <section name="ajaxControlToolkit" type="AjaxControlToolkit.AjaxControlToolkitConfigSection, AjaxControlToolkit" />
-  </configSections>
+    <configSections>
+        <section name ="communicationPrefs" type ="GECO.GecoModels.Facility.CommunicationPrefsConfigSection"/>
+        <section name="RaygunSettings" type="Mindscape.Raygun4Net.RaygunSettings, Mindscape.Raygun4Net" />
+        <section name="ajaxControlToolkit" type="AjaxControlToolkit.AjaxControlToolkitConfigSection, AjaxControlToolkit" />
+    </configSections>
 
-  <connectionStrings>
-    <add name="SqlConnectionString" connectionString="" />
-  </connectionStrings>
+    <connectionStrings>
+        <add name="SqlConnectionString" connectionString="" />
+    </connectionStrings>
 
-  <!-- update the following settings in configBuilder configuration files -->
-  <appSettings>
-    <add key="GecoEmailSender" value="GeorgiaAirProtectionBranch@dnr.ga.gov" />
-    <add key="EnableSendingEmail" value="true" />
-    <add key="SaveAllEmails" value="false" />
-    <add key="ValidationSettings:UnobtrusiveValidationMode" value="None" />
-    <add key="GECO_ENVIRONMENT" value="Development" />
-    <add key="UndeliverableEmailFolder" value="..\_UnsentEmail" />
-    <add key="LoggingFolder" value="..\Logs" />
-    <add key="LogExceptionsToFile" value="false" />
-    <add key="GecoContactEmail" value="GeorgiaAirProtectionBranch@dnr.ga.gov" />
-    <add key="GecoContactName" value="Georgia Air Protection Branch" />
-    <add key="SmtpHost" value="localhost" />
-    <add key="SmtpPort" value="25" />
-    <add key="EmailAllowList" value="" />
-    <add key="GoogleMapsAPIKey" value="" />
-    <add key="EpaCaersUrl" value="https://test.epacdx.net/CDX/MyCDX" />
-  </appSettings>
+    <!-- update the following settings in configBuilder configuration files -->
+    <appSettings>
+        <add key="GecoEmailSender" value="GeorgiaAirProtectionBranch@dnr.ga.gov" />
+        <add key="EnableSendingEmail" value="true" />
+        <add key="SaveAllEmails" value="false" />
+        <add key="ValidationSettings:UnobtrusiveValidationMode" value="None" />
+        <add key="GECO_ENVIRONMENT" value="Development" />
+        <add key="UndeliverableEmailFolder" value="..\_UnsentEmail" />
+        <add key="LoggingFolder" value="..\Logs" />
+        <add key="LogExceptionsToFile" value="false" />
+        <add key="GecoContactEmail" value="GeorgiaAirProtectionBranch@dnr.ga.gov" />
+        <add key="GecoContactName" value="Georgia Air Protection Branch" />
+        <add key="SmtpHost" value="localhost" />
+        <add key="SmtpPort" value="25" />
+        <add key="EmailAllowList" value="" />
+        <add key="GoogleMapsAPIKey" value="" />
+        <add key="EpaCaersUrl" value="https://test.epacdx.net/CDX/MyCDX" />
+    </appSettings>
 
-  <RaygunSettings apikey="" excludeHttpStatusCodes="404" excludeErrorsFromLocal="true" />
-  <ajaxControlToolkit renderStyleLinks="false" />
+    <communicationPrefs
+        feesEnabled="false"
+        permitApplicationsEnabled="false"
+        emissionsInventoryEnabled ="false"
+        emissionsStatementEnabled ="false"
+        testingMonitoringEnabled="false" />
 
-  <system.web>
-    <!--
-          Set compilation debug="true" to insert debugging
-          symbols into the compiled page. Because this
-          affects performance, set this value to true only
-          during development.
-    -->
-    <compilation debug="true" strict="false" explicit="true" />
-    <pages>
-      <controls>
-        <add tagPrefix="act" namespace="AjaxControlToolkit" assembly="AjaxControlToolkit" />
-      </controls>
-    </pages>
-    <httpHandlers>
-      <add verb="GET" path="CaptchaImage.axd" type="MSCaptcha.CaptchaImageHandler, MSCaptcha" />
-    </httpHandlers>
-    <customErrors mode="RemoteOnly" defaultRedirect="~/ErrorPage.aspx" />
-    <httpCookies requireSSL="true" httpOnlyCookies="true" />
-  </system.web>
+    <RaygunSettings apikey="" excludeHttpStatusCodes="404" excludeErrorsFromLocal="true" />
+    <ajaxControlToolkit renderStyleLinks="false" />
 
-  <system.codedom>
-    <compilers>
-      <compiler extension=".cs" language="c#;cs;csharp" warningLevel="4" compilerOptions="/langversion:7.0 /nowarn:1659;1699;1701;612;618" type="Microsoft.CodeDom.Providers.DotNetCompilerPlatform.CSharpCodeProvider, Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=3.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
-      <compiler extension=".vb" language="vb;vbs;visualbasic;vbscript" warningLevel="4" compilerOptions="/langversion:default /nowarn:41008,40000,40008 /define:_MYTYPE=\&quot;Web\&quot; /optionInfer+" type="Microsoft.CodeDom.Providers.DotNetCompilerPlatform.VBCodeProvider, Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=3.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
-    </compilers>
-  </system.codedom>
+    <system.web>
+        <!--
+        Set compilation debug="true" to insert debugging
+        symbols into the compiled page. Because this
+        affects performance, set this value to true only
+        during development.
+        -->
+        <compilation debug="true" strict="false" explicit="true" />
+        <pages>
+            <controls>
+                <add tagPrefix="act" namespace="AjaxControlToolkit" assembly="AjaxControlToolkit" />
+            </controls>
+        </pages>
+        <httpHandlers>
+            <add verb="GET" path="CaptchaImage.axd" type="MSCaptcha.CaptchaImageHandler, MSCaptcha" />
+        </httpHandlers>
+        <customErrors mode="RemoteOnly" defaultRedirect="~/ErrorPage.aspx" />
+        <httpCookies requireSSL="true" httpOnlyCookies="true" />
+    </system.web>
 
-  <system.webServer>
-    <validation validateIntegratedModeConfiguration="false" />
-    <handlers>
-      <add name="MSCaptcha" verb="GET" path="CaptchaImage.axd" type="MSCaptcha.CaptchaImageHandler, MSCaptcha" />
-    </handlers>
-    <rewrite>
-      <rules>
-        <!-- Redirect HTTP to HTTPS. This requires the URL Rewrite module to be installed in IIS. -->
-        <rule name="HTTP to HTTPS redirect" stopProcessing="true">
-          <match url="(.*)" />
-          <conditions>
-            <add input="{SERVER_PORT_SECURE}" pattern="^0$" />
-          </conditions>
-          <action type="Redirect" redirectType="Permanent" url="https://{HTTP_HOST}/{R:1}" />
-        </rule>
-        <rule name="Add a well-known change password URL" patternSyntax="ExactMatch" stopProcessing="true">
-          <match url=".well-known/change-password" ignoreCase="false" />
-          <action type="Redirect" url="Account/Password.aspx" appendQueryString="false" redirectType="Found" />
-        </rule>
-      </rules>
-      <outboundRules>
-        <rule name="Add STS header when HTTPS" enabled="true">
-          <match serverVariable="RESPONSE_Strict_Transport_Security" pattern=".*" />
-          <conditions>
-            <add input="{HTTPS}" pattern="on" ignoreCase="true" />
-          </conditions>
-          <action type="Rewrite" value="max-age=63072000" />
-        </rule>
-      </outboundRules>
-    </rewrite>
-    <httpErrors errorMode="Custom">
-      <clear />
-      <error statusCode="404" path="/404.aspx" responseMode="ExecuteURL" />
-    </httpErrors>
-  </system.webServer>
+    <system.codedom>
+        <compilers>
+            <compiler extension=".cs" language="c#;cs;csharp" warningLevel="4" compilerOptions="/langversion:7.0 /nowarn:1659;1699;1701;612;618" type="Microsoft.CodeDom.Providers.DotNetCompilerPlatform.CSharpCodeProvider, Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=3.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
+            <compiler extension=".vb" language="vb;vbs;visualbasic;vbscript" warningLevel="4" compilerOptions="/langversion:default /nowarn:41008,40000,40008 /define:_MYTYPE=\&quot;Web\&quot; /optionInfer+" type="Microsoft.CodeDom.Providers.DotNetCompilerPlatform.VBCodeProvider, Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=3.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
+        </compilers>
+    </system.codedom>
 
-  <runtime>
-    <assemblyBinding xmlns="urn:schemas-microsoft-com:asm.v1">
-      <dependentAssembly>
-        <assemblyIdentity name="DocumentFormat.OpenXml" publicKeyToken="8fb06cb64d019a17" culture="neutral" />
-          <bindingRedirect oldVersion="0.0.0.0-2.15.0.0" newVersion="2.15.0.0"/>
-      </dependentAssembly>
-      <dependentAssembly>
-        <assemblyIdentity name="ExcelNumberFormat" publicKeyToken="23c6f5d73be07eca" culture="neutral" />
-        <bindingRedirect oldVersion="0.0.0.0-1.1.0.0" newVersion="1.1.0.0" />
-      </dependentAssembly>
-    </assemblyBinding>
-  </runtime>
+    <system.webServer>
+        <validation validateIntegratedModeConfiguration="false" />
+        <handlers>
+            <add name="MSCaptcha" verb="GET" path="CaptchaImage.axd" type="MSCaptcha.CaptchaImageHandler, MSCaptcha" />
+        </handlers>
+        <rewrite>
+            <rules>
+                <!-- Redirect HTTP to HTTPS. This requires the URL Rewrite module to be installed in IIS. -->
+                <rule name="HTTP to HTTPS redirect" stopProcessing="true">
+                    <match url="(.*)" />
+                    <conditions>
+                        <add input="{SERVER_PORT_SECURE}" pattern="^0$" />
+                    </conditions>
+                    <action type="Redirect" redirectType="Permanent" url="https://{HTTP_HOST}/{R:1}" />
+                </rule>
+                <rule name="Add a well-known change password URL" patternSyntax="ExactMatch" stopProcessing="true">
+                    <match url=".well-known/change-password" ignoreCase="false" />
+                    <action type="Redirect" url="Account/Password.aspx" appendQueryString="false" redirectType="Found" />
+                </rule>
+            </rules>
+            <outboundRules>
+                <rule name="Add STS header when HTTPS" enabled="true">
+                    <match serverVariable="RESPONSE_Strict_Transport_Security" pattern=".*" />
+                    <conditions>
+                        <add input="{HTTPS}" pattern="on" ignoreCase="true" />
+                    </conditions>
+                    <action type="Rewrite" value="max-age=63072000" />
+                </rule>
+            </outboundRules>
+        </rewrite>
+        <httpErrors errorMode="Custom">
+            <clear />
+            <error statusCode="404" path="/404.aspx" responseMode="ExecuteURL" />
+        </httpErrors>
+    </system.webServer>
+
+    <runtime>
+        <assemblyBinding xmlns="urn:schemas-microsoft-com:asm.v1">
+            <dependentAssembly>
+                <assemblyIdentity name="DocumentFormat.OpenXml" publicKeyToken="8fb06cb64d019a17" culture="neutral" />
+                <bindingRedirect oldVersion="0.0.0.0-2.15.0.0" newVersion="2.15.0.0"/>
+            </dependentAssembly>
+            <dependentAssembly>
+                <assemblyIdentity name="ExcelNumberFormat" publicKeyToken="23c6f5d73be07eca" culture="neutral" />
+                <bindingRedirect oldVersion="0.0.0.0-1.1.0.0" newVersion="1.1.0.0" />
+            </dependentAssembly>
+        </assemblyBinding>
+    </runtime>
 </configuration>
