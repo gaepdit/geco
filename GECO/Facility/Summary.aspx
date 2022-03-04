@@ -53,12 +53,6 @@
                 </td>
             </tr>
             <tr>
-                <th scope="row">Office:</th>
-                <td>
-                    <asp:Label ID="lblOffice" runat="server"></asp:Label>
-                </td>
-            </tr>
-            <tr>
                 <th scope="row">Longitude:</th>
                 <td>
                     <asp:Label ID="lblLongitude" runat="server"></asp:Label>
