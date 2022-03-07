@@ -87,7 +87,6 @@ Partial Class FacilitySummary
                 lblLongitude.Text = longitude.ToString()
                 lblCounty.Text = GetNullableString(dr.Item("strCountyName"))
                 lblDistrict.Text = GetNullableString(dr.Item("strDistrictName"))
-                lblOffice.Text = GetNullableString(dr.Item("strOfficeName"))
 
                 If Convert.IsDBNull(dr.Item("strDistrictResponsible")) OrElse
                     dr.Item("strDistrictResponsible").ToString <> "True" Then

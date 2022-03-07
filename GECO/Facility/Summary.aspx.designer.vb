@@ -95,15 +95,6 @@ Partial Public Class FacilitySummary
     Protected WithEvents hlDistrict As Global.System.Web.UI.WebControls.HyperLink
 
     '''<summary>
-    '''lblOffice control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblOffice As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
     '''lblLongitude control.
     '''</summary>
     '''<remarks>
