@@ -254,7 +254,6 @@ Partial Class Home_FacilityRequest
         If pnlNextSteps.Visible Then ComposeEmailMessagePart2()
     End Sub
 
-    <CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId:="count")>
     <CodeAnalysis.SuppressMessage("Style", "IDE0060:Remove unused parameter", MessageId:="count")>
     <Services.WebMethod()>
     <Script.Services.ScriptMethod()>
@@ -271,7 +270,6 @@ Partial Class Home_FacilityRequest
         Return filteredList.ToArray
     End Function
 
-    <CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId:="count")>
     <CodeAnalysis.SuppressMessage("Style", "IDE0060:Remove unused parameter", MessageId:="count")>
     <Services.WebMethod()>
     <Script.Services.ScriptMethod()>
