@@ -114,8 +114,8 @@
     <runtime>
         <assemblyBinding xmlns="urn:schemas-microsoft-com:asm.v1">
             <dependentAssembly>
-                <assemblyIdentity name="DocumentFormat.OpenXml" publicKeyToken="8fb06cb64d019a17" culture="neutral" />
-                <bindingRedirect oldVersion="0.0.0.0-2.15.0.0" newVersion="2.15.0.0"/>
+                <assemblyIdentity name="DocumentFormat.OpenXml" publicKeyToken="8fb06cb64d019a17" culture="neutral"/>
+                <bindingRedirect oldVersion="0.0.0.0-2.16.0.0" newVersion="2.16.0.0"/>
             </dependentAssembly>
             <dependentAssembly>
                 <assemblyIdentity name="ExcelNumberFormat" publicKeyToken="23c6f5d73be07eca" culture="neutral" />
