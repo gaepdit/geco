@@ -131,7 +131,6 @@ Partial Class es_default
 
     Private Sub ShowInitial()
 
-        pnlInitial.Visible = True
         pnlCurrentES.Visible = False
         pnlPastES.Visible = False
         cboESYear.SelectedIndex = 0
@@ -140,7 +139,6 @@ Partial Class es_default
 
     Private Sub ShowCurrent()
 
-        pnlInitial.Visible = False
         pnlCurrentES.Visible = True
         pnlPastES.Visible = False
         lblCurrentYear.Text = CStr(Now.Year - 1)
@@ -150,7 +148,6 @@ Partial Class es_default
 
     Private Sub ShowPast()
 
-        pnlInitial.Visible = False
         pnlCurrentES.Visible = False
         pnlPastES.Visible = True
 
@@ -158,7 +155,7 @@ Partial Class es_default
 
     Protected Sub btnCurrentES_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnCurrentES.Click
 
-        Response.Redirect("esform.aspx")
+        Response.Redirect("Form.aspx")
 
     End Sub
 

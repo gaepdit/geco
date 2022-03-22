@@ -142,9 +142,9 @@
     <Content Include="Login.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="ErrorPage.aspx" />
-    <Content Include="ES\confirm.aspx" />
-    <Content Include="ES\default.aspx" />
-    <Content Include="ES\esform.aspx" />
+    <Content Include="ES\Confirm.aspx" />
+    <Content Include="ES\Default.aspx" />
+    <Content Include="ES\Form.aspx" />
     <Content Include="EventRegistration\Default.aspx" />
     <Content Include="EventRegistration\Details.aspx" />
     <Content Include="EventRegistration\EventList.aspx" />
@@ -349,17 +349,17 @@
       <DependentUpon>ErrorPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="ES\confirm.aspx.designer.vb">
-      <DependentUpon>confirm.aspx</DependentUpon>
+    <Compile Include="ES\Confirm.aspx.designer.vb">
+      <DependentUpon>Confirm.aspx</DependentUpon>
     </Compile>
-    <Compile Include="ES\default.aspx.designer.vb">
-      <DependentUpon>default.aspx</DependentUpon>
+    <Compile Include="ES\Default.aspx.designer.vb">
+      <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
     <Compile Include="ES\es.master.designer.vb">
       <DependentUpon>es.master</DependentUpon>
     </Compile>
-    <Compile Include="ES\esform.aspx.designer.vb">
-      <DependentUpon>esform.aspx</DependentUpon>
+    <Compile Include="ES\Form.aspx.designer.vb">
+      <DependentUpon>Form.aspx</DependentUpon>
     </Compile>
     <Compile Include="EventRegistration\Default.aspx.designer.vb">
       <DependentUpon>Default.aspx</DependentUpon>
@@ -559,20 +559,20 @@
     <Compile Include="_Code\UrlHelper.vb" />
     <Compile Include="_Code\Email\UserAccountEmails.vb" />
     <Compile Include="_DAL\AnnualFees\ZipCode.vb" />
-    <Compile Include="ES\confirm.aspx.vb">
-      <DependentUpon>confirm.aspx</DependentUpon>
+    <Compile Include="ES\Confirm.aspx.vb">
+      <DependentUpon>Confirm.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="ES\default.aspx.vb">
-      <DependentUpon>default.aspx</DependentUpon>
+    <Compile Include="ES\Default.aspx.vb">
+      <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="ES\es.master.vb">
       <DependentUpon>es.master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="ES\esform.aspx.vb">
-      <DependentUpon>esform.aspx</DependentUpon>
+    <Compile Include="ES\Form.aspx.vb">
+      <DependentUpon>Form.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="EventRegistration\Default.aspx.vb">

@@ -1,4 +1,4 @@
-<%@ Page Language="VB" MaintainScrollPositionOnPostback="true" MasterPageFile="es.master" AutoEventWireup="false" Inherits="GECO.es_confirm" Title="GECO - Confirmation" CodeBehind="confirm.aspx.vb" %>
+<%@ Page Language="VB" MaintainScrollPositionOnPostback="true" MasterPageFile="es.master" AutoEventWireup="false" Inherits="GECO.es_confirm" Title="GECO - Confirmation" CodeBehind="Confirm.aspx.vb" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <asp:Panel ID="pnlTop" runat="server" Width="100%">

@@ -23,15 +23,6 @@ Partial Public Class es_default
     Protected WithEvents cboESYear As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
-    '''pnlInitial control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents pnlInitial As Global.System.Web.UI.WebControls.Panel
-
-    '''<summary>
     '''pnlCurrentES control.
     '''</summary>
     '''<remarks>
@@ -174,4 +165,16 @@ Partial Public Class es_default
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblPastYear2 As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''Master property.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated property.
+    '''</remarks>
+    Public Shadows ReadOnly Property Master() As GECO.MainLayout
+        Get
+            Return CType(MyBase.Master, GECO.MainLayout)
+        End Get
+    End Property
 End Class

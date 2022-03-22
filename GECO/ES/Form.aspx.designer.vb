@@ -11,7 +11,7 @@ Option Strict On
 Option Explicit On
 
 
-Partial Public Class es_esform
+Partial Public Class es_form
 
     '''<summary>
     '''UpdatePanel1 control.

@@ -3,7 +3,7 @@ Imports System.DateTime
 Imports System.Math
 Imports GECO.GecoModels
 
-Partial Class es_esform
+Partial Class es_form
     Inherits Page
 
     Private SavedES As Boolean

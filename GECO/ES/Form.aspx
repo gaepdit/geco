@@ -1,5 +1,5 @@
 <%@ Page Language="VB" MaintainScrollPositionOnPostback="true" MasterPageFile="es.master" AutoEventWireup="false"
-    Inherits="GECO.es_esform" Title="GECO - Emissions Statement" CodeBehind="esform.aspx.vb" %>
+    Inherits="GECO.es_form" Title="GECO - Emissions Statement" CodeBehind="Form.aspx.vb" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 
