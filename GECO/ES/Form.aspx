@@ -1,736 +1,608 @@
-<%@ Page Language="VB" MaintainScrollPositionOnPostback="true" MasterPageFile="es.master" AutoEventWireup="false"
-    Inherits="GECO.es_form" Title="GECO - Emissions Statement" CodeBehind="Form.aspx.vb" %>
+<%@ Page Title="GECO - Emissions Statement Entry" Language="VB" MasterPageFile="~/Main.master"
+    AutoEventWireup="false" Inherits="GECO.es_form" CodeBehind="Form.aspx.vb" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+<%@ MasterType VirtualPath="~/Main.master" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="Server">
+
+    <h1>Emissions Statement</h1>
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
+
             <asp:Panel ID="pnlFacility" runat="server">
-                <br />
-                <br />
                 <asp:MultiView ID="mltiViewESFacility" runat="server" ActiveViewIndex="0">
+
                     <asp:View ID="ViewESFacilityLocation" runat="server">
-                        <table>
+
+                        <h2>Facility Location</h2>
+
+                        <div class="label-highlight-mild">
+                            <p>
+                                Facility Location cannot be changed. The address shown is for the facility's physical street address.
+                                If errors exist for the facility name or location, contact the Air Protection Branch Permitting Program.
+                            </p>
+                        </div>
+
+                        <table class="table-simple table-list">
                             <tr>
-                                <td colspan="2">
-                                    <strong><span style="color: #4169e1; font-size: 12pt;">Facility Location</span></strong>
+                                <th>Facility Name:</th>
+                                <td>
+                                    <asp:Label ID="txtFacilityName" runat="server" />
                                 </td>
                             </tr>
                             <tr>
-                                <td colspan="2"></td>
-                            </tr>
-                            <tr>
-                                <td align="right" valign="middle">Facility Name:
-                                </td>
-                                <td valign="middle">
-                                    <asp:TextBox ID="txtFacilityName" runat="server" BorderColor="White" BorderStyle="Solid"
-                                        ReadOnly="True" BorderWidth="1px"></asp:TextBox>
+                                <th>Street Address:</th>
+                                <td>
+                                    <asp:Label ID="txtLocationAddress" runat="server" />
                                 </td>
                             </tr>
                             <tr>
-                                <td align="right" valign="middle">Street Address:
-                                </td>
-                                <td valign="middle">
-                                    <asp:TextBox ID="txtLocationAddress" runat="server" BorderColor="White" BorderStyle="Solid"
-                                        ReadOnly="True" BorderWidth="1px"></asp:TextBox>
+                                <th>City:</th>
+                                <td>
+                                    <asp:Label ID="txtCity" runat="server" />
                                 </td>
                             </tr>
                             <tr>
-                                <td align="right" valign="middle" style="width: 35%; height: 26px;">City:
-                                </td>
-                                <td valign="middle">
-                                    <asp:TextBox ID="txtCity" runat="server" BorderColor="White" BorderStyle="Solid"
-                                        ReadOnly="True" BorderWidth="1px"></asp:TextBox>
+                                <th>State:</th>
+                                <td>
+                                    <asp:Label ID="txtState" runat="server" />
                                 </td>
                             </tr>
                             <tr>
-                                <td align="right" valign="middle">State:
-                                </td>
-                                <td valign="middle" style="height: 24px;">
-                                    <asp:TextBox ID="txtState" runat="server" BorderColor="White" BorderStyle="Solid"
-                                        ReadOnly="True" BorderWidth="1px">GA</asp:TextBox>
+                                <th>Zip:</th>
+                                <td>
+                                    <asp:Label ID="txtZipCode" runat="server" />
                                 </td>
                             </tr>
                             <tr>
-                                <td align="right" valign="middle">Zip:
+                                <th>County:</th>
+                                <td>
+                                    <asp:Label ID="txtCounty" runat="server" />
                                 </td>
-                                <td valign="middle">
-                                    <asp:TextBox ID="txtZipCode" runat="server" BorderColor="White" BorderStyle="Solid"
-                                        ReadOnly="True" BorderWidth="1px"></asp:TextBox>
+                            </tr>
+                        </table>
+
+                        <h2>Geocoordinates</h2>
+
+                        <table class="table-simple table-list">
+                            <tr>
+                                <th></th>
+                                <td>
+                                    <asp:Button ID="btnLatLongConvert" runat="server" CausesValidation="False" CssClass="button-tool"
+                                        Text="Convert from deg-min-sec" />
                                 </td>
                             </tr>
                             <tr>
-                                <td align="right" valign="middle">County:
-                                </td>
-                                <td valign="middle">
-                                    <asp:TextBox ID="txtCounty" runat="server" BorderColor="White" BorderStyle="Solid"
-                                        ReadOnly="True" BorderWidth="1px"></asp:TextBox>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td align="right" valign="top"></td>
-                                <td valign="top">&nbsp;
-                                </td>
-                            </tr>
-                            <tr>
-                                <td colspan="2">
-                                    <strong><span style="color: #4169e1; font-size: 12pt;">Geocoordinates</span></strong>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td align="right" valign="middle">Latitude:
-                                </td>
-                                <td valign="middle">
-                                    <asp:TextBox ID="txtYCoordinate" runat="server" BorderColor="CornflowerBlue" BorderStyle="Solid"
-                                        BorderWidth="1px" MaxLength="9"></asp:TextBox>
+                                <th>
+                                    <asp:Label AssociatedControlID="txtYCoordinate" runat="server">Latitude:</asp:Label>
+                                </th>
+                                <td>
+                                    <asp:TextBox ID="txtYCoordinate" runat="server" MaxLength="9" CssClass="input-small" />
                                     degrees North
                                 </td>
                             </tr>
                             <tr>
-                                <td align="right" valign="middle"></td>
-                                <td valign="middle">
+                                <th></th>
+                                <td>
                                     <act:FilteredTextBoxExtender ID="FilteredTextBoxExtender10" runat="server"
                                         EnableViewState="False" FilterType="Custom, Numbers" TargetControlID="txtYCoordinate"
-                                        ValidChars=".">
-                                    </act:FilteredTextBoxExtender>
+                                        ValidChars="." />
                                     <asp:RequiredFieldValidator ID="reqValYCoordinate" runat="server" ControlToValidate="txtYCoordinate"
-                                        CssClass="validator" Display="Dynamic" Width="100%" ErrorMessage="Latitude is required."></asp:RequiredFieldValidator>
+                                        CssClass="validator" Display="Dynamic" Width="100%" ErrorMessage="Latitude is required." />
                                     <asp:RangeValidator ID="rngValYCoordinate" runat="server" ControlToValidate="txtYCoordinate"
-                                        CssClass="validator" Width="100%" ErrorMessage="Latitude outside county limits."
-                                        Type="Double" Display="Dynamic"></asp:RangeValidator>
+                                        CssClass="validator" Width="100%" ErrorMessage="Latitude is outside county limits."
+                                        Type="Double" Display="Dynamic" />
                                 </td>
                             </tr>
                             <tr>
-                                <td align="right" valign="middle">Longitude:
-                                </td>
-                                <td valign="middle">
-                                    <asp:TextBox ID="txtXCoordinate" runat="server" BorderColor="CornflowerBlue" BorderStyle="Solid"
-                                        BorderWidth="1px" MaxLength="9"></asp:TextBox>
+                                <th>
+                                    <asp:Label AssociatedControlID="txtXCoordinate" runat="server">Longitude:</asp:Label>
+                                </th>
+                                <td>
+                                    <asp:TextBox ID="txtXCoordinate" runat="server" MaxLength="9" CssClass="input-small" />
                                     degrees West
                                 </td>
                             </tr>
                             <tr>
-                                <td align="right" valign="middle"></td>
-                                <td valign="middle">
+                                <th></th>
+                                <td>
                                     <act:FilteredTextBoxExtender ID="FilteredTextBoxExtender3" runat="server"
-                                        FilterType="Custom, Numbers" TargetControlID="txtXCoordinate" ValidChars=".">
-                                    </act:FilteredTextBoxExtender>
+                                        FilterType="Custom, Numbers" TargetControlID="txtXCoordinate" ValidChars="." />
                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtXCoordinate"
-                                        CssClass="validator" Display="Dynamic" Width="100%" ErrorMessage="Longitude is required."></asp:RequiredFieldValidator>
+                                        CssClass="validator" Display="Dynamic" Width="100%" ErrorMessage="Longitude is required." />
                                     <asp:RangeValidator ID="rngValXCoordinate" runat="server" ControlToValidate="txtXCoordinate"
-                                        CssClass="validator" Width="100%" ErrorMessage="Longitude outside county limits."
-                                        Type="Double" Display="Dynamic"></asp:RangeValidator>
+                                        CssClass="validator" Width="100%" ErrorMessage="Longitude is outside county limits."
+                                        Type="Double" Display="Dynamic" />
                                 </td>
                             </tr>
                             <tr>
-                                <td align="right" valign="middle"></td>
-                                <td valign="middle">
-                                    <asp:Button ID="btnLatLongConvert" runat="server" CausesValidation="False"
-                                        Text="Latitude-Longitude Converter" />
+                                <th>
+                                    <asp:Label AssociatedControlID="cboHorizontalCollectionCode" runat="server">Horizontal Collection Method:</asp:Label>
+                                </th>
+                                <td>
+                                    <asp:DropDownList ID="cboHorizontalCollectionCode" runat="server" Width="90%" />
                                 </td>
                             </tr>
                             <tr>
-                                <td align="right" valign="middle">Horizontal Collection Method:
-                                </td>
-                                <td valign="middle"></td>
-                            </tr>
-                            <tr>
-                                <td colspan="2" valign="middle">
-                                    <asp:DropDownList ID="cboHorizontalCollectionCode" runat="server" Width="90%"></asp:DropDownList>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td align="right" valign="middle"></td>
-                                <td valign="middle">
+                                <th></th>
+                                <td>
                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="cboHorizontalCollectionCode"
-                                        Display="Dynamic" Width="100%" ErrorMessage="Select horizontal collection method."
-                                        InitialValue=" --Select a Method-- "></asp:RequiredFieldValidator>
+                                        Display="Dynamic" Width="100%" ErrorMessage="Horizontal collection method is required."
+                                        InitialValue=" --Select a Method-- " CssClass="validator" />
                                 </td>
                             </tr>
                             <tr>
-                                <td align="right" valign="middle">Horizontal Accuracy Measure:
-                                </td>
-                                <td valign="middle">
-                                    <asp:TextBox ID="txtHorizontalAccuracyMeasure" runat="server" BorderColor="CornflowerBlue"
-                                        BorderStyle="Solid" BorderWidth="1px" MaxLength="6"></asp:TextBox>
+                                <th>
+                                    <asp:Label AssociatedControlID="txtHorizontalAccuracyMeasure" runat="server">Horizontal Accuracy Measure:</asp:Label>
+                                </th>
+                                <td>
+                                    <asp:TextBox ID="txtHorizontalAccuracyMeasure" runat="server" MaxLength="6" CssClass="input-small" />
                                     meters
                                 </td>
                             </tr>
                             <tr>
-                                <td align="right" valign="middle"></td>
-                                <td valign="middle">
+                                <th></th>
+                                <td>
                                     <act:FilteredTextBoxExtender ID="FilteredTextBoxExtender11" runat="server"
                                         EnableViewState="False" FilterType="Custom, Numbers" TargetControlID="txtHorizontalAccuracyMeasure"
-                                        ValidChars=".">
-                                    </act:FilteredTextBoxExtender>
+                                        ValidChars="." />
                                     <asp:RangeValidator ID="RangeValidator7" runat="server" ControlToValidate="txtHorizontalAccuracyMeasure"
-                                        Width="100%" ErrorMessage="Horizontal accuracy measure cannot be zero."
-                                        MaximumValue="1000" MinimumValue="0.01" Type="Double"></asp:RangeValidator>
+                                        Width="100%" ErrorMessage="Horizontal accuracy measure must be between 0.01 and 1000."
+                                        MaximumValue="1000" MinimumValue="0.01" Type="Double" CssClass="validator" />
                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator13" runat="server" ControlToValidate="txtHorizontalAccuracyMeasure"
-                                        CssClass="validator" Display="Dynamic" Width="100%" ErrorMessage="Horizontal accuracy measure is required."></asp:RequiredFieldValidator>
+                                        CssClass="validator" Display="Dynamic" Width="100%" ErrorMessage="Horizontal accuracy measure is required." />
                                 </td>
                             </tr>
                             <tr>
-                                <td align="right" valign="middle">Horizontal Datum Reference Code:
-                                </td>
-                                <td valign="middle">
-                                    <asp:DropDownList ID="cboHorizontalReferenceCode" runat="server"></asp:DropDownList>
+                                <th>
+                                    <asp:Label AssociatedControlID="cboHorizontalReferenceCode" runat="server">Horizontal Datum Reference Code:</asp:Label>
+                                </th>
+                                <td>
+                                    <asp:DropDownList ID="cboHorizontalReferenceCode" runat="server" />
                                 </td>
                             </tr>
                             <tr>
-                                <td align="right" valign="middle"></td>
-                                <td valign="middle">
+                                <th></th>
+                                <td>
                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator11" runat="server" ControlToValidate="cboHorizontalReferenceCode"
-                                        Display="Dynamic" Width="100%" ErrorMessage="Select horizontal datum reference."
-                                        InitialValue=" --Select a Code-- "></asp:RequiredFieldValidator>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td align="right" valign="middle"></td>
-                                <td valign="middle">&nbsp;
-                                </td>
-                            </tr>
-                            <tr>
-                                <td colspan="2" valign="top">
-                                    <asp:Button ID="btnContinueToContact" runat="server" CssClass="button-large" 
-                                        Text="Continue to Contact Information" />
-                                    &nbsp;
-                                    <asp:Button ID="btnCancelLocation" runat="server" Text="Cancel" CausesValidation="False" CssClass="button-cancel" />
+                                        Display="Dynamic" Width="100%" ErrorMessage="Horizontal datum reference is required."
+                                        InitialValue=" --Select a Code-- " CssClass="validator" />
                                 </td>
                             </tr>
                         </table>
+
+                        <p>
+                            <asp:Button ID="btnContinueToContact" runat="server" Text="Continue to Contact Information" CssClass="button-large" />
+                            <asp:Button ID="btnCancelLocation" runat="server" Text="Cancel" CausesValidation="False" CssClass="button-cancel" />
+                        </p>
                     </asp:View>
 
                     <asp:View ID="ViewESFacilityContact" runat="server">
-                        <table border="0" cellpadding="2" cellspacing="1" align="center">
+                        <h2>Contact Information</h2>
+                        <p class="label-highlight-mild">Verify the information for the person to contact regarding the Emissions Statement.</p>
+
+                        <table class="table-simple table-list">
                             <tr>
-                                <td colspan="2">
-                                    <strong><span style="color: #4169e1; font-size: 12pt;">Contact Information</span></strong>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td colspan="2">
-                                    <span style="font-size: 10pt;">(Contact for the Emissions Statement)</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td align="right" valign="middle">Prefix:
-                                </td>
-                                <td valign="middle">
-                                    <asp:TextBox ID="txtContactPrefix" runat="server" BorderColor="CornflowerBlue"
-                                        BorderStyle="Solid" BorderWidth="1px" MaxLength="15"></asp:TextBox>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td align="right" valign="middle">First Name:
-                                </td>
-                                <td valign="middle">
-                                    <asp:TextBox ID="txtContactFirstName" runat="server" BorderColor="CornflowerBlue"
-                                        BorderStyle="Solid" BorderWidth="1px" MaxLength="35"></asp:TextBox>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td align="right" valign="middle"></td>
-                                <td valign="middle">
-                                    <asp:RequiredFieldValidator ID="reqValFirstName" runat="server" ControlToValidate="txtContactFirstName"
-                                        Display="Dynamic" ErrorMessage="First name is required."></asp:RequiredFieldValidator>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td align="right" valign="middle">Last Name:
-                                </td>
-                                <td valign="middle">
-                                    <asp:TextBox ID="txtContactLastName" runat="server" BorderColor="CornflowerBlue"
-                                        BorderStyle="Solid" BorderWidth="1px" MaxLength="35"></asp:TextBox>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td align="right" valign="middle"></td>
-                                <td valign="middle">
-                                    <asp:RequiredFieldValidator ID="reqValLastName" runat="server" ControlToValidate="txtContactLastName"
-                                        Display="Dynamic" Width="100%" ErrorMessage="Last name is required."></asp:RequiredFieldValidator>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td align="right" valign="middle">Title/Position:
-                                </td>
-                                <td valign="middle">
-                                    <asp:TextBox ID="txtContactTitle" runat="server" BorderColor="CornflowerBlue" BorderStyle="Solid"
-                                        BorderWidth="1px" MaxLength="100"></asp:TextBox>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td align="right" valign="middle"></td>
-                                <td valign="middle">
-                                    <asp:RequiredFieldValidator ID="reqValTitle" runat="server" ControlToValidate="txtContactTitle"
-                                        Display="Dynamic" Width="100%" ErrorMessage="Contact title/position is required."></asp:RequiredFieldValidator>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td align="right" valign="middle">Email Address:
-                                </td>
-                                <td valign="middle">
-                                    <asp:TextBox ID="txtContactEmail" runat="server" BorderColor="CornflowerBlue" BorderStyle="Solid"
-                                        BorderWidth="1px"></asp:TextBox>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td align="right" valign="middle"></td>
-                                <td valign="middle">
-                                    <asp:RequiredFieldValidator ID="reqvalEmail1" runat="server" ControlToValidate="txtContactEmail"
-                                        Display="Dynamic" ErrorMessage="Email address is required." Width="100%"></asp:RequiredFieldValidator>
-                                    <asp:RegularExpressionValidator ID="regExpValEmail1" runat="server" ControlToValidate="txtContactEmail"
-                                        ErrorMessage="Email address format is incorrect."
-                                        ValidationExpression="\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" Display="Dynamic"
-                                        Width="100%"></asp:RegularExpressionValidator>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td align="right" valign="middle">Phone:
-                                </td>
-                                <td valign="middle">
-                                    <asp:TextBox ID="txtOfficePhoneNbr" runat="server" BorderColor="CornflowerBlue" BorderStyle="Solid"
-                                        BorderWidth="1px" MaxLength="30"></asp:TextBox>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td align="right" valign="middle"></td>
-                                <td valign="middle">
-                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="txtOfficePhoneNbr"
-                                        Display="Dynamic" ErrorMessage="Phone number is required." Width="100%"></asp:RequiredFieldValidator>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td align="right" valign="middle">Fax:
-                                </td>
-                                <td valign="middle">
-                                    <asp:TextBox ID="txtFaxNbr" runat="server" BorderColor="CornflowerBlue" BorderStyle="Solid"
-                                        BorderWidth="1px" MaxLength="10"></asp:TextBox>
+                                <th>
+                                    <asp:Label AssociatedControlID="txtContactPrefix" runat="server">Prefix:</asp:Label>
+                                </th>
+                                <td>
+                                    <asp:TextBox ID="txtContactPrefix" runat="server" MaxLength="15" />
                                     (optional)
                                 </td>
                             </tr>
                             <tr>
-                                <td align="right" valign="middle"></td>
-                                <td valign="middle">
+                                <th>
+                                    <asp:Label AssociatedControlID="txtContactFirstName" runat="server">First Name:</asp:Label>
+                                </th>
+                                <td>
+                                    <asp:TextBox ID="txtContactFirstName" runat="server" MaxLength="35" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <th></th>
+                                <td>
+                                    <asp:RequiredFieldValidator ID="reqValFirstName" runat="server" ControlToValidate="txtContactFirstName"
+                                        Display="Dynamic" CssClass="validator" ErrorMessage="First name is required." />
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <asp:Label AssociatedControlID="txtContactLastName" runat="server">Last Name:</asp:Label>
+                                </th>
+                                <td>
+                                    <asp:TextBox ID="txtContactLastName" runat="server" MaxLength="35" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <th></th>
+                                <td>
+                                    <asp:RequiredFieldValidator ID="reqValLastName" runat="server" ControlToValidate="txtContactLastName"
+                                        Display="Dynamic" Width="100%" CssClass="validator" ErrorMessage="Last name is required." />
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <asp:Label AssociatedControlID="txtContactTitle" runat="server">Title/Position:</asp:Label>
+                                </th>
+                                <td>
+                                    <asp:TextBox ID="txtContactTitle" runat="server" MaxLength="100" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <th></th>
+                                <td>
+                                    <asp:RequiredFieldValidator ID="reqValTitle" runat="server" ControlToValidate="txtContactTitle"
+                                        Display="Dynamic" Width="100%" CssClass="validator" ErrorMessage="Contact title/position is required." />
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <asp:Label AssociatedControlID="txtContactEmail" runat="server">Email Address:</asp:Label>
+                                </th>
+                                <td>
+                                    <asp:TextBox ID="txtContactEmail" runat="server" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <th></th>
+                                <td>
+                                    <asp:RequiredFieldValidator ID="reqvalEmail1" runat="server" ControlToValidate="txtContactEmail"
+                                        Display="Dynamic" CssClass="validator" ErrorMessage="Email address is required." Width="100%" />
+                                    <asp:RegularExpressionValidator ID="regExpValEmail1" runat="server" ControlToValidate="txtContactEmail"
+                                        ErrorMessage="Email address format is incorrect."
+                                        ValidationExpression="\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" Display="Dynamic"
+                                        Width="100%" CssClass="validator" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <asp:Label AssociatedControlID="txtOfficePhoneNbr" runat="server">Phone:</asp:Label>
+                                </th>
+                                <td>
+                                    <asp:TextBox ID="txtOfficePhoneNbr" runat="server" MaxLength="30" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <th></th>
+                                <td>
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="txtOfficePhoneNbr"
+                                        Display="Dynamic" CssClass="validator" ErrorMessage="Phone number is required." Width="100%" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <asp:Label AssociatedControlID="txtFaxNbr" runat="server">Fax:</asp:Label>
+                                </th>
+                                <td>
+                                    <asp:TextBox ID="txtFaxNbr" runat="server" MaxLength="10" />
+                                    (optional)
+                                </td>
+                            </tr>
+                            <tr>
+                                <th></th>
+                                <td>
                                     <act:FilteredTextBoxExtender ID="FilteredTextBoxExtender16" runat="server"
-                                        FilterType="Numbers" TargetControlID="txtFaxNbr">
-                                    </act:FilteredTextBoxExtender>
+                                        FilterType="Numbers" TargetControlID="txtFaxNbr" />
                                     <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="txtFaxNbr"
-                                        Display="Dynamic" ErrorMessage="Fax number must be 10 digits; no dashes, parentheses or spaces allowed."
-                                        ValidationExpression="\d{10}"></asp:RegularExpressionValidator>
+                                        Display="Dynamic" CssClass="validator" ValidationExpression="\d{10}"
+                                        ErrorMessage="Fax number must be 10 digits; no dashes, parentheses or spaces allowed." />
                                 </td>
                             </tr>
                             <tr>
-                                <td align="right" valign="middle">Company Name:
-                                </td>
-                                <td valign="middle">
-                                    <asp:TextBox ID="txtContactCompanyName" runat="server" BorderColor="CornflowerBlue"
-                                        BorderStyle="Solid" BorderWidth="1px" MaxLength="100"></asp:TextBox>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td align="right" valign="middle"></td>
-                                <td valign="middle">
-                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="txtContactCompanyName"
-                                        Display="Dynamic" ErrorMessage="Contact company name is required."></asp:RequiredFieldValidator>
+                                <th>
+                                    <asp:Label AssociatedControlID="txtContactCompanyName" runat="server">Company Name:</asp:Label>
+                                </th>
+                                <td>
+                                    <asp:TextBox ID="txtContactCompanyName" runat="server" MaxLength="100" />
                                 </td>
                             </tr>
                             <tr>
-                                <td align="right" valign="middle">Mailing Address:
-                                </td>
-                                <td valign="middle">
-                                    <asp:TextBox ID="txtContactAddress1" runat="server" BorderColor="CornflowerBlue"
-                                        BorderStyle="Solid" BorderWidth="1px" MaxLength="100"></asp:TextBox>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td align="right" valign="middle"></td>
-                                <td valign="middle">
-                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ControlToValidate="txtContactAddress1"
-                                        Display="Dynamic" ErrorMessage="Mailing address is required."></asp:RequiredFieldValidator>
+                                <th></th>
+                                <td>
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server"
+                                        ControlToValidate="txtContactCompanyName" CssClass="validator"
+                                        Display="Dynamic" ErrorMessage="Contact company name is required." />
                                 </td>
                             </tr>
                             <tr>
-                                <td align="right" valign="middle">City:
-                                </td>
-                                <td valign="middle">
-                                    <asp:TextBox ID="txtContactCity" runat="server" BorderColor="CornflowerBlue" BorderStyle="Solid"
-                                        BorderWidth="1px" MaxLength="50"></asp:TextBox>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td align="right" valign="middle"></td>
-                                <td valign="middle">
-                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ControlToValidate="txtContactCity"
-                                        Display="Dynamic" ErrorMessage="City is required."></asp:RequiredFieldValidator>
+                                <th>
+                                    <asp:Label AssociatedControlID="txtContactAddress1" runat="server">Mailing Address:</asp:Label>
+                                </th>
+                                <td>
+                                    <asp:TextBox ID="txtContactAddress1" runat="server" MaxLength="100" />
                                 </td>
                             </tr>
                             <tr>
-                                <td align="right" valign="middle">State:
-                                </td>
-                                <td valign="middle">
-                                    <asp:DropDownList ID="cboContactState" runat="server">
-                                    </asp:DropDownList>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td align="right" valign="middle"></td>
-                                <td valign="middle">
-                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator9" runat="server" ControlToValidate="cboContactState"
-                                        Display="Dynamic" ErrorMessage="Select state for contact mailing address." InitialValue=" -- "></asp:RequiredFieldValidator>
+                                <th></th>
+                                <td>
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server"
+                                        ControlToValidate="txtContactAddress1" CssClass="validator"
+                                        Display="Dynamic" ErrorMessage="Mailing address is required." />
                                 </td>
                             </tr>
                             <tr>
-                                <td align="right" valign="middle">Zip:
+                                <th>
+                                    <asp:Label AssociatedControlID="txtContactCity" runat="server">City:</asp:Label>
+                                </th>
+                                <td>
+                                    <asp:TextBox ID="txtContactCity" runat="server" MaxLength="50" />
                                 </td>
-                                <td valign="middle">
-                                    <asp:TextBox ID="txtContactZipCode" runat="server" BorderColor="CornflowerBlue" BorderStyle="Solid"
-                                        BorderWidth="1px" MaxLength="5" CssClass="input-small"></asp:TextBox>
+                            </tr>
+                            <tr>
+                                <th></th>
+                                <td>
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server"
+                                        ControlToValidate="txtContactCity" CssClass="validator"
+                                        Display="Dynamic" ErrorMessage="City is required." />
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <asp:Label AssociatedControlID="cboContactState" runat="server">State:</asp:Label>
+                                </th>
+                                <td>
+                                    <asp:DropDownList ID="cboContactState" runat="server" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <th></th>
+                                <td>
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator9" runat="server"
+                                        ControlToValidate="cboContactState" CssClass="validator" Display="Dynamic"
+                                        ErrorMessage="Select state for contact mailing address." InitialValue=" -- " />
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <asp:Label AssociatedControlID="txtContactZipCode" runat="server">Zip:</asp:Label>
+                                </th>
+                                <td>
+                                    <asp:TextBox ID="txtContactZipCode" runat="server" MaxLength="5" CssClass="input-small" />
                                     -
-                                    <asp:TextBox ID="txtContactZipPlus4" runat="server" BorderColor="CornflowerBlue" BorderStyle="Solid"
-                                        BorderWidth="1px" MaxLength="4" CssClass="input-small"></asp:TextBox>&nbsp;
-                                    plus4 is optional
+                                    <asp:TextBox ID="txtContactZipPlus4" runat="server" MaxLength="4" CssClass="input-small" />
+                                    (plus4 is optional)
                                 </td>
                             </tr>
                             <tr>
-                                <td align="right" valign="middle"></td>
-                                <td valign="middle">
+                                <th></th>
+                                <td>
                                     <act:FilteredTextBoxExtender ID="FilteredTextBoxExtender17" runat="server"
-                                        FilterType="Numbers" TargetControlID="txtContactZipCode">
-                                    </act:FilteredTextBoxExtender>
+                                        FilterType="Numbers" TargetControlID="txtContactZipCode" />
                                     <act:FilteredTextBoxExtender ID="FilteredTextBoxExtender18" runat="server"
-                                        FilterType="Numbers" TargetControlID="txtContactZipPlus4">
-                                    </act:FilteredTextBoxExtender>
-                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator10" runat="server" ControlToValidate="txtContactZipCode"
-                                        Display="Dynamic" ErrorMessage="Zip code is required." Width="100%"></asp:RequiredFieldValidator>
-                                    <asp:RegularExpressionValidator ID="RegularExpressionValidator4" runat="server" ControlToValidate="txtContactZipCode"
+                                        FilterType="Numbers" TargetControlID="txtContactZipPlus4" />
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator10" runat="server"
+                                        ControlToValidate="txtContactZipCode" CssClass="validator"
+                                        Display="Dynamic" ErrorMessage="Zip code is required." Width="100%" />
+                                    <asp:RegularExpressionValidator ID="RegularExpressionValidator4" runat="server"
+                                        ControlToValidate="txtContactZipCode" CssClass="validator"
                                         Display="Dynamic" ErrorMessage="Zip code must be 5 digits."
-                                        ValidationExpression="\d{5}" Width="100%"></asp:RegularExpressionValidator>
-                                    <asp:RegularExpressionValidator ID="RegularExpressionValidator5" runat="server" ControlToValidate="txtContactZipPlus4"
+                                        ValidationExpression="\d{5}" Width="100%" />
+                                    <asp:RegularExpressionValidator ID="RegularExpressionValidator5" runat="server"
+                                        ControlToValidate="txtContactZipPlus4" CssClass="validator"
                                         Display="Dynamic" ErrorMessage="Zip Plus4 must be 4 digits."
-                                        ValidationExpression="\d{4}" Width="100%"></asp:RegularExpressionValidator>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td align="right" valign="middle">&nbsp;
-                                </td>
-                                <td valign="middle">&nbsp;
-                                </td>
-                            </tr>
-                            <tr>
-                                <td colspan="2" valign="top">
-                                    <asp:Button ID="btnContinueToEmissions" runat="server" CssClass="button-large"
-                                        Text="Continue to Emissions Information" />
-                                    &nbsp;
-                                    <asp:Button ID="btnbackToLocation" runat="server" Text="Back" CausesValidation="False" />
-                                    &nbsp;
-                                    <asp:Button ID="btnCancelContact" runat="server" Text="Cancel" CausesValidation="False" CssClass="button-cancel" />
+                                        ValidationExpression="\d{4}" Width="100%" />
                                 </td>
                             </tr>
                         </table>
+
+                        <p>
+                            <asp:Button ID="btnContinueToEmissions" runat="server" CssClass="button-large"
+                                Text="Continue to Emissions Information" />
+                            <asp:Button ID="btnbackToLocation" runat="server" Text="Back" CausesValidation="False" />
+                            <asp:Button ID="btnCancelContact" runat="server" Text="Cancel" CausesValidation="False" CssClass="button-cancel" />
+                        </p>
                     </asp:View>
 
                     <asp:View ID="ViewESFacilityDescription" runat="server">
-                        <table border="0" cellpadding="2" cellspacing="1">
-                            <tr>
-                                <td style="width: 682px">
-                                    <strong><span style="color: #4169e1; font-size: 12pt;">Emissions Information</span></strong>
-                                    <br />
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="width: 682px">
-                                    <strong>Facility-wide VOC and NO<sub>x</sub> emissions</strong>
-                                    <br />
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="width: 682px">
-                                    <table>
-                                        <tr>
-                                            <td style="width: 59%" valign="top">Were the facility's actual annual emissions of
-                                                VOC and NO<sub>x</sub> both less than or equal to 25 tons per year in <% = Now.Year - 1 %>?
-                                            </td>
-                                            <td align="left" style="width: 50%" valign="top">
-                                                &nbsp;
-                                                <asp:DropDownList ID="cboYesNo" runat="server" AutoPostBack="True">
-                                                    <asp:ListItem Selected="True">--</asp:ListItem>
-                                                    <asp:ListItem>NO</asp:ListItem>
-                                                    <asp:ListItem>YES</asp:ListItem>
-                                                </asp:DropDownList>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td></td>
-                                            <td align="left">
-                                                <asp:RequiredFieldValidator ID="reqValYesNo" runat="server" ControlToValidate="cboYesNo"
-                                                    Display="Dynamic" ErrorMessage="Select Yes or No." Font-Bold="False"
-                                                    InitialValue="--"></asp:RequiredFieldValidator>
-                                                <br />
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </td>
-                            </tr>
-                        </table>
+                        <h2>Facility-wide VOC and NO<sub>x</sub> Emissions Information</h2>
+
+                        <p>
+                            <asp:Label AssociatedControlID="cboYesNo" runat="server">
+                                Were the facility's actual annual emissions of VOC and NO<sub>x</sub> both 
+                                <em>less than or equal to</em> 25&nbsp;tons&nbsp;per&nbsp;year in <% = Now.Year - 1 %>?
+                            </asp:Label>
+                        </p>
+
+                        <div>
+                            <asp:DropDownList ID="cboYesNo" runat="server" AutoPostBack="True">
+                                <asp:ListItem Selected="True">--</asp:ListItem>
+                                <asp:ListItem>NO</asp:ListItem>
+                                <asp:ListItem>YES</asp:ListItem>
+                            </asp:DropDownList>
+
+                            <asp:RequiredFieldValidator ID="reqValYesNo" runat="server" ControlToValidate="cboYesNo"
+                                Display="Dynamic" ErrorMessage="Select Yes or No." CssClass="validator"
+                                InitialValue="--" />
+                        </div>
+
+                        <p class="label-highlight-mild" id="pEmissionsHelpYes" runat="server">
+                            A response of "YES" in the drop-down box indicates that your facility's actual emissions of both 
+                            NO<sub>x</sub> and VOC are 25&nbsp;tons&nbsp;per&nbsp;year or less and will cause your facility to opt out 
+                            of the Emissions Statement process.
+                        </p>
+
+                        <p class="label-highlight-mild" id="pEmissionsHelpNo" runat="server">
+                            Choosing "NO" opts the facility into the Emissions Statement process. You must provide the actual 
+                            emission quantities for both NO<sub>x</sub> and VOC.
+                        </p>
+
                         <asp:Panel ID="pnlEmissions" runat="server" Visible="False">
-                            <table>
+                            <table class="table-simple table-list">
                                 <tr>
-                                    <td></td>
-                                    <td align="left">
-                                        <asp:Label ID="lblVOCNOXZero" runat="server" ForeColor="Red"></asp:Label>
+                                    <th>Actual annual facility-wide VOC emissions:</th>
+                                    <td>
+                                        <asp:TextBox ID="txtVOC" runat="server" MaxLength="7" CssClass="input-small">0</asp:TextBox>
+                                        tons/year
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td align="right" valign="middle">Actual annual facility-wide <br />
-                                        VOC emissions:</td>
-                                    <td align="left" valign="middle">
-                                        &nbsp;
-                                        <asp:TextBox ID="txtVOC" runat="server" MaxLength="7">0</asp:TextBox>
-                                        &nbsp;tons/year
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td align="left">
+                                    <th></th>
+                                    <td>
                                         <act:FilteredTextBoxExtender ID="FilteredTextBoxExtender1" runat="server" FilterType="Numbers, Custom"
-                                            ValidChars="." TargetControlID="txtVOC">
-                                        </act:FilteredTextBoxExtender>
+                                            ValidChars="." TargetControlID="txtVOC" />
                                         <asp:RangeValidator ID="RangeValidator1" runat="server" ControlToValidate="txtVOC"
                                             CssClass="validator" Display="Dynamic" ErrorMessage="Maximum VOC emissions is 99,999 tons."
-                                            MaximumValue="99999" MinimumValue="0" Type="Double" Width="100%"></asp:RangeValidator>
+                                            MaximumValue="99999" Type="Double" Width="100%" />
+                                        <asp:RangeValidator ID="RangeValidator10" runat="server" ControlToValidate="txtVOC"
+                                            CssClass="validator" Display="Dynamic" ErrorMessage="VOC emissions cannot be negative."
+                                            MinimumValue="0" Type="Double" Width="100%" />
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtVOC"
-                                            Display="Dynamic" ErrorMessage="VOC quantity required." Font-Bold="False"
-                                            Width="100%"></asp:RequiredFieldValidator>
+                                            Display="Dynamic" ErrorMessage="VOC quantity is required." CssClass="validator" Width="100%" />
                                         <br />
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td align="right" valign="middle">Actual annual facility-wide <br />
-                                        NO<sub>x</sub> emissions:</td>
-                                    <td align="left" valign="middle">
-                                        &nbsp;
-                                        <asp:TextBox ID="txtNOx" runat="server" MaxLength="7">0</asp:TextBox>
-                                        &nbsp;tons/year
+                                    <th>Actual annual facility-wide NO<sub>x</sub> emissions:</th>
+                                    <td>
+                                        <asp:TextBox ID="txtNOx" runat="server" MaxLength="7" CssClass="input-small">0</asp:TextBox>
+                                        tons/year
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td></td>
-                                    <td align="left" valign="middle">
+                                    <th></th>
+                                    <td>
                                         <act:FilteredTextBoxExtender ID="FilteredTextBoxExtender2" runat="server" FilterType="Numbers, Custom"
-                                            ValidChars="." TargetControlID="txtNOx">
-                                        </act:FilteredTextBoxExtender>
+                                            ValidChars="." TargetControlID="txtNOx" />
                                         <asp:RangeValidator ID="RangeValidator9" runat="server" ControlToValidate="txtNOx"
                                             CssClass="validator" Display="Dynamic" ErrorMessage="Maximum NOx emissions is 99,999 tons."
-                                            MaximumValue="99999" MinimumValue="0" Type="Double" Width="100%"></asp:RangeValidator>
+                                            MaximumValue="99999" Type="Double" Width="100%" />
+                                        <asp:RangeValidator ID="RangeValidator11" runat="server" ControlToValidate="txtNOx"
+                                            CssClass="validator" Display="Dynamic" ErrorMessage="NOx emissions cannot be negative."
+                                            MinimumValue="0" Type="Double" Width="100%" />
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtNOx"
-                                            Display="Dynamic" ErrorMessage="NOx quantity required." Font-Bold="False" Width="100%"></asp:RequiredFieldValidator>
+                                            Display="Dynamic" ErrorMessage="NOx quantity is required." Width="100%" CssClass="validator" />
                                     </td>
                                 </tr>
                             </table>
+
+                            <asp:Label ID="lblVOCNOXZero" runat="server" CssClass="validator" Visible="false">
+                                Either VOC or NO<sub>x</sub> must be greater than 25 tons/year.
+                            </asp:Label>
                         </asp:Panel>
 
-                        <table>
-                            <tr>
-                                <td colspan="2">
-                                    <asp:Label ID="lblActionDone" runat="server" Font-Bold="False" ForeColor="Red"></asp:Label>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td colspan="2">&nbsp;<asp:Button ID="btnSave" runat="server" CssClass="button-large button-proceed" 
-                                    Text="Submit Emissions Statement" />
-                                    &nbsp;
-                                    <asp:Button ID="btnBackToContactInfo" runat="server" Text="Back" CausesValidation="False" />
-                                    &nbsp;                                   
-                                    <asp:Button ID="btnCancelEmission" runat="server" Text="Cancel" CausesValidation="False" CssClass="button-cancel" />
-                                </td>
-                            </tr>
-                            <tr>
-                                <td colspan="2">
-                                    &nbsp;
-                                    <asp:Button ID="btnContinue" runat="server" Text="Continue to Confirmation Page"
-                                        CausesValidation="False" Visible="False" />
-                                </td>
-                            </tr>
-                        </table>
+                        <p>
+                            <asp:Button ID="btnSave" runat="server" CssClass="button-large button-proceed"
+                                Text="Submit Emissions Statement" />
+                            <asp:Button ID="btnBackToContactInfo" runat="server" Text="Back" CausesValidation="False" />
+                            <asp:Button ID="btnCancelEmission" runat="server" Text="Cancel" CausesValidation="False" CssClass="button-cancel" />
+                        </p>
+
+                        <asp:Button ID="btnContinue" runat="server" Text="Continue to Confirmation Page"
+                            CausesValidation="False" Visible="False" />
                     </asp:View>
+
                 </asp:MultiView>
             </asp:Panel>
 
             <asp:Panel ID="pnlLatLongConvert" runat="server">
+                <h2>Longitude/Latitude Converter</h2>
+                <p>This tool converts longitude and latitude from "degrees-minutes-seconds" format to decimal format.</p>
+
+                <table class="table-simple table-list">
+                    <tr>
+                        <th>Longitude:</th>
+                        <td>
+                            <asp:TextBox ID="txtLonDeg" runat="server" MaxLength="2" CssClass="input-small" />deg &nbsp;
+                    <asp:TextBox ID="txtLonMin" runat="server" MaxLength="2" CssClass="input-small" />min &nbsp;
+                    <asp:TextBox ID="txtLonSec" runat="server" MaxLength="2" CssClass="input-small" />sec
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Latitude:</th>
+                        <td>
+                            <asp:TextBox ID="txtLatDeg" runat="server" MaxLength="2" CssClass="input-small" />deg &nbsp;
+                    <asp:TextBox ID="txtLatMin" runat="server" MaxLength="2" CssClass="input-small" />min &nbsp;
+                    <asp:TextBox ID="txtLatSec" runat="server" MaxLength="2" CssClass="input-small" />sec
+                        </td>
+                    </tr>
+                </table>
+
                 <div>
-                    <table align="center" width="70%">
-                        <tr>
-                            <td align="center">
-                                <strong><span style="font-size: 16pt; color: #4169e1;">Longitude
-                                    - Latitude Converter</span></strong>
-                                <br />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div style="text-align: center">
-                                    <table style="width: 80%">
-                                        <tr>
-                                            <td align="left">This tool allows you to convert Longitude and Latitude in "Degrees-Minutes-Seconds"
-                                                format to "Decimal Degree" format.<br />
-                                                <br />
-                                                Enter the longitude and latitude and click "Convert" to show the decimal values
-                                                below. Then click "Use These Values" to return to the previous form. If the values
-                                                are outside the county in which the facility is located you will not be allowed
-                                                to use them. If acceptable, the values will be entered in the appropriate fields
-                                                on the Facility Information form on return. Click "Cancel" to go back.
-                                                <br />
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <table style="width: 100%" align="center">
-                                    <tr>
-                                        <td align="right" valign="middle" style="width: 214px">Longitude:</td>
-                                        <td align="left" valign="middle">
-                                            <asp:TextBox ID="txtLonDeg" runat="server" BorderColor="CornflowerBlue" BorderStyle="Solid"
-                                                BorderWidth="1px" MaxLength="2" Width="50px"></asp:TextBox>
-                                            deg &nbsp;<asp:TextBox ID="txtLonMin" runat="server" BorderColor="CornflowerBlue"
-                                                BorderStyle="Solid" BorderWidth="1px" MaxLength="2" Width="50px"></asp:TextBox>
-                                            min&nbsp;
-                                            &nbsp;<asp:TextBox ID="txtLonSec" runat="server" BorderColor="CornflowerBlue" BorderStyle="Solid"
-                                                BorderWidth="1px" MaxLength="2" Width="50px"></asp:TextBox>
-                                            sec
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td align="right" valign="middle" style="width: 214px"></td>
-                                        <td align="left" valign="middle">
-                                            <act:FilteredTextBoxExtender ID="FilteredTextBoxExtender4" runat="server"
-                                                TargetControlID="txtLonDeg" FilterType="Numbers">
-                                            </act:FilteredTextBoxExtender>
-                                            <act:FilteredTextBoxExtender ID="FilteredTextBoxExtender5" runat="server"
-                                                TargetControlID="txtLonMin" FilterType="Numbers">
-                                            </act:FilteredTextBoxExtender>
-                                            <act:FilteredTextBoxExtender ID="FilteredTextBoxExtender6" runat="server"
-                                                TargetControlID="txtLonSec" FilterType="Numbers">
-                                            </act:FilteredTextBoxExtender>
-                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator12" runat="server" ControlToValidate="txtLonDeg"
-                                                CssClass="validator" Display="Dynamic" Width="100%" ErrorMessage="Longitude degrees required."></asp:RequiredFieldValidator>
-                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator14" runat="server" ControlToValidate="txtLonMin"
-                                                CssClass="validator" Display="Dynamic" Width="100%" ErrorMessage="Longitude minutes required."></asp:RequiredFieldValidator>
-                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator15" runat="server" ControlToValidate="txtLonSec"
-                                                CssClass="validator" Display="Dynamic" Width="100%" ErrorMessage="Longitude seconds required."></asp:RequiredFieldValidator><asp:RangeValidator
-                                                    ID="RangeValidator2" runat="server" ControlToValidate="txtLonDeg" CssClass="validator"
-                                                    Display="Dynamic" Width="100%" ErrorMessage="Longitude degrees must be an integer between 80 and 85 for Georgia."
-                                                    MaximumValue="85" MinimumValue="80" Type="Integer"></asp:RangeValidator>
-                                            <asp:RangeValidator ID="RangeValidator3" runat="server" ControlToValidate="txtLonMin"
-                                                CssClass="validator" Display="Dynamic" Width="100%" ErrorMessage="Longitude minutes must be an integer between 0 and 59"
-                                                MaximumValue="59" MinimumValue="0" Type="Integer"></asp:RangeValidator>
-                                            <asp:RangeValidator ID="RangeValidator4" runat="server" ControlToValidate="txtLonSec"
-                                                CssClass="validator" Display="Dynamic" Width="100%" ErrorMessage="Longitude seconds must be an integer between 0 and 59."
-                                                MaximumValue="59" MinimumValue="0" Type="Integer"></asp:RangeValidator>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td align="right" valign="middle" style="width: 214px">Latitude:</td>
-                                        <td style="height: 20px" align="left" valign="middle">
-                                            <asp:TextBox ID="txtLatDeg" runat="server" BorderColor="CornflowerBlue" BorderStyle="Solid"
-                                                BorderWidth="1px" MaxLength="2" Width="50px"></asp:TextBox>
-                                            deg&nbsp;
-                                            <asp:TextBox ID="txtLatMin" runat="server" BorderColor="CornflowerBlue" BorderStyle="Solid"
-                                                BorderWidth="1px" MaxLength="2" Width="50px"></asp:TextBox>
-                                            min&nbsp;
-                                            <asp:TextBox ID="txtLatSec" runat="server" BorderColor="CornflowerBlue" BorderStyle="Solid"
-                                                BorderWidth="1px" MaxLength="2" Width="50px"></asp:TextBox>
-                                            sec
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td align="right" valign="middle" style="width: 214px"></td>
-                                        <td align="left" valign="middle">
-                                            <act:FilteredTextBoxExtender ID="FilteredTextBoxExtender7" runat="server"
-                                                TargetControlID="txtLatDeg" FilterType="Numbers">
-                                            </act:FilteredTextBoxExtender>
-                                            <act:FilteredTextBoxExtender ID="FilteredTextBoxExtender8" runat="server"
-                                                TargetControlID="txtLatMin" FilterType="Numbers">
-                                            </act:FilteredTextBoxExtender>
-                                            <act:FilteredTextBoxExtender ID="FilteredTextBoxExtender9" runat="server"
-                                                TargetControlID="txtLatSec" FilterType="Numbers">
-                                            </act:FilteredTextBoxExtender>
-                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator16" runat="server" ControlToValidate="txtLatDeg"
-                                                CssClass="validator" Display="Dynamic" Width="100%" ErrorMessage="Latitude degrees required."></asp:RequiredFieldValidator>
-                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator17" runat="server" ControlToValidate="txtLatMin"
-                                                CssClass="validator" Display="Dynamic" Width="100%" ErrorMessage="Latitude minutes required."></asp:RequiredFieldValidator>
-                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator18" runat="server" ControlToValidate="txtLatSec"
-                                                CssClass="validator" Display="Dynamic" Width="100%" ErrorMessage="Latitude seconds required."></asp:RequiredFieldValidator><asp:RangeValidator
-                                                    ID="RangeValidator5" runat="server" ControlToValidate="txtLatDeg" CssClass="validator"
-                                                    Display="Dynamic" Width="100%" ErrorMessage="Latitude degrees must be an integer between 30 and 35 for Georgia."
-                                                    MaximumValue="35" MinimumValue="30" Type="Integer"></asp:RangeValidator>
-                                            <asp:RangeValidator ID="RangeValidator6" runat="server" ControlToValidate="txtLatMin"
-                                                CssClass="validator" Display="Dynamic" Width="100%" ErrorMessage="Latitude minutes must be an integer between 0 and 59."
-                                                MaximumValue="59" MinimumValue="0" Type="Integer"></asp:RangeValidator>
-                                            <asp:RangeValidator ID="RangeValidator8" runat="server" ControlToValidate="txtLatSec"
-                                                CssClass="validator" Display="Dynamic" Width="100%" ErrorMessage="Latitude seconds must be an integer between 0 and 59."
-                                                MaximumValue="59" MinimumValue="0" Type="Integer"></asp:RangeValidator>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2"></td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2">
-                                            <asp:Button ID="btnConvert" runat="server" Text="Convert" />
-                                            &nbsp;&nbsp;                                           
-                                            <asp:Button ID="btnCancelLatLong" runat="server" Text="Cancel" CausesValidation="False" />
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2"></td>
-                                    </tr>
-                                    <tr>
-                                        <td align="right" valign="middle" style="width: 214px">Longitude:
-                                        </td>
-                                        <td align="left" valign="middle">
-                                            <asp:TextBox ID="txtLongDec" runat="server" BorderColor="White" BorderStyle="None"
-                                                ReadOnly="True"></asp:TextBox>
-                                            degrees West
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td align="right" valign="middle" style="width: 214px">Latitude:
-                                        </td>
-                                        <td align="left" valign="middle">
-                                            <asp:TextBox ID="txtLatDec" runat="server" BorderColor="White" BorderStyle="None"
-                                                ReadOnly="True"></asp:TextBox>
-                                            degrees North
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td align="right" valign="middle" style="width: 214px"></td>
-                                        <td align="left" valign="middle">
-                                            <asp:Label ID="lblDecLatLongEmpty" runat="server" ForeColor="Red"></asp:Label>
-                                            <asp:RangeValidator ID="rngValLongDec" runat="server"
-                                                ControlToValidate="txtLongDec" CssClass="validator" Type="Double" Display="Dynamic"
-                                                Width="100%" ErrorMessage="Longitude is outside county limits."></asp:RangeValidator><asp:RangeValidator
-                                                    ID="rngValLatDec" runat="server" ControlToValidate="txtLatDec" CssClass="validator"
-                                                    Type="Double" Display="Dynamic" Width="100%" ErrorMessage="Latitude is outside county limits."></asp:RangeValidator>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2"></td>
-                                    </tr>
-                                    <tr>
-                                        <td align="center" colspan="2">
-                                            <asp:Button ID="btnUseLatLong" runat="server" Text="Use These Values" CausesValidation="False" />
-                                        </td>
-                                    </tr>
-                                </table>
-                            </td>
-                        </tr>
-                    </table>
+                    <act:FilteredTextBoxExtender ID="FilteredTextBoxExtender4" runat="server"
+                        TargetControlID="txtLonDeg" FilterType="Numbers" />
+                    <act:FilteredTextBoxExtender ID="FilteredTextBoxExtender5" runat="server"
+                        TargetControlID="txtLonMin" FilterType="Numbers" />
+                    <act:FilteredTextBoxExtender ID="FilteredTextBoxExtender6" runat="server"
+                        TargetControlID="txtLonSec" FilterType="Numbers" />
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator12" runat="server" ControlToValidate="txtLonDeg"
+                        CssClass="validator" Display="Dynamic" Width="100%" ErrorMessage="Longitude degrees is required." />
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator14" runat="server" ControlToValidate="txtLonMin"
+                        CssClass="validator" Display="Dynamic" Width="100%" ErrorMessage="Longitude minutes is required." />
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator15" runat="server" ControlToValidate="txtLonSec"
+                        CssClass="validator" Display="Dynamic" Width="100%" ErrorMessage="Longitude seconds is required." />
+                    <asp:RangeValidator ID="RangeValidator2" runat="server" ControlToValidate="txtLonDeg"
+                        CssClass="validator" Display="Dynamic" Width="100%" MaximumValue="85" MinimumValue="80" Type="Integer"
+                        ErrorMessage="Longitude degrees must be an integer between 80 and 85 for Georgia." />
+                    <asp:RangeValidator ID="RangeValidator3" runat="server" ControlToValidate="txtLonMin"
+                        CssClass="validator" Display="Dynamic" Width="100%" MaximumValue="59" MinimumValue="0" Type="Integer"
+                        ErrorMessage="Longitude minutes must be an integer between 0 and 59" />
+                    <asp:RangeValidator ID="RangeValidator4" runat="server" ControlToValidate="txtLonSec"
+                        CssClass="validator" Display="Dynamic" Width="100%" MaximumValue="59" MinimumValue="0" Type="Integer"
+                        ErrorMessage="Longitude seconds must be an integer between 0 and 59." />
                 </div>
+
+                <div>
+                    <act:FilteredTextBoxExtender ID="FilteredTextBoxExtender7" runat="server"
+                        TargetControlID="txtLatDeg" FilterType="Numbers" />
+                    <act:FilteredTextBoxExtender ID="FilteredTextBoxExtender8" runat="server"
+                        TargetControlID="txtLatMin" FilterType="Numbers" />
+                    <act:FilteredTextBoxExtender ID="FilteredTextBoxExtender9" runat="server"
+                        TargetControlID="txtLatSec" FilterType="Numbers" />
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator16" runat="server" ControlToValidate="txtLatDeg"
+                        CssClass="validator" Display="Dynamic" Width="100%" ErrorMessage="Latitude degrees is required." />
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator17" runat="server" ControlToValidate="txtLatMin"
+                        CssClass="validator" Display="Dynamic" Width="100%" ErrorMessage="Latitude minutes is required." />
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator18" runat="server" ControlToValidate="txtLatSec"
+                        CssClass="validator" Display="Dynamic" Width="100%" ErrorMessage="Latitude seconds is required." />
+                    <asp:RangeValidator ID="RangeValidator5" runat="server" ControlToValidate="txtLatDeg" CssClass="validator"
+                        Display="Dynamic" Width="100%" MaximumValue="35" MinimumValue="30" Type="Integer"
+                        ErrorMessage="Latitude degrees must be an integer between 30 and 35 for Georgia." />
+                    <asp:RangeValidator ID="RangeValidator6" runat="server" ControlToValidate="txtLatMin"
+                        CssClass="validator" Display="Dynamic" Width="100%" MaximumValue="59" MinimumValue="0" Type="Integer"
+                        ErrorMessage="Latitude minutes must be an integer between 0 and 59." />
+                    <asp:RangeValidator ID="RangeValidator8" runat="server" ControlToValidate="txtLatSec"
+                        CssClass="validator" Display="Dynamic" Width="100%" MaximumValue="59" MinimumValue="0" Type="Integer"
+                        ErrorMessage="Latitude seconds must be an integer between 0 and 59." />
+                </div>
+
+                <p>
+                    <asp:Button ID="btnConvert" runat="server" Text="Convert" CssClass="button-tool" />
+                </p>
+
+                <table class="table-simple table-list">
+                    <tr>
+                        <th>Longitude:</th>
+                        <td>
+                            <asp:TextBox ID="txtLongDec" runat="server" CssClass="input-small" BackColor="Wheat"
+                                ReadOnly="True" />
+                            degrees West
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Latitude:</th>
+                        <td>
+                            <asp:TextBox ID="txtLatDec" runat="server" CssClass="input-small" BackColor="Wheat"
+                                ReadOnly="True" />
+                            degrees North
+                        </td>
+                    </tr>
+                </table>
+                <asp:RangeValidator ID="rngValLongDec" runat="server" ControlToValidate="txtLongDec" CssClass="validator"
+                    Type="Double" Display="Dynamic" Width="100%" ErrorMessage="Longitude is outside county limits." />
+                <asp:RangeValidator ID="rngValLatDec" runat="server" ControlToValidate="txtLatDec" CssClass="validator"
+                    Type="Double" Display="Dynamic" Width="100%" ErrorMessage="Latitude is outside county limits." />
+
+                <p>
+                    <asp:Label ID="lblDecLatLongEmpty" runat="server" CssClass="validator" />
+                </p>
+                <p>
+                    <asp:Button ID="btnUseLatLong" runat="server" Text="Use These Values" CausesValidation="False" CssClass="button-large" />
+                    <asp:Button ID="btnCancelLatLong" runat="server" Text="Cancel" CausesValidation="False" CssClass="button-cancel" />
+                </p>
             </asp:Panel>
+
         </ContentTemplate>
     </asp:UpdatePanel>
 </asp:Content>

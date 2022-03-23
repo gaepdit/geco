@@ -870,7 +870,7 @@ td.table-cell-checkbox {
 
 /* Text color utilities */
 
-.text-error {
+.text-error, .validator {
     color: #aa0000;
     background: #ffffff;
 }
@@ -1048,6 +1048,24 @@ a.button-cancel,
 
     .button-cancel:active {
         background: #4d4341;
+        box-shadow: 0 1px 3px -2px #3e2927;
+    }
+
+a.button-tool,
+.button-tool {
+    color: #333;
+    box-shadow: 0 1px 1px -1px #999;
+}
+
+    .button-tool:hover,
+    .button-tool:focus {
+        color: #fff;
+        background: #333;
+        box-shadow: 0 1px 3px -1px #3e2927;
+    }
+
+    .button-tool:active {
+        background: #474747;
         box-shadow: 0 1px 3px -2px #3e2927;
     }
 

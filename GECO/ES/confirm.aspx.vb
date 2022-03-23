@@ -8,7 +8,7 @@ Partial Class es_confirm
     Private ConfNum As String
     Private Property CurrentAirs As ApbFacilityId
 
-    Private Sub Page_Load(ByVal sender As Object, ByVal e As EventArgs) Handles Me.Load
+    Private Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
         Dim airs As String = GetSessionItem(Of String)("esAirsNumber")
 
         If String.IsNullOrEmpty(airs) Then
@@ -58,7 +58,7 @@ Partial Class es_confirm
 
     End Sub
 
-#Region " Confirmation Number Routines "
+    ' Confirmation Number Routines
 
     Private Sub CreateConfNum()
 
@@ -98,21 +98,16 @@ Partial Class es_confirm
 
     End Sub
 
-#End Region
+    ' Button Routines
 
-#Region " Button Routines "
-
-    Protected Sub btnOptOutChange1_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnOptOutChange1.Click, btnConfFinal.Click
+    Protected Sub btnOptOutChange1_Click(sender As Object, e As EventArgs) Handles btnOptOutChange1.Click, btnConfFinal.Click
 
         Session("eschanges") = "TRUE"
-
         Response.Redirect("esform.aspx")
 
     End Sub
 
-#End Region
-
-    Private Function GetEmissionValue(ByVal emType As String) As Double
+    Private Function GetEmissionValue(emType As String) As Double
 
         Dim query As String
 

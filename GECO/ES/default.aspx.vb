@@ -52,7 +52,7 @@ Partial Class es_default
 
     End Sub
 
-    Protected Sub cboESYear_SelectedIndexChanged(ByVal sender As Object, ByVal e As EventArgs) Handles cboESYear.SelectedIndexChanged
+    Protected Sub cboESYear_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboESYear.SelectedIndexChanged
 
         Dim YearSelected As Integer
         Dim CurrentYear As Integer = Now.Year - 1
@@ -64,7 +64,6 @@ Partial Class es_default
 
         If cboESYear.SelectedIndex = 0 Then
             ShowInitial()
-            Session("esprintsource") = ""
         Else
             YearSelected = CInt(cboESYear.SelectedValue)
             esYear = YearSelected
@@ -153,13 +152,13 @@ Partial Class es_default
 
     End Sub
 
-    Protected Sub btnCurrentES_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnCurrentES.Click
+    Protected Sub btnCurrentES_Click(sender As Object, e As EventArgs) Handles btnCurrentES.Click
 
         Response.Redirect("Form.aspx")
 
     End Sub
 
-    Private Shared Function GetEmissionValue(ByVal emType As String, ByVal ay As String) As String
+    Private Shared Function GetEmissionValue(emType As String, ay As String) As String
 
         Dim query As String
 

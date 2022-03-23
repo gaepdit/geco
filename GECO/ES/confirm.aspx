@@ -1,6 +1,10 @@
-<%@ Page Language="VB" MaintainScrollPositionOnPostback="true" MasterPageFile="es.master" AutoEventWireup="false" Inherits="GECO.es_confirm" Title="GECO - Confirmation" CodeBehind="Confirm.aspx.vb" %>
+<%@ Page Title="GECO - Emissions Statement Confirmation" Language="VB" MasterPageFile="~/Main.master"
+    AutoEventWireup="false" Inherits="GECO.es_confirm" CodeBehind="Confirm.aspx.vb" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+<%@ MasterType VirtualPath="~/Main.master" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="Server">
+
     <asp:Panel ID="pnlTop" runat="server" Width="100%">
                     <span style="font-size: 16pt; color: #4170e1;"><strong>Emissions Statement Confirmation</strong></span>
                     <br />
@@ -109,4 +113,5 @@
                 </tr>
             </table>
     </asp:Panel>
+
 </asp:Content>
