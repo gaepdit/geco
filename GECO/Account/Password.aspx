@@ -35,7 +35,7 @@
         <table class="table-simple table-list">
             <tr>
                 <th>
-                    <asp:Label ID="lblOldPassword" AssociatedControlID="txtOldPassword" runat="server" Text="Old Password" />
+                    <asp:Label AssociatedControlID="txtOldPassword" runat="server" Text="Old Password" />
                 </th>
                 <td>
                     <asp:TextBox ID="txtOldPassword" runat="server" TextMode="Password" autocomplete="current-password" />
@@ -45,7 +45,7 @@
             </tr>
             <tr>
                 <th>
-                    <asp:Label ID="lblNewPassword" AssociatedControlID="txtNewPassword" runat="server" Text="New Password" />
+                    <asp:Label AssociatedControlID="txtNewPassword" runat="server" Text="New Password" />
                 </th>
                 <td>
                     <asp:TextBox ID="txtNewPassword" runat="server" TextMode="Password" autocomplete="new-password" aria-describedby="password-constraints" />
@@ -60,7 +60,7 @@
             </tr>
             <tr>
                 <th>
-                    <asp:Label ID="lblPwdConfirm" AssociatedControlID="txtPwdConfirm" runat="server" Text="Confirm New Password" />
+                    <asp:Label AssociatedControlID="txtPwdConfirm" runat="server" Text="Confirm New Password" />
                 </th>
                 <td>
                     <asp:TextBox ID="txtPwdConfirm" runat="server" TextMode="Password" autocomplete="new-password" />

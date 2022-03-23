@@ -36,7 +36,9 @@
 
                 <table class="table-simple table-list">
                     <tr>
-                        <th>Email address</th>
+                        <th>
+                            <asp:Label AssociatedControlID="txtEmail" runat="server">Email address</asp:Label>
+                        </th>
                         <td>
                             <asp:TextBox ID="txtEmail" runat="server"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ControlToValidate="txtEmail"

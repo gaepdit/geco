@@ -45,7 +45,9 @@
 
                 <table class="table-simple table-list">
                     <tr>
-                        <th>First Name</th>
+                        <th>
+                            <asp:Label AssociatedControlID="txtFName" runat="server">First Name</asp:Label>
+                        </th>
                         <td>
                             <asp:TextBox ID="txtFName" runat="server" MaxLength="50"></asp:TextBox>
                             <i>required</i>
@@ -55,7 +57,9 @@
                         </td>
                     </tr>
                     <tr>
-                        <th>Last Name</th>
+                        <th>
+                            <asp:Label AssociatedControlID="txtLName" runat="server">Last Name</asp:Label>
+                        </th>
                         <td>
                             <asp:TextBox ID="txtLName" runat="server" MaxLength="50"></asp:TextBox>
                             <i>required</i>
@@ -65,49 +69,65 @@
                         </td>
                     </tr>
                     <tr>
-                        <th>Title</th>
+                        <th>
+                            <asp:Label AssociatedControlID="txtTitle" runat="server">Title</asp:Label>
+                        </th>
                         <td>
                             <asp:TextBox ID="txtTitle" runat="server" MaxLength="100"></asp:TextBox>
                         </td>
                     </tr>
                     <tr>
-                        <th>Company</th>
+                        <th>
+                            <asp:Label AssociatedControlID="txtCoName" runat="server">Company</asp:Label>
+                        </th>
                         <td>
                             <asp:TextBox ID="txtCoName" runat="server" MaxLength="200"></asp:TextBox>
                         </td>
                     </tr>
                     <tr>
-                        <th>Street Address</th>
+                        <th>
+                            <asp:Label AssociatedControlID="txtAddress" runat="server">Street Address</asp:Label>
+                        </th>
                         <td>
                             <asp:TextBox ID="txtAddress" runat="server" MaxLength="250"></asp:TextBox>
                         </td>
                     </tr>
                     <tr>
-                        <th>City</th>
+                        <th>
+                            <asp:Label AssociatedControlID="txtCity" runat="server">City</asp:Label>
+                        </th>
                         <td>
                             <asp:TextBox ID="txtCity" runat="server" MaxLength="50"></asp:TextBox>
                         </td>
                     </tr>
                     <tr>
-                        <th>State</th>
+                        <th>
+                            <asp:Label AssociatedControlID="txtState" runat="server">State</asp:Label>
+                        </th>
                         <td>
                             <asp:TextBox ID="txtState" runat="server" MaxLength="30"></asp:TextBox>
                         </td>
                     </tr>
                     <tr>
-                        <th>Zip Code</th>
+                        <th>
+                            <asp:Label AssociatedControlID="txtZip" runat="server">Zip Code</asp:Label>
+                        </th>
                         <td>
                             <asp:TextBox ID="txtZip" runat="server" MaxLength="10"></asp:TextBox>
                         </td>
                     </tr>
                     <tr>
-                        <th>Telephone Number</th>
+                        <th>
+                            <asp:Label AssociatedControlID="txtPhone" runat="server">Telephone Number</asp:Label>
+                        </th>
                         <td>
                             <asp:TextBox ID="txtPhone" runat="server" MaxLength="30"></asp:TextBox>
                         </td>
                     </tr>
                     <tr>
-                        <th>User Type</th>
+                        <th>
+                            <asp:Label AssociatedControlID="ddlUserType" runat="server">User Type</asp:Label>
+                        </th>
                         <td>
                             <asp:DropDownList ID="ddlUserType" runat="server">
                                 <asp:ListItem>-- Select --</asp:ListItem>

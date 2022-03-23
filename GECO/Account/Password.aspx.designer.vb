@@ -77,15 +77,6 @@ Partial Public Class Account_Password
     Protected WithEvents lblPasswordMessage As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''lblOldPassword control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblOldPassword As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
     '''txtOldPassword control.
     '''</summary>
     '''<remarks>
@@ -102,15 +93,6 @@ Partial Public Class Account_Password
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RequiredFieldValidator1 As Global.System.Web.UI.WebControls.RequiredFieldValidator
-
-    '''<summary>
-    '''lblNewPassword control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblNewPassword As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''txtNewPassword control.
@@ -138,15 +120,6 @@ Partial Public Class Account_Password
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents Regex3 As Global.System.Web.UI.WebControls.RegularExpressionValidator
-
-    '''<summary>
-    '''lblPwdConfirm control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblPwdConfirm As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''txtPwdConfirm control.
