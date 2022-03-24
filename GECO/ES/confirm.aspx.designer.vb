@@ -14,15 +14,6 @@ Option Explicit On
 Partial Public Class es_confirm
 
     '''<summary>
-    '''pnlTop control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents pnlTop As Global.System.Web.UI.WebControls.Panel
-
-    '''<summary>
     '''pnlOptedOutYes control.
     '''</summary>
     '''<remarks>
@@ -75,15 +66,6 @@ Partial Public Class es_confirm
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblDate1 As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''btnOptOutChange1 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnOptOutChange1 As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
     '''pnlConfFinal control.
@@ -158,11 +140,32 @@ Partial Public Class es_confirm
     Protected WithEvents lblNOXAmt2 As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''btnConfFinal control.
+    '''btnEsHome control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents btnConfFinal As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents btnEsHome As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''btnMakeChange control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnMakeChange As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''Master property.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated property.
+    '''</remarks>
+    Public Shadows ReadOnly Property Master() As GECO.MainLayout
+        Get
+            Return CType(MyBase.Master, GECO.MainLayout)
+        End Get
+    End Property
 End Class

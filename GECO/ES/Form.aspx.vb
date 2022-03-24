@@ -3,7 +3,7 @@ Imports System.DateTime
 Imports System.Math
 Imports GECO.GecoModels
 
-Partial Class es_esform
+Partial Class es_form
     Inherits Page
 
     Private SavedES As Boolean
@@ -11,14 +11,26 @@ Partial Class es_esform
 
     Private Property CurrentAirs As ApbFacilityId
 
-    Private Sub Page_Load(ByVal sender As Object, ByVal e As EventArgs) Handles Me.Load
+    Private Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
+        MainLoginCheck()
+        AirsSelectedCheck()
+
+        'Check if the user has access to the Application
+        Dim facilityAccess = GetCurrentUser().GetFacilityAccess(New ApbFacilityId(GetCookie(Cookie.AirsNumber).ToString))
+
+        If Not facilityAccess.ESAccess Then
+            Response.Redirect("~/NoAccess.aspx")
+        End If
+
         Dim airs As String = GetSessionItem(Of String)("esAirsNumber")
 
         If String.IsNullOrEmpty(airs) Then
-            Response.Redirect("~/")
+            Response.Redirect("~/Home/")
         End If
 
         CurrentAirs = New ApbFacilityId(airs)
+        Master.CurrentAirs = CurrentAirs
+        Master.IsFacilitySet = True
 
         Dim esYear As String = (Now.Year - 1).ToString
         Session("ESYear") = esYear
@@ -49,16 +61,13 @@ Partial Class es_esform
 
     End Sub
 
-#Region " Load Routines "
+    ' Load Routines
 
     Private Sub LoadHorizontalCollectionCode()
 
-        Dim query = "Select strHorizCollectionMethodCode, strHorizCollectionMethodDesc " &
-            "FROM eiLookupHorizColMethod order by strHorizCollectionMethodDesc"
-
         cboHorizontalCollectionCode.Items.Add(" --Select a Method-- ")
 
-        Dim dt = DB.GetDataTable(query)
+        Dim dt = GetHorizontalCollectionMethods()
 
         For Each dr As DataRow In dt.Rows
             Dim desc As String = dr.Item("strHorizCollectionMethodDesc").ToString
@@ -70,11 +79,9 @@ Partial Class es_esform
 
     Private Sub LoadHorizontalDatumReferenceCode()
 
-        Dim query = "Select strHorizontalReferenceDatum, strHorizontalReferenceDesc FROM eiLookupHorizRefDatum order by strHorizontalReferenceDesc"
-
         cboHorizontalReferenceCode.Items.Add(" --Select a Code-- ")
 
-        Dim dt = DB.GetDataTable(query)
+        Dim dt = GetHorizontalDatumReferenceCodes()
 
         For Each dr As DataRow In dt.Rows
             Dim desc As String = dr.Item("strHorizontalReferenceDesc").ToString
@@ -86,11 +93,9 @@ Partial Class es_esform
 
     Private Sub LoadState()
 
-        Dim query = "Select Abbreviation FROM tblState order by Abbreviation"
-
         cboContactState.Items.Add(" -- ")
 
-        Dim dt = DB.GetDataTable(query)
+        Dim dt = GetEsStates()
 
         For Each dr As DataRow In dt.Rows
             cboContactState.Items.Add(dr.Item("Abbreviation").ToString)
@@ -100,23 +105,29 @@ Partial Class es_esform
 
     End Sub
 
-#End Region
+    ' Button Routines 
 
-#Region " Button Routines "
-
-    Protected Sub cboYesNo_SelectedIndexChanged(ByVal sender As Object, ByVal e As EventArgs) Handles cboYesNo.SelectedIndexChanged
+    Protected Sub cboYesNo_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboYesNo.SelectedIndexChanged
 
         If cboYesNo.SelectedValue = "NO" Then
             pnlEmissions.Visible = True
-        Else
+            pEmissionsHelpYes.Visible = False
+            pEmissionsHelpNo.Visible = True
+        ElseIf cboYesNo.SelectedValue = "YES" Then
             txtVOC.Text = "0"
             txtNOx.Text = "0"
             pnlEmissions.Visible = False
+            pEmissionsHelpYes.Visible = True
+            pEmissionsHelpNo.Visible = False
+        Else
+            pnlEmissions.Visible = False
+            pEmissionsHelpYes.Visible = True
+            pEmissionsHelpNo.Visible = True
         End If
 
     End Sub
 
-    Protected Sub btnContinue_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnContinue.Click
+    Protected Sub btnContinue_Click(sender As Object, e As EventArgs) Handles btnContinue.Click
 
         If cboYesNo.SelectedValue = "YES" Then
             Session("ESOptOut") = "YES"
@@ -127,37 +138,35 @@ Partial Class es_esform
 
     End Sub
 
-    Protected Sub btnContinueToContact_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnContinueToContact.Click
+    Protected Sub btnContinueToContact_Click(sender As Object, e As EventArgs) Handles btnContinueToContact.Click
         mltiViewESFacility.ActiveViewIndex = 1
     End Sub
 
-    Protected Sub btnContinueToEmissions_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnContinueToEmissions.Click
+    Protected Sub btnContinueToEmissions_Click(sender As Object, e As EventArgs) Handles btnContinueToEmissions.Click
         mltiViewESFacility.ActiveViewIndex = 2
     End Sub
 
-    Protected Sub btnCancelLocation_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnCancelLocation.Click
+    Protected Sub btnCancelLocation_Click(sender As Object, e As EventArgs) Handles btnCancelLocation.Click
         Response.Redirect("~/ES/")
     End Sub
 
-    Protected Sub btnCancelContact_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnCancelContact.Click
+    Protected Sub btnCancelContact_Click(sender As Object, e As EventArgs) Handles btnCancelContact.Click
         Response.Redirect("~/ES/")
     End Sub
 
-    Protected Sub btnCancelEmission_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnCancelEmission.Click
+    Protected Sub btnCancelEmission_Click(sender As Object, e As EventArgs) Handles btnCancelEmission.Click
         Response.Redirect("~/ES/")
     End Sub
 
-    Protected Sub btnbackToLocation_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnbackToLocation.Click
+    Protected Sub btnbackToLocation_Click(sender As Object, e As EventArgs) Handles btnbackToLocation.Click
         mltiViewESFacility.ActiveViewIndex = 0
     End Sub
 
-    Protected Sub btnBackToContactInfo_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnBackToContactInfo.Click
+    Protected Sub btnBackToContactInfo_Click(sender As Object, e As EventArgs) Handles btnBackToContactInfo.Click
         mltiViewESFacility.ActiveViewIndex = 1
     End Sub
 
-#End Region
-
-#Region " Load Facility & Contact Info "
+    ' Load Facility & Contact Info
 
     Private Sub LoadESSchema()
 
@@ -173,36 +182,7 @@ Partial Class es_esform
         Dim HRCcode As String
         Dim HRCdesc As String
 
-        Dim query = "Select strFacilityName, " &
-            "strFacilityAddress, " &
-            "strFacilityCity, " &
-            "strFacilityZip, " &
-            "strCounty, " &
-            "strHorizontalCollectionCode, " &
-            "strHorizontalAccuracyMeasure, " &
-            "strHorizontalReferenceCode, " &
-            "dblXCoordinate, " &
-            "dblYCoordinate, " &
-            "strContactPrefix, " &
-            "strContactFirstName, " &
-            "strContactLastName, " &
-            "strContactTitle, " &
-            "strContactCompany, " &
-            "strContactPhoneNumber, " &
-            "strContactFaxNumber, " &
-            "strContactEmail, " &
-            "strContactAddress1, " &
-            "strContactCity, " &
-            "strContactState, " &
-            "strContactZip, " &
-            "dblVOCEmission, " &
-            "dblNOXEmission, " &
-            "strOptOut " &
-            "FROM esSchema Where strAirsYear = @AirsYear "
-
-        Dim param As New SqlParameter("@AirsYear", AirsYear)
-
-        Dim dr = DB.GetDataRow(query, param)
+        Dim dr = GetFacilityEsSchema(AirsYear)
 
         If dr IsNot Nothing Then
 
@@ -376,11 +356,12 @@ Partial Class es_esform
                         txtNOx.Text = Round(NOXAmt, 2).ToString
                     End If
                 End If
+                pEmissionsHelpYes.Visible = False
                 pnlEmissions.Visible = True
             ElseIf YesNo = "YES" Then
                 txtVOC.Text = "0"
                 txtNOx.Text = "0"
-                'pnlEmissions.Visible = False
+                pEmissionsHelpNo.Visible = False
             ElseIf YesNo = "--" Then
                 If Convert.IsDBNull(dr("dblVOCEmission")) Then
                     txtVOC.Text = "0"
@@ -418,21 +399,7 @@ Partial Class es_esform
         Dim HRCcode As String
         Dim HRCdesc As String
 
-        Dim query = "select strFacilityName, " &
-            "strFacilityStreet1, " &
-            "strFacilityCity, " &
-            "strFacilityState, " &
-            "strFacilityZipCode, " &
-            "strHorizontalCollectionCode, " &
-            "strHorizontalAccuracyMeasure, " &
-            "strHorizontalReferenceCode, " &
-            "numFacilityLongitude, " &
-            "numFacilityLatitude " &
-            "FROM apbFacilityInformation where strAirsNumber = @AirsNumber "
-
-        Dim param As New SqlParameter("@AirsNumber", CurrentAirs.DbFormattedString)
-
-        Dim dr = DB.GetDataRow(query, param)
+        Dim dr = GetFacilityLocation(CurrentAirs)
 
         If dr IsNot Nothing Then
 
@@ -506,59 +473,7 @@ Partial Class es_esform
         Dim ContactFaxNumber As String
         Dim ContactZip As String
 
-        Dim query = "    select dbo.NullIfNaOrEmpty(
-                           IIF(m.Id is not null, m.Prefix,
-                               c.STRCONTACTPREFIX))          as strContactPrefix,
-                   dbo.NullIfNaOrEmpty(
-                           IIF(m.Id is not null, m.FirstName,
-                               c.STRCONTACTFIRSTNAME))       as strContactFirstName,
-                   dbo.NullIfNaOrEmpty(
-                           IIF(m.Id is not null, m.LastName,
-                               c.STRCONTACTLASTNAME))        as strContactLastName,
-                   dbo.NullIfNaOrEmpty(
-                           IIF(m.Id is not null, left(m.Title, 50),
-                               left(c.STRCONTACTTITLE, 50))) as strContactTitle,
-                   dbo.NullIfNaOrEmpty(
-                           IIF(m.Id is not null, m.Organization,
-                               c.STRCONTACTCOMPANYNAME))     as strContactCompanyName,
-                   dbo.NullIfNaOrEmpty(
-                           IIF(m.Id is not null, m.Telephone,
-                               c.STRCONTACTPHONENUMBER1))    as strContactPhoneNumber1,
-                   dbo.NullIfNaOrEmpty(
-                           IIF(m.Id is not null, null,
-                               c.STRCONTACTFAXNUMBER))       as strContactFaxNumber,
-                   dbo.NullIfNaOrEmpty(
-                           IIF(m.Id is not null, m.Email,
-                               left(c.STRCONTACTEMAIL, 50))) as strContactEmail,
-                   dbo.NullIfNaOrEmpty(
-                           IIF(m.Id is not null, m.Address1,
-                               c.STRCONTACTADDRESS1))        as strContactAddress1,
-                   dbo.NullIfNaOrEmpty(
-                           IIF(m.Id is not null, m.City,
-                               c.STRCONTACTCITY))            as strContactCity,
-                   dbo.NullIfNaOrEmpty(
-                           IIF(m.Id is not null, m.State,
-                               c.STRCONTACTSTATE))           as strContactState,
-                   dbo.NullIfNaOrEmpty(
-                           IIF(m.Id is not null, m.PostalCode,
-                               c.STRCONTACTZIPCODE))         as strContactZipCode
-            from dbo.ESSCHEMA e
-                left join dbo.Geco_MailContact m
-                on e.STRAIRSNUMBER = m.FacilityId
-                    and m.Category = 'ES'
-                    and m.Confirmed = 1
-                left join dbo.APBCONTACTINFORMATION c
-                on e.STRAIRSNUMBER = c.STRAIRSNUMBER
-                    and c.STRKEY = '42'
-            where e.INTESYEAR = @year
-              and e.STRAIRSNUMBER = @airs"
-
-        Dim params As SqlParameter() = {
-            New SqlParameter("@year", (Now.Year - 1).ToString),
-            New SqlParameter("@airs", CurrentAirs.DbFormattedString)
-        }
-
-        Dim dr = DB.GetDataRow(query, params)
+        Dim dr = GetEsContactInfo(CurrentAirs, Now.Year - 1)
 
         If dr IsNot Nothing Then
 
@@ -630,11 +545,10 @@ Partial Class es_esform
         End If
     End Sub
 
-#End Region
+    ' Save Facility & Contact Info
 
-#Region " Save Facility & Contact Info "
-
-    Protected Sub btnSave_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnSave.Click
+    Protected Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
+        lblVOCNOXZero.Visible = False
 
         If String.IsNullOrWhiteSpace(txtNOx.Text) OrElse Not IsNumeric(txtNOx.Text) OrElse
            CDec(txtNOx.Text) < 0 Then
@@ -646,8 +560,8 @@ Partial Class es_esform
             txtVOC.Text = "0"
         End If
 
-        If cboYesNo.SelectedValue = "NO" AndAlso txtNOx.Text = "0" AndAlso txtVOC.Text = "0" Then
-            lblVOCNOXZero.Text = "Either VOC or NOx must be greater than zero."
+        If cboYesNo.SelectedValue = "NO" AndAlso CDec(txtNOx.Text) < 25 AndAlso CDec(txtVOC.Text) < 25 Then
+            lblVOCNOXZero.Visible = True
         Else
             SaveES()
             SaveContactAPB()
@@ -655,7 +569,6 @@ Partial Class es_esform
         End If
 
         If SavedES AndAlso SavedAPB Then
-
             If cboYesNo.SelectedValue = "YES" Then
                 Session("ESOptOut") = "YES"
             Else
@@ -663,7 +576,6 @@ Partial Class es_esform
             End If
 
             Response.Redirect("confirm.aspx")
-
         End If
 
     End Sub
@@ -975,9 +887,7 @@ Partial Class es_esform
 
     End Sub
 
-#End Region
-
-#Region "Check Routines "
+    ' Check Routines
 
     Private Function ContactExistAPB() As Boolean
 
@@ -990,14 +900,12 @@ Partial Class es_esform
 
     End Function
 
-#End Region
-
-    Protected Sub btnConvert_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnConvert.Click
+    Protected Sub btnConvert_Click(sender As Object, e As EventArgs) Handles btnConvert.Click
         txtLongDec.Text = Abs(GetDecDegree(txtLonDeg.Text, txtLonMin.Text, txtLonSec.Text)).ToString
         txtLatDec.Text = GetDecDegree(txtLatDeg.Text, txtLatMin.Text, txtLatSec.Text).ToString
     End Sub
 
-    Protected Sub btnCancelLatLong_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnCancelLatLong.Click
+    Protected Sub btnCancelLatLong_Click(sender As Object, e As EventArgs) Handles btnCancelLatLong.Click
 
         pnlFacility.Visible = True
         pnlLatLongConvert.Visible = False
@@ -1014,7 +922,7 @@ Partial Class es_esform
 
     End Sub
 
-    Protected Sub btnUseLatLong_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnUseLatLong.Click
+    Protected Sub btnUseLatLong_Click(sender As Object, e As EventArgs) Handles btnUseLatLong.Click
 
         lblDecLatLongEmpty.Text = ""
 
@@ -1040,7 +948,7 @@ Partial Class es_esform
 
     End Sub
 
-    Protected Sub btnLatLongConvert_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnLatLongConvert.Click
+    Protected Sub btnLatLongConvert_Click(sender As Object, e As EventArgs) Handles btnLatLongConvert.Click
 
         rngValLongDec.MinimumValue = CStr(GetSessionItem(Of Decimal)("LongMin"))
         rngValLongDec.MaximumValue = CStr(GetSessionItem(Of Decimal)("LongMax"))

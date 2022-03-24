@@ -1,5 +1,4 @@
-﻿Imports System.Data.SqlClient
-Imports System.DateTime
+﻿Imports System.DateTime
 Imports GECO.GecoModels
 
 Partial Class es_default
@@ -8,13 +7,26 @@ Partial Class es_default
     Private Property CurrentAirs As ApbFacilityId
 
     Private Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
+        MainLoginCheck()
+        AirsSelectedCheck()
+
+        'Check if the user has access to the Application
+        Dim facilityAccess = GetCurrentUser().GetFacilityAccess(New ApbFacilityId(GetCookie(Cookie.AirsNumber).ToString))
+
+        If Not facilityAccess.ESAccess Then
+            Response.Redirect("~/NoAccess.aspx")
+        End If
+
         Dim airs As String = GetCookie(Cookie.AirsNumber)
 
         If String.IsNullOrEmpty(airs) Then
-            Response.Redirect("~/")
+            Response.Redirect("~/Home/")
         End If
 
         CurrentAirs = New ApbFacilityId(airs)
+        Master.CurrentAirs = CurrentAirs
+        Master.IsFacilitySet = True
+
         Dim esYear As String = (Now.Year - 1).ToString
         Session("ESYear") = esYear
         Session("esAirsNumber") = CurrentAirs.DbFormattedString
@@ -29,10 +41,8 @@ Partial Class es_default
         Session("LatMax") = CountyBoundary.MaxLat
 
         If Not IsPostBack Then
-
             LoadESYears()
             ShowInitial()
-
         End If
 
     End Sub
@@ -42,9 +52,7 @@ Partial Class es_default
         cboESYear.Items.Clear()
         cboESYear.Items.Add(" -Select Year- ")
 
-        Dim query = "Select intESYear FROM esSchema where strAirsNumber = @AirsNumber order by intESYear Desc"
-        Dim param As New SqlParameter("@AirsNumber", CurrentAirs.DbFormattedString)
-        Dim dt = DB.GetDataTable(query, param)
+        Dim dt = GetEsYears(CurrentAirs)
 
         For Each dr As DataRow In dt.Rows
             cboESYear.Items.Add(dr.Item("intESYear").ToString)
@@ -52,11 +60,10 @@ Partial Class es_default
 
     End Sub
 
-    Protected Sub cboESYear_SelectedIndexChanged(ByVal sender As Object, ByVal e As EventArgs) Handles cboESYear.SelectedIndexChanged
+    Protected Sub cboESYear_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboESYear.SelectedIndexChanged
 
         Dim YearSelected As Integer
         Dim CurrentYear As Integer = Now.Year - 1
-        Dim esYear As Integer
         Dim esStatus As String = GetSessionItem(Of String)("esState")
         Dim PastAirsYear As String
         Dim NOxAmt As String
@@ -64,32 +71,52 @@ Partial Class es_default
 
         If cboESYear.SelectedIndex = 0 Then
             ShowInitial()
-            Session("esprintsource") = ""
         Else
             YearSelected = CInt(cboESYear.SelectedValue)
-            esYear = YearSelected
-            If esYear = CurrentYear Then
+            If YearSelected = CurrentYear Then
                 ShowCurrent()
                 lblCurrentStatus.Text = esStatus
                 If Left(esStatus, 5) = "Opted" Then
                     btnCurrentES.Text = "Make changes to " & Now.Year - 1 & " ES Data"
                     btnCurrentES.CssClass = "button-large"
-                    pnlCurrentESStatus.CssClass = "panel panel-complete text-centered"
+                    pnlCurrentESStatus.CssClass = "panel"
+
+                    tblCurrentES.Visible = True
+                    lblCurrentFacility.Text = GetFacilityName(CurrentAirs)
+                    lblCurrentAirs.Text = CurrentAirs.FormattedString
+                    Dim airsYear As String = CurrentAirs.DbFormattedString & CStr(YearSelected)
+                    lblCurrentConfNum.Text = GetConfirmNumber(airsYear)
+
+                    NOxAmt = GetEmissionValue("NOx", airsYear)
+                    VOCAmt = GetEmissionValue("VOC", airsYear)
+                    If NOxAmt = "-1" Then NOxAmt = "0"
+                    If VOCAmt = "-1" Then VOCAmt = "0"
+
+                    If NOxAmt <> "0" OrElse VOCAmt <> "0" Then
+                        pnlCurrentOptedIn.Visible = True
+                        lblCurrentNox.Text = NOxAmt
+                        lblCurrentVOC.Text = VOCAmt
+                    End If
                 End If
+
                 If Left(esStatus, 10) = "Applicable" Then
                     btnCurrentES.Text = "Begin " & Now.Year - 1 & " ES"
                     btnCurrentES.CssClass = "button-large button-proceed"
-                    pnlCurrentESStatus.CssClass = "panel panel-inprogress text-centered"
+                    pnlCurrentESStatus.CssClass = "panel panel-inprogress"
                 End If
             Else
                 ShowPast()
                 Session.Add("PastESYear", CStr(YearSelected))
                 lblPastYear1.Text = YearSelected.ToString
                 lblPastYear2.Text = YearSelected.ToString
+                lblPastYear3.Text = YearSelected.ToString
                 lblAIRSNo.Text = CurrentAirs.FormattedString
                 PastAirsYear = CurrentAirs.DbFormattedString & CStr(YearSelected)
                 lblFacilityName.Text = GetFacilityName(CurrentAirs)
-                lblConfNo.Text = GetConfirmNumber(PastAirsYear)
+
+                Dim confNum As String = GetConfirmNumber(PastAirsYear)
+                If (String.IsNullOrEmpty(confNum)) Then confNum = "No Data"
+                lblConfNo.Text = confNum
 
                 NOxAmt = GetEmissionValue("NOx", PastAirsYear)
                 VOCAmt = GetEmissionValue("VOC", PastAirsYear)
@@ -107,14 +134,6 @@ Partial Class es_default
         End If
     End Sub
 
-    Private Shared Function GetConfirmNumber(ay As String) As String
-
-        Dim query As String = "Select strConfirmationNbr FROM esSchema Where strAirsYear = @ay "
-        Dim ConfNum As String = DB.GetString(query, New SqlParameter("@ay", ay))
-        Return If(String.IsNullOrEmpty(ConfNum), "No Data", ConfNum)
-
-    End Function
-
     Private Sub ShowOptedIn()
 
         pnlOptedIn.Visible = True
@@ -131,7 +150,6 @@ Partial Class es_default
 
     Private Sub ShowInitial()
 
-        pnlInitial.Visible = True
         pnlCurrentES.Visible = False
         pnlPastES.Visible = False
         cboESYear.SelectedIndex = 0
@@ -140,7 +158,6 @@ Partial Class es_default
 
     Private Sub ShowCurrent()
 
-        pnlInitial.Visible = False
         pnlCurrentES.Visible = True
         pnlPastES.Visible = False
         lblCurrentYear.Text = CStr(Now.Year - 1)
@@ -150,32 +167,15 @@ Partial Class es_default
 
     Private Sub ShowPast()
 
-        pnlInitial.Visible = False
         pnlCurrentES.Visible = False
         pnlPastES.Visible = True
 
     End Sub
 
-    Protected Sub btnCurrentES_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnCurrentES.Click
+    Protected Sub btnCurrentES_Click(sender As Object, e As EventArgs) Handles btnCurrentES.Click
 
-        Response.Redirect("esform.aspx")
+        Response.Redirect("Form.aspx")
 
     End Sub
-
-    Private Shared Function GetEmissionValue(ByVal emType As String, ByVal ay As String) As String
-
-        Dim query As String
-
-        If emType = "VOC" Then
-            query = "Select dblVOCEmission FROM esSchema Where strAirsYear = @ay "
-        Else
-            query = "Select dblNOxEmission FROM esSchema Where strAirsYear = @ay "
-        End If
-
-        Dim param As New SqlParameter("@ay", ay)
-
-        Return DB.GetString(query, param)
-
-    End Function
 
 End Class

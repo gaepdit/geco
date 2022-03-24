@@ -11,7 +11,7 @@ Option Strict On
 Option Explicit On
 
 
-Partial Public Class es_esform
+Partial Public Class es_form
 
     '''<summary>
     '''UpdatePanel1 control.
@@ -56,7 +56,7 @@ Partial Public Class es_esform
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtFacilityName As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents txtFacilityName As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''txtLocationAddress control.
@@ -65,7 +65,7 @@ Partial Public Class es_esform
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtLocationAddress As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents txtLocationAddress As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''txtCity control.
@@ -74,7 +74,7 @@ Partial Public Class es_esform
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtCity As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents txtCity As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''txtState control.
@@ -83,7 +83,7 @@ Partial Public Class es_esform
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtState As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents txtState As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''txtZipCode control.
@@ -92,7 +92,7 @@ Partial Public Class es_esform
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtZipCode As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents txtZipCode As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''txtCounty control.
@@ -101,7 +101,16 @@ Partial Public Class es_esform
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtCounty As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents txtCounty As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''btnLatLongConvert control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnLatLongConvert As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
     '''txtYCoordinate control.
@@ -174,15 +183,6 @@ Partial Public Class es_esform
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rngValXCoordinate As Global.System.Web.UI.WebControls.RangeValidator
-
-    '''<summary>
-    '''btnLatLongConvert control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnLatLongConvert As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
     '''cboHorizontalCollectionCode control.
@@ -608,6 +608,24 @@ Partial Public Class es_esform
     Protected WithEvents reqValYesNo As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
+    '''pEmissionsHelpYes control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents pEmissionsHelpYes As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
+    '''pEmissionsHelpNo control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents pEmissionsHelpNo As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
     '''pnlEmissions control.
     '''</summary>
     '''<remarks>
@@ -615,15 +633,6 @@ Partial Public Class es_esform
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents pnlEmissions As Global.System.Web.UI.WebControls.Panel
-
-    '''<summary>
-    '''lblVOCNOXZero control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblVOCNOXZero As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''txtVOC control.
@@ -651,6 +660,15 @@ Partial Public Class es_esform
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RangeValidator1 As Global.System.Web.UI.WebControls.RangeValidator
+
+    '''<summary>
+    '''RangeValidator10 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RangeValidator10 As Global.System.Web.UI.WebControls.RangeValidator
 
     '''<summary>
     '''RequiredFieldValidator1 control.
@@ -689,6 +707,15 @@ Partial Public Class es_esform
     Protected WithEvents RangeValidator9 As Global.System.Web.UI.WebControls.RangeValidator
 
     '''<summary>
+    '''RangeValidator11 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RangeValidator11 As Global.System.Web.UI.WebControls.RangeValidator
+
+    '''<summary>
     '''RequiredFieldValidator2 control.
     '''</summary>
     '''<remarks>
@@ -698,13 +725,13 @@ Partial Public Class es_esform
     Protected WithEvents RequiredFieldValidator2 As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
-    '''lblActionDone control.
+    '''lblVOCNOXZero control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lblActionDone As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lblVOCNOXZero As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''btnSave control.
@@ -777,6 +804,33 @@ Partial Public Class es_esform
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtLonSec As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''txtLatDeg control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtLatDeg As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''txtLatMin control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtLatMin As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''txtLatSec control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtLatSec As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''FilteredTextBoxExtender4 control.
@@ -858,33 +912,6 @@ Partial Public Class es_esform
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RangeValidator4 As Global.System.Web.UI.WebControls.RangeValidator
-
-    '''<summary>
-    '''txtLatDeg control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtLatDeg As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''txtLatMin control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtLatMin As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''txtLatSec control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtLatSec As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''FilteredTextBoxExtender7 control.
@@ -977,15 +1004,6 @@ Partial Public Class es_esform
     Protected WithEvents btnConvert As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
-    '''btnCancelLatLong control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnCancelLatLong As Global.System.Web.UI.WebControls.Button
-
-    '''<summary>
     '''txtLongDec control.
     '''</summary>
     '''<remarks>
@@ -1002,15 +1020,6 @@ Partial Public Class es_esform
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtLatDec As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''lblDecLatLongEmpty control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblDecLatLongEmpty As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''rngValLongDec control.
@@ -1031,6 +1040,15 @@ Partial Public Class es_esform
     Protected WithEvents rngValLatDec As Global.System.Web.UI.WebControls.RangeValidator
 
     '''<summary>
+    '''lblDecLatLongEmpty control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblDecLatLongEmpty As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
     '''btnUseLatLong control.
     '''</summary>
     '''<remarks>
@@ -1038,4 +1056,25 @@ Partial Public Class es_esform
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnUseLatLong As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''btnCancelLatLong control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnCancelLatLong As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''Master property.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated property.
+    '''</remarks>
+    Public Shadows ReadOnly Property Master() As GECO.MainLayout
+        Get
+            Return CType(MyBase.Master, GECO.MainLayout)
+        End Get
+    End Property
 End Class
