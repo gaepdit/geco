@@ -355,9 +355,6 @@
     <Compile Include="ES\Default.aspx.designer.vb">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
-    <Compile Include="ES\es.master.designer.vb">
-      <DependentUpon>es.master</DependentUpon>
-    </Compile>
     <Compile Include="ES\Form.aspx.designer.vb">
       <DependentUpon>Form.aspx</DependentUpon>
     </Compile>
@@ -567,10 +564,6 @@
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="ES\es.master.vb">
-      <DependentUpon>es.master</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
     <Compile Include="ES\Form.aspx.vb">
       <DependentUpon>Form.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -621,7 +614,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ES\es.master" />
     <Content Include="Main.master" />
     <Content Include="IP.ashx" />
     <Content Include="GECO.vbproj.vsspell" />
