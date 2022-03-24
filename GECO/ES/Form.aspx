@@ -444,10 +444,7 @@
                                             ValidChars="." TargetControlID="txtVOC" />
                                         <asp:RangeValidator ID="RangeValidator1" runat="server" ControlToValidate="txtVOC"
                                             CssClass="validator" Display="Dynamic" ErrorMessage="Maximum VOC emissions is 99,999 tons."
-                                            MaximumValue="99999" Type="Double" Width="100%" />
-                                        <asp:RangeValidator ID="RangeValidator10" runat="server" ControlToValidate="txtVOC"
-                                            CssClass="validator" Display="Dynamic" ErrorMessage="VOC emissions cannot be negative."
-                                            MinimumValue="0" Type="Double" Width="100%" />
+                                            MaximumValue="99999" MinimumValue="0" Type="Double" Width="100%" />
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtVOC"
                                             Display="Dynamic" ErrorMessage="VOC quantity is required." CssClass="validator" Width="100%" />
                                         <br />
@@ -467,10 +464,7 @@
                                             ValidChars="." TargetControlID="txtNOx" />
                                         <asp:RangeValidator ID="RangeValidator9" runat="server" ControlToValidate="txtNOx"
                                             CssClass="validator" Display="Dynamic" ErrorMessage="Maximum NOx emissions is 99,999 tons."
-                                            MaximumValue="99999" Type="Double" Width="100%" />
-                                        <asp:RangeValidator ID="RangeValidator11" runat="server" ControlToValidate="txtNOx"
-                                            CssClass="validator" Display="Dynamic" ErrorMessage="NOx emissions cannot be negative."
-                                            MinimumValue="0" Type="Double" Width="100%" />
+                                            MaximumValue="99999" MinimumValue="0" Type="Double" Width="100%" />
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtNOx"
                                             Display="Dynamic" ErrorMessage="NOx quantity is required." Width="100%" CssClass="validator" />
                                     </td>

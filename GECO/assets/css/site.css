@@ -868,7 +868,7 @@ td.table-cell-checkbox {
     background: lightyellow;
 }
 
-/* Text color utilities */
+/* Text utilities */
 
 .text-error, .validator {
     color: #aa0000;
@@ -878,6 +878,10 @@ td.table-cell-checkbox {
 .text-success {
     color: #006600;
     background: #ffffff;
+}
+
+.text-larger {
+    font-size: larger;
 }
 
 /* Submenu tabs */

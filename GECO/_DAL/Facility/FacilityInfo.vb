@@ -98,4 +98,24 @@ Public Module FacilityInfo
         Return dt
     End Function
 
+    Public Function GetFacilityLocation(airs As ApbFacilityId) As DataRow
+
+        Dim query = "select strFacilityName, " &
+            "strFacilityStreet1, " &
+            "strFacilityCity, " &
+            "strFacilityState, " &
+            "strFacilityZipCode, " &
+            "strHorizontalCollectionCode, " &
+            "strHorizontalAccuracyMeasure, " &
+            "strHorizontalReferenceCode, " &
+            "numFacilityLongitude, " &
+            "numFacilityLatitude " &
+            "FROM apbFacilityInformation where strAirsNumber = @AirsNumber "
+
+        Dim param As New SqlParameter("@AirsNumber", airs.DbFormattedString)
+
+        Return DB.GetDataRow(query, param)
+
+    End Function
+
 End Module

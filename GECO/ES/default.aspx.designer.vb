@@ -68,6 +68,69 @@ Partial Public Class es_default
     Protected WithEvents lblCurrentStatus As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
+    '''tblCurrentES control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents tblCurrentES As Global.System.Web.UI.WebControls.Panel
+
+    '''<summary>
+    '''lblCurrentFacility control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblCurrentFacility As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''lblCurrentAirs control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblCurrentAirs As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''lblCurrentConfNum control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblCurrentConfNum As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''pnlCurrentOptedIn control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents pnlCurrentOptedIn As Global.System.Web.UI.WebControls.Panel
+
+    '''<summary>
+    '''lblCurrentVOC control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblCurrentVOC As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''lblCurrentNox control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblCurrentNox As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
     '''btnCurrentES control.
     '''</summary>
     '''<remarks>
@@ -93,6 +156,15 @@ Partial Public Class es_default
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblPastYear1 As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''lblPastYear3 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblPastYear3 As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''lblFacilityName control.

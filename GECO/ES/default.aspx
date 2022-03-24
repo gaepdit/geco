@@ -19,14 +19,53 @@
             <asp:Label ID="lblCurrentYear" runat="server" />.
         </p>
 
-        <asp:Panel ID="pnlCurrentESStatus" runat="server" Width="400" CssClass="panel panel-inprogress text-centered">
+        <asp:Panel ID="pnlCurrentESStatus" runat="server" CssClass="panel">
             <h2>Status for
                 <asp:Label ID="lblCurrentYear2" runat="server" />
-                <br />
                 Emissions Statement</h2>
             <p>
                 <asp:Label ID="lblCurrentStatus" runat="server" />
             </p>
+
+            <asp:Panel ID="tblCurrentES" runat="server" Visible="false">
+                <table class="table-simple table-list">
+                    <tr>
+                        <th>Facility Name:</th>
+                        <td>
+                            <asp:Label ID="lblCurrentFacility" runat="server" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>AIRS No:</th>
+                        <td>
+                            <asp:Label ID="lblCurrentAirs" runat="server" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Confirmation No:</th>
+                        <td>
+                            <asp:Label ID="lblCurrentConfNum" runat="server" />
+                        </td>
+                    </tr>
+                    <asp:Panel ID="pnlCurrentOptedIn" runat="server" Visible="False">
+                        <tr>
+                            <th>VOC Emissions:</th>
+                            <td>
+                                <asp:Label ID="lblCurrentVOC" runat="server" />
+                                tpy
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>NO<sub>x</sub> Emissions:</th>
+                            <td>
+                                <asp:Label ID="lblCurrentNox" runat="server" />
+                                tpy
+                            </td>
+                        </tr>
+                    </asp:Panel>
+                </table>
+            </asp:Panel>
+
             <p>
                 <asp:Button ID="btnCurrentES" runat="server" CssClass="button-large button-proceed" />
             </p>
@@ -38,7 +77,11 @@
             The following is the Emissions Statement information for your facility for the calendar year
             <asp:Label ID="lblPastYear1" runat="server" />.
         </p>
-        <div class="panel panel-noaction text-centered">
+        <div class="panel panel-noaction">
+            <h2>
+                <asp:Label ID="lblPastYear3" runat="server" />
+                Emissions Statement</h2>
+
             <table class="table-simple table-list">
                 <tr>
                     <th>Facility Name:</th>

@@ -12,13 +12,25 @@ Partial Class es_form
     Private Property CurrentAirs As ApbFacilityId
 
     Private Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
+        MainLoginCheck()
+        AirsSelectedCheck()
+
+        'Check if the user has access to the Application
+        Dim facilityAccess = GetCurrentUser().GetFacilityAccess(New ApbFacilityId(GetCookie(Cookie.AirsNumber).ToString))
+
+        If Not facilityAccess.ESAccess Then
+            Response.Redirect("~/NoAccess.aspx")
+        End If
+
         Dim airs As String = GetSessionItem(Of String)("esAirsNumber")
 
         If String.IsNullOrEmpty(airs) Then
-            Response.Redirect("~/")
+            Response.Redirect("~/Home/")
         End If
 
         CurrentAirs = New ApbFacilityId(airs)
+        Master.CurrentAirs = CurrentAirs
+        Master.IsFacilitySet = True
 
         Dim esYear As String = (Now.Year - 1).ToString
         Session("ESYear") = esYear
@@ -53,12 +65,9 @@ Partial Class es_form
 
     Private Sub LoadHorizontalCollectionCode()
 
-        Dim query = "Select strHorizCollectionMethodCode, strHorizCollectionMethodDesc " &
-            "FROM eiLookupHorizColMethod order by strHorizCollectionMethodDesc"
-
         cboHorizontalCollectionCode.Items.Add(" --Select a Method-- ")
 
-        Dim dt = DB.GetDataTable(query)
+        Dim dt = GetHorizontalCollectionMethods()
 
         For Each dr As DataRow In dt.Rows
             Dim desc As String = dr.Item("strHorizCollectionMethodDesc").ToString
@@ -70,11 +79,9 @@ Partial Class es_form
 
     Private Sub LoadHorizontalDatumReferenceCode()
 
-        Dim query = "Select strHorizontalReferenceDatum, strHorizontalReferenceDesc FROM eiLookupHorizRefDatum order by strHorizontalReferenceDesc"
-
         cboHorizontalReferenceCode.Items.Add(" --Select a Code-- ")
 
-        Dim dt = DB.GetDataTable(query)
+        Dim dt = GetHorizontalDatumReferenceCodes()
 
         For Each dr As DataRow In dt.Rows
             Dim desc As String = dr.Item("strHorizontalReferenceDesc").ToString
@@ -86,11 +93,9 @@ Partial Class es_form
 
     Private Sub LoadState()
 
-        Dim query = "Select Abbreviation FROM tblState order by Abbreviation"
-
         cboContactState.Items.Add(" -- ")
 
-        Dim dt = DB.GetDataTable(query)
+        Dim dt = GetEsStates()
 
         For Each dr As DataRow In dt.Rows
             cboContactState.Items.Add(dr.Item("Abbreviation").ToString)
@@ -177,36 +182,7 @@ Partial Class es_form
         Dim HRCcode As String
         Dim HRCdesc As String
 
-        Dim query = "Select strFacilityName, " &
-            "strFacilityAddress, " &
-            "strFacilityCity, " &
-            "strFacilityZip, " &
-            "strCounty, " &
-            "strHorizontalCollectionCode, " &
-            "strHorizontalAccuracyMeasure, " &
-            "strHorizontalReferenceCode, " &
-            "dblXCoordinate, " &
-            "dblYCoordinate, " &
-            "strContactPrefix, " &
-            "strContactFirstName, " &
-            "strContactLastName, " &
-            "strContactTitle, " &
-            "strContactCompany, " &
-            "strContactPhoneNumber, " &
-            "strContactFaxNumber, " &
-            "strContactEmail, " &
-            "strContactAddress1, " &
-            "strContactCity, " &
-            "strContactState, " &
-            "strContactZip, " &
-            "dblVOCEmission, " &
-            "dblNOXEmission, " &
-            "strOptOut " &
-            "FROM esSchema Where strAirsYear = @AirsYear "
-
-        Dim param As New SqlParameter("@AirsYear", AirsYear)
-
-        Dim dr = DB.GetDataRow(query, param)
+        Dim dr = GetFacilityEsSchema(AirsYear)
 
         If dr IsNot Nothing Then
 
@@ -380,11 +356,12 @@ Partial Class es_form
                         txtNOx.Text = Round(NOXAmt, 2).ToString
                     End If
                 End If
+                pEmissionsHelpYes.Visible = False
                 pnlEmissions.Visible = True
             ElseIf YesNo = "YES" Then
                 txtVOC.Text = "0"
                 txtNOx.Text = "0"
-                'pnlEmissions.Visible = False
+                pEmissionsHelpNo.Visible = False
             ElseIf YesNo = "--" Then
                 If Convert.IsDBNull(dr("dblVOCEmission")) Then
                     txtVOC.Text = "0"
@@ -422,21 +399,7 @@ Partial Class es_form
         Dim HRCcode As String
         Dim HRCdesc As String
 
-        Dim query = "select strFacilityName, " &
-            "strFacilityStreet1, " &
-            "strFacilityCity, " &
-            "strFacilityState, " &
-            "strFacilityZipCode, " &
-            "strHorizontalCollectionCode, " &
-            "strHorizontalAccuracyMeasure, " &
-            "strHorizontalReferenceCode, " &
-            "numFacilityLongitude, " &
-            "numFacilityLatitude " &
-            "FROM apbFacilityInformation where strAirsNumber = @AirsNumber "
-
-        Dim param As New SqlParameter("@AirsNumber", CurrentAirs.DbFormattedString)
-
-        Dim dr = DB.GetDataRow(query, param)
+        Dim dr = GetFacilityLocation(CurrentAirs)
 
         If dr IsNot Nothing Then
 
@@ -510,59 +473,7 @@ Partial Class es_form
         Dim ContactFaxNumber As String
         Dim ContactZip As String
 
-        Dim query = "    select dbo.NullIfNaOrEmpty(
-                           IIF(m.Id is not null, m.Prefix,
-                               c.STRCONTACTPREFIX))          as strContactPrefix,
-                   dbo.NullIfNaOrEmpty(
-                           IIF(m.Id is not null, m.FirstName,
-                               c.STRCONTACTFIRSTNAME))       as strContactFirstName,
-                   dbo.NullIfNaOrEmpty(
-                           IIF(m.Id is not null, m.LastName,
-                               c.STRCONTACTLASTNAME))        as strContactLastName,
-                   dbo.NullIfNaOrEmpty(
-                           IIF(m.Id is not null, left(m.Title, 50),
-                               left(c.STRCONTACTTITLE, 50))) as strContactTitle,
-                   dbo.NullIfNaOrEmpty(
-                           IIF(m.Id is not null, m.Organization,
-                               c.STRCONTACTCOMPANYNAME))     as strContactCompanyName,
-                   dbo.NullIfNaOrEmpty(
-                           IIF(m.Id is not null, m.Telephone,
-                               c.STRCONTACTPHONENUMBER1))    as strContactPhoneNumber1,
-                   dbo.NullIfNaOrEmpty(
-                           IIF(m.Id is not null, null,
-                               c.STRCONTACTFAXNUMBER))       as strContactFaxNumber,
-                   dbo.NullIfNaOrEmpty(
-                           IIF(m.Id is not null, m.Email,
-                               left(c.STRCONTACTEMAIL, 50))) as strContactEmail,
-                   dbo.NullIfNaOrEmpty(
-                           IIF(m.Id is not null, m.Address1,
-                               c.STRCONTACTADDRESS1))        as strContactAddress1,
-                   dbo.NullIfNaOrEmpty(
-                           IIF(m.Id is not null, m.City,
-                               c.STRCONTACTCITY))            as strContactCity,
-                   dbo.NullIfNaOrEmpty(
-                           IIF(m.Id is not null, m.State,
-                               c.STRCONTACTSTATE))           as strContactState,
-                   dbo.NullIfNaOrEmpty(
-                           IIF(m.Id is not null, m.PostalCode,
-                               c.STRCONTACTZIPCODE))         as strContactZipCode
-            from dbo.ESSCHEMA e
-                left join dbo.Geco_MailContact m
-                on e.STRAIRSNUMBER = m.FacilityId
-                    and m.Category = 'ES'
-                    and m.Confirmed = 1
-                left join dbo.APBCONTACTINFORMATION c
-                on e.STRAIRSNUMBER = c.STRAIRSNUMBER
-                    and c.STRKEY = '42'
-            where e.INTESYEAR = @year
-              and e.STRAIRSNUMBER = @airs"
-
-        Dim params As SqlParameter() = {
-            New SqlParameter("@year", (Now.Year - 1).ToString),
-            New SqlParameter("@airs", CurrentAirs.DbFormattedString)
-        }
-
-        Dim dr = DB.GetDataRow(query, params)
+        Dim dr = GetEsContactInfo(CurrentAirs, Now.Year - 1)
 
         If dr IsNot Nothing Then
 
