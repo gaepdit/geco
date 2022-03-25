@@ -31,11 +31,13 @@
         <add key="LogExceptionsToFile" value="false" />
         <add key="GecoContactEmail" value="GeorgiaAirProtectionBranch@dnr.ga.gov" />
         <add key="GecoContactName" value="Georgia Air Protection Branch" />
+        <add key="EpaCaersUrl" value="https://test.epacdx.net/CDX/MyCDX" />
         <add key="SmtpHost" value="localhost" />
         <add key="SmtpPort" value="25" />
         <add key="EmailAllowList" value="" />
         <add key="GoogleMapsAPIKey" value="" />
-        <add key="EpaCaersUrl" value="https://test.epacdx.net/CDX/MyCDX" />
+        <add key="EventbritePrivateToken" value="" />
+        <add key="EventbriteOrgId" value="517930987711" />
     </appSettings>
 
     <communicationPrefs
@@ -56,6 +58,7 @@
         during development.
         -->
         <compilation debug="true" strict="false" explicit="true" />
+        <httpRuntime targetFramework="4.8" />
         <pages>
             <controls>
                 <add tagPrefix="act" namespace="AjaxControlToolkit" assembly="AjaxControlToolkit" />

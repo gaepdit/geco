@@ -570,8 +570,7 @@ textarea {
 
 .announcement {
     max-width: 25rem;
-    margin-top: 5px;
-    margin-right: 13px;
+    margin: 5px 13px 1.5rem 0;
     padding: 5px 16px;
     background: lightyellow;
     border: 1px solid beige;
@@ -1406,9 +1405,16 @@ button:disabled,
 .panel {
     border-radius: 9px;
     padding: 1rem 2rem;
-    margin: 5px;
+    margin: 5px 0;
     border: 5px solid #010053;
     max-width: 53rem;
+}
+
+.panel-card {
+    border: none;
+    margin-bottom: 1.5rem;
+    border: 1px solid #D0D0E8;
+    border-radius: 3px;
 }
 
 .panel-centered {

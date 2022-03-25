@@ -79,7 +79,7 @@
     <h2>Event Registration</h2>
     <p>
         The GECO site is used to register for classes, workshops, and other events hosted by Georgia EPD. View all
-        <asp:HyperLink ID="linkEvents" runat="server" NavigateUrl="~/EventRegistration/">upcoming events</asp:HyperLink>.
+        <asp:HyperLink ID="linkEvents" runat="server" NavigateUrl="~/Events/">upcoming events</asp:HyperLink>.
     </p>
 
     <h2>Emissions Inventory</h2>

@@ -117,6 +117,7 @@
     <Content Include="EIS\History\EmissionUnits.aspx" />
     <Content Include="EIS\History\ReleasePoints.aspx" />
     <Content Include="EIS\Users\Default.aspx" />
+    <Content Include="Events\Default.aspx" />
     <Content Include="Facility\Contacts.aspx" />
     <Content Include="Facility\EditContacts.aspx" />
     <Content Include="Facility\SetCommunicationPreferences.aspx" />
@@ -146,8 +147,6 @@
     <Content Include="ES\Default.aspx" />
     <Content Include="ES\Form.aspx" />
     <Content Include="EventRegistration\Default.aspx" />
-    <Content Include="EventRegistration\Details.aspx" />
-    <Content Include="EventRegistration\EventList.aspx" />
     <Content Include="Facility\Admin.aspx" />
     <Content Include="Facility\Summary.aspx" />
     <Content Include="Facility\Default.aspx" />
@@ -289,6 +288,14 @@
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="Events\Default.aspx.designer.vb">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Events\Default.aspx.vb">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Events\Models\EventsList.vb" />
     <Compile Include="Facility\Contacts.aspx.designer.vb">
       <DependentUpon>Contacts.aspx</DependentUpon>
     </Compile>
@@ -360,12 +367,6 @@
     </Compile>
     <Compile Include="EventRegistration\Default.aspx.designer.vb">
       <DependentUpon>Default.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="EventRegistration\Details.aspx.designer.vb">
-      <DependentUpon>Details.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="EventRegistration\EventList.aspx.designer.vb">
-      <DependentUpon>EventList.aspx</DependentUpon>
     </Compile>
     <Compile Include="Facility\Admin.aspx.designer.vb">
       <DependentUpon>Admin.aspx</DependentUpon>
@@ -509,7 +510,6 @@
     <Compile Include="_Code\LogToTextFile.vb" />
     <Compile Include="_Code\ErrorReporting.vb" />
     <Compile Include="_DAL\ES\EmissionsStatement.vb" />
-    <Compile Include="_DAL\Events\Events.vb" />
     <Compile Include="_DAL\Facility\FacilityInfo.vb" />
     <Compile Include="_DAL\AnnualFees\AnnualFees.vb" />
     <Compile Include="_Code\Globals.vb" />
@@ -570,14 +570,6 @@
     </Compile>
     <Compile Include="EventRegistration\Default.aspx.vb">
       <DependentUpon>Default.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="EventRegistration\Details.aspx.vb">
-      <DependentUpon>Details.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="EventRegistration\EventList.aspx.vb">
-      <DependentUpon>EventList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="AnnualFees\Default.aspx.vb">

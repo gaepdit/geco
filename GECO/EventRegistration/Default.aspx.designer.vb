@@ -12,70 +12,13 @@ Option Explicit On
 
 
 Partial Public Class EventRegistration_Default
-    
+
     '''<summary>
-    '''pLoginWarning control.
+    '''form1 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents pLoginWarning As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
-    '''<summary>
-    '''lnkLogin control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lnkLogin As Global.System.Web.UI.WebControls.HyperLink
-    
-    '''<summary>
-    '''lnkRegister control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lnkRegister As Global.System.Web.UI.WebControls.HyperLink
-    
-    '''<summary>
-    '''pUpdateRequired control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents pUpdateRequired As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
-    '''<summary>
-    '''lnkUpdateProfile control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lnkUpdateProfile As Global.System.Web.UI.WebControls.HyperLink
-    
-    '''<summary>
-    '''gvwEventList control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents gvwEventList As Global.System.Web.UI.WebControls.GridView
-    
-    '''<summary>
-    '''Master property.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated property.
-    '''</remarks>
-    Public Shadows ReadOnly Property Master() As GECO.MainLayout
-        Get
-            Return CType(MyBase.Master,GECO.MainLayout)
-        End Get
-    End Property
+    Protected WithEvents form1 As Global.System.Web.UI.HtmlControls.HtmlForm
 End Class
