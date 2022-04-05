@@ -234,25 +234,29 @@ blockquote {
         width: 25%
     }
 
-
-/* Banner message */
-
-.banner {
-    margin: 1rem 0;
-    padding: .25rem 0;
+/* Test site banner */
+.banner-test-site {
+    text-shadow: 0 0 4px white;
+    font-weight: 700;
+    text-transform: uppercase;
     text-align: center;
-    background-color: #ffffcc;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    line-height: 1.5;
+    opacity: .9;
+    color: #333;
+    font-size: 16px;
+    font-family: system-ui;
+    background: repeating-linear-gradient(135deg,#f6da52bb,#f6da52bb 10px,#ffef80bb 10px,#ffef80bb 20px);
+    box-shadow: 0 4px 8px rgba(130, 106, 15, 0.37);
 }
-
-    .banner h1 {
-        text-transform: uppercase;
-        margin: .25rem 0;
-    }
 
 /* Print */
 @media print {
     html, body {
         font-size: 12px;
+        color: #000;
     }
 
     .toolbar {
@@ -271,7 +275,14 @@ blockquote {
         max-width: 250px;
     }
 
-    @page{
-        /*margin:2cm;*/
+    .banner-test-site {
+        position: static;
+        box-shadow: none;
+        text-shadow: none;
+        border: 1px solid;
     }
+
+        .banner-test-site::after {
+            content: "—Not for public distribution";
+        }
 }

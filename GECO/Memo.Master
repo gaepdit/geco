@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width" />
     <title></title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/8.0.0/sanitize.min.css" integrity="sha256-gk3z+XTkT2rjrvAxcKDA15OH4w1FssyEwnSC3WnKbWU=" crossorigin="anonymous" />
-    <link rel="stylesheet" href="assets/css/memo.css?v=202101221" />
+    <link rel="stylesheet" href="assets/css/memo.css?v=20220405" />
     <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="icon" href="/icon.svg" type="image/svg+xml" charset="utf-8" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
@@ -33,6 +33,10 @@
     </script>
 </head>
 <body>
+    <% If CurrentEnvironment <> "Production" Then %>
+    <div class="banner-test-site">Test Site</div>
+    <% End If %>
+
     <form id="form1" runat="server">
         <div class="toolbar" runat="server" visible="<%# MemoPageCount > 0 %>">
             <%= PageCountDisplay %>
