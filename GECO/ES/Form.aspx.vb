@@ -1,4 +1,4 @@
-﻿Imports System.Data.SqlClient
+Imports System.Data.SqlClient
 Imports System.DateTime
 Imports System.Math
 Imports GECO.GecoModels
@@ -285,7 +285,11 @@ Partial Class es_form
             End If
             If Not Convert.IsDBNull(dr("strContactFaxNumber")) Then
                 ContactFaxNumber = dr.Item("strContactFaxNumber").ToString
-                txtFaxNbr.Text = ContactFaxNumber.Substring(0, 10)
+                If ContactFaxNumber.Length > 10 Then
+                    txtFaxNbr.Text = ContactFaxNumber.Substring(0, 10)
+                Else
+                    txtFaxNbr.Text = ContactFaxNumber
+                End If
             End If
             If Convert.IsDBNull(dr("strContactEmail")) Then
                 txtContactEmail.Text = ""
@@ -507,7 +511,11 @@ Partial Class es_form
             End If
             If Not Convert.IsDBNull(dr("strContactFaxNumber")) Then
                 ContactFaxNumber = dr.Item("strContactFaxNumber").ToString
-                txtFaxNbr.Text = ContactFaxNumber.Substring(0, 10)
+                If ContactFaxNumber.Length > 10 Then
+                    txtFaxNbr.Text = ContactFaxNumber.Substring(0, 10)
+                Else
+                    txtFaxNbr.Text = ContactFaxNumber
+                End If
             End If
             If Convert.IsDBNull(dr("strContactEmail")) Then
                 txtContactEmail.Text = ""
