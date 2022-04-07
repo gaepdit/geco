@@ -71,7 +71,7 @@
             value = value.Trim()
 
             If value.Substring(0, 3) = "ERC" Then
-                Return ConcatNonEmptyStrings("-", {value.Substring(0, 3), value.SubstringFrom(3)})
+                Return ConcatNonEmptyStrings("-", {value.Substring(0, 3), value.Substring(3)})
             End If
 
             If Not Char.IsDigit(value(0)) OrElse value.Contains(" ") Then
@@ -80,10 +80,10 @@
 
             If value.Length() = 15 AndAlso IsNumeric(Left(value, 11)) AndAlso Not IsNumeric(value.Substring(11, 1)) Then
                 Return ConcatNonEmptyStrings("-", {value.Substring(0, 4), value.Substring(4, 3), value.Substring(7, 4),
-                                             value.Substring(11, 1), value.Substring(12, 2), value.SubstringFrom(14)})
+                                             value.Substring(11, 1), value.Substring(12, 2), value.Substring(14)})
             End If
 
-            Return ConcatNonEmptyStrings("-", {value.Substring(0, 4), value.Substring(4, 3), value.SubstringFrom(7)})
+            Return ConcatNonEmptyStrings("-", {value.Substring(0, 4), value.Substring(4, 3), value.Substring(7)})
         End Function
 
         Public Function GetPermitFileLink() As String

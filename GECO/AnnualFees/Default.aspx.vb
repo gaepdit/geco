@@ -63,7 +63,7 @@ Partial Class AnnualFees_Default
             feeYear = Nothing
         Else
             feeYear = CInt(ddlFeeYear.SelectedItem.Text)
-            feeYearCompleted = ddlFeeYear.SelectedValue.SubstringFrom(4) = "1"
+            feeYearCompleted = ddlFeeYear.SelectedValue.Substring(4) = "1"
         End If
     End Sub
 

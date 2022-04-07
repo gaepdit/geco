@@ -54,13 +54,4 @@ Public Module StringFunctions
         Return s
     End Function
 
-    <Extension>
-    Public Function SubstringFrom(s As String, startIndex As Integer) As String
-        If s Is Nothing OrElse s.Length < startIndex Then
-            Return String.Empty
-        End If
-
-        Return s.Substring(startIndex, s.Length - startIndex)
-    End Function
-
 End Module

@@ -61,14 +61,14 @@ Partial Class TN_Default
                     lblEPDTelephone.Text = "404-363-7000 (ask For Source Monitoring Unit)"
                 Else
                     EPDTelephone = CStr(dr.Item("STRPHONE"))
-                    lblEPDTelephone.Text = EPDTelephone.Substring(0, 3) & "-" & EPDTelephone.Substring(3, 3) & "-" & EPDTelephone.SubstringFrom(6)
+                    lblEPDTelephone.Text = EPDTelephone.Substring(0, 3) & "-" & EPDTelephone.Substring(3, 3) & "-" & EPDTelephone.Substring(6)
                 End If
 
                 If Convert.IsDBNull(dr.Item("STRFAX")) Then
                     lblEPDFax.Text = "404-363-7100"
                 Else
                     EPDFaxNumber = CStr(dr.Item("STRFAX"))
-                    lblEPDFax.Text = EPDFaxNumber.Substring(0, 3) & "-" & EPDFaxNumber.Substring(3, 3) & "-" & EPDFaxNumber.SubstringFrom(6)
+                    lblEPDFax.Text = EPDFaxNumber.Substring(0, 3) & "-" & EPDFaxNumber.Substring(3, 3) & "-" & EPDFaxNumber.Substring(6)
                 End If
 
                 lblEPDEmail.Text = GetNullableString(dr.Item("STREMAILADDRESS"))
@@ -173,7 +173,7 @@ Partial Class TN_Default
                 If Telephone.Length() = 10 Then
                     AreaCode = Left(Telephone, 3)
                     Prefix = Telephone.Substring(3, 3)
-                    TelNbr = Telephone.SubstringFrom(6)
+                    TelNbr = Telephone.Substring(6)
                     TelExt = ""
                 End If
 
