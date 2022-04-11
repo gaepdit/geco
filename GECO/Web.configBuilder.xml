@@ -21,11 +21,11 @@
 
     <!-- update the following settings in configBuilder configuration files -->
     <appSettings>
+        <add key="GECO_ENVIRONMENT" value="Development" />
         <add key="GecoEmailSender" value="GeorgiaAirProtectionBranch@dnr.ga.gov" />
         <add key="EnableSendingEmail" value="true" />
         <add key="SaveAllEmails" value="false" />
         <add key="ValidationSettings:UnobtrusiveValidationMode" value="None" />
-        <add key="GECO_ENVIRONMENT" value="Development" />
         <add key="UndeliverableEmailFolder" value="..\_UnsentEmail" />
         <add key="LoggingFolder" value="..\Logs" />
         <add key="LogExceptionsToFile" value="false" />
@@ -56,6 +56,7 @@
         during development.
         -->
         <compilation debug="true" strict="false" explicit="true" />
+        <httpRuntime targetFramework="4.8" />
         <pages>
             <controls>
                 <add tagPrefix="act" namespace="AjaxControlToolkit" assembly="AjaxControlToolkit" />
