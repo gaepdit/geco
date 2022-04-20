@@ -1,4 +1,6 @@
-﻿Public Class Global_asax
+﻿Imports NWebsec.Csp
+
+Public Class Global_asax
     Inherits HttpApplication
 
     'Sub Application_Start(ByVal sender As Object, ByVal e As EventArgs)
@@ -43,5 +45,9 @@
     'Sub Application_End(ByVal sender As Object, ByVal e As EventArgs)
     '    ' Fires when the application ends
     'End Sub
+
+    Sub NWebsecHttpHeaderSecurityModule_CspViolationReported(sender As Object, e As CspViolationReportEventArgs)
+        LogToTextFile(e.ViolationReport.ToString)
+    End Sub
 
 End Class

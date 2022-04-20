@@ -10,16 +10,18 @@
 
 <configuration>
     <configSections>
-        <section name ="communicationPrefs" type ="GECO.GecoModels.Facility.CommunicationPrefsConfigSection"/>
+        <section name ="communicationPrefs" type ="GECO.GecoModels.Facility.CommunicationPrefsConfigSection" />
         <section name="RaygunSettings" type="Mindscape.Raygun4Net.RaygunSettings, Mindscape.Raygun4Net" />
         <section name="ajaxControlToolkit" type="AjaxControlToolkit.AjaxControlToolkitConfigSection, AjaxControlToolkit" />
+        <sectionGroup name="nwebsec">
+            <section name="httpHeaderSecurityModule" type="NWebsec.Modules.Configuration.HttpHeaderSecurityConfigurationSection, NWebsec" requirePermission="false" />
+        </sectionGroup>
     </configSections>
 
     <connectionStrings>
         <add name="SqlConnectionString" connectionString="" />
     </connectionStrings>
 
-    <!-- update the following settings in configBuilder configuration files -->
     <appSettings>
         <add key="GECO_ENVIRONMENT" value="Development" />
         <add key="GecoEmailSender" value="GeorgiaAirProtectionBranch@dnr.ga.gov" />
@@ -49,14 +51,8 @@
     <ajaxControlToolkit renderStyleLinks="false" />
 
     <system.web>
-        <!--
-        Set compilation debug="true" to insert debugging
-        symbols into the compiled page. Because this
-        affects performance, set this value to true only
-        during development.
-        -->
         <compilation debug="true" strict="false" explicit="true" />
-        <httpRuntime targetFramework="4.8" />
+        <httpRuntime targetFramework="4.8" enableVersionHeader="false" />
         <pages>
             <controls>
                 <add tagPrefix="act" namespace="AjaxControlToolkit" assembly="AjaxControlToolkit" />
@@ -110,13 +106,62 @@
             <clear />
             <error statusCode="404" path="/404.aspx" responseMode="ExecuteURL" />
         </httpErrors>
+        <modules>
+            <add name="NWebsecHttpHeaderSecurityModule" type="NWebsec.Modules.HttpHeaderSecurityModule, NWebsec" />
+        </modules>
+        <httpProtocol>
+            <customHeaders>
+                <clear />
+            </customHeaders>
+        </httpProtocol>
+        <security>
+            <requestFiltering>
+                <hiddenSegments>
+                    <add segment="NWebsecConfig" />
+                </hiddenSegments>
+            </requestFiltering>
+        </security>
     </system.webServer>
+
+    <!-- Configuration for the NWebsec package. See https://docs.nwebsec.com/en/aspnet4/index.html -->
+    <nwebsec>
+        <httpHeaderSecurityModule xmlns="http://nwebsec.com/HttpHeaderSecurityModuleConfig.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="NWebsecConfig/HttpHeaderSecurityModuleConfig.xsd">
+            <redirectValidation enabled="true">
+                <allowSameHostRedirectsToHttps enabled="true" />
+            </redirectValidation>
+            <securityHttpHeaders>
+                <x-Frame-Options policy="Deny" />
+                <x-XSS-Protection policy="FilterEnabled" blockMode="true" />
+                <x-Content-Type-Options enabled="true" />
+                <referrer-Policy enabled="true" policy="strict-origin-when-cross-origin" />
+                <content-Security-Policy enabled="true" >
+                    <default-src self="true" />
+                    <connect-src self="true">
+                        <add source="api.raygun.io" />
+                    </connect-src>
+                    <script-src self="true" unsafeInline="true" unsafeEval="true">
+                        <add source="cdn.raygun.io" />
+                    </script-src>
+                    <style-src self="true" unsafeInline="true">
+                        <add source="fonts.googleapis.com" />
+                    </style-src>
+                    <font-src self="true">
+                        <add source="fonts.gstatic.com" />
+                    </font-src>
+                    <img-src self="true">
+                        <add source="maps.googleapis.com" />
+                    </img-src>
+                    <report-uri enableBuiltinHandler="true" />
+                </content-Security-Policy>
+            </securityHttpHeaders>
+        </httpHeaderSecurityModule>
+    </nwebsec>
 
     <runtime>
         <assemblyBinding xmlns="urn:schemas-microsoft-com:asm.v1">
             <dependentAssembly>
-                <assemblyIdentity name="DocumentFormat.OpenXml" publicKeyToken="8fb06cb64d019a17" culture="neutral"/>
-                <bindingRedirect oldVersion="0.0.0.0-2.16.0.0" newVersion="2.16.0.0"/>
+                <assemblyIdentity name="DocumentFormat.OpenXml" publicKeyToken="8fb06cb64d019a17" culture="neutral" />
+                <bindingRedirect oldVersion="0.0.0.0-2.16.0.0" newVersion="2.16.0.0" />
             </dependentAssembly>
             <dependentAssembly>
                 <assemblyIdentity name="ExcelNumberFormat" publicKeyToken="23c6f5d73be07eca" culture="neutral" />
