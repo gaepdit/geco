@@ -135,22 +135,29 @@
                 <x-Content-Type-Options enabled="true" />
                 <referrer-Policy enabled="true" policy="strict-origin-when-cross-origin" />
                 <content-Security-Policy enabled="true" >
-                    <default-src self="true" />
-                    <connect-src self="true">
-                        <add source="api.raygun.io" />
-                    </connect-src>
+                    <default-src none="true" />
                     <script-src self="true" unsafeInline="true" unsafeEval="true">
-                        <add source="cdn.raygun.io" />
+                        <add source="https://cdn.raygun.io/raygun4js/raygun.min.js" />
+                        <add source="https://unpkg.com/details-element-polyfill@2.4.0/dist/details-element-polyfill.js" />
                     </script-src>
                     <style-src self="true" unsafeInline="true">
-                        <add source="fonts.googleapis.com" />
+                        <add source="https://fonts.googleapis.com/" />
+                        <add source="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/8.0.0/" />
                     </style-src>
-                    <font-src self="true">
-                        <add source="fonts.gstatic.com" />
-                    </font-src>
                     <img-src self="true">
-                        <add source="maps.googleapis.com" />
+                        <add source="https://maps.googleapis.com" />
+                        <add source="data:"/>
                     </img-src>
+                    <connect-src self="true">
+                        <add source="https://api.raygun.io" />
+                    </connect-src>
+                    <font-src self="true">
+                        <add source="https://fonts.gstatic.com" />
+                    </font-src>
+                    <form-action self="true" />
+                    <frame-ancestors none="true" />
+                    <manifest-src self="true" />
+                    <base-uri self="true" />
                     <report-uri enableBuiltinHandler="true" />
                 </content-Security-Policy>
             </securityHttpHeaders>
