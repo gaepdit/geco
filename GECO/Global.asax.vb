@@ -46,8 +46,4 @@ Public Class Global_asax
     '    ' Fires when the application ends
     'End Sub
 
-    Sub NWebsecHttpHeaderSecurityModule_CspViolationReported(sender As Object, e As CspViolationReportEventArgs)
-        LogToTextFile(e.ViolationReport.ToString)
-    End Sub
-
 End Class

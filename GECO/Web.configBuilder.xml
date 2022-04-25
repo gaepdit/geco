@@ -158,7 +158,6 @@
                     <frame-ancestors none="true" />
                     <manifest-src self="true" />
                     <base-uri self="true" />
-                    <report-uri enableBuiltinHandler="true" />
                 </content-Security-Policy>
             </securityHttpHeaders>
         </httpHeaderSecurityModule>
