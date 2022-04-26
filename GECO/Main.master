@@ -18,7 +18,7 @@
     <link rel="icon" href="/icon-uat.svg" type="image/svg+xml" charset="utf-8" />
     <% End If %>
     <meta name="description" content="Access to various Georgia Air Protection Branch applications" />
-    <script type="text/javascript">
+    <script>
         !function (a, b, c, d, e, f, g, h) {
             a.RaygunObject = e, a[e] = a[e] || function () {
                 (a[e].o = a[e].o || []).push(arguments)
@@ -86,7 +86,7 @@
     <div class="footer">
         <a href="https://epd.georgia.gov/">Georgia Environmental Protection Division</a> | <a href="https://epd.georgia.gov/air-protection-branch">Air Protection Branch</a>
     </div>
-    <script type="text/javascript">
+    <script>
         rg4js('apiKey', '<%= raygunInfo.ApiKey %>');
         rg4js('setVersion', '<%= raygunInfo.Version %>');
         rg4js('enableCrashReporting', true);

@@ -19,7 +19,7 @@
     <% If CurrentEnvironment = "Staging" Then %>
     <link rel="icon" href="/icon-uat.svg" type="image/svg+xml" charset="utf-8" />
     <% End If %>
-    <script type="text/javascript">
+    <script>
         !function (a, b, c, d, e, f, g, h) {
             a.RaygunObject = e, a[e] = a[e] || function () {
                 (a[e].o = a[e].o || []).push(arguments)
@@ -45,7 +45,7 @@
 
         <asp:ContentPlaceHolder ID="MainContent" runat="server"></asp:ContentPlaceHolder>
     </form>
-    <script type="text/javascript">
+    <script>
         rg4js('apiKey', '<%= raygunInfo.ApiKey %>');
         rg4js('setVersion', '<%= raygunInfo.Version %>');
         rg4js('enableCrashReporting', true);

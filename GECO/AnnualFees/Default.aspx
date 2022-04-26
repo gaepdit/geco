@@ -16,7 +16,7 @@
     <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
         <ContentTemplate>
             <div style="max-width: 950px;">
-                <script type="text/javascript">
+                <script>
                     function ActiveTabChanged(sender, e) {
                         // use the client side active tab changed event to trigger a callback thereby triggering the server side event.
                         __doPostBack('<%= UserTabs.ClientID %>', sender.get_activeTab().get_headerText());
