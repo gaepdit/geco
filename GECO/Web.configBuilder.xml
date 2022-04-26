@@ -139,17 +139,26 @@
                     <script-src self="true" unsafeInline="true" unsafeEval="true">
                         <add source="https://cdn.raygun.io/raygun4js/raygun.min.js" />
                         <add source="https://unpkg.com/details-element-polyfill@2.4.0/dist/details-element-polyfill.js" />
+                        <add source="https://translate.google.com/" />
+                        <add source="https://translate.googleapis.com/" />
+                        <add source="https://translate-pa.googleapis.com/" />
                     </script-src>
                     <style-src self="true" unsafeInline="true">
                         <add source="https://fonts.googleapis.com/" />
                         <add source="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/8.0.0/" />
+                        <add source="https://translate.googleapis.com/translate_static/css/translateelement.css" />
                     </style-src>
                     <img-src self="true">
                         <add source="https://maps.googleapis.com" />
                         <add source="data:"/>
+                        <add source="https://www.gstatic.com/images/"/>
+                        <add source="https://www.google.com/images/"/>
+                        <add source="https://translate.googleapis.com/" />
+                        <add source="https://translate.google.com/" />
                     </img-src>
                     <connect-src self="true">
                         <add source="https://api.raygun.io" />
+                        <add source="https://translate.googleapis.com/" />
                     </connect-src>
                     <font-src self="true">
                         <add source="https://fonts.gstatic.com" />
