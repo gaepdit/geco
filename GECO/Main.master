@@ -77,7 +77,6 @@
         </div>
         <% End If %>
 
-        <%--<div class="content draft-mode" id="main-content">--%>
         <div class="content" id="main-content">
             <asp:ContentPlaceHolder ID="Content" runat="server"></asp:ContentPlaceHolder>
             <div class="clear"></div>

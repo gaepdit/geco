@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Balsamiq+Sans:wght@400;700&display=swap');
-
 /* Layout */
 html {
     box-sizing: border-box;
@@ -1595,23 +1593,3 @@ details[open] .anim-fade-in {
         opacity: 0;
     }
 }
-
-/* Draft mode */
-
-.draft-mode, .draft-mode * {
-    font-family: "Balsamiq Sans", Verdana !important
-}
-
-    .draft-mode .selected {
-        background: #f0f0f0 !important;
-    }
-
-    .draft-mode .menu-list-horizontal {
-        background: #fcfcfc !important;
-        border-color: #ccc !important;
-    }
-
-    .draft-mode .selected-menu-item {
-        background: #f0f0f0 !important;
-        border-color: #ccc !important;
-    }
