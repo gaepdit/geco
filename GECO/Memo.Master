@@ -6,7 +6,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <title></title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/8.0.0/sanitize.min.css" integrity="sha256-gk3z+XTkT2rjrvAxcKDA15OH4w1FssyEwnSC3WnKbWU=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/8.0.0/sanitize.min.css" 
+        integrity="sha384-ZdO/whFrWcg7jaMHUvUEmvQRr1FlLxXQZ5KYDHAtpkh74FQHGqZg8Q2PxfWfQ0iO" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/css/memo.css?v=20220405" />
     <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="icon" href="/icon.svg" type="image/svg+xml" charset="utf-8" />
