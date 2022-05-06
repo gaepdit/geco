@@ -1,6 +1,4 @@
-﻿Imports NWebsec.Csp
-
-Public Class Global_asax
+﻿Public Class Global_asax
     Inherits HttpApplication
 
     'Sub Application_Start(ByVal sender As Object, ByVal e As EventArgs)
