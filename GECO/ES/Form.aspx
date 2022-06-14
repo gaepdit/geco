@@ -197,7 +197,7 @@
                                     <asp:Label AssociatedControlID="txtContactFirstName" runat="server">First Name:</asp:Label>
                                 </th>
                                 <td>
-                                    <asp:TextBox ID="txtContactFirstName" runat="server" MaxLength="35" />
+                                    <asp:TextBox ID="txtContactFirstName" runat="server" MaxLength="50" />
                                 </td>
                             </tr>
                             <tr>
@@ -212,7 +212,7 @@
                                     <asp:Label AssociatedControlID="txtContactLastName" runat="server">Last Name:</asp:Label>
                                 </th>
                                 <td>
-                                    <asp:TextBox ID="txtContactLastName" runat="server" MaxLength="35" />
+                                    <asp:TextBox ID="txtContactLastName" runat="server" MaxLength="50" />
                                 </td>
                             </tr>
                             <tr>
@@ -276,7 +276,7 @@
                                     <asp:Label AssociatedControlID="txtFaxNbr" runat="server">Fax:</asp:Label>
                                 </th>
                                 <td>
-                                    <asp:TextBox ID="txtFaxNbr" runat="server" MaxLength="10" />
+                                    <asp:TextBox ID="txtFaxNbr" runat="server" MaxLength="15" />
                                     (optional)
                                 </td>
                             </tr>

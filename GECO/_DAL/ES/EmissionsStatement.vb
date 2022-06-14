@@ -230,8 +230,8 @@ Public Module EmissionsStatement
                            IIF(m.Id is not null, m.LastName,
                                c.STRCONTACTLASTNAME))        as strContactLastName,
                    dbo.NullIfNaOrEmpty(
-                           IIF(m.Id is not null, left(m.Title, 50),
-                               left(c.STRCONTACTTITLE, 50))) as strContactTitle,
+                           IIF(m.Id is not null, m.Title,
+                               c.STRCONTACTTITLE)) as strContactTitle,
                    dbo.NullIfNaOrEmpty(
                            IIF(m.Id is not null, m.Organization,
                                c.STRCONTACTCOMPANYNAME))     as strContactCompanyName,
@@ -243,7 +243,7 @@ Public Module EmissionsStatement
                                c.STRCONTACTFAXNUMBER))       as strContactFaxNumber,
                    dbo.NullIfNaOrEmpty(
                            IIF(m.Id is not null, m.Email,
-                               left(c.STRCONTACTEMAIL, 50))) as strContactEmail,
+                               c.STRCONTACTEMAIL)) as strContactEmail,
                    dbo.NullIfNaOrEmpty(
                            IIF(m.Id is not null, m.Address1,
                                c.STRCONTACTADDRESS1))        as strContactAddress1,

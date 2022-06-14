@@ -662,15 +662,6 @@ Partial Public Class es_form
     Protected WithEvents RangeValidator1 As Global.System.Web.UI.WebControls.RangeValidator
 
     '''<summary>
-    '''RangeValidator10 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents RangeValidator10 As Global.System.Web.UI.WebControls.RangeValidator
-
-    '''<summary>
     '''RequiredFieldValidator1 control.
     '''</summary>
     '''<remarks>
@@ -705,15 +696,6 @@ Partial Public Class es_form
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RangeValidator9 As Global.System.Web.UI.WebControls.RangeValidator
-
-    '''<summary>
-    '''RangeValidator11 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents RangeValidator11 As Global.System.Web.UI.WebControls.RangeValidator
 
     '''<summary>
     '''RequiredFieldValidator2 control.

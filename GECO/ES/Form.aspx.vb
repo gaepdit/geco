@@ -1,4 +1,4 @@
-Imports System.Data.SqlClient
+﻿Imports System.Data.SqlClient
 Imports System.DateTime
 Imports System.Math
 Imports GECO.GecoModels
@@ -172,7 +172,6 @@ Partial Class es_form
 
         Dim FacilityZip As String
         Dim AirsYear As String = CurrentAirs.DbFormattedString & GetSessionItem(Of String)("ESYear")
-        Dim ContactFaxNumber As String
         Dim ContactZip As String
         Dim YesNo As String
         Dim VOCAmt As Double
@@ -284,12 +283,7 @@ Partial Class es_form
                 txtOfficePhoneNbr.Text = dr.Item("strContactPhoneNumber").ToString
             End If
             If Not Convert.IsDBNull(dr("strContactFaxNumber")) Then
-                ContactFaxNumber = dr.Item("strContactFaxNumber").ToString
-                If ContactFaxNumber.Length > 10 Then
-                    txtFaxNbr.Text = ContactFaxNumber.Substring(0, 10)
-                Else
-                    txtFaxNbr.Text = ContactFaxNumber
-                End If
+                txtFaxNbr.Text = dr.Item("strContactFaxNumber").ToString
             End If
             If Convert.IsDBNull(dr("strContactEmail")) Then
                 txtContactEmail.Text = ""
@@ -474,7 +468,6 @@ Partial Class es_form
     End Sub
 
     Private Sub LoadContactInfo()
-        Dim ContactFaxNumber As String
         Dim ContactZip As String
 
         Dim dr = GetEsContactInfo(CurrentAirs, Now.Year - 1)
@@ -510,12 +503,7 @@ Partial Class es_form
                 txtOfficePhoneNbr.Text = dr.Item("strContactPhoneNumber1").ToString
             End If
             If Not Convert.IsDBNull(dr("strContactFaxNumber")) Then
-                ContactFaxNumber = dr.Item("strContactFaxNumber").ToString
-                If ContactFaxNumber.Length > 10 Then
-                    txtFaxNbr.Text = ContactFaxNumber.Substring(0, 10)
-                Else
-                    txtFaxNbr.Text = ContactFaxNumber
-                End If
+                txtFaxNbr.Text = dr.Item("strContactFaxNumber").ToString
             End If
             If Convert.IsDBNull(dr("strContactEmail")) Then
                 txtContactEmail.Text = ""
