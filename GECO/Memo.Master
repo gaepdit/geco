@@ -56,7 +56,7 @@
             isAnonymous: <%= raygunInfo.IsAnonymous %>
         });
         rg4js('withTags', ['<%= raygunInfo.Environment %>']);
-        rg4js('recordBreadcrumb', 'query string', { object: '<%= Request.Url.Query %>' });
+        rg4js('recordBreadcrumb', 'query string', { object: '<%= System.Net.WebUtility.UrlEncode(Request.Url.Query) %>' });
     </script>
 </body>
 </html>
