@@ -5,6 +5,7 @@
 <%@ MasterType VirtualPath="~/EIS/EIS.master" %>
 <%@ Register Assembly="Reimers.Google.Map" Namespace="Reimers.Google.Map" TagPrefix="Reimers" %>
 <asp:Content ID="Content3" ContentPlaceHolderID="Content" runat="Server">
+    <script src="https://maps.googleapis.com/maps/api/js?key=<%= ConfigurationManager.AppSettings("GoogleMapsAPIKey") %>"></script>
     <h1>Edit EI Facility Information</h1>
 
     <asp:Panel ID="pnlFacilityEdit" runat="server">

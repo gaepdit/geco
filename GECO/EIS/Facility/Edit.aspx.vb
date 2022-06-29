@@ -135,15 +135,15 @@ Partial Class EIS_Facility_EditPage
 
         ' Geographic Coordinates
 
-        Dim latMeasure As Decimal = GetNullable(Of Decimal)(dr("numLatitudeMeasure"))
-        Dim lonMeasure As Decimal = GetNullable(Of Decimal)(dr("numLongitudeMeasure"))
+        Dim latMeasure As Decimal? = GetNullable(Of Decimal?)(dr("numLatitudeMeasure"))
+        Dim lonMeasure As Decimal? = GetNullable(Of Decimal?)(dr("numLongitudeMeasure"))
 
         txtLatitudeMeasure.Text = latMeasure.ToString
         txtLongitudeMeasure.Text = lonMeasure.ToString
 
-        If latMeasure > 0 AndAlso lonMeasure > 0 Then
-            imgGoogleStaticMap.ImageUrl = GetStaticMapUrl(New Coordinate(latMeasure, lonMeasure))
-            lnkGoogleMap.NavigateUrl = GetMapLinkUrl(New Coordinate(latMeasure, lonMeasure))
+        If latMeasure.HasValue AndAlso lonMeasure.HasValue Then
+            imgGoogleStaticMap.ImageUrl = GetStaticMapUrl(New Coordinate(latMeasure.Value, lonMeasure.Value))
+            lnkGoogleMap.NavigateUrl = GetMapLinkUrl(New Coordinate(latMeasure.Value, lonMeasure.Value))
         Else
             imgGoogleStaticMap.ImageUrl = GetStaticMapUrl(siteAddress.Street, siteAddress.City)
             lnkGoogleMap.NavigateUrl = GetMapLinkUrl(siteAddress.Street, siteAddress.City)
@@ -513,7 +513,7 @@ Partial Class EIS_Facility_EditPage
         Dim latitude As String = Left(e.Coordinates.Latitude.ToString, 8)
         Dim longitude As String = Left(e.Coordinates.Longitude.ToString, 9)
 
-        Dim myOverlay As New Marker(New Guid(), CDbl(latitude), CDbl(longitude))
+        Dim myOverlay As New Marker(Guid.NewGuid, CDbl(latitude), CDbl(longitude))
         GMap.Overlays.Add(myOverlay)
 
         Dim Mapcommand As String = GMap.UpdateOverlays()

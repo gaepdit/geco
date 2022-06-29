@@ -144,6 +144,7 @@
                         <add source="https://translate.google.com/"/>
                         <add source="https://translate.googleapis.com/"/>
                         <add source="https://translate-pa.googleapis.com/"/>
+                        <add source="https://maps.googleapis.com/"/>
                     </script-src>
                     <style-src self="true" unsafeInline="true">
                         <add source="https://fonts.googleapis.com/"/>
@@ -157,10 +158,13 @@
                         <add source="https://www.google.com/images/"/>
                         <add source="https://translate.googleapis.com/"/>
                         <add source="https://translate.google.com/"/>
+                        <add source="https://maps.gstatic.com/mapfiles/"/>
+                        <add source="*.googleapis.com"/>
                     </img-src>
                     <connect-src self="true">
                         <add source="https://api.raygun.io"/>
                         <add source="https://translate.googleapis.com/"/>
+                        <add source="https://maps.googleapis.com/"/>
                     </connect-src>
                     <font-src self="true">
                         <add source="https://fonts.gstatic.com"/>
