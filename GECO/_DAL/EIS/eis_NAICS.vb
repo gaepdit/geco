@@ -3,22 +3,14 @@
 Public Module eis_NAICS
 
     Public Function GetNaicsCodeDesc(NaicsCode As String) As String
-        Dim query As String = "Select strDesc " &
-            " FROM EISLK_NAICSCODE " &
-            " Where NAICSCode = @code " &
-            " and Active = '1' "
-
+        Dim query As String = "select NAICS_DESC from LK_NAICS where NAICS_CODE = @code"
         Dim param As New SqlParameter("@code", NaicsCode)
-
         Return DB.GetString(query, param)
     End Function
 
     Public Function GetNaicsDataTable() As DataTable
-        Dim query As String = "SELECT NAICSCode, strDesc " &
-            " FROM EISLK_NAICSCODE " &
-            " where Active = '1' " &
-            " and len(NAICSCode) = 6 " &
-            " ORDER BY NAICSCode"
+        Dim query As String = "select NAICS_CODE as NAICSCode, NAICS_DESC as strDesc
+            from LK_NAICS where ACTIVE = '1' order by NAICSCode"
 
         Dim dt As DataTable = DB.GetDataTable(query)
 
@@ -28,10 +20,8 @@ Public Module eis_NAICS
     End Function
 
     Public Function DoesNaicsCodeExist(NaicsCode As String) As Boolean
-        Dim query As String = "Select CONVERT( bit, COUNT(*)) " &
-            " FROM EISLK_NAICSCODE " &
-            " where NAICSCode = @code " &
-            " and Active = '1' "
+        Dim query As String = "select CONVERT(bit, COUNT(*))
+            from LK_NAICS where NAICS_CODE = @code and ACTIVE = '1'"
 
         Dim param As New SqlParameter("@code", NaicsCode)
 
