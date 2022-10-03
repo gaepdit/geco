@@ -99,6 +99,7 @@
     <Import Include="System.Web.UI.HtmlControls" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include=".well-known\security.txt" />
     <Content Include="404.aspx" />
     <Content Include="Account.aspx" />
     <Content Include="Account\Default.aspx" />
