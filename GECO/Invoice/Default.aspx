@@ -90,7 +90,7 @@
                         Post Office Box 101713<br />
                         Atlanta, Georgia 30392
                     </blockquote>
-                    <p>To pay by credit card, please contact Tammy Tucker at 470-596-8540.</p>
+                    <p>To pay by credit card, please contact <%= FeeContactInfo %>.</p>
                 </div>
             </div>
         </ItemTemplate>

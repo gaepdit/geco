@@ -15,6 +15,8 @@ Public Class InvoiceDefault
     'Private InvoiceCategory As InvoiceCategory
     Private Invoices As New List(Of Invoice)
 
+    Public ReadOnly FeeContactInfo As String = ConfigurationManager.AppSettings("FeeContactInfo")
+
     Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
         If Not IsPostBack Then
 

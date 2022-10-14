@@ -14,6 +14,7 @@ Partial Class AnnualFees_Default
     Private Property feeYearCompleted As Boolean
     Public Property feeCalc As AnnualFeeCalc
     Public Property info As FacilityCommunicationInfo
+    Public ReadOnly FeeContactInfo As String = ConfigurationManager.AppSettings("FeeContactInfo")
 
     Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
         MainLoginCheck()
