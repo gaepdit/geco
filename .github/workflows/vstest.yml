@@ -22,10 +22,9 @@ jobs:
         shell: powershell
         run: copy-item "GECO/Web.configBuilder.Server-sample.xml" "GECO/Web.configBuilder.Debug.xml"
       - name: Build and restore dependencies
-        run: msbuild GECO.Test/GECO.Test.vbproj -t:restore,rebuild
+        run: msbuild -t:restore,rebuild
       - name: Run vstests
         uses: microsoft/vstest-action@v1.0.0
         with:
-          testAssembly: GECO.Test.dll
-          searchFolder: .\GECO.Test\bin\Debug
+          testAssembly: .\GECO.Test\bin\Debug\GECO.Test.dll
           runInParallel: true
