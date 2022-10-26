@@ -49,7 +49,7 @@ jobs:
         shell: powershell
         run: copy-item "GECO/Web.configBuilder.Server-sample.xml" "GECO/Web.configBuilder.Debug.xml"
       - name: Test build app for debug
-        run: msbuild GECO/GECO.vbproj -t:rebuild -property:Configuration=Debug
+        run: msbuild GECO/GECO.vbproj -t:restore -property:Configuration=Debug
       - name: Build and analyze
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Needed to get PR information, if any
