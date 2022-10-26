@@ -1,0 +1,31 @@
+name: Unit Test
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  build:
+
+    if: github.event.pull_request.draft == false
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up .NET
+        uses: actions/setup-dotnet@v2
+        with:
+          dotnet-version: 6.0.x
+      - name: Add msbuild to PATH
+        uses: microsoft/setup-msbuild@v1.1
+      - name: Build and restore dependencies
+        run: msbuild -t:restore
+      - name: Run vstests
+        uses: microsoft-approved-actions/vstest@master
+        with:
+          testAssembly: GECO.Test.dll
+          searchFolder: .\GECO.Test\bin\Debug
+          runInParallel: true
