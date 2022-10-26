@@ -21,6 +21,8 @@ jobs:
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: 6.0.x
+      - name: Add msbuild to PATH
+        uses: microsoft/setup-msbuild@v1.1
       - name: Cache SonarCloud packages
         uses: actions/cache@v1
         with:
@@ -51,5 +53,5 @@ jobs:
         shell: powershell
         run: |
           .\.sonar\scanner\dotnet-sonarscanner begin /k:"gaepdit_geco" /o:"gaepdit" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"
-          dotnet build
+          msbuild
           .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
