@@ -8,11 +8,8 @@ on:
 
 jobs:
   build:
-
     if: github.event.pull_request.draft == false
-
     runs-on: windows-latest
-
     steps:
       - uses: actions/checkout@v3
       - name: Set up .NET
@@ -21,6 +18,9 @@ jobs:
           dotnet-version: 6.0.x
       - name: Add msbuild to PATH
         uses: microsoft/setup-msbuild@v1.1
+      - name: Create Web.configBuilder.Debug.xml file
+        shell: powershell
+        run: copy-item "GECO/Web.configBuilder.Server-sample.xml" "GECO/Web.configBuilder.Debug.xml"
       - name: Build and restore dependencies
         run: msbuild GECO.Test/GECO.Test.vbproj -t:restore,rebuild
       - name: Run vstests
