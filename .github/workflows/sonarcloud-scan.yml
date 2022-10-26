@@ -47,5 +47,5 @@ jobs:
         shell: powershell
         run: |
           .\.sonar\SonarScanner.MSBuild.exe begin /k:"gaepdit_geco" /o:"gaepdit" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"
-          msbuild -t:restore
+          msbuild -t:restore,rebuild
           .\.sonar\SonarScanner.MSBuild.exe end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
