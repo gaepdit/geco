@@ -22,7 +22,7 @@ jobs:
       - name: Add msbuild to PATH
         uses: microsoft/setup-msbuild@v1.1
       - name: Build and restore dependencies
-        run: msbuild -t:restore
+        run: msbuild GECO.Test/GECO.Test.vbproj -t:restore
       - name: Run vstests
         uses: microsoft/vstest-action@v1.0.0
         with:
