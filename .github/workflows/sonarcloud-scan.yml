@@ -1,13 +1,18 @@
-name: Scan with SonarCloud
+name: SonarCloud Scan
+
 on:
   push:
     branches:
       - main
   pull_request:
-    types: [opened, synchronize, reopened]
+
 jobs:
-  build:
-    name: Build
+  sonarcloud-scan:
+    # ↓ Change this to "false" to disable the workflow without any alert messages.
+    if: ${{ true }}
+    # ↑ Change to "true" (or delete) to enable the workflow.
+
+    name: Analyze with SonarCloud
     runs-on: windows-latest
     steps:
       - name: Set up JDK 11
@@ -27,7 +32,6 @@ jobs:
         shell: powershell
         run: |
           New-Item -Path .\.sonar -ItemType Directory
-          ls
           $source = "https://github.com/SonarSource/sonar-scanner-msbuild/releases/download/5.8.0.52797/sonar-scanner-msbuild-5.8.0.52797-net46.zip"
           $zipFile = "./.sonar/sonar-scanner-msbuild-5.8.0.52797-net46.zip"
           Invoke-RestMethod -Uri $source -OutFile $zipFile
