@@ -240,9 +240,6 @@ Partial Class Home_FacilityRequest
     End Sub
 
     Protected Sub txtAirsNo_TextChanged(sender As Object, e As EventArgs) Handles txtAirsNo.TextChanged
-        'TODO:   Remove later
-        txtAirsNo.Text = txtAirsNo.Text.Replace("-", "")
-
         If Not LookingUp Then
             LookUpFacility(LookupWhat.Airs)
         End If
