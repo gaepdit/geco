@@ -1,4 +1,5 @@
-﻿Imports GECO.GecoModels
+﻿Imports System.Windows.Forms
+Imports GECO.GecoModels
 
 Partial Class Home_FacilityRequest
     Inherits Page
@@ -239,6 +240,9 @@ Partial Class Home_FacilityRequest
     End Sub
 
     Protected Sub txtAirsNo_TextChanged(sender As Object, e As EventArgs) Handles txtAirsNo.TextChanged
+        'TODO:   Remove later
+        txtAirsNo.Text = txtAirsNo.Text.Replace("-", "")
+
         If Not LookingUp Then
             LookUpFacility(LookupWhat.Airs)
         End If
@@ -258,6 +262,7 @@ Partial Class Home_FacilityRequest
     <Services.WebMethod()>
     <Script.Services.ScriptMethod()>
     Public Shared Function AutoCompleteAirs(prefixText As String, count As Integer) As String()
+        prefixText = prefixText.Replace("-", "")
         Dim dt As DataTable = GetCachedFacilityTable()
         Dim filteredList As New List(Of String)
 
