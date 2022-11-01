@@ -14,7 +14,7 @@
 
     <div class="login-page">
         <div class="login-form">
-            <asp:UpdatePanel ID="LoginUpdatePanel" runat="server" ChildrenAsTriggers="true" UpdateMode="Conditional">
+            <asp:UpdatePanel ID="LoginUpdatePanel" runat="server" UpdateMode="Conditional">
                 <ContentTemplate>
                     <asp:MultiView ID="mvLogin" runat="server" ActiveViewIndex="0">
                         <asp:View ID="pnlLogin" runat="server">
@@ -104,9 +104,6 @@
                         </asp:View>
                     </asp:MultiView>
                 </ContentTemplate>
-                <Triggers>
-                    <asp:AsyncPostBackTrigger ControlID="btnSignIn" />
-                </Triggers>
             </asp:UpdatePanel>
         </div>
     </div>

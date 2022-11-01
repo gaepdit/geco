@@ -57,7 +57,6 @@ Public Class CountDownTimer
     Private Sub TimerTick(sender As Object, e As EventArgs)
 
         TimeChanged?.Invoke()
-
         If _mustStop Then
             CountDownFinished?.Invoke()
             _stopWatch.Stop()

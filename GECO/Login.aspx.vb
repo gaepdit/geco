@@ -1,17 +1,11 @@
-﻿Imports System.ComponentModel
-Imports System.Threading
-Imports System.Threading.Tasks
-Imports System
-Imports GECO.EmailTemplates
+﻿Imports GECO.EmailTemplates
 Imports GECO.GecoModels
 
 Partial Class Login
     Inherits Page
-    ' Apparently this is a static variable in VB.NET
-    ' (need 'shared' procedure to use static in that procedure)
     Shared failedSignInAttempts As Integer
-    Shared isThrottled As Boolean
-    Shared timeoutTimer As New CountDownTimer(2, 0)
+    Shared timeoutTimer As New CountDownTimer(0, 20)
+    Private possibleFailedAttempts As Integer = 4 ' can be changed
 
 #Region " Page load "
 
@@ -41,47 +35,21 @@ Partial Class Login
 
     Protected Sub btnSignIn_Click(sender As Object, e As EventArgs) Handles btnSignIn.Click
         SignIn()
-
-    End Sub
-
-    Protected Sub Delay_SignIn()
-        ' btnSignIn.Enabled = False
-        isThrottled = True
-        Debug.Print("Delay " & failedSignInAttempts)
-        Thread.Sleep(20000)
-        isThrottled = False
-        ' btnSignIn.Enabled = True
     End Sub
 
     Protected Sub SignIn()
         lblMessage.Visible = False
         lblUnconfirmed.Visible = False
 
-        'Static timeoutTimer As New CountDownTimer
-        ' set timer for 1 minutes
-        'timeoutTimer.SetTime(1, 0)
-
         ' Set the action each time the timer ticks down
-        timeoutTimer.TimeChanged = New Action(Sub()
-                                                  lblMessage.Text = timeoutTimer.TimeLeft.ToString("mm\:ss")
-                                                  LoginUpdatePanel.Update()
-                                                  Debug.Print("Remaining time " & timeoutTimer.TimeLeft.ToString("mm\:ss"))
-                                                  lblMessage.Visible = True
-
-
-                                              End Sub)
-
-        timeoutTimer.CountDownFinished = New Action(Sub()
-                                                        lblMessage.Visible = False
-                                                        timeoutTimer.Stop()
-                                                    End Sub)
-
-        Debug.Print("failedSignInAttempts: " & failedSignInAttempts)
-        Debug.Print("timeoutTimer.IsRunning: " & timeoutTimer.IsRunning)
+        'timeoutTimer.TimeChanged = New Action(Sub()
+        'Debug.Print("Remaining time " & timeoutTimer.TimeLeft.ToString("mm\:ss"))
+        'End Sub)
 
         If timeoutTimer.IsRunning Then
             ' display the error message
-            Debug.Print("Throttled: " & isThrottled)
+            lblMessage.Text = "Please wait 20 seconds and try again."
+            lblMessage.Visible = True
         Else
             ' if the login screen is currently not throttled
             Dim gecoUser As New GecoUser
@@ -92,16 +60,10 @@ Partial Class Login
             Select Case loginResult
                 Case LoginResult.Invalid
                     failedSignInAttempts += 1
-                    lblMessage.Text += failedSignInAttempts.ToString
                     lblMessage.Visible = True
 
-                    If failedSignInAttempts > 2 Then
-                        'Dim thread As New Thread(AddressOf Delay_SignIn)
-                        'hread.Start()
-                        timeoutTimer.Start()
-                    End If
-
                 Case LoginResult.AccountUnconfirmed
+                    failedSignInAttempts += 1
                     lblUnconfirmed.Visible = True
 
                 Case LoginResult.Success
@@ -109,7 +71,10 @@ Partial Class Login
                         Response.Redirect("~/ErrorPage.aspx", False)
                     End If
 
+                    ' Reset the failed signin attempt
                     failedSignInAttempts = 0
+                    ' reset and pause the stopwatch
+                    timeoutTimer.Stop()
 
                     SessionAdd(GecoSession.CurrentUser, gecoUser)
 
@@ -134,6 +99,15 @@ Partial Class Login
                 Case Else 'Some Error
                     Response.Redirect("~/ErrorPage.aspx", False)
             End Select
+            ' 5+ failed attempts = add 20 sec delay
+            If failedSignInAttempts > possibleFailedAttempts Then
+                lblMessage.Text = "Login attempts failed. Please wait 20 seconds and try again."
+
+                If failedSignInAttempts > possibleFailedAttempts + 1 Then ' if this is not the first throttle
+                    timeoutTimer.Stop() ' reset and pause the stopwatch
+                End If
+                timeoutTimer.Start()
+            End If
         End If
 
     End Sub
