@@ -88,7 +88,7 @@ Partial Class Home_FacilityRequest
 
             If what = LookupWhat.Airs Then
                 txtFacility.Text = ""
-                query = $"[airsnumber] = '{txtAirsNo.Text}'"
+                query = $"[airsnumber] = '{txtAirsNo.Text.Replace("-", "")}'"
             Else
                 txtAirsNo.Text = ""
                 query = $"[facilityname] = '{txtFacility.Text.Replace("'", "''")}'"
