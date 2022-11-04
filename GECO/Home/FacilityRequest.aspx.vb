@@ -88,7 +88,7 @@ Partial Class Home_FacilityRequest
 
             If what = LookupWhat.Airs Then
                 txtFacility.Text = ""
-                query = $"[airsnumber] = '{txtAirsNo.Text}'"
+                query = $"[airsnumber] = '{txtAirsNo.Text.Replace("-", "")}'"
             Else
                 txtAirsNo.Text = ""
                 query = $"[facilityname] = '{txtFacility.Text.Replace("'", "''")}'"
@@ -258,6 +258,7 @@ Partial Class Home_FacilityRequest
     <Services.WebMethod()>
     <Script.Services.ScriptMethod()>
     Public Shared Function AutoCompleteAirs(prefixText As String, count As Integer) As String()
+        prefixText = prefixText.Replace("-", "")
         Dim dt As DataTable = GetCachedFacilityTable()
         Dim filteredList As New List(Of String)
 
