@@ -3,9 +3,6 @@ Imports GECO.GecoModels
 
 Partial Class Login
     Inherits Page
-    Shared failedSignInAttempts As Integer
-    Shared timeoutTimer As New CountDownTimer(0, 20)
-    Private possibleFailedAttempts As Integer = 4 ' can be changed
 
 #Region " Page load "
 
@@ -41,74 +38,51 @@ Partial Class Login
         lblMessage.Visible = False
         lblUnconfirmed.Visible = False
 
-        ' Set the action each time the timer ticks down
-        'timeoutTimer.TimeChanged = New Action(Sub()
-        'Debug.Print("Remaining time " & timeoutTimer.TimeLeft.ToString("mm\:ss"))
-        'End Sub)
+        ' if the login screen is currently not throttled
+        Dim gecoUser As New GecoUser
+        Dim userSession As New UserSession
 
-        If timeoutTimer.IsRunning Then
-            ' display the error message
-            lblMessage.Text = "Please wait 20 seconds and try again."
-            lblMessage.Visible = True
-        Else
-            ' if the login screen is currently not throttled
-            Dim gecoUser As New GecoUser
-            Dim userSession As New UserSession
+        Dim loginResult As LoginResult = LogInUser(txtUserId.Text, txtPassword.Text, chkRememberMe.Checked, gecoUser, userSession)
 
-            Dim loginResult As LoginResult = LogInUser(txtUserId.Text, txtPassword.Text, chkRememberMe.Checked, gecoUser, userSession)
+        Select Case loginResult
+            Case LoginResult.Invalid
+                lblMessage.Visible = True
 
-            Select Case loginResult
-                Case LoginResult.Invalid
-                    failedSignInAttempts += 1
-                    lblMessage.Visible = True
+            Case LoginResult.AccountUnconfirmed
+                lblUnconfirmed.Visible = True
 
-                Case LoginResult.AccountUnconfirmed
-                    failedSignInAttempts += 1
-                    lblUnconfirmed.Visible = True
+            Case LoginResult.LoginThrottled
+                lblMessage.Text = "Please wait a few seconds and try again."
+                lblMessage.Visible = True
 
-                Case LoginResult.Success
-                    If gecoUser.UserId = 0 Then
-                        Response.Redirect("~/ErrorPage.aspx", False)
-                    End If
-
-                    ' Reset the failed signin attempt
-                    failedSignInAttempts = 0
-                    ' reset and pause the stopwatch
-                    timeoutTimer.Stop()
-
-                    SessionAdd(GecoSession.CurrentUser, gecoUser)
-
-                    If chkRememberMe.Checked Then
-                        CreateSessionCookie(userSession)
-                    Else
-                        ClearCookie(SessionCookie)
-                    End If
-
-                    If gecoUser.ProfileUpdateRequired Then
-                        Response.Redirect("~/Account/?action=updateprofile")
-                    End If
-
-                    Dim strRedirect As String = Request.QueryString("ReturnUrl")
-
-                    If String.IsNullOrEmpty(strRedirect) Then
-                        Response.Redirect("~/Home/")
-                    Else
-                        Response.Redirect(strRedirect)
-                    End If
-
-                Case Else 'Some Error
+            Case LoginResult.Success
+                If gecoUser.UserId = 0 Then
                     Response.Redirect("~/ErrorPage.aspx", False)
-            End Select
-            ' 5+ failed attempts = add 20 sec delay
-            If failedSignInAttempts > possibleFailedAttempts Then
-                lblMessage.Text = "Login attempts failed. Please wait 20 seconds and try again."
-
-                If failedSignInAttempts > possibleFailedAttempts + 1 Then ' if this is not the first throttle
-                    timeoutTimer.Stop() ' reset and pause the stopwatch
                 End If
-                timeoutTimer.Start()
-            End If
-        End If
+
+                SessionAdd(GecoSession.CurrentUser, gecoUser)
+
+                If chkRememberMe.Checked Then
+                    CreateSessionCookie(userSession)
+                Else
+                    ClearCookie(SessionCookie)
+                End If
+
+                If gecoUser.ProfileUpdateRequired Then
+                    Response.Redirect("~/Account/?action=updateprofile")
+                End If
+
+                Dim strRedirect As String = Request.QueryString("ReturnUrl")
+
+                If String.IsNullOrEmpty(strRedirect) Then
+                    Response.Redirect("~/Home/")
+                Else
+                    Response.Redirect(strRedirect)
+                End If
+
+            Case Else 'Some Error
+                Response.Redirect("~/ErrorPage.aspx", False)
+        End Select
 
     End Sub
 

@@ -32,6 +32,8 @@ Public Module UserAccounts
                 Return LoginResult.Invalid
             Case 2
                 Return LoginResult.AccountUnconfirmed
+            Case 3
+                Return LoginResult.LoginThrottled
             Case Else
                 Return LoginResult.DbError
         End Select
@@ -41,6 +43,7 @@ Public Module UserAccounts
         Success
         Invalid
         AccountUnconfirmed
+        LoginThrottled
         DbError
     End Enum
 
