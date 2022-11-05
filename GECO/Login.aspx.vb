@@ -38,7 +38,6 @@ Partial Class Login
         lblMessage.Visible = False
         lblUnconfirmed.Visible = False
 
-        ' if the login screen is currently not throttled
         Dim gecoUser As New GecoUser
         Dim userSession As New UserSession
 
