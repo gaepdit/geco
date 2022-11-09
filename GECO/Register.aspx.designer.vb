@@ -12,7 +12,7 @@ Option Explicit On
 
 
 Partial Public Class Register
-    
+
     '''<summary>
     '''lblEmail control.
     '''</summary>
@@ -21,7 +21,7 @@ Partial Public Class Register
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblEmail As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''txtEmail control.
     '''</summary>
@@ -30,7 +30,7 @@ Partial Public Class Register
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtEmail As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''RequiredFieldValidator6 control.
     '''</summary>
@@ -39,7 +39,7 @@ Partial Public Class Register
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RequiredFieldValidator6 As Global.System.Web.UI.WebControls.RequiredFieldValidator
-    
+
     '''<summary>
     '''RegularExpressionValidator1 control.
     '''</summary>
@@ -48,7 +48,7 @@ Partial Public Class Register
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RegularExpressionValidator1 As Global.System.Web.UI.WebControls.RegularExpressionValidator
-    
+
     '''<summary>
     '''cvEmailExists control.
     '''</summary>
@@ -57,7 +57,7 @@ Partial Public Class Register
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents cvEmailExists As Global.System.Web.UI.WebControls.CustomValidator
-    
+
     '''<summary>
     '''lblPwd control.
     '''</summary>
@@ -66,7 +66,7 @@ Partial Public Class Register
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblPwd As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''txtPwd control.
     '''</summary>
@@ -75,7 +75,16 @@ Partial Public Class Register
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtPwd As Global.System.Web.UI.WebControls.TextBox
-    
+
+    '''<summary>
+    '''CustomValidator2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents CustomValidator2 As Global.System.Web.UI.WebControls.CustomValidator
+
     '''<summary>
     '''RequiredFieldValidator15 control.
     '''</summary>
@@ -84,16 +93,7 @@ Partial Public Class Register
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RequiredFieldValidator15 As Global.System.Web.UI.WebControls.RequiredFieldValidator
-    
-    '''<summary>
-    '''Regex3 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents Regex3 As Global.System.Web.UI.WebControls.RegularExpressionValidator
-    
+
     '''<summary>
     '''lblPwdConfirm control.
     '''</summary>
@@ -102,7 +102,7 @@ Partial Public Class Register
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblPwdConfirm As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''txtPwdConfirm control.
     '''</summary>
@@ -111,7 +111,7 @@ Partial Public Class Register
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtPwdConfirm As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''RequiredFieldValidator16 control.
     '''</summary>
@@ -120,7 +120,7 @@ Partial Public Class Register
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RequiredFieldValidator16 As Global.System.Web.UI.WebControls.RequiredFieldValidator
-    
+
     '''<summary>
     '''CompareValidator1 control.
     '''</summary>
@@ -129,7 +129,7 @@ Partial Public Class Register
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents CompareValidator1 As Global.System.Web.UI.WebControls.CompareValidator
-    
+
     '''<summary>
     '''CaptchaUpdatePanel control.
     '''</summary>
@@ -138,7 +138,7 @@ Partial Public Class Register
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents CaptchaUpdatePanel As Global.System.Web.UI.UpdatePanel
-    
+
     '''<summary>
     '''lblCaptcha control.
     '''</summary>
@@ -147,7 +147,7 @@ Partial Public Class Register
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblCaptcha As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''txtCaptcha control.
     '''</summary>
@@ -156,7 +156,7 @@ Partial Public Class Register
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtCaptcha As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''RequiredFieldValidator19 control.
     '''</summary>
@@ -165,7 +165,7 @@ Partial Public Class Register
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RequiredFieldValidator19 As Global.System.Web.UI.WebControls.RequiredFieldValidator
-    
+
     '''<summary>
     '''cvCaptcha control.
     '''</summary>
@@ -174,7 +174,7 @@ Partial Public Class Register
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents cvCaptcha As Global.System.Web.UI.WebControls.CustomValidator
-    
+
     '''<summary>
     '''captchaControl control.
     '''</summary>
@@ -183,7 +183,7 @@ Partial Public Class Register
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents captchaControl As Global.MSCaptcha.CaptchaControl
-    
+
     '''<summary>
     '''lbtnRefreshCaptcha control.
     '''</summary>
@@ -192,7 +192,7 @@ Partial Public Class Register
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lbtnRefreshCaptcha As Global.System.Web.UI.WebControls.LinkButton
-    
+
     '''<summary>
     '''btnRegister control.
     '''</summary>
@@ -201,7 +201,7 @@ Partial Public Class Register
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnRegister As Global.System.Web.UI.WebControls.Button
-    
+
     '''<summary>
     '''CaptchaUpdateProgress control.
     '''</summary>
@@ -210,7 +210,7 @@ Partial Public Class Register
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents CaptchaUpdateProgress As Global.System.Web.UI.UpdateProgress
-    
+
     '''<summary>
     '''Master property.
     '''</summary>
@@ -219,7 +219,7 @@ Partial Public Class Register
     '''</remarks>
     Public Shadows ReadOnly Property Master() As GECO.MainLayout
         Get
-            Return CType(MyBase.Master,GECO.MainLayout)
+            Return CType(MyBase.Master, GECO.MainLayout)
         End Get
     End Property
 End Class

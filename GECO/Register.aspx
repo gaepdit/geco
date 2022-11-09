@@ -26,11 +26,10 @@
         <asp:Label ID="lblPwd" AssociatedControlID="txtPwd" runat="server" Text="Password:" />
         <br />
         <asp:TextBox ID="txtPwd" runat="server" TextMode="Password" autocomplete="new-password" aria-describedby="password-constraints" />
+        <asp:CustomValidator runat="server" ID="CustomValidator2" ControlToValidate="txtPwd" ClientValidationFunction="clientValidate"
+            ValidateEmptyText="true" Display="Dynamic" Text="Password is too short (minimum of 12 characters), cannot include your login, and is not in a list of passwords commonly used on other websites."> </asp:CustomValidator>
         <asp:RequiredFieldValidator ID="RequiredFieldValidator15" runat="server" Display="Dynamic"
             ControlToValidate="txtPwd" ErrorMessage="Password is required." />
-        <asp:RegularExpressionValidator ID="Regex3" runat="server"
-            ControlToValidate="txtPwd" ErrorMessage="Password does not meet complexity requirements."
-            ValidationExpression="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$" />
         <br />
         <i id="password-constraints">Password must contain at least 8 characters with at least 1 uppercase letter, 1 lowercase letter and 1 number.</i>
     </p>
@@ -85,4 +84,11 @@
             </div>
         </ProgressTemplate>
     </asp:UpdateProgress>
+    <script type="text/javascript">
+        function clientValidate(sender, args) {
+            args.IsValid = false;
+            var v = document.getElementById('<%=txtPwd.ClientID%>').value;
+            alert(v);
+        }
+    </script>
 </asp:Content>
