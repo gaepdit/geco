@@ -85,6 +85,16 @@
         </ProgressTemplate>
     </asp:UpdateProgress>
     <script type="text/javascript">
+
+        // When the result is ready check if the password was found or not
+        document.addEventListener('hibpCheck', function (e) {
+            if (e.detail) {
+                alert('Found');
+            } else {
+                alert('Not Found');
+            }
+        });
+
         /**
          * Client side code to check user's password. Used in CustomValidator ID="passwordRequirements"
          * @param sender
@@ -106,6 +116,8 @@
                 sender.textContent = "The password cannot contain segments of the URL, app name, or email.";
                 // set the validator isValid to false to make it appear
                 args.IsValid = false;
+            } else {
+                hibpCheck('password123');
             }
         }
 
@@ -121,7 +133,7 @@
             var validPassWebsite = FindIntersection(getWebsiteName(), password);
 
             if (validPassEmail == null || validPassWebsite == null) {
-                return false;
+                return true;
             }
 
             // declare an arbitrary length
@@ -176,6 +188,55 @@
                 }
             }
             return null;
+        }
+
+        /**
+         * Code from https://github.com/mehdibo/hibp-js
+         * Helper method to convert a string to sha1 hash
+         * @param string Input String
+         */
+        function sha1(string) {
+            var buffer = new TextEncoder("utf-8").encode(string);
+            return crypto.subtle.digest("SHA-1", buffer).then(function (buffer) {
+                var hexCodes = [];
+                var view = new DataView(buffer);
+                for (var i = 0; i < view.byteLength; i += 4) {
+                    var value = view.getUint32(i);
+                    var stringValue = value.toString(16);
+                    var padding = '00000000';
+                    var paddedValue = (padding + stringValue).slice(-padding.length);
+                    hexCodes.push(paddedValue)
+                }
+                return hexCodes.join("")
+            })
+        }
+
+        /**
+         * Code from https://github.com/mehdibo/hibp-js
+         * Check if the user password matches any pawned passwords
+         * @param pwd The user password
+         */
+        function hibpCheck(pwd) {
+            sha1(pwd).then(function (hash) {
+                const req = new XMLHttpRequest();
+                req.addEventListener("load", function () {
+                    const resp = this.responseText.split('\n');
+                    const hashSub = hash.slice(5).toUpperCase();
+                    var result = false;
+                    for (index in resp) {
+                        if (resp[index].substring(0, 35) == hashSub) {
+                            result = true;
+                            break;
+                        }
+                    }
+                    const event = new CustomEvent('hibpCheck', {
+                        detail: result
+                    });
+                    document.dispatchEvent(event)
+                });
+                req.open('GET', 'https://api.pwnedpasswords.com/range/' + hash.substr(0, 5));
+                req.send()
+            })
         }
 
     </script>
