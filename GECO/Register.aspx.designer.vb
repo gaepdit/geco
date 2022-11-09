@@ -77,13 +77,13 @@ Partial Public Class Register
     Protected WithEvents txtPwd As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''CustomValidator2 control.
+    '''passwordRequirements control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents CustomValidator2 As Global.System.Web.UI.WebControls.CustomValidator
+    Protected WithEvents passwordRequirements As Global.System.Web.UI.WebControls.CustomValidator
 
     '''<summary>
     '''RequiredFieldValidator15 control.

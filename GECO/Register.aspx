@@ -26,8 +26,8 @@
         <asp:Label ID="lblPwd" AssociatedControlID="txtPwd" runat="server" Text="Password:" />
         <br />
         <asp:TextBox ID="txtPwd" runat="server" TextMode="Password" autocomplete="new-password" aria-describedby="password-constraints" />
-        <asp:CustomValidator runat="server" ID="CustomValidator2" ControlToValidate="txtPwd" ClientValidationFunction="clientValidate"
-            ValidateEmptyText="true" Display="Dynamic" Text="Password is too short (minimum of 12 characters), cannot include your login, and is not in a list of passwords commonly used on other websites."> </asp:CustomValidator>
+        <asp:CustomValidator runat="server" ID="passwordRequirements" ControlToValidate="txtPwd" ClientValidationFunction="validatePassword"
+            ValidateEmptyText="true" Display="Dynamic" ErrorMessage="Password is too short (minimum of 12 characters), cannot include your login, and is not in a list of passwords commonly used on other websites."> </asp:CustomValidator>
         <asp:RequiredFieldValidator ID="RequiredFieldValidator15" runat="server" Display="Dynamic"
             ControlToValidate="txtPwd" ErrorMessage="Password is required." />
         <br />
@@ -85,10 +85,98 @@
         </ProgressTemplate>
     </asp:UpdateProgress>
     <script type="text/javascript">
-        function clientValidate(sender, args) {
-            args.IsValid = false;
-            var v = document.getElementById('<%=txtPwd.ClientID%>').value;
-            alert(v);
+        /**
+         * Client side code to check user's password. Used in CustomValidator ID="passwordRequirements"
+         * @param sender
+         * @param args
+         */
+        function validatePassword(sender, args) {
+            var currEmail = document.getElementById('<%=txtEmail.ClientID%>').value;
+            var currPassword = document.getElementById('<%=txtPwd.ClientID%>').value;
+            // check if password length is long enough
+            if (currPassword.length < 12) {
+                // change the content of the error message
+                sender.textContent = "Password is too short (minimum of 12 characters)";
+                // set the validator isValid to false to make it appear
+                args.IsValid = false;
+            }
+            // if the password is not valid
+            else if (!checkPasswordValid(currEmail.toLowerCase(), currPassword.toLowerCase())) {
+                // change the content of the error message
+                sender.textContent = "The password cannot contain segments of the URL, app name, or email.";
+                // set the validator isValid to false to make it appear
+                args.IsValid = false;
+            }
         }
+
+        /**
+         * Helper function for the validatePassword()
+         * @param email The user email
+         * @param password The user password
+         * @returns True if the password is valid, false otherwise.
+         */
+        function checkPasswordValid(email, password) {
+            // check if these passwords matches the email or website
+            var validPassEmail = FindIntersection(email, password);
+            var validPassWebsite = FindIntersection(getWebsiteName(), password);
+
+            if (validPassEmail == null || validPassWebsite == null) {
+                return false;
+            }
+
+            // declare an arbitrary length
+            var maxSequenceLength = 3;
+            return validPassEmail.length <= maxSequenceLength && validPassWebsite.length <= maxSequenceLength;
+        }
+
+        /**
+         * Get the current website name
+         */
+        function getWebsiteName() {
+            return window.location.hostname.toLowerCase();
+        }
+
+        /**
+         * Find where the sequence starts and its length between 2 strings
+         * @param a First string
+         * @param b Second string
+         * @returns Null if there are no sequence, else return an object with position and length attributes
+         */
+        function FindIntersection(a, b) {
+            var bestResult = null;
+            for (var i = 0; i < a.length - 1; i++) {
+                var result = FindIntersectionFromStart(a.substring(i), b);
+                if (result) {
+                    if (!bestResult) {
+                        bestResult = result;
+                    } else {
+                        if (result.length > bestResult.length) {
+                            bestResult = result;
+                        }
+                    }
+                }
+                if (bestResult && bestResult.length >= a.length - i)
+                    break;
+            }
+            return bestResult;
+        }
+
+        /**
+         * Helper method for FindIntersection()
+         * @param a First string
+         * @param b Second string
+         * @returns Null if there are no sequence, else return an object with position and length attributes
+         */
+        function FindIntersectionFromStart(a, b) {
+            for (var i = a.length; i > 0; i--) {
+                d = a.substring(0, i);
+                j = b.indexOf(d);
+                if (j >= 0) {
+                    return ({ position: j, length: i });
+                }
+            }
+            return null;
+        }
+
     </script>
 </asp:Content>

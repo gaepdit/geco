@@ -56,10 +56,4 @@ Partial Class Register
         args.IsValid = captchaControl.UserValidated
     End Sub
 
-    Public Sub txtChanged(source As Object, args As EventArgs)
-        Dim text As String = txtPwd.Text
-        Debug.Print(text)
-        ' Page.Validate("passwordRequirement")
-    End Sub
-
 End Class
