@@ -27,11 +27,11 @@
         <br />
         <asp:TextBox ID="txtPwd" runat="server" TextMode="Password" autocomplete="new-password" aria-describedby="password-constraints" />
         <asp:CustomValidator runat="server" ID="passwordRequirements" ControlToValidate="txtPwd" ClientValidationFunction="validatePassword"
-            ValidateEmptyText="true" Display="Dynamic" ErrorMessage="Password is too short (minimum of 12 characters), cannot include your login, and is not in a list of passwords commonly used on other websites."> </asp:CustomValidator>
+            ValidateEmptyText="true" Display="Dynamic" ErrorMessage="This text will be changed later."> </asp:CustomValidator>
         <asp:RequiredFieldValidator ID="RequiredFieldValidator15" runat="server" Display="Dynamic"
             ControlToValidate="txtPwd" ErrorMessage="Password is required." />
         <br />
-        <i id="password-constraints">Password must contain at least 8 characters with at least 1 uppercase letter, 1 lowercase letter and 1 number.</i>
+        <i id="password-constraints">Password is too short (minimum of 12 characters), cannot include your login, and is not in a list of passwords commonly used on other websites.</i>
     </p>
 
     <p>
@@ -85,16 +85,6 @@
         </ProgressTemplate>
     </asp:UpdateProgress>
     <script type="text/javascript">
-
-        // When the result is ready check if the password was found or not
-        document.addEventListener('hibpCheck', function (e) {
-            if (e.detail) {
-                alert('Found');
-            } else {
-                alert('Not Found');
-            }
-        });
-
         /**
          * Client side code to check user's password. Used in CustomValidator ID="passwordRequirements"
          * @param sender
@@ -117,7 +107,19 @@
                 // set the validator isValid to false to make it appear
                 args.IsValid = false;
             } else {
-                hibpCheck('password123');
+                
+                // When the result is ready check if the password was found or not
+                document.addEventListener('hibpCheck', function (e) {
+                    if (e.detail) {
+                        alert(args.IsValid);
+                        // change the content of the error message
+                        sender.textContent = "The password is in a list of passwords commonly used on other websites.";
+                        // set the validator isValid to false to make it appear
+                        args.IsValid = false;
+                        alert(args.IsValid);
+                    }
+                });
+                hibpCheck(currPassword);
             }
         }
 

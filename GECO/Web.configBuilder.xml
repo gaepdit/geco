@@ -137,7 +137,7 @@
                 <x-XSS-Protection policy="FilterEnabled" blockMode="true"/>
                 <x-Content-Type-Options enabled="true"/>
                 <referrer-Policy enabled="true" policy="strict-origin-when-cross-origin"/>
-                <content-Security-Policy enabled="true" >
+                <content-Security-Policy enabled="false" >
                     <default-src none="true"/>
                     <script-src self="true" unsafeInline="true" unsafeEval="true">
                         <add source="https://cdn.raygun.io/raygun4js/raygun.min.js"/>
