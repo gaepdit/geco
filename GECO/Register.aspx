@@ -31,7 +31,7 @@
         <asp:RequiredFieldValidator ID="RequiredFieldValidator15" runat="server" Display="Dynamic"
             ControlToValidate="txtPwd" ErrorMessage="Password is required." />
         <br />
-        <i id="password-constraints">Password is too short (minimum of 12 characters), cannot include your login, and is not in a list of passwords commonly used on other websites.</i>
+        <i id="password-constraints">Password needs to have at least 12 characters, cannot include your login, and is not in a list of passwords commonly used on other websites.</i>
     </p>
 
     <p>
@@ -107,19 +107,15 @@
                 // set the validator isValid to false to make it appear
                 args.IsValid = false;
             } else {
+                var isPwned = isPawned(currPassword);
+                alert(isPwned);
+                if (isPwned === true) {
+                    // change the content of the error message
+                    sender.textContent = "The password is in a list of passwords commonly used on other websites.";
+                    // set the validator isValid to false to make it appear
+                    args.IsValid = false;
+                }
                 
-                // When the result is ready check if the password was found or not
-                document.addEventListener('hibpCheck', function (e) {
-                    if (e.detail) {
-                        alert(args.IsValid);
-                        // change the content of the error message
-                        sender.textContent = "The password is in a list of passwords commonly used on other websites.";
-                        // set the validator isValid to false to make it appear
-                        args.IsValid = false;
-                        alert(args.IsValid);
-                    }
-                });
-                hibpCheck(currPassword);
             }
         }
 
@@ -132,22 +128,18 @@
         function checkPasswordValid(email, password) {
             // check if these passwords matches the email or website
             var validPassEmail = FindIntersection(email, password);
-            var validPassWebsite = FindIntersection(getWebsiteName(), password);
+            var validPassWebsite = FindIntersection("geco", password);
+            var validPassDepartment = FindIntersection("gaepd", password);
 
-            if (validPassEmail == null || validPassWebsite == null) {
+            if (validPassEmail == null || validPassWebsite == null || validPassDepartment == null) {
                 return true;
             }
 
             // declare an arbitrary length
             var maxSequenceLength = 3;
-            return validPassEmail.length <= maxSequenceLength && validPassWebsite.length <= maxSequenceLength;
-        }
-
-        /**
-         * Get the current website name
-         */
-        function getWebsiteName() {
-            return window.location.hostname.toLowerCase();
+            return validPassEmail.length <= maxSequenceLength &&
+                validPassWebsite.length <= maxSequenceLength &&
+                validPassDepartment.length <= maxSequenceLength;
         }
 
         /**
@@ -214,31 +206,45 @@
         }
 
         /**
+         * Helper method to get the result from the URL
+         * @param url the URL of the website
+         */
+        async function fetchAsync(url) {
+            let response = await fetch(url);
+            return await response.text();
+        }
+
+        /**
          * Code from https://github.com/mehdibo/hibp-js
          * Check if the user password matches any pawned passwords
          * @param pwd The user password
          */
-        function hibpCheck(pwd) {
-            sha1(pwd).then(function (hash) {
-                const req = new XMLHttpRequest();
-                req.addEventListener("load", function () {
-                    const resp = this.responseText.split('\n');
-                    const hashSub = hash.slice(5).toUpperCase();
-                    var result = false;
-                    for (index in resp) {
-                        if (resp[index].substring(0, 35) == hashSub) {
-                            result = true;
-                            break;
-                        }
-                    }
-                    const event = new CustomEvent('hibpCheck', {
-                        detail: result
-                    });
-                    document.dispatchEvent(event)
-                });
-                req.open('GET', 'https://api.pwnedpasswords.com/range/' + hash.substr(0, 5));
-                req.send()
-            })
+        async function hibpCheck(pwd) {
+            // convert the string password to sha1 hash
+            let sha1Pwd = await sha1(pwd).then(function (hash) {
+                return hash;
+            });
+            // remove the first 5 characters to follow the API
+            const hashSub = sha1Pwd.slice(5).toUpperCase();
+            // fetch the result
+            let url = 'https://api.pwnedpasswords.com/range/' + sha1Pwd.substr(0, 5);
+            let results = await fetchAsync(url);
+            // iterate through the result
+            let found = false;
+            for (const result of results.split('\n')) {
+                if (hashSub.localeCompare(result.split(':')[0]) === 0) {
+                    found = true;
+                    break;
+                }
+            }
+            return found;
+        }
+
+        function isPawned(pwd) {
+            var isPwned = hibpCheck(pwd).then(function (result) {
+                return result;
+            });
+            return isPwned;
         }
 
     </script>
