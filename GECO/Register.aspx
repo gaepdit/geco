@@ -27,11 +27,11 @@
         <br />
         <asp:TextBox ID="txtPwd" runat="server" TextMode="Password" autocomplete="new-password" aria-describedby="password-constraints" />
         <asp:CustomValidator runat="server" ID="passwordRequirements" ControlToValidate="txtPwd" ClientValidationFunction="validatePassword"
-            ValidateEmptyText="true" Display="Dynamic" ErrorMessage="This text will be changed later."> </asp:CustomValidator>
+            ValidateEmptyText="true" ValidationGroup="passwordRequirements" Display="Dynamic" ErrorMessage="This text will be changed later."> </asp:CustomValidator>
         <asp:RequiredFieldValidator ID="RequiredFieldValidator15" runat="server" Display="Dynamic"
             ControlToValidate="txtPwd" ErrorMessage="Password is required." />
         <br />
-        <i id="password-constraints">Password needs to have at least 12 characters, cannot include your login, and is not in a list of passwords commonly used on other websites.</i>
+        <em id="password-constraints">Password needs to have at least 12 characters, cannot include your login, and is not in a list of passwords commonly used on other websites.</em>
     </p>
 
     <p>
@@ -85,12 +85,21 @@
         </ProgressTemplate>
     </asp:UpdateProgress>
     <script type="text/javascript">
+        // global variable to track whether the error message is visible
+        var isValidatorValid = true;
         /**
          * Client side code to check user's password. Used in CustomValidator ID="passwordRequirements"
          * @param sender
          * @param args
          */
         function validatePassword(sender, args) {
+            ///**
+            console.log(Page_Validators.length);
+            for (i = 0; i < Page_Validators.length; i++) {
+                console.log(i + " " + Page_Validators[i].isvalid);
+            }
+            console.log(true != false);
+            //*/
             var currEmail = document.getElementById('<%=txtEmail.ClientID%>').value;
             var currPassword = document.getElementById('<%=txtPwd.ClientID%>').value;
             // check if password length is long enough
@@ -107,15 +116,11 @@
                 // set the validator isValid to false to make it appear
                 args.IsValid = false;
             } else {
-                var isPwned = isPawned(currPassword);
-                alert(isPwned);
-                if (isPwned === true) {
-                    // change the content of the error message
-                    sender.textContent = "The password is in a list of passwords commonly used on other websites.";
-                    // set the validator isValid to false to make it appear
-                    args.IsValid = false;
-                }
-                
+                // change the content of the error message (not visible yet)
+                sender.textContent = "The password is in a list of passwords commonly used on other websites.";
+                hibpCheck(currPassword);
+                // set the error message to be visible through the global variable value
+                args.IsValid = isValidatorValid;
             }
         }
 
@@ -219,32 +224,41 @@
          * Check if the user password matches any pawned passwords
          * @param pwd The user password
          */
-        async function hibpCheck(pwd) {
+        function hibpCheck(pwd) {
             // convert the string password to sha1 hash
-            let sha1Pwd = await sha1(pwd).then(function (hash) {
-                return hash;
+            sha1(pwd).then(function (sha1Pwd) {
+                // remove the first 5 characters to follow the API
+                const hashSub = sha1Pwd.slice(5).toUpperCase();
+                // fetch the result
+                let url = 'https://api.pwnedpasswords.com/range/' + sha1Pwd.substr(0, 5);
+                //let results = await fetchAsync(url);
+                fetchAsync(url).then(function (results) {
+                    // iterate through the result
+                    let found = false;
+                    for (const result of results.split('\n')) {
+                        if (hashSub.localeCompare(result.split(':')[0]) === 0) {
+                            found = true;
+                            break;
+                        }
+                    }
+                    // a temporary var to store the value before the change
+                    var stateBefore = isValidatorValid;
+                    // display the error
+                    if (found) {
+                        console.log("isValidatorValid " + isValidatorValid);
+                        isValidatorValid = false;
+                    } else {
+                        isValidatorValid = true;
+                    }
+                    // re-validate the password custom validator if the state has changed
+                    if (stateBefore != isValidatorValid) {
+                        Page_ClientValidate("passwordRequirements");
+                    }
+                });
             });
-            // remove the first 5 characters to follow the API
-            const hashSub = sha1Pwd.slice(5).toUpperCase();
-            // fetch the result
-            let url = 'https://api.pwnedpasswords.com/range/' + sha1Pwd.substr(0, 5);
-            let results = await fetchAsync(url);
-            // iterate through the result
-            let found = false;
-            for (const result of results.split('\n')) {
-                if (hashSub.localeCompare(result.split(':')[0]) === 0) {
-                    found = true;
-                    break;
-                }
-            }
-            return found;
-        }
-
-        function isPawned(pwd) {
-            var isPwned = hibpCheck(pwd).then(function (result) {
-                return result;
-            });
-            return isPwned;
+            
+            
+            //return found;
         }
 
     </script>
