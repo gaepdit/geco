@@ -13,12 +13,12 @@
         <asp:Label ID="lblEmail" AssociatedControlID="txtEmail" runat="server" Text="Email:" />
         <br />
         <asp:TextBox ID="txtEmail" runat="server" TextMode="Email" autocomplete="username" />
-        <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" Display="Dynamic"
+        <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" Display="Dynamic" ValidationGroup="confirmEmail"
             ControlToValidate="txtEmail" ErrorMessage="Email is required." />
-        <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" Display="Dynamic"
+        <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" Display="Dynamic" ValidationGroup="confirmEmail"
             ControlToValidate="txtEmail" ErrorMessage="Email address is invalid."
             ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" />
-        <asp:CustomValidator ID="cvEmailExists" runat="server" Display="Dynamic"
+        <asp:CustomValidator ID="cvEmailExists" runat="server" Display="Dynamic" ValidationGroup="confirmEmail"
             ControlToValidate="txtEmail" ErrorMessage="The email address is already registered." />
     </p>
 
@@ -29,7 +29,7 @@
         <asp:CustomValidator runat="server" ID="passwordRequirements" ControlToValidate="txtPwd" ClientValidationFunction="validatePassword"
             ValidateEmptyText="true" ValidationGroup="passwordRequirements" Display="Dynamic" ErrorMessage="This text will be changed later."> </asp:CustomValidator>
         <asp:RequiredFieldValidator ID="RequiredFieldValidator15" runat="server" Display="Dynamic"
-            ControlToValidate="txtPwd" ErrorMessage="Password is required." />
+            ControlToValidate="txtPwd" ValidationGroup="passwordRequirements" ErrorMessage="Password is required." />
         <br />
         <em id="password-constraints">Password needs to have at least 12 characters, cannot include your login, and is not in a list of passwords commonly used on other websites.</em>
     </p>
@@ -38,9 +38,9 @@
         <asp:Label ID="lblPwdConfirm" AssociatedControlID="txtPwdConfirm" runat="server" Text="Confirm Password:" />
         <br />
         <asp:TextBox ID="txtPwdConfirm" runat="server" TextMode="Password" autocomplete="new-password" />
-        <asp:RequiredFieldValidator ID="RequiredFieldValidator16" runat="server" Display="Dynamic"
+        <asp:RequiredFieldValidator ID="RequiredFieldValidator16" runat="server" Display="Dynamic" ValidationGroup="confirmPassword"
             ControlToValidate="txtPwdConfirm" ErrorMessage="Password confirmation is required." />
-        <asp:CompareValidator ID="CompareValidator1" runat="server" Display="Dynamic"
+        <asp:CompareValidator ID="CompareValidator1" runat="server" Display="Dynamic" ValidationGroup="confirmPassword"
             ControlToCompare="txtPwd" ControlToValidate="txtPwdConfirm" ErrorMessage="Passwords do not match" />
     </p>
 
@@ -50,9 +50,9 @@
                 <asp:Label ID="lblCaptcha" AssociatedControlID="txtCaptcha" runat="server" Text="Enter code as displayed in the image:" />
                 <br />
                 <asp:TextBox ID="txtCaptcha" runat="server" />
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator19" runat="server" Display="Dynamic"
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator19" runat="server" Display="Dynamic" ValidationGroup="confirmCaptcha"
                     ControlToValidate="txtCaptcha" ErrorMessage="Enter code as displayed in the image." />
-                <asp:CustomValidator ID="cvCaptcha" runat="server" Display="Dynamic"
+                <asp:CustomValidator ID="cvCaptcha" runat="server" Display="Dynamic" ValidationGroup="confirmCaptcha"
                     ControlToValidate="txtCaptcha" ErrorMessage="Code was incorrect or expired." />
                 <captcha:CaptchaControl ID="captchaControl" runat="server" CaptchaBackgroundNoise="high"
                     CaptchaLength="5" CaptchaHeight="50" CaptchaWidth="180" CaptchaLineNoise="None"
@@ -93,13 +93,6 @@
          * @param args
          */
         function validatePassword(sender, args) {
-            ///**
-            console.log(Page_Validators.length);
-            for (i = 0; i < Page_Validators.length; i++) {
-                console.log(i + " " + Page_Validators[i].isvalid);
-            }
-            console.log(true != false);
-            //*/
             var currEmail = document.getElementById('<%=txtEmail.ClientID%>').value;
             var currPassword = document.getElementById('<%=txtPwd.ClientID%>').value;
             // check if password length is long enough
@@ -253,6 +246,8 @@
                     // re-validate the password custom validator if the state has changed
                     if (stateBefore != isValidatorValid) {
                         Page_ClientValidate("passwordRequirements");
+                        // "confirmPassword"
+                        // "confirmCaptcha"
                     }
                 });
             });
