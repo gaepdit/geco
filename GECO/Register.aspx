@@ -14,21 +14,21 @@
         <br />
         <asp:TextBox ID="txtEmail" runat="server" TextMode="Email" autocomplete="username" />
         <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" Display="Dynamic" ValidationGroup="confirmEmail"
-            ControlToValidate="txtEmail" ErrorMessage="Email is required." />
+            ControlToValidate="txtEmail" ErrorMessage="Email is required." ForeColor="red" />
         <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" Display="Dynamic" ValidationGroup="confirmEmail"
             ControlToValidate="txtEmail" ErrorMessage="Email address is invalid."
-            ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" />
+            ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" ForeColor="red" />
         <asp:CustomValidator ID="cvEmailExists" runat="server" Display="Dynamic" ValidationGroup="confirmEmail"
-            ControlToValidate="txtEmail" ErrorMessage="The email address is already registered." />
+            ControlToValidate="txtEmail" ErrorMessage="The email address is already registered." ForeColor="red" />
     </p>
 
     <p>
         <asp:Label ID="lblPwd" AssociatedControlID="txtPwd" runat="server" Text="Password:" />
         <br />
         <asp:TextBox ID="txtPwd" runat="server" TextMode="Password" autocomplete="new-password" aria-describedby="password-constraints" />
-        <asp:CustomValidator runat="server" ID="passwordRequirements" ControlToValidate="txtPwd" ClientValidationFunction="validatePassword"
+        <asp:CustomValidator runat="server" ID="passwordRequirements" ControlToValidate="txtPwd" ClientValidationFunction="validatePassword" ForeColor="red" 
             ValidateEmptyText="true" ValidationGroup="passwordRequirements" Display="Dynamic" ErrorMessage="This text will be changed later."> </asp:CustomValidator>
-        <asp:RequiredFieldValidator ID="RequiredFieldValidator15" runat="server" Display="Dynamic"
+        <asp:RequiredFieldValidator ID="RequiredFieldValidator15" runat="server" Display="Dynamic" ForeColor="red" 
             ControlToValidate="txtPwd" ValidationGroup="passwordRequirements" ErrorMessage="Password is required." />
         <br />
         <em id="password-constraints">Password needs to have at least 12 characters, cannot include your login, and is not in a list of passwords commonly used on other websites.</em>
@@ -39,9 +39,9 @@
         <br />
         <asp:TextBox ID="txtPwdConfirm" runat="server" TextMode="Password" autocomplete="new-password" />
         <asp:RequiredFieldValidator ID="RequiredFieldValidator16" runat="server" Display="Dynamic" ValidationGroup="confirmPassword"
-            ControlToValidate="txtPwdConfirm" ErrorMessage="Password confirmation is required." />
+            ControlToValidate="txtPwdConfirm" ErrorMessage="Password confirmation is required." ForeColor="red" />
         <asp:CompareValidator ID="CompareValidator1" runat="server" Display="Dynamic" ValidationGroup="confirmPassword"
-            ControlToCompare="txtPwd" ControlToValidate="txtPwdConfirm" ErrorMessage="Passwords do not match" />
+            ControlToCompare="txtPwd" ControlToValidate="txtPwdConfirm" ErrorMessage="Passwords do not match" ForeColor="red" />
     </p>
 
     <asp:UpdatePanel ID="CaptchaUpdatePanel" runat="server">
@@ -51,9 +51,9 @@
                 <br />
                 <asp:TextBox ID="txtCaptcha" runat="server" />
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator19" runat="server" Display="Dynamic" ValidationGroup="confirmCaptcha"
-                    ControlToValidate="txtCaptcha" ErrorMessage="Enter code as displayed in the image." />
+                    ControlToValidate="txtCaptcha" ErrorMessage="Enter code as displayed in the image." ForeColor="red" />
                 <asp:CustomValidator ID="cvCaptcha" runat="server" Display="Dynamic" ValidationGroup="confirmCaptcha"
-                    ControlToValidate="txtCaptcha" ErrorMessage="Code was incorrect or expired." />
+                    ControlToValidate="txtCaptcha" ErrorMessage="Code was incorrect or expired." ForeColor="red" />
                 <captcha:CaptchaControl ID="captchaControl" runat="server" CaptchaBackgroundNoise="high"
                     CaptchaLength="5" CaptchaHeight="50" CaptchaWidth="180" CaptchaLineNoise="None"
                     CaptchaMinTimeout="1" CaptchaMaxTimeout="240"
