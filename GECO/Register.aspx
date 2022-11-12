@@ -213,7 +213,6 @@
         }
 
         /**
-         * Code from https://github.com/mehdibo/hibp-js
          * Check if the user password matches any pawned passwords
          * @param pwd The user password
          */
@@ -245,16 +244,67 @@
                     }
                     // re-validate the password custom validator if the state has changed
                     if (stateBefore != isValidatorValid) {
-                        Page_ClientValidate("passwordRequirements");
-                        // "confirmPassword"
-                        // "confirmCaptcha"
+                        Reload_Validator();
                     }
                 });
             });
-            
-            
-            //return found;
         }
+
+        /**
+         * A helper method to update all of the validators of a group when its TextBox
+         * value is not empty.
+         * This is done because calling Page_ClientValidate on a single group would reset
+         * all of the other validators (does not matter if they are in a group or not).
+         */
+        function Reload_Validator() {
+            var currEmail = document.getElementById('<%=txtEmail.ClientID%>').value;
+            var currPwd = document.getElementById('<%=txtPwd.ClientID%>').value;
+            var currConfirmPwd = document.getElementById('<%=txtPwdConfirm.ClientID%>').value;
+            var currCaptcha = document.getElementById('<%=txtCaptcha.ClientID%>').value;
+            var group = [];
+            // if the TextBox is not empty, then update its group validators
+            if (currEmail !== "") {
+                group.push("confirmEmail");
+            }
+            if (currPwd !== "") {
+                group.push("passwordRequirements");
+            }
+            if (currConfirmPwd !== "") {
+                group.push("confirmPassword");
+            }
+            if (currCaptcha !== "") {
+                group.push("confirmCaptcha");
+            }
+            // call the helper method to get all the groups validate again
+            Page_ClientValidateMultiple(group);
+        }
+
+        /**
+         * Page_ClientValidate only shows errors from the last validation group.
+         * This method allows showing for multiple groups.
+         * https://stackoverflow.com/questions/1560812/page-clientvalidate-with-multiple-validationgroups-how-to-show-multiple-summ
+         * @param groups An array that contains the ValidationGroup that we want to re-validate
+         */
+        function Page_ClientValidateMultiple(groups) {
+            var invalidIdxs = [];
+            var result = true;
+
+            // run validation from each group and remember failures
+            for (var g = 0; g < groups.length; g++) {
+                result = Page_ClientValidate(groups[g]) && result;
+                for (var v = 0; v < Page_Validators.length; v++)
+                    if (!Page_Validators[v].isvalid)
+                        invalidIdxs.push(v);
+            }
+
+            // re-show any failures
+            for (var i = 0; i < invalidIdxs.length; i++) {
+                ValidatorValidate(Page_Validators[invalidIdxs[i]]);
+            }
+
+            // return false if any of the groups failed
+            return result;
+        };
 
     </script>
 </asp:Content>
