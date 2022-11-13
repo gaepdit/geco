@@ -104,7 +104,7 @@
                 args.IsValid = false;
             }
             // if the password is not valid
-            if (!checkPasswordValid(currEmail.toLowerCase(), currPassword.toLowerCase())) {
+            else if (!checkPasswordValid(currEmail.toLowerCase(), currPassword.toLowerCase())) {
                 // change the content of the error message
                 sender.textContent = "The password cannot contain segments of the URL, app name, or email.";
                 // set the validator isValid to false to make it appear
