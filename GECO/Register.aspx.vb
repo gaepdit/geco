@@ -16,8 +16,7 @@ Partial Class Register
     End Sub
 
     Protected Sub btnRegister_Click(sender As Object, e As EventArgs) Handles btnRegister.Click
-        Debug.WriteLine("server register")
-        If False Then
+        If IsValid Then
             Dim email As String = txtEmail.Text.Trim()
 
             Dim token As String = Nothing
