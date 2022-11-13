@@ -57,9 +57,4 @@ Partial Class Register
         args.IsValid = captchaControl.UserValidated
     End Sub
 
-    Private Function ValidateCurrentPassword() As Boolean
-        Dim currentText As String = txtPwd.Text
-        Return False
-    End Function
-
 End Class

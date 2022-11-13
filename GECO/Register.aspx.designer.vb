@@ -77,15 +77,6 @@ Partial Public Class Register
     Protected WithEvents txtPwd As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''passwordRequirements control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents passwordRequirements As Global.System.Web.UI.WebControls.CustomValidator
-
-    '''<summary>
     '''RequiredFieldValidator15 control.
     '''</summary>
     '''<remarks>
@@ -93,6 +84,15 @@ Partial Public Class Register
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RequiredFieldValidator15 As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
+    '''passwordRequirements control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents passwordRequirements As Global.System.Web.UI.WebControls.CustomValidator
 
     '''<summary>
     '''lblPwdConfirm control.

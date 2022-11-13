@@ -26,10 +26,10 @@
         <asp:Label ID="lblPwd" AssociatedControlID="txtPwd" runat="server" Text="Password:" />
         <br />
         <asp:TextBox ID="txtPwd" runat="server" TextMode="Password" autocomplete="new-password" aria-describedby="password-constraints" />
-        <asp:CustomValidator runat="server" ID="passwordRequirements" ControlToValidate="txtPwd" ClientValidationFunction="validatePassword" ForeColor="red" 
-            ValidateEmptyText="true" ValidationGroup="confirmPasswordRequirements" Display="Dynamic" ErrorMessage="This text will be changed later."> </asp:CustomValidator>
         <asp:RequiredFieldValidator ID="RequiredFieldValidator15" runat="server" Display="Dynamic" ForeColor="red" 
             ControlToValidate="txtPwd" ErrorMessage="Password is required." />
+        <asp:CustomValidator runat="server" ID="passwordRequirements" ControlToValidate="txtPwd" ClientValidationFunction="validatePassword" ForeColor="red" 
+            ValidateEmptyText="true" ValidationGroup="confirmPasswordRequirements" Display="Dynamic" ErrorMessage="This text will be changed later."> </asp:CustomValidator>
         <br />
         <em id="password-constraints">Password needs to have at least 12 characters, cannot include your login, and is not in a list of passwords commonly used on other websites.</em>
     </p>
@@ -97,14 +97,14 @@
             var currEmail = document.getElementById('<%=txtEmail.ClientID%>').value;
             var currPassword = document.getElementById('<%=txtPwd.ClientID%>').value;
             // check if password length is long enough
-            if (currPassword.length < 12) {
+            if (currPassword.length < 12 && currPassword.length > 0) {
                 // change the content of the error message
                 sender.textContent = "Password is too short (minimum of 12 characters)";
                 // set the validator isValid to false to make it appear
                 args.IsValid = false;
             }
             // if the password is not valid
-            else if (!checkPasswordValid(currEmail.toLowerCase(), currPassword.toLowerCase())) {
+            if (!checkPasswordValid(currEmail.toLowerCase(), currPassword.toLowerCase())) {
                 // change the content of the error message
                 sender.textContent = "The password cannot contain segments of the URL, app name, or email.";
                 // set the validator isValid to false to make it appear
