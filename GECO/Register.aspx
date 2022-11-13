@@ -13,11 +13,11 @@
         <asp:Label ID="lblEmail" AssociatedControlID="txtEmail" runat="server" Text="Email:" />
         <br />
         <asp:TextBox ID="txtEmail" runat="server" TextMode="Email" autocomplete="username" />
-        <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" Display="Dynamic" ValidationGroup="confirmEmail"
+        <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" Display="Dynamic" 
             ControlToValidate="txtEmail" ErrorMessage="Email is required." ForeColor="red" />
         <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" Display="Dynamic" ValidationGroup="confirmEmail"
             ControlToValidate="txtEmail" ErrorMessage="Email address is invalid."
-            ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" ForeColor="red" />
+               ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" ForeColor="red" />
         <asp:CustomValidator ID="cvEmailExists" runat="server" Display="Dynamic" ValidationGroup="confirmEmail"
             ControlToValidate="txtEmail" ErrorMessage="The email address is already registered." ForeColor="red" />
     </p>
@@ -27,9 +27,9 @@
         <br />
         <asp:TextBox ID="txtPwd" runat="server" TextMode="Password" autocomplete="new-password" aria-describedby="password-constraints" />
         <asp:CustomValidator runat="server" ID="passwordRequirements" ControlToValidate="txtPwd" ClientValidationFunction="validatePassword" ForeColor="red" 
-            ValidateEmptyText="true" ValidationGroup="passwordRequirements" Display="Dynamic" ErrorMessage="This text will be changed later."> </asp:CustomValidator>
+            ValidateEmptyText="true" ValidationGroup="confirmPasswordRequirements" Display="Dynamic" ErrorMessage="This text will be changed later."> </asp:CustomValidator>
         <asp:RequiredFieldValidator ID="RequiredFieldValidator15" runat="server" Display="Dynamic" ForeColor="red" 
-            ControlToValidate="txtPwd" ValidationGroup="passwordRequirements" ErrorMessage="Password is required." />
+            ControlToValidate="txtPwd" ErrorMessage="Password is required." />
         <br />
         <em id="password-constraints">Password needs to have at least 12 characters, cannot include your login, and is not in a list of passwords commonly used on other websites.</em>
     </p>
@@ -38,7 +38,7 @@
         <asp:Label ID="lblPwdConfirm" AssociatedControlID="txtPwdConfirm" runat="server" Text="Confirm Password:" />
         <br />
         <asp:TextBox ID="txtPwdConfirm" runat="server" TextMode="Password" autocomplete="new-password" />
-        <asp:RequiredFieldValidator ID="RequiredFieldValidator16" runat="server" Display="Dynamic" ValidationGroup="confirmPassword"
+        <asp:RequiredFieldValidator ID="RequiredFieldValidator16" runat="server" Display="Dynamic" 
             ControlToValidate="txtPwdConfirm" ErrorMessage="Password confirmation is required." ForeColor="red" />
         <asp:CompareValidator ID="CompareValidator1" runat="server" Display="Dynamic" ValidationGroup="confirmPassword"
             ControlToCompare="txtPwd" ControlToValidate="txtPwdConfirm" ErrorMessage="Passwords do not match" ForeColor="red" />
@@ -50,7 +50,7 @@
                 <asp:Label ID="lblCaptcha" AssociatedControlID="txtCaptcha" runat="server" Text="Enter code as displayed in the image:" />
                 <br />
                 <asp:TextBox ID="txtCaptcha" runat="server" />
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator19" runat="server" Display="Dynamic" ValidationGroup="confirmCaptcha"
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator19" runat="server" Display="Dynamic" 
                     ControlToValidate="txtCaptcha" ErrorMessage="Enter code as displayed in the image." ForeColor="red" />
                 <asp:CustomValidator ID="cvCaptcha" runat="server" Display="Dynamic" ValidationGroup="confirmCaptcha"
                     ControlToValidate="txtCaptcha" ErrorMessage="Code was incorrect or expired." ForeColor="red" />
@@ -64,7 +64,8 @@
     </asp:UpdatePanel>
 
     <p>
-        <asp:Button ID="btnRegister" runat="server" Text="Register" CssClass="button-large" />
+        <asp:Button ID="btnRegister" runat="server" Text="Register" CssClass="button-large" CausesValidation="true"
+            OnClientClick="return client_btnRegister_Click();" OnClick="btnRegister_Click"/>
     </p>
 
     <p class="message-highlight">
@@ -115,6 +116,7 @@
                 // set the error message to be visible through the global variable value
                 args.IsValid = isValidatorValid;
             }
+            return true; // essential
         }
 
         /**
@@ -237,7 +239,6 @@
                     var stateBefore = isValidatorValid;
                     // display the error
                     if (found) {
-                        console.log("isValidatorValid " + isValidatorValid);
                         isValidatorValid = false;
                     } else {
                         isValidatorValid = true;
@@ -267,7 +268,7 @@
                 group.push("confirmEmail");
             }
             if (currPwd !== "") {
-                group.push("passwordRequirements");
+                group.push("confirmPasswordRequirements");
             }
             if (currConfirmPwd !== "") {
                 group.push("confirmPassword");
@@ -305,6 +306,14 @@
             // return false if any of the groups failed
             return result;
         };
+
+        function client_btnRegister_Click() {
+            // call all validators in the page
+            Page_ClientValidate();
+            // this return value determines whether the server-side function is called
+            // true to calling the server-side function, false to prevent it
+            return Page_IsValid;
+        }
 
     </script>
 </asp:Content>

@@ -16,7 +16,8 @@ Partial Class Register
     End Sub
 
     Protected Sub btnRegister_Click(sender As Object, e As EventArgs) Handles btnRegister.Click
-        If IsValid Then
+        Debug.WriteLine("server register")
+        If False Then
             Dim email As String = txtEmail.Text.Trim()
 
             Dim token As String = Nothing
@@ -46,14 +47,19 @@ Partial Class Register
         txtCaptcha.Text = ""
     End Sub
 
-    Private Sub cvEmailExists_ServerValidate(source As Object, args As ServerValidateEventArgs) Handles cvEmailExists.ServerValidate
+    Protected Sub cvEmailExists_ServerValidate(source As Object, args As ServerValidateEventArgs) Handles cvEmailExists.ServerValidate
         args.IsValid = Not GecoUserExists(args.Value)
     End Sub
 
-    Private Sub cvCaptcha_ServerValidate(source As Object, args As ServerValidateEventArgs) Handles cvCaptcha.ServerValidate
+    Protected Sub cvCaptcha_ServerValidate(source As Object, args As ServerValidateEventArgs) Handles cvCaptcha.ServerValidate
         captchaControl.ValidateCaptcha(txtCaptcha.Text)
         txtCaptcha.Text = ""
         args.IsValid = captchaControl.UserValidated
     End Sub
+
+    Private Function ValidateCurrentPassword() As Boolean
+        Dim currentText As String = txtPwd.Text
+        Return False
+    End Function
 
 End Class
