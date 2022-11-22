@@ -204,27 +204,10 @@ Public Class Permit_Application
 
             ' Invoicing
             If Not PermitApplication.IsInvoiceGenerated Then
-                If FacilityAccess.FeeAccess Then
-                    pGenerateInvoice.Visible = True
-                    CheckForCredits()
-                Else
-                    pGenerateNoAccess.Visible = True
-                End If
+                pNoInvoice.Visible = True
             End If
 
         End With
-    End Sub
-
-    Private Sub CheckForCredits()
-        If PermitApplication.FacilityID IsNot Nothing Then
-            Dim credits As Decimal = FacilityCredits(PermitApplication.FacilityID)
-
-            If credits > 0 Then
-                Dim txt As String = "Facility credits of {0:c} will be immediately applied to invoice when generated."
-                lblCredits.Text = String.Format(txt, Math.Min(credits, PermitApplication.ApplicationFeeInfo.TotalFeeAmount))
-                lblCredits.Visible = True
-            End If
-        End If
     End Sub
 
     Private Sub DisplayInvoices()
@@ -245,46 +228,6 @@ Public Class Permit_Application
             grdPayments.DataBind()
             pnlPayments.Visible = True
         End If
-    End Sub
-
-    Protected Sub btnGenerateInvoice_Click() Handles btnGenerateInvoice.Click
-        If Not IsPostBack Then
-            Throw New HttpException(400, "Application error.")
-        End If
-
-        pGenerateInvoice.Visible = False
-
-        If IsInvoiceGeneratedForApplication(AppNumber) Then
-            pGenerateExists.Visible = True
-            Return
-        End If
-
-        Dim newInvoiceID As Integer
-        Dim result As GenerateInvoiceResult = GenerateInvoice(AppNumber, CurrentUser.UserId, newInvoiceID)
-
-        Select Case result
-            Case GenerateInvoiceResult.NoApplication
-                Throw New HttpException(400, "Permit application number invalid.")
-
-            Case GenerateInvoiceResult.Success
-                pGenerateSuccess.Visible = True
-
-            Case GenerateInvoiceResult.InvoiceExists
-                pGenerateExists.Visible = True
-
-            Case Else
-                pGenerateDbError.Visible = True
-
-        End Select
-
-        PermitApplication = GetPermitApplication(AppNumber)
-
-        If PermitApplication Is Nothing Then
-            Throw New HttpException(404, "Permit application not found.")
-        End If
-
-        DisplayInvoices()
-        DisplayPayments()
     End Sub
 
 End Class

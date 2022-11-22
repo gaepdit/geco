@@ -43,6 +43,26 @@ Namespace DAL
             Return permitApplication
         End Function
 
+        Private Function ApplicationFeeInfoFromDataRow(dr As DataRow) As ApplicationFeeInfo
+            If dr Is Nothing Then
+                Return Nothing
+            End If
+
+            Return New ApplicationFeeInfo With {
+                .ApplicationID = CInt(dr.Item("AppNumber")),
+                .ApplicationWithdrawn = CBool(dr.Item("ApplicationWithdrawn")),
+                .ApplicationFeeApplies = CBool(dr.Item("ApplicationFeeApplies")),
+                .ApplicationFeeDescription = GetNullableString(dr.Item("ApplicationFeeDescription")),
+                .ApplicationFeeAmount = GetNullable(Of Decimal)(dr.Item("ApplicationFeeAmount")),
+                .ExpeditedFeeApplies = CBool(dr.Item("ExpeditedFeeApplies")),
+                .ExpeditedFeeDescription = GetNullableString(dr.Item("ExpeditedFeeDescription")),
+                .ExpeditedFeeAmount = GetNullable(Of Decimal)(dr.Item("ExpeditedFeeAmount")),
+                .FeeDataFinalized = CBool(dr.Item("FeeDataFinalized")),
+                .DateFeeDataFinalized = GetNullableDateTime(dr.Item("DateFeeDataFinalized")),
+                .DateFacilityNotifiedOfFees = GetNullableDateTime(dr.Item("DateFacilityNotifiedOfFees"))
+            }
+        End Function
+
         Private Function PermitApplicationFromDataRow(appNumber As Integer, dr As DataRow) As PermitApplication
             Dim staffResponsible As New ApbStaff With {
                 .IaipID = CInt(dr.Item("IaipID")),

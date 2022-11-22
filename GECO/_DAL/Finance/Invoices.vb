@@ -1,17 +1,9 @@
-Imports System.Data.SqlClient
+﻿Imports System.Data.SqlClient
 Imports EpdIt.DBUtilities
 Imports GECO.GecoModels
 
 Namespace DAL
     Public Module Invoices
-
-        Public Function InvoiceExists(invoiceId As Integer) As Boolean
-            Return DB.SPGetBoolean("fees.InvoiceExists", New SqlParameter("@InvoiceID", invoiceId))
-        End Function
-
-        Public Function InvoiceHasPaymentsApplied(invoiceId As Integer) As Boolean
-            Return DB.SPGetBoolean("fees.InvoiceHasPaymentsApplied", New SqlParameter("@InvoiceID", invoiceId))
-        End Function
 
         Public Function GetInvoiceByGuid(invoiceGuid As Guid) As Invoice
             Dim ds As DataSet = DB.SPGetDataSet("fees.GetInvoiceByGuid", New SqlParameter("@InvoiceGuid", invoiceGuid))

@@ -27,21 +27,8 @@
         <ContentTemplate>
             <asp:HiddenField ID="hAppNumber" runat="server" />
 
-            <p id="pGenerateInvoice" runat="server" visible="false">
-                <asp:Button ID="btnGenerateInvoice" runat="server" Text="Generate New Invoice" CssClass="button-large" />
-                <asp:Label ID="lblCredits" runat="server" Visible="false" Font-Italic="True"></asp:Label>
-            </p>
-
-            <p id="pGenerateNoAccess" runat="server" visible="false" class="message-highlight">
-                You must be logged into GECO and have Fee Access to this facility in order to generate an invoice.
-            </p>
-
-            <p id="pGenerateDbError" runat="server" class="message-highlight" visible="false">An error occurred while trying to generate the invoice. Please contact the Air Protection Branch for assistance.</p>
-            <p id="pGenerateExists" runat="server" class="message-highlight" visible="false">Error: An active invoice already exists for this permit application.</p>
-            <p id="pGenerateSuccess" runat="server" class="message-highlight" visible="false">
-                Invoice
-                <asp:Label ID="lblNewInvoiceNumber" runat="server"></asp:Label>
-                has been generated. Please print and return it with your payment.
+            <p id="pNoInvoice" runat="server" visible="false" class="message-highlight">
+                An invoice is not yet available. Please contact the Air Protection Branch to request an invoice.
             </p>
 
             <asp:Panel ID="pnlInvoices" runat="server" Visible="false">

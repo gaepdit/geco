@@ -519,7 +519,6 @@
     <Compile Include="_Code\MapHelper.vb" />
     <Compile Include="_Code\Md5Hashing.vb" />
     <Compile Include="_DAL\Finance\CombinedFeesSummary.vb" />
-    <Compile Include="_DAL\Finance\FacilityFinances.vb" />
     <Compile Include="_DAL\Logging\EmailLog.vb" />
     <Compile Include="_Models\EIS\CaerContact.vb" />
     <Compile Include="_Models\EIS\EisProcess.vb" />
@@ -532,7 +531,6 @@
     <Compile Include="_Models\Facility\MailContact.vb" />
     <Compile Include="_Models\Finance\DepositApplied.vb" />
     <Compile Include="_DAL\Finance\Invoices.vb" />
-    <Compile Include="_DAL\Finance\ApplicationFees.vb" />
     <Compile Include="_DAL\Permits\PermitApplications.vb" />
     <Compile Include="_DAL\Permits\IssuedAirPermits.vb" />
     <Compile Include="_DAL\Users\UserAccess.vb" />

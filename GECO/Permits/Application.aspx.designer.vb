@@ -12,7 +12,7 @@ Option Explicit On
 
 
 Partial Public Class Permit_Application
-    
+
     '''<summary>
     '''lblAppNum control.
     '''</summary>
@@ -21,7 +21,7 @@ Partial Public Class Permit_Application
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblAppNum As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''tApplicationDetails control.
     '''</summary>
@@ -30,7 +30,7 @@ Partial Public Class Permit_Application
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents tApplicationDetails As Global.System.Web.UI.WebControls.Table
-    
+
     '''<summary>
     '''pFeesNotApplicable control.
     '''</summary>
@@ -39,7 +39,7 @@ Partial Public Class Permit_Application
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents pFeesNotApplicable As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
+
     '''<summary>
     '''pFeesNotDetermined control.
     '''</summary>
@@ -48,7 +48,7 @@ Partial Public Class Permit_Application
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents pFeesNotDetermined As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
+
     '''<summary>
     '''pFeesNotified control.
     '''</summary>
@@ -57,7 +57,7 @@ Partial Public Class Permit_Application
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents pFeesNotified As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
+
     '''<summary>
     '''lblNotifiedDate control.
     '''</summary>
@@ -66,7 +66,7 @@ Partial Public Class Permit_Application
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblNotifiedDate As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''tblFeesSummary control.
     '''</summary>
@@ -75,7 +75,7 @@ Partial Public Class Permit_Application
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents tblFeesSummary As Global.System.Web.UI.WebControls.Table
-    
+
     '''<summary>
     '''pnlGenerateInvoice control.
     '''</summary>
@@ -84,7 +84,7 @@ Partial Public Class Permit_Application
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents pnlGenerateInvoice As Global.System.Web.UI.UpdatePanel
-    
+
     '''<summary>
     '''hAppNumber control.
     '''</summary>
@@ -93,79 +93,16 @@ Partial Public Class Permit_Application
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents hAppNumber As Global.System.Web.UI.WebControls.HiddenField
-    
+
     '''<summary>
-    '''pGenerateInvoice control.
+    '''pNoInvoice control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents pGenerateInvoice As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
-    '''<summary>
-    '''btnGenerateInvoice control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnGenerateInvoice As Global.System.Web.UI.WebControls.Button
-    
-    '''<summary>
-    '''lblCredits control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblCredits As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''pGenerateNoAccess control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents pGenerateNoAccess As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
-    '''<summary>
-    '''pGenerateDbError control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents pGenerateDbError As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
-    '''<summary>
-    '''pGenerateExists control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents pGenerateExists As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
-    '''<summary>
-    '''pGenerateSuccess control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents pGenerateSuccess As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
-    '''<summary>
-    '''lblNewInvoiceNumber control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblNewInvoiceNumber As Global.System.Web.UI.WebControls.Label
-    
+    Protected WithEvents pNoInvoice As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
     '''<summary>
     '''pnlInvoices control.
     '''</summary>
@@ -174,7 +111,7 @@ Partial Public Class Permit_Application
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents pnlInvoices As Global.System.Web.UI.WebControls.Panel
-    
+
     '''<summary>
     '''grdInvoices control.
     '''</summary>
@@ -183,7 +120,7 @@ Partial Public Class Permit_Application
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents grdInvoices As Global.System.Web.UI.WebControls.GridView
-    
+
     '''<summary>
     '''pnlPayments control.
     '''</summary>
@@ -192,7 +129,7 @@ Partial Public Class Permit_Application
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents pnlPayments As Global.System.Web.UI.WebControls.Panel
-    
+
     '''<summary>
     '''grdPayments control.
     '''</summary>
@@ -201,7 +138,7 @@ Partial Public Class Permit_Application
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents grdPayments As Global.System.Web.UI.WebControls.GridView
-    
+
     '''<summary>
     '''tFacilityInfo control.
     '''</summary>
@@ -210,7 +147,7 @@ Partial Public Class Permit_Application
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents tFacilityInfo As Global.System.Web.UI.WebControls.Table
-    
+
     '''<summary>
     '''pNoContact control.
     '''</summary>
@@ -219,7 +156,7 @@ Partial Public Class Permit_Application
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents pNoContact As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
+
     '''<summary>
     '''tContact control.
     '''</summary>
@@ -228,7 +165,7 @@ Partial Public Class Permit_Application
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents tContact As Global.System.Web.UI.WebControls.Table
-    
+
     '''<summary>
     '''tTracking control.
     '''</summary>
@@ -237,7 +174,7 @@ Partial Public Class Permit_Application
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents tTracking As Global.System.Web.UI.WebControls.Table
-    
+
     '''<summary>
     '''Master property.
     '''</summary>
@@ -246,7 +183,7 @@ Partial Public Class Permit_Application
     '''</remarks>
     Public Shadows ReadOnly Property Master() As GECO.MainLayout
         Get
-            Return CType(MyBase.Master,GECO.MainLayout)
+            Return CType(MyBase.Master, GECO.MainLayout)
         End Get
     End Property
 End Class
