@@ -131,8 +131,15 @@
             var validPassWebsite = FindIntersection("geco", password);
             var validPassDepartment = FindIntersection("gaepd", password);
 
-            if (validPassEmail == null || validPassWebsite == null || validPassDepartment == null) {
-                return true;
+            // check for falsy values
+            if (!validPassEmail) {
+                validPassEmail = "";
+            }
+            if (!validPassWebsite) {
+                validPassWebsite = "";
+            }
+            if (!validPassDepartment) {
+                validPassDepartment = "";
             }
 
             // declare an arbitrary length
