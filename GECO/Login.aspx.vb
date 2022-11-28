@@ -41,7 +41,9 @@ Partial Class Login
         Dim gecoUser As New GecoUser
         Dim userSession As New UserSession
 
-        Dim loginResult As LoginResult = LogInUser(txtUserId.Text, txtPassword.Text, chkRememberMe.Checked, gecoUser, userSession)
+        Dim ipAddress As String = GetIPv4Address()
+
+        Dim loginResult As LoginResult = LogInUser(txtUserId.Text, txtPassword.Text, chkRememberMe.Checked, ipAddress, gecoUser, userSession)
 
         Select Case loginResult
             Case LoginResult.Invalid
@@ -51,7 +53,7 @@ Partial Class Login
                 lblUnconfirmed.Visible = True
 
             Case LoginResult.LoginThrottled
-                lblMessage.Text = "Please wait a few seconds and try again."
+                lblMessage.Text = "Too many login attemps made. Please wait a few seconds and try again."
                 lblMessage.Visible = True
 
             Case LoginResult.Success
@@ -84,6 +86,10 @@ Partial Class Login
         End Select
 
     End Sub
+
+    Private Function GetIPv4Address() As String
+        Return System.Net.Dns.GetHostEntry(System.Net.Dns.GetHostName()).AddressList.GetValue(1).ToString()
+    End Function
 
     Private Sub GetUserFromSession()
 
