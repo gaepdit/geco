@@ -86,6 +86,15 @@ Partial Public Class Register
     Protected WithEvents RequiredFieldValidator15 As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
+    '''Regex3 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Regex3 As Global.System.Web.UI.WebControls.RegularExpressionValidator
+
+    '''<summary>
     '''passwordRequirements control.
     '''</summary>
     '''<remarks>
