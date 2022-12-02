@@ -58,8 +58,15 @@ Partial Class Register
         args.IsValid = captchaControl.UserValidated
     End Sub
 
+    Protected Sub passwordRequirement_ServerValidate(source As Object, args As ServerValidateEventArgs) Handles passwordRequirements.ServerValidate
+        If checkPasswordValid() Then
+            passwordRequirements.Text = "The password cannot contain segments of the URL, app name, or email."
+            args.IsValid = False
+        End If
+    End Sub
+
     ''' <summary>
-    ''' Helper function for the validatePassword()
+    ''' Helper function for the passwordRequirement_ServerValidate()
     ''' </summary>
     ''' <returns>True if the password Is valid, false otherwise.</returns>
     Private Function checkPasswordValid() As Boolean
