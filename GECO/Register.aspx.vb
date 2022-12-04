@@ -60,7 +60,7 @@ Partial Class Register
 
     Protected Sub passwordRequirement_ServerValidate(source As Object, args As ServerValidateEventArgs) Handles passwordRequirements.ServerValidate
         If checkPasswordValid() Then
-            passwordRequirements.Text = "The password cannot contain segments of the URL, app name, or email."
+            passwordRequirements.ErrorMessage = "The password cannot contain segments of the URL, app name, or email."
             args.IsValid = False
         End If
     End Sub
