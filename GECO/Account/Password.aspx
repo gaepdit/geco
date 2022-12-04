@@ -40,7 +40,7 @@
                 <td>
                     <asp:TextBox ID="txtOldPassword" runat="server" TextMode="Password" autocomplete="current-password" />
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtOldPassword" Display="Dynamic"
-                        ErrorMessage="Old Password is required." Font-Size="Small" ValidationGroup="Password"></asp:RequiredFieldValidator>&nbsp;
+                        ErrorMessage="Old Password is required." Font-Size="Small" ValidationGroup="OldPassword" ForeColor="Red"></asp:RequiredFieldValidator>&nbsp;
                 </td>
             </tr>
             <tr>
@@ -50,13 +50,13 @@
                 <td>
                     <asp:TextBox ID="txtNewPassword" runat="server" TextMode="Password" autocomplete="new-password" aria-describedby="password-constraints" />
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator15" runat="server" ControlToValidate="txtNewPassword" Display="Dynamic"
-                        ErrorMessage="New Password is required." Font-Size="Small" ValidationGroup="Password"></asp:RequiredFieldValidator>
+                        ErrorMessage="New Password is required." Font-Size="Small" ValidationGroup="NewPassword" ForeColor="Red"></asp:RequiredFieldValidator>
                     <asp:RegularExpressionValidator ID="Regex3" runat="server" ControlToValidate="txtNewPassword"
-                        ValidationExpression="^[a-zA-Z0-9]{12,}$" ValidationGroup="Password"
+                        ValidationExpression="^[a-zA-Z0-9]{12,}$" ValidationGroup="NewPassword"
                         ErrorMessage="Password is too short (minimum of 12 characters)." Display="Dynamic"
                         ForeColor="Red" />
                     <asp:CustomValidator runat="server" ID="passwordRequirements" ControlToValidate="txtNewPassword"
-                        ClientValidationFunction="validatePassword" ForeColor="red" ValidateEmptyText="true" ValidationGroup="Password"
+                        ClientValidationFunction="validatePassword" ForeColor="red" ValidateEmptyText="true" ValidationGroup="NewPassword"
                         Display="Dynamic" ErrorMessage="This text will be changed later."> </asp:CustomValidator>
 
                 </td>
@@ -68,15 +68,15 @@
                 <td>
                     <asp:TextBox ID="txtPwdConfirm" runat="server" TextMode="Password" autocomplete="new-password" />
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator16" runat="server" ControlToValidate="txtPwdConfirm" Display="Dynamic"
-                        ErrorMessage="Password Confirmation is required." Font-Size="Small" ValidationGroup="Password"></asp:RequiredFieldValidator>
+                        ErrorMessage="Password Confirmation is required." Font-Size="Small" ValidationGroup="RepeatPassword" ForeColor="Red"></asp:RequiredFieldValidator>
                     <asp:CompareValidator ID="CompareValidator1" runat="server" ControlToCompare="txtNewPassword" ControlToValidate="txtPwdConfirm"
-                        ErrorMessage="Password fields must match." Font-Size="Small" Display="Dynamic" ValidationGroup="Password"></asp:CompareValidator>&nbsp;
+                        ErrorMessage="Password fields must match." Font-Size="Small" Display="Dynamic" ValidationGroup="RepeatPassword" ForeColor="Red"></asp:CompareValidator>&nbsp;
                 </td>
             </tr>
         </table>
 
         <p>
-            <asp:Button ID="btnPwdUpdate" runat="server" Text="Update Password" CausesValidation="true" ValidationGroup="Password"
+            <asp:Button ID="btnPwdUpdate" runat="server" Text="Update Password" CausesValidation="true"
                 OnClientClick="return client_btnRegister_Click();" CssClass="button-large" />
         </p>
     </asp:Panel>
@@ -92,7 +92,6 @@
          * @param args
          */
         function validatePassword(sender, args) {
-
             var currEmail = document.getElementById('<%=lblDisplayName.ClientID%>').innerText;
             var currPassword = document.getElementById('<%=txtNewPassword.ClientID%>').value;
             if (!checkPasswordValid(currEmail.toLowerCase(), currPassword.toLowerCase())) {
@@ -256,12 +255,19 @@
          * all of the other validators (does not matter if they are in a group or not).
          */
         function Reload_Validator() {
+            var oldPwd = document.getElementById('<%=txtOldPassword.ClientID%>').value;
             var currPwd = document.getElementById('<%=txtNewPassword.ClientID%>').value;
             var currConfirmPwd = document.getElementById('<%=txtPwdConfirm.ClientID%>').value;
             var group = [];
             // if the TextBox is not empty, then update its group validators
+            if (oldPwd !== "") {
+                group.push("OldPassword");
+            }
             if (currPwd !== "") {
-                group.push("Password");
+                group.push("NewPassword");
+            }
+            if (currConfirmPwd !== "") {
+                group.push("RepeatPassword");
             }
             // call the helper method to get all the groups validate again
             Page_ClientValidateMultiple(group);
