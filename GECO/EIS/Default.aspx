@@ -9,95 +9,110 @@
     </p>
 
     <p>
-        Facilities whose potential emissions equal or exceed the thresholds must report their actual 
-        emissions. For assistance with calculating PTE, please use 
+        Facilities whose potential emissions equal or exceed the thresholds indicated in the 
+        Air Emission Reporting Requirements (AERR) rule (40 CFR Part 51 Subpart A) must report their actual 
+        emissions annually or triennially. For assistance with calculating PTE, please use 
         the <a href="https://epd.georgia.gov/documents/potential-emit-guidelines" target="_blank">Potential 
             to Emit Guidelines</a>.
         Since the 2019 Emissions Inventory, Georgia has used the <i>Combined Air Emissions 
-            Reporting System</i> (<abbr>CAERS</abbr>) developed by U.S. EPA.
+            Reporting System</i> (<abbr>CAERS</abbr>) developed by U.S. EPA to comply with the AERR.
     </p>
     <p>
-        Starting in 2022, the new Emissions Inventory process will be as follows:
+        Starting in 2022, the new Emissions Inventory process will be as follows. Based on previously 
+        available information, the Georgia Air Protection Branch will enroll facilities that may need 
+        to participate in the Emissions Inventory. <strong>(If your facility has not been enrolled, but you 
+        believe it should be participating in the EI, please email 
+        <a href="mailto:emissions.inventory@dnr.ga.gov">emissions.inventory@dnr.ga.gov</a>.)</strong>
+    </p>
+    <p>
+        The next steps apply to all enrolled facilities:
     </p>
     <ol>
         <li>
             <p>
-                Based on previously available information, the Georgia Air Protection Branch will enroll 
-                facilities that may need to participate in the Emissions Inventory. (If your facility 
-                has not been enrolled, but you believe it should be participating in the EI, please 
-                email <a href="mailto:emissions.inventory@dnr.ga.gov">emissions.inventory@dnr.ga.gov</a>.)
+                Review the basic <a href="#facility-info" class="inner-anchor-link no-visited">Facility Information</a>
+                below and if there is any mistake, please let EPD know and we will verify the updates.
             </p>
         </li>
         <li>
             <p>
-                Review basic <a href="#facility-info" class="inner-anchor-link no-visited">Facility Information</a>
-                below and update as needed. Update the 
+                Update/verify the 
                 <a href="#caers-users" class="inner-anchor-link no-visited">CAERS Users</a> below. Please ensure 
                 <asp:HyperLink ID="lnkOtherContactInfo" runat="server" NavigateUrl="~/Facility/Contacts.aspx">all other contact information</asp:HyperLink>
                 is correct.
             </p>
-            <p>For users new to CDX and CAERS, please be aware of the following roles:</p>
+            <p><strong>For users new to CDX and CAERS,</strong> please be aware of the following roles:</p>
             <ol>
                 <li>
                     <p>
-                        A <b>preparer</b> is authorized to prepare an emissions report for National Emissions 
+                        A <strong>preparer</strong> is authorized to prepare an emissions report for National Emissions 
                         Inventory (NEI) and/or Toxics Release Inventory (TRI) data for a given facility. You 
                         may be a consultant, or a staff person for the company owning the facility.
                     </p>
                 </li>
                 <li>
                     <p>
-                        A <b>certifier</b> is authorized to sign the emissions report on behalf of the 
+                        A <strong>certifier</strong> is authorized to sign the emissions report on behalf of the 
                         facility to meet your legal obligation for reporting to your State, Local, or Tribal 
-                        authority (SLT).
+                        authority (SLT). There can only be one certifier per facility.
                     </p>
                 </li>
             </ol>
             <p>
-                Note: A certifier is only needed to complete the opt-out form. However, a designated 
+                Note: A certifier is only needed to complete the opt-out process. However, a designated 
                 preparer may fill out the opt-out form but must notify the designated certifier to 
-                formalize the opt-out status.
+                finalize the opt-out status.
             </p>
         </li>
         <li>
             <p>
-                The opt-in/opt-out process will continue at EPA's Central Data Exchange (CDX). See link 
-                below. CDX is used to access CAERS. Once in CAERS, select facility, then click on the 
-                “Create New Report” button for the 2021 EI Report. Prompts will help determine whether 
+                The opt-in/opt-out process will continue at EPA's Central Data Exchange (CDX). Click the 
+                following link:
+            </p>
+            <p>
+                <asp:HyperLink ID="HyperLink1" runat="server" Text="Link to EPA CDX" Target="_blank" CssClass="button button-large button-proceed" Visible="false" />
+                <asp:Label ID="Label1" runat="server" Visible="false" CssClass="label-highlight" Font-Bold="True" />
+            </p>
+            <p>
+                CDX is used to access CAERS. Once in CAERS, select your facility, then click on the 
+                “Create New Report” button for the <%= Now.Year - 1 %> EI Report. Prompts will help determine whether 
                 your facility will opt in or opt out.
             </p>
             <p>
                 If you are new to CAERS, you can click on 
                 <a href="https://docs.google.com/gview?url=https://epd.georgia.gov/document/document/2021gecocaerstablefinalpdf"
                     target="_blank">GECO EI/CAERS Troubleshooting Matrix</a>
-                to help you determine how to get started in CAERS. If your facility may qualify to opt out,
-                please download the 
-                <a href="2021-opt-out-form.xlsx" download="2021-opt-out-form.xlsx">Opt-out form</a> 
-                to start your 2021 EI reporting and then upload this form to CAERS when you complete the 
-                required opt-out form.
+                to help you determine how to get started in CAERS. 
+            </p>
+        </li>
+        <li>
+            <p>
+                If your facility qualifies to opt out, please download the 
+                <a href="2021-opt-out-form.xlsx" download="2021-opt-out-form.xlsx">Opt-out form</a>
+                to start your <%= Now.Year - 1 %> EI reporting. Upload the completed form to CAERS.
             </p>
             <p>
-                Note: The preparers and certifiers you have specified should follow this procedure if new 
-                to CDX/CAERS:
+                If new to CDX/CAERS, the preparer(s) and certifier you have specified should follow this 
+                procedure:
             </p>
             <ol>
                 <li>
-                    <p>Register in CDX using the link below and set up CAERS in CDX.</p>
+                    <p>Register in CDX using the link to EPA's CDX above and set up CAERS in CDX.</p>
                 </li>
                 <li>
-                    <p>Await approval that your CAERS account is linked to the correct facilities.</p>
+                    <p>Await email approval from CDX that their CAERS account is linked to the correct facilities.</p>
                 </li>
                 <li>
                     <p>
                         Once approved, select facility, then click on the “Create New Report” button for the 
-                        2021 Report.
+                        <%= Now.Year - 1 %> Report.
                     </p>
                 </li>
             </ol>
         </li>
     </ol>
 
-    <p>
+    <p class="centered">
         <asp:HyperLink ID="CdxLink" runat="server" Text="Link to EPA CDX" Target="_blank" CssClass="button button-large button-proceed" Visible="false" />
         <asp:Label ID="lblCdxAlt" runat="server" Visible="false" CssClass="label-highlight" Font-Bold="True" />
     </p>
@@ -116,7 +131,7 @@
                 <th>Operating Status</th>
                 <td>
                     <asp:Label ID="lblOperatingStatus" runat="server" /><br />
-                    <small>* Operating status pertains only to Emissions Inventory</small>
+                    <small>* Operating status pertains only to the last Emissions Inventory reported</small>
                 </td>
             </tr>
             <tr>

@@ -32,6 +32,24 @@ Partial Public Class EIS_Default
     Protected WithEvents lnkOtherContactInfo As Global.System.Web.UI.WebControls.HyperLink
 
     '''<summary>
+    '''HyperLink1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents HyperLink1 As Global.System.Web.UI.WebControls.HyperLink
+
+    '''<summary>
+    '''Label1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Label1 As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
     '''CdxLink control.
     '''</summary>
     '''<remarks>
