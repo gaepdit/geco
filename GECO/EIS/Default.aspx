@@ -119,6 +119,8 @@
 
     <h2 id="facility-info">Facility Information</h2>
 
+    <p>If any facility information is incorrect, please email <a href="mailto:emissions.inventory@dnr.ga.gov">emissions.inventory@dnr.ga.gov</a>.</p>
+
     <table class="table-simple table-list">
         <tbody>
             <tr>
@@ -162,12 +164,6 @@
             Open map in new window
         </asp:HyperLink>
     </div>
-
-    <p>
-        <asp:HyperLink ID="btnEditFacilityInfo" runat="server" NavigateUrl="~/EIS/Facility/Edit.aspx" CssClass="button">
-            Edit Facility Information
-        </asp:HyperLink>
-    </p>
 
     <h2 id="caers-users">CAERS Users</h2>
 

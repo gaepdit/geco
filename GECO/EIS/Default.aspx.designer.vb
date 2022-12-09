@@ -140,15 +140,6 @@ Partial Public Class EIS_Default
     Protected WithEvents imgGoogleStaticMap As Global.System.Web.UI.WebControls.Image
 
     '''<summary>
-    '''btnEditFacilityInfo control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnEditFacilityInfo As Global.System.Web.UI.WebControls.HyperLink
-
-    '''<summary>
     '''pNoUsersNotice control.
     '''</summary>
     '''<remarks>
