@@ -47,13 +47,14 @@ Partial Class Login
 
         Select Case loginResult
             Case LoginResult.Invalid
+                lblMessage.Text = "Either the email is not registered or the password is incorrect. Please try again."
                 lblMessage.Visible = True
 
             Case LoginResult.AccountUnconfirmed
                 lblUnconfirmed.Visible = True
 
             Case LoginResult.LoginThrottled
-                lblMessage.Text = "Too many login attemps made. Please wait a few seconds and try again."
+                lblMessage.Text = "Too many login attempts made. Please wait a few seconds and try again."
                 lblMessage.Visible = True
 
             Case LoginResult.Success
@@ -87,8 +88,8 @@ Partial Class Login
 
     End Sub
 
-    Private Function GetIPv4Address() As String
-        Return System.Net.Dns.GetHostEntry(System.Net.Dns.GetHostName()).AddressList.GetValue(1).ToString()
+    Private Shared Function GetIPv4Address() As String
+        Return Net.Dns.GetHostEntry(Net.Dns.GetHostName()).AddressList.GetValue(1).ToString()
     End Function
 
     Private Sub GetUserFromSession()
