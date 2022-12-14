@@ -4,11 +4,12 @@ Imports GECO.GecoModels
 
 Public Module UserAccounts
 
-    Public Function LogInUser(email As String, password As String, remember As Boolean, ByRef user As GecoUser, ByRef userSession As UserSession) As LoginResult
+    Public Function LogInUser(email As String, password As String, remember As Boolean, ipAddress As String, ByRef user As GecoUser, ByRef userSession As UserSession) As LoginResult
         Dim params As SqlParameter() = {
             New SqlParameter("@Email", email.Trim()),
             New SqlParameter("@Password", GetMd5Hash(password)),
-            New SqlParameter("@CreateSession", remember)
+            New SqlParameter("@CreateSession", remember),
+            New SqlParameter("@IPAddress", ipAddress)
         }
         Dim result As Integer
         Dim ds As DataSet = DB.SPGetDataSet("geco.LogInUser", params, result)
@@ -32,6 +33,8 @@ Public Module UserAccounts
                 Return LoginResult.Invalid
             Case 2
                 Return LoginResult.AccountUnconfirmed
+            Case 3
+                Return LoginResult.LoginThrottled
             Case Else
                 Return LoginResult.DbError
         End Select
@@ -41,6 +44,7 @@ Public Module UserAccounts
         Success
         Invalid
         AccountUnconfirmed
+        LoginThrottled
         DbError
     End Enum
 
