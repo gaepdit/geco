@@ -604,6 +604,7 @@
     <Content Include="EIS\EIS.master" />
     <Content Include="manifest.webmanifest" />
     <Content Include="EIS\2021-opt-out-form.xlsx" />
+    <Content Include="EIS\2022-opt-out-form_annual.xlsx" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>

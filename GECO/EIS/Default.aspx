@@ -1,4 +1,4 @@
-﻿<%@ Page MasterPageFile="~/EIS/EIS.master" Language="VB" AutoEventWireup="false"
+<%@ Page MasterPageFile="~/EIS/EIS.master" Language="VB" AutoEventWireup="false"
     Title="GECO Emissions Inventory"
     Inherits="GECO.EIS_Default" CodeBehind="Default.aspx.vb" %>
 
@@ -88,7 +88,7 @@
         <li>
             <p>
                 If your facility qualifies to opt out, please download the 
-                <a href="2021-opt-out-form.xlsx" download="2021-opt-out-form.xlsx">Opt-out form</a>
+                <a href="2022-opt-out-form_annual.xlsx" download="2022-opt-out-form_annual.xlsx">Opt-out form</a>
                 to start your <%= Now.Year - 1 %> EI reporting. Upload the completed form to CAERS.
             </p>
             <p>
