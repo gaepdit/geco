@@ -1,4 +1,4 @@
-<%@ Page MasterPageFile="~/EIS/EIS.master" Language="VB" AutoEventWireup="false"
+﻿<%@ Page MasterPageFile="~/EIS/EIS.master" Language="VB" AutoEventWireup="false"
     Title="GECO Emissions Inventory"
     Inherits="GECO.EIS_Default" CodeBehind="Default.aspx.vb" %>
 
@@ -66,8 +66,8 @@
         </li>
         <li>
             <p>
-                The opt-in/opt-out process will continue at EPA's Central Data Exchange (CDX). Click the 
-                following link:
+                The opt-in/opt-out process will continue at EPA's Central Data Exchange (CDX). 
+                Click the following link to start. CAERS is not opening until March 1, 2023.
             </p>
             <p>
                 <asp:HyperLink ID="HyperLink1" runat="server" Text="Link to EPA CDX" Target="_blank" CssClass="button button-large button-proceed" Visible="false" />
