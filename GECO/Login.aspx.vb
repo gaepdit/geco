@@ -132,7 +132,6 @@ Partial Class Login
                 ipv4Address = Dns.GetHostEntry(Dns.GetHostName()).AddressList.GetValue(1).ToString()
             End Try
         End Try
-        Console.WriteLine(ipv4Address)
         Return ipv4Address
     End Function
 
