@@ -1,5 +1,6 @@
 ﻿Imports GECO.EmailTemplates
 Imports GECO.GecoModels
+Imports System.Net
 
 Partial Class Login
     Inherits Page
@@ -87,9 +88,52 @@ Partial Class Login
         End Select
 
     End Sub
-
+    
     Private Shared Function GetIPv4Address() As String
-        Return Net.Dns.GetHostEntry(Net.Dns.GetHostName()).AddressList.GetValue(1).ToString()
+        ' Retrieving IP Address from the computer does not work all the time
+        ' Therefore, we are calling external websites for more accurate information
+        Dim ipv4Address As String
+        
+        Dim client As New WebClient
+        ' Add a user agent header in case the requested URI contains a query.
+        client.Headers.Add("user-agent",
+                           "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.2; .NET CLR1.0.3705;)")
+        ' with proxy server only:
+        Dim proxy As IWebProxy = WebRequest.GetSystemWebProxy()
+        proxy.Credentials = CredentialCache.DefaultNetworkCredentials
+        client.Proxy = proxy
+        
+        ' 2 URLs in case one of them break
+        Dim firstUrl As String = "http://checkip.dyndns.org/"
+        Dim secondUrl As String = "http://icanhazip.com/"
+        
+        ' have try catch statement in case first link die
+        ' (i.e http://automation.whatismyip.com/n09230945.asp)
+        Try
+            Dim ip as String = client.DownloadString(firstUrl).
+                Replace("<html><head><title>Current IP Check</title></head><body>Current IP Address: ", "").
+                Replace("</body></html>", "").
+                Replace("\r\n", "").
+                Replace("\n", "").
+                Trim()
+            ' map to IPv4 in case the returned address is in IPv6
+            ipv4Address = IPAddress.Parse(ip).MapToIPv4().ToString()
+        Catch ex As Exception
+            Try
+                Console.WriteLine(ex.ToString())
+                Dim ip as String = client.DownloadString(secondUrl).
+                    Replace("\r\n", "").
+                    Replace("\n", "").
+                    Trim()
+                ' map to IPv4 in case the returned address is in IPv6
+                ipv4Address = IPAddress.Parse(ip).MapToIPv4().ToString()
+            Catch
+                ' use the IP Address from the computer if both of the links failed
+                ipv4Address = Dns.GetHostEntry(Dns.GetHostName()).AddressList.GetValue(1).ToString()
+            End Try
+        End Try
+        Console.WriteLine(ipv4Address)
+        Return ipv4Address
     End Function
 
     Private Sub GetUserFromSession()
