@@ -18,7 +18,7 @@
             Reporting System</i> (<abbr>CAERS</abbr>) developed by U.S. EPA to comply with the AERR.
     </p>
     <p>
-        Starting in 2022, the new Emissions Inventory process will be as follows. Based on previously 
+        Starting in 2023, the new Emissions Inventory process will be as follows. Based on previously 
         available information, the Georgia Air Protection Branch will enroll facilities that may need 
         to participate in the Emissions Inventory. <strong>(If your facility has not been enrolled, but you 
         believe it should be participating in the EI, please email 
@@ -45,9 +45,9 @@
             <ol>
                 <li>
                     <p>
-                        A <strong>preparer</strong> is authorized to prepare an emissions report for National Emissions 
-                        Inventory (NEI) and/or Toxics Release Inventory (TRI) data for a given facility. You 
-                        may be a consultant, or a staff person for the company owning the facility.
+                        A <strong>preparer</strong> is authorized to prepare an emissions report for Emissions 
+                        Inventory (EI) and/or Toxics Release Inventory (TRI) data for a given facility. You 
+                        may be a consultant or a staff person for the company owning the facility.
                     </p>
                 </li>
                 <li>
@@ -67,7 +67,7 @@
         <li>
             <p>
                 The opt-in/opt-out process will continue at EPA's Central Data Exchange (CDX). 
-                Click the following link to start. CAERS is not opening until March 1, 2023.
+                Click the green button below to start. Note that CAERS is not opening until March 1, 2023.
             </p>
             <p>
                 <asp:HyperLink ID="HyperLink1" runat="server" Text="Link to EPA CDX" Target="_blank" CssClass="button button-large button-proceed" Visible="false" />
