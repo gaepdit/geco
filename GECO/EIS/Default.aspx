@@ -67,7 +67,7 @@
         <li>
             <p>
                 The opt-in/opt-out process will continue at EPA's Central Data Exchange (CDX). 
-                Click the green button below to start. Note that CAERS is not opening until March 1, 2023.
+                Click the green button below to start. Note that CAERS is not opening until February 6, 2023.
             </p>
             <p>
                 <asp:HyperLink ID="HyperLink1" runat="server" Text="Link to EPA CDX" Target="_blank" CssClass="button button-large button-proceed" Visible="false" />
