@@ -27,48 +27,5 @@ Namespace DAL.EIS
             Return DB.GetDataRow(query, param)
         End Function
 
-        Public Function SaveEisFacilitySiteInfo(airs As ApbFacilityId, description As String, naics As String,
-                comment As String, user As GecoUser) As Boolean
-            NotNull(airs, NameOf(airs))
-            NotNull(user, NameOf(user))
-
-            Dim query As String = "Update EIS_FACILITYSITE " &
-               "Set STRFACILITYSITEDESCRIPTION = @facilityDescription, " &
-               "STRNAICSCODE = @NAICScode, " &
-               "STRFACILITYSITECOMMENT = @facilityComment, " &
-               "UPDATEUSER = @UpdateUser, " &
-               "UpdateDateTime = getdate() " &
-               "where FACILITYSITEID = @FacilitySiteID "
-
-            Dim params As SqlParameter() = {
-                New SqlParameter("@facilityDescription", description),
-                New SqlParameter("@NAICScode", naics),
-                New SqlParameter("@facilityComment", Left(comment, 400)),
-                New SqlParameter("@UpdateUser", user.DbUpdateUser),
-                New SqlParameter("@FacilitySiteID", airs.ShortString)
-            }
-
-            Return DB.RunCommand(query, params)
-        End Function
-
-        Public Function UpdateEisGeographicComment(airs As ApbFacilityId, comment As String, user As GecoUser) As Boolean
-            NotNull(airs, NameOf(airs))
-            NotNull(user, NameOf(user))
-
-            Dim query = "Update EIS_FACILITYGEOCOORD " &
-                    " Set STRGEOGRAPHICCOMMENT = @GeographicComment, " &
-                    " UPDATEUSER = @UpdateUser, " &
-                    " UpdateDateTime = getdate() " &
-                    " where FACILITYSITEID = @FacilitySiteID "
-
-            Dim params = {
-                    New SqlParameter("@GeographicComment", Left(comment, 200)),
-                    New SqlParameter("@UpdateUser", user.DbUpdateUser),
-                    New SqlParameter("@FacilitySiteID", airs.ShortString)
-                }
-
-            Return DB.RunCommand(query, params)
-        End Function
-
     End Module
 End Namespace

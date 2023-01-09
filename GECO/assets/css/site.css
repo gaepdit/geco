@@ -984,6 +984,10 @@ button,
     box-shadow: 0 1px 1px -1px #999;
 }
 
+.centered {
+    text-align:center;
+}
+
     .button:hover,
     button:hover,
     [type="button"]:hover,
