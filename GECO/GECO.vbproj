@@ -106,7 +106,17 @@
     <Content Include="Account\Email.aspx" />
     <Content Include="Account\Password.aspx" />
     <Content Include="apple-touch-icon.png" />
+    <Content Include="assets\dev\dev-apple-touch-icon.png" />
+    <Content Include="assets\dev\dev-favicon.ico" />
+    <Content Include="assets\dev\dev-icon-192.png" />
+    <Content Include="assets\dev\dev-icon-512.png" />
+    <Content Include="assets\dev\dev-icon.svg" />
     <Content Include="assets\images\epd-icon.png" />
+    <Content Include="assets\uat\uat-apple-touch-icon.png" />
+    <Content Include="assets\uat\uat-favicon.ico" />
+    <Content Include="assets\uat\uat-icon-192.png" />
+    <Content Include="assets\uat\uat-icon-512.png" />
+    <Content Include="assets\uat\uat-icon.svg" />
     <Content Include="EIS\Default.aspx" />
     <Content Include="EIS\History\Default.aspx" />
     <Content Include="EIS\History\ReportingPeriodEmissions.aspx" />
@@ -135,8 +145,6 @@
     <Content Include="ContactUs.aspx" />
     <Content Include="icon-192.png" />
     <Content Include="icon-512.png" />
-    <Content Include="icon-dev.svg" />
-    <Content Include="icon-uat.svg" />
     <Content Include="icon.svg" />
     <Content Include="Login.aspx" />
     <Content Include="Default.aspx" />
@@ -602,8 +610,9 @@
     <Content Include="GECO.vbproj.vsspell" />
     <Content Include="AnnualFees\FeeAmendmentForm.xlsx" />
     <Content Include="EIS\EIS.master" />
-    <Content Include="manifest.webmanifest" />
     <Content Include="EIS\2022-opt-out-form_annual.xlsx" />
+    <Content Include="assets\dev\dev-site.webmanifest" />
+    <Content Include="assets\uat\uat-site.webmanifest" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
@@ -622,6 +631,7 @@
     <None Include="NWebsecConfig\HttpHeaderSecurityModuleConfig.xsd">
       <SubType>Designer</SubType>
     </None>
+    <Content Include="site.webmanifest" />
     <None Include="Web.configBuilder.Debug.xml">
       <DependentUpon>Web.configBuilder.xml</DependentUpon>
       <IsTransformFile>true</IsTransformFile>
