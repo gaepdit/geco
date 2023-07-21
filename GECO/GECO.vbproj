@@ -422,9 +422,6 @@
       <DependentUpon>NoAccess.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="GECO.Page.vb">
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
     <Compile Include="Permits\Application.aspx.designer.vb">
       <DependentUpon>Application.aspx</DependentUpon>
     </Compile>
