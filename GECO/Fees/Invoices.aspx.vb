@@ -21,7 +21,9 @@ Public Class Fees_Invoices
             End If
 
             If Not ApbFacilityId.IsValidAirsNumberFormat(airsString) Then
-                HttpContext.Current.Response.Redirect("~/Facility/")
+                HttpContext.Current.Response.Redirect("~/Facility/", False)
+                HttpContext.Current.ApplicationInstance.CompleteRequest()
+                Return
             End If
 
             currentAirs = New ApbFacilityId(airsString)
@@ -39,11 +41,15 @@ Public Class Fees_Invoices
         facilityAccess = currentUser.GetFacilityAccess(currentAirs)
 
         If facilityAccess Is Nothing Then
-            HttpContext.Current.Response.Redirect("~/Home/")
+            HttpContext.Current.Response.Redirect("~/Home/", False)
+            HttpContext.Current.ApplicationInstance.CompleteRequest()
+            Return
         End If
 
         If Not facilityAccess.FeeAccess Then
-            HttpContext.Current.Response.Redirect("~/Facility/")
+            HttpContext.Current.Response.Redirect("~/Facility/", False)
+            HttpContext.Current.ApplicationInstance.CompleteRequest()
+            Return
         End If
 
         If Not IsPostBack Then

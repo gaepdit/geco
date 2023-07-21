@@ -13,7 +13,9 @@ Partial Class FacilityAdmin
     Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
         If IsPostBack Then
             If Not ApbFacilityId.TryParse(GetCookie(Cookie.AirsNumber), currentAirs) Then
-                HttpContext.Current.Response.Redirect("~/Home/")
+                HttpContext.Current.Response.Redirect("~/Home/", False)
+                HttpContext.Current.ApplicationInstance.CompleteRequest()
+                Return
             End If
         Else
             ' AIRS number
@@ -26,7 +28,9 @@ Partial Class FacilityAdmin
             End If
 
             If Not ApbFacilityId.TryParse(airsString, currentAirs) Then
-                HttpContext.Current.Response.Redirect("~/Home/")
+                HttpContext.Current.Response.Redirect("~/Home/", False)
+                HttpContext.Current.ApplicationInstance.CompleteRequest()
+                Return
             End If
 
             SetCookie(Cookie.AirsNumber, currentAirs.ShortString())
@@ -42,7 +46,9 @@ Partial Class FacilityAdmin
         FacilityAccess = currentUser.GetFacilityAccess(currentAirs)
 
         If FacilityAccess Is Nothing Then
-            HttpContext.Current.Response.Redirect("~/Facility/")
+            HttpContext.Current.Response.Redirect("~/Facility/", False)
+            HttpContext.Current.ApplicationInstance.CompleteRequest()
+            Return
         End If
 
         pnlAddNewUser.Visible = FacilityAccess.AdminAccess

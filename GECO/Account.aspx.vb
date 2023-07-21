@@ -8,7 +8,9 @@ Partial Class Account
 
             Dim query = Request.QueryString
             If query Is Nothing OrElse query.Count = 0 Then
-                HttpContext.Current.Response.Redirect("~/")
+                HttpContext.Current.Response.Redirect("~/", False)
+                HttpContext.Current.ApplicationInstance.CompleteRequest()
+                Return
             End If
 
             Dim registerResult As String = Request.QueryString("result")
@@ -47,8 +49,9 @@ Partial Class Account
                     End If
 
                     SendConfirmEmailUpdateEmail(email, token)
-                    HttpContext.Current.Response.Redirect("~/Account.aspx?result=Sent")
-
+                    HttpContext.Current.Response.Redirect("~/Account.aspx?result=Sent", False)
+                    HttpContext.Current.ApplicationInstance.CompleteRequest()
+                    Return
 
                 Case "resend"
                     MultiView1.SetActiveView(ResendConfirmation)

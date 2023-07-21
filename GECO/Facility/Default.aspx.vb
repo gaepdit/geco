@@ -15,7 +15,9 @@ Partial Class FacilityHome
     Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
         If IsPostBack Then
             If Not ApbFacilityId.TryParse(GetCookie(Cookie.AirsNumber), currentAirs) Then
-                HttpContext.Current.Response.Redirect("~/Home/")
+                HttpContext.Current.Response.Redirect("~/Home/", False)
+                HttpContext.Current.ApplicationInstance.CompleteRequest()
+                Return
             End If
         Else
             ' AIRS number
@@ -28,7 +30,9 @@ Partial Class FacilityHome
             End If
 
             If Not ApbFacilityId.TryParse(airsString, currentAirs) Then
-                HttpContext.Current.Response.Redirect("~/Home/")
+                HttpContext.Current.Response.Redirect("~/Home/", False)
+                HttpContext.Current.ApplicationInstance.CompleteRequest()
+                Return
             End If
 
             SetCookie(Cookie.AirsNumber, currentAirs.ShortString())
@@ -45,7 +49,9 @@ Partial Class FacilityHome
         facilityAccess = currentUser.GetFacilityAccess(currentAirs)
 
         If facilityAccess Is Nothing Then
-            HttpContext.Current.Response.Redirect("~/Home/")
+            HttpContext.Current.Response.Redirect("~/Home/", False)
+            HttpContext.Current.ApplicationInstance.CompleteRequest()
+            Return
         End If
 
         If Not IsPostBack Then
@@ -59,17 +65,23 @@ Partial Class FacilityHome
     Private Sub CheckForMandatoryUpdates()
         ' Require user to set communication preferences if they have never been set.
         If InitialCommunicationPreferenceSettingRequired(currentAirs, facilityAccess, CommunicationCategory.Fees) Then
-            HttpContext.Current.Response.Redirect("~/Facility/SetCommunicationPreferences.aspx")
+            HttpContext.Current.Response.Redirect("~/Facility/SetCommunicationPreferences.aspx", False)
+            HttpContext.Current.ApplicationInstance.CompleteRequest()
+            Return
         End If
 
         ' Require user to confirm preferences every 275 days.
         If CommunicationUpdateResponseRequired(currentAirs, facilityAccess) Then
-            HttpContext.Current.Response.Redirect("~/Facility/Contacts.aspx")
+            HttpContext.Current.Response.Redirect("~/Facility/Contacts.aspx", False)
+            HttpContext.Current.ApplicationInstance.CompleteRequest()
+            Return
         End If
 
         ' Require user to review facility user access annually.
         If facilityAccess.AdminAccess AndAlso UserAccessReviewRequested(currentAirs) Then
-            HttpContext.Current.Response.Redirect("~/Facility/Admin.aspx")
+            HttpContext.Current.Response.Redirect("~/Facility/Admin.aspx", False)
+            HttpContext.Current.ApplicationInstance.CompleteRequest()
+            Return
         End If
     End Sub
 
