@@ -25,7 +25,7 @@
 
     <h2>Emissions Inventory</h2>
     <p>
-        The <a href="https://www.epa.gov/air-emissions-inventories" target="_blank">National Emissions Inventory</a>
+        The <a href="https://www.epa.gov/air-emissions-inventories" rel="noopener" target="_blank">National Emissions Inventory</a>
         (NEI) is a detailed estimate compiled by the US EPA of air emissions that include criteria pollutants and 
         hazardous air pollutants from air emissions sources. Emissions inventory data for all Part 70 major source
         facilities are collected on a three year cycle, while a subset of facilities must report on an annual basis.
@@ -38,7 +38,7 @@
     <p>
         Facilities in the Atlanta metro maintenance area whose NO<sub>x</sub> and/or VOC actual emissions are greater 
         than 25 tons per year are required to submit an annual 
-        <a href="https://epd.georgia.gov/submit-emissions-statement" target="_blank">Emissions Statement</a>
+        <a href="https://epd.georgia.gov/submit-emissions-statement" rel="noopener" target="_blank">Emissions Statement</a>
         (ES).
     </p>
     <p>
@@ -48,7 +48,7 @@
     <h2>Permit Application Fees</h2>
     <p>
         Permit application fees are required when applying for certain permit actions. Refer to the
-        <a href="https://epd.georgia.gov/air-permit-fees" target="_blank">Air Permit Fee Manual</a>
+        <a href="https://epd.georgia.gov/air-permit-fees" rel="noopener" target="_blank">Air Permit Fee Manual</a>
         to determine what type of fee is due when submitting a permit application.
     </p>
     <p>
@@ -58,7 +58,7 @@
     <h2>Annual (Emissions) Fees</h2>
     <p>
         Annual permit fees are required for Synthetic Minor and Part 70 sources, and certain NSPS sources. The 
-        <a href="https://epd.georgia.gov/air-permit-fees" target="_blank">Air Permit Fee Manual</a> provides
+        <a href="https://epd.georgia.gov/air-permit-fees" rel="noopener" target="_blank">Air Permit Fee Manual</a> provides
         instructions and should be used to calculate fee amounts.
     </p>
     <p>

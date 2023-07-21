@@ -47,7 +47,7 @@
                                     <%#Container.DataItem("strVenue")%>
                                     <br />
                                     <a title="Click to open Google Map" href="https://maps.google.com/?q=<%#Container.DataItem("strAddress")%> <%#Container.DataItem("strCity")%> <%#Container.DataItem("strState")%> <%#Container.DataItem("NumZipCode")%>"
-                                        target="_blank">
+                                         rel="noopener" target="_blank">
                                         <%#Container.DataItem("strAddress")%><br />
                                         <%#Container.DataItem("strCity")%>, <%#Container.DataItem("strState")%> <%#Container.DataItem("NumZipCode")%></a>
                                 </p>

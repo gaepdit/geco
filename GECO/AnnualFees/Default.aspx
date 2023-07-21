@@ -28,7 +28,7 @@
                     <asp:DropDownList ID="ddlFeeYear" runat="server" CausesValidation="False" AutoPostBack="true"
                         ForeColor="DarkRed" Font-Bold="true" CssClass="input-small" />
                     <asp:HyperLink ID="linkInvoice" Text="PRINT INVOICE" Visible="false" runat="server"
-                        Target="_blank" CssClass="linkHighlightButton no-visited" Font-Bold="true" />
+                        rel="noopener" Target="_blank" CssClass="linkHighlightButton no-visited" Font-Bold="true" />
                     <asp:Label ID="lblMessage" runat="server" ForeColor="#C00000" Text="Please select a fee year." Visible="False"></asp:Label>
                 </p>
 
@@ -54,7 +54,7 @@
                                 Current and past Air Permit Fee Manuals, as well as fee calculation forms, are 
                     available on the 
                    
-                    <a href="https://epd.georgia.gov/air-permit-fees" target="_blank">Air Permit Fees</a>
+                    <a href="https://epd.georgia.gov/air-permit-fees" rel="noopener" target="_blank">Air Permit Fees</a>
                                 page. The Permit Fee Manual specifies the methods used to calculate the permit fees 
                     required under Georgia Air Quality Control Rule 391-3-1-.03(9), “Permit Fees.” 
                
