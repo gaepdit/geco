@@ -3,7 +3,7 @@
 
 <%@ MasterType VirtualPath="~/Main.master" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="Server">
-    <h1>Upcoming classes and workshops offered by Georgia EPD</h1>
+    <h1 id="upcoming-classes">Upcoming classes and workshops offered by Georgia EPD</h1>
 
     <p id="pLoginWarning" runat="server" class="message-highlight">
         <strong>A GECO account is required to register for any event.</strong>
@@ -26,7 +26,7 @@
         <Columns>
             <asp:TemplateField>
                 <ItemTemplate>
-                    <table cellpadding="5" width="100%">
+                    <table cellpadding="5" width="100%" aria-labelledby="upcoming-classes">
                         <tr>
                             <td align="left" valign="top">
                                 <h2>

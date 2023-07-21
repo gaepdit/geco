@@ -28,7 +28,7 @@
         Preferences can be set separately for each type of communication.
     </p>
 
-    <table class="table-simple">
+    <table class="table-simple" aria-label="Communication preferences">
         <tbody>
             <tr>
                 <td class="table-cell-link">
@@ -80,7 +80,7 @@
                             <h3 id="contact">Primary Contact</h3>
 
                             <asp:Panel ID="pnlEditContact" runat="server" DefaultButton="btnSaveContact">
-                                <table class="table-simple table-list text-small">
+                                <table class="table-simple table-list text-small" aria-label="Communication preferences edit form">
                                     <tr>
                                         <th>Salutation</th>
                                         <td>

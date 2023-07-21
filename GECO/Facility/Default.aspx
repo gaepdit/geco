@@ -22,7 +22,7 @@
 
     <h1>Facility Home</h1>
 
-    <asp:Table ID="AppTable" runat="server" CssClass="table-simple table-menu table-bordered">
+    <asp:Table ID="AppTable" runat="server" CssClass="table-simple table-menu table-bordered" aria-label="Available GECO modules">
         <asp:TableHeaderRow ID="AppsHeader" runat="server" BackColor="#F0F0F6" CssClass="table-head">
             <asp:TableHeaderCell Text="GECO Applications" runat="server" />
             <asp:TableHeaderCell Text="Current Status" runat="server" />

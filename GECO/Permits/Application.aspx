@@ -5,8 +5,8 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="Server">
     <h1>Permit Application #<asp:Label ID="lblAppNum" runat="server" Text=""></asp:Label></h1>
 
-    <h2>Application Details</h2>
-    <asp:Table ID="tApplicationDetails" runat="server" CssClass="table-simple table-list"></asp:Table>
+    <h2 id="application-details-label">Application Details</h2>
+    <asp:Table ID="tApplicationDetails" runat="server" CssClass="table-simple table-list" aria-labelledby="application-details-label"></asp:Table>
 
     <h2>Application Fees</h2>
     <p id="pFeesNotApplicable" runat="server" visible="False">No permit application fees applicable.</p>
@@ -16,7 +16,7 @@
         Facility notified of pending fees on
         <asp:Label ID="lblNotifiedDate" runat="server"></asp:Label>.
     </p>
-    <asp:Table ID="tblFeesSummary" runat="server" CssClass="table-simple table-bordered table-accounting" Visible="false" UseAccessibleHeader="true">
+    <asp:Table ID="tblFeesSummary" runat="server" CssClass="table-simple table-bordered table-accounting" Visible="false" UseAccessibleHeader="true" aria-label="Fees summary">
         <asp:TableHeaderRow TableSection="TableHeader">
             <asp:TableHeaderCell Scope="Column">Fee Type</asp:TableHeaderCell>
             <asp:TableHeaderCell Scope="Column">Fee Amount</asp:TableHeaderCell>
@@ -63,14 +63,14 @@
     </asp:UpdatePanel>
 
     <h2>Facility Information</h2>
-    <p><em>Facility information as submitted with the application.</em></p>
-    <asp:Table ID="tFacilityInfo" runat="server" CssClass="table-simple table-list"></asp:Table>
+    <p id="facility-info-label"><em>Facility information as submitted with the application.</em></p>
+    <asp:Table ID="tFacilityInfo" runat="server" CssClass="table-simple table-list" aria-labelledby="facility-info-label"></asp:Table>
 
-    <h2>Air Protection Branch Contact</h2>
+    <h2 id="contact-info-label">Air Protection Branch Contact</h2>
     <p id="pNoContact" runat="server" visible="false">No Air Protection Branch staff assigned to application.</p>
-    <asp:Table ID="tContact" runat="server" CssClass="table-simple table-list"></asp:Table>
+    <asp:Table ID="tContact" runat="server" CssClass="table-simple table-list" aria-labelledby="contact-info-label"></asp:Table>
 
     <h2>History</h2>
-    <p><em>Approximate application processing time line.</em></p>
-    <asp:Table ID="tTracking" runat="server" CssClass="table-simple table-list"></asp:Table>
+    <p id="processing-time-label"><em>Approximate application processing time line.</em></p>
+    <asp:Table ID="tTracking" runat="server" CssClass="table-simple table-list" aria-labelledby="processing-time-label"></asp:Table>
 </asp:Content>

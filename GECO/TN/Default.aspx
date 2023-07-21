@@ -16,7 +16,7 @@
         <ContentTemplate>
             <h1>Performance Test Notifications</h1>
 
-            <p>
+            <p id="test-notifications-label">
                 The list below shows all test notifications for your facility. Click the Test Log Number for more details.
             </p>
             <p>
@@ -24,7 +24,7 @@
                 available. This will enable us to help you more efficiently.
             </p>
 
-            <asp:DataGrid ID="dgrTestNotify" runat="server"
+            <asp:DataGrid ID="dgrTestNotify" runat="server" aria-labelledby="test-notifications-label"
                 AutoGenerateColumns="False" AllowPaging="True"
                 OnPageIndexChanged="dgrTestNotify_PageIndexChanged" OnItemCommand="RequestDetails"
                 CssClass="button-small table-simple table-full-width">
@@ -47,8 +47,8 @@
             </asp:DataGrid>
 
             <asp:Panel ID="pnlDetails" runat="server" Width="100%" Visible="False">
-                <h2>Details for Selected Test Notification:</h2>
-                <table style="width: 100%">
+                <h2 id="test-notification-details">Details for Selected Test Notification:</h2>
+                <table style="width: 100%" aria-labelledby="test-notification-details">
                     <tr>
                         <td>
                             <asp:Label ID="lblTestPlan" runat="server" Font-Bold="True" Font-Names="Verdana"

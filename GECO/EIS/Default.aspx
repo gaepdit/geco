@@ -121,7 +121,7 @@
 
     <p>If any facility information is incorrect, please email <a href="mailto:emissions.inventory@dnr.ga.gov">emissions.inventory@dnr.ga.gov</a>.</p>
 
-    <table class="table-simple table-list">
+    <table class="table-simple table-list" aria-labelledby="facility-info">
         <tbody>
             <tr>
                 <th>Description</th>

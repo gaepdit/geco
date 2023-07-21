@@ -23,7 +23,7 @@
 
     <h2>Location</h2>
 
-    <table class="table-simple table-list">
+    <table class="table-simple table-list" aria-label="Facility location details">
         <tbody>
             <tr>
                 <th scope="row">Address:</th>
@@ -76,7 +76,7 @@
 
     <h2>Facility Status</h2>
 
-    <table class="table-simple table-list">
+    <table class="table-simple table-list" aria-label="Facility status details">
         <tbody>
             <tr>
                 <th scope="row">Classification:</th>

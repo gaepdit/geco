@@ -24,7 +24,7 @@
                             </p>
                         </div>
 
-                        <table class="table-simple table-list">
+                        <table class="table-simple table-list" aria-label="Facility location information">
                             <tr>
                                 <th>Facility Name:</th>
                                 <td>
@@ -65,7 +65,7 @@
 
                         <h2>Geocoordinates</h2>
 
-                        <table class="table-simple table-list">
+                        <table class="table-simple table-list" aria-label="Geocoordinates information entry">
                             <tr>
                                 <th></th>
                                 <td>
@@ -182,7 +182,7 @@
                         <h2>Contact Information</h2>
                         <p class="label-highlight-mild">Verify the information for the person to contact regarding the Emissions Statement.</p>
 
-                        <table class="table-simple table-list">
+                        <table class="table-simple table-list" aria-label="Contact information">
                             <tr>
                                 <th>
                                     <asp:Label AssociatedControlID="txtContactPrefix" runat="server">Prefix:</asp:Label>
@@ -429,7 +429,7 @@
                         </p>
 
                         <asp:Panel ID="pnlEmissions" runat="server" Visible="False">
-                            <table class="table-simple table-list">
+                            <table class="table-simple table-list" aria-label="Emissions entry form">
                                 <tr>
                                     <th>Actual annual facility-wide VOC emissions:</th>
                                     <td>
@@ -494,7 +494,7 @@
                 <h2>Longitude/Latitude Converter</h2>
                 <p>This tool converts longitude and latitude from "degrees-minutes-seconds" format to decimal format.</p>
 
-                <table class="table-simple table-list">
+                <table class="table-simple table-list" aria-label="Geocoordinates format conversion">
                     <tr>
                         <th>Longitude:</th>
                         <td>
@@ -565,7 +565,7 @@
                     <asp:Button ID="btnConvert" runat="server" Text="Convert" CssClass="button-tool" />
                 </p>
 
-                <table class="table-simple table-list">
+                <table class="table-simple table-list" aria-label="Geocoordinates entry form">
                     <tr>
                         <th>Longitude:</th>
                         <td>

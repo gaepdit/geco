@@ -35,7 +35,7 @@
                 <h3>Add New User</h3>
                 <asp:ValidationSummary ID="ValidationSummaryNew" runat="server" HeaderText="Please correct the following errors:"></asp:ValidationSummary>
 
-                <table class="table-simple table-list">
+                <table class="table-simple table-list" aria-label="CAERS new user entry form">
                     <tr>
                         <th>
                             <asp:Label ID="lblRoleNew" runat="server" AssociatedControlID="rRoleNew">CAERS Role</asp:Label>
@@ -236,7 +236,7 @@
                 <h3>Edit User</h3>
                 <asp:ValidationSummary ID="ValidationSummaryEdit" runat="server" HeaderText="Please correct the following errors" />
 
-                <table class="table-simple table-list">
+                <table class="table-simple table-list" aria-label="CAERS user edit form">
                     <tr>
                         <th>
                             <asp:Label ID="lblRoleEdit" runat="server"

@@ -34,7 +34,7 @@
                     <asp:Label ID="lblEmailMessage" runat="server" CssClass="message-update"></asp:Label>
                 </p>
 
-                <table class="table-simple table-list">
+                <table class="table-simple table-list" aria-label="Email update form">
                     <tr>
                         <th>
                             <asp:Label AssociatedControlID="txtEmail" runat="server">Email address</asp:Label>

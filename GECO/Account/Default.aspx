@@ -43,7 +43,7 @@
                     <asp:Label ID="lblProfileMessage" runat="server" CssClass="message-update"></asp:Label>
                 </p>
 
-                <table class="table-simple table-list">
+                <table class="table-simple table-list" aria-label="User profile data">
                     <tr>
                         <th>
                             <asp:Label AssociatedControlID="txtFName" runat="server">First Name</asp:Label>
