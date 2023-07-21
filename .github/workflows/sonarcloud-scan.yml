@@ -49,7 +49,7 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         shell: powershell
         run: |
-          .\.sonar\SonarScanner.MSBuild.exe begin /k:"gaepdit_geco" /o:"gaepdit" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.opencover.reportsPaths=coverage.xml
+          .\.sonar\SonarScanner.MSBuild.exe begin /k:"gaepdit_geco" /o:"gaepdit" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.opencover.reportsPaths=coverage.xml
           msbuild -t:restore,rebuild
           coverlet .\GECO.Test\bin\Debug\GECO.Test.dll --target "dotnet" --targetargs "test .\GECO.Test --no-build" -f=opencover -o="coverage.xml"
-          .\.sonar\SonarScanner.MSBuild.exe end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
+          .\.sonar\SonarScanner.MSBuild.exe end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
