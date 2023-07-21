@@ -1207,7 +1207,7 @@ button:disabled,
 
 /* xp theme */
 .ajax__tab_xp .ajax__tab_header {
-    font-family: verdana,tahoma,helvetica;
+    font-family: verdana,tahoma,helvetica,sans-serif;
     font-size: 11px;
     background: url(data:image/gif;base64,R0lGODlhAQABAJEAAJGbnAAAAAAAAAAAACwAAAAAAQABAAAIBAABBAQA) repeat-x bottom;
 }
@@ -1262,7 +1262,7 @@ button:disabled,
 }
 
 .ajax__tab_xp .ajax__tab_body {
-    font-family: verdana,tahoma,helvetica;
+    font-family: verdana,tahoma,helvetica,sans-serif;
     font-size: 10pt;
     border: 1px solid #999999;
     border-top: 0;
