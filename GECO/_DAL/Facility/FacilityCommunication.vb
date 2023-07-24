@@ -66,12 +66,7 @@ Namespace DAL.Facility
             End If
 
             For Each row As DataRow In ds.Tables(2).Rows
-                Dim email As New EmailContact() With {
-                    .Id = CType(row("Id"), Guid),
-                    .Email = CStr(row("Email"))
-                }
-
-                info.Emails.Add(email)
+                info.Emails.Add(New EmailContact(CType(row("Id"), Guid), CStr(row("Email"))))
             Next
 
             Return info
