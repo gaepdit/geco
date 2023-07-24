@@ -56,7 +56,7 @@
                 <asp:Literal ID="litConfirmation" runat="server"></asp:Literal>
             </p>
 
-            <table>
+            <table aria-label="Event registration form">
                 <tr>
                     <td valign="bottom" align="right">Email:</td>
                     <td valign="bottom">

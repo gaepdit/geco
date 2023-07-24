@@ -28,7 +28,7 @@
             </p>
 
             <asp:Panel ID="tblCurrentES" runat="server" Visible="false">
-                <table class="table-simple table-list">
+                <table class="table-simple table-list" aria-label="Emissions Statement status summary">
                     <tr>
                         <th>Facility Name:</th>
                         <td>
@@ -82,7 +82,7 @@
                 <asp:Label ID="lblPastYear3" runat="server" />
                 Emissions Statement</h2>
 
-            <table class="table-simple table-list">
+            <table class="table-simple table-list" aria-label="Emissions Statement summary">
                 <tr>
                     <th>Facility Name:</th>
                     <td>

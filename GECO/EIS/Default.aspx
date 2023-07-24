@@ -12,7 +12,7 @@
         Facilities whose potential emissions equal or exceed the thresholds indicated in the 
         Air Emission Reporting Requirements (AERR) rule (40 CFR Part 51 Subpart A) must report their actual 
         emissions annually or triennially. For assistance with calculating PTE, please use 
-        the <a href="https://epd.georgia.gov/documents/potential-emit-guidelines" target="_blank">Potential 
+        the <a href="https://epd.georgia.gov/documents/potential-emit-guidelines" rel="noopener" target="_blank">Potential 
             to Emit Guidelines</a>.
         Since the 2019 Emissions Inventory, Georgia has used the <i>Combined Air Emissions 
             Reporting System</i> (<abbr>CAERS</abbr>) developed by U.S. EPA to comply with the AERR.
@@ -81,7 +81,7 @@
             <p>
                 If you are new to CAERS, you can click on 
                 <a href="https://docs.google.com/gview?url=https://epd.georgia.gov/document/document/geco-eicaers-troubleshooting-matrix-0/download"
-                    target="_blank">GECO EI/CAERS Troubleshooting Matrix</a>
+                    rel="noopener" target="_blank">GECO EI/CAERS Troubleshooting Matrix</a>
                 to help you determine how to get started in CAERS. 
             </p>
         </li>
@@ -121,7 +121,7 @@
 
     <p>If any facility information is incorrect, please email <a href="mailto:emissions.inventory@dnr.ga.gov">emissions.inventory@dnr.ga.gov</a>.</p>
 
-    <table class="table-simple table-list">
+    <table class="table-simple table-list" aria-labelledby="facility-info">
         <tbody>
             <tr>
                 <th>Description</th>
@@ -159,7 +159,7 @@
     </table>
 
     <div>
-        <asp:HyperLink ID="lnkGoogleMap" runat="server" Target="_blank" CssClass="no-visited">
+        <asp:HyperLink ID="lnkGoogleMap" runat="server" rel="noopener" Target="_blank" CssClass="no-visited">
             <asp:Image ID="imgGoogleStaticMap" runat="server" BorderStyle="Solid" BorderWidth="2px" /><br />
             Open map in new window
         </asp:HyperLink>

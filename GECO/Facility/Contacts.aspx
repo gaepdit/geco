@@ -65,7 +65,7 @@
 
     <% End If %>
 
-    <table class="table-simple table-rowsections">
+    <table class="table-simple table-rowsections" aria-label="Communication preferences">
         <tbody>
             <%
                 For Each category In CommunicationCategory.AllCategories

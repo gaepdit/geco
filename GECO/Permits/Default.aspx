@@ -23,7 +23,7 @@
     <p id="pNoCurrentPermits" runat="server">None.</p>
     <p id="pYesCurrentPermits" runat="server">
         Issued permits can be downloaded at the
-        <asp:HyperLink ID="hlPermitSearch" runat="server" Target="_blank">Permit Search Engine</asp:HyperLink>.
+        <asp:HyperLink ID="hlPermitSearch" runat="server" rel="noopener" Target="_blank">Permit Search Engine</asp:HyperLink>.
     </p>
     <asp:GridView ID="grdCurrentPermits" runat="server" CssClass="table-simple" Visible="false" AutoGenerateColumns="False">
         <Columns>

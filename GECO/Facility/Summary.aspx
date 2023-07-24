@@ -23,7 +23,7 @@
 
     <h2>Location</h2>
 
-    <table class="table-simple table-list">
+    <table class="table-simple table-list" aria-label="Facility location details">
         <tbody>
             <tr>
                 <th scope="row">Address:</th>
@@ -48,7 +48,7 @@
                 <td>
                     <asp:Label ID="lblDistrict" runat="server"></asp:Label>
                     &nbsp; &nbsp;
-                                                <asp:HyperLink ID="hlDistrict" runat="server" Target="_blank" Text="District Responsible Source"
+                                                <asp:HyperLink ID="hlDistrict" runat="server" rel="noopener" Target="_blank" Text="District Responsible Source"
                                                     NavigateUrl="https://epd.georgia.gov/district-office-locations" />
                 </td>
             </tr>
@@ -68,7 +68,7 @@
     </table>
 
     <div>
-        <asp:HyperLink ID="lnkGoogleMap" runat="server" Target="_blank" CssClass="no-visited">
+        <asp:HyperLink ID="lnkGoogleMap" runat="server" rel="noopener" Target="_blank" CssClass="no-visited">
             <asp:Image ID="imgGoogleStaticMap" runat="server" BorderStyle="Solid" BorderWidth="2px" /><br />
             Open map in new window
         </asp:HyperLink>
@@ -76,7 +76,7 @@
 
     <h2>Facility Status</h2>
 
-    <table class="table-simple table-list">
+    <table class="table-simple table-list" aria-label="Facility status details">
         <tbody>
             <tr>
                 <th scope="row">Classification:</th>

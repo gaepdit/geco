@@ -13,7 +13,9 @@ Public Class FacilityContacts
     Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
         If IsPostBack Then
             If Not ApbFacilityId.TryParse(GetCookie(Cookie.AirsNumber), currentAirs) Then
-                HttpContext.Current.Response.Redirect("~/Home/")
+                HttpContext.Current.Response.Redirect("~/Home/", False)
+                HttpContext.Current.ApplicationInstance.CompleteRequest()
+                Return
             End If
         Else
             ' AIRS number
@@ -26,7 +28,9 @@ Public Class FacilityContacts
             End If
 
             If Not ApbFacilityId.TryParse(airsString, currentAirs) Then
-                HttpContext.Current.Response.Redirect("~/Home/")
+                HttpContext.Current.Response.Redirect("~/Home/", False)
+                HttpContext.Current.ApplicationInstance.CompleteRequest()
+                Return
             End If
 
             SetCookie(Cookie.AirsNumber, currentAirs.ShortString())
@@ -40,7 +44,9 @@ Public Class FacilityContacts
         FacilityAccess = GetCurrentUser().GetFacilityAccess(currentAirs)
 
         If FacilityAccess Is Nothing Then
-            HttpContext.Current.Response.Redirect("~/Facility/")
+            HttpContext.Current.Response.Redirect("~/Facility/", False)
+            HttpContext.Current.ApplicationInstance.CompleteRequest()
+            Return
         End If
 
         Title = "GECO Facility Contacts - " & GetFacilityNameAndCity(currentAirs)
@@ -53,7 +59,8 @@ Public Class FacilityContacts
 
     Private Sub btnLooksGood_Click(sender As Object, e As EventArgs) Handles btnLooksGood.Click
         ConfirmCommunicationSettings(currentAirs, GetCurrentUser.UserId, FacilityAccess)
-        HttpContext.Current.Response.Redirect("~/Facility/")
+        HttpContext.Current.Response.Redirect("~/Facility/", False)
+        HttpContext.Current.ApplicationInstance.CompleteRequest()
     End Sub
 
 End Class

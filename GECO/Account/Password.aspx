@@ -32,7 +32,7 @@
             <asp:Label ID="lblPasswordMessage" runat="server" CssClass="message-update"></asp:Label>
         </p>
 
-        <table class="table-simple table-list">
+        <table class="table-simple table-list" aria-label="Password update form">
             <tr>
                 <th>
                     <asp:Label AssociatedControlID="txtOldPassword" runat="server" Text="Old Password" />

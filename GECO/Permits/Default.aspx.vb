@@ -18,7 +18,9 @@ Public Class PermitDefault
             End If
 
             If Not ApbFacilityId.IsValidAirsNumberFormat(airsString) Then
-                HttpContext.Current.Response.Redirect("~/Facility/")
+                HttpContext.Current.Response.Redirect("~/Facility/", False)
+                HttpContext.Current.ApplicationInstance.CompleteRequest()
+                Return
             End If
 
             currentAirs = New ApbFacilityId(airsString)

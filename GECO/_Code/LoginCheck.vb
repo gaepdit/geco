@@ -12,7 +12,9 @@
                 path = "~/Login.aspx?ReturnUrl=" & returnUrl
             End If
 
-            HttpContext.Current.Response.Redirect(path)
+            HttpContext.Current.Response.Redirect(path, False)
+            HttpContext.Current.ApplicationInstance.CompleteRequest()
+            Return
         End If
     End Sub
 
@@ -21,7 +23,9 @@
 
     Public Sub AirsSelectedCheck()
         If GetCookie(Cookie.AirsNumber) Is Nothing Then
-            HttpContext.Current.Response.Redirect("~/Home/")
+            HttpContext.Current.Response.Redirect("~/Home/", False)
+            HttpContext.Current.ApplicationInstance.CompleteRequest()
+            Return
         End If
     End Sub
 

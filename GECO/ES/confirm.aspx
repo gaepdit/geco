@@ -16,7 +16,7 @@
             by indicating that actual emissions of VOCs and NO<sub>x</sub> were each less than or equal to 25 tons for the year.
         </p>
 
-        <table class="table-simple table-list">
+        <table class="table-simple table-list" aria-label="Emissions Statement confirmation details">
             <tr>
                 <th>Confirmation number:</th>
                 <td>
@@ -53,7 +53,7 @@
             by indicating that emissions of VOCs and/or NO<sub>x</sub> were greater than 25 tons for the year.
         </p>
 
-        <table class="table-simple table-list">
+        <table class="table-simple table-list" aria-label="Emissions Statement confirmation details">
             <tr>
                 <th>Confirmation number:</th>
                 <td>

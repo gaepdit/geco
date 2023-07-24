@@ -15,7 +15,7 @@
             <ContentTemplate>
                 <p>To begin, find the facility by AIRS number or name and select the type of access requested.</p>
 
-                <table class="table-simple">
+                <table class="table-simple" aria-label="Facility access request form">
                     <tr>
                         <th scope="col">
                             <asp:Label ID="lblAirsNo" AssociatedControlID="txtAirsNo" runat="server">By AIRS Number</asp:Label>

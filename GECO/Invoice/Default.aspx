@@ -30,7 +30,7 @@
 
                 <div class="grid">
                     <div class="grid__item">
-                        <table class="table-list">
+                        <table class="table-list" aria-label="Invoice details">
                             <tr>
                                 <th scope="row">Facility</th>
                                 <td><%# DirectCast(Container.DataItem, Invoice).FacilityName %></td>

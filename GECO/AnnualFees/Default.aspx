@@ -28,7 +28,7 @@
                     <asp:DropDownList ID="ddlFeeYear" runat="server" CausesValidation="False" AutoPostBack="true"
                         ForeColor="DarkRed" Font-Bold="true" CssClass="input-small" />
                     <asp:HyperLink ID="linkInvoice" Text="PRINT INVOICE" Visible="false" runat="server"
-                        Target="_blank" CssClass="linkHighlightButton no-visited" Font-Bold="true" />
+                        rel="noopener" Target="_blank" CssClass="linkHighlightButton no-visited" Font-Bold="true" />
                     <asp:Label ID="lblMessage" runat="server" ForeColor="#C00000" Text="Please select a fee year." Visible="False"></asp:Label>
                 </p>
 
@@ -54,7 +54,7 @@
                                 Current and past Air Permit Fee Manuals, as well as fee calculation forms, are 
                     available on the 
                    
-                    <a href="https://epd.georgia.gov/air-permit-fees" target="_blank">Air Permit Fees</a>
+                    <a href="https://epd.georgia.gov/air-permit-fees" rel="noopener" target="_blank">Air Permit Fees</a>
                                 page. The Permit Fee Manual specifies the methods used to calculate the permit fees 
                     required under Georgia Air Quality Control Rule 391-3-1-.03(9), “Permit Fees.” 
                
@@ -324,7 +324,7 @@
                                 </ul>
                                 <h3>Source Classification</h3>
                                 <p>For further clarification, please see the Fee Manual.</p>
-                                <table class="table-simple table-list">
+                                <table class="table-simple table-list" aria-label="Status update form">
                                     <tr>
                                         <th scope="col">Current status:</th>
                                         <td>
@@ -345,13 +345,13 @@
                                 </table>
 
                                 <asp:Panel ID="pnlEmissions" runat="server">
-                                    <h3>Emissions Calculations</h3>
+                                    <h3 id="emissions-calculations">Emissions Calculations</h3>
                                     <p>
                                         If this is a major Part 70 source, complete the following. (If the total calculated emission fee is less than the 
                                 minimum Part 70 Fee defined in the Permit Fee Manual, then the owner or operator must pay the minimum Part 70 Fee.)
                                     </p>
                                     <asp:ValidationSummary ID="ValidationSummary1" runat="server" ValidationGroup="Calculation" DisplayMode="BulletList" />
-                                    <table class="table-simple table-cell-alignright">
+                                    <table class="table-simple table-cell-alignright" aria-labelledby="emissions-calculations">
                                         <tr>
                                             <th scope="col" colspan="2" class="table-cell-alignright">Emissions (tons)</th>
                                             <th scope="col" class="table-cell-alignright">Calculated fee ($)</th>
@@ -469,7 +469,7 @@
                             NSPS but exempt from the NSPS fee for all NSPS equipment at the facility in accordance with Section&nbsp;2.1 
                             of the manual, check the box for NSPS Exempt and select the reasons why it is exempt.                   
                                 </p>
-                                <table class="table-simple table-list">
+                                <table class="table-simple table-list" aria-label="NSPS status update form">
                                     <tr>
                                         <th scope="col">Current status:</th>
                                         <td>
@@ -536,7 +536,7 @@
                                     </asp:RadioButtonList>
                                 </p>
                                 <p>
-                                    <table id="Table7" cellspacing="1" cellpadding="1" border="0">
+                                    <table id="Table7" cellspacing="1" cellpadding="1" border="0" aria-label="Fee summary">
                                         <tr>
                                             <td>Total Annual Fee Due: &nbsp;
                                             </td>
@@ -561,7 +561,7 @@
                             correct to the best of their knowledge.
                                 </p>
                                 <p>
-                                    <table id="Table8" cellspacing="1" cellpadding="1" border="0">
+                                    <table id="Table8" cellspacing="1" cellpadding="1" border="0" aria-label="Fee calculation signature block">
                                         <tr>
                                             <td align="right" style="width: 338px">
                                                 <font size="2">Name of Owner or Authorized Official:</font>

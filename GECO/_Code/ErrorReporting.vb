@@ -8,6 +8,7 @@ Public Module ErrorReporting
 
         If exc Is Nothing Then
             HttpContext.Current.Response.Redirect("~/ErrorPage.aspx", False)
+            HttpContext.Current.ApplicationInstance.CompleteRequest()
             Return
         End If
 
@@ -60,6 +61,7 @@ Public Module ErrorReporting
         Finally
             If redirectToErrorPage Then
                 HttpContext.Current.Response.Redirect("~/ErrorPage.aspx", False)
+                HttpContext.Current.ApplicationInstance.CompleteRequest()
             End If
         End Try
     End Sub
