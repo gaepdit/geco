@@ -44,38 +44,38 @@
     Class CommunicationPrefsConfigSection
         Inherits ConfigurationSection
 
-        <ConfigurationProperty("feesEnabled", IsRequired:=True)>
+        <ConfigurationProperty(NameOf(FeesEnabled), IsRequired:=True)>
         Public ReadOnly Property FeesEnabled As Boolean
             Get
-                Return CType(Me("feesEnabled"), Boolean)
+                Return CType(Me(NameOf(FeesEnabled)), Boolean)
             End Get
         End Property
 
-        <ConfigurationProperty("permitApplicationsEnabled", IsRequired:=True)>
+        <ConfigurationProperty(NameOf(PermitApplicationsEnabled), IsRequired:=True)>
         Public ReadOnly Property PermitApplicationsEnabled As Boolean
             Get
-                Return CType(Me("permitApplicationsEnabled"), Boolean)
+                Return CType(Me(NameOf(PermitApplicationsEnabled)), Boolean)
             End Get
         End Property
 
-        <ConfigurationProperty("emissionsInventoryEnabled", IsRequired:=True)>
+        <ConfigurationProperty(NameOf(EmissionsInventoryEnabled), IsRequired:=True)>
         Public ReadOnly Property EmissionsInventoryEnabled As Boolean
             Get
-                Return CType(Me("emissionsInventoryEnabled"), Boolean)
+                Return CType(Me(NameOf(EmissionsInventoryEnabled)), Boolean)
             End Get
         End Property
 
-        <ConfigurationProperty("emissionsStatementEnabled", IsRequired:=True)>
+        <ConfigurationProperty(NameOf(EmissionsStatementEnabled), IsRequired:=True)>
         Public ReadOnly Property EmissionsStatementEnabled As Boolean
             Get
-                Return CType(Me("emissionsStatementEnabled"), Boolean)
+                Return CType(Me(NameOf(EmissionsStatementEnabled)), Boolean)
             End Get
         End Property
 
-        <ConfigurationProperty("testingMonitoringEnabled", IsRequired:=True)>
+        <ConfigurationProperty(NameOf(TestingMonitoringEnabled), IsRequired:=True)>
         Public ReadOnly Property TestingMonitoringEnabled As Boolean
             Get
-                Return CType(Me("testingMonitoringEnabled"), Boolean)
+                Return CType(Me(NameOf(TestingMonitoringEnabled)), Boolean)
             End Get
         End Property
     End Class

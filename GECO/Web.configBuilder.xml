@@ -42,11 +42,11 @@
     </appSettings>
 
     <communicationPrefs
-        feesEnabled="false"
-        permitApplicationsEnabled="false"
-        emissionsInventoryEnabled ="false"
-        emissionsStatementEnabled ="false"
-        testingMonitoringEnabled="false"/>
+        FeesEnabled="true"
+        PermitApplicationsEnabled="false"
+        EmissionsInventoryEnabled ="false"
+        EmissionsStatementEnabled ="false"
+        TestingMonitoringEnabled="false"/>
 
     <RaygunSettings apikey="" excludeHttpStatusCodes="404" excludeErrorsFromLocal="true"/>
     <ajaxControlToolkit renderStyleLinks="false"/>
