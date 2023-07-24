@@ -190,7 +190,7 @@ Partial Class FacilityHome
             Return
         End If
 
-        litEmissionsStatement.Text = esStatus & "<br /><em>Due: " & New Date(Now.Year, 6, 15).ToLongDate() & "</em>"
+        litEmissionsStatement.Text = esStatus & "<br /><em>Due: June 15, " & Now.Year & "</em>"
     End Sub
 
     Private Sub GetTestNotificationStatus()
