@@ -65,14 +65,13 @@
                 Return state
             End If
 
-            If USStateCodes.ContainsKey(state) Then
-                Return USStateCodes(state)
-            End If
+            Dim value As String = Nothing
+            USStateCodes.TryGetValue(state, value)
 
-            Return Nothing
+            Return value
         End Function
 
-        Private Shared ReadOnly USStateCodes As Dictionary(Of String, String) = New Dictionary(Of String, String) From {
+        Private Shared ReadOnly USStateCodes As New Dictionary(Of String, String) From {
             {"Alabama", "AL"},
             {"Alaska", "AK"},
             {"Arizona", "AZ"},
