@@ -537,7 +537,6 @@
     <Compile Include="_Models\Permit\PermitApplication.vb" />
     <Compile Include="_Models\App\UserSession.vb" />
     <Compile Include="_DAL\EIS\eis_NAICS.vb" />
-    <Compile Include="_Code\ParseNullables.vb" />
     <Compile Include="_Code\RandomStrings.vb" />
     <Compile Include="_Code\SessionHelper.vb" />
     <Compile Include="_Code\StringFunctions.vb" />
