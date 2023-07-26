@@ -22,9 +22,7 @@ Partial Class TN_Default
             End If
 
             If Not ApbFacilityId.IsValidAirsNumberFormat(airsString) Then
-                HttpContext.Current.Response.Redirect("~/Home/", False)
-                HttpContext.Current.ApplicationInstance.CompleteRequest()
-                Return
+                HttpContext.Current.Response.Redirect("~/Home/")
             End If
 
             currentAirs = New ApbFacilityId(airsString)

@@ -17,9 +17,7 @@ Public Class EditContacts
     Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
         If IsPostBack Then
             If Not ApbFacilityId.TryParse(GetCookie(Cookie.AirsNumber), currentAirs) Then
-                HttpContext.Current.Response.Redirect("~/Home/", False)
-                HttpContext.Current.ApplicationInstance.CompleteRequest()
-                Return
+                HttpContext.Current.Response.Redirect("~/Home/")
             End If
         Else
             ' AIRS number
@@ -32,9 +30,7 @@ Public Class EditContacts
             End If
 
             If Not ApbFacilityId.TryParse(airsString, currentAirs) Then
-                HttpContext.Current.Response.Redirect("~/Home/", False)
-                HttpContext.Current.ApplicationInstance.CompleteRequest()
-                Return
+                HttpContext.Current.Response.Redirect("~/Home/")
             End If
 
             SetCookie(Cookie.AirsNumber, currentAirs.ShortString())
@@ -51,9 +47,7 @@ Public Class EditContacts
         FacilityAccess = currentUser.GetFacilityAccess(currentAirs)
 
         If FacilityAccess Is Nothing Then
-            HttpContext.Current.Response.Redirect("~/Facility/", False)
-            HttpContext.Current.ApplicationInstance.CompleteRequest()
-            Return
+            HttpContext.Current.Response.Redirect("~/Facility/")
         End If
 
         If Not IsPostBack Then
@@ -69,17 +63,13 @@ Public Class EditContacts
         End If
 
         If Not CommunicationCategory.IsValidCategory(category) Then
-            HttpContext.Current.Response.Redirect("~/Facility/Contacts.aspx", False)
-            HttpContext.Current.ApplicationInstance.CompleteRequest()
-            Return
+            HttpContext.Current.Response.Redirect("~/Facility/Contacts.aspx")
         End If
 
         CurrentCategory = CommunicationCategory.FromName(category)
 
         If Not FacilityAccess.HasCommunicationPermission(CurrentCategory) Then
-            HttpContext.Current.Response.Redirect("~/Facility/Contacts.aspx", False)
-            HttpContext.Current.ApplicationInstance.CompleteRequest()
-            Return
+            HttpContext.Current.Response.Redirect("~/Facility/Contacts.aspx")
         End If
 
         SetCookie(Cookie.CommunicationCategory, category)
