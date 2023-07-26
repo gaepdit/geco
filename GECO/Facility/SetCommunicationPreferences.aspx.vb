@@ -11,6 +11,7 @@ Public Class SetCommunicationPreferences
 
             If currentAirs Is Nothing Then
                 HttpContext.Current.Response.Redirect("~/Home/")
+                Return
             End If
 
             Master.CurrentAirs = currentAirs
@@ -50,6 +51,7 @@ Public Class SetCommunicationPreferences
 
         If airs Is Nothing Then
             HttpContext.Current.Response.Redirect("~/Home/")
+            Return
         End If
 
         Dim result As Boolean = SaveCommunicationPreference(airs,
