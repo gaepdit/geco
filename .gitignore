@@ -501,13 +501,3 @@ Web.config
 
 # Build
 GECO/Deploy/
-
-# Cypress.io config files
-cypress.env.json
-**/config/*.json
-
-# Cypress.io generated videos, screenshots, and logs
-**/cypress/videos/
-**/cypress/screenshots/
-**/cypress/logs/
-
