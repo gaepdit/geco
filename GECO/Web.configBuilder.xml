@@ -110,13 +110,6 @@
         <modules>
             <add name="NWebsecHttpHeaderSecurityModule" type="NWebsec.Modules.HttpHeaderSecurityModule, NWebsec"/>
         </modules>
-        <httpProtocol>
-            <customHeaders>
-                <clear />
-                <add name="Report-To" value=""/>
-                <add name="Reporting-Endpoints" value=""/>
-            </customHeaders>
-        </httpProtocol>
         <security>
             <requestFiltering>
                 <hiddenSegments>
@@ -126,7 +119,7 @@
         </security>
     </system.webServer>
 
-    <!-- Configuration for the NWebsec package. See https://docs.nwebsec.com/en/aspnet4/index.html -->
+	<!-- Configuration for the NWebsec package. See https://docs.nwebsec.com/en/aspnet4/index.html -->
     <nwebsec>
         <httpHeaderSecurityModule xmlns="http://nwebsec.com/HttpHeaderSecurityModuleConfig.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="NWebsecConfig/HttpHeaderSecurityModuleConfig.xsd">
             <redirectValidation enabled="true">
@@ -163,6 +156,7 @@
                         <add source="*.googleapis.com"/>
                     </img-src>
                     <connect-src self="true">
+                        <add source="https://api.raygun.com"/>
                         <add source="https://api.raygun.io"/>
                         <add source="https://translate.googleapis.com/"/>
                         <add source="https://maps.googleapis.com/"/>
