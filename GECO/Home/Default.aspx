@@ -42,9 +42,6 @@
                     <asp:CheckBoxField DataField="EIAccess" HeaderText="Emissions Inventory">
                         <ItemStyle HorizontalAlign="Center" CssClass="table-cell-checkbox" />
                     </asp:CheckBoxField>
-                    <asp:CheckBoxField DataField="ESAccess" HeaderText="Emissions Statement">
-                        <ItemStyle HorizontalAlign="Center" CssClass="table-cell-checkbox" />
-                    </asp:CheckBoxField>
                 </Columns>
                 <AlternatingRowStyle BackColor="#f3f3f7" />
                 <HeaderStyle CssClass="table-head" />
@@ -141,22 +138,5 @@
         July&nbsp;1,&nbsp;<asp:Label ID="lblFeeYear3" runat="server" Text=""></asp:Label>. 
         The deadline for fee submittal is 
         <strong>September&nbsp;1,&nbsp;<asp:Label ID="lblFeeYear4" runat="server" Text=""></asp:Label></strong>. 
-    </p>
-
-    <h2>Emissions Statement</h2>
-    <p>
-        Facilities in the Atlanta metro maintenance area whose NO<sub>x</sub> and/or VOC actual emissions are 
-        greater than 25 tons per year are required to submit an annual Emissions Statement (ES). The Emissions 
-        Statement is due on or about June 15 each year.
-    </p>
-    <h3>
-        <asp:Label ID="lblESYear1" runat="server" Text=""></asp:Label>
-        Emissions Statement:
-    </h3>
-    <p>
-        The
-        <asp:Label ID="lblESYear2" runat="server" Text="Label"></asp:Label>
-        Emissions Statement is due 
-        <strong>June&nbsp;15,&nbsp;<asp:Label ID="lblESYear3" runat="server" Text=""></asp:Label></strong>. 
     </p>
 </asp:Content>

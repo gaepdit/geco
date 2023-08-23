@@ -34,17 +34,6 @@
         The Emissions Inventory submittal is due on or about June&nbsp;30 each year.
     </p>
 
-    <h2>Emissions Statement</h2>
-    <p>
-        Facilities in the Atlanta metro maintenance area whose NO<sub>x</sub> and/or VOC actual emissions are greater 
-        than 25 tons per year are required to submit an annual 
-        <a href="https://epd.georgia.gov/submit-emissions-statement" rel="noopener" target="_blank">Emissions Statement</a>
-        (ES).
-    </p>
-    <p>
-        The Emissions Statement is due on or about June&nbsp;15 each year.
-    </p>
-
     <h2>Permit Application Fees</h2>
     <p>
         Permit application fees are required when applying for certain permit actions. Refer to the
