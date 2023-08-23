@@ -149,9 +149,6 @@
     <Content Include="Login.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="ErrorPage.aspx" />
-    <Content Include="ES\Confirm.aspx" />
-    <Content Include="ES\Default.aspx" />
-    <Content Include="ES\Form.aspx" />
     <Content Include="EventRegistration\Default.aspx" />
     <Content Include="EventRegistration\Details.aspx" />
     <Content Include="EventRegistration\EventList.aspx" />
@@ -342,15 +339,6 @@
       <DependentUpon>ErrorPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="ES\Confirm.aspx.designer.vb">
-      <DependentUpon>Confirm.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="ES\Default.aspx.designer.vb">
-      <DependentUpon>Default.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="ES\Form.aspx.designer.vb">
-      <DependentUpon>Form.aspx</DependentUpon>
-    </Compile>
     <Compile Include="EventRegistration\Default.aspx.designer.vb">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
@@ -498,7 +486,6 @@
     <Compile Include="_Code\EnumHelpers.vb" />
     <Compile Include="_Code\LogToTextFile.vb" />
     <Compile Include="_Code\ErrorReporting.vb" />
-    <Compile Include="_DAL\ES\EmissionsStatement.vb" />
     <Compile Include="_DAL\Events\Events.vb" />
     <Compile Include="_DAL\Facility\FacilityInfo.vb" />
     <Compile Include="_DAL\AnnualFees\AnnualFees.vb" />
@@ -543,18 +530,6 @@
     <Compile Include="_Code\UrlHelper.vb" />
     <Compile Include="_Code\Email\UserAccountEmails.vb" />
     <Compile Include="_DAL\AnnualFees\ZipCode.vb" />
-    <Compile Include="ES\Confirm.aspx.vb">
-      <DependentUpon>Confirm.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="ES\Default.aspx.vb">
-      <DependentUpon>Default.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="ES\Form.aspx.vb">
-      <DependentUpon>Form.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
     <Compile Include="EventRegistration\Default.aspx.vb">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

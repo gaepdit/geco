@@ -50,17 +50,6 @@ Public Module FacilityInfo
         End Select
     End Function
 
-    Public Function CheckFacilityEmissionStatement(airs As ApbFacilityId) As Boolean
-        NotNull(airs, NameOf(airs))
-
-        Select Case airs.CountySubstring
-            Case "013", "015", "045", "057", "063", "067", "077", "089", "097", "113", "117", "121", "135", "139", "151", "217", "223", "247", "255", "297"
-                Return True
-            Case Else
-                Return False
-        End Select
-    End Function
-
     Public Function GetFacilityAdminUsers(airs As ApbFacilityId) As DataTable
         NotNull(airs, NameOf(airs))
 
