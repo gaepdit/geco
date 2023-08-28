@@ -72,9 +72,6 @@
                     <asp:CheckBoxField HeaderText="Emissions Inventory" DataField="intEIAccess" Text="&nbsp;">
                         <ItemStyle HorizontalAlign="Center" CssClass="table-cell-checkbox" />
                     </asp:CheckBoxField>
-                    <asp:CheckBoxField HeaderText="Emissions Statement" DataField="intESAccess" Text="&nbsp;">
-                        <ItemStyle HorizontalAlign="Center" CssClass="table-cell-checkbox" />
-                    </asp:CheckBoxField>
                 </Columns>
                 <EditRowStyle BackColor="#ffffc0" BorderColor="#eeeec0" BorderStyle="Solid" />
                 <RowStyle BackColor="#ffffff" ForeColor="#333333" />
