@@ -1,5 +1,5 @@
 ﻿<%@ Page Title="GECO - Request Facility Access" Language="VB" MasterPageFile="~/Main.master" AutoEventWireup="false"
-    Inherits="GECO.Home_FacilityRequest" CodeBehind="FacilityRequest.aspx.vb" %>
+    Inherits="GECO.HomeFacilityRequest" CodeBehind="FacilityRequest.aspx.vb" %>
 
 <%@ MasterType VirtualPath="~/Main.master" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="Server">
@@ -47,7 +47,6 @@
                                 <asp:ListItem Text="Facility Access" Selected="True" Enabled="false" />
                                 <asp:ListItem Text="Permit Fees" />
                                 <asp:ListItem Text="Emissions Inventory" />
-                                <asp:ListItem Text="Emissions Statement" />
                             </asp:CheckBoxList>
                         </td>
                     </tr>

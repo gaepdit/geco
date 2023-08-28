@@ -11,7 +11,7 @@ Option Strict On
 Option Explicit On
 
 
-Partial Public Class Home_FacilityRequest
+Partial Public Class HomeFacilityRequest
 
     '''<summary>
     '''pUpdateRequired control.
