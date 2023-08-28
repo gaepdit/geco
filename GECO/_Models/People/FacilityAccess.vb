@@ -2,15 +2,15 @@
 
 Namespace GecoModels
     Public Class FacilityAccess
-        Private _AdminAccess As Boolean
-        Private _FeeAccess As Boolean
-        Private _EisAccess As Boolean
-        Private _ESAccess As Boolean
-        Private ReadOnly _CommunicationPermissions As List(Of String)
+        Private _adminAccess As Boolean
+        Private _feeAccess As Boolean
+        Private _eisAccess As Boolean
+        Private _esAccess As Boolean
+        Private ReadOnly _communicationPermissions As List(Of String)
 
         Public Sub New(airsNumber As ApbFacilityId)
             Me.AirsNumber = airsNumber
-            _CommunicationPermissions = New List(Of String)
+            _communicationPermissions = New List(Of String)
         End Sub
 
         Public Sub New(airsNumber As ApbFacilityId,
@@ -19,13 +19,13 @@ Namespace GecoModels
                        eis As Boolean,
                        es As Boolean)
             Me.AirsNumber = airsNumber
-            _CommunicationPermissions = New List(Of String)
+            _communicationPermissions = New List(Of String)
 
             If admin Then
                 AdminAccess = True
-                _FeeAccess = True
-                _EisAccess = True
-                _ESAccess = True
+                _feeAccess = True
+                _eisAccess = True
+                _esAccess = True
             Else
                 FeeAccess = fee
                 EisAccess = eis
@@ -37,14 +37,14 @@ Namespace GecoModels
 
         Public Property AdminAccess As Boolean
             Get
-                Return _AdminAccess
+                Return _adminAccess
             End Get
             Private Set
-                _AdminAccess = Value
+                _adminAccess = Value
 
                 If Value Then
                     For Each category In CommunicationCategory.AllCategories
-                        _CommunicationPermissions.Add(category.Name)
+                        _communicationPermissions.Add(category.Name)
                     Next
                 End If
             End Set
@@ -52,48 +52,45 @@ Namespace GecoModels
 
         Public Property FeeAccess As Boolean
             Get
-                Return _FeeAccess
+                Return _feeAccess
             End Get
             Private Set
-                _FeeAccess = Value
+                _feeAccess = Value
 
                 If Value Then
-                    _CommunicationPermissions.Add(CommunicationCategory.Fees.Name)
+                    _communicationPermissions.Add(CommunicationCategory.Fees.Name)
                 End If
             End Set
         End Property
 
         Public Property EisAccess As Boolean
             Get
-                Return _EisAccess
+                Return _eisAccess
             End Get
             Private Set
-                _EisAccess = Value
+                _eisAccess = Value
 
                 If Value Then
-                    _CommunicationPermissions.Add(CommunicationCategory.EmissionsInventory.Name)
+                    _communicationPermissions.Add(CommunicationCategory.EmissionsInventory.Name)
                 End If
             End Set
         End Property
 
+        ' Existing Emissions Statement permissions are used only for displaying the notice on the facility home page.
         Public Property ESAccess As Boolean
             Get
-                Return _ESAccess
+                Return _esAccess
             End Get
             Private Set
-                _ESAccess = Value
-
-                If Value Then
-                    _CommunicationPermissions.Add(CommunicationCategory.EmissionsStatement.Name)
-                End If
+                _esAccess = Value
+                ' There is no communication pref for Emissions Statement.
             End Set
         End Property
 
         Public ReadOnly Property HasCommunicationPermission(category As CommunicationCategory) As Boolean
             Get
-                Return _CommunicationPermissions.Contains(category.Name)
+                Return _communicationPermissions.Contains(category.Name)
             End Get
         End Property
-
     End Class
 End Namespace
