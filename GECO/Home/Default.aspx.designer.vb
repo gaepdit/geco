@@ -194,33 +194,6 @@ Partial Public Class Home
     Protected WithEvents lblFeeYear4 As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''lblESYear1 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblESYear1 As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''lblESYear2 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblESYear2 As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''lblESYear3 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblESYear3 As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
     '''Master property.
     '''</summary>
     '''<remarks>

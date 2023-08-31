@@ -4,38 +4,36 @@ Imports GECO.GecoModels
 Partial Class Home
     Inherits Page
 
-    Private Property currentUser As GecoUser
+    Private Property CurrentUser As GecoUser
 
-    Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
+    Private Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
         MainLoginCheck()
 
-        currentUser = GetCurrentUser()
+        CurrentUser = GetCurrentUser()
 
         If Not IsPostBack Then
             LoadAccessTable()
             LoadYearLabels()
 
-            If currentUser.ProfileUpdateRequired Then
+            If CurrentUser.ProfileUpdateRequired Then
                 pUpdateRequired.Visible = True
             End If
         End If
     End Sub
 
     Private Sub LoadYearLabels()
-        lblEIYear2.Text = CStr(Now.Year - 1) 'This is the EI calendar year
-        lblEIYear3.Text = CStr(Now.Year - 1) 'This is the EI calendar year
-        lblEIYear4.Text = CStr(Now.Year) 'This is the EI due date
-        lblEIYear5.Text = CStr(Now.Year - 1) 'This is the EI calendar year
-        lblEIYear6.Text = CStr(Now.Year - 1) 'This is the EI calendar year
+        dim thisYear as String = CStr(Now.Year)
+        dim lastYear as String = CStr(Now.Year - 1)
+        lblEIYear2.Text = lastYear 'This is the EI calendar year
+        lblEIYear3.Text = lastYear 'This is the EI calendar year
+        lblEIYear4.Text = thisYear 'This is the EI due date
+        lblEIYear5.Text = lastYear 'This is the EI calendar year
+        lblEIYear6.Text = lastYear 'This is the EI calendar year
 
-        lblESYear1.Text = CStr(Now.Year - 1) 'This is the ES calendar year
-        lblESYear2.Text = CStr(Now.Year - 1) 'This is the ES calendar year
-        lblESYear3.Text = CStr(Now.Year) 'This is the ES due date
-
-        lblFeeYear1.Text = CStr(Now.Year - 1) ' Fee Calendar year
-        lblFeeYear2.Text = CStr(Now.Year - 1) ' Fee Calendar year
-        lblFeeYear3.Text = CStr(Now.Year) ' Fees dues year
-        lblFeeYear4.Text = CStr(Now.Year) ' Fees dues year
+        lblFeeYear1.Text = lastYear ' Fee Calendar year
+        lblFeeYear2.Text = lastYear ' Fee Calendar year
+        lblFeeYear3.Text = thisYear ' Fees dues year
+        lblFeeYear4.Text = thisYear ' Fees dues year
 
         If Now.Year Mod 3 = 2 Then
             lblTriennialEIText.Visible = True
@@ -44,7 +42,7 @@ Partial Class Home
     End Sub
 
     Private Sub LoadAccessTable()
-        Dim dtAccess As DataTable = currentUser.FacilityAccessTable
+        Dim dtAccess As DataTable = CurrentUser.FacilityAccessTable
 
         If dtAccess Is Nothing OrElse dtAccess.Rows.Count = 0 Then
             'This user has NO Facility assigned
@@ -60,14 +58,14 @@ Partial Class Home
         End If
     End Sub
 
-    Protected Sub grdAccess_RowDataBound(sender As Object, e As GridViewRowEventArgs) Handles grdAccess.RowDataBound
+    Private Sub grdAccess_RowDataBound(sender As Object, e As GridViewRowEventArgs) Handles grdAccess.RowDataBound
         NotNull(e, NameOf(e))
 
         If e.Row.RowType = DataControlRowType.DataRow Then
             Dim row As DataRowView = CType(e.Row.DataItem, DataRowView)
             Dim facilityName As String = row.Item("Facility").ToString()
             Dim airsNumber As New ApbFacilityId(row.Item("AirsNumber").ToString)
-            Dim url As String = String.Format("~/Facility/?airs={0}", airsNumber.ShortString())
+            Dim url As String = $"~/Facility/?airs={airsNumber.ShortString()}"
 
             Dim hlFacility As HyperLink = CType(e.Row.FindControl("hlFacility"), HyperLink)
             If hlFacility IsNot Nothing Then
@@ -82,5 +80,4 @@ Partial Class Home
             End If
         End If
     End Sub
-
 End Class

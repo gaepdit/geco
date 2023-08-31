@@ -2,18 +2,17 @@
 Imports GECO.GecoModels
 
 Public Module UserAccess
-
     Public Function GetUserAccess(airs As ApbFacilityId) As DataTable
         NotNull(airs, NameOf(airs))
 
-        Dim query = "select a.NUMUSERID,
+        Const query As String =
+                  "select a.NUMUSERID,
                p.STRFIRSTNAME as [FirstName],
                p.STRLASTNAME as [LastName],
                l.STRUSEREMAIL as [Email],
                a.INTADMINACCESS,
                a.INTFEEACCESS,
-               a.INTEIACCESS,
-               a.INTESACCESS
+               a.INTEIACCESS
         from OLAPUSERACCESS a
             inner join OLAPUSERLOGIN l
             on a.NUMUSERID = l.NUMUSERID
@@ -26,42 +25,41 @@ Public Module UserAccess
         Return DB.GetDataTable(query, param)
     End Function
 
-    Public Function UpdateUserAccess(adminAccess As Boolean, feeAccess As Boolean,
-                                     eiAccess As Boolean, esAccess As Boolean,
-                                     userID As Integer, airs As ApbFacilityId) As Boolean
+    Public Sub UpdateUserAccess(adminAccess As Boolean, feeAccess As Boolean, eiAccess As Boolean,
+                                userID As Integer, airs As ApbFacilityId)
         NotNull(airs, NameOf(airs))
 
-        Dim query As String = "UPDATE OlapUserAccess SET " &
-        " INTADMINACCESS = @admin, " &
-        " intFeeAccess = @fee, " &
-        " intEIAccess = @ei, " &
-        " intESAccess = @es " &
-        " WHERE numUserID = @userID " &
-        " and strAirsNumber = @airs "
+        Const query As String =
+                  "UPDATE OlapUserAccess SET 
+                   INTADMINACCESS = @admin, 
+                   intFeeAccess = @fee, 
+                   intEIAccess = @ei 
+                   WHERE numUserID = @userID 
+                   and strAirsNumber = @airs "
 
-        Dim params As SqlParameter() = {
-            New SqlParameter("@admin", adminAccess),
-            New SqlParameter("@fee", feeAccess),
-            New SqlParameter("@ei", eiAccess),
-            New SqlParameter("@es", esAccess),
-            New SqlParameter("@userID", userID),
-            New SqlParameter("@airs", airs.DbFormattedString)
-        }
+        Dim params As SqlParameter() = { _
+                                           New SqlParameter("@admin", adminAccess),
+                                           New SqlParameter("@fee", feeAccess),
+                                           New SqlParameter("@ei", eiAccess),
+                                           New SqlParameter("@userID", userID),
+                                           New SqlParameter("@airs", airs.DbFormattedString)
+                                       }
 
-        Return DB.RunCommand(query, params)
-    End Function
+        DB.RunCommand(query, params)
+    End Sub
 
     Public Function DeleteUserAccess(userId As Integer, airs As ApbFacilityId) As Boolean
         NotNull(airs, NameOf(airs))
 
-        Dim query As String = "DELETE OlapUserAccess " &
-            " WHERE numUserID = @numUserID " &
-            " and strAirsNumber = @strAirsNumber "
+        Const query As String =
+                  "DELETE OlapUserAccess 
+                   WHERE numUserID = @numUserID 
+                   and strAirsNumber = @strAirsNumber "
 
-        Dim params As SqlParameter() = {
-            New SqlParameter("@numUserID", userId),
-            New SqlParameter("@strAirsNumber", airs.DbFormattedString)
-        }
+        Dim params As SqlParameter() = { _
+                                           New SqlParameter("@numUserID", userId),
+                                           New SqlParameter("@strAirsNumber", airs.DbFormattedString)
+                                       }
 
         Return DB.RunCommand(query, params)
     End Function
@@ -79,18 +77,19 @@ Public Module UserAccess
             Return -2
         End If
 
-        Dim query As String = "INSERT INTO OLAPUSERACCESS " &
-        " (NUMUSERID, STRAIRSNUMBER) " &
-        "     SELECT " &
-        "         NUMUSERID, " &
-        "         @airs " &
-        "     FROM OLAPUSERLOGIN " &
-        "     WHERE STRUSEREMAIL = @userEmail "
+        Const query As String =
+                  "INSERT INTO OLAPUSERACCESS 
+                 (NUMUSERID, STRAIRSNUMBER) 
+                     SELECT 
+                         NUMUSERID, 
+                         @airs 
+                     FROM OLAPUSERLOGIN 
+                     WHERE STRUSEREMAIL = @userEmail "
 
-        Dim param As SqlParameter() = {
-            New SqlParameter("@userEmail", email),
-            New SqlParameter("@airs", airs.DbFormattedString)
-        }
+        Dim param As SqlParameter() = { _
+                                          New SqlParameter("@userEmail", email),
+                                          New SqlParameter("@airs", airs.DbFormattedString)
+                                      }
 
         If DB.RunCommand(query, param) Then
             Return 1
@@ -102,17 +101,18 @@ Public Module UserAccess
     Private Function GecoUserAccessExists(email As String, airs As ApbFacilityId) As Boolean
         NotNull(airs, NameOf(airs))
 
-        Dim query As String = " SELECT convert(BIT, count(*)) " &
-        " FROM OLAPUSERACCESS a " &
-        "     inner join OLAPUSERLOGIN l " &
-        "         on a.NUMUSERID = l.NUMUSERID " &
-        " WHERE STRUSEREMAIL = @email " &
-        "       and STRAIRSNUMBER = @airs "
+        Const query As String =
+                  " SELECT convert(BIT, count(*)) 
+                 FROM OLAPUSERACCESS a 
+                     inner join OLAPUSERLOGIN l 
+                         on a.NUMUSERID = l.NUMUSERID 
+                 WHERE STRUSEREMAIL = @email 
+                       and STRAIRSNUMBER = @airs "
 
-        Dim params As SqlParameter() = {
-            New SqlParameter("@email", email),
-            New SqlParameter("@airs", airs.DbFormattedString)
-        }
+        Dim params As SqlParameter() = { _
+                                           New SqlParameter("@email", email),
+                                           New SqlParameter("@airs", airs.DbFormattedString)
+                                       }
 
         Return DB.GetBoolean(query, params)
     End Function
@@ -120,7 +120,8 @@ Public Module UserAccess
     Public Function UserAccessReviewRequested(airs As ApbFacilityId) As Boolean
         NotNull(airs, NameOf(airs))
 
-        Dim query As String = "select UserAccessLastReviewed
+        Const query As String =
+                  "select UserAccessLastReviewed
             from dbo.Geco_FacilityInformation
             where FacilityId = @facilityId"
 
@@ -138,12 +139,11 @@ Public Module UserAccess
     Public Sub UpdateUserAccessAsReviewed(airs As ApbFacilityId, userId As Integer)
         NotNull(airs, NameOf(airs))
 
-        Dim params As SqlParameter() = {
-            New SqlParameter("@facilityId", airs.ShortString),
-            New SqlParameter("@userId", userId)
-        }
+        Dim params As SqlParameter() = { _
+                                           New SqlParameter("@facilityId", airs.ShortString),
+                                           New SqlParameter("@userId", userId)
+                                       }
 
         DB.SPRunCommand("geco.FacilityUserAccessReviewed", params)
     End Sub
-
 End Module

@@ -1,11 +1,11 @@
-﻿Imports GECO.GecoModels
+Imports GECO.GecoModels
 
 Partial Class _Default
     Inherits Page
 
     ' Page load 
 
-    Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
+    Private Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
         If Not IsPostBack Then
             If Request.QueryString("do") = "SignOut" Then
                 ClearCurrentLogin()

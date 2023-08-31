@@ -45,7 +45,6 @@
         FeesEnabled="true"
         PermitApplicationsEnabled="false"
         EmissionsInventoryEnabled ="false"
-        EmissionsStatementEnabled ="false"
         TestingMonitoringEnabled="false"/>
 
     <RaygunSettings apikey="" excludeHttpStatusCodes="404" excludeErrorsFromLocal="true"/>

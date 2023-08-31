@@ -1,13 +1,15 @@
-<%@ Page Language="VB" MasterPageFile="~/Main.master" AutoEventWireup="false" 
-    Inherits="GECO.FacilityHome" Title="GECO Facility Home" CodeBehind="Default.aspx.vb" %>
+<%@ Page Language="VB" MasterPageFile="~/Main.master" AutoEventWireup="false"
+Inherits="GECO.FacilityHome" Title="GECO Facility Home" CodeBehind="Default.aspx.vb" %>
 
 <%@ MasterType VirtualPath="~/Main.master" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="Server">
 
     <ul class="menu-list-horizontal">
         <li>
-            <asp:HyperLink ID="lnkFacilityHome" runat="server" NavigateUrl="~/Facility/" 
-                Enabled="false" CssClass="selected-menu-item disabled">Home</asp:HyperLink>
+            <asp:HyperLink ID="lnkFacilityHome" runat="server" NavigateUrl="~/Facility/"
+                           Enabled="false" CssClass="selected-menu-item disabled">
+                Home
+            </asp:HyperLink>
         </li>
         <li>
             <asp:HyperLink ID="lnkFacilityInfo" runat="server" NavigateUrl="~/Facility/Summary.aspx">Facility Info</asp:HyperLink>
@@ -64,10 +66,18 @@
 
         <asp:TableRow ID="AppsEmissionsStatement" runat="server">
             <asp:TableHeaderCell runat="server" CssClass="table-cell-link">
-                <asp:HyperLink ID="ESLink" runat="server" Text="Emissions Statement" NavigateUrl="~/ES/" />
+                <asp:HyperLink ID="ESLink" runat="server" Text="Emissions Statement" Enabled="False" />
             </asp:TableHeaderCell>
             <asp:TableCell runat="server">
-                <asp:Literal ID="litEmissionsStatement" runat="server" />
+                <span class="text-error">
+                    Effective June 19, 2023, facilities are no longer required to submit Emissions Statement data.
+                </span>
+                Please see the
+                <a href="https://epd.georgia.gov/forms-permits/air-protection-branch-forms-permits/submit-emissions-inventory"
+                   target="_blank" rel="noopener">
+                    APB website
+                </a>
+                for more information.
             </asp:TableCell>
         </asp:TableRow>
 

@@ -8,13 +8,13 @@ Imports GECO.GecoModels.Facility
 Partial Class FacilityHome
     Inherits Page
 
-    Private Property currentUser As GecoUser
-    Private Property facilityAccess As FacilityAccess
-    Private Property currentAirs As ApbFacilityId
+    Private Property CurrentUser As GecoUser
+    Private Property FacilityAccess As FacilityAccess
+    Private Property CurrentAirs As ApbFacilityId
 
-    Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
+    Private Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
         If IsPostBack Then
-            If Not ApbFacilityId.TryParse(GetCookie(Cookie.AirsNumber), currentAirs) Then
+            If Not ApbFacilityId.TryParse(GetCookie(Cookie.AirsNumber), CurrentAirs) Then
                 HttpContext.Current.Response.Redirect("~/Home/")
             End If
         Else
@@ -27,53 +27,53 @@ Partial Class FacilityHome
                 airsString = GetCookie(Cookie.AirsNumber)
             End If
 
-            If Not ApbFacilityId.TryParse(airsString, currentAirs) Then
+            If Not ApbFacilityId.TryParse(airsString, CurrentAirs) Then
                 HttpContext.Current.Response.Redirect("~/Home/")
             End If
 
-            SetCookie(Cookie.AirsNumber, currentAirs.ShortString())
+            SetCookie(Cookie.AirsNumber, CurrentAirs.ShortString())
         End If
 
-        Master.CurrentAirs = currentAirs
+        Master.CurrentAirs = CurrentAirs
         Master.IsFacilitySet = True
 
-        MainLoginCheck(Page.ResolveUrl("~/Facility/?airs=" & currentAirs.ShortString))
+        MainLoginCheck(Page.ResolveUrl("~/Facility/?airs=" & CurrentAirs.ShortString))
 
         ' Current user
-        currentUser = GetCurrentUser()
+        CurrentUser = GetCurrentUser()
 
-        facilityAccess = currentUser.GetFacilityAccess(currentAirs)
+        FacilityAccess = CurrentUser.GetFacilityAccess(CurrentAirs)
 
-        If facilityAccess Is Nothing Then
+        If FacilityAccess Is Nothing Then
             HttpContext.Current.Response.Redirect("~/Home/")
         End If
 
         If Not IsPostBack Then
             CheckForMandatoryUpdates()
 
-            Title = "GECO Facility Summary - " & GetFacilityNameAndCity(currentAirs)
+            Title = "GECO Facility Summary - " & GetFacilityNameAndCity(CurrentAirs)
             GetApplicationStatus()
         End If
     End Sub
 
     Private Sub CheckForMandatoryUpdates()
         ' Require user to set communication preferences if they have never been set.
-        If InitialCommunicationPreferenceSettingRequired(currentAirs, facilityAccess, CommunicationCategory.Fees) Then
+        If InitialCommunicationPreferenceSettingRequired(CurrentAirs, FacilityAccess, CommunicationCategory.Fees) Then
             HttpContext.Current.Response.Redirect("~/Facility/SetCommunicationPreferences.aspx")
         End If
 
         ' Require user to confirm preferences every 275 days.
-        If CommunicationUpdateResponseRequired(currentAirs, facilityAccess) Then
+        If CommunicationUpdateResponseRequired(CurrentAirs, FacilityAccess) Then
             HttpContext.Current.Response.Redirect("~/Facility/Contacts.aspx")
         End If
 
         ' Require user to review facility user access annually.
-        If facilityAccess.AdminAccess AndAlso UserAccessReviewRequested(currentAirs) Then
+        If FacilityAccess.AdminAccess AndAlso UserAccessReviewRequested(CurrentAirs) Then
             HttpContext.Current.Response.Redirect("~/Facility/Admin.aspx")
         End If
     End Sub
 
-    Protected Sub GetApplicationStatus()
+    Private Sub GetApplicationStatus()
         GetFeesStatus()
         GetEisStatus()
         GetEmissionStatementStatus()
@@ -81,13 +81,13 @@ Partial Class FacilityHome
         GetPermitAppStatus()
     End Sub
 
-    Protected Sub GetEisStatus()
-        If Not facilityAccess.EisAccess Then
+    Private Sub GetEisStatus()
+        If Not FacilityAccess.EisAccess Then
             AppsEmissionInventory.Visible = False
             Return
         End If
 
-        EisLink.NavigateUrl = "~/EIS/?airs=" & currentAirs.ShortString
+        EisLink.NavigateUrl = "~/EIS/?airs=" & CurrentAirs.ShortString
 
         ' This procedure obtains variable values from the EIS_Admin table and saves values in cookies
         ' Steps: 1 - read stored database values for EISStatusCode, EISStatusCode date, EISAccessCode, OptOut,
@@ -97,8 +97,8 @@ Partial Class FacilityHome
         '            Based on values of above, EI status message is created and displayed on Facility Home page
         '        4 - If facility not enrolled - message indicating that the EI is not applicable is displayed
 
-        Dim EIYear As Integer = Now.Year - 1
-        Dim eiStatus As EisStatus = GetEiStatus(currentAirs)
+        Dim eiYear As Integer = Now.Year - 1
+        Dim eiStatus As EisStatus = GetEiStatus(CurrentAirs)
 
         If eiStatus.AccessCode >= 3 Then
             AppsEmissionInventory.Visible = False
@@ -107,7 +107,7 @@ Partial Class FacilityHome
 
         ' enrollment status: 0 = not enrolled; 1 = enrolled for EI year
         If Not eiStatus.Enrolled Then
-            litEmissionsInventory.Text = "Not enrolled in " & EIYear & " EI."
+            litEmissionsInventory.Text = "Not enrolled in " & eiYear & " EI."
             EisLink.Enabled = False
             Return
         End If
@@ -123,23 +123,23 @@ Partial Class FacilityHome
 
         Select Case eiStatus.StatusCode
             Case 0
-                litEmissionsInventory.Text = EIYear & " EI not applicable."
+                litEmissionsInventory.Text = eiYear & " EI not applicable."
             Case Else
-                litEmissionsInventory.Text = "Enrolled in " & EIYear & " EI.<br /><em>Due: " &
+                litEmissionsInventory.Text = "Enrolled in " & eiYear & " EI.<br /><em>Due: " &
                   GetEIDeadline(eiStatus.MaxYear).ToLongDate() & "</em>"
         End Select
     End Sub
 
-    Protected Sub GetFeesStatus()
-        If Not facilityAccess.FeeAccess Then
+    Private Sub GetFeesStatus()
+        If Not FacilityAccess.FeeAccess Then
             AppsEmissionFees.Visible = False
             AppsFeesSummary.Visible = False
             Return
         End If
 
-        PFLink.NavigateUrl = "~/Fees/?airs=" & currentAirs.ShortString
+        PFLink.NavigateUrl = "~/Fees/?airs=" & CurrentAirs.ShortString
 
-        Dim dr As DataRow = GetFeeStatus(currentAirs)
+        Dim dr As DataRow = GetFeeStatus(CurrentAirs)
 
         If dr Is Nothing Then
             litEmissionsFees.Text = "Not subject to fees."
@@ -163,28 +163,17 @@ Partial Class FacilityHome
         End If
     End Sub
 
-    Protected Sub GetEmissionStatementStatus()
-        If Not facilityAccess.ESAccess Then
+    ' FUTURE: In 2025, all ES-related code can be deleted, including permissions.
+    Private Sub GetEmissionStatementStatus()
+        If Now.Year >=2025 OrElse Not FacilityAccess.ESAccess Then
             AppsEmissionsStatement.Visible = False
-            Return
         End If
-
-        Dim inESCounty As Boolean = CheckFacilityEmissionStatement(currentAirs)
-        Dim esStatus As String = StatusES(currentAirs.DbFormattedString & CStr(Now.Year - 1))
-        MyBase.Session.Add("esState", esStatus)
-
-        If esStatus = "N/A" OrElse Not inESCounty Then
-            AppsEmissionsStatement.Visible = False
-            Return
-        End If
-
-        litEmissionsStatement.Text = esStatus & "<br /><em>Due: June 15, " & Now.Year & "</em>"
     End Sub
 
     Private Sub GetTestNotificationStatus()
-        TNLink.NavigateUrl = "~/TN/?airs=" & currentAirs.ShortString
+        TNLink.NavigateUrl = "~/TN/?airs=" & CurrentAirs.ShortString
 
-        Dim dr As DataRow = GetPendingTestNotifications(currentAirs)
+        Dim dr As DataRow = GetPendingTestNotifications(CurrentAirs)
 
         If dr Is Nothing OrElse CInt(dr("total")) = 0 Then
             AppsTestNotifications.Visible = False
@@ -204,9 +193,9 @@ Partial Class FacilityHome
     End Sub
 
     Private Sub GetPermitAppStatus()
-        PALink.NavigateUrl = "~/Permits/?airs=" & currentAirs.ShortString
+        PALink.NavigateUrl = "~/Permits/?airs=" & CurrentAirs.ShortString
 
-        Dim dr As DataRow = GetPermitApplicationCounts(currentAirs)
+        Dim dr As DataRow = GetPermitApplicationCounts(CurrentAirs)
 
         If dr Is Nothing Then
             Return

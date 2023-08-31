@@ -1,9 +1,9 @@
 ﻿Imports GECO.GecoModels
 
-Partial Class Home_FacilityRequest
+Partial Class HomeFacilityRequest
     Inherits Page
 
-    Private Property currentUser As GecoUser
+    Private Property CurrentUser As GecoUser
     Private Property LookingUp As Boolean = False
 
     Private Enum LookupWhat
@@ -11,18 +11,18 @@ Partial Class Home_FacilityRequest
         Facility
     End Enum
 
-    Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
+    Private Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
         MainLoginCheck()
 
-        currentUser = GetCurrentUser()
+        CurrentUser = GetCurrentUser()
 
-        If Not IsPostBack AndAlso currentUser.ProfileUpdateRequired Then
+        If Not IsPostBack AndAlso CurrentUser.ProfileUpdateRequired Then
             pUpdateRequired.Visible = True
             pnlRequestAccess.Visible = False
         End If
     End Sub
 
-    Protected Sub btnSend_Click(sender As Object, e As EventArgs) Handles btnSend.Click
+    Private Sub btnSend_Click(sender As Object, e As EventArgs) Handles btnSend.Click
         lblSuccess.Visible = False
         lblError.Visible = False
 
@@ -32,7 +32,7 @@ Partial Class Home_FacilityRequest
             Return
         End If
 
-        Dim ccList As New List(Of String) From {currentUser.Email}
+        Dim ccList As New List(Of String) From {CurrentUser.Email}
         Dim recipientList As New List(Of String)
 
         If Not chkAssistanceNeeded.Checked Then
@@ -188,7 +188,7 @@ Partial Class Home_FacilityRequest
                 "<p>- Sign into your GECO Account at: https://geco.gaepd.org <br />" &
                 "- On the Home page, select the requested facility.<br />" &
                 "- On the Facility Home page, select User Access.<br />" &
-                "- Enter the requesting user's email address: <b>" & Server.HtmlEncode(currentUser.Email) & "</b><br />" &
+                "- Enter the requesting user's email address: <b>" & Server.HtmlEncode(CurrentUser.Email) & "</b><br />" &
                 "- Select ""Add New User"".</p>" &
                 "<p>The email address should now appear in the list of current users. " &
                 "To adjust which GECO applications the user has access to:</p>" &
@@ -212,8 +212,8 @@ Partial Class Home_FacilityRequest
         message2.AppendLine(
             "<p><b>Facility:</b> " & Server.HtmlEncode(txtFacility.Text) & "<br />" &
             "<b>AIRS Number:</b> " & Server.HtmlEncode(New ApbFacilityId(txtAirsNo.Text).FormattedString) & "</p>")
-        message2.AppendLine("<p>GECO user <b>" & Server.HtmlEncode(currentUser.FullName) & "</b> " &
-                            "&lt;" & Server.HtmlEncode(currentUser.Email) & "&gt; is requesting the following:")
+        message2.AppendLine("<p>GECO user <b>" & Server.HtmlEncode(CurrentUser.FullName) & "</b> " &
+                            "&lt;" & Server.HtmlEncode(CurrentUser.Email) & "&gt; is requesting the following:")
 
         For Each item As ListItem In lstbAccess.Items
             If item.Selected Then message2.AppendLine("<br />- " & item.Text)
@@ -238,19 +238,19 @@ Partial Class Home_FacilityRequest
         End If
     End Sub
 
-    Protected Sub txtAirsNo_TextChanged(sender As Object, e As EventArgs) Handles txtAirsNo.TextChanged
+    Private Sub txtAirsNo_TextChanged(sender As Object, e As EventArgs) Handles txtAirsNo.TextChanged
         If Not LookingUp Then
             LookUpFacility(LookupWhat.Airs)
         End If
     End Sub
 
-    Protected Sub txtFacility_TextChanged(sender As Object, e As EventArgs) Handles txtFacility.TextChanged
+    Private Sub txtFacility_TextChanged(sender As Object, e As EventArgs) Handles txtFacility.TextChanged
         If Not LookingUp Then
             LookUpFacility(LookupWhat.Facility)
         End If
     End Sub
 
-    Protected Sub lstbAccess_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lstbAccess.SelectedIndexChanged
+    Private Sub lstbAccess_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lstbAccess.SelectedIndexChanged
         If pnlNextSteps.Visible Then ComposeEmailMessagePart2()
     End Sub
 
