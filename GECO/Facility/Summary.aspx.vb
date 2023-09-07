@@ -98,13 +98,13 @@ Partial Class FacilitySummary
                 Const size = "400x300"
                 Const zoom = 14
 
-                If latitude.HasValue AndAlso longitude.HasValue Then
+                If latitude Is Nothing OrElse longitude Is Nothing Then
+                    imgGoogleStaticMap.ImageUrl = GetStaticMapUrl(street, city, size, zoom, GoogleMapType.roadmap)
+                    lnkGoogleMap.NavigateUrl = GetMapLinkUrl(street, city)
+                Else
                     Dim coords As New Coordinate(latitude.Value, longitude.Value)
                     imgGoogleStaticMap.ImageUrl = GetStaticMapUrl(coords, size, zoom, GoogleMapType.roadmap)
                     lnkGoogleMap.NavigateUrl = GetMapLinkUrl(coords)
-                Else
-                    imgGoogleStaticMap.ImageUrl = GetStaticMapUrl(street, city, size, zoom, GoogleMapType.roadmap)
-                    lnkGoogleMap.NavigateUrl = GetMapLinkUrl(street, city)
                 End If
             End If
 

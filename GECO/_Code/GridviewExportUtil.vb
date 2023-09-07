@@ -35,7 +35,7 @@ Public Module GridViewExportUtil
 
             httpResponse.End()
         Finally
-            If wb IsNot Nothing Then wb.Dispose()
+            wb.Dispose()
         End Try
 
     End Sub

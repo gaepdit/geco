@@ -119,12 +119,13 @@ Public Class EIS_Default
         lblLatitude.Text = latitude.ToString
         lblLongitude.Text = longitude.ToString
 
-        If latitude.HasValue AndAlso longitude.HasValue Then
-            imgGoogleStaticMap.ImageUrl = GetStaticMapUrl(New Coordinate(latitude.Value, longitude.Value))
-            lnkGoogleMap.NavigateUrl = GetMapLinkUrl(New Coordinate(latitude.Value, longitude.Value))
-        Else
+        If latitude Is Nothing OrElse longitude Is Nothing Then
             imgGoogleStaticMap.ImageUrl = GetStaticMapUrl(locationAddress.Street, locationAddress.City)
             lnkGoogleMap.NavigateUrl = GetMapLinkUrl(locationAddress.Street, locationAddress.City)
+        Else
+            Dim coords As New Coordinate(latitude.Value, longitude.Value)
+            imgGoogleStaticMap.ImageUrl = GetStaticMapUrl(coords)
+            lnkGoogleMap.NavigateUrl = GetMapLinkUrl(coords)
         End If
     End Sub
 

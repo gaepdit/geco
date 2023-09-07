@@ -37,7 +37,7 @@ Public Module UserAccess
                    WHERE numUserID = @userID 
                    and strAirsNumber = @airs "
 
-        Dim params As SqlParameter() = { _
+        Dim params As SqlParameter() = {
                                            New SqlParameter("@admin", adminAccess),
                                            New SqlParameter("@fee", feeAccess),
                                            New SqlParameter("@ei", eiAccess),
@@ -56,7 +56,7 @@ Public Module UserAccess
                    WHERE numUserID = @numUserID 
                    and strAirsNumber = @strAirsNumber "
 
-        Dim params As SqlParameter() = { _
+        Dim params As SqlParameter() = {
                                            New SqlParameter("@numUserID", userId),
                                            New SqlParameter("@strAirsNumber", airs.DbFormattedString)
                                        }
@@ -86,7 +86,7 @@ Public Module UserAccess
                      FROM OLAPUSERLOGIN 
                      WHERE STRUSEREMAIL = @userEmail "
 
-        Dim param As SqlParameter() = { _
+        Dim param As SqlParameter() = {
                                           New SqlParameter("@userEmail", email),
                                           New SqlParameter("@airs", airs.DbFormattedString)
                                       }
@@ -109,7 +109,7 @@ Public Module UserAccess
                  WHERE STRUSEREMAIL = @email 
                        and STRAIRSNUMBER = @airs "
 
-        Dim params As SqlParameter() = { _
+        Dim params As SqlParameter() = {
                                            New SqlParameter("@email", email),
                                            New SqlParameter("@airs", airs.DbFormattedString)
                                        }
@@ -120,26 +120,21 @@ Public Module UserAccess
     Public Function UserAccessReviewRequested(airs As ApbFacilityId) As Boolean
         NotNull(airs, NameOf(airs))
 
-        Const query As String =
-                  "select UserAccessLastReviewed
+        Const query As String = "select UserAccessLastReviewed
             from dbo.Geco_FacilityInformation
             where FacilityId = @facilityId"
 
         Dim param As New SqlParameter("@facilityId", airs.ShortString)
 
-        Dim dateLastReviewed As DateTimeOffset? = DB.GetSingleValue(Of DateTimeOffset)(query, param)
+        Dim dateLastReviewed As DateTimeOffset? = DB.GetSingleValue(Of DateTimeOffset?)(query, param)
 
-        If Not dateLastReviewed.HasValue Then
-            Return True
-        End If
-
-        Return (DateTimeOffset.Now.Date - dateLastReviewed.Value.Date).TotalDays > 365
+        Return dateLastReviewed Is Nothing OrElse (DateTimeOffset.Now.Date - dateLastReviewed.Value.Date).TotalDays > 365
     End Function
 
     Public Sub UpdateUserAccessAsReviewed(airs As ApbFacilityId, userId As Integer)
         NotNull(airs, NameOf(airs))
 
-        Dim params As SqlParameter() = { _
+        Dim params As SqlParameter() = {
                                            New SqlParameter("@facilityId", airs.ShortString),
                                            New SqlParameter("@userId", userId)
                                        }
