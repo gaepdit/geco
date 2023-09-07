@@ -37,7 +37,7 @@ Partial Class FacilityHome
         Master.CurrentAirs = CurrentAirs
         Master.IsFacilitySet = True
 
-        MainLoginCheck(Page.ResolveUrl("~/Facility/?airs=" & CurrentAirs.ShortString))
+        MainLoginCheck(Page.ResolveUrl($"~/Facility/?airs={CurrentAirs.ShortString}"))
 
         ' Current user
         CurrentUser = GetCurrentUser()
@@ -51,7 +51,7 @@ Partial Class FacilityHome
         If Not IsPostBack Then
             CheckForMandatoryUpdates()
 
-            Title = "GECO Facility Summary - " & GetFacilityNameAndCity(CurrentAirs)
+            Title = $"GECO Facility Summary - {GetFacilityNameAndCity(CurrentAirs)}"
             GetApplicationStatus()
         End If
     End Sub
@@ -87,7 +87,7 @@ Partial Class FacilityHome
             Return
         End If
 
-        EisLink.NavigateUrl = "~/EIS/?airs=" & CurrentAirs.ShortString
+        EisLink.NavigateUrl = $"~/EIS/?airs={CurrentAirs.ShortString}"
 
         ' This procedure obtains variable values from the EIS_Admin table and saves values in cookies
         ' Steps: 1 - read stored database values for EISStatusCode, EISStatusCode date, EISAccessCode, OptOut,
@@ -107,7 +107,7 @@ Partial Class FacilityHome
 
         ' enrollment status: 0 = not enrolled; 1 = enrolled for EI year
         If Not eiStatus.Enrolled Then
-            litEmissionsInventory.Text = "Not enrolled in " & eiYear & " EI."
+            litEmissionsInventory.Text = $"Not enrolled in {eiYear} EI."
             EisLink.Enabled = False
             Return
         End If
@@ -123,10 +123,9 @@ Partial Class FacilityHome
 
         Select Case eiStatus.StatusCode
             Case 0
-                litEmissionsInventory.Text = eiYear & " EI not applicable."
+                litEmissionsInventory.Text = $"{eiYear} EI not applicable."
             Case Else
-                litEmissionsInventory.Text = "Enrolled in " & eiYear & " EI.<br /><em>Due: " &
-                  GetEIDeadline(eiStatus.MaxYear).ToLongDate() & "</em>"
+                litEmissionsInventory.Text = $"<em>Due: {GetEIDeadline(eiStatus.MaxYear).ToLongDate()}</em><br /><br />Enrolled in {eiYear} EI."
         End Select
     End Sub
 
@@ -137,7 +136,7 @@ Partial Class FacilityHome
             Return
         End If
 
-        PFLink.NavigateUrl = "~/Fees/?airs=" & CurrentAirs.ShortString
+        PFLink.NavigateUrl = $"~/Fees/?airs={CurrentAirs.ShortString}"
 
         Dim dr As DataRow = GetFeeStatus(CurrentAirs)
 
@@ -147,31 +146,31 @@ Partial Class FacilityHome
         End If
 
         Dim submittal As Boolean = CBool(dr.Item("intsubmittal"))
-        Dim year As Integer = CInt(dr.Item("numFeeYear"))
+        Dim year As String = dr.Item("numFeeYear").ToString()
         Dim dateSubmitted As Date? = GetNullableDateTime(dr.Item("datsubmittal"))
         Dim dateDue As Date? = GetNullableDateTime(dr.Item("datFeeDueDate"))
 
-        If submittal AndAlso dateSubmitted.HasValue Then
-            litEmissionsFees.Text = GetNullableString(dr.Item("strGECODesc")) & " " & year.ToString &
-                    " on " & dateSubmitted.Value.ToLongDate() & "."
-        Else
-            litEmissionsFees.Text = GetNullableString(dr.Item("strGECODesc")) & " " & year.ToString & "."
+        If dateDue.HasValue Then
+            litEmissionsFees.Text = $"<em>Due: <span class='no-wrap'>{dateDue.Value.ToLongDate}</span></em><br /><br />"
         End If
 
-        If dateDue.HasValue Then
-            litEmissionsFees.Text &= "<br /><em>Due: " & dateDue.Value.ToLongDate & "</em>"
+        litEmissionsFees.Text &= $"{GetNullableString(dr.Item("strGECODesc"))} {year}."
+
+        If submittal AndAlso dateSubmitted.HasValue Then
+            litEmissionsFees.Text &= $"<br /><br /><span class='no-wrap'>Status date: {dateSubmitted.Value.ToLongDate()}</span>."
         End If
+
     End Sub
 
     ' FUTURE: In 2025, all ES-related code can be deleted, including permissions.
     Private Sub GetEmissionStatementStatus()
-        If Now.Year >=2025 OrElse Not FacilityAccess.ESAccess Then
+        If Now.Year >= 2025 OrElse Not FacilityAccess.ESAccess Then
             AppsEmissionsStatement.Visible = False
         End If
     End Sub
 
     Private Sub GetTestNotificationStatus()
-        TNLink.NavigateUrl = "~/TN/?airs=" & CurrentAirs.ShortString
+        TNLink.NavigateUrl = $"~/TN/?airs={CurrentAirs.ShortString}"
 
         Dim dr As DataRow = GetPendingTestNotifications(CurrentAirs)
 
@@ -188,12 +187,12 @@ Partial Class FacilityHome
             Case 1
                 litTestNotifications.Text = "One pending test notification."
             Case Else
-                litTestNotifications.Text = pendingTests & " pending test notifications."
+                litTestNotifications.Text = $"{pendingTests} pending test notifications."
         End Select
     End Sub
 
     Private Sub GetPermitAppStatus()
-        PALink.NavigateUrl = "~/Permits/?airs=" & CurrentAirs.ShortString
+        PALink.NavigateUrl = $"~/Permits/?airs={CurrentAirs.ShortString}"
 
         Dim dr As DataRow = GetPermitApplicationCounts(CurrentAirs)
 
@@ -202,7 +201,15 @@ Partial Class FacilityHome
         End If
 
         Dim openCount As Integer = CInt(dr.Item("OpenApplications"))
-        litPermits.Text = openCount & " open permit application" & If(openCount = 1, "", "s") & "."
+
+        Select Case openCount
+            Case 0
+                litPermits.Text = "No open permit applications."
+            Case 1
+                litPermits.Text = "One open permit application."
+            Case Else
+                litPermits.Text = $"{openCount} open permit applications."
+        End Select
     End Sub
 
 End Class

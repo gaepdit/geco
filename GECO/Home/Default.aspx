@@ -83,9 +83,9 @@
     <p>
         Participation in the emissions inventory is based on a facility's Potential to Emit (PTE) equaling or exceeding the defined thresholds.
         Look out for correspondence in the mail advising if EPD believes your facility needs to participate. 
-        Visit the EPD <a href="https://epd.georgia.gov/submit-emissions-inventory" rel="noopener" target="_blank">Emissions Inventory Information</a> page 
-        and the EPA <a href="https://www.epa.gov/air-emissions-inventories/air-emissions-reporting-requirements-aerr"
-            rel="noopener" target="_blank">Air Emissions Reporting Requirements</a> page for more information.           
+        Visit the <a href="https://epd.georgia.gov/submit-emissions-inventory" rel="noopener" target="_blank">EPD Emissions Inventory information</a>
+        page and the <a href="https://www.epa.gov/air-emissions-inventories/air-emissions-reporting-requirements-aerr"
+            rel="noopener" target="_blank">EPA Air Emissions Reporting Requirements</a> page for more information.
     </p>
     <h3>
         <asp:Label ID="lblEIYear2" runat="server" Text=""></asp:Label>
@@ -124,8 +124,8 @@
     </p>
     <p>
         The emission fee process begins July 1 each year, and the deadline for fee submittal is on or about 
-        September 1. Visit the <a href="https://epd.georgia.gov/air-permit-fees" rel="noopener" target="_blank">Air Permit Fees</a>
-        page for more information.       
+        September 1. Visit the <a href="https://epd.georgia.gov/air-permit-fees" rel="noopener" target="_blank">EPD Air Permit Fees</a>
+        page for more information.
     </p>
     <h3>
         <asp:Label ID="lblFeeYear1" runat="server" Text=""></asp:Label>

@@ -954,6 +954,10 @@ ul.menu-list-horizontal {
     white-space: pre-line;
 }
 
+.no-wrap {
+    white-space: nowrap;
+}
+
 /* Blockquote */
 
 blockquote {
@@ -985,57 +989,57 @@ button,
 }
 
 .centered {
-    text-align:center;
+    text-align: center;
 }
 
-    .button:hover,
-    button:hover,
-    [type="button"]:hover,
-    [type="reset"]:hover,
-    [type="submit"]:hover,
-    .button:focus,
-    button:focus,
-    [type="button"]:focus,
-    [type="reset"]:focus,
-    [type="submit"]:focus {
-        background: #06e;
-        color: #fff;
-        box-shadow: 0 1px 3px -1px #2e3646;
-    }
+.button:hover,
+button:hover,
+[type="button"]:hover,
+[type="reset"]:hover,
+[type="submit"]:hover,
+.button:focus,
+button:focus,
+[type="button"]:focus,
+[type="reset"]:focus,
+[type="submit"]:focus {
+    background: #06e;
+    color: #fff;
+    box-shadow: 0 1px 3px -1px #2e3646;
+}
 
-    .button:active,
-    button:active,
-    [type="button"]:active,
-    [type="reset"]:active,
-    [type="submit"]:active {
-        position: relative;
-        top: 1px;
-        background: #17f;
-        box-shadow: 0 1px 3px -2px #2e3646;
-    }
+.button:active,
+button:active,
+[type="button"]:active,
+[type="reset"]:active,
+[type="submit"]:active {
+    position: relative;
+    top: 1px;
+    background: #17f;
+    box-shadow: 0 1px 3px -2px #2e3646;
+}
 
-    .button.button-large,
-    button.button-large,
-    [type="button"].button-large,
-    [type="reset"].button-large,
-    [type="submit"].button-large {
-        padding: 8px 16px;
-    }
+.button.button-large,
+button.button-large,
+[type="button"].button-large,
+[type="reset"].button-large,
+[type="submit"].button-large {
+    padding: 8px 16px;
+}
 
-    .button-small .button,
-    .button-small button,
-    .button-small [type="button"],
-    .button-small [type="reset"],
-    .button-small [type="submit"],
-    .button.button-small,
-    button.button-small,
-    [type="button"].button-small,
-    [type="reset"].button-small,
-    [type="submit"].button-small {
-        margin: 2px;
-        padding: 2px 8px;
-        box-shadow: 0 1px 1px -1px #999;
-    }
+.button-small .button,
+.button-small button,
+.button-small [type="button"],
+.button-small [type="reset"],
+.button-small [type="submit"],
+.button.button-small,
+button.button-small,
+[type="button"].button-small,
+[type="reset"].button-small,
+[type="submit"].button-small {
+    margin: 2px;
+    padding: 2px 8px;
+    box-shadow: 0 1px 1px -1px #999;
+}
 
 /* Button intents */
 a.button-proceed,
