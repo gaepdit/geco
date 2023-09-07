@@ -18,7 +18,7 @@
     <asp:GridView ID="grdAnnualInvoices" runat="server" CssClass="table-simple" Visible="true" AutoGenerateColumns="False">
         <Columns>
             <asp:HyperLinkField DataTextField="Fee Year" HeaderText="Fee Year" ItemStyle-CssClass="table-cell-link"
-                DataNavigateUrlFields="FacilityID,Fee Year" DataNavigateUrlFormatString="~/Invoice/?Facility={0}&FeeYear={1}" />
+                DataNavigateUrlFields="FacilityID,Fee Year" DataNavigateUrlFormatString="~/Invoice/?Facility={0}&FeeYear={1}" Target="_blank" />
             <asp:BoundField DataField="Invoice Date" HeaderText="Date" DataFormatString="{0:dd-MMM-yyyy}" ItemStyle-CssClass="table-cell-alignright" />
             <asp:BoundField DataField="Invoice Amount" HeaderText="Amount" DataFormatString="{0:c}" ItemStyle-CssClass="table-cell-alignright" />
             <asp:BoundField DataField="Invoice ID" HeaderText="Invoice ID" />
@@ -34,7 +34,7 @@
     <asp:GridView ID="grdApplicationInvoices" runat="server" CssClass="table-simple" Visible="true" AutoGenerateColumns="False">
         <Columns>
             <asp:HyperLinkField DataTextField="Invoice ID" HeaderText="Invoice #" ItemStyle-CssClass="table-cell-alignright table-cell-link"
-                DataNavigateUrlFields="InvoiceGuid" DataNavigateUrlFormatString="~/Invoice/?id={0}" />
+                DataNavigateUrlFields="InvoiceGuid" DataNavigateUrlFormatString="~/Invoice/?id={0}" Target="_blank" />
             <asp:BoundField DataField="Invoice Date" HeaderText="Invoice Date" DataFormatString="{0:dd-MMM-yyyy}" ItemStyle-CssClass="table-cell-alignright" />
             <asp:BoundField DataField="Due Date" HeaderText="Due Date" DataFormatString="{0:dd-MMM-yyyy}" ItemStyle-CssClass="table-cell-alignright" />
             <asp:BoundField DataField="Amount" HeaderText="Amount" DataFormatString="{0:c}" ItemStyle-CssClass="table-cell-alignright" />

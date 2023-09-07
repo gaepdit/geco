@@ -28,7 +28,7 @@
                     <asp:DropDownList ID="ddlFeeYear" runat="server" CausesValidation="False" AutoPostBack="true"
                         ForeColor="DarkRed" Font-Bold="true" CssClass="input-small" />
                     <asp:HyperLink ID="linkInvoice" Text="PRINT INVOICE" Visible="false" runat="server"
-                        rel="noopener" Target="_blank" CssClass="linkHighlightButton no-visited" Font-Bold="true" />
+                        Target="_blank" CssClass="linkHighlightButton no-visited" Font-Bold="true" />
                     <asp:Label ID="lblMessage" runat="server" ForeColor="#C00000" Text="Please select a fee year." Visible="False"></asp:Label>
                 </p>
 

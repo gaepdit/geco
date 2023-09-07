@@ -37,7 +37,7 @@
                     AutoGenerateColumns="False" RowHeaderColumn="Invoice #" UseAccessibleHeader="true">
                     <Columns>
                         <asp:HyperLinkField DataTextField="Invoice #" HeaderText="Invoice #" ItemStyle-CssClass="table-cell-alignright"
-                            DataNavigateUrlFields="InvoiceGuid" DataNavigateUrlFormatString="~/Invoice/?id={0}" />
+                            DataNavigateUrlFields="InvoiceGuid" DataNavigateUrlFormatString="~/Invoice/?id={0}" Target="_blank" />
                         <asp:BoundField DataField="Invoice Date" HeaderText="Invoice Date" DataFormatString="{0:dd-MMM-yyyy}" ItemStyle-CssClass="table-cell-alignright" />
                         <asp:BoundField DataField="Due Date" HeaderText="Due Date" DataFormatString="{0:dd-MMM-yyyy}" ItemStyle-CssClass="table-cell-alignright" />
                         <asp:BoundField DataField="Amount" HeaderText="Total Amount" DataFormatString="{0:c}" ItemStyle-CssClass="table-cell-alignright" />
