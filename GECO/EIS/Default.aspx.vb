@@ -1,4 +1,4 @@
-﻿Imports EpdIt.DBUtilities
+﻿Imports GaEpd.DBUtilities
 Imports GECO.DAL.EIS
 Imports GECO.GecoModels
 Imports GECO.MapHelper

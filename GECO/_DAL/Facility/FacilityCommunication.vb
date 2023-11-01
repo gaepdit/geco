@@ -1,5 +1,5 @@
 ﻿Imports System.Data.SqlClient
-Imports EpdIt.DBUtilities
+Imports GaEpd.DBUtilities
 Imports GECO.GecoModels
 Imports GECO.GecoModels.Facility
 

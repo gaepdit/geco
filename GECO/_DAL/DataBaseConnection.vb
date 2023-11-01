@@ -4,7 +4,7 @@
     Private ReadOnly DBConnectionString As String = ConfigurationManager.ConnectionStrings("SqlConnectionString").ToString
 
     ' DB Helper
-    Friend DB As New EpdIt.DBHelper(DBConnectionString)
+    Friend DB As New GaEpd.DBHelper(DBConnectionString)
 
 End Module
 
