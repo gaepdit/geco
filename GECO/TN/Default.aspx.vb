@@ -1,6 +1,6 @@
 ﻿Imports System.Data.SqlClient
 Imports System.DateTime
-Imports EpdIt.DBUtilities
+Imports GaEpd.DBUtilities
 Imports GECO.GecoModels
 
 Partial Class TN_Default

@@ -1,4 +1,4 @@
-﻿Imports EpdIt.DBUtilities
+﻿Imports GaEpd.DBUtilities
 
 Public Module DecimalFunctions
 

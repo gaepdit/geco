@@ -1,5 +1,5 @@
 ﻿Imports GECO.GecoModels
-Imports EpdIt.DBUtilities
+Imports GaEpd.DBUtilities
 
 Partial Class EventRegistration_EventDetails
     Inherits Page
