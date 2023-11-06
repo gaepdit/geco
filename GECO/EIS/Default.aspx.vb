@@ -42,11 +42,6 @@ Public Class EIS_Default
         ShowEisLink()
         LoadFacilityDetails()
         LoadCurrentCaersUsers()
-
-        If Session("FacilityUpdated") IsNot Nothing Then
-            Session("FacilityUpdated") = Nothing
-            pFacUpdateMessage.Visible = True
-        End If
     End Sub
 
     Private Sub ShowEisLink()

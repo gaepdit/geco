@@ -14,60 +14,6 @@ Option Explicit On
 Partial Public Class EIS_Default
 
     '''<summary>
-    '''pFacUpdateMessage control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents pFacUpdateMessage As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-
-    '''<summary>
-    '''lnkOtherContactInfo control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lnkOtherContactInfo As Global.System.Web.UI.WebControls.HyperLink
-
-    '''<summary>
-    '''HyperLink1 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents HyperLink1 As Global.System.Web.UI.WebControls.HyperLink
-
-    '''<summary>
-    '''Label1 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents Label1 As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''CdxLink control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents CdxLink As Global.System.Web.UI.WebControls.HyperLink
-
-    '''<summary>
-    '''lblCdxAlt control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblCdxAlt As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
     '''lblDescription control.
     '''</summary>
     '''<remarks>
@@ -140,6 +86,15 @@ Partial Public Class EIS_Default
     Protected WithEvents imgGoogleStaticMap As Global.System.Web.UI.WebControls.Image
 
     '''<summary>
+    '''lnkOtherContactInfo control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lnkOtherContactInfo As Global.System.Web.UI.WebControls.HyperLink
+
+    '''<summary>
     '''pNoUsersNotice control.
     '''</summary>
     '''<remarks>
@@ -165,6 +120,24 @@ Partial Public Class EIS_Default
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnEditCaersUsers As Global.System.Web.UI.WebControls.HyperLink
+
+    '''<summary>
+    '''CdxLink control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents CdxLink As Global.System.Web.UI.WebControls.HyperLink
+
+    '''<summary>
+    '''lblCdxAlt control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblCdxAlt As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''Master property.

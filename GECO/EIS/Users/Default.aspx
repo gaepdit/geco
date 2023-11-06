@@ -1,11 +1,11 @@
-﻿<%@ Page MasterPageFile="~/EIS/EIS.master" Language="VB" AutoEventWireup="false"
+<%@ Page MasterPageFile="~/EIS/EIS.master" Language="VB" AutoEventWireup="false"
     Title="GECO EI CAERS Users"
     Inherits="GECO.EIS_Users_Default" CodeBehind="Default.aspx.vb" %>
 
 <%@ MasterType VirtualPath="~/EIS/EIS.master" %>
 <asp:Content ID="Content" ContentPlaceHolderID="Content" runat="Server">
     <p runat="server">
-        <asp:HyperLink ID="Back" runat="server" Text="← Back to EI Home" NavigateUrl="~/EIS/Default.aspx" CssClass="button button-large button-proceed" />
+        <asp:HyperLink ID="Back" runat="server" Text="← Back to Emissions Inventory" NavigateUrl="~/EIS/Default.aspx" CssClass="button button-large button-proceed" />
     </p>
 
     <h1>CAERS Users</h1>
