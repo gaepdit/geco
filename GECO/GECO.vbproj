@@ -461,9 +461,8 @@
     </Compile>
     <Compile Include="_Code\DateDisplayFormats.vb" />
     <Compile Include="_Code\Email\FacilityContactEmails.vb" />
-    <Compile Include="_DAL\EIS\CaerContacts.vb" />
-    <Compile Include="_DAL\EIS\Facility.vb" />
-    <Compile Include="_DAL\EIS\Process.vb" />
+    <Compile Include="_DAL\EIS\EisCaerContacts.vb" />
+    <Compile Include="_DAL\EIS\EisFacility.vb" />
     <Compile Include="_DAL\Facility\FacilityCommunication.vb" />
     <Compile Include="_DAL\Testing\Testing.vb" />
     <Compile Include="_Models\AnnualFees\AnnualFeeCalc.vb" />
@@ -475,12 +474,8 @@
     <Compile Include="_Code\HtmlTableFunctions.vb" />
     <Compile Include="_Models\App\RaygunInfo.vb" />
     <Compile Include="_DAL\DataBaseConnection.vb" />
-    <Compile Include="_DAL\EIS\eis_Access.vb" />
-    <Compile Include="_DAL\EIS\eis_datetime.vb" />
-    <Compile Include="_DAL\EIS\eis_FacilityData.vb" />
-    <Compile Include="_DAL\EIS\eis_getcodedescriptions.vb" />
-    <Compile Include="_DAL\EIS\eis_CountyBoundary.vb" />
-    <Compile Include="_DAL\EIS\eis_reportingperiod.vb" />
+    <Compile Include="_DAL\EIS\EisAccess.vb" />
+    <Compile Include="_DAL\EIS\EisDates.vb" />
     <Compile Include="_Code\Email\EmailSender.vb" />
     <Compile Include="_Code\EncryptDecrypt.vb" />
     <Compile Include="_Code\EnumHelpers.vb" />
@@ -523,7 +518,7 @@
     <Compile Include="_Models\Permit\ApplicationFeeInfo.vb" />
     <Compile Include="_Models\Permit\PermitApplication.vb" />
     <Compile Include="_Models\App\UserSession.vb" />
-    <Compile Include="_DAL\EIS\eis_NAICS.vb" />
+    <Compile Include="_DAL\EIS\EisNaics.vb" />
     <Compile Include="_Code\RandomStrings.vb" />
     <Compile Include="_Code\SessionHelper.vb" />
     <Compile Include="_Code\StringFunctions.vb" />

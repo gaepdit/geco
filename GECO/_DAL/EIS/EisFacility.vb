@@ -1,9 +1,8 @@
 ﻿Imports System.Data.SqlClient
 Imports GECO.GecoModels
 
-
 Namespace DAL.EIS
-    Module Facility
+    Module EisFacility
 
         Public Function GetEisFacilityDetails(airs As ApbFacilityId) As DataRow
             NotNull(airs, NameOf(airs))

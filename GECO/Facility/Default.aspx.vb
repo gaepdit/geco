@@ -1,6 +1,7 @@
 ﻿Imports System.DateTime
 Imports GaEpd.DBUtilities
 Imports GECO.DAL
+Imports GECO.DAL.EIS
 Imports GECO.DAL.Facility
 Imports GECO.GecoModels
 Imports GECO.GecoModels.Facility
