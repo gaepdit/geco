@@ -125,7 +125,6 @@
     <Content Include="EIS\History\Processes.aspx" />
     <Content Include="EIS\History\EmissionUnits.aspx" />
     <Content Include="EIS\History\ReleasePoints.aspx" />
-    <Content Include="EIS\Users\Default.aspx" />
     <Content Include="Facility\Contacts.aspx" />
     <Content Include="Facility\EditContacts.aspx" />
     <Content Include="Facility\SetCommunicationPreferences.aspx" />
@@ -270,13 +269,6 @@
     </Compile>
     <Compile Include="EIS\History\ReleasePoints.aspx.vb">
       <DependentUpon>ReleasePoints.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="EIS\Users\Default.aspx.designer.vb">
-      <DependentUpon>Default.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="EIS\Users\Default.aspx.vb">
-      <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Facility\Contacts.aspx.designer.vb">
