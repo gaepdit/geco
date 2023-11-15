@@ -14,6 +14,15 @@ Option Explicit On
 Partial Public Class EIS_Default
 
     '''<summary>
+    '''lblEnrollmentStatus control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblEnrollmentStatus As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
     '''lblDescription control.
     '''</summary>
     '''<remarks>
@@ -120,6 +129,15 @@ Partial Public Class EIS_Default
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnEditCaersUsers As Global.System.Web.UI.WebControls.HyperLink
+
+    '''<summary>
+    '''submitEiSection control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents submitEiSection As Global.System.Web.UI.HtmlControls.HtmlGenericControl
 
     '''<summary>
     '''CdxLink control.

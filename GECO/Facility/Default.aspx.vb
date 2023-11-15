@@ -88,30 +88,18 @@ Partial Class FacilityHome
             Return
         End If
 
-        EisLink.NavigateUrl = $"~/EIS/?airs={CurrentAirs.ShortString}"
-
-        ' This procedure obtains variable values from the EIS_Admin table and saves values in cookies
-        ' Steps: 1 - read stored database values for EISStatusCode, EISStatusCode date, EISAccessCode, OptOut,
-        '            Enrollment status, date finalized, last conf number
-        '        2 - Saves EISAccessCode for use on entering the EIS home page
-        '        3 - If facility is enrolled for current EI year, EISStatus, OptOut, date finalized and conf number cookies are created
-        '            Based on values of above, EI status message is created and displayed on Facility Home page
-        '        4 - If facility not enrolled - message indicating that the EI is not applicable is displayed
-
-        Dim eiYear As Integer = GetCurrentEiYear()
         Dim eiStatus As EisStatus = GetEiStatus(CurrentAirs)
 
-        If eiStatus.AccessCode >= 3 Then
-            AppsEmissionInventory.Visible = False
-            Return
-        End If
+        ' | EISACCESSCODE | STRDESC                                                 |
+        ' |---------------|---------------------------------------------------------|
+        ' | 0             | FI access allowed with edit; EI access allowed, no edit |
+        ' | 1             | FI and EI access allowed, both with edit                |
+        ' | 2             | FI and EI access allowed, both no edit                  |
+        ' | 3             | Facility not in EIS                                     |
+        ' | 4             | Facility has no access to FI or EI                      |
 
-        ' enrollment status: 0 = not enrolled; 1 = enrolled for EI year
-        If Not eiStatus.Enrolled Then
-            litEmissionsInventory.Text = $"Not enrolled in {eiYear} EI."
-            EisLink.Enabled = False
-            Return
-        End If
+        ' EISAccess = 3 indicates that the facility is not in the EIS_Admin table.
+        ' "3" is not stored in the admin table; it is set in the GetEisStatus method
 
         ' | EISSTATUSCODE | STRDESC                  |
         ' |---------------|--------------------------|
@@ -122,11 +110,27 @@ Partial Class FacilityHome
         ' | 4             | QA Process               |
         ' | 5             | Complete                 |
 
+        ' enrollment status: 0 = not enrolled; 1 = enrolled for EI year
+
+        If eiStatus.AccessCode >= 3 Then
+            AppsEmissionInventory.Visible = False
+            Return
+        End If
+
+        EisLink.NavigateUrl = $"~/EIS/?airs={CurrentAirs.ShortString}"
+
+        Dim eiYear As Integer = GetCurrentEiYear()
+
+        If Not eiStatus.Enrolled Then
+            litEmissionsInventory.Text = $"Not enrolled in the {eiYear} EI."
+            Return
+        End If
+
         Select Case eiStatus.StatusCode
             Case 0
-                litEmissionsInventory.Text = $"{eiYear} EI not applicable."
+                litEmissionsInventory.Text = $"The {eiYear} EI is not applicable."
             Case Else
-                litEmissionsInventory.Text = $"<em>Due: {GetEIDeadline(eiStatus.MaxYear).ToLongDate()}</em><br /><br />Enrolled in {eiYear} EI."
+                litEmissionsInventory.Text = $"Enrolled in the {eiYear}&nbsp;EI.<br /><br /><em>Due: {GetEIDeadline(eiStatus.MaxYear).ToLongDate()}</em>"
         End Select
     End Sub
 

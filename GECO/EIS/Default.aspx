@@ -11,6 +11,10 @@
             rel="noopener" target="_blank">https://epd.georgia.gov/forms-permits/air-protection-branch-forms-permits/submit-emissions-inventory</a>.
     </p>
 
+    <p>
+        <asp:Label ID="lblEnrollmentStatus" runat="server" Visible="false" CssClass="message-highlight" Font-Bold="True" />
+    </p>
+
     <h2 id="facility-info">Facility Information</h2>
 
     <p>
@@ -114,31 +118,32 @@
         </asp:HyperLink>
     </p>
 
-    <h2 id="submit-ei">Submit EI</h2>
+    <div id="submitEiSection" runat="server">
+        <h2 id="submit-ei">Submit EI</h2>
 
-    <p>
-        If your facility qualifies to opt out, please download the 
-        <a href="2022-opt-out-form_annual.xlsx" download="2022-opt-out-form_annual.xlsx">Opt-out form</a>
-        to start your EI reporting. Upload the completed form to CAERS.
-    </p>
-    <p>
-        If new to CDX/CAERS, the preparer(s) and certifier you have specified should follow this procedure:
-    </p>
-    <ol>
-        <li>
-            <p>Register in CDX using the link to EPA's CDX above and set up CAERS in CDX.</p>
-        </li>
-        <li>
-            <p>Await email approval from CDX that their CAERS account is linked to the correct facilities.</p>
-        </li>
-        <li>
-            <p>Once approved, select facility, then click on the “Create New Report” button for the Report.</p>
-        </li>
-    </ol>
+        <p>
+            If your facility qualifies to opt out, please download the 
+            <a href="2022-opt-out-form_annual.xlsx" download="2022-opt-out-form_annual.xlsx">Opt-out form</a>
+            to start your EI reporting. Upload the completed form to CAERS.
+        </p>
+        <p>
+            If new to CDX/CAERS, the preparer(s) and certifier you have specified should follow this procedure:
+        </p>
+        <ol>
+            <li>
+                <p>Register in CDX using the link to EPA's CDX above and set up CAERS in CDX.</p>
+            </li>
+            <li>
+                <p>Await email approval from CDX that their CAERS account is linked to the correct facilities.</p>
+            </li>
+            <li>
+                <p>Once approved, select facility, then click on the “Create New Report” button for the Report.</p>
+            </li>
+        </ol>
 
-    <p class="centered">
-        <asp:HyperLink ID="CdxLink" runat="server" Text="Link to EPA CDX" Target="_blank" CssClass="button button-large button-proceed" Visible="false" />
-        <asp:Label ID="lblCdxAlt" runat="server" Visible="false" CssClass="label-highlight" Font-Bold="True" />
-    </p>
-
+        <p class="centered">
+            <asp:HyperLink ID="CdxLink" runat="server" Visible="false" Text="Link to EPA CDX" Target="_blank" CssClass="button button-large button-proceed" />
+            <asp:Label ID="lblCdxAlt" runat="server" Visible="false" CssClass="message-highlight" Font-Bold="True" Text="EI not applicable." />
+        </p>
+    </div>
 </asp:Content>

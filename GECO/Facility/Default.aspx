@@ -70,7 +70,7 @@
                 <asp:HyperLink ID="EisLink" runat="server" Text="Emissions Inventory" NavigateUrl="~/EIS/" />
             </asp:TableHeaderCell>
             <asp:TableCell runat="server">
-                Access the Emissions Inventory reporting process.
+                Access the Emissions Inventory reporting process and historical data.
             </asp:TableCell>
             <asp:TableCell runat="server">
                 <asp:Literal ID="litEmissionsInventory" runat="server" />
