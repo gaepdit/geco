@@ -98,7 +98,7 @@ Partial Class FacilityHome
         '            Based on values of above, EI status message is created and displayed on Facility Home page
         '        4 - If facility not enrolled - message indicating that the EI is not applicable is displayed
 
-        Dim eiYear As Integer = Now.Year - 1
+        Dim eiYear As Integer = GetCurrentEiYear()
         Dim eiStatus As EisStatus = GetEiStatus(CurrentAirs)
 
         If eiStatus.AccessCode >= 3 Then

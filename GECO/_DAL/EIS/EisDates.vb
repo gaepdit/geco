@@ -9,5 +9,9 @@ Namespace DAL.EIS
             Return DB.GetSingleValue(Of Date)(query, p)
         End Function
 
+        Public Function GetCurrentEiYear() As Integer
+            Return DB.GetInteger("select max(INVENTORYYEAR) FROM dbo.EIS_ADMIN")
+        End Function
+
     End Module
 End Namespace

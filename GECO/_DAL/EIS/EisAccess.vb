@@ -49,8 +49,9 @@ Namespace DAL.EIS
             Dim eiStatus As New EisStatus With {
                 .MaxYear = CInt(dr("INVENTORYYEAR"))
             }
+            Dim eiYear As Integer = GetCurrentEiYear()
 
-            If eiStatus.MaxYear <> Date.Now.Year - 1 Then
+            If eiStatus.MaxYear <> eiYear Then
                 eiStatus.AccessCode = 0
                 eiStatus.StatusCode = 0
                 eiStatus.Enrolled = False
