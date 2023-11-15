@@ -261,18 +261,20 @@ Public Class EIS_Default
             hidEditId.Value = userId.ToString
             pAddNew.Visible = False
 
-            txtStreetEdit.Text = caerUser.Contact.Address.Street
-            txtStreet2Edit.Text = caerUser.Contact.Address.Street2
-            txtCityEdit.Text = caerUser.Contact.Address.City
-            ddlStateEdit.SelectedValue = caerUser.Contact.Address.State
-            txtPostalCodeEdit.Text = caerUser.Contact.Address.PostalCode
-            txtCompanyEdit.Text = caerUser.Contact.Company
-            txtEmailEdit.Text = caerUser.Contact.Email
-            txtPrefixEdit.Text = caerUser.Contact.Honorific
-            txtFirstNameEdit.Text = caerUser.Contact.FirstName
-            txtLastNameEdit.Text = caerUser.Contact.LastName
-            txtTelephoneEdit.Text = caerUser.Contact.PhoneNumber
-            txtTitleEdit.Text = caerUser.Contact.Title
+            With caerUser.Contact
+                txtStreetEdit.Text = .Address.Street
+                txtStreet2Edit.Text = .Address.Street2
+                txtCityEdit.Text = .Address.City
+                ddlStateEdit.SelectedValue = .Address.State
+                txtPostalCodeEdit.Text = .Address.PostalCode
+                txtCompanyEdit.Text = .Company
+                txtEmailEdit.Text = .Email
+                txtPrefixEdit.Text = .Honorific
+                txtFirstNameEdit.Text = .FirstName
+                txtLastNameEdit.Text = .LastName
+                txtTelephoneEdit.Text = .PhoneNumber
+                txtTitleEdit.Text = .Title
+            End With
 
             ddlRoleEdit.Items.Clear()
             ddlRoleEdit.Items.Add(CaerRole.Preparer.ToString)
