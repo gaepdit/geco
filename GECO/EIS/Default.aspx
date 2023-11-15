@@ -123,7 +123,7 @@
 
         <p>
             If your facility qualifies to opt out, please download the 
-            <a href="2022-opt-out-form_annual.xlsx" download="2022-opt-out-form_annual.xlsx">Opt-out form</a>
+            <a href="2023-opt-out-form_triennial.xlsx" download="2023-opt-out-form_triennial.xlsx">Opt-out form</a>
             to start your EI reporting. Upload the completed form to CAERS.
         </p>
         <p>
