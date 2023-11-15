@@ -1,4 +1,4 @@
-﻿<%@ Page MasterPageFile="~/EIS/EIS.master" Language="VB" AutoEventWireup="false"
+<%@ Page MasterPageFile="~/EIS/EIS.master" Language="VB" AutoEventWireup="false"
     Title="GECO Emissions Inventory"
     Inherits="GECO.EIS_Default" CodeBehind="Default.aspx.vb" %>
 
@@ -7,8 +7,8 @@
 
     <p>
         For more information on how to submit your Emissions Inventory, visit 
-        <a href="https://epd.georgia.gov/forms-permits/air-protection-branch-forms-permits/submit-emissions-inventory"
-            rel="noopener" target="_blank">https://epd.georgia.gov/forms-permits/air-protection-branch-forms-permits/submit-emissions-inventory</a>.
+        <a href="https://epd.georgia.gov/forms-permits/air-protection-branch-forms-permits/point-source-emissions-inventory"
+            rel="noopener" target="_blank">https://epd.georgia.gov/forms-permits/air-protection-branch-forms-permits/point-source-emissions-inventory</a>.
     </p>
 
     <p>
