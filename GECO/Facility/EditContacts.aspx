@@ -92,6 +92,8 @@
                                         <th>First Name</th>
                                         <td>
                                             <asp:TextBox ID="txtFirstName" runat="server" ValidationGroup="Contact" />
+                                            <asp:RegularExpressionValidator ID="regexFirstName" runat="server" ValidationExpression="^[a-zA-Z]" ValidationGroup="Contact"
+                                                ControlToValidate="txtFirstName" ErrorMessage="Name must start with an alphabetic character." CssClass="text-error" Display="Dynamic" />
                                         </td>
                                     </tr>
                                     <tr>
@@ -100,7 +102,9 @@
                                             <asp:TextBox ID="txtLastName" runat="server" ValidationGroup="Contact" />
                                             <i>required</i>
                                             <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ValidationGroup="Contact"
-                                                ControlToValidate="txtLastName" ErrorMessage="Last Name is required." />
+                                                ControlToValidate="txtLastName" ErrorMessage="Last Name is required." CssClass="text-error" Display="Dynamic" />
+                                            <asp:RegularExpressionValidator ID="regexLastName" runat="server" ValidationExpression="^[a-zA-Z]" ValidationGroup="Contact"
+                                                ControlToValidate="txtLastName" ErrorMessage="Name must start with an alphabetic character." CssClass="text-error" Display="Dynamic" />
                                         </td>
                                     </tr>
                                     <tr>
@@ -121,7 +125,7 @@
                                             <asp:TextBox ID="txtAddress" runat="server" ValidationGroup="Contact" />
                                             <i>required</i>
                                             <asp:RequiredFieldValidator ID="RequiredFieldValidator9" runat="server" ValidationGroup="Contact"
-                                                ControlToValidate="txtAddress" ErrorMessage="Address is required." />
+                                                ControlToValidate="txtAddress" ErrorMessage="Address is required." CssClass="text-error" Display="Dynamic" />
                                         </td>
                                     </tr>
                                     <tr>
@@ -136,7 +140,9 @@
                                             <asp:TextBox ID="txtCity" runat="server" ValidationGroup="Contact" />
                                             <i>required</i>
                                             <asp:RequiredFieldValidator ID="RequiredFieldValidator11" runat="server" ValidationGroup="Contact"
-                                                ControlToValidate="txtCity" ErrorMessage="City is required." />
+                                                ControlToValidate="txtCity" ErrorMessage="City is required." CssClass="text-error" Display="Dynamic" />
+                                            <asp:RegularExpressionValidator ID="regexCity" runat="server" ValidationExpression="^[a-zA-Z]" ValidationGroup="Contact"
+                                                ControlToValidate="txtCity" ErrorMessage="City must start with an alphabetic character." CssClass="text-error" Display="Dynamic" />
                                         </td>
                                     </tr>
                                     <tr>
@@ -145,7 +151,9 @@
                                             <asp:TextBox ID="txtState" runat="server" MaxLength="2" ValidationGroup="Contact" />
                                             <i>required</i>
                                             <asp:RequiredFieldValidator ID="RequiredFieldValidator12" runat="server" ValidationGroup="Contact"
-                                                ControlToValidate="txtState" ErrorMessage="State abbreviation is required." />
+                                                ControlToValidate="txtState" ErrorMessage="State abbreviation is required." CssClass="text-error" Display="Dynamic" />
+                                            <asp:RegularExpressionValidator ID="regexState" runat="server" ValidationExpression="^[a-zA-Z]" ValidationGroup="Contact"
+                                                ControlToValidate="txtState" ErrorMessage="State must start with an alphabetic character." CssClass="text-error" Display="Dynamic" />
                                         </td>
                                     </tr>
                                     <tr>
@@ -154,7 +162,7 @@
                                             <asp:TextBox ID="txtPostalCode" runat="server" MaxLength="10" ValidationGroup="Contact" />
                                             <i>required</i>
                                             <asp:RequiredFieldValidator ID="RequiredFieldValidator10" runat="server" ValidationGroup="Contact"
-                                                ControlToValidate="txtPostalCode" ErrorMessage="Postal Code is required." />
+                                                ControlToValidate="txtPostalCode" ErrorMessage="Postal Code is required." CssClass="text-error" Display="Dynamic" />
                                         </td>
                                     </tr>
                                     <tr>
@@ -163,7 +171,7 @@
                                             <asp:TextBox ID="txtTelephone" runat="server" MaxLength="30" ValidationGroup="Contact" />
                                             <i>required</i>
                                             <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ValidationGroup="Contact"
-                                                ControlToValidate="txtTelephone" ErrorMessage="Phone number is required." />
+                                                ControlToValidate="txtTelephone" ErrorMessage="Phone number is required." CssClass="text-error" Display="Dynamic" />
                                         </td>
                                     </tr>
                                     <tr>
@@ -172,7 +180,10 @@
                                             <asp:TextBox ID="txtEmail" runat="server" MaxLength="100" ValidationGroup="Contact" />
                                             <i id="lPrimaryEmailRequired" runat="server">required</i>
                                             <asp:RequiredFieldValidator ID="reqPrimaryEmail" runat="server" ValidationGroup="Contact"
-                                                ControlToValidate="txtEmail" ErrorMessage="Email address is required." />
+                                                ControlToValidate="txtEmail" ErrorMessage="Email address is required." CssClass="text-error" Display="Dynamic" />
+                                            <asp:RegularExpressionValidator ID="regexEmail" runat="server" ValidationGroup="Contact"
+                                                ControlToValidate="txtEmail" ErrorMessage="Email address not valid." CssClass="text-error" Display="Dynamic"
+                                                ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" />
                                         </td>
                                     </tr>
                                 </table>
@@ -249,7 +260,10 @@
                                         <asp:TextBox ID="txtNewEmail" runat="server" ValidationGroup="NewEmail" />
                                         <asp:Button ID="btnAddNewEmail" runat="server" ValidationGroup="NewEmail" Text="Add" />
                                         <asp:RequiredFieldValidator ID="rfvEmail" runat="server" ValidationGroup="NewEmail"
-                                            ControlToValidate="txtNewEmail" ErrorMessage="Email address is required." />
+                                            ControlToValidate="txtNewEmail" ErrorMessage="Email address is required." CssClass="text-error" Display="Dynamic" />
+                                        <asp:RegularExpressionValidator ID="regexNewEmail" runat="server" ValidationGroup="Contact"
+                                            ControlToValidate="txtNewEmail" ErrorMessage="Email address not valid." CssClass="text-error" Display="Dynamic"
+                                            ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" />
                                         <br />
                                         A notification email will be sent to the recipient.
                                     </p>
@@ -262,6 +276,6 @@
             </tr>
         </tbody>
     </table>
-    <script src="https://unpkg.com/details-element-polyfill@2.4.0/dist/details-element-polyfill.js" 
+    <script src="https://unpkg.com/details-element-polyfill@2.4.0/dist/details-element-polyfill.js"
         integrity="sha384-e9xku4VSRQ/IhD1GrrEGl4DR0H68G1fI1qUeiY9f6aSYKSAQJDNWwLiBq8uZB7aD" crossorigin="anonymous"></script>
 </asp:Content>

@@ -239,6 +239,15 @@ Partial Public Class EIS_Default
     Protected WithEvents reqvFirstNameNew As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
+    '''regexFirstName control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents regexFirstName As Global.System.Web.UI.WebControls.RegularExpressionValidator
+
+    '''<summary>
     '''lblLastNameNew control.
     '''</summary>
     '''<remarks>
@@ -264,6 +273,15 @@ Partial Public Class EIS_Default
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents reqvLastNameNew As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
+    '''regexLastNameNew control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents regexLastNameNew As Global.System.Web.UI.WebControls.RegularExpressionValidator
 
     '''<summary>
     '''lblTitleNew control.
@@ -363,6 +381,15 @@ Partial Public Class EIS_Default
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents reqvCityNew As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
+    '''regexCityNew control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents regexCityNew As Global.System.Web.UI.WebControls.RegularExpressionValidator
 
     '''<summary>
     '''lblStateNew control.
@@ -608,6 +635,15 @@ Partial Public Class EIS_Default
     Protected WithEvents reqvFirstNameEdit As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
+    '''regexFirstNameEdit control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents regexFirstNameEdit As Global.System.Web.UI.WebControls.RegularExpressionValidator
+
+    '''<summary>
     '''lblLastNameEdit control.
     '''</summary>
     '''<remarks>
@@ -633,6 +669,15 @@ Partial Public Class EIS_Default
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents reqvLastNameEdit As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
+    '''regexLastNameEdit control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents regexLastNameEdit As Global.System.Web.UI.WebControls.RegularExpressionValidator
 
     '''<summary>
     '''lblTitleEdit control.
@@ -732,6 +777,15 @@ Partial Public Class EIS_Default
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents reqvCityEdit As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
+    '''regexCityEdit control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents regexCityEdit As Global.System.Web.UI.WebControls.RegularExpressionValidator
 
     '''<summary>
     '''lblStateEdit control.

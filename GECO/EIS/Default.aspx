@@ -138,6 +138,8 @@
                             <asp:TextBox ID="txtFirstNameNew" runat="server" />
                             <asp:RequiredFieldValidator ID="reqvFirstNameNew" runat="server" ControlToValidate="txtFirstNameNew" Display="Dynamic"
                                 ErrorMessage="The first name is required.">*</asp:RequiredFieldValidator>
+                            <asp:RegularExpressionValidator ID="regexFirstName" runat="server" ValidationExpression="^[a-zA-Z]" Display="Dynamic"
+                                ControlToValidate="txtFirstNameNew" ErrorMessage="Name must start with an alphabetic character." CssClass="text-error" />
                         </td>
                     </tr>
                     <tr>
@@ -149,6 +151,8 @@
                             <asp:TextBox ID="txtLastNameNew" runat="server" />
                             <asp:RequiredFieldValidator ID="reqvLastNameNew" runat="server" ControlToValidate="txtLastNameNew" Display="Dynamic"
                                 ErrorMessage="The last name is required.">*</asp:RequiredFieldValidator>
+                            <asp:RegularExpressionValidator ID="regexLastNameNew" runat="server" ValidationExpression="^[a-zA-Z]" Display="Dynamic"
+                                ControlToValidate="txtLastNameNew" ErrorMessage="Name must start with an alphabetic character." CssClass="text-error" />
                         </td>
                     </tr>
                     <tr>
@@ -191,6 +195,8 @@
                             <asp:TextBox ID="txtCityNew" runat="server" />
                             <asp:RequiredFieldValidator ID="reqvCityNew" runat="server" Display="Dynamic"
                                 ControlToValidate="txtCityNew" ErrorMessage="The city is required.">*</asp:RequiredFieldValidator>
+                            <asp:RegularExpressionValidator ID="regexCityNew" runat="server" ValidationExpression="^[a-zA-Z]" Display="Dynamic"
+                                ControlToValidate="txtCityNew" ErrorMessage="City must start with an alphabetic character." CssClass="text-error" />
                         </td>
                     </tr>
                     <tr>
@@ -214,7 +220,7 @@
                             <asp:RequiredFieldValidator ID="reqvPostalCodeNew" runat="server" Display="Dynamic"
                                 ControlToValidate="txtPostalCodeNew" ErrorMessage="The postal code is required.">*</asp:RequiredFieldValidator>
                             <asp:RegularExpressionValidator ID="rgxvPostalCodeNew" runat="server" Display="Dynamic"
-                                ControlToValidate="txtPostalCodeNew" ErrorMessage="Please check the contact mailing address postal code format."
+                                ControlToValidate="txtPostalCodeNew" ErrorMessage="Please check the contact mailing address postal code format." CssClass="text-error"
                                 ValidationExpression="^(\d{5})(-\d{4})?$">Format must be either 99999 or 99999-9999</asp:RegularExpressionValidator>
                         </td>
                     </tr>
@@ -237,7 +243,7 @@
                             <asp:RequiredFieldValidator ID="reqvEmailNew" runat="server" ControlToValidate="txtEmailNew" Display="Dynamic"
                                 ErrorMessage="The email address is required.">*</asp:RequiredFieldValidator>
                             <asp:RegularExpressionValidator ID="rgxvEmailNew" runat="server" Display="Dynamic"
-                                ControlToValidate="txtEmailNew" ErrorMessage="Email address not valid."
+                                ControlToValidate="txtEmailNew" ErrorMessage="Email address not valid." CssClass="text-error"
                                 ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>
                             <asp:CustomValidator ID="custEmailNew" runat="server" ControlToValidate="txtEmailNew" Display="Dynamic"
                                 ErrorMessage="A Preparer with that email already exists for this facility.">*</asp:CustomValidator>
@@ -325,6 +331,8 @@
                             <asp:TextBox ID="txtFirstNameEdit" runat="server" />
                             <asp:RequiredFieldValidator ID="reqvFirstNameEdit" runat="server" ControlToValidate="txtFirstNameEdit" Display="Dynamic"
                                 ErrorMessage="The first name is required.">*</asp:RequiredFieldValidator>
+                            <asp:RegularExpressionValidator ID="regexFirstNameEdit" runat="server" ValidationExpression="^[a-zA-Z]" Display="Dynamic"
+                                ControlToValidate="txtFirstNameEdit" ErrorMessage="Name must start with an alphabetic character." CssClass="text-error" />
                         </td>
                     </tr>
                     <tr>
@@ -336,6 +344,8 @@
                             <asp:TextBox ID="txtLastNameEdit" runat="server" />
                             <asp:RequiredFieldValidator ID="reqvLastNameEdit" runat="server" ControlToValidate="txtLastNameEdit" Display="Dynamic"
                                 ErrorMessage="The last name is required.">*</asp:RequiredFieldValidator>
+                            <asp:RegularExpressionValidator ID="regexLastNameEdit" runat="server" ValidationExpression="^[a-zA-Z]" Display="Dynamic"
+                                ControlToValidate="txtLastNameEdit" ErrorMessage="Name must start with an alphabetic character." CssClass="text-error" />
                         </td>
                     </tr>
                     <tr>
@@ -378,6 +388,8 @@
                             <asp:TextBox ID="txtCityEdit" runat="server" />
                             <asp:RequiredFieldValidator ID="reqvCityEdit" runat="server" Display="Dynamic"
                                 ControlToValidate="txtCityEdit" ErrorMessage="The city is required.">*</asp:RequiredFieldValidator>
+                            <asp:RegularExpressionValidator ID="regexCityEdit" runat="server" ValidationExpression="^[a-zA-Z]" Display="Dynamic"
+                                ControlToValidate="txtCityEdit" ErrorMessage="City must start with an alphabetic character." CssClass="text-error" />
                         </td>
                     </tr>
                     <tr>
@@ -400,7 +412,7 @@
                             <asp:TextBox ID="txtPostalCodeEdit" runat="server" />
                             <asp:RequiredFieldValidator ID="reqvPostalCodeEdit" runat="server" Display="Dynamic"
                                 ControlToValidate="txtPostalCodeEdit" ErrorMessage="The postal code is required.">*</asp:RequiredFieldValidator>
-                            <asp:RegularExpressionValidator ID="rgxvPostalCodeEdit" runat="server" Display="Dynamic"
+                            <asp:RegularExpressionValidator ID="rgxvPostalCodeEdit" runat="server" Display="Dynamic" CssClass="text-error"
                                 ControlToValidate="txtPostalCodeEdit" ErrorMessage="Please check the contact mailing address postal code format."
                                 ValidationExpression="^(\d{5})(-\d{4})?$">Format must be either 99999 or 99999-9999</asp:RegularExpressionValidator>
                         </td>
@@ -424,7 +436,7 @@
                             <asp:RequiredFieldValidator ID="reqvEmailEdit" runat="server" ControlToValidate="txtEmailEdit" Display="Dynamic"
                                 ErrorMessage="The email address is required.">*</asp:RequiredFieldValidator>
                             <asp:RegularExpressionValidator ID="rgxvEmailEdit" runat="server" Display="Dynamic"
-                                ControlToValidate="txtEmailEdit" ErrorMessage="Email address not valid."
+                                ControlToValidate="txtEmailEdit" ErrorMessage="Email address not valid." CssClass="text-error"
                                 ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" />
                             <asp:CustomValidator ID="custEmailEdit" runat="server" ControlToValidate="txtEmailEdit" Display="Dynamic"
                                 ErrorMessage="A Preparer with that email already exists for this facility.">*</asp:CustomValidator>
