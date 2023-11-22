@@ -15,7 +15,7 @@
         <asp:Label ID="lblEnrollmentStatus" runat="server" Visible="false" CssClass="message-highlight" Font-Bold="True" />
     </p>
 
-    <h2 id="facility-info">Facility Information</h2>
+    <h2 id="facility-info">1. Facility Information</h2>
 
     <p>
         Review the facility information below and if there is any mistake, please email: 
@@ -66,7 +66,7 @@
         </asp:HyperLink>
     </div>
 
-    <h2 id="caers-users">CAERS Users</h2>
+    <h2 id="caers-users">2. CAERS Users</h2>
 
     <p>
         <asp:HyperLink ID="lnkOtherContactInfo" runat="server" NavigateUrl="~/Facility/Contacts.aspx" Target="_blank">
@@ -448,7 +448,7 @@
     </asp:UpdatePanel>
 
     <div id="submitEiSection" runat="server">
-        <h2 id="submit-ei">Submit EI</h2>
+        <h2 id="submit-ei">3. Submit EI</h2>
 
         <p>
             If your facility qualifies to opt out, please download the 
