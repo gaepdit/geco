@@ -463,14 +463,31 @@
         <h2 id="submit-ei">3. Submit EI</h2>
 
         <p>
-            If your facility qualifies to opt out, please download the 
-            <a href="2023-opt-out-form_triennial.xlsx" download="2023-opt-out-form_triennial.xlsx">Opt-out form</a>
-            to start your EI reporting. Upload the completed form to CAERS.
+            All facilities that need to opt out or submit a 2023 EI will receive one of three emails January 2nd, 2024. The email will 
+            indicate whether the facility qualifies to opt out, opt out but report actual lead (Pb) emissions, or report their 2023 EI.
         </p>
+
+        <ul>
+            <li>
+                <p>If the facility agrees with the opt-out determination, you can convert the email to pdf and upload to CAERS as the PTE analysis attachment.</p>
+            </li>
+            <li>
+                <p>
+                    If corrections need to be made for an opt-out or opt-in facility, please download the
+                    <a href="2023-opt-out-form_triennial.xlsx" download="2023-opt-out-form_triennial.xlsx">Opt-out form</a>
+                    to make any changes. Upload the completed form to CAERS as the PTE analysis attachment.
+                </p>
+            </li>
+            <li>
+                <p>If the facility produces Pb, you will need to complete the opt-out form, ensuring that Pb actual emissions are recorded.</p>
+            </li>
+        </ul>
+
         <p>
             If new to CDX/CAERS, the preparer(s) and certifier you have specified should follow this procedure:
         </p>
-        <ol>
+
+        <ol style="padding-bottom:.05px">
             <li>
                 <p>Register in CDX using the link to EPA's CDX above and set up CAERS in CDX.</p>
             </li>
