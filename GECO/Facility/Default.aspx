@@ -70,7 +70,7 @@
                 <asp:HyperLink ID="EisLink" runat="server" Text="Emissions Inventory" NavigateUrl="~/EIS/" />
             </asp:TableHeaderCell>
             <asp:TableCell runat="server">
-                Access the Emissions Inventory reporting process.
+                Access the Emissions Inventory reporting process and historical data.
             </asp:TableCell>
             <asp:TableCell runat="server">
                 <asp:Literal ID="litEmissionsInventory" runat="server" />
@@ -86,7 +86,7 @@
                     Effective June 19, 2023, facilities are no longer required to submit Emissions Statement data.
                 </span><br />
                 Please see the
-                <a href="https://epd.georgia.gov/forms-permits/air-protection-branch-forms-permits/submit-emissions-inventory#toc-note-for-emission-statement"
+                <a href="https://epd.georgia.gov/forms-permits/air-protection-branch-forms-permits/point-source-emissions-inventory#toc-other-updates-2"
                    target="_blank" rel="noopener">
                     APB website
                 </a>

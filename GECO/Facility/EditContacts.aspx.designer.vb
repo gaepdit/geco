@@ -122,6 +122,15 @@ Partial Public Class EditContacts
     Protected WithEvents txtFirstName As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
+    '''regexFirstName control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents regexFirstName As Global.System.Web.UI.WebControls.RegularExpressionValidator
+
+    '''<summary>
     '''txtLastName control.
     '''</summary>
     '''<remarks>
@@ -138,6 +147,15 @@ Partial Public Class EditContacts
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RequiredFieldValidator1 As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
+    '''regexLastName control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents regexLastName As Global.System.Web.UI.WebControls.RegularExpressionValidator
 
     '''<summary>
     '''txtTitle control.
@@ -203,6 +221,15 @@ Partial Public Class EditContacts
     Protected WithEvents RequiredFieldValidator11 As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
+    '''regexCity control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents regexCity As Global.System.Web.UI.WebControls.RegularExpressionValidator
+
+    '''<summary>
     '''txtState control.
     '''</summary>
     '''<remarks>
@@ -219,6 +246,15 @@ Partial Public Class EditContacts
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RequiredFieldValidator12 As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
+    '''regexState control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents regexState As Global.System.Web.UI.WebControls.RegularExpressionValidator
 
     '''<summary>
     '''txtPostalCode control.
@@ -282,6 +318,15 @@ Partial Public Class EditContacts
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents reqPrimaryEmail As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
+    '''regexEmail control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents regexEmail As Global.System.Web.UI.WebControls.RegularExpressionValidator
 
     '''<summary>
     '''pContactSaveError control.
@@ -435,6 +480,15 @@ Partial Public Class EditContacts
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rfvEmail As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
+    '''regexNewEmail control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents regexNewEmail As Global.System.Web.UI.WebControls.RegularExpressionValidator
 
     '''<summary>
     '''Master property.

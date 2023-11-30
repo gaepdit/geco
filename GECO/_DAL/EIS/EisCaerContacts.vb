@@ -4,7 +4,7 @@ Imports GECO.GecoModels
 Imports GECO.GecoModels.EIS
 
 Namespace DAL.EIS
-    Module CaerContacts
+    Module EisCaerContacts
 
         Public Function SaveCaerContact(caerContact As CaerContact) As DbResult
             Dim params As SqlParameter() = {

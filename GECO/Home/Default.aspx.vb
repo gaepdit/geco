@@ -22,20 +22,24 @@ Partial Class Home
     End Sub
 
     Private Sub LoadYearLabels()
-        dim thisYear as String = CStr(Now.Year)
-        dim lastYear as String = CStr(Now.Year - 1)
-        lblEIYear2.Text = lastYear 'This is the EI calendar year
-        lblEIYear3.Text = lastYear 'This is the EI calendar year
-        lblEIYear4.Text = thisYear 'This is the EI due date
-        lblEIYear5.Text = lastYear 'This is the EI calendar year
-        lblEIYear6.Text = lastYear 'This is the EI calendar year
+        Dim eiCurrentYear = DAL.EIS.GetCurrentEiYear()
+        Dim eiCurrentYearString = eiCurrentYear.ToString()
 
-        lblFeeYear1.Text = lastYear ' Fee Calendar year
-        lblFeeYear2.Text = lastYear ' Fee Calendar year
-        lblFeeYear3.Text = thisYear ' Fees dues year
-        lblFeeYear4.Text = thisYear ' Fees dues year
+        lblEIYear2.Text = eiCurrentYearString  'This is the EI reporting year
+        lblEIYear3.Text = eiCurrentYearString  'This is the EI reporting year
+        lblEIYear4.Text = (eiCurrentYear + 1).ToString 'This is the EI due date year
+        lblEIYear5.Text = eiCurrentYearString  'This is the EI reporting year
+        lblEIYear6.Text = eiCurrentYearString  'This is the EI reporting year
 
-        If Now.Year Mod 3 = 2 Then
+        Dim feeDueYear As String = CStr(Now.Year)
+        Dim feeCalendarYear As String = CStr(Now.Year - 1)
+
+        lblFeeYear1.Text = feeCalendarYear ' Fee Calendar year
+        lblFeeYear2.Text = feeCalendarYear ' Fee Calendar year
+        lblFeeYear3.Text = feeDueYear ' Fees dues year
+        lblFeeYear4.Text = feeDueYear ' Fees dues year
+
+        If eiCurrentYear Mod 3 = 1 Then
             lblTriennialEIText.Visible = True
             lblAnnualEIText.Visible = False
         End If
