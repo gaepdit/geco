@@ -463,7 +463,7 @@
         <h2 id="submit-ei">3. Submit EI</h2>
 
         <p>
-            All facilities that need to opt out or submit a 2023 EI will receive one of three emails January 2nd, 2024. The email will 
+            All facilities that need to opt out or submit a 2023 EI will receive one of three emails during the first week of January 2024. The email will 
             indicate whether the facility qualifies to opt out, opt out but report actual lead (Pb) emissions, or report their 2023 EI.
         </p>
 
