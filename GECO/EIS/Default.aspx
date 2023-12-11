@@ -138,7 +138,7 @@
                             <asp:TextBox ID="txtFirstNameNew" runat="server" />
                             <asp:RequiredFieldValidator ID="reqvFirstNameNew" runat="server" ControlToValidate="txtFirstNameNew" Display="Dynamic"
                                 ErrorMessage="The first name is required.">*</asp:RequiredFieldValidator>
-                            <asp:RegularExpressionValidator ID="regexFirstName" runat="server" ValidationExpression="^[a-zA-Z]" Display="Dynamic"
+                            <asp:RegularExpressionValidator ID="regexFirstName" runat="server" ValidationExpression="[a-zA-Z].*" Display="Dynamic"
                                 ControlToValidate="txtFirstNameNew" ErrorMessage="Name must start with an alphabetic character." CssClass="text-error" />
                         </td>
                     </tr>
@@ -151,7 +151,7 @@
                             <asp:TextBox ID="txtLastNameNew" runat="server" />
                             <asp:RequiredFieldValidator ID="reqvLastNameNew" runat="server" ControlToValidate="txtLastNameNew" Display="Dynamic"
                                 ErrorMessage="The last name is required.">*</asp:RequiredFieldValidator>
-                            <asp:RegularExpressionValidator ID="regexLastNameNew" runat="server" ValidationExpression="^[a-zA-Z]" Display="Dynamic"
+                            <asp:RegularExpressionValidator ID="regexLastNameNew" runat="server" ValidationExpression="[a-zA-Z].*" Display="Dynamic"
                                 ControlToValidate="txtLastNameNew" ErrorMessage="Name must start with an alphabetic character." CssClass="text-error" />
                         </td>
                     </tr>
@@ -195,7 +195,7 @@
                             <asp:TextBox ID="txtCityNew" runat="server" />
                             <asp:RequiredFieldValidator ID="reqvCityNew" runat="server" Display="Dynamic"
                                 ControlToValidate="txtCityNew" ErrorMessage="The city is required.">*</asp:RequiredFieldValidator>
-                            <asp:RegularExpressionValidator ID="regexCityNew" runat="server" ValidationExpression="^[a-zA-Z]" Display="Dynamic"
+                            <asp:RegularExpressionValidator ID="regexCityNew" runat="server" ValidationExpression="[a-zA-Z].*" Display="Dynamic"
                                 ControlToValidate="txtCityNew" ErrorMessage="City must start with an alphabetic character." CssClass="text-error" />
                         </td>
                     </tr>
@@ -331,7 +331,7 @@
                             <asp:TextBox ID="txtFirstNameEdit" runat="server" />
                             <asp:RequiredFieldValidator ID="reqvFirstNameEdit" runat="server" ControlToValidate="txtFirstNameEdit" Display="Dynamic"
                                 ErrorMessage="The first name is required.">*</asp:RequiredFieldValidator>
-                            <asp:RegularExpressionValidator ID="regexFirstNameEdit" runat="server" ValidationExpression="^[a-zA-Z]" Display="Dynamic"
+                            <asp:RegularExpressionValidator ID="regexFirstNameEdit" runat="server" ValidationExpression="[a-zA-Z].*" Display="Dynamic"
                                 ControlToValidate="txtFirstNameEdit" ErrorMessage="Name must start with an alphabetic character." CssClass="text-error" />
                         </td>
                     </tr>
@@ -344,7 +344,7 @@
                             <asp:TextBox ID="txtLastNameEdit" runat="server" />
                             <asp:RequiredFieldValidator ID="reqvLastNameEdit" runat="server" ControlToValidate="txtLastNameEdit" Display="Dynamic"
                                 ErrorMessage="The last name is required.">*</asp:RequiredFieldValidator>
-                            <asp:RegularExpressionValidator ID="regexLastNameEdit" runat="server" ValidationExpression="^[a-zA-Z]" Display="Dynamic"
+                            <asp:RegularExpressionValidator ID="regexLastNameEdit" runat="server" ValidationExpression="[a-zA-Z].*" Display="Dynamic"
                                 ControlToValidate="txtLastNameEdit" ErrorMessage="Name must start with an alphabetic character." CssClass="text-error" />
                         </td>
                     </tr>
@@ -388,7 +388,7 @@
                             <asp:TextBox ID="txtCityEdit" runat="server" />
                             <asp:RequiredFieldValidator ID="reqvCityEdit" runat="server" Display="Dynamic"
                                 ControlToValidate="txtCityEdit" ErrorMessage="The city is required.">*</asp:RequiredFieldValidator>
-                            <asp:RegularExpressionValidator ID="regexCityEdit" runat="server" ValidationExpression="^[a-zA-Z]" Display="Dynamic"
+                            <asp:RegularExpressionValidator ID="regexCityEdit" runat="server" ValidationExpression="[a-zA-Z].*" Display="Dynamic"
                                 ControlToValidate="txtCityEdit" ErrorMessage="City must start with an alphabetic character." CssClass="text-error" />
                         </td>
                     </tr>

@@ -92,7 +92,7 @@
                                         <th>First Name</th>
                                         <td>
                                             <asp:TextBox ID="txtFirstName" runat="server" ValidationGroup="Contact" />
-                                            <asp:RegularExpressionValidator ID="regexFirstName" runat="server" ValidationExpression="^[a-zA-Z]" ValidationGroup="Contact"
+                                            <asp:RegularExpressionValidator ID="regexFirstName" runat="server" ValidationExpression="[a-zA-Z].*" ValidationGroup="Contact"
                                                 ControlToValidate="txtFirstName" ErrorMessage="Name must start with an alphabetic character." CssClass="text-error" Display="Dynamic" />
                                         </td>
                                     </tr>
@@ -103,7 +103,7 @@
                                             <i>required</i>
                                             <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ValidationGroup="Contact"
                                                 ControlToValidate="txtLastName" ErrorMessage="Last Name is required." CssClass="text-error" Display="Dynamic" />
-                                            <asp:RegularExpressionValidator ID="regexLastName" runat="server" ValidationExpression="^[a-zA-Z]" ValidationGroup="Contact"
+                                            <asp:RegularExpressionValidator ID="regexLastName" runat="server" ValidationExpression="[a-zA-Z].*" ValidationGroup="Contact"
                                                 ControlToValidate="txtLastName" ErrorMessage="Name must start with an alphabetic character." CssClass="text-error" Display="Dynamic" />
                                         </td>
                                     </tr>
@@ -141,7 +141,7 @@
                                             <i>required</i>
                                             <asp:RequiredFieldValidator ID="RequiredFieldValidator11" runat="server" ValidationGroup="Contact"
                                                 ControlToValidate="txtCity" ErrorMessage="City is required." CssClass="text-error" Display="Dynamic" />
-                                            <asp:RegularExpressionValidator ID="regexCity" runat="server" ValidationExpression="^[a-zA-Z]" ValidationGroup="Contact"
+                                            <asp:RegularExpressionValidator ID="regexCity" runat="server" ValidationExpression="[a-zA-Z].*" ValidationGroup="Contact"
                                                 ControlToValidate="txtCity" ErrorMessage="City must start with an alphabetic character." CssClass="text-error" Display="Dynamic" />
                                         </td>
                                     </tr>
@@ -152,7 +152,7 @@
                                             <i>required</i>
                                             <asp:RequiredFieldValidator ID="RequiredFieldValidator12" runat="server" ValidationGroup="Contact"
                                                 ControlToValidate="txtState" ErrorMessage="State abbreviation is required." CssClass="text-error" Display="Dynamic" />
-                                            <asp:RegularExpressionValidator ID="regexState" runat="server" ValidationExpression="^[a-zA-Z]" ValidationGroup="Contact"
+                                            <asp:RegularExpressionValidator ID="regexState" runat="server" ValidationExpression="[a-zA-Z].*" ValidationGroup="Contact"
                                                 ControlToValidate="txtState" ErrorMessage="State must start with an alphabetic character." CssClass="text-error" Display="Dynamic" />
                                         </td>
                                     </tr>
