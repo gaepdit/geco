@@ -6,6 +6,12 @@
         <ContentTemplate>
             <h1>GECO Home</h1>
 
+            <div class="announcement announcement-wide announcement-severe">
+                <h2>Notice</h2>
+                <p>There will be a scheduled major system maintenance outage for all EPD applications, including GECO, from 2&nbsp;PM Friday, 12/15/2023 until 6&nbsp;AM Monday, 12/18/2023.</p>
+                <p>Please refer to the <a href="https://status.gaepd.org/">EPD-IT status page</a> for updates.</p>
+            </div>
+
             <p>Georgia Environmental Connections Online ("GECO") is an online service allowing public access to various Georgia Air Protection Branch applications.</p>
 
             <p id="pUpdateRequired" runat="server" visible="false" class="message-highlight">
