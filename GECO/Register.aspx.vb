@@ -16,6 +16,8 @@ Partial Class Register
     End Sub
 
     Protected Sub btnRegister_Click(sender As Object, e As EventArgs) Handles btnRegister.Click
+        Page.Validate()
+
         If IsValid Then
             Dim email As String = txtEmail.Text.Trim()
 
@@ -46,14 +48,84 @@ Partial Class Register
         txtCaptcha.Text = ""
     End Sub
 
-    Private Sub cvEmailExists_ServerValidate(source As Object, args As ServerValidateEventArgs) Handles cvEmailExists.ServerValidate
+    Protected Sub cvEmailExists_ServerValidate(source As Object, args As ServerValidateEventArgs) Handles cvEmailExists.ServerValidate
         args.IsValid = Not GecoUserExists(args.Value)
     End Sub
 
-    Private Sub cvCaptcha_ServerValidate(source As Object, args As ServerValidateEventArgs) Handles cvCaptcha.ServerValidate
+    Protected Sub cvCaptcha_ServerValidate(source As Object, args As ServerValidateEventArgs) Handles cvCaptcha.ServerValidate
         captchaControl.ValidateCaptcha(txtCaptcha.Text)
         txtCaptcha.Text = ""
         args.IsValid = captchaControl.UserValidated
     End Sub
+
+    Protected Sub passwordRequirement_ServerValidate(source As Object, args As ServerValidateEventArgs) Handles passwordRequirements.ServerValidate
+        If checkPasswordValid() Then
+            passwordRequirements.ErrorMessage = "The password cannot contain segments of the URL, app name, or email."
+            args.IsValid = False
+        End If
+    End Sub
+
+    ''' <summary>
+    ''' Helper function for the passwordRequirement_ServerValidate()
+    ''' </summary>
+    ''' <returns>True if the password Is valid, false otherwise.</returns>
+    Private Function checkPasswordValid() As Boolean
+        Dim email As String = txtEmail.Text.ToLower
+        Dim password As String = txtPwd.Text.ToLower
+
+        ' check if these passwords matches the email Or website
+        Dim validPassEmail As Integer = FindIntersection(email, password)
+        Dim validPassWebsite As Integer = FindIntersection("geco", password)
+        Dim validPassDepartment As Integer = FindIntersection("gaepd", password)
+
+        ' declare an arbitrary length
+        Dim maxSequenceLength As Integer = 3
+        Return validPassEmail <= maxSequenceLength AndAlso
+                validPassWebsite <= maxSequenceLength AndAlso
+                validPassDepartment <= maxSequenceLength
+    End Function
+
+    ''' <summary>
+    ''' Find where the sequence starts And its length between 2 strings
+    ''' </summary>
+    ''' <param name="a">First string</param>
+    ''' <param name="b">Second string</param>
+    ''' <returns>0 if there are no sequence, else return the length</returns>
+    Private Function FindIntersection(a As String, b As String) As Integer
+        Dim bestResult As Integer = 0
+        For i As Integer = 0 To a.Length - 2
+            Dim result As Integer = FindIntersectionFromStart(a.Substring(i), b)
+            If result <> 0 Then
+                If bestResult = 0 Then
+                    bestResult = result
+                Else
+                    If result > bestResult Then
+                        bestResult = result
+                    End If
+                End If
+            End If
+            If bestResult >= a.Length - i Then
+                Exit For
+            End If
+        Next
+        Return bestResult
+    End Function
+
+    ''' <summary>
+    ''' Helper method for FindIntersection()
+    ''' </summary>
+    ''' <param name="a">First string</param>
+    ''' <param name="b">Second string</param>
+    ''' <returns>0 if there are no sequence, else return the length</returns>
+    Private Function FindIntersectionFromStart(a As String, b As String) As Integer
+        For i As Integer = a.Length To 1 Step -1
+            Dim d As String = a.Substring(0, i)
+            Dim j As Integer = b.IndexOf(d)
+            If j >= 0 Then
+                Return i ' return the length
+            End If
+        Next
+        Return 0
+    End Function
 
 End Class

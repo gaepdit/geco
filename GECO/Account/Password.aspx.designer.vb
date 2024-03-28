@@ -122,6 +122,15 @@ Partial Public Class Account_Password
     Protected WithEvents Regex3 As Global.System.Web.UI.WebControls.RegularExpressionValidator
 
     '''<summary>
+    '''passwordRequirements control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents passwordRequirements As Global.System.Web.UI.WebControls.CustomValidator
+
+    '''<summary>
     '''txtPwdConfirm control.
     '''</summary>
     '''<remarks>
