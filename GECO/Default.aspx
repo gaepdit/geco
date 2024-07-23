@@ -5,6 +5,14 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="Server">
     <h1>Welcome to GECO</h1>
 
+    <div class="announcement announcement-wide announcement-severe">
+        <h2>Notice</h2>
+        <p>
+            Due to the recent global event this last Friday, any records submitted July 18th may be lost. EPD IT is still working 
+            on data recovery and will provide updates as soon as possible. Please resubmit any missing data.
+        </p>
+    </div>
+
     <p>
         Georgia Environmental Connections Online ("GECO")
         is an online service allowing public access to various Georgia Air Protection Branch applications.
