@@ -6,13 +6,6 @@
         <ContentTemplate>
             <h1>GECO Home</h1>
 
-            <div class="announcement announcement-wide announcement-severe">
-                <h2>Notice</h2>
-                <p>
-                    Due to the recent global event this last Friday, any records submitted July 18th may be lost. EPD IT is still working 
-                    on data recovery and will provide updates as soon as possible. Please resubmit any missing data.
-                </p>
-            </div>
             <p>Georgia Environmental Connections Online ("GECO") is an online service allowing public access to various Georgia Air Protection Branch applications.</p>
 
             <p id="pUpdateRequired" runat="server" visible="false" class="message-highlight">
