@@ -37,6 +37,9 @@
                         <ContentTemplate>
                             <asp:Button ID="btnBeginFeeReport" runat="server" CssClass="button-large button-proceed" Text="Begin Fee Calculation →" CausesValidation="False" Visible="false" />
                             <asp:Label ID="lblDeadline" ForeColor="DarkRed" runat="server" Visible="false"></asp:Label>
+                            <p id="pIncorrectClass" runat="server" visible="false" class="message-highlight">
+                                Your facility has an incorrect classification in our system. Please contact the Air Protection Branch for assistance.
+                            </p>
 
                             <h1>Annual Permit/Emissions Fees Reporting Form</h1>
                             <p>

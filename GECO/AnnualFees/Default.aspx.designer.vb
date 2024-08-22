@@ -95,6 +95,15 @@ Partial Public Class AnnualFees_Default
     Protected WithEvents lblDeadline As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
+    '''pIncorrectClass control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents pIncorrectClass As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
     '''feeRatesSection control.
     '''</summary>
     '''<remarks>

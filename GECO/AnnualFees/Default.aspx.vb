@@ -307,6 +307,12 @@ Partial Class AnnualFees_Default
                     lblCurrentClass.Text = "B - Minor Source"
                 Case "PR"
                     lblCurrentClass.Text = "PR - Permit-by-Rule Source"
+                Case Else
+                    ResetPage()
+                    tabFeeCalculation.Visible = False
+                    btnBeginFeeReport.Visible = False
+                    pIncorrectClass.Visible = True
+                    Return
             End Select
 
             chkPart70Source.Checked = False
@@ -700,6 +706,7 @@ Partial Class AnnualFees_Default
 
     Private Sub ResetPage()
         UserTabs.ActiveTab = tabWelcome
+        pIncorrectClass.Visible = False
 
         ClearAll(pnlFeeCalculation) 'Clear controls in the Calculation Tab
         ClearAll(pnlFeeSignature) 'Clear controls in the Sign and Pay Tab
