@@ -1,4 +1,4 @@
-﻿Imports System.Data.SqlClient
+﻿Imports Microsoft.Data.SqlClient
 Imports GECO.GecoModels
 
 Public Class EIS_History_ReleasePoints
