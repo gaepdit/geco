@@ -1,4 +1,4 @@
-﻿Imports System.Data.SqlClient
+﻿Imports Microsoft.Data.SqlClient
 Imports System.DateTime
 Imports GaEpd.DBUtilities
 Imports GECO.DAL.Facility
