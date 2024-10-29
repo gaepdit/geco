@@ -463,13 +463,15 @@
         <h2 id="submit-ei">3. Submit EI</h2>
 
         <p>
-            All facilities that need to opt out or submit a 2023 EI will receive one of three emails during the first week of January 2024. The email will 
-            indicate whether the facility qualifies to opt out, opt out but report actual lead (Pb) emissions, or report their 2023 EI.
+            All facilities that need to opt out or submit 2024 Emissions Inventory data will receive one of two emails during the first week of January 2025. The email will 
+            indicate whether the facility likely qualifies to opt out, or is required to opt in to report their 2024 EI.
         </p>
+
+        <p>For Opt-out facilities:</p>
 
         <ul>
             <li>
-                <p>If the facility agrees with the opt-out determination, you can convert the email to pdf and upload to CAERS as the PTE analysis attachment.</p>
+                <p>If the facility agrees with the opt-out determination listed in the rollout email, you can convert the email to PDF and upload to CAERS as the PTE analysis attachment.</p>
             </li>
             <li>
                 <p>
@@ -477,9 +479,6 @@
                     <a href="2024-opt-out-form_annual.xlsx" download="2024-opt-out-form_annual.xlsx">Opt-out form</a>
                     to make any changes. Upload the completed form to CAERS as the PTE analysis attachment.
                 </p>
-            </li>
-            <li>
-                <p>If the facility produces Pb, you will need to complete the opt-out form, ensuring that Pb actual emissions are recorded.</p>
             </li>
         </ul>
 
@@ -489,13 +488,13 @@
 
         <ol style="padding-bottom:.05px">
             <li>
-                <p>Register in CDX using the link to EPA's CDX above and set up CAERS in CDX.</p>
+                <p>Register in CDX using the link to EPA CDX below and set up CAERS in CDX.</p>
             </li>
             <li>
                 <p>Await email approval from CDX that their CAERS account is linked to the correct facilities.</p>
             </li>
             <li>
-                <p>Once approved, select facility, then click on the “Create New Report” button for the Report.</p>
+                <p>Once approved, select facility in CAERS, then click on the “Create New Report” button for the Report.</p>
             </li>
         </ol>
 
