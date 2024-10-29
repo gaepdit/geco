@@ -1,5 +1,6 @@
 ﻿Imports GECO.EmailTemplates
 Imports GECO.GecoModels
+Imports System.Net
 
 Partial Class Login
     Inherits Page
@@ -40,9 +41,7 @@ Partial Class Login
 
         Dim gecoUser As New GecoUser
         Dim userSession As New UserSession
-
-        Dim ipAddress As String = GetIPv4Address()
-
+        Dim ipAddress As String = Request.ServerVariables("REMOTE_ADDR")
         Dim loginResult As LoginResult = LogInUser(txtUserId.Text, txtPassword.Text, chkRememberMe.Checked, ipAddress, gecoUser, userSession)
 
         Select Case loginResult
@@ -87,10 +86,6 @@ Partial Class Login
         End Select
 
     End Sub
-
-    Private Shared Function GetIPv4Address() As String
-        Return Net.Dns.GetHostEntry(Net.Dns.GetHostName()).AddressList.GetValue(1).ToString()
-    End Function
 
     Private Sub GetUserFromSession()
 
