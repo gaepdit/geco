@@ -456,6 +456,7 @@
     <Compile Include="_DAL\EIS\EisCaerContacts.vb" />
     <Compile Include="_DAL\EIS\EisFacility.vb" />
     <Compile Include="_DAL\Facility\FacilityCommunication.vb" />
+    <Compile Include="_DAL\NullableDates.vb" />
     <Compile Include="_DAL\Testing\Testing.vb" />
     <Compile Include="_Models\AnnualFees\AnnualFeeCalc.vb" />
     <Compile Include="_Code\ControlMethods.vb" />

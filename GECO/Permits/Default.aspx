@@ -41,9 +41,10 @@
             <asp:HyperLinkField DataTextField="Application #" HeaderText="Application #" ItemStyle-CssClass="table-cell-alignright"
                 DataNavigateUrlFields="Application #" DataNavigateUrlFormatString="~/Permits/Application.aspx?id={0}" />
             <asp:BoundField HeaderText="Date Received" DataField="Date Received" DataFormatString="{0:dd-MMM-yyyy}" />
-            <asp:BoundField HeaderText="Application Type" DataField="Type" />
-            <asp:BoundField HeaderText="Action Type" DataField="Action Type" />
-            <asp:BoundField HeaderText="Date Closed Out" DataField="Status Date" DataFormatString="{0:dd-MMM-yyyy}" />
+            <asp:BoundField HeaderText="Application Type" DataField="Type" NullDisplayText="N/A" />
+            <asp:BoundField HeaderText="Action Type" DataField="Action Type" NullDisplayText="N/A" />
+            <asp:BoundField HeaderText="Permit Number" DataField="Permit Number" NullDisplayText="N/A" />
+            <asp:BoundField HeaderText="Date Closed Out" DataField="Status Date" DataFormatString="{0:dd-MMM-yyyy}" NullDisplayText="N/A" />
         </Columns>
     </asp:GridView>
 </asp:Content>
