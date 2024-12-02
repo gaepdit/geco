@@ -568,7 +568,6 @@
     <Content Include="GECO.vbproj.vsspell" />
     <Content Include="AnnualFees\FeeAmendmentForm.xlsx" />
     <Content Include="EIS\EIS.master" />
-    <Content Include="EIS\2022-opt-out-form_annual.xlsx" />
     <Content Include="assets\dev\dev-site.webmanifest" />
     <Content Include="assets\uat\uat-site.webmanifest" />
     <Content Include="EIS\2023-opt-out-form_triennial.xlsx" />
