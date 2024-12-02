@@ -572,6 +572,7 @@
     <Content Include="assets\dev\dev-site.webmanifest" />
     <Content Include="assets\uat\uat-site.webmanifest" />
     <Content Include="EIS\2023-opt-out-form_triennial.xlsx" />
+    <Content Include="EIS\2024-opt-out-form_annual.xlsx" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
