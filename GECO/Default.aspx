@@ -3,6 +3,14 @@
 <%@ MasterType VirtualPath="~/Main.master" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="Server">
+    <div id="MaintenanceOutage" class="announcement announcement-severe announcement-centered" runat="server" visible="false">
+        <h2>Planned Maintenance Outage</h2>
+        <p>
+            There will be a scheduled major system maintenance outage for all EPD applications from 
+            11 AM Saturday, 12/7/2024 until 6 AM Monday, 12/9/2024.
+        </p>
+    </div>
+
     <h1>Welcome to GECO</h1>
 
     <p>
