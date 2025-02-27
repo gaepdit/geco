@@ -3,6 +3,9 @@ name: .NET Unit Tests
 on:
   pull_request:
 
+permissions:
+  contents: read
+
 jobs:
   vs-test:
     # ↓ Change this to "false" to disable the workflow without any alert messages.
