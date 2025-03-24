@@ -6,6 +6,8 @@ Imports System.Threading.Tasks
 
 Friend Module OrgNotifications
 
+
+    <CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1812:AvoidUninstantiatedInternalClasses", Justification:="Instantiated by API deserializer")>
     Public Class OrgNotification
         <JsonPropertyName("message")>
         Public Property Message As String
