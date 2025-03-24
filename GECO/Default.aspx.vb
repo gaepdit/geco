@@ -1,44 +1,52 @@
+Imports System.Threading.Tasks
 Imports GECO.GecoModels
 
 Partial Class _Default
     Inherits Page
 
-    ' Page load 
+    Private Async Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
+        If IsPostBack Then
+            Throw New HttpException(405, "Method Not Allowed")
+        End If
 
-    Private Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
-        If Not IsPostBack Then
-            If Request.QueryString("do") = "SignOut" Then
-                ClearCurrentLogin()
-            ElseIf UserIsLoggedIn() Then
-                Response.Redirect("~/Home/")
-            Else
-                GetUserFromSession()
-            End If
-
+        If Request.QueryString("do") = "SignOut" Then
             ClearCurrentLogin()
+            Await DisplayNotificationsAsync()
+            Return
         End If
 
-        ShowMaintenanceMessage()
-    End Sub
-
-    Private Sub ShowMaintenanceMessage()
-        If Now <= New DateTime(2024, 12, 9, 6, 0, 0, DateTimeKind.Local) Then
-            MaintenanceOutage.Visible = True
+        If UserIsLoggedIn() OrElse CheckForSavedSession() Then
+            Dim redirect As String = Request.QueryString("ReturnUrl")
+            If String.IsNullOrEmpty(redirect) Then redirect = "~/Home/"
+            Response.Redirect(redirect, False)
+        Else
+            ClearCurrentLogin()
+            Await DisplayNotificationsAsync()
         End If
     End Sub
+
+    Private Async Function DisplayNotificationsAsync() As Task
+        Dim notifications As List(Of OrgNotification) = Await GetNotificationsAsync()
+
+        If notifications.Count > 0 Then
+            Dim div As HtmlGenericControl = FormatNotificationsDiv(notifications)
+            OrgNotifications.Controls.Add(div)
+        End If
+    End Function
 
     Private Sub ClearCurrentLogin()
         Session.Clear()
         ClearAllCookies()
     End Sub
 
-    Private Sub GetUserFromSession()
+
+    Private Shared Function CheckForSavedSession() As Boolean
 
         Dim series As String = GetCookie(UserSessionCookie.Series)
         Dim token As String = GetCookie(UserSessionCookie.Token)
 
         If String.IsNullOrEmpty(series) OrElse String.IsNullOrEmpty(token) Then
-            Return
+            Return False
         End If
 
         Dim userSession As New UserSession(series, token)
@@ -48,15 +56,10 @@ Partial Class _Default
             SessionAdd(GecoSession.CurrentUser, gecoUser)
             CreateSessionCookie(userSession)
 
-            Dim strRedirect As String = Request.QueryString("ReturnUrl")
-
-            If String.IsNullOrEmpty(strRedirect) Then
-                Response.Redirect("~/Home/")
-            Else
-                Response.Redirect(strRedirect)
-            End If
+            Return True
         End If
 
-    End Sub
+        Return False
+    End Function
 
 End Class

@@ -1,4 +1,5 @@
 ﻿Imports System.DateTime
+Imports System.Threading.Tasks
 Imports GECO.GecoModels
 
 Partial Class Home
@@ -6,28 +7,33 @@ Partial Class Home
 
     Private Property CurrentUser As GecoUser
 
-    Private Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
-        MainLoginCheck()
+    Private Async Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
+        If UserIsLoggedIn() Then
+            CurrentUser = GetCurrentUser()
 
-        CurrentUser = GetCurrentUser()
+            If Not IsPostBack Then
+                LoadAccessTable()
+                LoadYearLabels()
 
-        If Not IsPostBack Then
-            LoadAccessTable()
-            LoadYearLabels()
-
-            If CurrentUser.ProfileUpdateRequired Then
-                pUpdateRequired.Visible = True
+                If CurrentUser.ProfileUpdateRequired Then
+                    pUpdateRequired.Visible = True
+                End If
             End If
-        End If
 
-        ShowMaintenanceMessage()
-    End Sub
-
-    Private Sub ShowMaintenanceMessage()
-        If Now <= New DateTime(2024, 12, 9, 6, 0, 0, DateTimeKind.Local) Then
-            MaintenanceOutage.Visible = True
+            Await DisplayNotificationsAsync()
+        Else
+            Response.Redirect("~/Login.aspx", False)
         End If
     End Sub
+
+    Private Async Function DisplayNotificationsAsync() As Task
+        Dim notifications As List(Of OrgNotification) = Await GetNotificationsAsync()
+
+        If notifications.Count > 0 Then
+            Dim div As HtmlGenericControl = FormatNotificationsDiv(notifications)
+            OrgNotifications.Controls.Add(div)
+        End If
+    End Function
 
     Private Sub LoadYearLabels()
         Dim eiCurrentYear = DAL.EIS.GetCurrentEiYear()

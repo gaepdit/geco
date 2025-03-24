@@ -1,15 +1,9 @@
-﻿<%@ Page Language="VB" MasterPageFile="~/Main.master" AutoEventWireup="false" Inherits="GECO._Default" Title="Georgia Environmental Connections Online" CodeBehind="Default.aspx.vb" %>
+﻿<%@ Page Language="VB" Async="true" MasterPageFile="~/Main.master" AutoEventWireup="false" Inherits="GECO._Default" Title="Georgia Environmental Connections Online" CodeBehind="Default.aspx.vb" %>
 
 <%@ MasterType VirtualPath="~/Main.master" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="Server">
-    <div id="MaintenanceOutage" class="announcement announcement-severe announcement-centered" runat="server" visible="false">
-        <h2>Planned Maintenance Outage</h2>
-        <p>
-            There will be a scheduled major system maintenance outage for all EPD applications from 
-            11 AM Saturday, 12/7/2024 until 6 AM Monday, 12/9/2024.
-        </p>
-    </div>
+    <asp:PlaceHolder ID="OrgNotifications" runat="server"></asp:PlaceHolder>
 
     <h1>Welcome to GECO</h1>
 
