@@ -39,6 +39,7 @@
 		<add key="EmailAllowList" value=""/>
 		<add key="GoogleMapsAPIKey" value=""/>
 		<add key="EpaCaersUrl" value="https://test.epacdx.net/CDX/MyCDX"/>
+		<add key="OrgNotificationsApiUrl" value="https://localhost:7233/current"/>
 	</appSettings>
 
 	<communicationPrefs
@@ -47,7 +48,7 @@
         EmissionsInventoryEnabled ="false"
         TestingMonitoringEnabled="false"/>
 
-	<RaygunSettings apikey="" excludeHttpStatusCodes="404" excludeErrorsFromLocal="true"/>
+	<RaygunSettings apikey="" excludeHttpStatusCodes="404"/>
 	<ajaxControlToolkit renderStyleLinks="false"/>
 
 	<system.web>

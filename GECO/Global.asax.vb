@@ -22,16 +22,20 @@
 
         ' Get exception
         Dim exc As Exception = Server.GetLastError()
-        Dim httpCode As Integer = CType(exc, HttpException).GetHttpCode()
 
-        ' 404's handled differently from everything else
+        ' Get HTTP code if available
+        Dim httpCode As Integer = -1
+        Dim httpException As HttpException = TryCast(exc, HttpException)
+        If httpException IsNot Nothing Then httpCode = httpException.GetHttpCode()
+
+        ' HTTP 404s are handled differently from everything else
         If httpCode = 404 Then
             Server.ClearError()
             Server.Transfer("/404.aspx")
         Else
             ' Add data to exception and send to error logger
             exc.Data.AddIfNotExists("Unhandled", True)
-            exc.Data.AddIfNotExists("HTTP Code", httpCode)
+            If httpCode > 0 Then exc.Data.AddIfNotExists("HTTP Code", httpCode)
             ErrorReport(exc, unhandled:=True)
         End If
     End Sub
