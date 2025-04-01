@@ -635,7 +635,7 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="Mindscape.Raygun4Net">
-      <Version>11.1.2</Version>
+      <Version>11.2.2</Version>
     </PackageReference>
     <PackageReference Include="MSCaptcha">
       <Version>1.0.0</Version>
@@ -647,7 +647,7 @@
       <Version>5.3.95.699</Version>
     </PackageReference>
     <PackageReference Include="SonarAnalyzer.VisualBasic">
-      <Version>10.3.0.106239</Version>
+      <Version>10.7.0.110445</Version>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
