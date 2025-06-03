@@ -58,7 +58,7 @@ Namespace GecoModels
                 _feeAccess = Value
 
                 If Value Then
-                    _communicationPermissions.Add(CommunicationCategory.Fees.Name)
+                    _communicationPermissions.Add(CommunicationCategory.PermitFees.Name)
                 End If
             End Set
         End Property

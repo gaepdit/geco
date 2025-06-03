@@ -252,7 +252,9 @@
                                         page and make changes there before proceeding.
                                     </p>
 
-                                    <% If CommunicationCategory.Fees.CommunicationPreferenceEnabled Then  %>
+                                    <% If CommunicationCategory.PermitFees.CommunicationOption = CommunicationOptionType.Electronic OrElse
+                                            (CommunicationCategory.PermitFees.CommunicationOption = CommunicationOptionType.FacilityChoice AndAlso
+                                            info.Preference.CommunicationPreference.IncludesElectronic) Then  %>
                                     <h4>Communication preference:</h4>
                                     <p><%= info.Preference.CommunicationPreference.Description %></p>
                                     <% End If %>
@@ -286,7 +288,9 @@
                                     <% End If %>
 
                                     <% 
-                                        If CommunicationCategory.Fees.CommunicationPreferenceEnabled AndAlso
+                                        If (CommunicationCategory.PermitFees.CommunicationOption = CommunicationOptionType.Electronic OrElse
+                                            (CommunicationCategory.PermitFees.CommunicationOption = CommunicationOptionType.FacilityChoice AndAlso
+                                            info.Preference.CommunicationPreference.IncludesElectronic)) AndAlso
                                             info.Preference.CommunicationPreference.IncludesElectronic Then
                                     %>
                                     <h4>Additional Email Recipients:</h4>

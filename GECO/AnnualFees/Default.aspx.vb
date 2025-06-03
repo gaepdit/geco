@@ -49,7 +49,7 @@ Partial Class AnnualFees_Default
             lblMessage.Visible = True
 
             ddlFeeYear.Items.Add("-Select Year-")
-            Dim dt As DataTable = CheckFinalSubmit(currentAirs)
+            Dim dt As DataTable = DAL.AnnualFees.CheckFinalSubmit(currentAirs)
 
             If dt.Rows.Count > 0 Then
                 'Don't pre-select any Year. Let the user select a year they want to work on.
@@ -94,11 +94,13 @@ Partial Class AnnualFees_Default
         If Not DoubleCheckFeeYear() Then Return
 
         If info Is Nothing Then
-            info = GetFacilityCommunicationInfo(currentAirs, CommunicationCategory.Fees)
+            info = GetFacilityCommunicationInfo(currentAirs, CommunicationCategory.PermitFees)
         End If
 
         If info Is Nothing OrElse
-          (CommunicationCategory.Fees.CommunicationPreferenceEnabled AndAlso
+          ((CommunicationCategory.PermitFees.CommunicationOption = CommunicationOptionType.Electronic OrElse
+            (CommunicationCategory.PermitFees.CommunicationOption = CommunicationOptionType.FacilityChoice AndAlso
+            info.Preference.CommunicationPreference.IncludesElectronic)) AndAlso
             Not info.Preference.IsConfirmed) OrElse
           info.Mail Is Nothing Then
 
@@ -183,7 +185,7 @@ Partial Class AnnualFees_Default
     End Sub
 
     Protected Sub btnSubmit_Click(sender As Object, e As EventArgs) Handles btnSubmit.Click
-        If ActiveInvoiceExists(currentAirs, feeYear.Value) Then
+        If DAL.AnnualFees.ActiveInvoiceExists(currentAirs, feeYear.Value) Then
             feeYearCompleted = True
             ResetPage()
             Return
@@ -288,7 +290,7 @@ Partial Class AnnualFees_Default
 #Region "Load from Database"
 
     Private Sub LoadFeeData()
-        Dim dr As DataRow = GetClassInfo(feeYear.Value)
+        Dim dr As DataRow = DAL.AnnualFees.GetClassInfo(feeYear.Value)
 
         Dim initClass As String = "B"
 
@@ -341,7 +343,7 @@ Partial Class AnnualFees_Default
         End If
 
         'Next get data from the fs_feeauditeddata table
-        dr = GetExistingFeeData(feeYear.Value)
+        dr = DAL.AnnualFees.GetExistingFeeData(feeYear.Value)
 
         If dr IsNot Nothing Then
             'If the NumFeeRate in the AuditedData table is different, then replace the pertonrate with the new value
@@ -403,7 +405,7 @@ Partial Class AnnualFees_Default
     Protected Sub LoadSignAndPay()
         'If Signature data is already loaded, then do not re-load
         If String.IsNullOrEmpty(txtOwner.Text) Then
-            Dim dr As DataRow = GetPaySubmitInfo(feeYear.Value)
+            Dim dr As DataRow = DAL.AnnualFees.GetPaySubmitInfo(feeYear.Value)
 
             If dr IsNot Nothing Then
                 txtPayType.Text = GetNullableString(dr.Item("STRPAYMENTPLAN"))
@@ -422,7 +424,7 @@ Partial Class AnnualFees_Default
 
     Protected Sub LoadNSPSExemptList()
         If feeYear.HasValue Then
-            Dim dt As DataTable = GetNSPSExemptList(feeYear.Value)
+            Dim dt As DataTable = DAL.AnnualFees.GetNSPSExemptList(feeYear.Value)
 
             If dt IsNot Nothing Then
                 For Each row As DataRow In dt.Rows
@@ -434,7 +436,7 @@ Partial Class AnnualFees_Default
 
     Protected Sub LoadAnnualFeesHistory()
         If grdFeeHistory.DataSource Is Nothing Then
-            grdFeeHistory.DataSource = GetAnnualFeeHistory(currentAirs)
+            grdFeeHistory.DataSource = DAL.AnnualFees.GetAnnualFeeHistory(currentAirs)
             grdFeeHistory.DataBind()
         End If
     End Sub
@@ -720,7 +722,7 @@ Partial Class AnnualFees_Default
             feeRatesSection.Visible = False
             tabFeeCalculation.Visible = False
         Else
-            feeCalc.FeeRates = GetFeeRates(feeYear.Value)
+            feeCalc.FeeRates = DAL.AnnualFees.GetFeeRates(feeYear.Value)
             info = Nothing
 
             NspsExemptionsChecklist.Items.Clear()

@@ -65,6 +65,16 @@
 
     <% End If %>
 
+    <% If Today < New Date(2026,7,1) %>
+    <div class="announcement announcement-wide">
+        <h3>Notice</h3>
+        <p>
+            Beginning July 1, 2025, the Air Protection Branch will be enforcing a "paperless only" communication 
+            policy for Permit Fees. Please ensure you have provided accurate email addresses for Permit Fee contacts.
+        </p>
+    </div>
+    <% End If %>
+
     <table class="table-simple table-rowsections" aria-label="Communication preferences">
         <tbody>
             <%
@@ -86,9 +96,14 @@
                     <% End If %>
                 </td>
                 <td>
-                    <% If category.CommunicationPreferenceEnabled Then %>
+                    <% If category.CommunicationOption = CommunicationOptionType.FacilityChoice Then %>
                     <h3>Communication preference:</h3>
                     <p><%= info.Preference.CommunicationPreference.Description %></p>
+                    <% End If %>
+
+                    <% If category.CommunicationOption = CommunicationOptionType.Electronic Then %>
+                    <h3>Notice:</h3>
+                    <p><%= category.Description %> Communication is paperless-only. Please ensure email addresses have been provided and are accurate.</p>
                     <% End If %>
 
                     <% If CommunicationUpdate.UpdateRequired AndAlso CommunicationUpdate.CategoryUpdates.ContainsKey(category) Then %>
@@ -125,7 +140,9 @@
                     </p>
                     <% End If %>
 
-                    <% If category.CommunicationPreferenceEnabled AndAlso info.Preference.CommunicationPreference.IncludesElectronic Then %>
+                    <% If category.CommunicationOption = CommunicationOptionType.Electronic OrElse
+                (category.CommunicationOption = CommunicationOptionType.FacilityChoice AndAlso
+                info.Preference.CommunicationPreference.IncludesElectronic) Then %>
                     <h3>Additional Email Recipients:</h3>
                     <% If info.Emails.Count = 0 Then %>
                     <p><em>None added.</em></p>

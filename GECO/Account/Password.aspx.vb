@@ -26,6 +26,8 @@ Partial Class Account_Password
         lblPasswordMessage.Visible = False
     End Sub
 
+    ' Regular expression for password validation:
+    ' https://regex101.com/r/hRNxoq/1
     Protected Sub btnPwdUpdate_Click(sender As Object, e As EventArgs) Handles btnPwdUpdate.Click
         HideMessages()
 

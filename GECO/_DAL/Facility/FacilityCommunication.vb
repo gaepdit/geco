@@ -185,7 +185,7 @@ Namespace DAL.Facility
         Public Function InitialCommunicationPreferenceSettingRequired(facilityId As ApbFacilityId,
                                                                       access As FacilityAccess,
                                                                       category As CommunicationCategory) As Boolean
-            Return category.CommunicationPreferenceEnabled AndAlso
+            Return category.CommunicationOption = CommunicationOptionType.FacilityChoice AndAlso
                 access.HasCommunicationPermission(category) AndAlso
                 Not GetFacilityCommunicationPreference(facilityId, category).IsConfirmed
         End Function
@@ -198,7 +198,7 @@ Namespace DAL.Facility
             Dim response As New CommunicationUpdateResponse()
 
             For Each category In CommunicationCategory.AllCategories
-                If category.CommunicationPreferenceEnabled AndAlso access.HasCommunicationPermission(category) Then
+                If access.HasCommunicationPermission(category) Then
                     Dim params As SqlParameter() = {
                         New SqlParameter("@category", category.Name),
                         New SqlParameter("@facilityId", facilityId.DbFormattedString)

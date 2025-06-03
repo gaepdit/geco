@@ -45,13 +45,14 @@ Partial Class Home
         lblEIYear5.Text = eiCurrentYearString  'This is the EI reporting year
         lblEIYear6.Text = eiCurrentYearString  'This is the EI reporting year
 
-        Dim feeDueYear As String = CStr(Now.Year)
-        Dim feeCalendarYear As String = CStr(Now.Year - 1)
+        Dim feeDataRow = DAL.AnnualFees.GetLatestFeeDates()
+        Dim feeDueDate As Date = CDate(feeDataRow.Item("DueDate"))
+        Dim feeCalendarYear As String = CStr(feeDataRow.Item("FeeYear"))
 
         lblFeeYear1.Text = feeCalendarYear ' Fee Calendar year
         lblFeeYear2.Text = feeCalendarYear ' Fee Calendar year
-        lblFeeYear3.Text = feeDueYear ' Fees dues year
-        lblFeeYear4.Text = feeDueYear ' Fees dues year
+        lblFeesOpenYear.Text = feeDueDate.Year.ToString() ' Fees dues date
+        lblFeeDueDate.Text = feeDueDate.ToLongDate() ' Fees dues date
 
         If eiCurrentYear Mod 3 = 1 Then
             lblTriennialEIText.Visible = True

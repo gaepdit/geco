@@ -59,6 +59,15 @@ Partial Public Class EditContacts
     Protected WithEvents UpdatePanel1 As Global.System.Web.UI.UpdatePanel
 
     '''<summary>
+    '''pnlFacilityCommunicationChoice control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents pnlFacilityCommunicationChoice As Global.System.Web.UI.WebControls.Panel
+
+    '''<summary>
     '''rbCommPref control.
     '''</summary>
     '''<remarks>

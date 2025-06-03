@@ -185,22 +185,22 @@ Partial Public Class Home
     Protected WithEvents lblFeeYear2 As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''lblFeeYear3 control.
+    '''lblFeesOpenYear control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lblFeeYear3 As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lblFeesOpenYear As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''lblFeeYear4 control.
+    '''lblFeeDueDate control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lblFeeYear4 As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lblFeeDueDate As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''Master property.

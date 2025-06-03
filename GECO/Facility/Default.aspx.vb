@@ -59,7 +59,7 @@ Partial Class FacilityHome
 
     Private Sub CheckForMandatoryUpdates()
         ' Require user to set communication preferences if they have never been set.
-        If InitialCommunicationPreferenceSettingRequired(CurrentAirs, FacilityAccess, CommunicationCategory.Fees) Then
+        If InitialCommunicationPreferenceSettingRequired(CurrentAirs, FacilityAccess, CommunicationCategory.PermitFees) Then
             HttpContext.Current.Response.Redirect("~/Facility/SetCommunicationPreferences.aspx")
         End If
 
@@ -143,7 +143,7 @@ Partial Class FacilityHome
 
         PFLink.NavigateUrl = $"~/Fees/?airs={CurrentAirs.ShortString}"
 
-        Dim dr As DataRow = GetFeeStatus(CurrentAirs)
+        Dim dr As DataRow = AnnualFees.GetFeeStatus(CurrentAirs)
 
         If dr Is Nothing Then
             litEmissionsFees.Text = "Not subject to fees."

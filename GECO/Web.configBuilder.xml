@@ -42,11 +42,17 @@
 		<add key="OrgNotificationsApiUrl" value="https://localhost:7233/current"/>
 	</appSettings>
 
+	<!-- 
+		Valid options are:
+		Mail
+        Electronic
+        FacilityChoice
+	-->
 	<communicationPrefs
-        FeesEnabled="true"
-        PermitApplicationsEnabled="false"
-        EmissionsInventoryEnabled ="false"
-        TestingMonitoringEnabled="false"/>
+        PermitFees="Electronic"
+        PermitApplications="Mail"
+        EmissionsInventory="Mail"
+        TestingMonitoring="Mail"/>
 
 	<RaygunSettings apikey="" excludeHttpStatusCodes="404"/>
 	<ajaxControlToolkit renderStyleLinks="false"/>
