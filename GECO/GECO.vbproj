@@ -573,6 +573,8 @@
     <Content Include="assets\dev\dev-site.webmanifest" />
     <Content Include="assets\uat\uat-site.webmanifest" />
     <Content Include="docs\2024-opt-out-form_annual.xlsx" />
+    <Content Include="docs\GECO-Information-Sheet.pdf" />
+    <Content Include="docs\Generating-an-Invoice-on-GECO.pdf" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
