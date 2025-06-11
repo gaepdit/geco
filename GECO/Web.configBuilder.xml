@@ -49,7 +49,7 @@
         FacilityChoice
 	-->
 	<communicationPrefs
-        PermitFees="Electronic"
+        PermitFees="FacilityChoice"
         PermitApplications="Mail"
         EmissionsInventory="Mail"
         TestingMonitoring="Mail"/>
