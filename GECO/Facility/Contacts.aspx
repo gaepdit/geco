@@ -65,6 +65,16 @@
 
     <% End If %>
 
+    <% If Today < New Date(2026,7,1) %>
+    <div class="announcement announcement-wide">
+        <h3>Notice</h3>
+        <p>
+            Beginning in 2026, notices for Permit Fees will be sent electronically only. 
+            In anticipation of this change, we kindly request that you verify the contact information currently on file with us.
+        </p>
+    </div>
+    <% End If %>
+
     <table class="table-simple table-rowsections" aria-label="Communication preferences">
         <tbody>
             <%
@@ -86,9 +96,14 @@
                     <% End If %>
                 </td>
                 <td>
-                    <% If category.CommunicationPreferenceEnabled Then %>
+                    <% If category.CommunicationOption = CommunicationOptionType.FacilityChoice Then %>
                     <h3>Communication preference:</h3>
                     <p><%= info.Preference.CommunicationPreference.Description %></p>
+                    <% End If %>
+
+                    <% If category.CommunicationOption = CommunicationOptionType.Electronic Then %>
+                    <h3>Notice:</h3>
+                    <p><%= category.Description %> communication is electronic only. Please ensure email addresses have been provided and are accurate.</p>
                     <% End If %>
 
                     <% If CommunicationUpdate.UpdateRequired AndAlso CommunicationUpdate.CategoryUpdates.ContainsKey(category) Then %>
@@ -125,7 +140,9 @@
                     </p>
                     <% End If %>
 
-                    <% If category.CommunicationPreferenceEnabled AndAlso info.Preference.CommunicationPreference.IncludesElectronic Then %>
+                    <% If category.CommunicationOption = CommunicationOptionType.Electronic OrElse
+                (category.CommunicationOption = CommunicationOptionType.FacilityChoice AndAlso
+                info.Preference.CommunicationPreference.IncludesElectronic) Then %>
                     <h3>Additional Email Recipients:</h3>
                     <% If info.Emails.Count = 0 Then %>
                     <p><em>None added.</em></p>

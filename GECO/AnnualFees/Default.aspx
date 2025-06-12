@@ -72,7 +72,7 @@
                             <p>
                                 If you would like to make changes to any previously submitted fee form, you may do 
                                 so using the 
-                                <a href="FeeAmendmentForm.xlsx" download>Fee Amendment Form</a>
+                                <a href="<%= Page.ResolveUrl("~/docs/FeeAmendmentForm.xlsx") %>" download>Fee Amendment Form</a>
                                 (last updated July&nbsp;7,&nbsp;2021).
                             </p>
 
@@ -252,7 +252,9 @@
                                         page and make changes there before proceeding.
                                     </p>
 
-                                    <% If CommunicationCategory.Fees.CommunicationPreferenceEnabled Then  %>
+                                    <% If CommunicationCategory.PermitFees.CommunicationOption = CommunicationOptionType.Electronic OrElse
+                                            (CommunicationCategory.PermitFees.CommunicationOption = CommunicationOptionType.FacilityChoice AndAlso
+                                            info.Preference.CommunicationPreference.IncludesElectronic) Then  %>
                                     <h4>Communication preference:</h4>
                                     <p><%= info.Preference.CommunicationPreference.Description %></p>
                                     <% End If %>
@@ -286,7 +288,9 @@
                                     <% End If %>
 
                                     <% 
-                                        If CommunicationCategory.Fees.CommunicationPreferenceEnabled AndAlso
+                                        If (CommunicationCategory.PermitFees.CommunicationOption = CommunicationOptionType.Electronic OrElse
+                                            (CommunicationCategory.PermitFees.CommunicationOption = CommunicationOptionType.FacilityChoice AndAlso
+                                            info.Preference.CommunicationPreference.IncludesElectronic)) AndAlso
                                             info.Preference.CommunicationPreference.IncludesElectronic Then
                                     %>
                                     <h4>Additional Email Recipients:</h4>

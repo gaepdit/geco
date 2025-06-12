@@ -84,14 +84,17 @@ Public Class EditContacts
 
         rbCommPref.SelectedValue = CurrentCommunicationInfo.Preference.CommunicationPreference.Name
 
-        If CurrentCategory.CommunicationPreferenceEnabled AndAlso
-                CurrentCommunicationInfo.Preference.CommunicationPreference.IncludesElectronic Then
+        If CurrentCategory.CommunicationOption = CommunicationOptionType.Electronic OrElse
+            (CurrentCategory.CommunicationOption = CommunicationOptionType.FacilityChoice AndAlso
+            CurrentCommunicationInfo.Preference.CommunicationPreference.IncludesElectronic) Then
             pnlElectronicCommunication.Visible = True
+            DisplayEmailLists()
         Else
             pnlElectronicCommunication.Visible = False
         End If
 
-        DisplayEmailLists()
+        pnlFacilityCommunicationChoice.Visible = CurrentCategory.CommunicationOption = CommunicationOptionType.FacilityChoice
+
         DisplayMailContact()
     End Sub
 
@@ -115,10 +118,8 @@ Public Class EditContacts
     End Sub
 
     Private Sub DisplayEmailLists()
-        If CurrentCategory.CommunicationPreferenceEnabled Then
-            rptEmails.DataSource = CurrentCommunicationInfo.EmailList
-            rptEmails.DataBind()
-        End If
+        rptEmails.DataSource = CurrentCommunicationInfo.EmailList
+        rptEmails.DataBind()
     End Sub
 
     Protected Sub SavePreference(sender As Object, e As EventArgs) Handles btnSavePref.Click

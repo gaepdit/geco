@@ -21,12 +21,12 @@ Public Class SetCommunicationPreferences
             Dim facilityAccess As FacilityAccess = GetCurrentUser.GetFacilityAccess(currentAirs)
 
             If facilityAccess Is Nothing OrElse
-              Not facilityAccess.HasCommunicationPermission(CommunicationCategory.Fees) Then
+              Not facilityAccess.HasCommunicationPermission(CommunicationCategory.PermitFees) Then
                 HttpContext.Current.Response.Redirect("~/Home/")
             End If
 
             ' Check current pref setting. If already set, then redirect to facility home.
-            Dim pref As FacilityCommunicationPreference = GetFacilityCommunicationPreference(currentAirs, CommunicationCategory.Fees)
+            Dim pref As FacilityCommunicationPreference = GetFacilityCommunicationPreference(currentAirs, CommunicationCategory.PermitFees)
 
             If pref.IsConfirmed Then
                 HttpContext.Current.Response.Redirect("~/Home/")
@@ -55,7 +55,7 @@ Public Class SetCommunicationPreferences
         End If
 
         Dim result As Boolean = SaveCommunicationPreference(airs,
-                                    CommunicationCategory.Fees,
+                                    CommunicationCategory.PermitFees,
                                     CommunicationPreference.FromName(rbCommPref.SelectedValue),
                                     GetCurrentUser.UserId)
 

@@ -50,32 +50,32 @@
 
                     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                         <ContentTemplate>
-                            <% If CurrentCategory.CommunicationPreferenceEnabled Then %>
-                            <h3 id="method">Preferred Method of Communication</h3>
+                            <asp:Panel ID="pnlFacilityCommunicationChoice" runat="server" Visible="false">
+                                <h3 id="method">Preferred Method of Communication</h3>
 
-                            <p>
-                                Select your preferred method of communication for <%= CurrentCategory.Description %>.
+                                <p>
+                                    Select your preferred method of communication for <%= CurrentCategory.Description %>.
                                 Please note that regardless of selection, a primary mail and email contact are still required.
-                            </p>
+                                </p>
 
-                            <asp:RadioButtonList ID="rbCommPref" runat="server" ValidationGroup="Preference" CssClass="text-small">
-                                <asp:ListItem Value="Electronic">Prefer to receive electronic communications.</asp:ListItem>
-                                <asp:ListItem Value="Mail">Prefer to receive mailed communications.</asp:ListItem>
-                                <asp:ListItem Value="Both">Prefer to receive <strong>both</strong> electronic and mailed communications.</asp:ListItem>
-                            </asp:RadioButtonList>
+                                <asp:RadioButtonList ID="rbCommPref" runat="server" ValidationGroup="Preference" CssClass="text-small">
+                                    <asp:ListItem Value="Electronic">Prefer to receive electronic communications.</asp:ListItem>
+                                    <asp:ListItem Value="Mail">Prefer to receive mailed communications.</asp:ListItem>
+                                    <asp:ListItem Value="Both">Prefer to receive <strong>both</strong> electronic and mailed communications.</asp:ListItem>
+                                </asp:RadioButtonList>
 
-                            <p id="pPrefSaveError" runat="server" visible="false" class="message-warning anim-fade-in fast">
-                                There was an error while saving. Please try again.
-                            </p>
+                                <p id="pPrefSaveError" runat="server" visible="false" class="message-warning anim-fade-in fast">
+                                    There was an error while saving. Please try again.
+                                </p>
 
-                            <p id="pPrefSaveSuccess" runat="server" visible="false" class="message-success anim-fade-in fast">
-                                Communication preference saved.
-                            </p>
+                                <p id="pPrefSaveSuccess" runat="server" visible="false" class="message-success anim-fade-in fast">
+                                    Communication preference saved.
+                                </p>
 
-                            <p>
-                                <asp:Button ID="btnSavePref" runat="server" Text="Save Communication Preferences" ValidationGroup="Preference" />
-                            </p>
-                            <% End If %>
+                                <p>
+                                    <asp:Button ID="btnSavePref" runat="server" Text="Save Communication Preferences" ValidationGroup="Preference" />
+                                </p>
+                            </asp:Panel>
 
                             <h3 id="contact">Primary Contact</h3>
 

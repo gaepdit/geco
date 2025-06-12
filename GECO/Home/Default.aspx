@@ -137,8 +137,8 @@
         The
         <asp:Label ID="lblFeeYear2" runat="server" Text=""></asp:Label>
         Annual Permit Fee process begins 
-        July&nbsp;1,&nbsp;<asp:Label ID="lblFeeYear3" runat="server" Text=""></asp:Label>. 
+        July&nbsp;1,&nbsp;<asp:Label ID="lblFeesOpenYear" runat="server" Text=""></asp:Label>. 
         The deadline for fee submittal is 
-        <strong>September&nbsp;1,&nbsp;<asp:Label ID="lblFeeYear4" runat="server" Text=""></asp:Label></strong>. 
+        <strong><asp:Label ID="lblFeeDueDate" runat="server" Text=""></asp:Label></strong>. 
     </p>
 </asp:Content>
