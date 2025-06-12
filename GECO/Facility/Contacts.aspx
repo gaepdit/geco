@@ -69,8 +69,8 @@
     <div class="announcement announcement-wide">
         <h3>Notice</h3>
         <p>
-            Beginning July 1, 2025, the Air Protection Branch will be enforcing a "paperless only" communication 
-            policy for Permit Fees. Please ensure you have provided accurate email addresses for Permit Fee contacts.
+            Beginning in 2026, notices for Permit Fees will be sent electronically only. 
+            In anticipation of this change, we kindly request that you verify the contact information currently on file with us.
         </p>
     </div>
     <% End If %>
@@ -103,7 +103,7 @@
 
                     <% If category.CommunicationOption = CommunicationOptionType.Electronic Then %>
                     <h3>Notice:</h3>
-                    <p><%= category.Description %> Communication is paperless-only. Please ensure email addresses have been provided and are accurate.</p>
+                    <p><%= category.Description %> communication is electronic only. Please ensure email addresses have been provided and are accurate.</p>
                     <% End If %>
 
                     <% If CommunicationUpdate.UpdateRequired AndAlso CommunicationUpdate.CategoryUpdates.ContainsKey(category) Then %>
