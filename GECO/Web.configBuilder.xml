@@ -3,9 +3,7 @@
 <!--
   DO NOT EDIT "Web.config"!!!
 
-  Web.config is automatically generated on build. Edit "Web.configBuilder.xml" and
-  "Web.configBuilder.{configuration}.xml" instead. (Use "Web.configBuilder.Server-sample.xml"
-  as a template.)
+  Web.config is automatically generated on build. Edit "Web.configBuilder.xml" and "Web.configBuilder.{configuration}.xml" instead.
 -->
 
 <configuration>
