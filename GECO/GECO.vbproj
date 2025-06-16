@@ -604,6 +604,7 @@
       <DependentUpon>Web.configBuilder.xml</DependentUpon>
       <IsTransformFile>true</IsTransformFile>
     </None>
+    <None Include="Web.configBuilder.Server-sample.xml" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="AjaxControlToolkit">
