@@ -276,6 +276,4 @@
             </tr>
         </tbody>
     </table>
-    <script src="https://unpkg.com/details-element-polyfill@2.4.0/dist/details-element-polyfill.js"
-        integrity="sha384-e9xku4VSRQ/IhD1GrrEGl4DR0H68G1fI1qUeiY9f6aSYKSAQJDNWwLiBq8uZB7aD" crossorigin="anonymous"></script>
 </asp:Content>

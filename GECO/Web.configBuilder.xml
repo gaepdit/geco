@@ -13,9 +13,6 @@
 		<section name ="communicationPrefs" type ="GECO.GecoModels.Facility.CommunicationPrefsConfigSection"/>
 		<section name="RaygunSettings" type="Mindscape.Raygun4Net.RaygunSettings, Mindscape.Raygun4Net"/>
 		<section name="ajaxControlToolkit" type="AjaxControlToolkit.AjaxControlToolkitConfigSection, AjaxControlToolkit"/>
-		<sectionGroup name="nwebsec">
-			<section name="httpHeaderSecurityModule" type="NWebsec.Modules.Configuration.HttpHeaderSecurityConfigurationSection, NWebsec" requirePermission="false"/>
-		</sectionGroup>
 	</configSections>
 
 	<connectionStrings>
@@ -65,9 +62,6 @@
 				<add tagPrefix="act" namespace="AjaxControlToolkit" assembly="AjaxControlToolkit"/>
 			</controls>
 		</pages>
-		<httpHandlers>
-			<add verb="GET" path="CaptchaImage.axd" type="MSCaptcha.CaptchaImageHandler, MSCaptcha"/>
-		</httpHandlers>
 		<customErrors mode="RemoteOnly" defaultRedirect="~/ErrorPage.aspx"/>
 		<httpCookies requireSSL="true" httpOnlyCookies="true"/>
 	</system.web>
@@ -81,9 +75,6 @@
 
 	<system.webServer>
 		<validation validateIntegratedModeConfiguration="false"/>
-		<handlers>
-			<add name="MSCaptcha" verb="GET" path="CaptchaImage.axd" type="MSCaptcha.CaptchaImageHandler, MSCaptcha"/>
-		</handlers>
 		<rewrite>
 			<!-- This requires the URL Rewrite module to be installed in IIS. -->
 			<rules>
@@ -117,75 +108,22 @@
 			<clear />
 			<error statusCode="404" path="/404.aspx" responseMode="ExecuteURL"/>
 		</httpErrors>
-		<modules>
-			<add name="NWebsecHttpHeaderSecurityModule" type="NWebsec.Modules.HttpHeaderSecurityModule, NWebsec"/>
-		</modules>
-		<security>
-			<requestFiltering>
-				<hiddenSegments>
-					<add segment="NWebsecConfig"/>
-				</hiddenSegments>
-			</requestFiltering>
-		</security>
 		<staticContent>
 			<remove fileExtension=".webmanifest"/>
 			<mimeMap fileExtension=".webmanifest" mimeType="application/json"/>
 		</staticContent>
+		<security>
+			<requestFiltering removeServerHeader="true" />
+		</security>
+		<httpProtocol>
+			<customHeaders>
+				<add name="Content-Security-Policy" value="default-src 'self'" />
+				<add name="X-Content-Type-Options" value="nosniff" />
+				<add name="X-Frame-Options" value="deny" />
+				<remove name="X-Powered-By" />
+			</customHeaders>
+		</httpProtocol>
 	</system.webServer>
-
-	<!-- Configuration for the NWebsec package. See https://docs.nwebsec.com/en/aspnet4/index.html -->
-	<nwebsec>
-		<httpHeaderSecurityModule xmlns="http://nwebsec.com/HttpHeaderSecurityModuleConfig.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="NWebsecConfig/HttpHeaderSecurityModuleConfig.xsd">
-			<redirectValidation enabled="true">
-				<allowSameHostRedirectsToHttps enabled="true"/>
-			</redirectValidation>
-			<securityHttpHeaders>
-				<x-Frame-Options policy="Deny"/>
-				<x-XSS-Protection policy="FilterEnabled" blockMode="true"/>
-				<x-Content-Type-Options enabled="true"/>
-				<referrer-Policy enabled="true" policy="strict-origin-when-cross-origin"/>
-				<content-Security-Policy enabled="true" >
-					<default-src none="true"/>
-					<script-src self="true" unsafeInline="true" unsafeEval="true">
-						<add source="https://cdn.raygun.io/raygun4js/raygun.min.js"/>
-						<add source="https://unpkg.com/details-element-polyfill@2.4.0/dist/details-element-polyfill.js"/>
-						<add source="https://translate.google.com/"/>
-						<add source="https://translate.googleapis.com/"/>
-						<add source="https://translate-pa.googleapis.com/"/>
-						<add source="https://maps.googleapis.com/"/>
-					</script-src>
-					<style-src self="true" unsafeInline="true">
-						<add source="https://fonts.googleapis.com/"/>
-						<add source="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/8.0.0/"/>
-						<add source="https://translate.googleapis.com/translate_static/css/translateelement.css"/>
-					</style-src>
-					<img-src self="true">
-						<add source="https://maps.googleapis.com"/>
-						<add source="data:"/>
-						<add source="https://www.gstatic.com/images/"/>
-						<add source="https://www.google.com/images/"/>
-						<add source="https://translate.googleapis.com/"/>
-						<add source="https://translate.google.com/"/>
-						<add source="https://maps.gstatic.com/mapfiles/"/>
-						<add source="*.googleapis.com"/>
-					</img-src>
-					<connect-src self="true">
-						<add source="https://api.raygun.com"/>
-						<add source="https://api.raygun.io"/>
-						<add source="https://translate.googleapis.com/"/>
-						<add source="https://maps.googleapis.com/"/>
-					</connect-src>
-					<font-src self="true">
-						<add source="https://fonts.gstatic.com"/>
-					</font-src>
-					<form-action self="true"/>
-					<frame-ancestors none="true"/>
-					<manifest-src self="true"/>
-					<base-uri self="true"/>
-				</content-Security-Policy>
-			</securityHttpHeaders>
-		</httpHeaderSecurityModule>
-	</nwebsec>
 
 	<runtime>
 		<assemblyBinding xmlns="urn:schemas-microsoft-com:asm.v1">
