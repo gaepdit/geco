@@ -62,6 +62,9 @@
 				<add tagPrefix="act" namespace="AjaxControlToolkit" assembly="AjaxControlToolkit"/>
 			</controls>
 		</pages>
+		<httpHandlers>
+			<add verb="GET" path="CaptchaImage.axd" type="MSCaptcha.CaptchaImageHandler, MSCaptcha"/>
+		</httpHandlers>
 		<customErrors mode="RemoteOnly" defaultRedirect="~/ErrorPage.aspx"/>
 		<httpCookies requireSSL="true" httpOnlyCookies="true"/>
 	</system.web>
@@ -75,6 +78,9 @@
 
 	<system.webServer>
 		<validation validateIntegratedModeConfiguration="false"/>
+		<handlers>
+			<add name="MSCaptcha" verb="GET" path="CaptchaImage.axd" type="MSCaptcha.CaptchaImageHandler, MSCaptcha"/>
+		</handlers>
 		<rewrite>
 			<!-- This requires the URL Rewrite module to be installed in IIS. -->
 			<rules>
