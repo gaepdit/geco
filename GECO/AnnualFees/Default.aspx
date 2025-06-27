@@ -72,7 +72,7 @@
                             <p>
                                 If you would like to make changes to any previously submitted fee form, you may do 
                                 so using the 
-                                <a href="<%= Page.ResolveUrl("~/docs/FeeAmendmentForm.xlsx") %>" download>Fee Amendment Form</a>
+                                <a href="<%= Page.ResolveUrl("~/files/FeeAmendmentForm.xlsx") %>" download>Fee Amendment Form</a>
                                 (last updated July&nbsp;7,&nbsp;2021).
                             </p>
 

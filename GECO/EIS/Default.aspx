@@ -476,7 +476,7 @@
             <li>
                 <p>
                     If corrections need to be made for an opt-out or opt-in facility, please download the
-                    <a href="<%= Page.ResolveUrl("~/docs/2024-opt-out-form_annual.xlsx") %>" download>Opt-out form</a>
+                    <a href="<%= Page.ResolveUrl("~/files/2024-opt-out-form_annual.xlsx") %>" download>Opt-out form</a>
                     to make any changes. Upload the completed form to CAERS as the PTE analysis attachment.
                 </p>
             </li>
