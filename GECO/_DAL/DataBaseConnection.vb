@@ -1,10 +1,22 @@
-﻿Public Module DatabaseConnection
+﻿Imports Microsoft.Data.SqlClient
 
-    ' Connection string
-    Private ReadOnly DBConnectionString As String = ConfigurationManager.ConnectionStrings("SqlConnectionString").ToString
+Friend Module DatabaseConnection
 
-    ' DB Helper
-    Friend DB As New GaEpd.DBHelper(DBConnectionString)
+    Public Property DB As GaEpd.DBHelper = GetDBHelper()
+
+    Private Function GetDBHelper() As GaEpd.DBHelper
+        Dim connectionString As String = ConfigurationManager.ConnectionStrings("SqlConnectionString").ToString
+
+        Dim options As New SqlRetryLogicOption() With {
+            .NumberOfTries = 5,
+            .DeltaTime = TimeSpan.FromSeconds(10),
+            .MaxTimeInterval = TimeSpan.FromSeconds(15)
+        }
+
+        Dim connectionRetryProvider As SqlRetryLogicBaseProvider = SqlConfigurableRetryFactory.CreateFixedRetryProvider(options)
+
+        Return New GaEpd.DBHelper(connectionString, connectionRetryProvider)
+    End Function
 
 End Module
 
