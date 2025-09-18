@@ -21,7 +21,8 @@ Public Class EIS_Default
         Dim facilityAccess As FacilityAccess = GetCurrentUser().GetFacilityAccess(CurrentAirs)
 
         If facilityAccess Is Nothing OrElse Not facilityAccess.EisAccess Then
-            Response.Redirect("~/Home/")
+            CompleteRedirect("~/Home/")
+            Return
         End If
 
         If Not IsPostBack Then
@@ -37,7 +38,8 @@ Public Class EIS_Default
             Dim airs As String = GetCookie(Cookie.AirsNumber)
 
             If String.IsNullOrEmpty(airs) Then
-                Response.Redirect("~/")
+                CompleteRedirect("~/")
+                Return
             End If
 
             CurrentAirs = New ApbFacilityId(airs)
@@ -51,7 +53,8 @@ Public Class EIS_Default
             End If
 
             If Not ApbFacilityId.IsValidAirsNumberFormat(airsString) Then
-                HttpContext.Current.Response.Redirect("~/Home/")
+                CompleteRedirect("~/Home/")
+                Return
             End If
 
             CurrentAirs = New ApbFacilityId(airsString)
@@ -63,7 +66,8 @@ Public Class EIS_Default
         EiStatus = GetEiStatus(CurrentAirs)
 
         If EiStatus.AccessCode >= 3 Then
-            Response.Redirect("~/Facility/")
+            CompleteRedirect("~/Facility/")
+            Return
         End If
 
         Dim eiYear As Integer = GetCurrentEiYear()

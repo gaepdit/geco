@@ -12,7 +12,7 @@ Partial Class EventRegistration_EventDetails
         If Request.QueryString("eventid") Is Nothing OrElse
             Not Integer.TryParse(Request.QueryString("eventid"), eventId) Then
 
-            Response.Redirect(".", False)
+            CompleteRedirect("~/EventRegistration/")
             Return
         End If
 

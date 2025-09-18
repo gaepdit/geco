@@ -12,7 +12,8 @@ Public Class EIS_History_ReportingPeriodPollutants
         Dim airs As String = GetCookie(Cookie.AirsNumber)
 
         If String.IsNullOrEmpty(airs) Then
-            Response.Redirect("~/")
+            CompleteRedirect("~/")
+            Return
         End If
 
         CurrentAirs = New ApbFacilityId(airs)

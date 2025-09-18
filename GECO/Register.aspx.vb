@@ -7,7 +7,8 @@ Partial Class Register
     Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
         If Not IsPostBack Then
             If UserIsLoggedIn() Then
-                Response.Redirect("~/Home/")
+                CompleteRedirect("~/Home/")
+                Return
             End If
 
             Session.Clear()
@@ -25,18 +26,22 @@ Partial Class Register
             Select Case returnvalue
                 Case DbResult.Success
                     SendConfirmAccountEmail(email, token)
-                    Response.Redirect("~/Account.aspx?result=Success", False)
+                    CompleteRedirect("~/Account.aspx?result=Success")
+                    Return
 
                 Case DbResult.Failure
                     '  User already exists
-                    Response.Redirect("~/Account.aspx?result=Exists", False)
+                    CompleteRedirect("~/Account.aspx?result=Exists")
+                    Return
 
                 Case Else
                     Dim ex As New Exception("GECO Registration Error")
                     ex.Data.Add("Email", email)
                     ex.Data.Add("Method", MethodBase.GetCurrentMethod.Name)
                     ErrorReport(ex, False)
-                    Response.Redirect("~/Account.aspx?result=Error", False)
+                    CompleteRedirect("~/Account.aspx?result=Error")
+                    Return
+
             End Select
         End If
     End Sub

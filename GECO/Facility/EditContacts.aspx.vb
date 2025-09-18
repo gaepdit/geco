@@ -1,4 +1,4 @@
-Imports GECO.DAL.Facility
+﻿Imports GECO.DAL.Facility
 Imports GECO.EmailTemplates
 Imports GECO.GecoModels
 Imports GECO.GecoModels.Facility
@@ -19,7 +19,8 @@ Public Class EditContacts
 
         If IsPostBack Then
             If Not ApbFacilityId.TryParse(GetCookie(Cookie.AirsNumber), currentAirs) Then
-                HttpContext.Current.Response.Redirect("~/Home/")
+                CompleteRedirect("~/Home/")
+                Return
             End If
         Else
             ' AIRS number
@@ -32,7 +33,8 @@ Public Class EditContacts
             End If
 
             If Not ApbFacilityId.TryParse(airsString, currentAirs) Then
-                HttpContext.Current.Response.Redirect("~/Home/")
+                CompleteRedirect("~/Home/")
+                Return
             End If
 
             SetCookie(Cookie.AirsNumber, currentAirs.ShortString())
@@ -47,7 +49,8 @@ Public Class EditContacts
         FacilityAccess = currentUser.GetFacilityAccess(currentAirs)
 
         If FacilityAccess Is Nothing Then
-            HttpContext.Current.Response.Redirect("~/Facility/")
+            CompleteRedirect("~/Facility/")
+            Return
         End If
 
         If Not IsPostBack Then
@@ -63,13 +66,15 @@ Public Class EditContacts
         End If
 
         If Not CommunicationCategory.IsValidCategory(category) Then
-            HttpContext.Current.Response.Redirect("~/Facility/Contacts.aspx")
+            CompleteRedirect("~/Facility/Contacts.aspx")
+            Return
         End If
 
         CurrentCategory = CommunicationCategory.FromName(category)
 
         If Not FacilityAccess.HasCommunicationPermission(CurrentCategory) Then
-            HttpContext.Current.Response.Redirect("~/Facility/Contacts.aspx")
+            CompleteRedirect("~/Facility/Contacts.aspx")
+            Return
         End If
 
         SetCookie(Cookie.CommunicationCategory, category)

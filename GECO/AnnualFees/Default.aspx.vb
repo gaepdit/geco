@@ -27,7 +27,8 @@ Partial Class AnnualFees_Default
         Dim facilityAccess = currentUser.GetFacilityAccess(currentAirs)
 
         If Not facilityAccess.FeeAccess Then
-            Response.Redirect("~/NoAccess.aspx")
+            CompleteRedirect("~/NoAccess.aspx")
+            Return
         End If
 
         Master.IsFacilitySet = True
@@ -194,14 +195,15 @@ Partial Class AnnualFees_Default
         If UpdateDatabase() Then
             Page.Dispose()
             Response.BufferOutput = True
-            Response.Redirect($"~/Invoice/?FeeYear={feeYear.Value}&Facility={currentAirs.ShortString}")
-        Else
-            pFinalSubmitError.Visible = True
-            pnlFeeContact.Visible = True
-            pnlFeeCalculation.Visible = False
-            pnlFeeSignature.Visible = False
-            pnlFeeSubmit.Visible = False
+            CompleteRedirect($"~/Invoice/?FeeYear={feeYear.Value}&Facility={currentAirs.ShortString}")
+            Return
         End If
+
+        pFinalSubmitError.Visible = True
+        pnlFeeContact.Visible = True
+        pnlFeeCalculation.Visible = False
+        pnlFeeSignature.Visible = False
+        pnlFeeSubmit.Visible = False
     End Sub
 
     Protected Sub btnCancelFeeCalcSubmit_Click(sender As Object, e As EventArgs) Handles btnCancelFeeCalc.Click

@@ -1,4 +1,4 @@
-Imports GECO.GecoModels
+﻿Imports GECO.GecoModels
 
 Partial Class FacilityAdmin
     Inherits Page
@@ -15,7 +15,8 @@ Partial Class FacilityAdmin
 
         If IsPostBack Then
             If Not ApbFacilityId.TryParse(GetCookie(Cookie.AirsNumber), CurrentAirs) Then
-                HttpContext.Current.Response.Redirect("~/Home/")
+                CompleteRedirect("~/Home/")
+                Return
             End If
         Else
             ' AIRS number
@@ -28,7 +29,8 @@ Partial Class FacilityAdmin
             End If
 
             If Not ApbFacilityId.TryParse(airsString, CurrentAirs) Then
-                HttpContext.Current.Response.Redirect("~/Home/")
+                CompleteRedirect("~/Home/")
+                Return
             End If
 
             SetCookie(Cookie.AirsNumber, CurrentAirs.ShortString())
@@ -42,7 +44,8 @@ Partial Class FacilityAdmin
         FacilityAccess = currentUser.GetFacilityAccess(CurrentAirs)
 
         If FacilityAccess Is Nothing Then
-            HttpContext.Current.Response.Redirect("~/Facility/")
+            CompleteRedirect("~/Facility/")
+            Return
         End If
 
         pnlAddNewUser.Visible = FacilityAccess.AdminAccess

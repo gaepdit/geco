@@ -22,7 +22,8 @@ Partial Class Home
 
             Await DisplayNotificationsAsync()
         Else
-            Response.Redirect("~/Login.aspx", False)
+            CompleteRedirect("~/Login.aspx")
+            Return
         End If
     End Sub
 

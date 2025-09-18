@@ -10,7 +10,8 @@ Public Class EIS_History_Default
         Dim airs As String = GetCookie(Cookie.AirsNumber)
 
         If String.IsNullOrEmpty(airs) Then
-            Response.Redirect("~/")
+            CompleteRedirect("~/")
+            Return
         End If
 
         Dim airsNum As New ApbFacilityId(airs)

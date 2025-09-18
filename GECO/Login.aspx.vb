@@ -10,7 +10,8 @@ Partial Class Login
     Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
         If Not IsPostBack Then
             If UserIsLoggedIn() Then
-                Response.Redirect("~/Account/")
+                CompleteRedirect("~/Account/")
+                Return
             Else
                 GetUserFromSession()
             End If
@@ -58,7 +59,8 @@ Partial Class Login
 
             Case LoginResult.Success
                 If gecoUser.UserId = 0 Then
-                    Response.Redirect("~/ErrorPage.aspx", False)
+                    CompleteRedirect("~/ErrorPage.aspx")
+                    Return
                 End If
 
                 SessionAdd(GecoSession.CurrentUser, gecoUser)
@@ -70,13 +72,16 @@ Partial Class Login
                 End If
 
                 If gecoUser.ProfileUpdateRequired Then
-                    Response.Redirect("~/Account/?action=updateprofile")
+                    CompleteRedirect("~/Account/?action=updateprofile")
+                    Return
                 End If
 
-                Response.Redirect("~/Home/")
+                CompleteRedirect("~/Home/")
+                Return
 
             Case Else 'Some Error
-                Response.Redirect("~/ErrorPage.aspx", False)
+                CompleteRedirect("~/ErrorPage.aspx")
+                Return
         End Select
 
     End Sub
@@ -96,7 +101,8 @@ Partial Class Login
         If GetSavedUserSession(userSession, gecoUser) Then
             SessionAdd(GecoSession.CurrentUser, gecoUser)
             CreateSessionCookie(userSession)
-            Response.Redirect("~/Home/")
+            CompleteRedirect("~/Home/")
+            Return
         End If
 
     End Sub

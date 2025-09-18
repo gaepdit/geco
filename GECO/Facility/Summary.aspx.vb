@@ -1,4 +1,4 @@
-Imports Microsoft.Data.SqlClient
+﻿Imports Microsoft.Data.SqlClient
 Imports GaEpd.DBUtilities
 Imports GECO.GecoModels
 Imports GECO.MapHelper
@@ -18,7 +18,8 @@ Partial Class FacilitySummary
 
         If IsPostBack Then
             If Not ApbFacilityId.TryParse(GetCookie(Cookie.AirsNumber), currentAirs) Then
-                HttpContext.Current.Response.Redirect("~/Home/")
+                CompleteRedirect("~/Home/")
+                Return
             End If
         Else
             ' AIRS number
@@ -31,7 +32,8 @@ Partial Class FacilitySummary
             End If
 
             If Not ApbFacilityId.TryParse(airsString, currentAirs) Then
-                HttpContext.Current.Response.Redirect("~/Home/")
+                CompleteRedirect("~/Home/")
+                Return
             End If
 
             SetCookie(Cookie.AirsNumber, currentAirs.ShortString())
@@ -46,7 +48,8 @@ Partial Class FacilitySummary
         facilityAccess = currentUser.GetFacilityAccess(currentAirs)
 
         If facilityAccess Is Nothing Then
-            HttpContext.Current.Response.Redirect("~/Home/")
+            CompleteRedirect("~/Home/")
+            Return
         End If
 
         If Not IsPostBack Then

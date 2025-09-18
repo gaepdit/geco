@@ -1,4 +1,4 @@
-Imports GECO.GecoModels
+﻿Imports GECO.GecoModels
 Imports GECO.GecoModels.Facility
 Imports GECO.DAL.Facility
 
@@ -12,7 +12,7 @@ Public Class SetCommunicationPreferences
             Dim currentAirs As ApbFacilityId = ApbFacilityId.IfValid(GetCookie(Cookie.AirsNumber))
 
             If currentAirs Is Nothing Then
-                HttpContext.Current.Response.Redirect("~/Home/")
+                CompleteRedirect("~/Home/")
                 Return
             End If
 
@@ -23,14 +23,16 @@ Public Class SetCommunicationPreferences
 
             If facilityAccess Is Nothing OrElse
               Not facilityAccess.HasCommunicationPermission(CommunicationCategory.PermitFees) Then
-                HttpContext.Current.Response.Redirect("~/Home/")
+                CompleteRedirect("~/Home/")
+                Return
             End If
 
             ' Check current pref setting. If already set, then redirect to facility home.
             Dim pref As FacilityCommunicationPreference = GetFacilityCommunicationPreference(currentAirs, CommunicationCategory.PermitFees)
 
             If pref.IsConfirmed Then
-                HttpContext.Current.Response.Redirect("~/Home/")
+                CompleteRedirect("~/Home/")
+                Return
             End If
 
             ' AIRS number cookie gets cleared so user can't manually navigate to other 
@@ -51,7 +53,7 @@ Public Class SetCommunicationPreferences
         Dim airs As ApbFacilityId = ApbFacilityId.IfValid(hidAirs.Value)
 
         If airs Is Nothing Then
-            HttpContext.Current.Response.Redirect("~/Home/")
+            CompleteRedirect("~/Home/")
             Return
         End If
 
@@ -66,7 +68,8 @@ Public Class SetCommunicationPreferences
         End If
 
         SetCookie(Cookie.AirsNumber, airs.ShortString)
-        HttpContext.Current.Response.Redirect($"~/Facility/Contacts.aspx")
+
+        CompleteRedirect("~/Facility/Contacts.aspx")
     End Sub
 
 End Class

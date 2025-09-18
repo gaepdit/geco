@@ -16,11 +16,12 @@ Partial Class _Default
         End If
 
         If UserIsLoggedIn() OrElse CheckForSavedSession() Then
-            Response.Redirect("~/Home/", False)
-        Else
-            ClearCurrentLogin()
-            Await DisplayNotificationsAsync()
+            CompleteRedirect("~/Home/")
+            Return
         End If
+
+        ClearCurrentLogin()
+        Await DisplayNotificationsAsync()
     End Sub
 
     Private Async Function DisplayNotificationsAsync() As Task

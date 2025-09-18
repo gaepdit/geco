@@ -1,4 +1,4 @@
-Imports GECO.DAL
+﻿Imports GECO.DAL
 Imports GECO.GecoModels
 
 Public Class Fees_Default
@@ -23,7 +23,8 @@ Public Class Fees_Default
             End If
 
             If Not ApbFacilityId.IsValidAirsNumberFormat(airsString) Then
-                HttpContext.Current.Response.Redirect("~/Facility/")
+                CompleteRedirect("~/Facility/")
+                Return
             End If
 
             currentAirs = New ApbFacilityId(airsString)
@@ -39,11 +40,13 @@ Public Class Fees_Default
         facilityAccess = currentUser.GetFacilityAccess(currentAirs)
 
         If facilityAccess Is Nothing Then
-            HttpContext.Current.Response.Redirect("~/Home/")
+            CompleteRedirect("~/Home/")
+            Return
         End If
 
         If Not facilityAccess.FeeAccess Then
-            HttpContext.Current.Response.Redirect("~/Facility/")
+            CompleteRedirect("~/Facility/")
+            Return
         End If
 
         If Not IsPostBack Then

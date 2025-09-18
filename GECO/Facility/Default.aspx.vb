@@ -1,4 +1,4 @@
-Imports System.DateTime
+﻿Imports System.DateTime
 Imports GaEpd.DBUtilities
 Imports GECO.DAL
 Imports GECO.DAL.EIS
@@ -18,7 +18,8 @@ Partial Class FacilityHome
 
         If IsPostBack Then
             If Not ApbFacilityId.TryParse(GetCookie(Cookie.AirsNumber), CurrentAirs) Then
-                HttpContext.Current.Response.Redirect("~/Home/")
+                CompleteRedirect("~/Home/")
+                Return
             End If
         Else
             ' AIRS number
@@ -31,7 +32,8 @@ Partial Class FacilityHome
             End If
 
             If Not ApbFacilityId.TryParse(airsString, CurrentAirs) Then
-                HttpContext.Current.Response.Redirect("~/Home/")
+                CompleteRedirect("~/Home/")
+                Return
             End If
 
             SetCookie(Cookie.AirsNumber, CurrentAirs.ShortString())
@@ -46,7 +48,8 @@ Partial Class FacilityHome
         FacilityAccess = CurrentUser.GetFacilityAccess(CurrentAirs)
 
         If FacilityAccess Is Nothing Then
-            HttpContext.Current.Response.Redirect("~/Home/")
+            CompleteRedirect("~/Home/")
+            Return
         End If
 
         If Not IsPostBack Then
@@ -60,17 +63,20 @@ Partial Class FacilityHome
     Private Sub CheckForMandatoryUpdates()
         ' Require user to set communication preferences if they have never been set.
         If InitialCommunicationPreferenceSettingRequired(CurrentAirs, FacilityAccess, CommunicationCategory.PermitFees) Then
-            HttpContext.Current.Response.Redirect("~/Facility/SetCommunicationPreferences.aspx")
+            CompleteRedirect("~/Facility/SetCommunicationPreferences.aspx")
+            Return
         End If
 
         ' Require user to confirm preferences every 275 days.
         If CommunicationUpdateResponseRequired(CurrentAirs, FacilityAccess) Then
-            HttpContext.Current.Response.Redirect("~/Facility/Contacts.aspx")
+            CompleteRedirect("~/Facility/Contacts.aspx")
+            Return
         End If
 
         ' Require user to review facility user access annually.
         If FacilityAccess.AdminAccess AndAlso UserAccessReviewRequested(CurrentAirs) Then
-            HttpContext.Current.Response.Redirect("~/Facility/Admin.aspx")
+            CompleteRedirect("~/Facility/Admin.aspx")
+            Return
         End If
     End Sub
 
