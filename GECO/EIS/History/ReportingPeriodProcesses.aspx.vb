@@ -6,13 +6,23 @@ Public Class EIS_History_ReportingPeriodProcesses
 
     Private Property CurrentAirs As ApbFacilityId
 
-    Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
-        MainLoginCheck()
+    Private IsTerminating As Boolean = False
+    Protected Overrides Sub OnLoad(e As EventArgs)
+        IsTerminating = MainLoginCheck()
+        If IsTerminating Then Return
+        MyBase.OnLoad(e)
+    End Sub
+    Protected Overrides Sub Render(writer As HtmlTextWriter)
+        If IsTerminating Then Return
+        MyBase.Render(writer)
+    End Sub
 
+    Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
         Dim airs As String = GetCookie(Cookie.AirsNumber)
 
         If String.IsNullOrEmpty(airs) Then
-            Response.Redirect("~/")
+            CompleteRedirect("~/", IsTerminating)
+            Return
         End If
 
         CurrentAirs = New ApbFacilityId(airs)

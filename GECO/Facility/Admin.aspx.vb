@@ -10,10 +10,22 @@ Partial Class FacilityAdmin
 
 #Region " Page Load "
 
+    Private IsTerminating As Boolean = False
+    Protected Overrides Sub OnLoad(e As EventArgs)
+        IsTerminating = MainLoginCheck()
+        If IsTerminating Then Return
+        MyBase.OnLoad(e)
+    End Sub
+    Protected Overrides Sub Render(writer As HtmlTextWriter)
+        If IsTerminating Then Return
+        MyBase.Render(writer)
+    End Sub
+
     Private Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
         If IsPostBack Then
             If Not ApbFacilityId.TryParse(GetCookie(Cookie.AirsNumber), CurrentAirs) Then
-                HttpContext.Current.Response.Redirect("~/Home/")
+                CompleteRedirect("~/Home/", IsTerminating)
+                Return
             End If
         Else
             ' AIRS number
@@ -26,7 +38,8 @@ Partial Class FacilityAdmin
             End If
 
             If Not ApbFacilityId.TryParse(airsString, CurrentAirs) Then
-                HttpContext.Current.Response.Redirect("~/Home/")
+                CompleteRedirect("~/Home/", IsTerminating)
+                Return
             End If
 
             SetCookie(Cookie.AirsNumber, CurrentAirs.ShortString())
@@ -35,14 +48,13 @@ Partial Class FacilityAdmin
         Master.CurrentAirs = CurrentAirs
         Master.IsFacilitySet = True
 
-        MainLoginCheck(Page.ResolveUrl($"~/Facility/Admin.aspx?airs={CurrentAirs.ShortString}"))
-
         ' Current user facility access
         Dim currentUser As GecoUser = GetCurrentUser()
         FacilityAccess = currentUser.GetFacilityAccess(CurrentAirs)
 
         If FacilityAccess Is Nothing Then
-            HttpContext.Current.Response.Redirect("~/Facility/")
+            CompleteRedirect("~/Facility/", IsTerminating)
+            Return
         End If
 
         pnlAddNewUser.Visible = FacilityAccess.AdminAccess

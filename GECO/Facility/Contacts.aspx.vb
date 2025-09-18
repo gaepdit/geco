@@ -10,10 +10,22 @@ Public Class FacilityContacts
     Public Property CommunicationInfo As New Dictionary(Of CommunicationCategory, FacilityCommunicationInfo)
     Public Property CommunicationUpdate As CommunicationUpdateResponse
 
+    Private IsTerminating As Boolean = False
+    Protected Overrides Sub OnLoad(e As EventArgs)
+        IsTerminating = MainLoginCheck()
+        If IsTerminating Then Return
+        MyBase.OnLoad(e)
+    End Sub
+    Protected Overrides Sub Render(writer As HtmlTextWriter)
+        If IsTerminating Then Return
+        MyBase.Render(writer)
+    End Sub
+
     Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
         If IsPostBack Then
             If Not ApbFacilityId.TryParse(GetCookie(Cookie.AirsNumber), currentAirs) Then
-                HttpContext.Current.Response.Redirect("~/Home/")
+                CompleteRedirect("~/Home/", IsTerminating)
+                Return
             End If
         Else
             ' AIRS number
@@ -26,7 +38,8 @@ Public Class FacilityContacts
             End If
 
             If Not ApbFacilityId.TryParse(airsString, currentAirs) Then
-                HttpContext.Current.Response.Redirect("~/Home/")
+                CompleteRedirect("~/Home/", IsTerminating)
+                Return
             End If
 
             SetCookie(Cookie.AirsNumber, currentAirs.ShortString())
@@ -35,12 +48,11 @@ Public Class FacilityContacts
         Master.CurrentAirs = currentAirs
         Master.IsFacilitySet = True
 
-        MainLoginCheck(MyBase.Page.ResolveUrl("~/Facility/Contacts.aspx?airs=" & currentAirs.ShortString))
-
         FacilityAccess = GetCurrentUser().GetFacilityAccess(currentAirs)
 
         If FacilityAccess Is Nothing Then
-            HttpContext.Current.Response.Redirect("~/Facility/")
+            CompleteRedirect("~/Facility/", IsTerminating)
+            Return
         End If
 
         Title = "GECO Facility Contacts - " & GetFacilityNameAndCity(currentAirs)
@@ -53,7 +65,8 @@ Public Class FacilityContacts
 
     Private Sub btnLooksGood_Click(sender As Object, e As EventArgs) Handles btnLooksGood.Click
         ConfirmCommunicationSettings(currentAirs, GetCurrentUser.UserId, FacilityAccess)
-        HttpContext.Current.Response.Redirect("~/Facility/")
+        CompleteRedirect("~/Facility/", IsTerminating)
+        Return
     End Sub
 
 End Class

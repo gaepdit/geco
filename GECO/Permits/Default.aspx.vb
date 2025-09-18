@@ -5,6 +5,12 @@ Public Class PermitDefault
 
     Private Property currentAirs As ApbFacilityId
 
+    Private IsTerminating As Boolean = False
+    Protected Overrides Sub Render(writer As HtmlTextWriter)
+        If IsTerminating Then Return
+        MyBase.Render(writer)
+    End Sub
+
     Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
         If IsPostBack Then
             currentAirs = New ApbFacilityId(GetCookie(Cookie.AirsNumber))
@@ -18,7 +24,8 @@ Public Class PermitDefault
             End If
 
             If Not ApbFacilityId.IsValidAirsNumberFormat(airsString) Then
-                HttpContext.Current.Response.Redirect("~/Facility/")
+                CompleteRedirect("~/Facility/", IsTerminating)
+                Return
             End If
 
             currentAirs = New ApbFacilityId(airsString)

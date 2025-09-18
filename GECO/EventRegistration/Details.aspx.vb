@@ -8,11 +8,17 @@ Partial Class EventRegistration_EventDetails
     Private Property currentUser As GecoUser
     Private Property passcodeRequired As Boolean
 
+    Private IsTerminating As Boolean = False
+    Protected Overrides Sub Render(writer As HtmlTextWriter)
+        If IsTerminating Then Return
+        MyBase.Render(writer)
+    End Sub
+
     Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
         If Request.QueryString("eventid") Is Nothing OrElse
             Not Integer.TryParse(Request.QueryString("eventid"), eventId) Then
 
-            Response.Redirect(".", False)
+            CompleteRedirect("~/EventRegistration/", IsTerminating)
             Return
         End If
 

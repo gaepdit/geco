@@ -1,28 +1,25 @@
 ﻿Public Module LoginCheck
 
+    Public Sub CompleteRedirect(toPage As String)
+        HttpContext.Current.Response.Redirect(toPage, False)
+        HttpContext.Current.ApplicationInstance.CompleteRequest()
+    End Sub
+
+    Public Sub CompleteRedirect(toPage As String, ByRef terminate As Boolean)
+        terminate = True
+        HttpContext.Current.Response.Redirect(toPage, False)
+        HttpContext.Current.ApplicationInstance.CompleteRequest()
+    End Sub
+
     Public Function UserIsLoggedIn() As Boolean
         Return SessionItemExists(GecoSession.CurrentUser)
     End Function
 
-    Public Sub MainLoginCheck(Optional returnUrl As String = Nothing)
-        If Not UserIsLoggedIn() Then
-            Dim path As String = "~/Login.aspx"
+    Public Function MainLoginCheck() As Boolean
+        If UserIsLoggedIn() Then Return False
 
-            If returnUrl IsNot Nothing Then
-                path = "~/Login.aspx?ReturnUrl=" & returnUrl
-            End If
-
-            HttpContext.Current.Response.Redirect(path)
-        End If
-    End Sub
-
-    ' Checks if appropriate cookies/session data are set or redirects to Facility Home or User Home
-    ' (Would fail if a direct URL is entered instead of navigating from Facility Home)
-
-    Public Sub AirsSelectedCheck()
-        If GetCookie(Cookie.AirsNumber) Is Nothing Then
-            HttpContext.Current.Response.Redirect("~/Home/")
-        End If
-    End Sub
+        HttpContext.Current.Response.Redirect("~/Login.aspx", False)
+        Return True
+    End Function
 
 End Module

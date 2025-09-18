@@ -7,12 +7,11 @@ Public Module ErrorReporting
                            Optional unhandled As Boolean = False)
 
         If exc Is Nothing Then
-            HttpContext.Current.Response.Redirect("~/ErrorPage.aspx", False)
+            CompleteRedirect("~/ErrorPage.aspx")
             Return
         End If
 
-        Dim LogExceptionsToFile As Boolean = CBool(ConfigurationManager.AppSettings("LogExceptionsToFile"))
-        If LogExceptionsToFile Then
+        If CBool(ConfigurationManager.AppSettings("LogExceptionsToFile")) Then
             LogExceptionToTextFile(exc)
         End If
 
@@ -59,7 +58,7 @@ Public Module ErrorReporting
             ' Do nothing if error logger fails
         Finally
             If redirectToErrorPage Then
-                HttpContext.Current.Response.Redirect("~/ErrorPage.aspx", False)
+                CompleteRedirect("~/ErrorPage.aspx")
             End If
         End Try
     End Sub

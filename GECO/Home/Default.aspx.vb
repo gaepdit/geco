@@ -7,23 +7,30 @@ Partial Class Home
 
     Private Property CurrentUser As GecoUser
 
+    Private IsTerminating As Boolean = False
+    Protected Overrides Sub Render(writer As HtmlTextWriter)
+        If IsTerminating Then Return
+        MyBase.Render(writer)
+    End Sub
+
     Private Async Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
-        If UserIsLoggedIn() Then
-            CurrentUser = GetCurrentUser()
-
-            If Not IsPostBack Then
-                LoadAccessTable()
-                LoadYearLabels()
-
-                If CurrentUser.ProfileUpdateRequired Then
-                    pUpdateRequired.Visible = True
-                End If
-            End If
-
-            Await DisplayNotificationsAsync()
-        Else
-            Response.Redirect("~/Login.aspx", False)
+        If Not UserIsLoggedIn() Then
+            CompleteRedirect("~/Login.aspx", IsTerminating)
+            Return
         End If
+
+        CurrentUser = GetCurrentUser()
+
+        If Not IsPostBack Then
+            LoadAccessTable()
+            LoadYearLabels()
+
+            If CurrentUser.ProfileUpdateRequired Then
+                pUpdateRequired.Visible = True
+            End If
+        End If
+
+        Await DisplayNotificationsAsync()
     End Sub
 
     Private Async Function DisplayNotificationsAsync() As Task

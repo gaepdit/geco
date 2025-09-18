@@ -6,9 +6,18 @@ Partial Class Account_Password
 
     Private Property currentUser As GecoUser
 
-    Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
-        MainLoginCheck("Account/Password.aspx")
+    Private IsTerminating As Boolean = False
+    Protected Overrides Sub OnLoad(e As EventArgs)
+        IsTerminating = MainLoginCheck()
+        If IsTerminating Then Return
+        MyBase.OnLoad(e)
+    End Sub
+    Protected Overrides Sub Render(writer As HtmlTextWriter)
+        If IsTerminating Then Return
+        MyBase.Render(writer)
+    End Sub
 
+    Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
         currentUser = GetCurrentUser()
 
         Title = "GECO Account - " & currentUser.FullName

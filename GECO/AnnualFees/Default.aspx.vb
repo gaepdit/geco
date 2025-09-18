@@ -16,9 +16,22 @@ Partial Class AnnualFees_Default
     Public Property info As FacilityCommunicationInfo
     Public ReadOnly FeeContactInfo As String = ConfigurationManager.AppSettings("FeeContactInfo")
 
+    Private IsTerminating As Boolean = False
+    Protected Overrides Sub OnLoad(e As EventArgs)
+        IsTerminating = MainLoginCheck()
+        If IsTerminating Then Return
+        MyBase.OnLoad(e)
+    End Sub
+    Protected Overrides Sub Render(writer As HtmlTextWriter)
+        If IsTerminating Then Return
+        MyBase.Render(writer)
+    End Sub
+
     Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
-        MainLoginCheck()
-        AirsSelectedCheck()
+        If GetCookie(Cookie.AirsNumber) Is Nothing Then
+            CompleteRedirect("~/Home/", IsTerminating)
+            Return
+        End If
 
         currentUser = GetCurrentUser()
         currentAirs = New ApbFacilityId(GetCookie(Cookie.AirsNumber))
@@ -27,7 +40,8 @@ Partial Class AnnualFees_Default
         Dim facilityAccess = currentUser.GetFacilityAccess(currentAirs)
 
         If Not facilityAccess.FeeAccess Then
-            Response.Redirect("~/NoAccess.aspx")
+            CompleteRedirect("~/NoAccess.aspx", IsTerminating)
+            Return
         End If
 
         Master.IsFacilitySet = True
@@ -194,14 +208,15 @@ Partial Class AnnualFees_Default
         If UpdateDatabase() Then
             Page.Dispose()
             Response.BufferOutput = True
-            Response.Redirect($"~/Invoice/?FeeYear={feeYear.Value}&Facility={currentAirs.ShortString}")
-        Else
-            pFinalSubmitError.Visible = True
-            pnlFeeContact.Visible = True
-            pnlFeeCalculation.Visible = False
-            pnlFeeSignature.Visible = False
-            pnlFeeSubmit.Visible = False
+            CompleteRedirect($"~/Invoice/?FeeYear={feeYear.Value}&Facility={currentAirs.ShortString}", IsTerminating)
+            Return
         End If
+
+        pFinalSubmitError.Visible = True
+        pnlFeeContact.Visible = True
+        pnlFeeCalculation.Visible = False
+        pnlFeeSignature.Visible = False
+        pnlFeeSubmit.Visible = False
     End Sub
 
     Protected Sub btnCancelFeeCalcSubmit_Click(sender As Object, e As EventArgs) Handles btnCancelFeeCalc.Click
