@@ -8,6 +8,12 @@ Partial Class TN_Default
 
     Private Property currentAirs As ApbFacilityId
 
+    Private IsTerminating As Boolean = False
+    Protected Overrides Sub Render(writer As HtmlTextWriter)
+        If IsTerminating Then Return
+        MyBase.Render(writer)
+    End Sub
+
     Private Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
         If IsPostBack Then
             currentAirs = New ApbFacilityId(GetCookie(Cookie.AirsNumber))
@@ -22,7 +28,7 @@ Partial Class TN_Default
             End If
 
             If Not ApbFacilityId.IsValidAirsNumberFormat(airsString) Then
-                CompleteRedirect("~/Home/")
+                CompleteRedirect("~/Home/", IsTerminating)
                 Return
             End If
 

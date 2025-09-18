@@ -4,6 +4,12 @@ Imports GECO.GecoModels
 Partial Class _Default
     Inherits Page
 
+    Private IsTerminating As Boolean = False
+    Protected Overrides Sub Render(writer As HtmlTextWriter)
+        If IsTerminating Then Return
+        MyBase.Render(writer)
+    End Sub
+
     Private Async Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
         If IsPostBack Then
             Throw New HttpException(405, "Method Not Allowed")
@@ -16,7 +22,7 @@ Partial Class _Default
         End If
 
         If UserIsLoggedIn() OrElse CheckForSavedSession() Then
-            CompleteRedirect("~/Home/")
+            CompleteRedirect("~/Home/", IsTerminating)
             Return
         End If
 

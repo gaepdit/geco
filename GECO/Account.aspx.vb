@@ -3,12 +3,18 @@
 Partial Class Account
     Inherits Page
 
+    Private IsTerminating As Boolean = False
+    Protected Overrides Sub Render(writer As HtmlTextWriter)
+        If IsTerminating Then Return
+        MyBase.Render(writer)
+    End Sub
+
     Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
         If Not IsPostBack Then
 
             Dim query = Request.QueryString
             If query Is Nothing OrElse query.Count = 0 Then
-                CompleteRedirect("~/")
+                CompleteRedirect("~/", IsTerminating)
                 Return
             End If
 
@@ -48,7 +54,7 @@ Partial Class Account
                     End If
 
                     SendConfirmEmailUpdateEmail(email, token)
-                    CompleteRedirect("~/Account.aspx?result=Sent")
+                    CompleteRedirect("~/Account.aspx?result=Sent", IsTerminating)
                     Return
 
                 Case "resend"

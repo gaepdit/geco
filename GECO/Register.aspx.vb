@@ -4,10 +4,16 @@ Imports GECO.EmailTemplates
 Partial Class Register
     Inherits Page
 
+    Private IsTerminating As Boolean = False
+    Protected Overrides Sub Render(writer As HtmlTextWriter)
+        If IsTerminating Then Return
+        MyBase.Render(writer)
+    End Sub
+
     Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
         If Not IsPostBack Then
             If UserIsLoggedIn() Then
-                CompleteRedirect("~/Home/")
+                CompleteRedirect("~/Home/", IsTerminating)
                 Return
             End If
 
@@ -26,12 +32,12 @@ Partial Class Register
             Select Case returnvalue
                 Case DbResult.Success
                     SendConfirmAccountEmail(email, token)
-                    CompleteRedirect("~/Account.aspx?result=Success")
+                    CompleteRedirect("~/Account.aspx?result=Success", IsTerminating)
                     Return
 
                 Case DbResult.Failure
                     '  User already exists
-                    CompleteRedirect("~/Account.aspx?result=Exists")
+                    CompleteRedirect("~/Account.aspx?result=Exists", IsTerminating)
                     Return
 
                 Case Else
@@ -39,7 +45,7 @@ Partial Class Register
                     ex.Data.Add("Email", email)
                     ex.Data.Add("Method", MethodBase.GetCurrentMethod.Name)
                     ErrorReport(ex, False)
-                    CompleteRedirect("~/Account.aspx?result=Error")
+                    CompleteRedirect("~/Account.aspx?result=Error", IsTerminating)
                     Return
 
             End Select

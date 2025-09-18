@@ -1,16 +1,21 @@
 ﻿Imports GECO.EmailTemplates
 Imports GECO.GecoModels
-Imports System.Net
 
 Partial Class Login
     Inherits Page
 
 #Region " Page load "
 
+    Private IsTerminating As Boolean = False
+    Protected Overrides Sub Render(writer As HtmlTextWriter)
+        If IsTerminating Then Return
+        MyBase.Render(writer)
+    End Sub
+
     Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
         If Not IsPostBack Then
             If UserIsLoggedIn() Then
-                CompleteRedirect("~/Account/")
+                CompleteRedirect("~/Account/", IsTerminating)
                 Return
             Else
                 GetUserFromSession()
@@ -59,7 +64,7 @@ Partial Class Login
 
             Case LoginResult.Success
                 If gecoUser.UserId = 0 Then
-                    CompleteRedirect("~/ErrorPage.aspx")
+                    CompleteRedirect("~/ErrorPage.aspx", IsTerminating)
                     Return
                 End If
 
@@ -72,15 +77,15 @@ Partial Class Login
                 End If
 
                 If gecoUser.ProfileUpdateRequired Then
-                    CompleteRedirect("~/Account/?action=updateprofile")
+                    CompleteRedirect("~/Account/?action=updateprofile", IsTerminating)
                     Return
                 End If
 
-                CompleteRedirect("~/Home/")
+                CompleteRedirect("~/Home/", IsTerminating)
                 Return
 
             Case Else 'Some Error
-                CompleteRedirect("~/ErrorPage.aspx")
+                CompleteRedirect("~/ErrorPage.aspx", IsTerminating)
                 Return
         End Select
 
@@ -101,7 +106,7 @@ Partial Class Login
         If GetSavedUserSession(userSession, gecoUser) Then
             SessionAdd(GecoSession.CurrentUser, gecoUser)
             CreateSessionCookie(userSession)
-            CompleteRedirect("~/Home/")
+            CompleteRedirect("~/Home/", IsTerminating)
             Return
         End If
 
