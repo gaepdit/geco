@@ -1,4 +1,4 @@
-﻿Imports System.DateTime
+Imports System.DateTime
 Imports GaEpd.DBUtilities
 Imports GECO.DAL
 Imports GECO.DAL.EIS
@@ -14,6 +14,8 @@ Partial Class FacilityHome
     Private Property CurrentAirs As ApbFacilityId
 
     Private Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
+        MainLoginCheck()
+
         If IsPostBack Then
             If Not ApbFacilityId.TryParse(GetCookie(Cookie.AirsNumber), CurrentAirs) Then
                 HttpContext.Current.Response.Redirect("~/Home/")
@@ -37,8 +39,6 @@ Partial Class FacilityHome
 
         Master.CurrentAirs = CurrentAirs
         Master.IsFacilitySet = True
-
-        MainLoginCheck(Page.ResolveUrl($"~/Facility/?airs={CurrentAirs.ShortString}"))
 
         ' Current user
         CurrentUser = GetCurrentUser()

@@ -4,15 +4,9 @@
         Return SessionItemExists(GecoSession.CurrentUser)
     End Function
 
-    Public Sub MainLoginCheck(Optional returnUrl As String = Nothing)
+    Public Sub MainLoginCheck()
         If Not UserIsLoggedIn() Then
-            Dim path As String = "~/Login.aspx"
-
-            If returnUrl IsNot Nothing Then
-                path = "~/Login.aspx?ReturnUrl=" & returnUrl
-            End If
-
-            HttpContext.Current.Response.Redirect(path)
+            HttpContext.Current.Response.Redirect("~/Login.aspx")
         End If
     End Sub
 

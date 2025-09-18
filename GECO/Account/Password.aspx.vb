@@ -7,7 +7,7 @@ Partial Class Account_Password
     Private Property currentUser As GecoUser
 
     Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
-        MainLoginCheck("Account/Password.aspx")
+        MainLoginCheck()
 
         currentUser = GetCurrentUser()
 

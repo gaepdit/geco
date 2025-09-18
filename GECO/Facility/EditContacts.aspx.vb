@@ -1,4 +1,4 @@
-﻿Imports GECO.DAL.Facility
+Imports GECO.DAL.Facility
 Imports GECO.EmailTemplates
 Imports GECO.GecoModels
 Imports GECO.GecoModels.Facility
@@ -15,6 +15,8 @@ Public Class EditContacts
     Public Property AddedEmail As String
 
     Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
+        MainLoginCheck()
+
         If IsPostBack Then
             If Not ApbFacilityId.TryParse(GetCookie(Cookie.AirsNumber), currentAirs) Then
                 HttpContext.Current.Response.Redirect("~/Home/")
@@ -38,8 +40,6 @@ Public Class EditContacts
 
         Master.CurrentAirs = currentAirs
         Master.IsFacilitySet = True
-
-        MainLoginCheck(Page.ResolveUrl("~/Facility/Contacts.aspx?airs=" & currentAirs.ShortString))
 
         ' Current user and facility access
         currentUser = GetCurrentUser()

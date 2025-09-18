@@ -1,4 +1,4 @@
-﻿Imports GECO.DAL
+Imports GECO.DAL
 Imports GECO.GecoModels
 
 Public Class Fees_Default
@@ -9,6 +9,8 @@ Public Class Fees_Default
     Private Property currentUser As GecoUser
 
     Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
+        MainLoginCheck()
+
         If IsPostBack Then
             currentAirs = New ApbFacilityId(GetCookie(Cookie.AirsNumber))
         Else
@@ -30,8 +32,6 @@ Public Class Fees_Default
 
         Master.CurrentAirs = currentAirs
         Master.IsFacilitySet = True
-
-        MainLoginCheck(Page.ResolveUrl("~/Fees/?airs=" & currentAirs.ShortString))
 
         ' Current user
         currentUser = GetCurrentUser()

@@ -1,4 +1,4 @@
-﻿Imports GECO.DAL.Facility
+Imports GECO.DAL.Facility
 Imports GECO.GecoModels
 Imports GECO.GecoModels.Facility
 
@@ -11,6 +11,8 @@ Public Class FacilityContacts
     Public Property CommunicationUpdate As CommunicationUpdateResponse
 
     Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
+        MainLoginCheck()
+
         If IsPostBack Then
             If Not ApbFacilityId.TryParse(GetCookie(Cookie.AirsNumber), currentAirs) Then
                 HttpContext.Current.Response.Redirect("~/Home/")
@@ -34,8 +36,6 @@ Public Class FacilityContacts
 
         Master.CurrentAirs = currentAirs
         Master.IsFacilitySet = True
-
-        MainLoginCheck(MyBase.Page.ResolveUrl("~/Facility/Contacts.aspx?airs=" & currentAirs.ShortString))
 
         FacilityAccess = GetCurrentUser().GetFacilityAccess(currentAirs)
 

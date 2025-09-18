@@ -1,4 +1,4 @@
-﻿Imports GECO.GecoModels
+Imports GECO.GecoModels
 Imports GECO.GecoModels.Facility
 Imports GECO.DAL.Facility
 
@@ -6,6 +6,8 @@ Public Class SetCommunicationPreferences
     Inherits Page
 
     Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
+        MainLoginCheck()
+
         If Not IsPostBack Then
             Dim currentAirs As ApbFacilityId = ApbFacilityId.IfValid(GetCookie(Cookie.AirsNumber))
 
@@ -16,7 +18,6 @@ Public Class SetCommunicationPreferences
 
             Master.CurrentAirs = currentAirs
             Master.IsFacilitySet = True
-            MainLoginCheck(Page.ResolveUrl("~/Facility/?airs=" & currentAirs.ShortString))
 
             Dim facilityAccess As FacilityAccess = GetCurrentUser.GetFacilityAccess(currentAirs)
 

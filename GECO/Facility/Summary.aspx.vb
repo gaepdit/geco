@@ -1,4 +1,4 @@
-﻿Imports Microsoft.Data.SqlClient
+Imports Microsoft.Data.SqlClient
 Imports GaEpd.DBUtilities
 Imports GECO.GecoModels
 Imports GECO.MapHelper
@@ -14,6 +14,8 @@ Partial Class FacilitySummary
 #Region " Page Load "
 
     Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
+        MainLoginCheck()
+
         If IsPostBack Then
             If Not ApbFacilityId.TryParse(GetCookie(Cookie.AirsNumber), currentAirs) Then
                 HttpContext.Current.Response.Redirect("~/Home/")
@@ -37,8 +39,6 @@ Partial Class FacilitySummary
 
         Master.CurrentAirs = currentAirs
         Master.IsFacilitySet = True
-
-        MainLoginCheck(Page.ResolveUrl("~/Facility/Summary.aspx?airs=" & currentAirs.ShortString))
 
         ' Current user
         currentUser = GetCurrentUser()

@@ -16,9 +16,7 @@ Partial Class _Default
         End If
 
         If UserIsLoggedIn() OrElse CheckForSavedSession() Then
-            Dim redirect As String = Request.QueryString("ReturnUrl")
-            If String.IsNullOrEmpty(redirect) Then redirect = "~/Home/"
-            Response.Redirect(redirect, False)
+            Response.Redirect("~/Home/", False)
         Else
             ClearCurrentLogin()
             Await DisplayNotificationsAsync()

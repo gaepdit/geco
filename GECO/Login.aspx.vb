@@ -73,13 +73,7 @@ Partial Class Login
                     Response.Redirect("~/Account/?action=updateprofile")
                 End If
 
-                Dim strRedirect As String = Request.QueryString("ReturnUrl")
-
-                If String.IsNullOrEmpty(strRedirect) Then
-                    Response.Redirect("~/Home/")
-                Else
-                    Response.Redirect(strRedirect)
-                End If
+                Response.Redirect("~/Home/")
 
             Case Else 'Some Error
                 Response.Redirect("~/ErrorPage.aspx", False)
@@ -102,14 +96,7 @@ Partial Class Login
         If GetSavedUserSession(userSession, gecoUser) Then
             SessionAdd(GecoSession.CurrentUser, gecoUser)
             CreateSessionCookie(userSession)
-
-            Dim strRedirect As String = Request.QueryString("ReturnUrl")
-
-            If String.IsNullOrEmpty(strRedirect) Then
-                Response.Redirect("~/Home/")
-            Else
-                Response.Redirect(strRedirect)
-            End If
+            Response.Redirect("~/Home/")
         End If
 
     End Sub

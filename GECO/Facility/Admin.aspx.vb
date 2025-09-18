@@ -1,4 +1,4 @@
-﻿Imports GECO.GecoModels
+Imports GECO.GecoModels
 
 Partial Class FacilityAdmin
     Inherits Page
@@ -11,6 +11,8 @@ Partial Class FacilityAdmin
 #Region " Page Load "
 
     Private Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
+        MainLoginCheck()
+
         If IsPostBack Then
             If Not ApbFacilityId.TryParse(GetCookie(Cookie.AirsNumber), CurrentAirs) Then
                 HttpContext.Current.Response.Redirect("~/Home/")
@@ -34,8 +36,6 @@ Partial Class FacilityAdmin
 
         Master.CurrentAirs = CurrentAirs
         Master.IsFacilitySet = True
-
-        MainLoginCheck(Page.ResolveUrl($"~/Facility/Admin.aspx?airs={CurrentAirs.ShortString}"))
 
         ' Current user facility access
         Dim currentUser As GecoUser = GetCurrentUser()
