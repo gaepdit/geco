@@ -11,9 +11,18 @@ Partial Class HomeFacilityRequest
         Facility
     End Enum
 
-    Private Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
-        MainLoginCheck()
+    Private IsTerminating As Boolean = False
+    Protected Overrides Sub OnLoad(e As EventArgs)
+        IsTerminating = MainLoginCheck()
+        If IsTerminating Then Return
+        MyBase.OnLoad(e)
+    End Sub
+    Protected Overrides Sub Render(writer As HtmlTextWriter)
+        If IsTerminating Then Return
+        MyBase.Render(writer)
+    End Sub
 
+    Private Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
         CurrentUser = GetCurrentUser()
 
         If Not IsPostBack AndAlso CurrentUser.ProfileUpdateRequired Then

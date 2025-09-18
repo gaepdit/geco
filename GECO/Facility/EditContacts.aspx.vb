@@ -14,12 +14,21 @@ Public Class EditContacts
     Public Property CurrentCommunicationInfo As FacilityCommunicationInfo
     Public Property AddedEmail As String
 
-    Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
-        MainLoginCheck()
+    Private IsTerminating As Boolean = False
+    Protected Overrides Sub OnLoad(e As EventArgs)
+        IsTerminating = MainLoginCheck()
+        If IsTerminating Then Return
+        MyBase.OnLoad(e)
+    End Sub
+    Protected Overrides Sub Render(writer As HtmlTextWriter)
+        If IsTerminating Then Return
+        MyBase.Render(writer)
+    End Sub
 
+    Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
         If IsPostBack Then
             If Not ApbFacilityId.TryParse(GetCookie(Cookie.AirsNumber), currentAirs) Then
-                CompleteRedirect("~/Home/")
+                CompleteRedirect("~/Home/", IsTerminating)
                 Return
             End If
         Else
@@ -33,7 +42,7 @@ Public Class EditContacts
             End If
 
             If Not ApbFacilityId.TryParse(airsString, currentAirs) Then
-                CompleteRedirect("~/Home/")
+                CompleteRedirect("~/Home/", IsTerminating)
                 Return
             End If
 
@@ -49,7 +58,7 @@ Public Class EditContacts
         FacilityAccess = currentUser.GetFacilityAccess(currentAirs)
 
         If FacilityAccess Is Nothing Then
-            CompleteRedirect("~/Facility/")
+            CompleteRedirect("~/Facility/", IsTerminating)
             Return
         End If
 
@@ -66,14 +75,14 @@ Public Class EditContacts
         End If
 
         If Not CommunicationCategory.IsValidCategory(category) Then
-            CompleteRedirect("~/Facility/Contacts.aspx")
+            CompleteRedirect("~/Facility/Contacts.aspx", IsTerminating)
             Return
         End If
 
         CurrentCategory = CommunicationCategory.FromName(category)
 
         If Not FacilityAccess.HasCommunicationPermission(CurrentCategory) Then
-            CompleteRedirect("~/Facility/Contacts.aspx")
+            CompleteRedirect("~/Facility/Contacts.aspx", IsTerminating)
             Return
         End If
 

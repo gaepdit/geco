@@ -10,12 +10,21 @@ Partial Class FacilityAdmin
 
 #Region " Page Load "
 
-    Private Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
-        MainLoginCheck()
+    Private IsTerminating As Boolean = False
+    Protected Overrides Sub OnLoad(e As EventArgs)
+        IsTerminating = MainLoginCheck()
+        If IsTerminating Then Return
+        MyBase.OnLoad(e)
+    End Sub
+    Protected Overrides Sub Render(writer As HtmlTextWriter)
+        If IsTerminating Then Return
+        MyBase.Render(writer)
+    End Sub
 
+    Private Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
         If IsPostBack Then
             If Not ApbFacilityId.TryParse(GetCookie(Cookie.AirsNumber), CurrentAirs) Then
-                CompleteRedirect("~/Home/")
+                CompleteRedirect("~/Home/", IsTerminating)
                 Return
             End If
         Else
@@ -29,7 +38,7 @@ Partial Class FacilityAdmin
             End If
 
             If Not ApbFacilityId.TryParse(airsString, CurrentAirs) Then
-                CompleteRedirect("~/Home/")
+                CompleteRedirect("~/Home/", IsTerminating)
                 Return
             End If
 
@@ -44,7 +53,7 @@ Partial Class FacilityAdmin
         FacilityAccess = currentUser.GetFacilityAccess(CurrentAirs)
 
         If FacilityAccess Is Nothing Then
-            CompleteRedirect("~/Facility/")
+            CompleteRedirect("~/Facility/", IsTerminating)
             Return
         End If
 

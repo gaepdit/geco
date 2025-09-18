@@ -13,12 +13,21 @@ Partial Class FacilityHome
     Private Property FacilityAccess As FacilityAccess
     Private Property CurrentAirs As ApbFacilityId
 
-    Private Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
-        MainLoginCheck()
+    Private IsTerminating As Boolean = False
+    Protected Overrides Sub OnLoad(e As EventArgs)
+        IsTerminating = MainLoginCheck()
+        If IsTerminating Then Return
+        MyBase.OnLoad(e)
+    End Sub
+    Protected Overrides Sub Render(writer As HtmlTextWriter)
+        If IsTerminating Then Return
+        MyBase.Render(writer)
+    End Sub
 
+    Private Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
         If IsPostBack Then
             If Not ApbFacilityId.TryParse(GetCookie(Cookie.AirsNumber), CurrentAirs) Then
-                CompleteRedirect("~/Home/")
+                CompleteRedirect("~/Home/", IsTerminating)
                 Return
             End If
         Else
@@ -32,7 +41,7 @@ Partial Class FacilityHome
             End If
 
             If Not ApbFacilityId.TryParse(airsString, CurrentAirs) Then
-                CompleteRedirect("~/Home/")
+                CompleteRedirect("~/Home/", IsTerminating)
                 Return
             End If
 
@@ -48,7 +57,7 @@ Partial Class FacilityHome
         FacilityAccess = CurrentUser.GetFacilityAccess(CurrentAirs)
 
         If FacilityAccess Is Nothing Then
-            CompleteRedirect("~/Home/")
+            CompleteRedirect("~/Home/", IsTerminating)
             Return
         End If
 
@@ -58,24 +67,24 @@ Partial Class FacilityHome
             Title = $"GECO Facility Summary - {GetFacilityNameAndCity(CurrentAirs)}"
             GetApplicationStatus()
         End If
-    End Sub
 
+    End Sub
     Private Sub CheckForMandatoryUpdates()
         ' Require user to set communication preferences if they have never been set.
         If InitialCommunicationPreferenceSettingRequired(CurrentAirs, FacilityAccess, CommunicationCategory.PermitFees) Then
-            CompleteRedirect("~/Facility/SetCommunicationPreferences.aspx")
+            CompleteRedirect("~/Facility/SetCommunicationPreferences.aspx", IsTerminating)
             Return
         End If
 
         ' Require user to confirm preferences every 275 days.
         If CommunicationUpdateResponseRequired(CurrentAirs, FacilityAccess) Then
-            CompleteRedirect("~/Facility/Contacts.aspx")
+            CompleteRedirect("~/Facility/Contacts.aspx", IsTerminating)
             Return
         End If
 
         ' Require user to review facility user access annually.
         If FacilityAccess.AdminAccess AndAlso UserAccessReviewRequested(CurrentAirs) Then
-            CompleteRedirect("~/Facility/Admin.aspx")
+            CompleteRedirect("~/Facility/Admin.aspx", IsTerminating)
             Return
         End If
     End Sub

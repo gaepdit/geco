@@ -8,9 +8,18 @@ Public Class Fees_Invoices
     Private Property facilityAccess As FacilityAccess
     Private Property currentUser As GecoUser
 
-    Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
-        MainLoginCheck()
+    Private IsTerminating As Boolean = False
+    Protected Overrides Sub OnLoad(e As EventArgs)
+        IsTerminating = MainLoginCheck()
+        If IsTerminating Then Return
+        MyBase.OnLoad(e)
+    End Sub
+    Protected Overrides Sub Render(writer As HtmlTextWriter)
+        If IsTerminating Then Return
+        MyBase.Render(writer)
+    End Sub
 
+    Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
         If IsPostBack Then
             currentAirs = New ApbFacilityId(GetCookie(Cookie.AirsNumber))
         Else
@@ -23,7 +32,7 @@ Public Class Fees_Invoices
             End If
 
             If Not ApbFacilityId.IsValidAirsNumberFormat(airsString) Then
-                CompleteRedirect("~/Facility/")
+                CompleteRedirect("~/Facility/", IsTerminating)
                 Return
             End If
 
@@ -40,12 +49,12 @@ Public Class Fees_Invoices
         facilityAccess = currentUser.GetFacilityAccess(currentAirs)
 
         If facilityAccess Is Nothing Then
-            CompleteRedirect("~/Home/")
+            CompleteRedirect("~/Home/", IsTerminating)
             Return
         End If
 
         If Not facilityAccess.FeeAccess Then
-            CompleteRedirect("~/Facility/")
+            CompleteRedirect("~/Facility/", IsTerminating)
             Return
         End If
 

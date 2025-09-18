@@ -16,9 +16,22 @@ Partial Class AnnualFees_Default
     Public Property info As FacilityCommunicationInfo
     Public ReadOnly FeeContactInfo As String = ConfigurationManager.AppSettings("FeeContactInfo")
 
+    Private IsTerminating As Boolean = False
+    Protected Overrides Sub OnLoad(e As EventArgs)
+        IsTerminating = MainLoginCheck()
+        If IsTerminating Then Return
+        MyBase.OnLoad(e)
+    End Sub
+    Protected Overrides Sub Render(writer As HtmlTextWriter)
+        If IsTerminating Then Return
+        MyBase.Render(writer)
+    End Sub
+
     Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
-        MainLoginCheck()
-        AirsSelectedCheck()
+        If GetCookie(Cookie.AirsNumber) Is Nothing Then
+            CompleteRedirect("~/Home/", IsTerminating)
+            Return
+        End If
 
         currentUser = GetCurrentUser()
         currentAirs = New ApbFacilityId(GetCookie(Cookie.AirsNumber))
@@ -27,7 +40,7 @@ Partial Class AnnualFees_Default
         Dim facilityAccess = currentUser.GetFacilityAccess(currentAirs)
 
         If Not facilityAccess.FeeAccess Then
-            CompleteRedirect("~/NoAccess.aspx")
+            CompleteRedirect("~/NoAccess.aspx", IsTerminating)
             Return
         End If
 
@@ -195,7 +208,7 @@ Partial Class AnnualFees_Default
         If UpdateDatabase() Then
             Page.Dispose()
             Response.BufferOutput = True
-            CompleteRedirect($"~/Invoice/?FeeYear={feeYear.Value}&Facility={currentAirs.ShortString}")
+            CompleteRedirect($"~/Invoice/?FeeYear={feeYear.Value}&Facility={currentAirs.ShortString}", IsTerminating)
             Return
         End If
 

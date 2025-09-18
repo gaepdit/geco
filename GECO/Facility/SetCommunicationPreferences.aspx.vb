@@ -5,14 +5,23 @@ Imports GECO.DAL.Facility
 Public Class SetCommunicationPreferences
     Inherits Page
 
-    Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
-        MainLoginCheck()
+    Private IsTerminating As Boolean = False
+    Protected Overrides Sub OnLoad(e As EventArgs)
+        IsTerminating = MainLoginCheck()
+        If IsTerminating Then Return
+        MyBase.OnLoad(e)
+    End Sub
+    Protected Overrides Sub Render(writer As HtmlTextWriter)
+        If IsTerminating Then Return
+        MyBase.Render(writer)
+    End Sub
 
+    Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
         If Not IsPostBack Then
             Dim currentAirs As ApbFacilityId = ApbFacilityId.IfValid(GetCookie(Cookie.AirsNumber))
 
             If currentAirs Is Nothing Then
-                CompleteRedirect("~/Home/")
+                CompleteRedirect("~/Home/", IsTerminating)
                 Return
             End If
 
@@ -23,7 +32,7 @@ Public Class SetCommunicationPreferences
 
             If facilityAccess Is Nothing OrElse
               Not facilityAccess.HasCommunicationPermission(CommunicationCategory.PermitFees) Then
-                CompleteRedirect("~/Home/")
+                CompleteRedirect("~/Home/", IsTerminating)
                 Return
             End If
 
@@ -31,7 +40,7 @@ Public Class SetCommunicationPreferences
             Dim pref As FacilityCommunicationPreference = GetFacilityCommunicationPreference(currentAirs, CommunicationCategory.PermitFees)
 
             If pref.IsConfirmed Then
-                CompleteRedirect("~/Home/")
+                CompleteRedirect("~/Home/", IsTerminating)
                 Return
             End If
 
@@ -53,7 +62,7 @@ Public Class SetCommunicationPreferences
         Dim airs As ApbFacilityId = ApbFacilityId.IfValid(hidAirs.Value)
 
         If airs Is Nothing Then
-            CompleteRedirect("~/Home/")
+            CompleteRedirect("~/Home/", IsTerminating)
             Return
         End If
 
@@ -69,7 +78,7 @@ Public Class SetCommunicationPreferences
 
         SetCookie(Cookie.AirsNumber, airs.ShortString)
 
-        CompleteRedirect("~/Facility/Contacts.aspx")
+        CompleteRedirect("~/Facility/Contacts.aspx", IsTerminating)
     End Sub
 
 End Class
