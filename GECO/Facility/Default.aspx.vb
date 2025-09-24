@@ -13,10 +13,22 @@ Partial Class FacilityHome
     Private Property FacilityAccess As FacilityAccess
     Private Property CurrentAirs As ApbFacilityId
 
+    Private IsTerminating As Boolean = False
+    Protected Overrides Sub OnLoad(e As EventArgs)
+        IsTerminating = MainLoginCheck()
+        If IsTerminating Then Return
+        MyBase.OnLoad(e)
+    End Sub
+    Protected Overrides Sub Render(writer As HtmlTextWriter)
+        If IsTerminating Then Return
+        MyBase.Render(writer)
+    End Sub
+
     Private Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
         If IsPostBack Then
             If Not ApbFacilityId.TryParse(GetCookie(Cookie.AirsNumber), CurrentAirs) Then
-                HttpContext.Current.Response.Redirect("~/Home/")
+                CompleteRedirect("~/Home/", IsTerminating)
+                Return
             End If
         Else
             ' AIRS number
@@ -29,7 +41,8 @@ Partial Class FacilityHome
             End If
 
             If Not ApbFacilityId.TryParse(airsString, CurrentAirs) Then
-                HttpContext.Current.Response.Redirect("~/Home/")
+                CompleteRedirect("~/Home/", IsTerminating)
+                Return
             End If
 
             SetCookie(Cookie.AirsNumber, CurrentAirs.ShortString())
@@ -38,15 +51,14 @@ Partial Class FacilityHome
         Master.CurrentAirs = CurrentAirs
         Master.IsFacilitySet = True
 
-        MainLoginCheck(Page.ResolveUrl($"~/Facility/?airs={CurrentAirs.ShortString}"))
-
         ' Current user
         CurrentUser = GetCurrentUser()
 
         FacilityAccess = CurrentUser.GetFacilityAccess(CurrentAirs)
 
         If FacilityAccess Is Nothing Then
-            HttpContext.Current.Response.Redirect("~/Home/")
+            CompleteRedirect("~/Home/", IsTerminating)
+            Return
         End If
 
         If Not IsPostBack Then
@@ -55,22 +67,25 @@ Partial Class FacilityHome
             Title = $"GECO Facility Summary - {GetFacilityNameAndCity(CurrentAirs)}"
             GetApplicationStatus()
         End If
-    End Sub
 
+    End Sub
     Private Sub CheckForMandatoryUpdates()
         ' Require user to set communication preferences if they have never been set.
         If InitialCommunicationPreferenceSettingRequired(CurrentAirs, FacilityAccess, CommunicationCategory.PermitFees) Then
-            HttpContext.Current.Response.Redirect("~/Facility/SetCommunicationPreferences.aspx")
+            CompleteRedirect("~/Facility/SetCommunicationPreferences.aspx", IsTerminating)
+            Return
         End If
 
         ' Require user to confirm preferences every 275 days.
         If CommunicationUpdateResponseRequired(CurrentAirs, FacilityAccess) Then
-            HttpContext.Current.Response.Redirect("~/Facility/Contacts.aspx")
+            CompleteRedirect("~/Facility/Contacts.aspx", IsTerminating)
+            Return
         End If
 
         ' Require user to review facility user access annually.
         If FacilityAccess.AdminAccess AndAlso UserAccessReviewRequested(CurrentAirs) Then
-            HttpContext.Current.Response.Redirect("~/Facility/Admin.aspx")
+            CompleteRedirect("~/Facility/Admin.aspx", IsTerminating)
+            Return
         End If
     End Sub
 

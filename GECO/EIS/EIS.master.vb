@@ -8,7 +8,8 @@ Public Class EIS
 
     Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
         If CurrentAirs Is Nothing Then
-            Response.Redirect("~/EIS/")
+            CompleteRedirect("~/EIS/")
+            Return
         End If
 
         Master.CurrentAirs = CurrentAirs

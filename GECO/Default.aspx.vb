@@ -4,6 +4,12 @@ Imports GECO.GecoModels
 Partial Class _Default
     Inherits Page
 
+    Private IsTerminating As Boolean = False
+    Protected Overrides Sub Render(writer As HtmlTextWriter)
+        If IsTerminating Then Return
+        MyBase.Render(writer)
+    End Sub
+
     Private Async Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
         If IsPostBack Then
             Throw New HttpException(405, "Method Not Allowed")
@@ -16,13 +22,12 @@ Partial Class _Default
         End If
 
         If UserIsLoggedIn() OrElse CheckForSavedSession() Then
-            Dim redirect As String = Request.QueryString("ReturnUrl")
-            If String.IsNullOrEmpty(redirect) Then redirect = "~/Home/"
-            Response.Redirect(redirect, False)
-        Else
-            ClearCurrentLogin()
-            Await DisplayNotificationsAsync()
+            CompleteRedirect("~/Home/", IsTerminating)
+            Return
         End If
+
+        ClearCurrentLogin()
+        Await DisplayNotificationsAsync()
     End Sub
 
     Private Async Function DisplayNotificationsAsync() As Task

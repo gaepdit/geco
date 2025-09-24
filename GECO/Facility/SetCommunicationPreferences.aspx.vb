@@ -5,31 +5,43 @@ Imports GECO.DAL.Facility
 Public Class SetCommunicationPreferences
     Inherits Page
 
+    Private IsTerminating As Boolean = False
+    Protected Overrides Sub OnLoad(e As EventArgs)
+        IsTerminating = MainLoginCheck()
+        If IsTerminating Then Return
+        MyBase.OnLoad(e)
+    End Sub
+    Protected Overrides Sub Render(writer As HtmlTextWriter)
+        If IsTerminating Then Return
+        MyBase.Render(writer)
+    End Sub
+
     Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
         If Not IsPostBack Then
             Dim currentAirs As ApbFacilityId = ApbFacilityId.IfValid(GetCookie(Cookie.AirsNumber))
 
             If currentAirs Is Nothing Then
-                HttpContext.Current.Response.Redirect("~/Home/")
+                CompleteRedirect("~/Home/", IsTerminating)
                 Return
             End If
 
             Master.CurrentAirs = currentAirs
             Master.IsFacilitySet = True
-            MainLoginCheck(Page.ResolveUrl("~/Facility/?airs=" & currentAirs.ShortString))
 
             Dim facilityAccess As FacilityAccess = GetCurrentUser.GetFacilityAccess(currentAirs)
 
             If facilityAccess Is Nothing OrElse
               Not facilityAccess.HasCommunicationPermission(CommunicationCategory.PermitFees) Then
-                HttpContext.Current.Response.Redirect("~/Home/")
+                CompleteRedirect("~/Home/", IsTerminating)
+                Return
             End If
 
             ' Check current pref setting. If already set, then redirect to facility home.
             Dim pref As FacilityCommunicationPreference = GetFacilityCommunicationPreference(currentAirs, CommunicationCategory.PermitFees)
 
             If pref.IsConfirmed Then
-                HttpContext.Current.Response.Redirect("~/Home/")
+                CompleteRedirect("~/Home/", IsTerminating)
+                Return
             End If
 
             ' AIRS number cookie gets cleared so user can't manually navigate to other 
@@ -50,7 +62,7 @@ Public Class SetCommunicationPreferences
         Dim airs As ApbFacilityId = ApbFacilityId.IfValid(hidAirs.Value)
 
         If airs Is Nothing Then
-            HttpContext.Current.Response.Redirect("~/Home/")
+            CompleteRedirect("~/Home/", IsTerminating)
             Return
         End If
 
@@ -65,7 +77,8 @@ Public Class SetCommunicationPreferences
         End If
 
         SetCookie(Cookie.AirsNumber, airs.ShortString)
-        HttpContext.Current.Response.Redirect($"~/Facility/Contacts.aspx")
+
+        CompleteRedirect("~/Facility/Contacts.aspx", IsTerminating)
     End Sub
 
 End Class

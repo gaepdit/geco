@@ -8,6 +8,17 @@ Public Class Fees_Default
     Private Property facilityAccess As FacilityAccess
     Private Property currentUser As GecoUser
 
+    Private IsTerminating As Boolean = False
+    Protected Overrides Sub OnLoad(e As EventArgs)
+        IsTerminating = MainLoginCheck()
+        If IsTerminating Then Return
+        MyBase.OnLoad(e)
+    End Sub
+    Protected Overrides Sub Render(writer As HtmlTextWriter)
+        If IsTerminating Then Return
+        MyBase.Render(writer)
+    End Sub
+
     Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
         If IsPostBack Then
             currentAirs = New ApbFacilityId(GetCookie(Cookie.AirsNumber))
@@ -21,7 +32,8 @@ Public Class Fees_Default
             End If
 
             If Not ApbFacilityId.IsValidAirsNumberFormat(airsString) Then
-                HttpContext.Current.Response.Redirect("~/Facility/")
+                CompleteRedirect("~/Facility/", IsTerminating)
+                Return
             End If
 
             currentAirs = New ApbFacilityId(airsString)
@@ -31,19 +43,19 @@ Public Class Fees_Default
         Master.CurrentAirs = currentAirs
         Master.IsFacilitySet = True
 
-        MainLoginCheck(Page.ResolveUrl("~/Fees/?airs=" & currentAirs.ShortString))
-
         ' Current user
         currentUser = GetCurrentUser()
 
         facilityAccess = currentUser.GetFacilityAccess(currentAirs)
 
         If facilityAccess Is Nothing Then
-            HttpContext.Current.Response.Redirect("~/Home/")
+            CompleteRedirect("~/Home/", IsTerminating)
+            Return
         End If
 
         If Not facilityAccess.FeeAccess Then
-            HttpContext.Current.Response.Redirect("~/Facility/")
+            CompleteRedirect("~/Facility/", IsTerminating)
+            Return
         End If
 
         If Not IsPostBack Then

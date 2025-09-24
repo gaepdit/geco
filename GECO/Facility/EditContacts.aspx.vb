@@ -14,10 +14,22 @@ Public Class EditContacts
     Public Property CurrentCommunicationInfo As FacilityCommunicationInfo
     Public Property AddedEmail As String
 
+    Private IsTerminating As Boolean = False
+    Protected Overrides Sub OnLoad(e As EventArgs)
+        IsTerminating = MainLoginCheck()
+        If IsTerminating Then Return
+        MyBase.OnLoad(e)
+    End Sub
+    Protected Overrides Sub Render(writer As HtmlTextWriter)
+        If IsTerminating Then Return
+        MyBase.Render(writer)
+    End Sub
+
     Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
         If IsPostBack Then
             If Not ApbFacilityId.TryParse(GetCookie(Cookie.AirsNumber), currentAirs) Then
-                HttpContext.Current.Response.Redirect("~/Home/")
+                CompleteRedirect("~/Home/", IsTerminating)
+                Return
             End If
         Else
             ' AIRS number
@@ -30,7 +42,8 @@ Public Class EditContacts
             End If
 
             If Not ApbFacilityId.TryParse(airsString, currentAirs) Then
-                HttpContext.Current.Response.Redirect("~/Home/")
+                CompleteRedirect("~/Home/", IsTerminating)
+                Return
             End If
 
             SetCookie(Cookie.AirsNumber, currentAirs.ShortString())
@@ -39,15 +52,14 @@ Public Class EditContacts
         Master.CurrentAirs = currentAirs
         Master.IsFacilitySet = True
 
-        MainLoginCheck(Page.ResolveUrl("~/Facility/Contacts.aspx?airs=" & currentAirs.ShortString))
-
         ' Current user and facility access
         currentUser = GetCurrentUser()
 
         FacilityAccess = currentUser.GetFacilityAccess(currentAirs)
 
         If FacilityAccess Is Nothing Then
-            HttpContext.Current.Response.Redirect("~/Facility/")
+            CompleteRedirect("~/Facility/", IsTerminating)
+            Return
         End If
 
         If Not IsPostBack Then
@@ -63,13 +75,15 @@ Public Class EditContacts
         End If
 
         If Not CommunicationCategory.IsValidCategory(category) Then
-            HttpContext.Current.Response.Redirect("~/Facility/Contacts.aspx")
+            CompleteRedirect("~/Facility/Contacts.aspx", IsTerminating)
+            Return
         End If
 
         CurrentCategory = CommunicationCategory.FromName(category)
 
         If Not FacilityAccess.HasCommunicationPermission(CurrentCategory) Then
-            HttpContext.Current.Response.Redirect("~/Facility/Contacts.aspx")
+            CompleteRedirect("~/Facility/Contacts.aspx", IsTerminating)
+            Return
         End If
 
         SetCookie(Cookie.CommunicationCategory, category)

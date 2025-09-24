@@ -1,16 +1,22 @@
 ﻿Imports GECO.EmailTemplates
 Imports GECO.GecoModels
-Imports System.Net
 
 Partial Class Login
     Inherits Page
 
 #Region " Page load "
 
+    Private IsTerminating As Boolean = False
+    Protected Overrides Sub Render(writer As HtmlTextWriter)
+        If IsTerminating Then Return
+        MyBase.Render(writer)
+    End Sub
+
     Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
         If Not IsPostBack Then
             If UserIsLoggedIn() Then
-                Response.Redirect("~/Account/")
+                CompleteRedirect("~/Account/", IsTerminating)
+                Return
             Else
                 GetUserFromSession()
             End If
@@ -58,7 +64,8 @@ Partial Class Login
 
             Case LoginResult.Success
                 If gecoUser.UserId = 0 Then
-                    Response.Redirect("~/ErrorPage.aspx", False)
+                    CompleteRedirect("~/ErrorPage.aspx", IsTerminating)
+                    Return
                 End If
 
                 SessionAdd(GecoSession.CurrentUser, gecoUser)
@@ -70,19 +77,16 @@ Partial Class Login
                 End If
 
                 If gecoUser.ProfileUpdateRequired Then
-                    Response.Redirect("~/Account/?action=updateprofile")
+                    CompleteRedirect("~/Account/?action=updateprofile", IsTerminating)
+                    Return
                 End If
 
-                Dim strRedirect As String = Request.QueryString("ReturnUrl")
-
-                If String.IsNullOrEmpty(strRedirect) Then
-                    Response.Redirect("~/Home/")
-                Else
-                    Response.Redirect(strRedirect)
-                End If
+                CompleteRedirect("~/Home/", IsTerminating)
+                Return
 
             Case Else 'Some Error
-                Response.Redirect("~/ErrorPage.aspx", False)
+                CompleteRedirect("~/ErrorPage.aspx", IsTerminating)
+                Return
         End Select
 
     End Sub
@@ -102,14 +106,8 @@ Partial Class Login
         If GetSavedUserSession(userSession, gecoUser) Then
             SessionAdd(GecoSession.CurrentUser, gecoUser)
             CreateSessionCookie(userSession)
-
-            Dim strRedirect As String = Request.QueryString("ReturnUrl")
-
-            If String.IsNullOrEmpty(strRedirect) Then
-                Response.Redirect("~/Home/")
-            Else
-                Response.Redirect(strRedirect)
-            End If
+            CompleteRedirect("~/Home/", IsTerminating)
+            Return
         End If
 
     End Sub

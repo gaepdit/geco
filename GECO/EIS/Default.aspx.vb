@@ -10,8 +10,18 @@ Public Class EIS_Default
     Private Property CurrentAirs As ApbFacilityId
     Private Property EiStatus As EisStatus
 
+    Private IsTerminating As Boolean = False
+    Protected Overrides Sub OnLoad(e As EventArgs)
+        IsTerminating = MainLoginCheck()
+        If IsTerminating Then Return
+        MyBase.OnLoad(e)
+    End Sub
+    Protected Overrides Sub Render(writer As HtmlTextWriter)
+        If IsTerminating Then Return
+        MyBase.Render(writer)
+    End Sub
+
     Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
-        MainLoginCheck()
         LoadCurrentAirs()
 
         Master.CurrentAirs = CurrentAirs
@@ -21,7 +31,8 @@ Public Class EIS_Default
         Dim facilityAccess As FacilityAccess = GetCurrentUser().GetFacilityAccess(CurrentAirs)
 
         If facilityAccess Is Nothing OrElse Not facilityAccess.EisAccess Then
-            Response.Redirect("~/Home/")
+            CompleteRedirect("~/Home/", IsTerminating)
+            Return
         End If
 
         If Not IsPostBack Then
@@ -37,7 +48,8 @@ Public Class EIS_Default
             Dim airs As String = GetCookie(Cookie.AirsNumber)
 
             If String.IsNullOrEmpty(airs) Then
-                Response.Redirect("~/")
+                CompleteRedirect("~/", IsTerminating)
+                Return
             End If
 
             CurrentAirs = New ApbFacilityId(airs)
@@ -51,7 +63,8 @@ Public Class EIS_Default
             End If
 
             If Not ApbFacilityId.IsValidAirsNumberFormat(airsString) Then
-                HttpContext.Current.Response.Redirect("~/Home/")
+                CompleteRedirect("~/Home/", IsTerminating)
+                Return
             End If
 
             CurrentAirs = New ApbFacilityId(airsString)
@@ -63,7 +76,8 @@ Public Class EIS_Default
         EiStatus = GetEiStatus(CurrentAirs)
 
         If EiStatus.AccessCode >= 3 Then
-            Response.Redirect("~/Facility/")
+            CompleteRedirect("~/Facility/", IsTerminating)
+            Return
         End If
 
         Dim eiYear As Integer = GetCurrentEiYear()
