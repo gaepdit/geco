@@ -6,6 +6,10 @@ Protection Branch applications.
 The main components are the Emission Inventory System (EIS), Permit Fees, Emission Statement, Event Registration, and
 Test Notifications.
 
+[![Georgia EPD-IT](https://raw.githubusercontent.com/gaepdit/gaepd-brand/main/blinkies/blinkies.cafe-gaepdit.gif)](https://github.com/gaepdit)
+[![SonarCloud Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=gaepdit_geco&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=gaepdit_geco)
+[![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=gaepdit_geco&metric=ncloc)](https://sonarcloud.io/summary/new_code?id=gaepdit_geco)
+
 ## Application
 
 GECO is a Web Forms Application targeting the .NET Framework version 4.8.
