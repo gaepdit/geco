@@ -35,8 +35,7 @@ Public Class EIS_Default
             Return
         End If
 
-        If Not IsPostBack Then
-            LoadEisStatus()
+        If Not IsPostBack AndAlso LoadEisStatus() Then
             LoadFacilityDetails()
             LoadStates()
             LoadCurrentCaersUsers()
@@ -72,12 +71,12 @@ Public Class EIS_Default
         End If
     End Sub
 
-    Private Sub LoadEisStatus()
+    Private Function LoadEisStatus() As Boolean
         EiStatus = GetEiStatus(CurrentAirs)
 
         If EiStatus.AccessCode >= 3 Then
             CompleteRedirect("~/Facility/", IsTerminating)
-            Return
+            Return False
         End If
 
         Dim eiYear As Integer = GetCurrentEiYear()
@@ -94,7 +93,8 @@ Public Class EIS_Default
             CdxLink.NavigateUrl = ConfigurationManager.AppSettings("EpaCaersUrl")
             CdxLink.Visible = True
         End If
-    End Sub
+        Return True
+    End Function
 
     Private Sub LoadFacilityDetails()
         Dim dr As DataRow = GetEisFacilityDetails(CurrentAirs)

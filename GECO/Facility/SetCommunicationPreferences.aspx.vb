@@ -5,6 +5,7 @@ Imports GECO.DAL.Facility
 Public Class SetCommunicationPreferences
     Inherits Page
 
+    Private Const ToHomePage As String = "~/Home/"
     Private IsTerminating As Boolean = False
     Protected Overrides Sub OnLoad(e As EventArgs)
         IsTerminating = MainLoginCheck()
@@ -21,7 +22,7 @@ Public Class SetCommunicationPreferences
             Dim currentAirs As ApbFacilityId = ApbFacilityId.IfValid(GetCookie(Cookie.AirsNumber))
 
             If currentAirs Is Nothing Then
-                CompleteRedirect("~/Home/", IsTerminating)
+                CompleteRedirect(ToHomePage, IsTerminating)
                 Return
             End If
 
@@ -32,7 +33,7 @@ Public Class SetCommunicationPreferences
 
             If facilityAccess Is Nothing OrElse
               Not facilityAccess.HasCommunicationPermission(CommunicationCategory.PermitFees) Then
-                CompleteRedirect("~/Home/", IsTerminating)
+                CompleteRedirect(ToHomePage, IsTerminating)
                 Return
             End If
 
@@ -40,7 +41,7 @@ Public Class SetCommunicationPreferences
             Dim pref As FacilityCommunicationPreference = GetFacilityCommunicationPreference(currentAirs, CommunicationCategory.PermitFees)
 
             If pref.IsConfirmed Then
-                CompleteRedirect("~/Home/", IsTerminating)
+                CompleteRedirect(ToHomePage, IsTerminating)
                 Return
             End If
 
@@ -62,7 +63,7 @@ Public Class SetCommunicationPreferences
         Dim airs As ApbFacilityId = ApbFacilityId.IfValid(hidAirs.Value)
 
         If airs Is Nothing Then
-            CompleteRedirect("~/Home/", IsTerminating)
+            CompleteRedirect(ToHomePage, IsTerminating)
             Return
         End If
 
