@@ -220,6 +220,7 @@ Partial Class AnnualFees_Default
     Protected Sub btnCancelFeeCalcSubmit_Click(sender As Object, e As EventArgs) Handles btnCancelFeeCalc.Click
         pnlFeeCalculation.Visible = False
         pnlFeeContact.Visible = True
+        BeginFeeReport()
     End Sub
 
     Protected Sub btnCancelSignature_Click(sender As Object, e As EventArgs) Handles btnCancelSignature.Click
