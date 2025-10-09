@@ -1,4 +1,4 @@
-Imports Microsoft.Data.SqlClient
+﻿Imports Microsoft.Data.SqlClient
 Imports System.DateTime
 Imports GaEpd.DBUtilities
 Imports GECO.DAL.Facility
@@ -206,8 +206,6 @@ Partial Class AnnualFees_Default
         End If
 
         If UpdateDatabase() Then
-            Page.Dispose()
-            Response.BufferOutput = True
             CompleteRedirect($"~/Invoice/?FeeYear={feeYear.Value}&Facility={currentAirs.ShortString}", IsTerminating)
             Return
         End If
