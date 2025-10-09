@@ -206,8 +206,6 @@ Partial Class AnnualFees_Default
         End If
 
         If UpdateDatabase() Then
-            Page.Dispose()
-            Response.BufferOutput = True
             CompleteRedirect($"~/Invoice/?FeeYear={feeYear.Value}&Facility={currentAirs.ShortString}", IsTerminating)
             Return
         End If
@@ -450,7 +448,7 @@ Partial Class AnnualFees_Default
     End Sub
 
     Protected Sub LoadAnnualFeesHistory()
-        If grdFeeHistory.DataSource Is Nothing Then
+        If grdFeeHistory.DataSource Is Nothing AndAlso currentAirs IsNot Nothing Then
             grdFeeHistory.DataSource = DAL.AnnualFees.GetAnnualFeeHistory(currentAirs)
             grdFeeHistory.DataBind()
         End If
