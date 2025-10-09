@@ -1,4 +1,4 @@
-﻿Imports Microsoft.Data.SqlClient
+Imports Microsoft.Data.SqlClient
 Imports System.DateTime
 Imports GaEpd.DBUtilities
 Imports GECO.DAL.Facility
@@ -450,7 +450,7 @@ Partial Class AnnualFees_Default
     End Sub
 
     Protected Sub LoadAnnualFeesHistory()
-        If grdFeeHistory.DataSource Is Nothing Then
+        If grdFeeHistory.DataSource Is Nothing AndAlso currentAirs IsNot Nothing Then
             grdFeeHistory.DataSource = DAL.AnnualFees.GetAnnualFeeHistory(currentAirs)
             grdFeeHistory.DataBind()
         End If
