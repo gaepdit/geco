@@ -62,6 +62,8 @@ Public Class Fees_Deposits
             LoadFacilityInfo()
             LoadDeposits()
         End If
+
+        AddBreadcrumb("Fees/Deposits", "AIRS #", currentAirs.FormattedString, Me)
     End Sub
 
     Private Sub LoadFacilityInfo()

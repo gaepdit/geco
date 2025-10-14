@@ -29,6 +29,8 @@ Partial Class HomeFacilityRequest
             pUpdateRequired.Visible = True
             pnlRequestAccess.Visible = False
         End If
+
+        AddBreadcrumb("Facility Request", "User ID", CurrentUser.UserId, Me)
     End Sub
 
     Private Sub btnSend_Click(sender As Object, e As EventArgs) Handles btnSend.Click

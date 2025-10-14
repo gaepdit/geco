@@ -18,36 +18,36 @@ Public Class InvoiceDefault
     Public ReadOnly FeeContactInfo As String = ConfigurationManager.AppSettings("FeeContactInfo")
 
     Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
-        If Not IsPostBack Then
+        If IsPostBack Then Return
 
-            If Request.QueryString("id") IsNot Nothing AndAlso
-                Guid.TryParse(Request.QueryString("id"), InvoiceGuid) Then
+        If Request.QueryString("id") IsNot Nothing AndAlso
+            Guid.TryParse(Request.QueryString("id"), InvoiceGuid) Then
 
-                Dim invoice As Invoice = GetInvoiceByGuid(InvoiceGuid)
+            Dim invoice As Invoice = GetInvoiceByGuid(InvoiceGuid)
 
-                If invoice IsNot Nothing Then
-                    Invoices.Add(invoice)
-                End If
-
-                'InvoiceCategory = InvoiceCategory.PermitApplicationFees
-            ElseIf Request.QueryString("FeeYear") IsNot Nothing AndAlso
-                Request.QueryString("Facility") IsNot Nothing AndAlso
-                Integer.TryParse(Request.QueryString("FeeYear"), FeeYear) AndAlso
-                ApbFacilityId.TryParse(Request.QueryString("Facility"), FacilityID) Then
-
-                ' If TryParse fails, set InvoiceId = 0
-                If Request.QueryString("InvoiceId") IsNot Nothing AndAlso
-                    Not Integer.TryParse(Request.QueryString("InvoiceId"), InvoiceId) Then
-                    InvoiceId = 0
-                End If
-
-                Invoices = GetEmissionFeeInvoices(FeeYear, FacilityID, InvoiceId)
-                'InvoiceCategory = InvoiceCategory.EmissionsFees
+            If invoice IsNot Nothing Then
+                Invoices.Add(invoice)
             End If
 
-            DisplayInvoices()
+            'InvoiceCategory = InvoiceCategory.PermitApplicationFees
+        ElseIf Request.QueryString("FeeYear") IsNot Nothing AndAlso
+            Request.QueryString("Facility") IsNot Nothing AndAlso
+            Integer.TryParse(Request.QueryString("FeeYear"), FeeYear) AndAlso
+            ApbFacilityId.TryParse(Request.QueryString("Facility"), FacilityID) Then
 
+            ' If TryParse fails, set InvoiceId = 0
+            If Request.QueryString("InvoiceId") IsNot Nothing AndAlso
+                Not Integer.TryParse(Request.QueryString("InvoiceId"), InvoiceId) Then
+                InvoiceId = 0
+            End If
+
+            Invoices = GetEmissionFeeInvoices(FeeYear, FacilityID, InvoiceId)
+            'InvoiceCategory = InvoiceCategory.EmissionsFees
         End If
+
+        DisplayInvoices()
+
+        AddBreadcrumb("Invoice", "Query", Request.RawUrl.ToString, Me)
     End Sub
 
     Private Sub DisplayInvoices()

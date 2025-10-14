@@ -68,6 +68,8 @@ Partial Class FacilitySummary
 
             Title = "GECO Facility Summary - " & GetFacilityNameAndCity(currentAirs)
         End If
+
+        AddBreadcrumb("Facility Summary", "AIRS #", currentAirs.FormattedString, Me)
     End Sub
 
 #End Region
@@ -212,8 +214,6 @@ Partial Class FacilitySummary
         gvStateContacts.DataSource = DB.SPGetDataTable("iaip_facility.GetContactsStaff", param)
         gvStateContacts.DataBind()
     End Sub
-
-
 
 #End Region
 

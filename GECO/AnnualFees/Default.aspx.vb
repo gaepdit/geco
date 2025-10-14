@@ -80,6 +80,11 @@ Partial Class AnnualFees_Default
             feeYear = CInt(ddlFeeYear.SelectedItem.Text)
             feeYearCompleted = ddlFeeYear.SelectedValue.Substring(4) = "1"
         End If
+
+        Dim data As New Dictionary(Of String, Object) From {
+            {"AIRS #", currentAirs.FormattedString},
+            {"Fee year", feeYear}}
+        AddBreadcrumb("Annual Fees", data, Me)
     End Sub
 
     Private Sub AnnualFees_Default_PreRender(sender As Object, e As EventArgs) Handles Me.PreRender
@@ -101,6 +106,11 @@ Partial Class AnnualFees_Default
     End Function
 
     Protected Sub btnBeginFeeReport_Click(sender As Object, e As EventArgs) Handles btnBeginFeeReport.Click
+        Dim data As New Dictionary(Of String, Object) From {
+            {"AIRS #", currentAirs.FormattedString},
+            {"Fee year", feeYear}}
+        AddBreadcrumb("Annual Fees: begin fee report", data, Me)
+
         BeginFeeReport()
     End Sub
 
@@ -136,6 +146,11 @@ Partial Class AnnualFees_Default
     End Sub
 
     Protected Sub btnVerifyContact_Click(sender As Object, e As EventArgs) Handles btnVerifyContact.Click
+        Dim data As New Dictionary(Of String, Object) From {
+            {"AIRS #", currentAirs.FormattedString},
+            {"Fee year", feeYear}}
+        AddBreadcrumb("Annual Fees: verify contact", data, Me)
+
         If Not DoubleCheckFeeYear() Then Return
 
         ' Load fee data from database
@@ -151,6 +166,11 @@ Partial Class AnnualFees_Default
     End Sub
 
     Protected Sub btnSavePnlFeeCalc_Click(sender As Object, e As EventArgs) Handles btnSavePnlFeeCalc.Click
+        Dim data As New Dictionary(Of String, Object) From {
+            {"AIRS #", currentAirs.FormattedString},
+            {"Fee year", feeYear}}
+        AddBreadcrumb("Annual Fees: save fee calc", data, Me)
+
         If chkNSPSExempt.Checked Then
             If Not AnyNspsExemptionSelected() Then
                 pNspsExemptionWarning.Visible = True
@@ -182,6 +202,11 @@ Partial Class AnnualFees_Default
     End Function
 
     Protected Sub btnSavepnlSign_Click(sender As Object, e As EventArgs) Handles btnSavepnlSign.Click
+        Dim data As New Dictionary(Of String, Object) From {
+            {"AIRS #", currentAirs.FormattedString},
+            {"Fee year", feeYear}}
+        AddBreadcrumb("Annual Fees: save panel sign", data, Me)
+
         If rblPaymentType.SelectedIndex = 0 Then
             txtPayType.Text = "Entire Annual Year"
         Else
@@ -199,6 +224,11 @@ Partial Class AnnualFees_Default
     End Sub
 
     Protected Sub btnSubmit_Click(sender As Object, e As EventArgs) Handles btnSubmit.Click
+        Dim data As New Dictionary(Of String, Object) From {
+            {"AIRS #", currentAirs.FormattedString},
+            {"Fee year", feeYear}}
+        AddBreadcrumb("Annual Fees: submit", data, Me)
+
         If DAL.AnnualFees.ActiveInvoiceExists(currentAirs, feeYear.Value) Then
             feeYearCompleted = True
             ResetPage()
@@ -218,17 +248,32 @@ Partial Class AnnualFees_Default
     End Sub
 
     Protected Sub btnCancelFeeCalcSubmit_Click(sender As Object, e As EventArgs) Handles btnCancelFeeCalc.Click
+        Dim data As New Dictionary(Of String, Object) From {
+            {"AIRS #", currentAirs.FormattedString},
+            {"Fee year", feeYear}}
+        AddBreadcrumb("Annual Fees: cancel fee calc", data, Me)
+
         pnlFeeCalculation.Visible = False
         pnlFeeContact.Visible = True
         BeginFeeReport()
     End Sub
 
     Protected Sub btnCancelSignature_Click(sender As Object, e As EventArgs) Handles btnCancelSignature.Click
+        Dim data As New Dictionary(Of String, Object) From {
+            {"AIRS #", currentAirs.FormattedString},
+            {"Fee year", feeYear}}
+        AddBreadcrumb("Annual Fees: cancel signature", data, Me)
+
         pnlFeeSignature.Visible = False
         pnlFeeCalculation.Visible = True
     End Sub
 
     Protected Sub btnCancelSubmit_Click(sender As Object, e As EventArgs) Handles btnCancelSubmit.Click
+        Dim data As New Dictionary(Of String, Object) From {
+            {"AIRS #", currentAirs.FormattedString},
+            {"Fee year", feeYear}}
+        AddBreadcrumb("Annual Fees: cancel submit", data, Me)
+
         pnlFeeSubmit.Visible = False
         pnlFeeSignature.Visible = True
     End Sub
@@ -513,14 +558,35 @@ Partial Class AnnualFees_Default
             "where strairsnumber = @Airs " &
             "and numfeeyear = @FeeYear "
 
+        Dim sqlParameter_PayType As SqlParameter = New SqlParameter("@PayType", txtPayType.Text)
+
+
+        Dim sqlParameter_Owner As SqlParameter = New SqlParameter("@Owner", txtOwner.Text)
+
+
+        Dim sqlParameter_OwnerTitle As SqlParameter = New SqlParameter("@OwnerTitle", txtOwnerTitle.Text)
+
+
+        Dim sqlParameter_Comments As SqlParameter = New SqlParameter("@Comments", txtComments.Text)
+
+
+        Dim sqlParameter_UEmail As SqlParameter = New SqlParameter("@UEmail", "GECO||" & currentUser.Email)
+
+
+        Dim sqlParameter_Airs As SqlParameter = New SqlParameter("@Airs", currentAirs.DbFormattedString)
+
+
+        Dim sqlParameter_FeeYear As SqlParameter = New SqlParameter("@FeeYear", feeYear.Value)
+
+
         Dim params1 As SqlParameter() = {
-            New SqlParameter("@PayType", txtPayType.Text),
-            New SqlParameter("@Owner", txtOwner.Text),
-            New SqlParameter("@OwnerTitle", txtOwnerTitle.Text),
-            New SqlParameter("@Comments", txtComments.Text),
-            New SqlParameter("@UEmail", "GECO||" & currentUser.Email),
-            New SqlParameter("@Airs", currentAirs.DbFormattedString),
-            New SqlParameter("@FeeYear", feeYear.Value)
+            sqlParameter_PayType,
+            sqlParameter_Owner,
+            sqlParameter_OwnerTitle,
+            sqlParameter_Comments,
+            sqlParameter_UEmail,
+            sqlParameter_Airs,
+            sqlParameter_FeeYear
         }
 
         'Add SQL and Parameters to each list
@@ -653,6 +719,11 @@ Partial Class AnnualFees_Default
 #Region "Controls Auto Postback"
 
     Protected Sub ddlClass_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ddlClass.SelectedIndexChanged
+        Dim data As New Dictionary(Of String, Object) From {
+            {"AIRS #", currentAirs.FormattedString},
+            {"Fee year", feeYear}}
+        AddBreadcrumb("Annual Fees: class changed", data, Me)
+
         UpdateUiFromClass(ddlClass.SelectedValue)
         RecalculateFees()
     End Sub
@@ -679,6 +750,11 @@ Partial Class AnnualFees_Default
     End Sub
 
     Protected Sub chkNSPS1_CheckedChanged(sender As Object, e As EventArgs) Handles chkNSPS1.CheckedChanged
+        Dim data As New Dictionary(Of String, Object) From {
+            {"AIRS #", currentAirs.FormattedString},
+            {"Fee year", feeYear}}
+        AddBreadcrumb("Annual Fees: nsps check changed", data, Me)
+
         chkNSPSExempt.Checked = Not chkNSPS1.Checked
         chkNSPSExempt.Visible = chkNSPS1.Checked
 
@@ -698,6 +774,11 @@ Partial Class AnnualFees_Default
     End Sub
 
     Protected Sub chkNSPSExempt_CheckedChanged(sender As Object, e As EventArgs) Handles chkNSPSExempt.CheckedChanged
+        Dim data As New Dictionary(Of String, Object) From {
+            {"AIRS #", currentAirs.FormattedString},
+            {"Fee year", feeYear}}
+        AddBreadcrumb("Annual Fees: nsps exempt changed", data, Me)
+
         NspsExemptionsChecklist.Visible = chkNSPSExempt.Checked
         feeCalc.RuleNspsApplies = chkNSPS1.Checked AndAlso Not chkNSPSExempt.Checked
 
@@ -713,10 +794,20 @@ Partial Class AnnualFees_Default
     End Sub
 
     Protected Sub chkPart70Source_CheckedChanged(sender As Object, e As EventArgs) Handles chkPart70Source.CheckedChanged
+        Dim data As New Dictionary(Of String, Object) From {
+            {"AIRS #", currentAirs.FormattedString},
+            {"Fee year", feeYear}}
+        AddBreadcrumb("Annual Fees: part 70 changed", data, Me)
+
         RecalculateFees()
     End Sub
 
     Protected Sub ddlFeeYear_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ddlFeeYear.SelectedIndexChanged
+        Dim data As New Dictionary(Of String, Object) From {
+            {"AIRS #", currentAirs.FormattedString},
+            {"Fee year", feeYear}}
+        AddBreadcrumb("Annual Fees: fee year changed", data, Me)
+
         ResetPage()
     End Sub
 

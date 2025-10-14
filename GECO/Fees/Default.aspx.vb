@@ -62,6 +62,8 @@ Public Class Fees_Default
             LoadFacilityInfo()
             LoadFeesSummary()
         End If
+
+        AddBreadcrumb("Fees", "AIRS #", currentAirs.FormattedString, Me)
     End Sub
 
     Private Sub LoadFacilityInfo()

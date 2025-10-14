@@ -51,9 +51,13 @@ Public Class SetCommunicationPreferences
             hidAirs.Value = currentAirs
             ClearCookie(Cookie.AirsNumber)
         End If
+
+        AddBreadcrumb("Facility Communication Prefs", "AIRS #", Master.CurrentAirs.FormattedString, Me)
     End Sub
 
     Private Sub btnSavePref_Click(sender As Object, e As EventArgs) Handles btnSavePref.Click
+        AddBreadcrumb("Facility Communication Prefs: save pref", "AIRS #", Master.CurrentAirs.FormattedString, Me)
+
         If rbCommPref.SelectedIndex = -1 OrElse
           Not {"Electronic", "Mail", "Both"}.Contains(rbCommPref.SelectedValue) Then
             pNotSelected.Visible = True

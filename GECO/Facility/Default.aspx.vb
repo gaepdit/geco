@@ -68,6 +68,7 @@ Partial Class FacilityHome
             GetApplicationStatus()
         End If
 
+        AddBreadcrumb("Facility", "AIRS #", CurrentAirs.FormattedString, Me)
     End Sub
     Private Sub CheckForMandatoryUpdates()
         ' Require user to set communication preferences if they have never been set.

@@ -30,6 +30,8 @@ Partial Class Home
             End If
         End If
 
+        AddBreadcrumb("Home", "User ID", CurrentUser.UserId, Me)
+
         Await DisplayNotificationsAsync()
     End Sub
 

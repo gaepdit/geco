@@ -11,6 +11,8 @@ Partial Class Account_Password
         IsTerminating = MainLoginCheck()
         If IsTerminating Then Return
         MyBase.OnLoad(e)
+
+        AddBreadcrumb("Account Page/Password", Me)
     End Sub
     Protected Overrides Sub Render(writer As HtmlTextWriter)
         If IsTerminating Then Return
@@ -38,6 +40,8 @@ Partial Class Account_Password
     ' Regular expression for password validation:
     ' https://regex101.com/r/hRNxoq/1
     Protected Sub btnPwdUpdate_Click(sender As Object, e As EventArgs) Handles btnPwdUpdate.Click
+        AddBreadcrumb("Account Page/Password: update", Me)
+
         HideMessages()
 
         If IsValid Then

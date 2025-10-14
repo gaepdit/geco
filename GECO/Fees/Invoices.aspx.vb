@@ -62,6 +62,8 @@ Public Class Fees_Invoices
             LoadFacilityInfo()
             LoadInvoices()
         End If
+
+        AddBreadcrumb("Fees/Invoices", "AIRS #", currentAirs.FormattedString, Me)
     End Sub
 
     Private Sub LoadFacilityInfo()

@@ -28,6 +28,8 @@ Partial Class Account_Default
         If Not IsPostBack Then
             LoadProfile()
         End If
+
+        AddBreadcrumb("Account Page", "User ID", currentUser.UserId, Me)
     End Sub
 
     Private Sub LoadProfile()
@@ -53,6 +55,8 @@ Partial Class Account_Default
     End Sub
 
     Protected Sub btnUpdateProfile_Click(sender As Object, e As EventArgs) Handles btnUpdateProfile.Click
+        AddBreadcrumb("Account: update profile", "User ID", currentUser.UserId, Me)
+
         HideMessages()
 
         Dim gecoUserType As String = If(ddlUserType.Text = "-- Select --", Nothing, ddlUserType.Text)
