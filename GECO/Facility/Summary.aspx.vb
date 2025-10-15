@@ -69,7 +69,9 @@ Partial Class FacilitySummary
             Title = "GECO Facility Summary - " & GetFacilityNameAndCity(currentAirs)
         End If
 
-        AddBreadcrumb("Facility Summary", "AIRS #", currentAirs.FormattedString, Me)
+        Dim airsString2 As String = "Not set"
+        If currentAirs IsNot Nothing Then airsString2 = currentAirs.FormattedString
+        AddBreadcrumb("Facility Summary", "AIRS #", airsString2, ID)
     End Sub
 
 #End Region

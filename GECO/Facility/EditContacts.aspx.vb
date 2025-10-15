@@ -92,7 +92,9 @@ Public Class EditContacts
             LoadCurrentData()
         End If
 
-        AddBreadcrumb("Facility Edit Contacts", "AIRS #", currentAirs.FormattedString, Me)
+        Dim airsString2 As String = "Not set"
+        If currentAirs IsNot Nothing Then airsString2 = currentAirs.FormattedString
+        AddBreadcrumb("Facility Edit Contacts", "AIRS #", airsString2, ID)
     End Sub
 
     Private Sub LoadCurrentData()
@@ -139,7 +141,9 @@ Public Class EditContacts
     End Sub
 
     Protected Sub SavePreference(sender As Object, e As EventArgs) Handles btnSavePref.Click
-        AddBreadcrumb("Facility Edit Contacts: save pref", "AIRS #", currentAirs.FormattedString, Me)
+        Dim airsString As String = "Not set"
+        If currentAirs IsNot Nothing Then airsString = currentAirs.FormattedString
+        AddBreadcrumb("Facility Edit Contacts: save pref", "AIRS #", airsString, ID)
 
         ClearWarnings()
 
@@ -159,7 +163,9 @@ Public Class EditContacts
     End Sub
 
     Protected Sub SaveContact(sender As Object, e As EventArgs) Handles btnSaveContact.Click
-        AddBreadcrumb("Facility Edit Contacts: save contact", "AIRS #", currentAirs.FormattedString, Me)
+        Dim airsString As String = "Not set"
+        If currentAirs IsNot Nothing Then airsString = currentAirs.FormattedString
+        AddBreadcrumb("Facility Edit Contacts: save contact", "AIRS #", airsString, ID)
 
         ClearWarnings()
 
@@ -202,7 +208,9 @@ Public Class EditContacts
     End Sub
 
     Protected Sub AddNewEmail(sender As Object, e As EventArgs) Handles btnAddNewEmail.Click
-        AddBreadcrumb("Facility Edit Contacts: add new email", "AIRS #", currentAirs.FormattedString, Me)
+        Dim airsString As String = "Not set"
+        If currentAirs IsNot Nothing Then airsString = currentAirs.FormattedString
+        AddBreadcrumb("Facility Edit Contacts: add new email", "AIRS #", airsString, ID)
 
         ClearWarnings()
 

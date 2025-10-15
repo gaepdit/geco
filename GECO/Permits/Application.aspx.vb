@@ -44,7 +44,7 @@ Public Class Permit_Application
             Master.IsFacilitySet = True
         End If
 
-        AddBreadcrumb("Permits/Application", "AppNumber", AppNumber, Me)
+        AddBreadcrumb("Permits/Application", "AppNumber", AppNumber, ID)
     End Sub
 
     Private Sub DisplayPermitApplication()

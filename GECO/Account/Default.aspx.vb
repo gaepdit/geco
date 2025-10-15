@@ -29,7 +29,7 @@ Partial Class Account_Default
             LoadProfile()
         End If
 
-        AddBreadcrumb("Account Page", "User ID", currentUser.UserId, Me)
+        AddBreadcrumb("Account Page", "User ID", currentUser.UserId, ID)
     End Sub
 
     Private Sub LoadProfile()
@@ -55,7 +55,13 @@ Partial Class Account_Default
     End Sub
 
     Protected Sub btnUpdateProfile_Click(sender As Object, e As EventArgs) Handles btnUpdateProfile.Click
-        AddBreadcrumb("Account: update profile", "User ID", currentUser.UserId, Me)
+        If currentUser Is Nothing Then
+            AddBreadcrumb("Account: update profile", "User ID", "Not set", ID)
+            CompleteRedirect("~/", IsTerminating)
+            Return
+        Else
+            AddBreadcrumb("Account: update profile", "User ID", currentUser.UserId, ID)
+        End If
 
         HideMessages()
 

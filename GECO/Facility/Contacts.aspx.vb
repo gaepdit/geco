@@ -62,11 +62,15 @@ Public Class FacilityContacts
             CommunicationUpdate = GetCommunicationUpdate(currentAirs, FacilityAccess)
         End If
 
-        AddBreadcrumb("Facility Concact", "AIRS #", currentAirs.FormattedString, Me)
+        Dim airsString2 As String = "Not set"
+        If currentAirs IsNot Nothing Then airsString2 = currentAirs.FormattedString
+        AddBreadcrumb("Facility Concact", "AIRS #", airsString2, ID)
     End Sub
 
     Private Sub btnLooksGood_Click(sender As Object, e As EventArgs) Handles btnLooksGood.Click
-        AddBreadcrumb("Facility Concact: looks good", "AIRS #", currentAirs.FormattedString, Me)
+        Dim airsString As String = "Not set"
+        If currentAirs IsNot Nothing Then airsString = currentAirs.FormattedString
+        AddBreadcrumb("Facility Concact: looks good", "AIRS #", airsString, ID)
 
         ConfirmCommunicationSettings(currentAirs, GetCurrentUser.UserId, FacilityAccess)
         CompleteRedirect("~/Facility/", IsTerminating)

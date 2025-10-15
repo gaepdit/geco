@@ -63,7 +63,9 @@ Public Class Fees_Deposits
             LoadDeposits()
         End If
 
-        AddBreadcrumb("Fees/Deposits", "AIRS #", currentAirs.FormattedString, Me)
+        Dim airsString2 As String = "Not set"
+        If currentAirs IsNot Nothing Then airsString2 = currentAirs.FormattedString
+        AddBreadcrumb("Fees/Deposits", "AIRS #", airsString2, ID)
     End Sub
 
     Private Sub LoadFacilityInfo()

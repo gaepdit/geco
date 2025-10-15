@@ -18,45 +18,49 @@ Public Class SetCommunicationPreferences
     End Sub
 
     Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
-        If Not IsPostBack Then
-            Dim currentAirs As ApbFacilityId = ApbFacilityId.IfValid(GetCookie(Cookie.AirsNumber))
+        If IsPostBack Then Return
 
-            If currentAirs Is Nothing Then
-                CompleteRedirect(ToHomePage, IsTerminating)
-                Return
-            End If
+        Dim currentAirs As ApbFacilityId = ApbFacilityId.IfValid(GetCookie(Cookie.AirsNumber))
 
-            Master.CurrentAirs = currentAirs
-            Master.IsFacilitySet = True
-
-            Dim facilityAccess As FacilityAccess = GetCurrentUser.GetFacilityAccess(currentAirs)
-
-            If facilityAccess Is Nothing OrElse
-              Not facilityAccess.HasCommunicationPermission(CommunicationCategory.PermitFees) Then
-                CompleteRedirect(ToHomePage, IsTerminating)
-                Return
-            End If
-
-            ' Check current pref setting. If already set, then redirect to facility home.
-            Dim pref As FacilityCommunicationPreference = GetFacilityCommunicationPreference(currentAirs, CommunicationCategory.PermitFees)
-
-            If pref.IsConfirmed Then
-                CompleteRedirect(ToHomePage, IsTerminating)
-                Return
-            End If
-
-            ' AIRS number cookie gets cleared so user can't manually navigate to other 
-            ' facility pages without submitting the form. Upon submittal, the cookie
-            ' gets set again from the hidden form value.
-            hidAirs.Value = currentAirs
-            ClearCookie(Cookie.AirsNumber)
+        If currentAirs Is Nothing Then
+            CompleteRedirect(ToHomePage, IsTerminating)
+            Return
         End If
 
-        AddBreadcrumb("Facility Communication Prefs", "AIRS #", Master.CurrentAirs.FormattedString, Me)
+        Master.CurrentAirs = currentAirs
+        Master.IsFacilitySet = True
+
+        Dim facilityAccess As FacilityAccess = GetCurrentUser.GetFacilityAccess(currentAirs)
+
+        If facilityAccess Is Nothing OrElse
+          Not facilityAccess.HasCommunicationPermission(CommunicationCategory.PermitFees) Then
+            CompleteRedirect(ToHomePage, IsTerminating)
+            Return
+        End If
+
+        ' Check current pref setting. If already set, then redirect to facility home.
+        Dim pref As FacilityCommunicationPreference = GetFacilityCommunicationPreference(currentAirs, CommunicationCategory.PermitFees)
+
+        If pref.IsConfirmed Then
+            CompleteRedirect(ToHomePage, IsTerminating)
+            Return
+        End If
+
+        ' AIRS number cookie gets cleared so user can't manually navigate to other 
+        ' facility pages without submitting the form. Upon submittal, the cookie
+        ' gets set again from the hidden form value.
+        hidAirs.Value = currentAirs
+        ClearCookie(Cookie.AirsNumber)
+
+        Dim airsString As String = "Not set"
+        If currentAirs IsNot Nothing Then airsString = currentAirs.FormattedString
+        AddBreadcrumb("Facility Communication Prefs", "AIRS #", currentAirs.FormattedString, ID)
     End Sub
 
     Private Sub btnSavePref_Click(sender As Object, e As EventArgs) Handles btnSavePref.Click
-        AddBreadcrumb("Facility Communication Prefs: save pref", "AIRS #", Master.CurrentAirs.FormattedString, Me)
+        Dim airsString As String = "Not set"
+        If Master.CurrentAirs IsNot Nothing Then airsString = Master.CurrentAirs.FormattedString
+        AddBreadcrumb("Facility Communication Prefs: save pref", "AIRS #", airsString, ID)
 
         If rbCommPref.SelectedIndex = -1 OrElse
           Not {"Electronic", "Mail", "Both"}.Contains(rbCommPref.SelectedValue) Then
