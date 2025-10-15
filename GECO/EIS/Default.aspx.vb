@@ -40,6 +40,8 @@ Public Class EIS_Default
             LoadStates()
             LoadCurrentCaersUsers()
         End If
+
+        AddBreadcrumb("EIS", "AIRS #", CurrentAirs.FormattedString, Me)
     End Sub
 
     Private Sub LoadCurrentAirs()

@@ -91,6 +91,8 @@ Public Class EditContacts
         If Not IsPostBack Then
             LoadCurrentData()
         End If
+
+        AddBreadcrumb("Facility Edit Contacts", "AIRS #", currentAirs.FormattedString, Me)
     End Sub
 
     Private Sub LoadCurrentData()
@@ -137,6 +139,8 @@ Public Class EditContacts
     End Sub
 
     Protected Sub SavePreference(sender As Object, e As EventArgs) Handles btnSavePref.Click
+        AddBreadcrumb("Facility Edit Contacts: save pref", "AIRS #", currentAirs.FormattedString, Me)
+
         ClearWarnings()
 
         If Not CommunicationPreference.IsValidPreference(rbCommPref.SelectedValue) Then
@@ -155,6 +159,8 @@ Public Class EditContacts
     End Sub
 
     Protected Sub SaveContact(sender As Object, e As EventArgs) Handles btnSaveContact.Click
+        AddBreadcrumb("Facility Edit Contacts: save contact", "AIRS #", currentAirs.FormattedString, Me)
+
         ClearWarnings()
 
         Dim contact As New MailContact With {
@@ -196,6 +202,8 @@ Public Class EditContacts
     End Sub
 
     Protected Sub AddNewEmail(sender As Object, e As EventArgs) Handles btnAddNewEmail.Click
+        AddBreadcrumb("Facility Edit Contacts: add new email", "AIRS #", currentAirs.FormattedString, Me)
+
         ClearWarnings()
 
         Dim email As String = Trim(txtNewEmail.Text)

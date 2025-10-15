@@ -68,6 +68,8 @@ Partial Class FacilityAdmin
             LoadUserGrid()
             Title = $"GECO Facility Admin - {GetFacilityNameAndCity(CurrentAirs)}"
         End If
+
+        AddBreadcrumb("Facility Admin", "AIRS #", CurrentAirs.FormattedString, Me)
     End Sub
 
 #End Region
@@ -84,6 +86,8 @@ Partial Class FacilityAdmin
     End Sub
 
     Private Sub grdUsers_RowDeleting(sender As Object, e As GridViewDeleteEventArgs) Handles grdUsers.RowDeleting
+        AddBreadcrumb("Facility Admin: delete user", "AIRS #", CurrentAirs.FormattedString, Me)
+
         NotNull(e, NameOf(e))
 
         Dim userid As Integer = CInt(grdUsers.DataKeys(e.RowIndex).Values("NUMUSERID"))
@@ -93,6 +97,8 @@ Partial Class FacilityAdmin
     End Sub
 
     Private Sub grdUsers_RowUpdating(sender As Object, e As GridViewUpdateEventArgs) Handles grdUsers.RowUpdating
+        AddBreadcrumb("Facility Admin: update user", "AIRS #", CurrentAirs.FormattedString, Me)
+
         NotNull(e, NameOf(e))
 
         Dim userid As Integer = CInt(grdUsers.DataKeys(e.RowIndex).Values("NUMUSERID"))
@@ -107,6 +113,8 @@ Partial Class FacilityAdmin
     End Sub
 
     Private Sub grdUsers_RowEditing(sender As Object, e As GridViewEditEventArgs) Handles grdUsers.RowEditing
+        AddBreadcrumb("Facility Admin: edit user", "AIRS #", CurrentAirs.FormattedString, Me)
+
         NotNull(e, NameOf(e))
 
         grdUsers.EditIndex = e.NewEditIndex
@@ -114,7 +122,9 @@ Partial Class FacilityAdmin
     End Sub
 
     Private Sub grdUsers_RowCancelingEdit(sender As Object, e As GridViewCancelEditEventArgs) _
-        Handles grdUsers.RowCancelingEdit
+    Handles grdUsers.RowCancelingEdit
+        AddBreadcrumb("Facility Admin: cancel edit", "AIRS #", CurrentAirs.FormattedString, Me)
+
         grdUsers.EditIndex = -1
         LoadUserGrid()
     End Sub
@@ -135,6 +145,8 @@ Partial Class FacilityAdmin
     End Sub
 
     Private Sub btnAddUser_Click(sender As Object, e As EventArgs) Handles btnAddUser.Click
+        AddBreadcrumb("Facility Admin: add user", "AIRS #", CurrentAirs.FormattedString, Me)
+
         lblMessage.Visible = False
         Dim returnValue As Integer = InsertUserAccess(txtEmail.Text, CurrentAirs)
 

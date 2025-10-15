@@ -25,6 +25,8 @@ Partial Class Account_Email
         If Not IsPostBack Then
             LoadProfile()
         End If
+
+        AddBreadcrumb("Account Page/Email", "User ID", currentUser.UserId, Me)
     End Sub
 
     Protected Sub LoadProfile()
@@ -38,6 +40,8 @@ Partial Class Account_Email
     End Sub
 
     Private Sub btnSaveEmail_Click(sender As Object, e As EventArgs) Handles btnSaveEmail.Click
+        AddBreadcrumb("Account Page/Email: save email", "User ID", currentUser.UserId, Me)
+
         HideMessages()
 
         If IsValid Then

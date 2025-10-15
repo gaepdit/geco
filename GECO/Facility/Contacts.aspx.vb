@@ -61,9 +61,13 @@ Public Class FacilityContacts
         If Not IsPostBack Then
             CommunicationUpdate = GetCommunicationUpdate(currentAirs, FacilityAccess)
         End If
+
+        AddBreadcrumb("Facility Concact", "AIRS #", currentAirs.FormattedString, Me)
     End Sub
 
     Private Sub btnLooksGood_Click(sender As Object, e As EventArgs) Handles btnLooksGood.Click
+        AddBreadcrumb("Facility Concact: looks good", "AIRS #", currentAirs.FormattedString, Me)
+
         ConfirmCommunicationSettings(currentAirs, GetCurrentUser.UserId, FacilityAccess)
         CompleteRedirect("~/Facility/", IsTerminating)
         Return
