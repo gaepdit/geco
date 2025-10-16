@@ -26,7 +26,7 @@ Partial Class Account_Email
             LoadProfile()
         End If
 
-        AddBreadcrumb("Account Page/Email", "User ID", currentUser.UserId, Me)
+        AddBreadcrumb("Account Page/Email", "User ID", currentUser.UserId, ID)
     End Sub
 
     Protected Sub LoadProfile()
@@ -40,7 +40,13 @@ Partial Class Account_Email
     End Sub
 
     Private Sub btnSaveEmail_Click(sender As Object, e As EventArgs) Handles btnSaveEmail.Click
-        AddBreadcrumb("Account Page/Email: save email", "User ID", currentUser.UserId, Me)
+        If currentUser Is Nothing Then
+            AddBreadcrumb("Account Page/Email: save email", "User ID", "Not set", ID)
+            CompleteRedirect("~/", IsTerminating)
+            Return
+        Else
+            AddBreadcrumb("Account Page/Email: save email", "User ID", currentUser.UserId, ID)
+        End If
 
         HideMessages()
 

@@ -30,7 +30,9 @@ Partial Class Home
             End If
         End If
 
-        AddBreadcrumb("Home", "User ID", CurrentUser.UserId, Me)
+        Dim userId As String = "Not set"
+        If CurrentUser IsNot Nothing Then userId = CurrentUser.UserId.ToString
+        AddBreadcrumb("Home", "User ID", userId, ID)
 
         Await DisplayNotificationsAsync()
     End Sub

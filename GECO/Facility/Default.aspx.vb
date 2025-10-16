@@ -68,7 +68,9 @@ Partial Class FacilityHome
             GetApplicationStatus()
         End If
 
-        AddBreadcrumb("Facility", "AIRS #", CurrentAirs.FormattedString, Me)
+        Dim airsString2 As String = "Not set"
+        If CurrentAirs IsNot Nothing Then airsString2 = CurrentAirs.FormattedString
+        AddBreadcrumb("Facility Admin: delete user", "AIRS #", airsString2, ID)
     End Sub
     Private Sub CheckForMandatoryUpdates()
         ' Require user to set communication preferences if they have never been set.

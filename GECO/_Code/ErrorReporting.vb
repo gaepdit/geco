@@ -87,17 +87,18 @@ Public Module ErrorReporting
 
         LogToTextFile(sb.ToString)
     End Sub
-    Friend Sub AddBreadcrumb(message As String, Optional sender As Object = Nothing)
+
+    Friend Sub AddBreadcrumb(message As String, Optional sender As String = Nothing)
         AddBreadcrumb(message, New Dictionary(Of String, Object), sender)
     End Sub
 
-    Friend Sub AddBreadcrumb(message As String, name As String, data As Object, Optional sender As Object = Nothing)
+    Friend Sub AddBreadcrumb(message As String, name As String, data As Object, Optional sender As String = Nothing)
         Dim dataDictionary As New Dictionary(Of String, Object) From {{name, data}}
         AddBreadcrumb(message, dataDictionary, sender)
     End Sub
 
-    Friend Sub AddBreadcrumb(message As String, dataDictionary As Dictionary(Of String, Object), Optional sender As Object = Nothing)
-        If TypeOf sender Is Control Then dataDictionary.Add("Sender", CType(sender, Control).ID)
+    Friend Sub AddBreadcrumb(message As String, dataDictionary As Dictionary(Of String, Object), Optional sender As String = Nothing)
+        If sender IsNot Nothing Then dataDictionary.Add("Sender", sender)
         RaygunClient.RecordBreadcrumb(New RaygunBreadcrumb With {.Message = message, .CustomData = dataDictionary})
     End Sub
 End Module

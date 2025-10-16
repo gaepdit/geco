@@ -47,7 +47,7 @@ Public Class InvoiceDefault
 
         DisplayInvoices()
 
-        AddBreadcrumb("Invoice", "Query", Request.RawUrl.ToString, Me)
+        AddBreadcrumb("Invoice", "Query", Request.RawUrl.ToString, ID)
     End Sub
 
     Private Sub DisplayInvoices()
