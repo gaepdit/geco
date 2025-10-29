@@ -463,8 +463,8 @@
         <h2 id="submit-ei">3. Submit EI</h2>
 
         <p>
-            All facilities that need to opt out or submit 2024 Emissions Inventory data will receive one of two emails during the first week of January 2025. The email will 
-            indicate whether the facility likely qualifies to opt out, or is required to opt in to report their 2024 EI.
+            All facilities that need to opt out or submit <%= EiYear %> Emissions Inventory data will receive one of two emails during the first week of 
+            January <%= EiYear + 1 %>. The email will indicate whether the facility is likely qualified to opt out or is required to opt in to report their <%= EiYear %> EI. 
         </p>
 
         <p>For Opt-out facilities:</p>

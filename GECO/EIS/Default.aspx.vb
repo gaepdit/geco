@@ -9,6 +9,7 @@ Public Class EIS_Default
 
     Private Property CurrentAirs As ApbFacilityId
     Private Property EiStatus As EisStatus
+    Public Property EiYear As Integer
 
     Private IsTerminating As Boolean = False
     Protected Overrides Sub OnLoad(e As EventArgs)
@@ -40,6 +41,8 @@ Public Class EIS_Default
             LoadStates()
             LoadCurrentCaersUsers()
         End If
+
+        EiYear = GetCurrentEiYear()
 
         Dim airsString As String = "Not set"
         If CurrentAirs IsNot Nothing Then airsString = CurrentAirs.FormattedString
