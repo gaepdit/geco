@@ -112,7 +112,7 @@
             <p>
                 The deadline to submit the EI for calendar year
                 <asp:Label ID="lblEIYear3" runat="server" Text=""></asp:Label>
-                is <b>June&nbsp;30,&nbsp;<asp:Label ID="lblEIYear4" runat="server" Text=""></asp:Label></b>.
+                is <b><asp:Label ID="lblEIYear4" runat="server" Text=""></asp:Label></b>.
             </p>
         </li>
     </ul>
