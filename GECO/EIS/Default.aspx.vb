@@ -139,8 +139,8 @@ Public Class EIS_Default
             imgGoogleStaticMap.ImageUrl = GetStaticMapUrl(coords)
             lnkGoogleMap.NavigateUrl = GetMapLinkUrl(coords)
 
-            lblHorizAcc.Text = GetNullableString(dr("HORCOLLMETCODEDESC")).NonEmptyStringOrNothing()
-            lblHorizColl.Text = GetNullableString(dr("INTHORACCURACYMEASURE")).NonEmptyStringOrNothing()
+            lblHorizAcc.Text = GetNullableString(dr("INTHORACCURACYMEASURE")).NonEmptyStringOrNothing()
+            lblHorizColl.Text = GetNullableString(dr("HORCOLLMETCODEDESC")).NonEmptyStringOrNothing()
             lblHorizRef.Text = GetNullableString(dr("HORREFDATUMCODEDESC")).NonEmptyStringOrNothing()
             'lblGeoRefPoint.Text = Nothing
             'lblDataCollDate.Text = Nothing
