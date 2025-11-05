@@ -77,6 +77,33 @@ Partial Public Class EIS_Default
     Protected WithEvents lblLongitude As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
+    '''lblHorizAcc control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblHorizAcc As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''lblHorizColl control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblHorizColl As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''lblHorizRef control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblHorizRef As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
     '''lnkGoogleMap control.
     '''</summary>
     '''<remarks>

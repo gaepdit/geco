@@ -53,9 +53,39 @@
                 <th>Geocoordinates</th>
                 <td>
                     <asp:Label ID="lblLatitude" runat="server" />,
-                        <asp:Label ID="lblLongitude" runat="server" />
+                    <asp:Label ID="lblLongitude" runat="server" />
                 </td>
             </tr>
+            <tr>
+                <th>Horizontal Accuracy Measure (m)</th>
+                <td>
+                    <asp:Label ID="lblHorizAcc" runat="server" />
+                </td>
+            </tr>
+            <tr>
+                <th>Horizontal Collection Method</th>
+                <td>
+                    <asp:Label ID="lblHorizColl" runat="server" />
+                </td>
+            </tr>
+            <tr>
+                <th>Horizontal Reference Datum</th>
+                <td>
+                    <asp:Label ID="lblHorizRef" runat="server" />
+                </td>
+            </tr>
+<%--            <tr>
+                <th>Geographic Reference Point</th>
+                <td>
+                    <asp:Label ID="lblGeoRefPoint" runat="server" />
+                </td>
+            </tr>
+            <tr>
+                <th>Data Collection Date</th>
+                <td>
+                    <asp:Label ID="lblDataCollDate" runat="server" />
+                </td>
+            </tr>--%>
         </tbody>
     </table>
 
@@ -486,7 +516,7 @@
             If new to CDX/CAERS, the preparer(s) and certifier you have specified should follow this procedure:
         </p>
 
-        <ol style="padding-bottom:.05px">
+        <ol style="padding-bottom: .05px">
             <li>
                 <p>Register in CDX using the link to EPA CDX below and set up CAERS in CDX.</p>
             </li>
