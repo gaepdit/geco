@@ -9,6 +9,7 @@ Public Class EIS_Default
 
     Private Property CurrentAirs As ApbFacilityId
     Private Property EiStatus As EisStatus
+    Public Property EiYear As Integer
 
     Private IsTerminating As Boolean = False
     Protected Overrides Sub OnLoad(e As EventArgs)
@@ -40,6 +41,8 @@ Public Class EIS_Default
             LoadStates()
             LoadCurrentCaersUsers()
         End If
+
+        EiYear = GetCurrentEiYear()
 
         Dim airsString As String = "Not set"
         If CurrentAirs IsNot Nothing Then airsString = CurrentAirs.FormattedString
@@ -108,26 +111,26 @@ Public Class EIS_Default
         End If
 
         ' Description
-        lblDescription.Text = GetNullableString(dr.Item("strFacilitySiteDescription"))
-        lblOperatingStatus.Text = GetNullableString(dr.Item("strFacilitySiteStatusDesc"))
-        If Not Convert.IsDBNull(dr("intFacilitySiteStatusCodeYear")) Then
-            lblOperatingStatus.Text &= " as reported in " & dr("intFacilitySiteStatusCodeYear").ToString
+        lblDescription.Text = GetNullableString(dr.Item("STRFACILITYSITEDESCRIPTION"))
+        lblOperatingStatus.Text = GetNullableString(dr.Item("FacilitySiteStatusDesc"))
+        If Not Convert.IsDBNull(dr("INTFACILITYSITESTATUSCODEYEAR")) Then
+            lblOperatingStatus.Text &= " as reported in " & dr("INTFACILITYSITESTATUSCODEYEAR").ToString
         End If
-        lblNAICS.Text = GetNullableString(dr.Item("strNAICSCode")) &
-            " - " & GetNaicsCodeDesc(GetNullableString(dr.Item("strNAICSCode")))
+        lblNAICS.Text = GetNullableString(dr.Item("STRNAICSCODE")) &
+            " - " & GetNaicsCodeDesc(GetNullableString(dr.Item("STRNAICSCODE")))
 
         ' Location
         Dim locationAddress As New Address() With {
-            .Street = GetNullableString(dr.Item("strLocationAddressText")).NonEmptyStringOrNothing(),
-            .Street2 = GetNullableString(dr.Item("strSupplementalLocationText")).NonEmptyStringOrNothing(),
-            .City = GetNullableString(dr.Item("strLocalityName")).NonEmptyStringOrNothing(),
+            .Street = GetNullableString(dr.Item("STRLOCATIONADDRESSTEXT")).NonEmptyStringOrNothing(),
+            .Street2 = GetNullableString(dr.Item("STRSUPPLEMENTALLOCATIONTEXT")).NonEmptyStringOrNothing(),
+            .City = GetNullableString(dr.Item("STRLOCALITYNAME")).NonEmptyStringOrNothing(),
             .State = "GA",
-            .PostalCode = GetNullableString(dr.Item("strLocationAddressPostalCode")).NonEmptyStringOrNothing()
+            .PostalCode = GetNullableString(dr.Item("STRLOCATIONADDRESSPOSTALCODE")).NonEmptyStringOrNothing()
         }
         lblSiteAddress.Text = locationAddress.ToHtmlString()
 
-        Dim latitude = GetNullable(Of Decimal?)(dr("numLatitudeMeasure"))
-        Dim longitude = GetNullable(Of Decimal?)(dr("numLongitudeMeasure"))
+        Dim latitude = GetNullable(Of Decimal?)(dr("NUMLATITUDEMEASURE"))
+        Dim longitude = GetNullable(Of Decimal?)(dr("NUMLONGITUDEMEASURE"))
         lblLatitude.Text = latitude.ToString
         lblLongitude.Text = longitude.ToString
 
@@ -135,6 +138,12 @@ Public Class EIS_Default
             Dim coords As New Coordinate(latitude.Value, longitude.Value)
             imgGoogleStaticMap.ImageUrl = GetStaticMapUrl(coords)
             lnkGoogleMap.NavigateUrl = GetMapLinkUrl(coords)
+
+            lblHorizAcc.Text = GetNullableString(dr("INTHORACCURACYMEASURE")).NonEmptyStringOrNothing()
+            lblHorizColl.Text = GetNullableString(dr("HORCOLLMETCODEDESC")).NonEmptyStringOrNothing()
+            lblHorizRef.Text = GetNullableString(dr("HORREFDATUMCODEDESC")).NonEmptyStringOrNothing()
+            'lblGeoRefPoint.Text = Nothing
+            'lblDataCollDate.Text = Nothing
         Else
             imgGoogleStaticMap.ImageUrl = GetStaticMapUrl(locationAddress.Street, locationAddress.City)
             lnkGoogleMap.NavigateUrl = GetMapLinkUrl(locationAddress.Street, locationAddress.City)

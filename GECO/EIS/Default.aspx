@@ -53,9 +53,39 @@
                 <th>Geocoordinates</th>
                 <td>
                     <asp:Label ID="lblLatitude" runat="server" />,
-                        <asp:Label ID="lblLongitude" runat="server" />
+                    <asp:Label ID="lblLongitude" runat="server" />
                 </td>
             </tr>
+            <tr>
+                <th>Horizontal Accuracy Measure (m)</th>
+                <td>
+                    <asp:Label ID="lblHorizAcc" runat="server" />
+                </td>
+            </tr>
+            <tr>
+                <th>Horizontal Collection Method</th>
+                <td>
+                    <asp:Label ID="lblHorizColl" runat="server" />
+                </td>
+            </tr>
+            <tr>
+                <th>Horizontal Reference Datum</th>
+                <td>
+                    <asp:Label ID="lblHorizRef" runat="server" />
+                </td>
+            </tr>
+<%--            <tr>
+                <th>Geographic Reference Point</th>
+                <td>
+                    <asp:Label ID="lblGeoRefPoint" runat="server" />
+                </td>
+            </tr>
+            <tr>
+                <th>Data Collection Date</th>
+                <td>
+                    <asp:Label ID="lblDataCollDate" runat="server" />
+                </td>
+            </tr>--%>
         </tbody>
     </table>
 
@@ -463,8 +493,8 @@
         <h2 id="submit-ei">3. Submit EI</h2>
 
         <p>
-            All facilities that need to opt out or submit 2024 Emissions Inventory data will receive one of two emails during the first week of January 2025. The email will 
-            indicate whether the facility likely qualifies to opt out, or is required to opt in to report their 2024 EI.
+            All facilities that need to opt out or submit <%= EiYear %> Emissions Inventory data will receive one of two emails during the first week of 
+            January <%= EiYear + 1 %>. The email will indicate whether the facility is likely qualified to opt out or is required to opt in to report their <%= EiYear %> EI. 
         </p>
 
         <p>For Opt-out facilities:</p>
@@ -476,7 +506,7 @@
             <li>
                 <p>
                     If corrections need to be made for an opt-out or opt-in facility, please download the
-                    <a href="<%= Page.ResolveUrl("~/files/2024-opt-out-form_annual.xlsx") %>" download>Opt-out form</a>
+                    <a href="<%= Page.ResolveUrl("~/files/2025-opt-out-form_annual.xlsx") %>" download>Opt-out form</a>
                     to make any changes. Upload the completed form to CAERS as the PTE analysis attachment.
                 </p>
             </li>
@@ -486,7 +516,7 @@
             If new to CDX/CAERS, the preparer(s) and certifier you have specified should follow this procedure:
         </p>
 
-        <ol style="padding-bottom:.05px">
+        <ol style="padding-bottom: .05px">
             <li>
                 <p>Register in CDX using the link to EPA CDX below and set up CAERS in CDX.</p>
             </li>

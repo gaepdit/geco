@@ -7,17 +7,7 @@ Namespace DAL.EIS
         Public Function GetEisFacilityDetails(airs As ApbFacilityId) As DataRow
             NotNull(airs, NameOf(airs))
 
-            Dim query = "select strFacilitySiteName, 
-                   strLocationAddressText, strSupplementalLocationText,
-                   strLocalityName, strLocationAddressPostalCode, strFacilitySiteStatusDesc,
-                   intFacilitySiteStatusCodeYear, strFacilitySiteDescription, strNAICSCode, strFacilitySiteComment,
-                   numLatitudeMeasure, numLongitudeMeasure, 
-                   HorCollMetCode, STRHORCOLLMETDesc, INTHORACCURACYMEASURE, HorRefDatumCode, STRHORREFDATUMDesc,
-                   strGeographicComment, 
-                   LastEPASubmitDate_MAddress,
-                   UpdateUser_FacilitySite, UpdateDateTime_FacilitySite, LastEPASubmitDate_FacilitySite, UpdateUser_GeoCoord,
-                   UpdateDateTime_GeoCoord, LastEPASubmitDate_GeoCoord, 
-                   LastEPASubmitDate_AffIndiv
+            Dim query = "select *
             FROM VW_EIS_FACILITY
             where FACILITYSITEID = @FacilitySiteID"
 

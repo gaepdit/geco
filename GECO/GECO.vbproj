@@ -572,9 +572,9 @@
     <Content Include="EIS\EIS.master" />
     <Content Include="assets\dev\dev-site.webmanifest" />
     <Content Include="assets\uat\uat-site.webmanifest" />
-    <Content Include="files\2024-opt-out-form_annual.xlsx" />
     <Content Include="files\GECO-Information-Sheet.pdf" />
     <Content Include="files\Generating-an-Invoice-on-GECO.pdf" />
+    <Content Include="files\2025-opt-out-form_annual.xlsx" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>

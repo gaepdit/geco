@@ -47,12 +47,13 @@ Partial Class Home
     End Function
 
     Private Sub LoadYearLabels()
-        Dim eiCurrentYear = DAL.EIS.GetCurrentEiYear()
-        Dim eiCurrentYearString = eiCurrentYear.ToString()
+        Dim eiCurrentYear As Integer = DAL.EIS.GetCurrentEiYear()
+        Dim eiCurrentYearString As String = eiCurrentYear.ToString()
+        Dim eiDueDateString As String = DAL.EIS.GetEIDeadline(eiCurrentYear).ToLongDate()
 
         lblEIYear2.Text = eiCurrentYearString  'This is the EI reporting year
         lblEIYear3.Text = eiCurrentYearString  'This is the EI reporting year
-        lblEIYear4.Text = (eiCurrentYear + 1).ToString 'This is the EI due date year
+        lblEIYear4.Text = eiDueDateString 'This is the EI due date year
         lblEIYear5.Text = eiCurrentYearString  'This is the EI reporting year
         lblEIYear6.Text = eiCurrentYearString  'This is the EI reporting year
 
