@@ -7,6 +7,7 @@ Partial Class MainLayout
     Public Property IsFacilitySet As Boolean = False
     Public Property IsLoggedIn As Boolean
     Public Property CurrentAirs As ApbFacilityId
+    Public Property CurrentUserId As Integer = GetCurrentUserId()
     Public ReadOnly Property CurrentEnvironment As String = ConfigurationManager.AppSettings("GECO_ENVIRONMENT")
 
     Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load

@@ -52,6 +52,12 @@ Public Module UserAccounts
         Return GetSessionItem(Of GecoUser)(GecoSession.CurrentUser)
     End Function
 
+    Public Function GetCurrentUserId() As Integer
+        Dim user As GecoUser = GetCurrentUser()
+        If user Is Nothing Then Return 0
+        Return user.UserId
+    End Function
+
     Private Function ParseUserFromDataRow(dr As DataRow) As GecoUser
         Dim userId As Integer = GetNullable(Of Integer)(dr("UserId"))
 
