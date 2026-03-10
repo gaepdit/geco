@@ -3,6 +3,7 @@
 
     Protected ReadOnly Property raygunInfo As New RaygunInfo()
     Public ReadOnly Property CurrentEnvironment As String = ConfigurationManager.AppSettings("GECO_ENVIRONMENT")
+    Public Property CurrentUserId As Integer = GetCurrentUserId()
     Public Property MemoPageCount As Integer
 
     Protected ReadOnly Property PageCountDisplay As String
