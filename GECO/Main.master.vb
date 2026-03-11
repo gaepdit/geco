@@ -3,7 +3,6 @@
 Partial Class MainLayout
     Inherits MasterPage
 
-    Public ReadOnly Property raygunInfo As New RaygunInfo()
     Public Property IsFacilitySet As Boolean = False
     Public Property IsLoggedIn As Boolean
     Public Property CurrentAirs As ApbFacilityId

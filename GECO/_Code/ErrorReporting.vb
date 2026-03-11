@@ -38,7 +38,7 @@ Public Module ErrorReporting
 
                 Dim raygunClient As New RaygunClient With {
                     .ApplicationVersion = ConfigurationManager.AppSettings("GECO_VERSION"),
-                    .UserInfo = RaygunInfo.GetRaygunIdentifier()
+                    .UserInfo = GetRaygunIdentifier()
                 }
                 raygunClient.IgnoreFormFieldNames("txtPassword", "txtOldPassword", "txtNewPassword", "txtPwdConfirm")
 
