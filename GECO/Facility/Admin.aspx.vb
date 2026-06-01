@@ -157,6 +157,7 @@ Partial Class FacilityAdmin
     Private Sub btnAddUser_Click(sender As Object, e As EventArgs) Handles btnAddUser.Click
         If CurrentAirs Is Nothing Then
             CompleteRedirect("~/Home/", IsTerminating)
+            Return
         End If
 
         Dim airsString As String = CurrentAirs.FormattedString
