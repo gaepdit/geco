@@ -155,8 +155,12 @@ Partial Class FacilityAdmin
     End Sub
 
     Private Sub btnAddUser_Click(sender As Object, e As EventArgs) Handles btnAddUser.Click
-        Dim airsString As String = "Not set"
-        If CurrentAirs IsNot Nothing Then airsString = CurrentAirs.FormattedString
+        If CurrentAirs Is Nothing Then
+            CompleteRedirect("~/Home/", IsTerminating)
+            Return
+        End If
+
+        Dim airsString As String = CurrentAirs.FormattedString
         AddBreadcrumb("Facility Admin: add user", "AIRS #", airsString, ID)
 
         lblMessage.Visible = False

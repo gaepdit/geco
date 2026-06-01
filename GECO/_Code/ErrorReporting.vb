@@ -101,4 +101,13 @@ Public Module ErrorReporting
         If sender IsNot Nothing Then dataDictionary.Add("Sender", sender)
         RaygunClient.RecordBreadcrumb(New RaygunBreadcrumb With {.Message = message, .CustomData = dataDictionary})
     End Sub
+
+    Friend Sub AddBreadcrumb(request As HttpRequest, template As String, sender As String)
+        Dim dataDictionary As New Dictionary(Of String, Object) From {
+            {"Path", request.Path},
+            {"HttpMethod", request.HttpMethod},
+            {"RawUrl", request.RawUrl}
+        }
+        AddBreadcrumb(template, dataDictionary, sender)
+    End Sub
 End Module
