@@ -6,6 +6,11 @@ Public Class EIS
     Public Property CurrentAirs As ApbFacilityId
     Public Property SelectedTab As EisTab = EisTab.Home
 
+    Protected Overrides Sub OnLoad(e As EventArgs)
+        AddBreadcrumb(Request, "EIS Page Template", ID)
+        MyBase.OnLoad(e)
+    End Sub
+
     Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
         If CurrentAirs Is Nothing Then
             CompleteRedirect("~/")

@@ -9,6 +9,11 @@ Partial Class MainLayout
     Public Property CurrentUserId As Integer = GetCurrentUserId()
     Public ReadOnly Property CurrentEnvironment As String = ConfigurationManager.AppSettings("GECO_ENVIRONMENT")
 
+    Protected Overrides Sub OnLoad(e As EventArgs)
+        AddBreadcrumb(Request, "Main Page Template", ID)
+        MyBase.OnLoad(e)
+    End Sub
+
     Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
         CurrentAirs = If(CurrentAirs, ApbFacilityId.IfValid(GetCookie(Cookie.AirsNumber)))
         IsLoggedIn = UserIsLoggedIn()
