@@ -54,7 +54,7 @@ Namespace DAL.EIS
                 New SqlParameter("@GecoUser", GetCurrentUser.UserId)
             }
 
-            Dim result As Integer = DB.SPReturnValue("geco.Caer_UpdateContact", params, result)
+            Dim result As Integer = DB.SPReturnValue("geco.Caer_UpdateContact", params)
 
             Select Case result
                 Case 0
@@ -83,7 +83,7 @@ Namespace DAL.EIS
 
             Dim param As SqlParameter() = {
                 New SqlParameter("@Id", id),
-                New SqlParameter("@GecoUser", GetCurrentUser.UserId)
+                New SqlParameter("@GecoUser", GetCurrentUserId)
             }
 
             Return DB.RunCommand(query, param)
