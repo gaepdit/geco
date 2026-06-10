@@ -1,66 +1,17 @@
-﻿Imports Mindscape.Raygun4Net
+﻿Public Module ErrorReporting
 
-Public Module ErrorReporting
-
-    Public Sub ErrorReport(exc As Exception,
-                           Optional redirectToErrorPage As Boolean = True,
-                           Optional unhandled As Boolean = False)
+    Public Sub ErrorReport(exc As Exception, Optional redirectToErrorPage As Boolean = True)
 
         If exc Is Nothing Then
             CompleteRedirect("~/ErrorPage.aspx")
             Return
         End If
 
-        If CBool(ConfigurationManager.AppSettings("LogExceptionsToFile")) Then
-            LogExceptionToTextFile(exc)
+        LogExceptionToTextFile(exc)
+
+        If redirectToErrorPage Then
+            CompleteRedirect("~/ErrorPage.aspx")
         End If
-
-        Try
-            HttpContext.Current.Server.ClearError()
-
-            Dim environment As String = ConfigurationManager.AppSettings("GECO_ENVIRONMENT")
-            If environment = "Development" Then
-                Return
-            End If
-
-            ' Data for error logger
-            Dim tags As New List(Of String) From {environment}
-            If unhandled Then
-                tags.Add("Unhandled")
-            End If
-
-            Dim customData As New Dictionary(Of String, Object)
-            customData.AddIfNotNullOrEmpty("Absolute URI", HttpContext.Current.Request.Url.AbsoluteUri)
-            customData.AddIfNotNullOrEmpty("Current AIRS", GetCookie(Cookie.AirsNumber))
-
-            ' Log the exception
-            Try
-
-                Dim raygunClient As New RaygunClient With {
-                    .ApplicationVersion = ConfigurationManager.AppSettings("GECO_VERSION"),
-                    .UserInfo = GetRaygunIdentifier()
-                }
-                raygunClient.IgnoreFormFieldNames("txtPassword", "txtOldPassword", "txtNewPassword", "txtPwdConfirm")
-
-                If unhandled Then
-                    raygunClient.Send(exc, tags, customData)
-                Else
-                    raygunClient.SendInBackground(exc, tags, customData)
-                End If
-
-            Catch ex As Exception
-                ' If logging fails, log to text file instead
-                LogToTextFile("Exception logging error:")
-                LogExceptionToTextFile(ex)
-            End Try
-
-        Catch ex As Exception
-            ' Do nothing if error logger fails
-        Finally
-            If redirectToErrorPage Then
-                CompleteRedirect("~/ErrorPage.aspx")
-            End If
-        End Try
     End Sub
 
     Private Sub LogExceptionToTextFile(exc As Exception)
@@ -88,26 +39,4 @@ Public Module ErrorReporting
         LogToTextFile(sb.ToString)
     End Sub
 
-    Friend Sub AddBreadcrumb(message As String, Optional sender As String = Nothing)
-        AddBreadcrumb(message, New Dictionary(Of String, Object), sender)
-    End Sub
-
-    Friend Sub AddBreadcrumb(message As String, name As String, data As Object, Optional sender As String = Nothing)
-        Dim dataDictionary As New Dictionary(Of String, Object) From {{name, data}}
-        AddBreadcrumb(message, dataDictionary, sender)
-    End Sub
-
-    Friend Sub AddBreadcrumb(message As String, dataDictionary As Dictionary(Of String, Object), Optional sender As String = Nothing)
-        If sender IsNot Nothing Then dataDictionary.Add("Sender", sender)
-        RaygunClient.RecordBreadcrumb(New RaygunBreadcrumb With {.Message = message, .CustomData = dataDictionary})
-    End Sub
-
-    Friend Sub AddBreadcrumb(request As HttpRequest, template As String, sender As String)
-        Dim dataDictionary As New Dictionary(Of String, Object) From {
-            {"Path", request.Path},
-            {"HttpMethod", request.HttpMethod},
-            {"RawUrl", request.RawUrl}
-        }
-        AddBreadcrumb(template, dataDictionary, sender)
-    End Sub
 End Module

@@ -80,15 +80,6 @@ Partial Class AnnualFees_Default
             feeYear = CInt(ddlFeeYear.SelectedItem.Text)
             feeYearCompleted = ddlFeeYear.SelectedValue.Substring(4) = "1"
         End If
-
-        Dim airsString As String = "Not set"
-        If currentAirs IsNot Nothing Then airsString = currentAirs.FormattedString
-
-        Dim feeYearString As String = "Not set"
-        If feeYear IsNot Nothing Then feeYearString = feeYear.ToString
-
-        Dim data As New Dictionary(Of String, Object) From {{"AIRS #", airsString}, {"Fee year", feeYearString}}
-        AddBreadcrumb("Annual Fees", data, ID)
     End Sub
 
     Private Sub AnnualFees_Default_PreRender(sender As Object, e As EventArgs) Handles Me.PreRender
@@ -110,15 +101,6 @@ Partial Class AnnualFees_Default
     End Function
 
     Protected Sub btnBeginFeeReport_Click(sender As Object, e As EventArgs) Handles btnBeginFeeReport.Click
-        Dim airsString As String = "Not set"
-        If currentAirs IsNot Nothing Then airsString = currentAirs.FormattedString
-
-        Dim feeYearString As String = "Not set"
-        If feeYear IsNot Nothing Then feeYearString = feeYear.ToString
-
-        Dim data As New Dictionary(Of String, Object) From {{"AIRS #", airsString}, {"Fee year", feeYearString}}
-        AddBreadcrumb("Annual Fees: begin fee report", data, ID)
-
         BeginFeeReport()
     End Sub
 
@@ -154,15 +136,6 @@ Partial Class AnnualFees_Default
     End Sub
 
     Protected Sub btnVerifyContact_Click(sender As Object, e As EventArgs) Handles btnVerifyContact.Click
-        Dim airsString As String = "Not set"
-        If currentAirs IsNot Nothing Then airsString = currentAirs.FormattedString
-
-        Dim feeYearString As String = "Not set"
-        If feeYear IsNot Nothing Then feeYearString = feeYear.ToString
-
-        Dim data As New Dictionary(Of String, Object) From {{"AIRS #", airsString}, {"Fee year", feeYearString}}
-        AddBreadcrumb("Annual Fees: verify contact", data, ID)
-
         If Not DoubleCheckFeeYear() Then Return
 
         ' Load fee data from database
@@ -178,15 +151,6 @@ Partial Class AnnualFees_Default
     End Sub
 
     Protected Sub btnSavePnlFeeCalc_Click(sender As Object, e As EventArgs) Handles btnSavePnlFeeCalc.Click
-        Dim airsString As String = "Not set"
-        If currentAirs IsNot Nothing Then airsString = currentAirs.FormattedString
-
-        Dim feeYearString As String = "Not set"
-        If feeYear IsNot Nothing Then feeYearString = feeYear.ToString
-
-        Dim data As New Dictionary(Of String, Object) From {{"AIRS #", airsString}, {"Fee year", feeYearString}}
-        AddBreadcrumb("Annual Fees: save fee calc", data, ID)
-
         If chkNSPSExempt.Checked Then
             If Not AnyNspsExemptionSelected() Then
                 pNspsExemptionWarning.Visible = True
@@ -218,15 +182,6 @@ Partial Class AnnualFees_Default
     End Function
 
     Protected Sub btnSavepnlSign_Click(sender As Object, e As EventArgs) Handles btnSavepnlSign.Click
-        Dim airsString As String = "Not set"
-        If currentAirs IsNot Nothing Then airsString = currentAirs.FormattedString
-
-        Dim feeYearString As String = "Not set"
-        If feeYear IsNot Nothing Then feeYearString = feeYear.ToString
-
-        Dim data As New Dictionary(Of String, Object) From {{"AIRS #", airsString}, {"Fee year", feeYearString}}
-        AddBreadcrumb("Annual Fees: save panel sign", data, ID)
-
         If rblPaymentType.SelectedIndex = 0 Then
             txtPayType.Text = "Entire Annual Year"
         Else
@@ -244,15 +199,6 @@ Partial Class AnnualFees_Default
     End Sub
 
     Protected Sub btnSubmit_Click(sender As Object, e As EventArgs) Handles btnSubmit.Click
-        Dim airsString As String = "Not set"
-        If currentAirs IsNot Nothing Then airsString = currentAirs.FormattedString
-
-        Dim feeYearString As String = "Not set"
-        If feeYear IsNot Nothing Then feeYearString = feeYear.ToString
-
-        Dim data As New Dictionary(Of String, Object) From {{"AIRS #", airsString}, {"Fee year", feeYearString}}
-        AddBreadcrumb("Annual Fees: submit", data, ID)
-
         If DAL.AnnualFees.ActiveInvoiceExists(currentAirs, feeYear.Value) Then
             feeYearCompleted = True
             ResetPage()
@@ -272,44 +218,17 @@ Partial Class AnnualFees_Default
     End Sub
 
     Protected Sub btnCancelFeeCalcSubmit_Click(sender As Object, e As EventArgs) Handles btnCancelFeeCalc.Click
-        Dim airsString As String = "Not set"
-        If currentAirs IsNot Nothing Then airsString = currentAirs.FormattedString
-
-        Dim feeYearString As String = "Not set"
-        If feeYear IsNot Nothing Then feeYearString = feeYear.ToString
-
-        Dim data As New Dictionary(Of String, Object) From {{"AIRS #", airsString}, {"Fee year", feeYearString}}
-        AddBreadcrumb("Annual Fees: cancel fee calc", data, ID)
-
         pnlFeeCalculation.Visible = False
         pnlFeeContact.Visible = True
         BeginFeeReport()
     End Sub
 
     Protected Sub btnCancelSignature_Click(sender As Object, e As EventArgs) Handles btnCancelSignature.Click
-        Dim airsString As String = "Not set"
-        If currentAirs IsNot Nothing Then airsString = currentAirs.FormattedString
-
-        Dim feeYearString As String = "Not set"
-        If feeYear IsNot Nothing Then feeYearString = feeYear.ToString
-
-        Dim data As New Dictionary(Of String, Object) From {{"AIRS #", airsString}, {"Fee year", feeYearString}}
-        AddBreadcrumb("Annual Fees: cancel signature", data, ID)
-
         pnlFeeSignature.Visible = False
         pnlFeeCalculation.Visible = True
     End Sub
 
     Protected Sub btnCancelSubmit_Click(sender As Object, e As EventArgs) Handles btnCancelSubmit.Click
-        Dim airsString As String = "Not set"
-        If currentAirs IsNot Nothing Then airsString = currentAirs.FormattedString
-
-        Dim feeYearString As String = "Not set"
-        If feeYear IsNot Nothing Then feeYearString = feeYear.ToString
-
-        Dim data As New Dictionary(Of String, Object) From {{"AIRS #", airsString}, {"Fee year", feeYearString}}
-        AddBreadcrumb("Annual Fees: cancel submit", data, ID)
-
         pnlFeeSubmit.Visible = False
         pnlFeeSignature.Visible = True
     End Sub
@@ -755,15 +674,6 @@ Partial Class AnnualFees_Default
 #Region "Controls Auto Postback"
 
     Protected Sub ddlClass_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ddlClass.SelectedIndexChanged
-        Dim airsString As String = "Not set"
-        If currentAirs IsNot Nothing Then airsString = currentAirs.FormattedString
-
-        Dim feeYearString As String = "Not set"
-        If feeYear IsNot Nothing Then feeYearString = feeYear.ToString
-
-        Dim data As New Dictionary(Of String, Object) From {{"AIRS #", airsString}, {"Fee year", feeYearString}}
-        AddBreadcrumb("Annual Fees: class changed", data, ID)
-
         UpdateUiFromClass(ddlClass.SelectedValue)
         RecalculateFees()
     End Sub
@@ -790,15 +700,6 @@ Partial Class AnnualFees_Default
     End Sub
 
     Protected Sub chkNSPS1_CheckedChanged(sender As Object, e As EventArgs) Handles chkNSPS1.CheckedChanged
-        Dim airsString As String = "Not set"
-        If currentAirs IsNot Nothing Then airsString = currentAirs.FormattedString
-
-        Dim feeYearString As String = "Not set"
-        If feeYear IsNot Nothing Then feeYearString = feeYear.ToString
-
-        Dim data As New Dictionary(Of String, Object) From {{"AIRS #", airsString}, {"Fee year", feeYearString}}
-        AddBreadcrumb("Annual Fees: nsps check changed", data, ID)
-
         chkNSPSExempt.Checked = Not chkNSPS1.Checked
         chkNSPSExempt.Visible = chkNSPS1.Checked
 
@@ -818,15 +719,6 @@ Partial Class AnnualFees_Default
     End Sub
 
     Protected Sub chkNSPSExempt_CheckedChanged(sender As Object, e As EventArgs) Handles chkNSPSExempt.CheckedChanged
-        Dim airsString As String = "Not set"
-        If currentAirs IsNot Nothing Then airsString = currentAirs.FormattedString
-
-        Dim feeYearString As String = "Not set"
-        If feeYear IsNot Nothing Then feeYearString = feeYear.ToString
-
-        Dim data As New Dictionary(Of String, Object) From {{"AIRS #", airsString}, {"Fee year", feeYearString}}
-        AddBreadcrumb("Annual Fees: nsps exempt changed", data, ID)
-
         NspsExemptionsChecklist.Visible = chkNSPSExempt.Checked
         feeCalc.RuleNspsApplies = chkNSPS1.Checked AndAlso Not chkNSPSExempt.Checked
 
@@ -842,28 +734,10 @@ Partial Class AnnualFees_Default
     End Sub
 
     Protected Sub chkPart70Source_CheckedChanged(sender As Object, e As EventArgs) Handles chkPart70Source.CheckedChanged
-        Dim airsString As String = "Not set"
-        If currentAirs IsNot Nothing Then airsString = currentAirs.FormattedString
-
-        Dim feeYearString As String = "Not set"
-        If feeYear IsNot Nothing Then feeYearString = feeYear.ToString
-
-        Dim data As New Dictionary(Of String, Object) From {{"AIRS #", airsString}, {"Fee year", feeYearString}}
-        AddBreadcrumb("Annual Fees: part 70 changed", data, ID)
-
         RecalculateFees()
     End Sub
 
     Protected Sub ddlFeeYear_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ddlFeeYear.SelectedIndexChanged
-        Dim airsString As String = "Not set"
-        If currentAirs IsNot Nothing Then airsString = currentAirs.FormattedString
-
-        Dim feeYearString As String = "Not set"
-        If feeYear IsNot Nothing Then feeYearString = feeYear.ToString
-
-        Dim data As New Dictionary(Of String, Object) From {{"AIRS #", airsString}, {"Fee year", feeYearString}}
-        AddBreadcrumb("Annual Fees: fee year changed", data, ID)
-
         ResetPage()
     End Sub
 

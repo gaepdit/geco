@@ -466,7 +466,6 @@
     <Compile Include="_Code\DecimalFunctions.vb" />
     <Compile Include="_Code\HtmlTableFunctions.vb" />
     <Compile Include="_Models\App\OrgNotifications.vb" />
-    <Compile Include="_Models\App\RaygunInfo.vb" />
     <Compile Include="_DAL\DataBaseConnection.vb" />
     <Compile Include="_DAL\EIS\EisAccess.vb" />
     <Compile Include="_DAL\EIS\EisDates.vb" />
@@ -631,9 +630,6 @@
       <Version>4.0.50</Version>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
-    </PackageReference>
-    <PackageReference Include="Mindscape.Raygun4Net">
-      <Version>11.2.5</Version>
     </PackageReference>
     <PackageReference Include="MSCaptcha">
       <Version>1.0.0</Version>

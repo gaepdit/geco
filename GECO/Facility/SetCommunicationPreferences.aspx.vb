@@ -51,17 +51,9 @@ Public Class SetCommunicationPreferences
         ' gets set again from the hidden form value.
         hidAirs.Value = currentAirs
         ClearCookie(Cookie.AirsNumber)
-
-        Dim airsString As String = "Not set"
-        If currentAirs IsNot Nothing Then airsString = currentAirs.FormattedString
-        AddBreadcrumb("Facility Communication Prefs", "AIRS #", currentAirs.FormattedString, ID)
     End Sub
 
     Private Sub btnSavePref_Click(sender As Object, e As EventArgs) Handles btnSavePref.Click
-        Dim airsString As String = "Not set"
-        If Master.CurrentAirs IsNot Nothing Then airsString = Master.CurrentAirs.FormattedString
-        AddBreadcrumb("Facility Communication Prefs: save pref", "AIRS #", airsString, ID)
-
         If rbCommPref.SelectedIndex = -1 OrElse
           Not {"Electronic", "Mail", "Both"}.Contains(rbCommPref.SelectedValue) Then
             pNotSelected.Visible = True

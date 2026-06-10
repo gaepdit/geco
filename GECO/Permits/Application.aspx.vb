@@ -40,11 +40,8 @@ Public Class Permit_Application
 
         If Not IsPostBack Then
             DisplayPermitApplication()
-
             Master.IsFacilitySet = True
         End If
-
-        AddBreadcrumb("Permits/Application", "AppNumber", AppNumber, ID)
     End Sub
 
     Private Sub DisplayPermitApplication()

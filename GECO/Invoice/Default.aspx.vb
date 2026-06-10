@@ -46,8 +46,6 @@ Public Class InvoiceDefault
         End If
 
         DisplayInvoices()
-
-        AddBreadcrumb("Invoice", "Query", Request.RawUrl.ToString, ID)
     End Sub
 
     Private Sub DisplayInvoices()

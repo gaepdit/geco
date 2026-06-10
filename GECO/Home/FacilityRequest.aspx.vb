@@ -29,10 +29,6 @@ Partial Class HomeFacilityRequest
             pUpdateRequired.Visible = True
             pnlRequestAccess.Visible = False
         End If
-
-        Dim userId As String = "Not set"
-        If CurrentUser IsNot Nothing Then userId = CurrentUser.UserId.ToString
-        AddBreadcrumb("Facility Request", "User ID", userId, ID)
     End Sub
 
     Private Sub btnSend_Click(sender As Object, e As EventArgs) Handles btnSend.Click

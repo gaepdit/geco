@@ -36,7 +36,8 @@ Public Class Global_asax
             ' Add data to exception and send to error logger
             exc.Data.AddIfNotExists("Unhandled", True)
             If httpCode > 0 Then exc.Data.AddIfNotExists("HTTP Code", httpCode)
-            ErrorReport(exc, unhandled:=True)
+            ErrorReport(exc)
+            Throw exc
         End If
     End Sub
 

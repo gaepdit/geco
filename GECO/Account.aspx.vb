@@ -125,7 +125,6 @@ Partial Class Account
 
         End Select
 
-        AddBreadcrumb("Account", "Action", action, ID)
     End Sub
 
     Private Sub lbtResend_Click(sender As Object, e As EventArgs) Handles lbtResend.Click
@@ -136,11 +135,7 @@ Partial Class Account
     End Sub
 
     Private Sub btnResend_Click(sender As Object, e As EventArgs) Handles btnResend.Click
-        AddBreadcrumb("Account: resend confirmation", ID)
-
-        If IsValid Then
-            SendConfirmationEmail(txtEmailAddress.Text)
-        End If
+        If IsValid Then SendConfirmationEmail(txtEmailAddress.Text)
     End Sub
 
     Private Sub SendConfirmationEmail(email As String)
@@ -175,24 +170,22 @@ Partial Class Account
     End Sub
 
     Private Sub btnSetPassword_Click(sender As Object, e As EventArgs) Handles btnSetPassword.Click
-        AddBreadcrumb("Account: set password", ID)
+        If Not IsValid Then Return
 
-        If IsValid Then
-            Dim email As String = hidEmail.Value
+        Dim email As String = hidEmail.Value
 
-            If email Is Nothing Then
-                MultiView1.SetActiveView(ErrorResult)
-            Else
-                Dim result As DbResult = SetAccountPassword(email, txtPwd.Text)
+        If email Is Nothing Then
+            MultiView1.SetActiveView(ErrorResult)
+        Else
+            Dim result As DbResult = SetAccountPassword(email, txtPwd.Text)
 
-                Select Case result
-                    Case DbResult.Success
-                        MultiView1.SetActiveView(ResetSuccess)
-                        SendPasswordChangeNotification(email)
-                    Case Else
-                        MultiView1.SetActiveView(ErrorResult)
-                End Select
-            End If
+            Select Case result
+                Case DbResult.Success
+                    MultiView1.SetActiveView(ResetSuccess)
+                    SendPasswordChangeNotification(email)
+                Case Else
+                    MultiView1.SetActiveView(ErrorResult)
+            End Select
         End If
     End Sub
 

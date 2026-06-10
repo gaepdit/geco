@@ -43,10 +43,6 @@ Public Class EIS_Default
         End If
 
         EiYear = GetCurrentEiYear()
-
-        Dim airsString As String = "Not set"
-        If CurrentAirs IsNot Nothing Then airsString = CurrentAirs.FormattedString
-        AddBreadcrumb("EIS", "AIRS #", airsString, ID)
     End Sub
 
     Private Sub LoadCurrentAirs()

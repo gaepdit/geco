@@ -91,10 +91,6 @@ Public Class EditContacts
         If Not IsPostBack Then
             LoadCurrentData()
         End If
-
-        Dim airsString2 As String = "Not set"
-        If currentAirs IsNot Nothing Then airsString2 = currentAirs.FormattedString
-        AddBreadcrumb("Facility Edit Contacts", "AIRS #", airsString2, ID)
     End Sub
 
     Private Sub LoadCurrentData()
@@ -141,10 +137,6 @@ Public Class EditContacts
     End Sub
 
     Protected Sub SavePreference(sender As Object, e As EventArgs) Handles btnSavePref.Click
-        Dim airsString As String = "Not set"
-        If currentAirs IsNot Nothing Then airsString = currentAirs.FormattedString
-        AddBreadcrumb("Facility Edit Contacts: save pref", "AIRS #", airsString, ID)
-
         ClearWarnings()
 
         If Not CommunicationPreference.IsValidPreference(rbCommPref.SelectedValue) Then
@@ -163,10 +155,6 @@ Public Class EditContacts
     End Sub
 
     Protected Sub SaveContact(sender As Object, e As EventArgs) Handles btnSaveContact.Click
-        Dim airsString As String = "Not set"
-        If currentAirs IsNot Nothing Then airsString = currentAirs.FormattedString
-        AddBreadcrumb("Facility Edit Contacts: save contact", "AIRS #", airsString, ID)
-
         ClearWarnings()
 
         Dim contact As New MailContact With {
@@ -208,10 +196,6 @@ Public Class EditContacts
     End Sub
 
     Protected Sub AddNewEmail(sender As Object, e As EventArgs) Handles btnAddNewEmail.Click
-        Dim airsString As String = "Not set"
-        If currentAirs IsNot Nothing Then airsString = currentAirs.FormattedString
-        AddBreadcrumb("Facility Edit Contacts: add new email", "AIRS #", airsString, ID)
-
         ClearWarnings()
 
         Dim email As String = Trim(txtNewEmail.Text)
