@@ -42,8 +42,6 @@ Public Class PermitDefault
         LoadFacilityInfo()
         LoadPermitApplications()
         LoadPermits()
-
-        AddBreadcrumb("Permits/Application", "AIRS #", currentAirs.FormattedString, ID)
     End Sub
 
     Private Sub LoadFacilityInfo()

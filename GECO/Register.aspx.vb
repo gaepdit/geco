@@ -44,7 +44,11 @@ Partial Class Register
                     Dim ex As New Exception("GECO Registration Error")
                     ex.Data.Add("Email", email)
                     ex.Data.Add("Method", MethodBase.GetCurrentMethod.Name)
-                    ErrorReport(ex, False)
+                    Try
+                        Throw ex
+                    Catch exc As Exception
+                        ErrorReport(exc, False)
+                    End Try
                     CompleteRedirect("~/Account.aspx?result=Error", IsTerminating)
                     Return
 

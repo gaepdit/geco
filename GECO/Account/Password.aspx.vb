@@ -11,8 +11,6 @@ Partial Class Account_Password
         IsTerminating = MainLoginCheck()
         If IsTerminating Then Return
         MyBase.OnLoad(e)
-
-        AddBreadcrumb("Account Page/Password", ID)
     End Sub
     Protected Overrides Sub Render(writer As HtmlTextWriter)
         If IsTerminating Then Return
@@ -40,28 +38,26 @@ Partial Class Account_Password
     ' Regular expression for password validation:
     ' https://regex101.com/r/hRNxoq/1
     Protected Sub btnPwdUpdate_Click(sender As Object, e As EventArgs) Handles btnPwdUpdate.Click
-        AddBreadcrumb("Account Page/Password: update", ID)
-
         HideMessages()
 
-        If IsValid Then
-            Dim result As UpdatePasswordResult = UpdatePassword(currentUser.Email, txtOldPassword.Text, txtNewPassword.Text)
+        If Not IsValid Then Return
 
-            Select Case result
-                Case UpdatePasswordResult.Success
-                    SendPasswordChangeNotification(currentUser.Email)
-                    lblPasswordMessage.Text = "Password successfully updated."
+        Dim result As UpdatePasswordResult = UpdatePassword(currentUser.Email, txtOldPassword.Text, txtNewPassword.Text)
 
-                Case UpdatePasswordResult.InvalidPassword
-                    lblPasswordMessage.Text = "The old password is incorrect. The password has not been changed."
+        Select Case result
+            Case UpdatePasswordResult.Success
+                SendPasswordChangeNotification(currentUser.Email)
+                lblPasswordMessage.Text = "Password successfully updated."
 
-                Case Else
-                    lblPasswordMessage.Text = "An error occurred. The password has not been changed."
+            Case UpdatePasswordResult.InvalidPassword
+                lblPasswordMessage.Text = "The old password is incorrect. The password has not been changed."
 
-            End Select
+            Case Else
+                lblPasswordMessage.Text = "An error occurred. The password has not been changed."
 
-            lblPasswordMessage.Visible = True
-        End If
+        End Select
+
+        lblPasswordMessage.Visible = True
     End Sub
 
 End Class

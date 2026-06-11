@@ -10,10 +10,4 @@
             Return If(MemoPageCount > 1, $"({MemoPageCount} pages)", "")
         End Get
     End Property
-
-    Protected Overrides Sub OnLoad(e As EventArgs)
-        AddBreadcrumb(Request, "Memo Page Template", ID)
-        MyBase.OnLoad(e)
-    End Sub
-
 End Class

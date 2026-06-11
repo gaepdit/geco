@@ -62,10 +62,6 @@ Public Class Fees_Default
             LoadFacilityInfo()
             LoadFeesSummary()
         End If
-
-        Dim airsString2 As String = "Not set"
-        If currentAirs IsNot Nothing Then airsString2 = currentAirs.FormattedString
-        AddBreadcrumb("Fees", "AIRS #", airsString2, ID)
     End Sub
 
     Private Sub LoadFacilityInfo()

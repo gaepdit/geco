@@ -22,11 +22,7 @@ Partial Class Account_Email
 
         Title = "GECO Account - " & currentUser.FullName
 
-        If Not IsPostBack Then
-            LoadProfile()
-        End If
-
-        AddBreadcrumb("Account Page/Email", "User ID", currentUser.UserId, ID)
+        If Not IsPostBack Then LoadProfile()
     End Sub
 
     Protected Sub LoadProfile()
@@ -41,34 +37,31 @@ Partial Class Account_Email
 
     Private Sub btnSaveEmail_Click(sender As Object, e As EventArgs) Handles btnSaveEmail.Click
         If currentUser Is Nothing Then
-            AddBreadcrumb("Account Page/Email: save email", "User ID", "Not set", ID)
             CompleteRedirect("~/", IsTerminating)
             Return
-        Else
-            AddBreadcrumb("Account Page/Email: save email", "User ID", currentUser.UserId, ID)
         End If
 
         HideMessages()
 
-        If IsValid Then
-            Dim token As String = Nothing
-            Dim result As UpdateUserEmailResult = UpdateUserEmail(currentUser.Email, txtEmail.Text, token)
+        If Not IsValid Then Return
 
-            Select Case result
-                Case UpdateUserEmailResult.Success
-                    SendConfirmEmailUpdateEmail(txtEmail.Text, token)
-                    lblEmailMessage.Text = "An email has been sent to the address you provided with an activation link to confirm your new address."
+        Dim token As String = Nothing
+        Dim result As UpdateUserEmailResult = UpdateUserEmail(currentUser.Email, txtEmail.Text, token)
 
-                Case UpdateUserEmailResult.NewEmailExists
-                    lblEmailMessage.Text = "An account already exists for that email address."
+        Select Case result
+            Case UpdateUserEmailResult.Success
+                SendConfirmEmailUpdateEmail(txtEmail.Text, token)
+                lblEmailMessage.Text = "An email has been sent to the address you provided with an activation link to confirm your new address."
 
-                Case Else
-                    lblEmailMessage.Text = "An error occurred. The email address has not been changed."
+            Case UpdateUserEmailResult.NewEmailExists
+                lblEmailMessage.Text = "An account already exists for that email address."
 
-            End Select
+            Case Else
+                lblEmailMessage.Text = "An error occurred. The email address has not been changed."
 
-            lblEmailMessage.Visible = True
-        End If
+        End Select
+
+        lblEmailMessage.Visible = True
     End Sub
 
 End Class

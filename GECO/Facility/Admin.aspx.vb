@@ -68,10 +68,6 @@ Partial Class FacilityAdmin
             LoadUserGrid()
             Title = $"GECO Facility Admin - {GetFacilityNameAndCity(CurrentAirs)}"
         End If
-
-        Dim airsString2 As String = "Not set"
-        If CurrentAirs IsNot Nothing Then airsString2 = CurrentAirs.FormattedString
-        AddBreadcrumb("Facility Admin", "AIRS #", airsString2, ID)
     End Sub
 
 #End Region
@@ -88,10 +84,6 @@ Partial Class FacilityAdmin
     End Sub
 
     Private Sub grdUsers_RowDeleting(sender As Object, e As GridViewDeleteEventArgs) Handles grdUsers.RowDeleting
-        Dim airsString As String = "Not set"
-        If CurrentAirs IsNot Nothing Then airsString = CurrentAirs.FormattedString
-        AddBreadcrumb("Facility Admin: delete user", "AIRS #", airsString, ID)
-
         NotNull(e, NameOf(e))
 
         Dim userid As Integer = CInt(grdUsers.DataKeys(e.RowIndex).Values("NUMUSERID"))
@@ -101,10 +93,6 @@ Partial Class FacilityAdmin
     End Sub
 
     Private Sub grdUsers_RowUpdating(sender As Object, e As GridViewUpdateEventArgs) Handles grdUsers.RowUpdating
-        Dim airsString As String = "Not set"
-        If CurrentAirs IsNot Nothing Then airsString = CurrentAirs.FormattedString
-        AddBreadcrumb("Facility Admin: update user", "AIRS #", airsString, ID)
-
         NotNull(e, NameOf(e))
 
         Dim userid As Integer = CInt(grdUsers.DataKeys(e.RowIndex).Values("NUMUSERID"))
@@ -119,10 +107,6 @@ Partial Class FacilityAdmin
     End Sub
 
     Private Sub grdUsers_RowEditing(sender As Object, e As GridViewEditEventArgs) Handles grdUsers.RowEditing
-        Dim airsString As String = "Not set"
-        If CurrentAirs IsNot Nothing Then airsString = CurrentAirs.FormattedString
-        AddBreadcrumb("Facility Admin: edit user", "AIRS #", airsString, ID)
-
         NotNull(e, NameOf(e))
 
         grdUsers.EditIndex = e.NewEditIndex
@@ -131,10 +115,6 @@ Partial Class FacilityAdmin
 
     Private Sub grdUsers_RowCancelingEdit(sender As Object, e As GridViewCancelEditEventArgs) _
     Handles grdUsers.RowCancelingEdit
-        Dim airsString As String = "Not set"
-        If CurrentAirs IsNot Nothing Then airsString = CurrentAirs.FormattedString
-        AddBreadcrumb("Facility Admin: cancel edit", "AIRS #", airsString, ID)
-
         grdUsers.EditIndex = -1
         LoadUserGrid()
     End Sub
@@ -159,9 +139,6 @@ Partial Class FacilityAdmin
             CompleteRedirect("~/Home/", IsTerminating)
             Return
         End If
-
-        Dim airsString As String = CurrentAirs.FormattedString
-        AddBreadcrumb("Facility Admin: add user", "AIRS #", airsString, ID)
 
         lblMessage.Visible = False
         Dim returnValue As Integer = InsertUserAccess(txtEmail.Text, CurrentAirs)
