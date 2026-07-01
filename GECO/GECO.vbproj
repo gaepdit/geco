@@ -128,6 +128,7 @@
     <Content Include="Facility\Contacts.aspx" />
     <Content Include="Facility\EditContacts.aspx" />
     <Content Include="Facility\SetCommunicationPreferences.aspx" />
+    <Content Include="files\Default.aspx" />
     <Content Include="google5acc82aef12cf7c5.html" />
     <Content Include="Home\FacilityRequest.aspx" />
     <Content Include="assets\css\memo.css" />
@@ -290,6 +291,13 @@
     </Compile>
     <Compile Include="Facility\SetCommunicationPreferences.aspx.vb">
       <DependentUpon>SetCommunicationPreferences.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="files\Default.aspx.designer.vb">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="files\Default.aspx.vb">
+      <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="GlobalSuppressions.vb" />
