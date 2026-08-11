@@ -99,7 +99,7 @@
                 Return Nothing
             End If
 
-            Return "https://permitsearch.gaepd.org/?AirsNumber=" & airs.ShortString
+            Return $"https://permitsearch.gaepd.org/AirsNumber/{airs.ShortString}"
         End Function
 
     End Class
