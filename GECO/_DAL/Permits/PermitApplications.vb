@@ -115,7 +115,7 @@ Namespace DAL
                 .FacilitySicCode = GetNullableString(dr.Item("FacilitySicCode")),
                 .IsInvoiceGenerated = CBool(dr.Item("IsInvoiceGeneratedForApplication")),
                 .PermitNumberInDB = GetNullableString(dr.Item("PermitNumber")),
-                .PermitFileName = GetNullableString(dr.Item("PermitFileName")),
+                .PermitFileName = GetNullableString(dr.Item("PermitDocName")),
                 .PublicAdvisoryNeeded = GetNullableString(dr.Item("PublicAdvisoryNeeded")),
                 .ReasonForApplication = GetNullableString(dr.Item("ReasonForApplication")),
                 .Status = GetNullableString(dr.Item("Status")),
