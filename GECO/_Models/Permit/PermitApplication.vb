@@ -91,7 +91,7 @@
                 Return Nothing
             End If
 
-            Return "https://permitsearch.gaepd.org/permit.aspx?id=" & PermitFileName
+            Return $"https://permitsearch.gaepd.org/Permit/{PermitFileName}"
         End Function
 
         Public Shared Function GetPermitAirsSearchLink(airs As ApbFacilityId) As String
@@ -99,7 +99,7 @@
                 Return Nothing
             End If
 
-            Return "https://permitsearch.gaepd.org/?AirsNumber=" & airs.ShortString
+            Return $"https://permitsearch.gaepd.org/AirsNumber/{airs.ShortString}"
         End Function
 
     End Class
