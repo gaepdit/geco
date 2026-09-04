@@ -48,11 +48,14 @@ Friend Module OrgNotifications
     Public Function FormatNotificationsDiv(notifications As List(Of OrgNotification)) As HtmlGenericControl
         Dim div As New HtmlGenericControl("div")
         div.Attributes("class") = "announcement announcement-severe"
-        div.InnerHtml = "<h2>Notice</h2>"
+
+        Dim sb As New StringBuilder("<h2>Notice</h2>")
         For Each notification As OrgNotification In notifications
-            div.InnerHtml += $"<p>{notification.Message}</p>"
+            sb.AppendLine($"<p>{notification.Message}</p>")
         Next
-        div.InnerHtml += "<p>Please refer to the <a href=""https://status.gaepd.org/"">EPD-IT status page</a> for updates.</p>"
+        sb.AppendLine("<p>Please refer to the <a href=""https://status.gaepd.org/"">EPD-IT status page</a> for updates.</p>")
+        div.InnerHtml = sb.ToString
+
         Return div
     End Function
 
