@@ -21,8 +21,6 @@
 	<appSettings>
 		<add key="GECO_ENVIRONMENT" value="Development"/>
 		<add key="GecoEmailSender" value="GeorgiaAirProtectionBranch@dnr.ga.gov"/>
-		<add key="EnableSendingEmail" value="true"/>
-		<add key="SaveAllEmails" value="false"/>
 		<add key="EmailQueueApiUrl" value="https://localhost:7145" />
 		<add key="EmailQueueClientId" value="f9dbdd27-0056-46fe-9c44-753e42b95f64" />
 		<add key="EmailQueueApiKey" value="fbe09030-62e3-4581-89af-eea2139348f9" />
@@ -33,9 +31,6 @@
 		<add key="GecoContactEmail" value="GeorgiaAirProtectionBranch@dnr.ga.gov"/>
 		<add key="GecoContactName" value="Georgia Air Protection Branch"/>
 		<add key="FeeContactInfo" value=""/>
-		<add key="SmtpHost" value="localhost"/>
-		<add key="SmtpPort" value="25"/>
-		<add key="EmailAllowList" value=""/>
 		<add key="GoogleMapsAPIKey" value=""/>
 		<add key="EpaCaersUrl" value="https://test.epacdx.net/CDX/MyCDX"/>
 		<add key="OrgNotificationsApiUrl" value="https://localhost:7233/current"/>

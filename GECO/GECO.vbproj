@@ -463,7 +463,6 @@
     <Compile Include="_Code\EmailAPI\EmailQueueApi.vb" />
     <Compile Include="_Code\EmailAPI\EmailQueue_Request.vb" />
     <Compile Include="_Code\EmailAPI\EmailQueue_Response.vb" />
-    <Compile Include="_Code\Email\FacilityContactEmails.vb" />
     <Compile Include="_DAL\EIS\EisCaerContacts.vb" />
     <Compile Include="_DAL\EIS\EisFacility.vb" />
     <Compile Include="_DAL\Facility\FacilityCommunication.vb" />

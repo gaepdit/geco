@@ -238,20 +238,18 @@ Partial Class EventRegistration_EventDetails
         Dim subject As String = "GA EPD Event Registration Confirmed"
 
         Dim linkPath As String = Page.ResolveUrl("~/EventRegistration/Details.aspx") & "?eventid=" & eventId.ToString
-        Dim linkUri As Uri = New Uri(New Uri(Request.Url.GetLeftPart(UriPartial.Authority) & Request.ApplicationPath), linkPath)
+        Dim linkUri As New Uri(New Uri(Request.Url.GetLeftPart(UriPartial.Authority) & Request.ApplicationPath), linkPath)
 
-        Dim htmlBody As String = "<p>Dear " & currentUser.FullName & ",</p>" &
-            "<p>Thank you for registering for the following event. </p>"
+        Dim body As New StringBuilder($"<p>Dear {currentUser.FullName},</p><p>Thank you for registering for the following event. </p>")
 
         If status = 2 Then
-            htmlBody &= "<p><em>The event is currently full, but you have been placed on the waiting list.</em></p>"
+            body.Append("<p><em>The event is currently full, but you have been placed on the waiting list.</em></p>")
         End If
 
-        htmlBody &= "<p>To view your registration status or make changes, visit: <br />" & linkUri.ToString & " </p>" &
-            "<p><b>Event Details:</b></p>" &
-            litEventDetails.Text
+        body.Append($"<p>To view your registration status or make changes, visit: <br />{linkUri.ToString} </p>")
+        body.Append($"<p><b>Event Details:</b></p>{litEventDetails.Text}")
 
-        SendEmail(currentUser.Email, subject, Nothing, htmlBody, caller:="EventRegistration_EventDetails.SendRegistrationEmail")
+        SendEmail(currentUser.Email, subject, body.ToString(), caller:="EventRegistration_EventDetails.SendRegistrationEmail")
     End Sub
 
     ' Cancellation
@@ -280,15 +278,15 @@ Partial Class EventRegistration_EventDetails
         Dim subject As String = "GA EPD Event Registration Cancelled"
 
         Dim linkPath As String = Page.ResolveUrl("~/EventRegistration/Details.aspx") & "?eventid=" & eventId.ToString
-        Dim linkUri As Uri = New Uri(New Uri(Request.Url.GetLeftPart(UriPartial.Authority) & Request.ApplicationPath), linkPath)
+        Dim linkUri As New Uri(New Uri(Request.Url.GetLeftPart(UriPartial.Authority) & Request.ApplicationPath), linkPath)
 
-        Dim htmlBody As String = "<p>Dear " & currentUser.FullName & ",</p>" &
+        Dim body As String = "<p>Dear " & currentUser.FullName & ",</p>" &
             "<p>Your registration for the following event has been <b>canceled.</b></p>" &
             "<p>To view the event or renew your registration, please visit: <br />" & linkUri.ToString & " </p>" &
             "<p><b>Event Details:</b></p>" &
             litEventDetails.Text
 
-        SendEmail(currentUser.Email, subject, Nothing, htmlBody, caller:="EventRegistration_EventDetails.SendCancellationEmail")
+        SendEmail(currentUser.Email, subject, body, caller:="EventRegistration_EventDetails.SendCancellationEmail")
     End Sub
 
     Private Sub SendMovedOffWaitListEmail(newConfirmedUser As Integer)
@@ -298,16 +296,14 @@ Partial Class EventRegistration_EventDetails
 
         If gecoUser IsNot Nothing Then
             Dim linkPath As String = Page.ResolveUrl("~/EventRegistration/Details.aspx") & "?eventid=" & eventId.ToString
-            Dim linkUri As Uri = New Uri(New Uri(Request.Url.GetLeftPart(UriPartial.Authority) & Request.ApplicationPath), linkPath)
+            Dim linkUri As New Uri(New Uri(Request.Url.GetLeftPart(UriPartial.Authority) & Request.ApplicationPath), linkPath)
 
-            Dim htmlBody As String = "<p>Dear " & gecoUser.FullName & ",</p>" &
-            "<p>Thank you for registering for the following event. You have been moved off the waiting list, and your registration is now <b>confirmed.</b></p>"
+            Dim body As New StringBuilder($"<p>Dear {gecoUser.FullName},</p>")
+            body.Append("<p>Thank you for registering for the following event. You have been moved off the waiting list, and your registration is now <b>confirmed.</b></p>")
+            body.Append($"<p>To view your registration status or make changes, visit: <br />{linkUri.ToString} </p>")
+            body.Append($"<p><b>Event Details:</b></p>{litEventDetails.Text}")
 
-            htmlBody &= "<p>To view your registration status or make changes, visit: <br />" & linkUri.ToString & " </p>" &
-            "<p><b>Event Details:</b></p>" &
-            litEventDetails.Text
-
-            SendEmail(gecoUser.Email, subject, Nothing, htmlBody, caller:="EventRegistration_EventDetails.SendMovedOffWaitListEmail")
+            SendEmail(gecoUser.Email, subject, body.ToString(), caller:="EventRegistration_EventDetails.SendMovedOffWaitListEmail")
         End If
     End Sub
 

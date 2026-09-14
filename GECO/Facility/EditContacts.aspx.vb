@@ -1,5 +1,4 @@
-﻿Imports GECO.DAL.Facility
-Imports GECO.EmailTemplates
+Imports GECO.DAL.Facility
 Imports GECO.GecoModels
 Imports GECO.GecoModels.Facility
 
@@ -223,6 +222,27 @@ Public Class EditContacts
 
         LoadCurrentData()
     End Sub
+
+    Public Shared Function SendEmailContactNotificationEmail(facilityId As ApbFacilityId,
+                                                             email As String,
+                                                             category As CommunicationCategory
+                                                             ) As Boolean
+        email = Trim(email)
+
+        Dim subject As String = "GECO: Email added as facility contact"
+
+        Dim body As String = "<p>Your email address has been added at " &
+                "Georgia Environmental Connections Online (GECO) to receive " &
+                "electronic communication for the following facility.</p> " &
+                "<ul><li>Email: " & email &
+                "</li><li>AIRS Number: " & facilityId.FormattedString &
+                "</li><li>Facility: " & GetFacilityNameAndCity(facilityId) &
+                "</li><li>Category: " & category.Description & "</li></ul>" &
+                "<p>Please contact the Georgia Air Protection Branch if you need assistance.</p>"
+
+        Return SendEmail(email, subject, body,
+                      caller:="FacilityContactEmails.SendEmailContactConfirmationEmail")
+    End Function
 
     Private Sub ClearWarnings()
         pAddEmailInvalid.Visible = False
