@@ -69,7 +69,7 @@ Partial Class HomeFacilityRequest
 
         If Not String.IsNullOrWhiteSpace(txtComments.Text) Then
             html.Append("<p><b>Additional comments from the requesting user:</b></p>")
-            html.Append($"<blockquote>{Server.HtmlEncode(txtComments.Text)}</blockquote>")
+            html.Append($"<blockquote style=""white-space-collapse: preserve-breaks;"">{Server.HtmlEncode(txtComments.Text)}</blockquote>")
         End If
 
         If Await SendEmailAsync(recipientList, subject, html.ToString(), ccList, caller:="Home_FacilityRequest.btnSend_Click") Then

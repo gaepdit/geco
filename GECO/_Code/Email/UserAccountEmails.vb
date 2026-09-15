@@ -11,7 +11,8 @@ Namespace EmailTemplates
 
             Dim body As String = "<p>Confirm and activate your new email address by clicking this link: <br /> " &
                 "<a href='{0}' target='_blank'>Confirm your email address</a></p>" &
-                "<p>The link expires after 2 hours.</p>"
+                "<p>The link expires after 2 hours.</p>" &
+                "<p>If the above link doesn't work, copy and paste the following into your web browser:<br /> {0} </p>"
 
             Await SendEmailAsync(Trim(email), subject, String.Format(body, confirmationUrl),
                           "UserAccountEmails.SendConfirmEmailUpdateEmail")
@@ -27,7 +28,8 @@ Namespace EmailTemplates
                 "Georgia Environmental Connections Online (GECO).</p> " &
                 "<p>Confirm and activate your account by clicking this link: <br /> " &
                 "<a href='{0}' target='_blank'>Confirm account</a></p>" &
-                "<p>The link expires after 2 hours.</p>"
+                "<p>The link expires after 2 hours.</p>" &
+                "<p>If the above link doesn't work, copy and paste the following into your web browser:<br /> {0} </p>"
 
             Return Await SendEmailAsync(Trim(email), subject, String.Format(body, confirmationUrl),
                                  "UserAccountEmails.SendConfirmAccountEmail")
@@ -45,7 +47,7 @@ Namespace EmailTemplates
                 "<p><a href='{0}' " &
                 "style='display:inline-block;border:10px solid darkblue;background:darkblue;color:white;border-radius:3px;border-left-width:15px;border-right-width:15px;'>" &
                 "Reset password</a></p>" &
-                "<p>If you did not request a password reset, you can ignore this message and your password will not change.</p>" &
+                "<p>If you did not request a password reset, you can ignore this message, and your password will not change.</p>" &
                 "<p>If the above link doesn't work, copy and paste the following into your web browser:<br /> {0} </p>"
 
             Await SendEmailAsync(Trim(email), subject, String.Format(body, confirmationUrl),

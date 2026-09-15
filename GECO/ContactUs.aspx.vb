@@ -1,5 +1,4 @@
 ﻿Imports GECO.GecoModels
-Imports System.Threading.Tasks
 
 Partial Class ContactUs
     Inherits Page
@@ -21,9 +20,8 @@ Partial Class ContactUs
 
         Dim Subject As String = "GECO: Contact Form - " & ddlSubject.Text
 
-        Dim Body As String = "From: " & txtName.Text & " (" & txtEmail.Text & ") " &
-            NewLine & NewLine &
-            txtMessage.Text
+        Dim Body As String = $"<p>From: {txtName.Text} ({txtEmail.Text}) </p>" &
+            $"<blockquote style=""white-space-collapse: preserve-breaks;"">{txtMessage.Text}</blockquote>"
 
         If Await SendEmailAsync(GecoContactEmail, Subject, Body, caller:="ContactUs.btnSend_Click") Then
             lblSuccess.Visible = True
