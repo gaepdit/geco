@@ -61,7 +61,7 @@ Partial Class HomeFacilityRequest
             ccList.Add(GecoContactEmail)
         End If
 
-        Dim subject As String = "GECO Facility Access Request"
+        Dim subject As String = "GECO: Facility Access Request"
 
         Dim html As New StringBuilder(ltlMessage.Text)
         html.Append(ltlMessagePart2.Text)

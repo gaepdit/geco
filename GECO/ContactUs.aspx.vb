@@ -19,7 +19,7 @@ Partial Class ContactUs
         lblError.Visible = False
         lblSuccess.Visible = False
 
-        Dim Subject As String = "GECO Contact Form - " & ddlSubject.Text
+        Dim Subject As String = "GECO: Contact Form - " & ddlSubject.Text
 
         Dim Body As String = "From: " & txtName.Text & " (" & txtEmail.Text & ") " &
             NewLine & NewLine &

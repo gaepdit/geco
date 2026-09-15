@@ -105,8 +105,8 @@ Public Module EmailSender
 
     Private Sub LabelSubject(ByRef subject As String)
         Dim environment As String = ConfigurationManager.AppSettings("GECO_ENVIRONMENT")
-        If environment = "Development" Then subject = "[GECO DEV] " & subject
-        If environment = "Staging" Then subject = "[GECO UAT] " & subject
+        If environment = "Development" Then subject = "[DEV] " & subject
+        If environment = "Staging" Then subject = "[UAT] " & subject
     End Sub
 
     <CodeAnalysis.SuppressMessage("Minor Code Smell", "S1481:Unused local variables should be removed", Justification:="MailAddress created to test valid format")>
