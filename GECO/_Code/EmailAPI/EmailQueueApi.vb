@@ -22,7 +22,7 @@ Namespace EmailAPI
                 client.DefaultRequestHeaders.Add("X-API-Key", _apiKey)
                 client.DefaultRequestHeaders.Add("X-Client-ID", _clientID)
 
-                Dim response As HttpResponseMessage = Await client.PostAsync(New Uri(_baseUri & endpoint), requestContent)
+                Dim response As HttpResponseMessage = Await client.PostAsync(UrlHelper.UriCombine(_baseUri, endpoint), requestContent)
                 response.EnsureSuccessStatusCode()
                 responseBody = Await response.Content.ReadAsStringAsync()
 
