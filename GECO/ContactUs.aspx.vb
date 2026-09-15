@@ -1,4 +1,5 @@
 ﻿Imports GECO.GecoModels
+Imports System.Threading.Tasks
 
 Partial Class ContactUs
     Inherits Page
@@ -14,7 +15,7 @@ Partial Class ContactUs
         End If
     End Sub
 
-    Protected Sub btnSend_Click(sender As Object, e As EventArgs)
+    Protected Async Sub btnSend_Click(sender As Object, e As EventArgs) Handles btnSend.Click
         lblError.Visible = False
         lblSuccess.Visible = False
 
@@ -24,7 +25,7 @@ Partial Class ContactUs
             NewLine & NewLine &
             txtMessage.Text
 
-        If SendEmail(GecoContactEmail, Subject, Body, caller:="ContactUs.btnSend_Click") Then
+        If Await SendEmailAsync(GecoContactEmail, Subject, Body, caller:="ContactUs.btnSend_Click") Then
             lblSuccess.Visible = True
         Else
             lblError.Visible = True

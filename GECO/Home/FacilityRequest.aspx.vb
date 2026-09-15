@@ -31,7 +31,7 @@ Partial Class HomeFacilityRequest
         End If
     End Sub
 
-    Private Sub btnSend_Click(sender As Object, e As EventArgs) Handles btnSend.Click
+    Private Async Sub btnSend_Click(sender As Object, e As EventArgs) Handles btnSend.Click
         lblSuccess.Visible = False
         lblError.Visible = False
 
@@ -72,7 +72,7 @@ Partial Class HomeFacilityRequest
             html.Append($"<blockquote>{Server.HtmlEncode(txtComments.Text)}</blockquote>")
         End If
 
-        If SendEmail(recipientList, subject, html.ToString(), ccList, caller:="Home_FacilityRequest.btnSend_Click") Then
+        If Await SendEmailAsync(recipientList, subject, html.ToString(), ccList, caller:="Home_FacilityRequest.btnSend_Click") Then
             lblSuccess.Visible = True
             lblApbInstructions.Visible = False
             lblAdminInstructions.Visible = False

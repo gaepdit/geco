@@ -1,5 +1,6 @@
 ﻿Imports GECO.EmailAPI
 Imports System.Net.Mail
+Imports System.Threading.Tasks
 
 Public Module EmailSender
 
@@ -19,9 +20,9 @@ Public Module EmailSender
     ''' <param name="body">The HTML-formatted body of the email.</param>
     ''' <param name="caller">The code location calling this method (for logging purposes).</param>
     ''' <returns>True if email is sent successfully; otherwise false.</returns>
-    Public Function SendEmail(recipient As String, subject As String, body As String, caller As String) As Boolean
+    Public Function SendEmailAsync(recipient As String, subject As String, body As String, caller As String) As Task(Of Boolean)
         Dim emails As New List(Of String) From {recipient}
-        Return SendEmailInternal(emails, subject, body, isHtml:=True, copyRecipients:=New List(Of String), caller)
+        Return SendEmailInternalAsync(emails, subject, body, isHtml:=True, copyRecipients:=New List(Of String), caller)
     End Function
 
     ''' <summary>
@@ -32,8 +33,8 @@ Public Module EmailSender
     ''' <param name="body">The HTML-formatted body of the email.</param>
     ''' <param name="caller">The code location calling this method (for logging purposes).</param>
     ''' <returns>True if email is sent successfully; otherwise false.</returns>
-    Public Function SendEmail(recipients As List(Of String), subject As String, body As String, caller As String) As Boolean
-        Return SendEmailInternal(recipients, subject, body, isHtml:=True, copyRecipients:=New List(Of String), caller)
+    Public Function SendEmailAsync(recipients As List(Of String), subject As String, body As String, caller As String) As Task(Of Boolean)
+        Return SendEmailInternalAsync(recipients, subject, body, isHtml:=True, copyRecipients:=New List(Of String), caller)
     End Function
 
     ''' <summary>
@@ -45,8 +46,8 @@ Public Module EmailSender
     ''' <param name="copyRecipients">List of email CC recipients.</param>
     ''' <param name="caller">The code location calling this method (for logging purposes).</param>
     ''' <returns>True if email is sent successfully; otherwise false.</returns>
-    Public Function SendEmail(recipients As List(Of String), subject As String, body As String, copyRecipients As List(Of String), caller As String) As Boolean
-        Return SendEmailInternal(recipients, subject, body, isHtml:=True, copyRecipients, caller)
+    Public Function SendEmailAsync(recipients As List(Of String), subject As String, body As String, copyRecipients As List(Of String), caller As String) As Task(Of Boolean)
+        Return SendEmailInternalAsync(recipients, subject, body, isHtml:=True, copyRecipients, caller)
     End Function
 
     ''' <summary>
@@ -59,14 +60,13 @@ Public Module EmailSender
     ''' <param name="copyRecipients">List of email CC recipients.</param>
     ''' <param name="caller">The code location calling this method (for logging purposes).</param>
     ''' <returns>True if email is sent successfully; otherwise false.</returns>
-    Private Function SendEmailInternal(recipients As List(Of String),
+    Private Async Function SendEmailInternalAsync(recipients As List(Of String),
                                        subject As String,
                                        body As String,
                                        isHtml As Boolean,
                                        copyRecipients As List(Of String),
                                        caller As String
-                                       ) As Boolean
-
+                                       ) As Task(Of Boolean)
         If String.IsNullOrWhiteSpace(body) Then
             Throw New ArgumentException("Message body required.")
         End If
@@ -99,8 +99,8 @@ Public Module EmailSender
             DAL.LogEmail(email, body, Nothing, origin)
         End If
 
-        EmailQueueApi.QueueEmail(email)
-        Return True
+        Dim result As EmailQueueApiResponse = Await EmailQueueApi.QueueEmailAsync(email)
+        Return result.Status <> "Failed"
     End Function
 
     Private Sub LabelSubject(ByRef subject As String)

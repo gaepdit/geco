@@ -30,11 +30,11 @@ Namespace EmailAPI
             End Using
         End Function
 
-        Public Function QueueEmail(email As Email) As Task(Of EmailQueueApiResponse)
-            Return QueueEmail(New List(Of Email) From {email})
+        Public Function QueueEmailAsync(email As Email) As Task(Of EmailQueueApiResponse)
+            Return QueueEmailAsync(New List(Of Email) From {email})
         End Function
 
-        Public Async Function QueueEmail(emails As List(Of Email)) As Task(Of EmailQueueApiResponse)
+        Public Async Function QueueEmailAsync(emails As List(Of Email)) As Task(Of EmailQueueApiResponse)
             Try
                 Dim response As EmailQueueResponseBody = Await CallEmailApiAsync(Of EmailQueueResponseBody)(emails, SendEndpoint)
                 Return EmailQueueApiResponse.Ok(response)
@@ -43,7 +43,7 @@ Namespace EmailAPI
             End Try
         End Function
 
-        Public Async Function QueueEmailWithBatchID(emails As List(Of Email), batchId As Guid) As Task(Of EmailQueueApiResponse)
+        Public Async Function QueueEmailWithBatchIdAsync(emails As List(Of Email), batchId As Guid) As Task(Of EmailQueueApiResponse)
             Dim emailForBatchRequest As New EmailForBatchRequest() With {
                 .Emails = emails,
                 .BatchId = batchId
@@ -57,7 +57,7 @@ Namespace EmailAPI
             End Try
         End Function
 
-        Public Async Function GetBatchDetails(batchId As Guid) As Task(Of EmailBatchDetails)
+        Public Async Function GetBatchDetailsAsync(batchId As Guid) As Task(Of EmailBatchDetails)
             Dim batchRequest As New BatchRequest() With {.BatchId = batchId}
 
             Try

@@ -1,4 +1,5 @@
 ﻿Imports GECO.EmailTemplates
+Imports System.Threading.Tasks
 
 Partial Class Account
     Inherits Page
@@ -9,7 +10,9 @@ Partial Class Account
         MyBase.Render(writer)
     End Sub
 
-    Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
+    Private Const NotFound As String = "Not found"
+
+    Protected Async Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
         If IsPostBack Then Return
 
         Dim query = Request.QueryString
@@ -31,7 +34,7 @@ Partial Class Account
                 Case "Error"
                     MultiView1.SetActiveView(ErrorResult)
                 Case Else
-                    Throw New HttpException(404, "Not found")
+                    Throw New HttpException(404, NotFound)
             End Select
 
             Return
@@ -42,7 +45,7 @@ Partial Class Account
         Dim token As String = Request.QueryString("token")
 
         If String.IsNullOrEmpty(action) Then
-            Throw New HttpException(404, "Not found")
+            Throw New HttpException(404, NotFound)
         End If
 
         Select Case action
@@ -50,10 +53,10 @@ Partial Class Account
                 ' Used by IAIP for sending new email confirmation email
                 ' (IAIP can't directly send email)
                 If String.IsNullOrEmpty(token) OrElse String.IsNullOrEmpty(email) Then
-                    Throw New HttpException(404, "Not found")
+                    Throw New HttpException(404, NotFound)
                 End If
 
-                SendConfirmEmailUpdateEmail(email, token)
+                Await SendConfirmEmailUpdateEmailAsync(email, token)
                 CompleteRedirect("~/Account.aspx?result=Sent", IsTerminating)
                 Return
 
@@ -63,7 +66,7 @@ Partial Class Account
             Case "confirm"
                 ' Used for confirming a new GECO account
                 If String.IsNullOrEmpty(token) OrElse String.IsNullOrEmpty(email) Then
-                    Throw New HttpException(404, "Not found")
+                    Throw New HttpException(404, NotFound)
                 End If
 
                 Session.Clear()
@@ -83,7 +86,7 @@ Partial Class Account
                 ' (Password reset confirmation and new account
                 ' confirmation are identical on the database)
                 If String.IsNullOrEmpty(token) OrElse String.IsNullOrEmpty(email) Then
-                    Throw New HttpException(404, "Not found")
+                    Throw New HttpException(404, NotFound)
                 End If
 
                 Session.Clear()
@@ -102,7 +105,7 @@ Partial Class Account
             Case "update"
                 ' Used for changing the email address on the account
                 If String.IsNullOrEmpty(token) OrElse String.IsNullOrEmpty(email) Then
-                    Throw New HttpException(404, "Not found")
+                    Throw New HttpException(404, NotFound)
                 End If
 
                 Session.Clear()
@@ -113,7 +116,7 @@ Partial Class Account
                 Select Case ConfirmEmailChange(email, token, oldEmail)
                     Case DbResult.Success
                         MultiView1.SetActiveView(ConfirmEmailSuccess)
-                        SendEmailChangeNotification(oldEmail, email)
+                        Await SendEmailChangeNotificationAsync(oldEmail, email)
                     Case DbResult.Failure
                         MultiView1.SetActiveView(ConfirmEmailFailed)
                     Case Else
@@ -121,7 +124,7 @@ Partial Class Account
                 End Select
 
             Case Else
-                Throw New HttpException(404, "Not found")
+                Throw New HttpException(404, NotFound)
 
         End Select
 
@@ -134,17 +137,17 @@ Partial Class Account
         End If
     End Sub
 
-    Private Sub btnResend_Click(sender As Object, e As EventArgs) Handles btnResend.Click
-        If IsValid Then SendConfirmationEmail(txtEmailAddress.Text)
+    Private Async Sub btnResend_Click(sender As Object, e As EventArgs) Handles btnResend.Click
+        If IsValid Then Await SendConfirmationEmailAsync(txtEmailAddress.Text)
     End Sub
 
-    Private Sub SendConfirmationEmail(email As String)
+    Private Async Function SendConfirmationEmailAsync(email As String) As Task
         Dim token As String = Nothing
         Dim dbResult As DbResult = RenewAccountToken(email, token)
 
         Select Case dbResult
             Case DbResult.Success
-                Dim emailResult = SendConfirmAccountEmail(email, token)
+                Dim emailResult = Await SendConfirmAccountEmailAsync(email, token)
                 If emailResult Then
                     MultiView1.SetActiveView(RegisterSuccess)
                     Return
@@ -152,7 +155,7 @@ Partial Class Account
         End Select
 
         MultiView1.SetActiveView(ErrorResult)
-    End Sub
+    End Function
 
     Protected Sub lbtnRefreshCaptcha_Click(sender As Object, e As EventArgs) Handles lbtnRefreshCaptcha.Click
         captchaControl.ValidateCaptcha(String.Empty)
@@ -169,7 +172,7 @@ Partial Class Account
         args.IsValid = captchaControl.UserValidated
     End Sub
 
-    Private Sub btnSetPassword_Click(sender As Object, e As EventArgs) Handles btnSetPassword.Click
+    Private Async Sub btnSetPassword_Click(sender As Object, e As EventArgs) Handles btnSetPassword.Click
         If Not IsValid Then Return
 
         Dim email As String = hidEmail.Value
@@ -182,7 +185,7 @@ Partial Class Account
             Select Case result
                 Case DbResult.Success
                     MultiView1.SetActiveView(ResetSuccess)
-                    SendPasswordChangeNotification(email)
+                    Await SendPasswordChangeNotificationAsync(email)
                 Case Else
                     MultiView1.SetActiveView(ErrorResult)
             End Select

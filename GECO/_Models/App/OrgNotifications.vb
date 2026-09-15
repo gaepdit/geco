@@ -25,14 +25,14 @@ Friend Module OrgNotifications
         Dim notifications As List(Of OrgNotification) = CType(cache.Get(cacheKey), List(Of OrgNotification))
 
         If notifications Is Nothing Then
-            notifications = Await FetchNotificationsFromApi(orgNotificationsApiUrl)
+            notifications = Await FetchNotificationsFromApiAsync(orgNotificationsApiUrl)
             cache.Add(cacheKey, notifications, DateTimeOffset.Now.AddHours(1))
         End If
 
         Return notifications
     End Function
 
-    Private Async Function FetchNotificationsFromApi(orgNotificationsApiUrl As String) As Task(Of List(Of OrgNotification))
+    Private Async Function FetchNotificationsFromApiAsync(orgNotificationsApiUrl As String) As Task(Of List(Of OrgNotification))
         Try
             Using client As New HttpClient()
                 Dim response As HttpResponseMessage = Await client.GetAsync(orgNotificationsApiUrl)

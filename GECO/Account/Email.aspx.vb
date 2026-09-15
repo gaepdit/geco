@@ -35,7 +35,7 @@ Partial Class Account_Email
         lblEmailMessage.Visible = False
     End Sub
 
-    Private Sub btnSaveEmail_Click(sender As Object, e As EventArgs) Handles btnSaveEmail.Click
+    Private Async Sub btnSaveEmail_Click(sender As Object, e As EventArgs) Handles btnSaveEmail.Click
         If currentUser Is Nothing Then
             CompleteRedirect("~/", IsTerminating)
             Return
@@ -50,7 +50,7 @@ Partial Class Account_Email
 
         Select Case result
             Case UpdateUserEmailResult.Success
-                SendConfirmEmailUpdateEmail(txtEmail.Text, token)
+                Await SendConfirmEmailUpdateEmailAsync(txtEmail.Text, token)
                 lblEmailMessage.Text = "An email has been sent to the address you provided with an activation link to confirm your new address."
 
             Case UpdateUserEmailResult.NewEmailExists

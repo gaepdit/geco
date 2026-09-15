@@ -1,9 +1,9 @@
-﻿Imports GECO.EmailAPI
+﻿Imports System.Threading.Tasks
 
 Namespace EmailTemplates
     Public Module UserAccountEmails
 
-        Public Sub SendConfirmEmailUpdateEmail(email As String, token As String)
+        Public Async Function SendConfirmEmailUpdateEmailAsync(email As String, token As String) As Task
             Dim partialUrl As String = $"~/Account.aspx?action=update&acct={Trim(email)}&token={token}"
             Dim confirmationUrl As String = FullyQualifiedUrl(partialUrl)
 
@@ -13,11 +13,11 @@ Namespace EmailTemplates
                 "<a href='{0}' target='_blank'>Confirm your email address</a></p>" &
                 "<p>The link expires after 2 hours.</p>"
 
-            SendEmail(Trim(email), subject, String.Format(body, confirmationUrl),
+            Await SendEmailAsync(Trim(email), subject, String.Format(body, confirmationUrl),
                           "UserAccountEmails.SendConfirmEmailUpdateEmail")
-        End Sub
+        End Function
 
-        Public Function SendConfirmAccountEmail(email As String, token As String) As Boolean
+        Public Async Function SendConfirmAccountEmailAsync(email As String, token As String) As Task(Of Boolean)
             Dim partialUrl As String = $"~/Account.aspx?action=confirm&acct={Trim(email)}&token={token}"
             Dim confirmationUrl As String = FullyQualifiedUrl(partialUrl)
 
@@ -29,11 +29,11 @@ Namespace EmailTemplates
                 "<a href='{0}' target='_blank'>Confirm account</a></p>" &
                 "<p>The link expires after 2 hours.</p>"
 
-            Return SendEmail(Trim(email), subject, String.Format(body, confirmationUrl),
+            Return Await SendEmailAsync(Trim(email), subject, String.Format(body, confirmationUrl),
                                  "UserAccountEmails.SendConfirmAccountEmail")
         End Function
 
-        Public Sub SendPasswordResetEmail(email As String, token As String)
+        Public Async Function SendPasswordResetEmailAsync(email As String, token As String) As Task
             Dim partialUrl As String = $"~/Account.aspx?action=reset&acct={Trim(email)}&token={token}"
             Dim confirmationUrl As String = FullyQualifiedUrl(partialUrl)
 
@@ -48,11 +48,11 @@ Namespace EmailTemplates
                 "<p>If you did not request a password reset, you can ignore this message and your password will not change.</p>" &
                 "<p>If the above link doesn't work, copy and paste the following into your web browser:<br /> {0} </p>"
 
-            SendEmail(Trim(email), subject, String.Format(body, confirmationUrl),
+            Await SendEmailAsync(Trim(email), subject, String.Format(body, confirmationUrl),
                           "UserAccountEmails.SendPasswordResetEmail")
-        End Sub
+        End Function
 
-        Public Sub SendPasswordChangeNotification(email As String)
+        Public Async Function SendPasswordChangeNotificationAsync(email As String) As Task
             Dim subject As String = "GECO: Password Changed"
 
             Dim body As String = "<p>The password for this account at " &
@@ -60,11 +60,11 @@ Namespace EmailTemplates
                 "<p>Account: {0}</p>" &
                 "<p>If you did not initiate this change, please contact the Air Protection Branch.</p>"
 
-            SendEmail(Trim(email), subject, String.Format(body, email),
+            Await SendEmailAsync(Trim(email), subject, String.Format(body, email),
                           "UserAccountEmails.SendPasswordChangeNotification")
-        End Sub
+        End Function
 
-        Public Sub SendEmailChangeNotification(oldEmail As String, newEmail As String)
+        Public Async Function SendEmailChangeNotificationAsync(oldEmail As String, newEmail As String) As Task
             Dim subject As String = "GECO: Email Address Changed"
 
             Dim body As String = "<p>The email address for this account at " &
@@ -75,9 +75,9 @@ Namespace EmailTemplates
 
             Dim emails As New List(Of String) From {Trim(newEmail), Trim(oldEmail)}
 
-            SendEmail(emails, subject, String.Format(body, oldEmail, newEmail),
+            Await SendEmailAsync(emails, subject, String.Format(body, oldEmail, newEmail),
                           "UserAccountEmails.SendEmailChangeNotification")
-        End Sub
+        End Function
 
     End Module
 End Namespace

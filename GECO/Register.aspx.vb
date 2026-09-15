@@ -22,7 +22,7 @@ Partial Class Register
         End If
     End Sub
 
-    Protected Sub btnRegister_Click(sender As Object, e As EventArgs) Handles btnRegister.Click
+    Protected Async Sub btnRegister_Click(sender As Object, e As EventArgs) Handles btnRegister.Click
         If IsValid Then
             Dim email As String = txtEmail.Text.Trim()
 
@@ -31,7 +31,7 @@ Partial Class Register
 
             Select Case returnvalue
                 Case DbResult.Success
-                    SendConfirmAccountEmail(email, token)
+                    Await SendConfirmAccountEmailAsync(email, token)
                     CompleteRedirect("~/Account.aspx?result=Success", IsTerminating)
                     Return
 
