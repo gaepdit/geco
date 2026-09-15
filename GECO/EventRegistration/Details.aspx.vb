@@ -247,7 +247,7 @@ Partial Class EventRegistration_EventDetails
             body.Append("<p><em>The event is currently full, but you have been placed on the waiting list.</em></p>")
         End If
 
-        body.Append($"<p>To view your registration status or make changes, visit: <br />{linkUri.ToString} </p>")
+        body.Append($"<p>To view your registration status or make changes, visit: <br />{linkUri} </p>")
         body.Append($"<p><b>Event Details:</b></p>{litEventDetails.Text}")
 
         Await SendEmailAsync(currentUser.Email, subject, body.ToString(), caller:="EventRegistration_EventDetails.SendRegistrationEmail")
@@ -301,7 +301,7 @@ Partial Class EventRegistration_EventDetails
 
             Dim body As New StringBuilder($"<p>Dear {gecoUser.FullName},</p>")
             body.Append("<p>Thank you for registering for the following event. You have been moved off the waiting list, and your registration is now <b>confirmed.</b></p>")
-            body.Append($"<p>To view your registration status or make changes, visit: <br />{linkUri.ToString} </p>")
+            body.Append($"<p>To view your registration status or make changes, visit: <br />{linkUri} </p>")
             body.Append($"<p><b>Event Details:</b></p>{litEventDetails.Text}")
 
             Await SendEmailAsync(gecoUser.Email, subject, body.ToString(), caller:="EventRegistration_EventDetails.SendMovedOffWaitListEmail")
