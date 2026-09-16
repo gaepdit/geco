@@ -2,7 +2,7 @@
 Imports System.Text.Json
 Imports System.Threading.Tasks
 
-Namespace EmailAPI
+Namespace EmailApi
     Public Module EmailQueueApi
 
         Private Const SendEndpoint As String = "add"
@@ -11,18 +11,18 @@ Namespace EmailAPI
         'Private Const BatchStatusEndpoint As String = "batch-status"
 
         Private Async Function CallEmailApiAsync(Of T)(payload As Object, endpoint As String) As Task(Of T)
-            Dim _baseUri As String = ConfigurationManager.AppSettings("EmailQueueApiUrl")
-            Dim _clientID As String = ConfigurationManager.AppSettings("EmailQueueClientId")
-            Dim _apiKey As String = ConfigurationManager.AppSettings("EmailQueueApiKey")
+            Dim baseUri As String = ConfigurationManager.AppSettings("EmailQueueApiUrl")
+            Dim clientID As String = ConfigurationManager.AppSettings("EmailQueueClientId")
+            Dim apiKey As String = ConfigurationManager.AppSettings("EmailQueueApiKey")
 
             Dim requestContent As New StringContent(JsonSerializer.Serialize(payload), Encoding.UTF8, "application/json")
             Dim responseBody As String
 
             Using client As New HttpClient()
-                client.DefaultRequestHeaders.Add("X-API-Key", _apiKey)
-                client.DefaultRequestHeaders.Add("X-Client-ID", _clientID)
+                client.DefaultRequestHeaders.Add("X-API-Key", apiKey)
+                client.DefaultRequestHeaders.Add("X-Client-ID", clientID)
 
-                Dim response As HttpResponseMessage = Await client.PostAsync(UrlHelper.UriCombine(_baseUri, endpoint), requestContent)
+                Dim response As HttpResponseMessage = Await client.PostAsync(UrlHelper.UriCombine(baseUri, endpoint), requestContent)
                 response.EnsureSuccessStatusCode()
                 responseBody = Await response.Content.ReadAsStringAsync()
 

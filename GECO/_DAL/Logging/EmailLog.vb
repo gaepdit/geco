@@ -1,4 +1,4 @@
-Imports GECO.EmailAPI
+Imports GECO.EmailApi
 Imports Microsoft.Data.SqlClient
 
 Namespace DAL

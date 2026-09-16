@@ -1,4 +1,4 @@
-﻿Imports GECO.EmailAPI
+﻿Imports GECO.EmailApi
 Imports System.Net.Mail
 Imports System.Threading.Tasks
 

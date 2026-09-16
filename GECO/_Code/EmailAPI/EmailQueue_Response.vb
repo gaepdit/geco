@@ -1,6 +1,6 @@
 ﻿Imports System.ComponentModel
 
-Namespace EmailAPI
+Namespace EmailApi
     Public Class EmailQueueResponseBody
         Public Property Status As String
         Public Property Count As Integer

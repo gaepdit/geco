@@ -1,4 +1,4 @@
-﻿Namespace EmailAPI
+﻿Namespace EmailApi
 
     Public Class Email
         Public Property From As String
