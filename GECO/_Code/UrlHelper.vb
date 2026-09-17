@@ -14,4 +14,15 @@
         Return Nothing
     End Function
 
+    Public Function UriCombine(baseUrl As String, endpoint As String) As Uri
+        Return UriCombine(New Uri(baseUrl), endpoint)
+    End Function
+
+    Public Function UriCombine(baseUri As Uri, endpoint As String) As Uri
+        If Not baseUri.IsAbsoluteUri Then Throw New ArgumentOutOfRangeException(NameOf(baseUri))
+        If String.IsNullOrEmpty(endpoint) Then Return baseUri
+        Const separator As Char = "/"c
+        Return New Uri($"{baseUri.ToString().TrimEnd(separator)}{separator}{endpoint.TrimStart(separator)}")
+    End Function
+
 End Module

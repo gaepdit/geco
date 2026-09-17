@@ -1,4 +1,4 @@
-﻿<%@ Page Language="VB" MasterPageFile="~/Main.master" AutoEventWireup="false" Inherits="GECO.Login" Title="Georgia Environmental Connections Online" CodeBehind="Login.aspx.vb" %>
+﻿<%@ Page Language="VB" Async="true" MasterPageFile="~/Main.master" AutoEventWireup="false" Inherits="GECO.Login" Title="Georgia Environmental Connections Online" CodeBehind="Login.aspx.vb" %>
 
 <%@ MasterType VirtualPath="~/Main.master" %>
 

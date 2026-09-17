@@ -1,5 +1,6 @@
 ﻿Imports GECO.GecoModels
 Imports GaEpd.DBUtilities
+Imports System.Threading.Tasks
 
 Partial Class EventRegistration_EventDetails
     Inherits Page
@@ -216,7 +217,7 @@ Partial Class EventRegistration_EventDetails
         End If
     End Sub
 
-    Protected Sub btnRegister_Click(sender As Object, e As EventArgs) Handles btnRegister.Click
+    Protected Async Sub btnRegister_Click(sender As Object, e As EventArgs) Handles btnRegister.Click
         Dim confirmationNumber As String = RandomString(10)
 
         Dim status As Integer = 0
@@ -225,7 +226,7 @@ Partial Class EventRegistration_EventDetails
         Select Case result
             Case DbResult.Success
                 lblMessage.Text = "You have been successfully registered."
-                SendRegistrationEmail(status)
+                Await SendRegistrationEmailAsync(status)
             Case Else
                 lblMessage.Text = "There was a problem registering you. Please try again or contact us."
         End Select
@@ -234,39 +235,37 @@ Partial Class EventRegistration_EventDetails
         CheckCapacity()
     End Sub
 
-    Private Sub SendRegistrationEmail(status As Integer)
+    Private Async Function SendRegistrationEmailAsync(status As Integer) As Task
         Dim subject As String = "GA EPD Event Registration Confirmed"
 
         Dim linkPath As String = Page.ResolveUrl("~/EventRegistration/Details.aspx") & "?eventid=" & eventId.ToString
-        Dim linkUri As Uri = New Uri(New Uri(Request.Url.GetLeftPart(UriPartial.Authority) & Request.ApplicationPath), linkPath)
+        Dim linkUri As New Uri(New Uri(Request.Url.GetLeftPart(UriPartial.Authority) & Request.ApplicationPath), linkPath)
 
-        Dim htmlBody As String = "<p>Dear " & currentUser.FullName & ",</p>" &
-            "<p>Thank you for registering for the following event. </p>"
+        Dim body As New StringBuilder($"<p>Dear {currentUser.FullName},</p><p>Thank you for registering for the following event. </p>")
 
         If status = 2 Then
-            htmlBody &= "<p><em>The event is currently full, but you have been placed on the waiting list.</em></p>"
+            body.Append("<p><em>The event is currently full, but you have been placed on the waiting list.</em></p>")
         End If
 
-        htmlBody &= "<p>To view your registration status or make changes, visit: <br />" & linkUri.ToString & " </p>" &
-            "<p><b>Event Details:</b></p>" &
-            litEventDetails.Text
+        body.Append($"<p>To view your registration status or make changes, visit: <br />{linkUri} </p>")
+        body.Append($"<p><b>Event Details:</b></p>{litEventDetails.Text}")
 
-        SendEmail(currentUser.Email, subject, Nothing, htmlBody, caller:="EventRegistration_EventDetails.SendRegistrationEmail")
-    End Sub
+        Await SendEmailAsync(currentUser.Email, subject, body.ToString(), caller:="EventRegistration_EventDetails.SendRegistrationEmail")
+    End Function
 
     ' Cancellation
 
-    Protected Sub btnCancelRegistration_Click(sender As Object, e As EventArgs) Handles btnCancelRegistration.Click
+    Protected Async Sub btnCancelRegistration_Click(sender As Object, e As EventArgs) Handles btnCancelRegistration.Click
         Dim newConfirmedUser As Integer = -1
         Dim result As DbResult = CancelEventRegistration(currentUser.UserId, eventId, txtComments.Text, newConfirmedUser)
 
         Select Case result
             Case DbResult.Success
                 lblMessage.Text = "Your registration has been canceled."
-                SendCancellationEmail()
+                Await SendCancellationEmailAsync()
 
                 If newConfirmedUser > -1 Then
-                    SendMovedOffWaitListEmail(newConfirmedUser)
+                    Await SendMovedOffWaitListEmailAsync(newConfirmedUser)
                 End If
             Case Else
                 lblMessage.Text = "There was an error. Please try again or contact us."
@@ -276,39 +275,37 @@ Partial Class EventRegistration_EventDetails
         CheckCapacity()
     End Sub
 
-    Private Sub SendCancellationEmail()
+    Private Async Function SendCancellationEmailAsync() As Task
         Dim subject As String = "GA EPD Event Registration Cancelled"
 
         Dim linkPath As String = Page.ResolveUrl("~/EventRegistration/Details.aspx") & "?eventid=" & eventId.ToString
-        Dim linkUri As Uri = New Uri(New Uri(Request.Url.GetLeftPart(UriPartial.Authority) & Request.ApplicationPath), linkPath)
+        Dim linkUri As New Uri(New Uri(Request.Url.GetLeftPart(UriPartial.Authority) & Request.ApplicationPath), linkPath)
 
-        Dim htmlBody As String = "<p>Dear " & currentUser.FullName & ",</p>" &
+        Dim body As String = "<p>Dear " & currentUser.FullName & ",</p>" &
             "<p>Your registration for the following event has been <b>canceled.</b></p>" &
             "<p>To view the event or renew your registration, please visit: <br />" & linkUri.ToString & " </p>" &
             "<p><b>Event Details:</b></p>" &
             litEventDetails.Text
 
-        SendEmail(currentUser.Email, subject, Nothing, htmlBody, caller:="EventRegistration_EventDetails.SendCancellationEmail")
-    End Sub
+        Await SendEmailAsync(currentUser.Email, subject, body, caller:="EventRegistration_EventDetails.SendCancellationEmail")
+    End Function
 
-    Private Sub SendMovedOffWaitListEmail(newConfirmedUser As Integer)
+    Private Async Function SendMovedOffWaitListEmailAsync(newConfirmedUser As Integer) As Task
         Dim subject As String = "GA EPD Event Registration Updated"
 
         Dim gecoUser As GecoUser = GetGecoUser(newConfirmedUser)
 
         If gecoUser IsNot Nothing Then
             Dim linkPath As String = Page.ResolveUrl("~/EventRegistration/Details.aspx") & "?eventid=" & eventId.ToString
-            Dim linkUri As Uri = New Uri(New Uri(Request.Url.GetLeftPart(UriPartial.Authority) & Request.ApplicationPath), linkPath)
+            Dim linkUri As New Uri(New Uri(Request.Url.GetLeftPart(UriPartial.Authority) & Request.ApplicationPath), linkPath)
 
-            Dim htmlBody As String = "<p>Dear " & gecoUser.FullName & ",</p>" &
-            "<p>Thank you for registering for the following event. You have been moved off the waiting list, and your registration is now <b>confirmed.</b></p>"
+            Dim body As New StringBuilder($"<p>Dear {gecoUser.FullName},</p>")
+            body.Append("<p>Thank you for registering for the following event. You have been moved off the waiting list, and your registration is now <b>confirmed.</b></p>")
+            body.Append($"<p>To view your registration status or make changes, visit: <br />{linkUri} </p>")
+            body.Append($"<p><b>Event Details:</b></p>{litEventDetails.Text}")
 
-            htmlBody &= "<p>To view your registration status or make changes, visit: <br />" & linkUri.ToString & " </p>" &
-            "<p><b>Event Details:</b></p>" &
-            litEventDetails.Text
-
-            SendEmail(gecoUser.Email, subject, Nothing, htmlBody, caller:="EventRegistration_EventDetails.SendMovedOffWaitListEmail")
+            Await SendEmailAsync(gecoUser.Email, subject, body.ToString(), caller:="EventRegistration_EventDetails.SendMovedOffWaitListEmail")
         End If
-    End Sub
+    End Function
 
 End Class

@@ -14,17 +14,16 @@ Partial Class ContactUs
         End If
     End Sub
 
-    Protected Sub btnSend_Click(sender As Object, e As EventArgs)
+    Protected Async Sub btnSend_Click(sender As Object, e As EventArgs) Handles btnSend.Click
         lblError.Visible = False
         lblSuccess.Visible = False
 
-        Dim Subject As String = "GECO Contact Form - " & ddlSubject.Text
+        Dim Subject As String = "GECO: Contact Form - " & ddlSubject.Text
 
-        Dim Body As String = "From: " & txtName.Text & " (" & txtEmail.Text & ") " &
-            NewLine & NewLine &
-            txtMessage.Text
+        Dim Body As String = $"<p>From: {txtName.Text} ({txtEmail.Text}) </p>" &
+            $"<blockquote style=""white-space-collapse: preserve-breaks;"">{txtMessage.Text}</blockquote>"
 
-        If SendEmail(GecoContactEmail, Subject, Body, caller:="ContactUs.btnSend_Click") Then
+        If Await SendEmailAsync(GecoContactEmail, Subject, Body, caller:="ContactUs.btnSend_Click") Then
             lblSuccess.Visible = True
         Else
             lblError.Visible = True

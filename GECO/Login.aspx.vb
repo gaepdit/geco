@@ -136,14 +136,14 @@ Partial Class Login
         lbtForgotPwd.Visible = True
     End Sub
 
-    Protected Sub btnResetPassword_Click(sender As Object, e As EventArgs) Handles btnResetPassword.Click
+    Protected Async Sub btnResetPassword_Click(sender As Object, e As EventArgs) Handles btnResetPassword.Click
         If IsValid Then
             Dim token As String = Nothing
             Dim result As DbResult = RenewAccountToken(txtEmailAddress.Text, token)
 
             Select Case result
                 Case DbResult.Success
-                    SendPasswordResetEmail(txtEmailAddress.Text, token)
+                    Await SendPasswordResetEmailAsync(txtEmailAddress.Text, token)
                     mvResetPassword.SetActiveView(vResetResult)
                 Case Else
                     mvResetPassword.SetActiveView(vResetError)

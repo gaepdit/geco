@@ -31,7 +31,7 @@ Partial Class HomeFacilityRequest
         End If
     End Sub
 
-    Private Sub btnSend_Click(sender As Object, e As EventArgs) Handles btnSend.Click
+    Private Async Sub btnSend_Click(sender As Object, e As EventArgs) Handles btnSend.Click
         lblSuccess.Visible = False
         lblError.Visible = False
 
@@ -61,17 +61,18 @@ Partial Class HomeFacilityRequest
             ccList.Add(GecoContactEmail)
         End If
 
-        Dim subject As String = "GECO Facility Access Request"
+        Dim subject As String = "GECO: Facility Access Request"
 
-        Dim htmlBody As String = ltlMessage.Text & ltlMessagePart2.Text & ltlMessagePart3.Text
+        Dim html As New StringBuilder(ltlMessage.Text)
+        html.Append(ltlMessagePart2.Text)
+        html.Append(ltlMessagePart3.Text)
 
         If Not String.IsNullOrWhiteSpace(txtComments.Text) Then
-            htmlBody &= "<p><b>Additional comments from the requesting user:</b></p>" &
-                "<blockquote>" & Server.HtmlEncode(txtComments.Text) & "</blockquote>"
+            html.Append("<p><b>Additional comments from the requesting user:</b></p>")
+            html.Append($"<blockquote style=""white-space-collapse: preserve-breaks;"">{Server.HtmlEncode(txtComments.Text)}</blockquote>")
         End If
 
-        If SendEmail(ConcatNonEmptyStrings(",", recipientList), subject, Nothing, htmlBody, ConcatNonEmptyStrings(",", ccList),
-                     caller:="Home_FacilityRequest.btnSend_Click") Then
+        If Await SendEmailAsync(recipientList, subject, html.ToString(), ccList, caller:="Home_FacilityRequest.btnSend_Click") Then
             lblSuccess.Visible = True
             lblApbInstructions.Visible = False
             lblAdminInstructions.Visible = False

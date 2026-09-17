@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Georgia EPD Event Details" Language="VB" MasterPageFile="~/Main.master"
+﻿<%@ Page Title="Georgia EPD Event Details" Language="VB" Async="true" MasterPageFile="~/Main.master"
     AutoEventWireup="false" Inherits="GECO.EventRegistration_EventDetails" CodeBehind="Details.aspx.vb" %>
 
 <%@ MasterType VirtualPath="~/Main.master" %>

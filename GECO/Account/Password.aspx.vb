@@ -37,7 +37,7 @@ Partial Class Account_Password
 
     ' Regular expression for password validation:
     ' https://regex101.com/r/hRNxoq/1
-    Protected Sub btnPwdUpdate_Click(sender As Object, e As EventArgs) Handles btnPwdUpdate.Click
+    Protected Async Sub btnPwdUpdate_Click(sender As Object, e As EventArgs) Handles btnPwdUpdate.Click
         HideMessages()
 
         If Not IsValid Then Return
@@ -46,7 +46,7 @@ Partial Class Account_Password
 
         Select Case result
             Case UpdatePasswordResult.Success
-                SendPasswordChangeNotification(currentUser.Email)
+                Await SendPasswordChangeNotificationAsync(currentUser.Email)
                 lblPasswordMessage.Text = "Password successfully updated."
 
             Case UpdatePasswordResult.InvalidPassword

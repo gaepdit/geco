@@ -1,7 +1,7 @@
-﻿Imports GECO.DAL.Facility
-Imports GECO.EmailTemplates
+Imports GECO.DAL.Facility
 Imports GECO.GecoModels
 Imports GECO.GecoModels.Facility
+Imports System.Threading.Tasks
 
 Public Class EditContacts
     Inherits Page
@@ -195,7 +195,7 @@ Public Class EditContacts
         LoadCurrentData()
     End Sub
 
-    Protected Sub AddNewEmail(sender As Object, e As EventArgs) Handles btnAddNewEmail.Click
+    Protected Async Sub AddNewEmail(sender As Object, e As EventArgs) Handles btnAddNewEmail.Click
         ClearWarnings()
 
         Dim email As String = Trim(txtNewEmail.Text)
@@ -213,7 +213,7 @@ Public Class EditContacts
                     pAddEmailExists.Visible = True
 
                 Case AddEmailContactResultStatus.Success
-                    SendEmailContactNotificationEmail(currentAirs, email, CurrentCategory)
+                    Await SendEmailContactNotificationEmailAsync(currentAirs, email, CurrentCategory)
                     AddedEmail = email
                     pAddEmailSuccess.Visible = True
                     txtNewEmail.Text = ""
@@ -223,6 +223,27 @@ Public Class EditContacts
 
         LoadCurrentData()
     End Sub
+
+    Public Shared Async Function SendEmailContactNotificationEmailAsync(facilityId As ApbFacilityId,
+                                                             email As String,
+                                                             category As CommunicationCategory
+                                                             ) As Task(Of Boolean)
+        email = Trim(email)
+
+        Dim subject As String = "GECO: Email added as facility contact"
+
+        Dim body As String = "<p>Your email address has been added at " &
+                "Georgia Environmental Connections Online (GECO) to receive " &
+                "electronic communication for the following facility.</p> " &
+                "<ul><li>Email: " & email &
+                "</li><li>AIRS Number: " & facilityId.FormattedString &
+                "</li><li>Facility: " & GetFacilityNameAndCity(facilityId) &
+                "</li><li>Category: " & category.Description & "</li></ul>" &
+                "<p>Please contact the Georgia Air Protection Branch if you need assistance.</p>"
+
+        Return Await SendEmailAsync(email, subject, body,
+                      caller:="FacilityContactEmails.SendEmailContactConfirmationEmail")
+    End Function
 
     Private Sub ClearWarnings()
         pAddEmailInvalid.Visible = False

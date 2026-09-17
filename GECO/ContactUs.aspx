@@ -1,4 +1,4 @@
-<%@ Page Title="GECO - Contact Us" Language="VB" MasterPageFile="~/Main.master" AutoEventWireup="false"
+<%@ Page Title="GECO - Contact Us" Language="VB" Async="true" MasterPageFile="~/Main.master" AutoEventWireup="false"
     Inherits="GECO.ContactUs" CodeBehind="ContactUs.aspx.vb" %>
 
 <%@ MasterType VirtualPath="~/Main.master" %>
@@ -47,7 +47,7 @@
                 <asp:Label ID="lblError" runat="server" Text="There was an error sending the message; please try contacting us by phone instead." Visible="false" CssClass="message-highlight" />
             </p>
             <p>
-                <asp:Button ID="btnSend" runat="server" Text="Send Message" OnClick="btnSend_Click" CssClass="button-large" />
+                <asp:Button ID="btnSend" runat="server" Text="Send Message" CssClass="button-large" />
             </p>
 
             <asp:UpdateProgress ID="ModalUpdateProgress1" runat="server" DisplayAfter="200" class="progressIndicator">

@@ -1,4 +1,4 @@
-<%@ Page Language="VB" MasterPageFile="../Main.master" AutoEventWireup="false"
+<%@ Page Language="VB" Async="true" MasterPageFile="../Main.master" AutoEventWireup="false"
     Inherits="GECO.EditContacts" Title="GECO Edit Facility Contacts" CodeBehind="EditContacts.aspx.vb" %>
 
 <%@ MasterType VirtualPath="~/Main.master" %>

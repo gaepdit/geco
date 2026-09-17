@@ -25,14 +25,14 @@ Friend Module OrgNotifications
         Dim notifications As List(Of OrgNotification) = CType(cache.Get(cacheKey), List(Of OrgNotification))
 
         If notifications Is Nothing Then
-            notifications = Await FetchNotificationsFromApi(orgNotificationsApiUrl)
+            notifications = Await FetchNotificationsFromApiAsync(orgNotificationsApiUrl)
             cache.Add(cacheKey, notifications, DateTimeOffset.Now.AddHours(1))
         End If
 
         Return notifications
     End Function
 
-    Private Async Function FetchNotificationsFromApi(orgNotificationsApiUrl As String) As Task(Of List(Of OrgNotification))
+    Private Async Function FetchNotificationsFromApiAsync(orgNotificationsApiUrl As String) As Task(Of List(Of OrgNotification))
         Try
             Using client As New HttpClient()
                 Dim response As HttpResponseMessage = Await client.GetAsync(orgNotificationsApiUrl)
@@ -48,11 +48,14 @@ Friend Module OrgNotifications
     Public Function FormatNotificationsDiv(notifications As List(Of OrgNotification)) As HtmlGenericControl
         Dim div As New HtmlGenericControl("div")
         div.Attributes("class") = "announcement announcement-severe"
-        div.InnerHtml = "<h2>Notice</h2>"
+
+        Dim sb As New StringBuilder("<h2>Notice</h2>")
         For Each notification As OrgNotification In notifications
-            div.InnerHtml += $"<p>{notification.Message}</p>"
+            sb.AppendLine($"<p>{notification.Message}</p>")
         Next
-        div.InnerHtml += "<p>Please refer to the <a href=""https://status.gaepd.org/"">EPD-IT status page</a> for updates.</p>"
+        sb.AppendLine("<p>Please refer to the <a href=""https://status.gaepd.org/"">EPD-IT status page</a> for updates.</p>")
+        div.InnerHtml = sb.ToString
+
         Return div
     End Function
 
