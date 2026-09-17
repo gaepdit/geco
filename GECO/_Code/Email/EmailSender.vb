@@ -4,9 +4,12 @@ Imports System.Threading.Tasks
 
 Public Module EmailSender
 
-    ' If running locally, an SMTP server is probably not available. An exception will occur at `smtpClient.Send(msg)`,
-    ' and the email will be saved in the undeliverable email folder. To avoid the exception, either set 
-    ' `EnableSendingEmail` to false, or run a dev SMTP server such as https://github.com/rnwood/smtp4dev
+    ' If the EmailQueue API is unavailable, `EmailQueueApi.QueueEmailAsync` will return "Failed", and the page
+    ' should show an error message.
+    '
+    ' If you want to test sending emails without connecting to the live EmailQueue API, you can run the API
+    ' locally (https://github.com/gaepdit/email-queue). The API will need an SMTP server to connect to. You can
+    ' run a dev SMTP server locally using https://github.com/rnwood/smtp4dev
 
     Public ReadOnly Property GecoContactEmail As String = ConfigurationManager.AppSettings("GecoContactEmail")
     Private ReadOnly GecoEmailSender As String = ConfigurationManager.AppSettings("GecoEmailSender")
