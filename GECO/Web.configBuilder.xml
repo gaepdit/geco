@@ -34,6 +34,7 @@
 		<add key="GoogleMapsAPIKey" value=""/>
 		<add key="EpaCaersUrl" value="https://test.epacdx.net/CDX/MyCDX"/>
 		<add key="OrgNotificationsApiUrl" value="https://localhost:7233/current"/>
+		<add key="PermitSearchUrl" value="https://localhost:7230/Permits"/>
 		<add key="dd_env" value=""/>
 		<add key="dd_clientToken" value=""/>
 		<add key="dd_applicationId" value=""/>
