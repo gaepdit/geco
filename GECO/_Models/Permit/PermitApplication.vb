@@ -91,7 +91,9 @@
                 Return Nothing
             End If
 
-            Return $"https://permitsearch.gaepd.org/Permit/{PermitFileName}"
+            Dim permitsUrl As String = ConfigurationManager.AppSettings("PermitSearchUrl")
+
+            Return $"{permitsUrl}/View/{PermitFileName}"
         End Function
 
         Public Shared Function GetPermitAirsSearchLink(airs As ApbFacilityId) As String
@@ -99,7 +101,9 @@
                 Return Nothing
             End If
 
-            Return $"https://permitsearch.gaepd.org/AirsNumber/{airs.ShortString}"
+            Dim permitsUrl As String = ConfigurationManager.AppSettings("PermitSearchUrl")
+
+            Return $"{permitsUrl}/Facility/{airs.FormattedString}"
         End Function
 
     End Class
