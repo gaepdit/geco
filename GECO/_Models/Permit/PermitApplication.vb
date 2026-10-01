@@ -103,7 +103,7 @@
 
             Dim permitsUrl As String = ConfigurationManager.AppSettings("PermitSearchUrl")
 
-            Return $"{permitsUrl}/Facility?Id={airs.FormattedString}"
+            Return $"{permitsUrl}/Facility/{airs.FormattedString}"
         End Function
 
     End Class
