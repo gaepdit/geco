@@ -6,7 +6,7 @@ Imports System.Runtime.InteropServices
 <Assembly: AssemblyCompany("State of Georgia")>
 <Assembly: AssemblyProduct("GECO")>
 <Assembly: AssemblyCopyright("Copyright © 2026")>
-<Assembly: AssemblyVersion("2026.9.17")>
+<Assembly: AssemblyVersion("2026.10.5")>
 <Assembly: AssemblyFileVersion("1.0.0.0")>
 <Assembly: ComVisible(False)>
 <Assembly: NeutralResourcesLanguage("en-US")>
