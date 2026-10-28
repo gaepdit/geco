@@ -5,7 +5,7 @@ Friend Module DatabaseConnection
     Public Property DB As GaEpd.DBHelper = GetDBHelper()
 
     Private Function GetDBHelper() As GaEpd.DBHelper
-        Dim connectionString As String = ConfigurationManager.ConnectionStrings("SqlConnectionString").ToString
+        Dim connectionString As String = ConfigurationManager.ConnectionStrings("SqlConnectionString").ConnectionString
 
         Dim options As New SqlRetryLogicOption() With {
             .NumberOfTries = 5,

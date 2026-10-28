@@ -12,18 +12,27 @@
 	<configSections>
 		<section name ="communicationPrefs" type ="GECO.GecoModels.Facility.CommunicationPrefsConfigSection"/>
 		<section name="ajaxControlToolkit" type="AjaxControlToolkit.AjaxControlToolkitConfigSection, AjaxControlToolkit"/>
+		<section name="configBuilders" restartOnExternalChanges="false" requirePermission="false"
+				 type="System.Configuration.ConfigurationBuildersSection, System.Configuration, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
 	</configSections>
 
-	<connectionStrings>
-		<add name="SqlConnectionString" connectionString=""/>
+	<configBuilders>
+		<builders>
+			<add name="AzureKeyVault" vaultName="kv-dnr-geco-dev" enabled="true"
+				 type="Microsoft.Configuration.ConfigurationBuilders.AzureKeyVaultConfigBuilder, Microsoft.Configuration.ConfigurationBuilders.Azure" />
+		</builders>
+	</configBuilders>
+
+	<connectionStrings configBuilders="AzureKeyVault">
+		<add name="SqlConnectionString" connectionString="From config builders"/>
 	</connectionStrings>
 
-	<appSettings>
+	<appSettings configBuilders="AzureKeyVault">
 		<add key="GECO_ENVIRONMENT" value="Development"/>
 		<add key="GecoEmailSender" value="GeorgiaAirProtectionBranch@dnr.ga.gov"/>
 		<add key="EmailQueueApiUrl" value="https://localhost:7145" />
 		<add key="EmailQueueClientId" value="f9dbdd27-0056-46fe-9c44-753e42b95f64" />
-		<add key="EmailQueueApiKey" value="fbe09030-62e3-4581-89af-eea2139348f9" />
+		<add key="EmailQueueApiKey" value="" />
 		<add key="ValidationSettings:UnobtrusiveValidationMode" value="None"/>
 		<add key="UndeliverableEmailFolder" value="..\_UnsentEmail"/>
 		<add key="LoggingFolder" value="..\Logs"/>
@@ -136,45 +145,100 @@
 	<runtime>
 		<assemblyBinding xmlns="urn:schemas-microsoft-com:asm.v1">
 			<dependentAssembly>
-				<assemblyIdentity name="Azure.Core" publicKeyToken="92742159E12E44C8" culture="neutral"/>
-				<bindingRedirect oldVersion="0.0.0.0-1.47.1.0" newVersion="1.47.1.0"/>
+				<assemblyIdentity name="Azure.Core" culture="neutral" publicKeyToken="92742159e12e44c8" />
+				<bindingRedirect oldVersion="0.0.0.0-1.54.0.0" newVersion="1.54.0.0" />
 			</dependentAssembly>
 			<dependentAssembly>
-				<assemblyIdentity name="Microsoft.Extensions.Logging.Abstractions" publicKeyToken="ADB9793829DDAE60" culture="neutral"/>
-				<bindingRedirect oldVersion="0.0.0.0-8.0.0.3" newVersion="8.0.0.3"/>
+				<assemblyIdentity name="Azure.Identity" culture="neutral" publicKeyToken="92742159e12e44c8" />
+				<bindingRedirect oldVersion="0.0.0.0-1.21.0.0" newVersion="1.21.0.0" />
 			</dependentAssembly>
 			<dependentAssembly>
-				<assemblyIdentity name="Microsoft.IdentityModel.Abstractions" publicKeyToken="31BF3856AD364E35" culture="neutral"/>
-				<bindingRedirect oldVersion="0.0.0.0-7.7.1.0" newVersion="7.7.1.0"/>
+				<assemblyIdentity name="Azure.Security.KeyVault.Secrets" culture="neutral" publicKeyToken="92742159e12e44c8" />
+				<bindingRedirect oldVersion="0.0.0.0-4.11.2.0" newVersion="4.11.2.0" />
 			</dependentAssembly>
 			<dependentAssembly>
-				<assemblyIdentity name="System.Buffers" publicKeyToken="CC7B13FFCD2DDD51" culture="neutral"/>
-				<bindingRedirect oldVersion="0.0.0.0-4.0.3.0" newVersion="4.0.3.0"/>
+				<assemblyIdentity name="Microsoft.Bcl.AsyncInterfaces" culture="neutral" publicKeyToken="cc7b13ffcd2ddd51" />
+				<bindingRedirect oldVersion="0.0.0.0-10.0.0.3" newVersion="10.0.0.3" />
 			</dependentAssembly>
 			<dependentAssembly>
-				<assemblyIdentity name="System.Diagnostics.DiagnosticSource" publicKeyToken="CC7B13FFCD2DDD51" culture="neutral"/>
-				<bindingRedirect oldVersion="0.0.0.0-8.0.0.1" newVersion="8.0.0.1"/>
+				<assemblyIdentity name="Microsoft.Extensions.Configuration.Abstractions" culture="neutral" publicKeyToken="adb9793829ddae60" />
+				<bindingRedirect oldVersion="0.0.0.0-10.0.0.3" newVersion="10.0.0.3" />
 			</dependentAssembly>
 			<dependentAssembly>
-				<assemblyIdentity name="System.Memory.Data" publicKeyToken="CC7B13FFCD2DDD51" culture="neutral"/>
-				<bindingRedirect oldVersion="0.0.0.0-8.0.0.1" newVersion="8.0.0.1"/>
+				<assemblyIdentity name="Microsoft.Extensions.DependencyInjection.Abstractions" culture="neutral" publicKeyToken="adb9793829ddae60" />
+				<bindingRedirect oldVersion="0.0.0.0-10.0.0.3" newVersion="10.0.0.3" />
 			</dependentAssembly>
 			<dependentAssembly>
-				<assemblyIdentity name="System.Memory" publicKeyToken="CC7B13FFCD2DDD51" culture="neutral"/>
-				<bindingRedirect oldVersion="0.0.0.0-4.0.1.2" newVersion="4.0.1.2"/>
+				<assemblyIdentity name="Microsoft.Extensions.Diagnostics.Abstractions" culture="neutral" publicKeyToken="adb9793829ddae60" />
+				<bindingRedirect oldVersion="0.0.0.0-10.0.0.3" newVersion="10.0.0.3" />
 			</dependentAssembly>
 			<dependentAssembly>
-				<assemblyIdentity name="System.Numerics.Vectors" publicKeyToken="B03F5F7F11D50A3A" culture="neutral"/>
-				<bindingRedirect oldVersion="0.0.0.0-4.1.4.0" newVersion="4.1.4.0"/>
+				<assemblyIdentity name="Microsoft.Extensions.Hosting.Abstractions" culture="neutral" publicKeyToken="adb9793829ddae60" />
+				<bindingRedirect oldVersion="0.0.0.0-10.0.0.3" newVersion="10.0.0.3" />
 			</dependentAssembly>
 			<dependentAssembly>
-				<assemblyIdentity name="System.Runtime.CompilerServices.Unsafe" publicKeyToken="B03F5F7F11D50A3A" culture="neutral"/>
-				<bindingRedirect oldVersion="0.0.0.0-6.0.0.0" newVersion="6.0.0.0"/>
+				<assemblyIdentity name="Microsoft.Extensions.Logging.Abstractions" culture="neutral" publicKeyToken="adb9793829ddae60" />
+				<bindingRedirect oldVersion="0.0.0.0-10.0.0.3" newVersion="10.0.0.3" />
 			</dependentAssembly>
 			<dependentAssembly>
-				<assemblyIdentity name="System.Text.Json" publicKeyToken="CC7B13FFCD2DDD51" culture="neutral"/>
-				<bindingRedirect oldVersion="0.0.0.0-8.0.0.5" newVersion="8.0.0.5"/>
+				<assemblyIdentity name="Microsoft.Extensions.Primitives" culture="neutral" publicKeyToken="adb9793829ddae60" />
+				<bindingRedirect oldVersion="0.0.0.0-10.0.0.3" newVersion="10.0.0.3" />
 			</dependentAssembly>
+			<dependentAssembly>
+				<assemblyIdentity name="Microsoft.Identity.Client" culture="neutral" publicKeyToken="0a613f4dd989e8ae" />
+				<bindingRedirect oldVersion="0.0.0.0-4.83.1.0" newVersion="4.83.1.0" />
+			</dependentAssembly>
+			<dependentAssembly>
+				<assemblyIdentity name="Microsoft.Identity.Client.Extensions.Msal" culture="neutral" publicKeyToken="0a613f4dd989e8ae" />
+				<bindingRedirect oldVersion="0.0.0.0-4.83.1.0" newVersion="4.83.1.0" />
+			</dependentAssembly>
+			<dependentAssembly>
+				<assemblyIdentity name="Microsoft.IdentityModel.Abstractions" culture="neutral" publicKeyToken="31bf3856ad364e35" />
+				<bindingRedirect oldVersion="0.0.0.0-8.14.0.0" newVersion="8.14.0.0" />
+			</dependentAssembly>
+			<dependentAssembly>
+				<assemblyIdentity name="System.Buffers" culture="neutral" publicKeyToken="cc7b13ffcd2ddd51" />
+				<bindingRedirect oldVersion="0.0.0.0-4.0.5.0" newVersion="4.0.5.0" />
+			</dependentAssembly>
+			<dependentAssembly>
+				<assemblyIdentity name="System.Diagnostics.DiagnosticSource" culture="neutral" publicKeyToken="cc7b13ffcd2ddd51" />
+				<bindingRedirect oldVersion="0.0.0.0-10.0.0.3" newVersion="10.0.0.3" />
+			</dependentAssembly>
+			<dependentAssembly>
+				<assemblyIdentity name="System.Memory" culture="neutral" publicKeyToken="cc7b13ffcd2ddd51" />
+				<bindingRedirect oldVersion="0.0.0.0-4.0.5.0" newVersion="4.0.5.0" />
+			</dependentAssembly>
+			<dependentAssembly>
+				<assemblyIdentity name="System.Memory.Data" culture="neutral" publicKeyToken="cc7b13ffcd2ddd51" />
+				<bindingRedirect oldVersion="0.0.0.0-10.0.0.3" newVersion="10.0.0.3" />
+			</dependentAssembly>
+			<dependentAssembly>
+				<assemblyIdentity name="System.Numerics.Vectors" culture="neutral" publicKeyToken="b03f5f7f11d50a3a" />
+				<bindingRedirect oldVersion="0.0.0.0-4.1.6.0" newVersion="4.1.6.0" />
+			</dependentAssembly>
+			<dependentAssembly>
+				<assemblyIdentity name="System.Runtime.CompilerServices.Unsafe" culture="neutral" publicKeyToken="b03f5f7f11d50a3a" />
+				<bindingRedirect oldVersion="0.0.0.0-6.0.3.0" newVersion="6.0.3.0" />
+			</dependentAssembly>
+			<dependentAssembly>
+				<assemblyIdentity name="System.Text.Encodings.Web" culture="neutral" publicKeyToken="cc7b13ffcd2ddd51" />
+				<bindingRedirect oldVersion="0.0.0.0-10.0.0.3" newVersion="10.0.0.3" />
+			</dependentAssembly>
+			<dependentAssembly>
+				<assemblyIdentity name="System.Text.Json" culture="neutral" publicKeyToken="cc7b13ffcd2ddd51" />
+				<bindingRedirect oldVersion="0.0.0.0-10.0.0.3" newVersion="10.0.0.3" />
+			</dependentAssembly>
+			<dependentAssembly>
+				<assemblyIdentity name="System.Threading.Tasks.Extensions" culture="neutral" publicKeyToken="cc7b13ffcd2ddd51" />
+				<bindingRedirect oldVersion="0.0.0.0-4.2.4.0" newVersion="4.2.4.0" />
+			</dependentAssembly>
+			<!--
+				Ignore the build warning telling you to add the binding redirect below for System.ValueTuple. This is a bug. See https://stackoverflow.com/a/53512525/212978
+			-->
+			<!--<dependentAssembly>
+				<assemblyIdentity name="System.ValueTuple" culture="neutral" publicKeyToken="cc7b13ffcd2ddd51" />
+				<bindingRedirect oldVersion="0.0.0.0-4.0.5.0" newVersion="4.0.2.0" />
+			</dependentAssembly>-->
 		</assemblyBinding>
 	</runtime>
 </configuration>
