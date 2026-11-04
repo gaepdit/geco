@@ -36,13 +36,13 @@ Public Class EIS_Default
             Return
         End If
 
+        EiYear = GetCurrentEiYear()
+
         If Not IsPostBack AndAlso LoadEisStatus() Then
             LoadFacilityDetails()
             LoadStates()
             LoadCurrentCaersUsers()
         End If
-
-        EiYear = GetCurrentEiYear()
     End Sub
 
     Private Sub LoadCurrentAirs()
@@ -82,10 +82,8 @@ Public Class EIS_Default
             Return False
         End If
 
-        Dim eiYear As Integer = GetCurrentEiYear()
-
         If Not EiStatus.Enrolled Then
-            lblEnrollmentStatus.Text = $"This facility is not enrolled in the {eiYear} EI."
+            lblEnrollmentStatus.Text = $"This facility is not enrolled in the {EiYear} EI."
             lblEnrollmentStatus.Visible = True
             submitEiSection.Visible = False
         End If
